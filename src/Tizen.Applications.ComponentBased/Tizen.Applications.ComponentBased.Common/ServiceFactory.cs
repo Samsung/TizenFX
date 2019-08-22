@@ -28,13 +28,13 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private bool OnCreateCallback(IntPtr context, IntPtr userData)
         {
-            ServiceComponent sc = Activator.CreateInstance(_classType) as ServiceComponent;
+            ServiceComponent sc = Activator.CreateInstance(ComponentClassType) as ServiceComponent;
             if (sc == null)
                 return false;
 
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
-            sc.Bind(context, _compId, id, _parent);
+            sc.Bind(context, ComponentId, id, _parent);
 
             bool result = sc.OnCreate();
             if (!result)
@@ -42,13 +42,13 @@ namespace Tizen.Applications.ComponentBased.Common
                 return false;
             }
 
-            _compInstances.Add(sc);
+            ComponentInstances.Add(sc);
             return true;
         }
 
         private void OnStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData)
         {
-            foreach (ServiceComponent sc in _compInstances)
+            foreach (ServiceComponent sc in ComponentInstances)
             {
                 if (sc.Handle == context)
                 {
@@ -62,12 +62,12 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnDestroyCallback(IntPtr context, IntPtr userData)
         {
-            foreach (ServiceComponent sc in _compInstances)
+            foreach (ServiceComponent sc in ComponentInstances)
             {
                 if (sc.Handle == context)
                 {
                     sc.OnDestroy();
-                    _compInstances.Remove(sc);
+                    ComponentInstances.Remove(sc);
                     break;
                 }
             }
@@ -80,7 +80,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal override IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddServiceComponent(h, _compId, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddServiceComponent(h, ComponentId, ref _callbacks, IntPtr.Zero);
         }
     }
 }

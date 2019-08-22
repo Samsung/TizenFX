@@ -39,7 +39,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal override IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)_compType, _compId, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddComponent(h, (NativeComponentType)ComponentType, ComponentId, ref _callbacks, IntPtr.Zero);
         }
     }
 }

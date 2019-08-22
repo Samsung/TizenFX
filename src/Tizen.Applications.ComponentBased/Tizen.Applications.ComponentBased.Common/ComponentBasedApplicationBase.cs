@@ -26,7 +26,7 @@ namespace Tizen.Applications.ComponentBased.Common
     public class ComponentBasedApplicationBase : Application
     {
         private const string LogTag = "Tizen.Applications.ComponentBasedApplicationBase";
-        private IList<ComponentFactoryBase> _componentFactories = new List<ComponentFactoryBase>();
+        private Dictionary<Type, ComponentFactoryBase> _componentFactories = new Dictionary<Type, ComponentFactoryBase>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
         private bool _disposedValue = false;
 
@@ -37,7 +37,6 @@ namespace Tizen.Applications.ComponentBased.Common
         /// The key should be a class type of BaseComponent subclass.
         /// The value should be a component id which is declared in tizen-manifest.xml.
         /// </param>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <since_tizen> 6 </since_tizen>
         public ComponentBasedApplicationBase(IDictionary<Type, string> typeInfo)
         {
@@ -63,27 +62,30 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
-            foreach (ComponentFactoryBase factory in _componentFactories)
+            if (_componentFactories.ContainsKey(compType))
             {
-                if (compType.BaseType == factory._classType)
-                    throw new InvalidOperationException("Already exist type");
+                throw new InvalidOperationException("Already exist type");
             }
 
-            if (typeof(BaseComponent).IsAssignableFrom(compType))
+            if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
-                Log.Info(LogTag, "Add base comp");
-                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
-                _componentFactories.Add(new BaseFactory(compType, compId, b.ComponentType, this));
-            }
-            else if (typeof(FrameComponent).IsAssignableFrom(compType))
-            {
-                Log.Info(LogTag, "Add frame comp");
-                _componentFactories.Add(new FrameFactory(compType, compId, this));
+                Log.Info(LogTag, "Add frame component");
+                _componentFactories.Add(compType, new FrameFactory(compType, compId, this));
             }
             else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
-                Log.Info(LogTag, "Add service comp");
-                _componentFactories.Add(new ServiceFactory(compType, compId, this));
+                Log.Info(LogTag, "Add service component");
+                _componentFactories.Add(compType, new ServiceFactory(compType, compId, this));
+            }
+            else if (typeof(BaseComponent).IsAssignableFrom(compType))
+            {
+                Log.Info(LogTag, "Add base component");
+                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
+                _componentFactories.Add(compType, new BaseFactory(compType, compId, b.ComponentType, this));
+            }
+            else
+            {
+                throw new ArgumentException("Invalid type");
             }
         }
 
@@ -91,7 +93,6 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Runs the application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
         /// <since_tizen> 6 </since_tizen>
         public override void Run(string[] args)
@@ -126,9 +127,9 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             Log.Debug(LogTag, "On create");
             IntPtr h = IntPtr.Zero;
-            foreach (ComponentFactoryBase factory in _componentFactories)
+            foreach(KeyValuePair<Type, ComponentFactoryBase> entry in _componentFactories)
             {
-                h = factory.Bind(h);
+                h = entry.Value.Bind(h);
             }
 
             return h;

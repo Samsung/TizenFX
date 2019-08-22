@@ -31,13 +31,13 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private IntPtr OnCreateCallback(IntPtr context, IntPtr userData)
         {
-            FrameComponent fc = Activator.CreateInstance(_classType) as FrameComponent;
+            FrameComponent fc = Activator.CreateInstance(ComponentClassType) as FrameComponent;
             if (fc == null)
                 return IntPtr.Zero;
 
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
-            fc.Bind(context, _compId, id, _parent);
+            fc.Bind(context, ComponentId, id, _parent);
 
             IntPtr winHandle;
             IWindowInfo win = fc.OnCreate();
@@ -47,13 +47,13 @@ namespace Tizen.Applications.ComponentBased.Common
             fc.WindowInfo = win;
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
 
-            _compInstances.Add(fc);
+            ComponentInstances.Add(fc);
             return winHandle;
         }
 
         private void OnStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData)
         {
-            foreach (FrameComponent fc in _compInstances)
+            foreach (FrameComponent fc in ComponentInstances)
             {
                 if (fc.Handle == context)
                 {
@@ -67,7 +67,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnResumeCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in _compInstances)
+            foreach (FrameComponent fc in ComponentInstances)
             {
                 if (fc.Handle == context)
                 {
@@ -79,7 +79,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnPauseCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in _compInstances)
+            foreach (FrameComponent fc in ComponentInstances)
             {
                 if (fc.Handle == context)
                 {
@@ -91,7 +91,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnStopCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in _compInstances)
+            foreach (FrameComponent fc in ComponentInstances)
             {
                 if (fc.Handle == context)
                 {
@@ -103,12 +103,12 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnDestroyCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in _compInstances)
+            foreach (FrameComponent fc in ComponentInstances)
             {
                 if (fc.Handle == context)
                 {
                     fc.OnDestroy();
-                    _compInstances.Remove(fc);
+                    ComponentInstances.Remove(fc);
                     break;
                 }
             }
@@ -121,7 +121,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         internal override IntPtr Bind(IntPtr h)
         {
-            return Interop.CBApplication.BaseAddFrameComponent(h, _compId, ref _callbacks, IntPtr.Zero);
+            return Interop.CBApplication.BaseAddFrameComponent(h, ComponentId, ref _callbacks, IntPtr.Zero);
         }
     }
 }

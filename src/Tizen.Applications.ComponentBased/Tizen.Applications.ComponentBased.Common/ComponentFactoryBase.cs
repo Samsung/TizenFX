@@ -9,28 +9,24 @@ namespace Tizen.Applications.ComponentBased.Common
 {
     internal abstract class ComponentFactoryBase
     {
-        internal readonly Type _classType;
-        internal readonly string _compId;
-        internal IList<BaseComponent> _compInstances = new List<BaseComponent>();
-        internal ComponentType _compType;
-        private ComponentBasedApplicationBase _parent;
+        public IList<BaseComponent> ComponentInstances { get; }
+        public Type ComponentClassType { get; }
+        public ComponentType ComponentType { get; }
+        public string ComponentId { get; }
+        public ComponentBasedApplicationBase Parent { get; }
 
         internal ComponentFactoryBase(Type ctype, string id, ComponentType comp_type, ComponentBasedApplicationBase parent)
         {
-            _compType = comp_type;
-            _classType = ctype;
-            _compId = id;
-            _parent = parent;
-        }
-
-        internal ComponentType GetComponentType()
-        {
-            return _compType;
+            ComponentType = comp_type;
+            ComponentClassType = ctype;
+            ComponentId = id;
+            Parent = parent;
+            ComponentInstances = new List<BaseComponent>();
         }
 
         protected void OnLanguageChangedCallback(IntPtr context, string language, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -41,7 +37,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnDeviceOrientationChangedCallback(IntPtr context, int orientation, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -52,7 +48,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnLowBatteryCallback(IntPtr context, int status, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -63,7 +59,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnLowMemoryCallback(IntPtr context, int status, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -74,7 +70,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnRegionFormatChangedCallback(IntPtr context, string region, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -85,7 +81,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnSuspendedStateCallback(IntPtr context, int state, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -96,7 +92,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnRestoreCallback(IntPtr context, IntPtr content, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
@@ -112,7 +108,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         protected void OnSaveCallback(IntPtr context, IntPtr content, IntPtr userData)
         {
-            foreach (BaseComponent com in _compInstances)
+            foreach (BaseComponent com in ComponentInstances)
             {
                 if (com.Handle == context)
                 {
