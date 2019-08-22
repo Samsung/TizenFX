@@ -116,13 +116,16 @@ namespace Tizen.Multimedia.Vision
         /// If there's no detected face, <see cref="FaceDetectionResult.Number"/> will be 0 and,
         /// <see cref="FaceDetectionResult.Confidences"/> and <see cref="FaceDetectionResult.Locations"/> will be null.
         /// </remarks>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
         public static async Task<FaceDetectionResult> DetectAsync(MediaVisionSource source,

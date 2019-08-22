@@ -58,7 +58,6 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
         /// </summary>
-        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public InferenceModelConfiguration() : base("inference")
@@ -73,6 +72,9 @@ namespace Tizen.Multimedia.Vision
         /// User should set all required properties of this class before calling this method.<br/>
         /// The properties set after calling this method will not be affected in the result.
         /// </remarks>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <exception cref="FileNotFoundException">
         /// <see cref="ConfigurationFilePath"/>, <see cref="WeightFilePath"/> or <see cref="CategoryFilePath"/> have invalid path.
         /// </exception>
@@ -83,6 +85,7 @@ namespace Tizen.Multimedia.Vision
         /// Invalid data type is used in inference model data.<br/>
         /// </exception>
         /// <exception cref="InvalidOperationException">Internal operation error.</exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void LoadInferenceModel()
         {
