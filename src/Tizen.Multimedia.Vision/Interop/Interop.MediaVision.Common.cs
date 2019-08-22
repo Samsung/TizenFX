@@ -176,6 +176,10 @@ internal static partial class Interop
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_string_attribute")]
             internal static extern MediaVisionError SetString(IntPtr handle, string name, string value);
 
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_array_string_attribute")]
+            internal static extern MediaVisionError SetStringArray(IntPtr handle, string name,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] string[] value, int size);
+
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_double_attribute")]
             internal static extern MediaVisionError GetDouble(IntPtr handle, string name, out double value);
 
@@ -187,6 +191,10 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_string_attribute")]
             internal static extern MediaVisionError GetString(IntPtr handle, string name, out IntPtr value);
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_array_string_attribute")]
+            internal static extern MediaVisionError GetStringArray(IntPtr handle, string name,
+                out IntPtr value, out int size);
         }
     }
 }
