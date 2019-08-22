@@ -86,7 +86,7 @@ namespace Tizen.Multimedia
         /// Activate audio ducking
         /// </summary>
         /// <param name="duration">The duration(milisecond) for ducking.</param>
-        /// <param name="ratio">The volume ratio after ducked.</param>
+        /// <param name="ratio">The volume ratio when ducked.</param>
         /// <remarks>To activate ducking, the specified privilege is required.</remarks>
         /// <privilege>http://tizen.org/privilege/volume.set</privilege>
         /// <exception cref="ArgumentOutOfRangeException">
