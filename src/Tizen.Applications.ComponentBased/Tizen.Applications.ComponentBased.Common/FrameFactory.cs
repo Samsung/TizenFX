@@ -44,7 +44,7 @@ namespace Tizen.Applications.ComponentBased.Common
             if (win == null)
                 return IntPtr.Zero;
 
-            fc.Window = win;
+            fc.WindowInfo = win;
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
 
             _compInstances.Add(fc);
