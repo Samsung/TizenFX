@@ -7,9 +7,9 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class FrameFactory : ComponentFactoryBase
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
-        private ComponentBasedApplicationBase _parent;
+        private ComponentBasedApplication _parent;
 
-        internal FrameFactory(Type ctype, string id, ComponentBasedApplicationBase parent) : base(ctype, id, ComponentType.Frame, parent)
+        internal FrameFactory(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, ComponentType.Frame, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.FrameActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.FrameDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);

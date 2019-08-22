@@ -83,7 +83,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Parent object
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ComponentBasedApplicationBase Parent { get; private set; }
+        public ComponentBasedApplication Parent { get; private set; }
 
         /// <summary>
         /// Finish current component
@@ -94,7 +94,7 @@ namespace Tizen.Applications.ComponentBased.Common
             Interop.CBApplication.ComponentFinish(Handle);
         }
 
-        internal void Bind(IntPtr handle, string compId, string instanceId, ComponentBasedApplicationBase parent)
+        internal void Bind(IntPtr handle, string compId, string instanceId, ComponentBasedApplication parent)
         {
             Handle = handle;
             Id = instanceId;

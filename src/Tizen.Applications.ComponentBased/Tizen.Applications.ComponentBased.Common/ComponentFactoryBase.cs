@@ -13,9 +13,9 @@ namespace Tizen.Applications.ComponentBased.Common
         public Type ComponentClassType { get; }
         public ComponentType ComponentType { get; }
         public string ComponentId { get; }
-        public ComponentBasedApplicationBase Parent { get; }
+        public ComponentBasedApplication Parent { get; }
 
-        internal ComponentFactoryBase(Type ctype, string id, ComponentType comp_type, ComponentBasedApplicationBase parent)
+        internal ComponentFactoryBase(Type ctype, string id, ComponentType comp_type, ComponentBasedApplication parent)
         {
             ComponentType = comp_type;
             ComponentClassType = ctype;

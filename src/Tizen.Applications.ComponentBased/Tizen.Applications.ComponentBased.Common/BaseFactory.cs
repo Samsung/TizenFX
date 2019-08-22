@@ -21,10 +21,10 @@ namespace Tizen.Applications.ComponentBased.Common
 {
     internal class BaseFactory : ComponentFactoryBase
     {
-        private ComponentBasedApplicationBase _parent;
+        private ComponentBasedApplication _parent;
         private Interop.CBApplication.BaseLifecycleCallbacks _callbacks;
 
-        internal BaseFactory(Type ctype, string id, ComponentType compType, ComponentBasedApplicationBase parent) : base(ctype, id, compType, parent)
+        internal BaseFactory(Type ctype, string id, ComponentType compType, ComponentBasedApplication parent) : base(ctype, id, compType, parent)
         {
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.BaseDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
             _callbacks.OnLanguageChanged = new Interop.CBApplication.BaseLanguageChangedCallback(OnLanguageChangedCallback);
