@@ -55,6 +55,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
+            _owner.ValidateNotDisposed();
             _owner.AudioOffload.CheckDisabled();
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
@@ -89,6 +90,8 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public string GetLanguageCode(int index)
         {
+            _owner.ValidateNotDisposed();
+
             if (index < 0 || GetCount() <= index)
             {
                 throw new ArgumentOutOfRangeException(nameof(index), index,
@@ -145,6 +148,7 @@ namespace Tizen.Multimedia
         {
             get
             {
+                _owner.ValidateNotDisposed();
                 _owner.AudioOffload.CheckDisabled();
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
@@ -155,6 +159,8 @@ namespace Tizen.Multimedia
             }
             set
             {
+                _owner.ValidateNotDisposed();
+
                 if (value < 0 || GetCount() <= value)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), value,
