@@ -64,7 +64,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>true if the audio stream is ducked; otherwise, false.</value>
         /// <exception cref="InvalidOperationException">Operation failed; internal error.</exception>
-        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioDucking"/> has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public bool IsDucked
         {
@@ -87,6 +87,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="duration">The duration(milisecond) for ducking.</param>
         /// <param name="ratio">The volume ratio after ducked.</param>
+        /// <remarks>To activate ducking, the specified privilege is required.</remarks>
+        /// <privilege>http://tizen.org/privilege/volume.set</privilege>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="duration"/> is less than 0 or greater than 3000.<br/>
         ///     -or-<br/>
@@ -98,7 +100,7 @@ namespace Tizen.Multimedia
         ///     The target stream is already ducked.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
-        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioDucking"/> has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void Activate(uint duration, double ratio)
         {
@@ -124,13 +126,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Deactivate audio ducking
         /// </summary>
+        /// <remarks>To deactivate ducking, the specified privilege is required.</remarks>
+        /// <privilege>http://tizen.org/privilege/volume.set</privilege>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.<br/>
         ///     -or-<br/>
         ///     The target stream is already unducked.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
-        /// <exception cref="ObjectDisposedException">The ducking has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioDucking"/> has already been disposed of.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void Deactivate()
         {
