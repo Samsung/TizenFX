@@ -74,8 +74,6 @@ namespace Tizen.NUI
             /// UI control rendering mode.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use LayerUI property instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Layer2D = LayerUI,
 
             /// <summary>
