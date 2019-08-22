@@ -116,8 +116,6 @@ namespace Tizen.Multimedia.Vision
         /// If there's no detected face, <see cref="FaceDetectionResult.Number"/> will be 0 and,
         /// <see cref="FaceDetectionResult.Confidences"/> and <see cref="FaceDetectionResult.Locations"/> will be null.
         /// </remarks>
-        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
-        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>

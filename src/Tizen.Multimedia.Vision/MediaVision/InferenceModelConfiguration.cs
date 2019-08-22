@@ -27,8 +27,8 @@ namespace Tizen.Multimedia.Vision
     /// <remarks>
     /// 'Inference model' means pre-learned data, which represents by <see cref="ConfigurationFilePath"/> and
     /// <see cref="WeightFilePath"/>, <see cref="CategoryFilePath"/>.<br/>
-    /// If user doesn't set any property, the default model and its related values will be used internally.<br/>
-    /// But, if user set inference model, user should set proper value for the selected inference model.
+    /// If user want to use tizen default inference model and its related value,
+    /// Please refer Tizen guide page(https://developer.tizen.org/development/guides/.net-application).
     /// </remarks>
     /// <feature>http://tizen.org/feature/vision.inference</feature>
     /// <since_tizen> 6 </since_tizen>
@@ -58,6 +58,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public InferenceModelConfiguration() : base("inference")
@@ -163,7 +164,6 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the path of inference model's configuration data file.
         /// </summary>
-        /// <remarks>If user don't set this property, the default data will be used.</remarks>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
         /// <since_tizen> 6 </since_tizen>
         public string ConfigurationFilePath
@@ -186,7 +186,6 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the path of inference model's weight file.
         /// </summary>
-        /// <remarks>If user don't set this property, the default data will be used.</remarks>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
         /// <since_tizen> 6 </since_tizen>
         public string WeightFilePath
@@ -210,8 +209,6 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the path of inference model's category file.
         /// </summary>
         /// <remarks>
-        /// If user don't set this property, the default data will be used.<br/>
-        /// <br/>
         /// This value should be set to use <see cref="ImageClassifier"/> or <see cref="ObjectDetector"/>.
         /// </remarks>
         /// <exception cref="ArgumentNullException">Input file path is null.</exception>
@@ -236,10 +233,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the inference model's mean value.
         /// </summary>
-        /// <remarks>
-        /// The default value is 127.5.<br/>
-        /// It should be greater than 0.
-        /// </remarks>
+        /// <remarks>It should be greater than 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public double MeanValue
@@ -263,10 +257,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the inference model's STD(Standard deviation) value.
         /// </summary>
-        /// <remarks>
-        /// The default value is 1.0.<br/>
-        /// It should be greater than 0.
-        /// </remarks>
+        /// <remarks>It should be greater than 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public double StdValue
@@ -444,7 +435,6 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the maximum output number of detection or classification.
         /// </summary>
         /// <remarks>
-        /// The default value is 5.<br/>
         /// The input value over 10 will be set to 10 and the input value under 1 will be set to 1.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
@@ -464,7 +454,6 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the threshold of confidence.
         /// </summary>
         /// <remarks>
-        /// The default value is 0.6.<br/>
         /// The vaild range is greater than or equal to 0.0 and less than or equal to 1.0.<br/>
         /// The value 1.0 means maximum accuracy.
         /// </remarks>

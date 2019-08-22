@@ -30,8 +30,6 @@ namespace Tizen.Multimedia.Vision
         /// Detects facial landmarks on the source image using inference engine which set by <paramref name="config"/>.<br/>
         /// Each time when DetectAsync is called, a set of the detected facial landmark at the media source are received asynchronously.
         /// </summary>
-        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
-        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
