@@ -444,6 +444,13 @@ namespace Tizen.NUI
                                          sizeTransitionComponents.Delay,
                                          sizeTransitionComponents.Duration,
                                          sizeTransitionComponents.AlphaFunction);
+
+                Debug.WriteLineIf( LayoutDebugController,
+                                  "LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
+                                   " width:" + (layoutPositionData.Right-layoutPositionData.Left) +
+                                   " height:" + (layoutPositionData.Bottom-layoutPositionData.Top) +
+                                   " delay:" + sizeTransitionComponents.Delay +
+                                   " duration:" + sizeTransitionComponents.Duration );
             }
         }
 
@@ -518,22 +525,23 @@ namespace Tizen.NUI
 
             bool matchedCustomTransitions = false;
 
-            // Inherit parent transitions if none already set on View for the condition.
-            // Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
             TransitionList transitionsForCurrentCondition = new TransitionList();
+            // Note, Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
-            ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
-            if (layoutParent !=null)
+            // Check if item to animate has it's own Transitions for this condition.
+            // If a key exists then a List of atleast 1 transition exists.
+            if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
             {
-                // Check if item to animate has it's own Transitions for this condition.
-                // If a key exists then a List of atleast 1 transition exists.
-                if ( layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
-                {
-                    // Child has transitions for the condition
-                    matchedCustomTransitions = layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition);
-                }
-                else
+                // Child has transitions for the condition
+                matchedCustomTransitions = layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition);
+            }
+
+            if (!matchedCustomTransitions)
+            {
+                // Inherit parent transitions as none already set on View for the condition.
+                ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
+                if (layoutParent !=null)
                 {
                     // Item doesn't have it's own transitions for this condition so copy parents if
                     // has a parent with transitions.
@@ -545,13 +553,13 @@ namespace Tizen.NUI
                         // Copy parent transitions to temporary TransitionList. List contains transitions for the current condition.
                         LayoutTransitionsHelper.CopyTransitions(parentTransitionList,
                                                                 transitionsForCurrentCondition);
-
-                        matchedCustomTransitions = false; // Using parent transition as no custom match.
                     }
                 }
             }
 
-            // Position/Size transitions can be for a layout changing to another layout or an item being added or removed.
+
+            // Position/Size transitions can be displayed for a layout changing to another layout or an item being added or removed.
+
             // There can only be one position transition and one size position, they will be replaced if set multiple times.
             // transitionsForCurrentCondition represent all non position (custom) properties that should be animated.
 
