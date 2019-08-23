@@ -135,6 +135,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// TotalFrame of animation.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int TotalFrame
+        {
+            get => TotalFrameNumber;
+        }
+
+        /// <summary>
         /// CurrentFrame of animation.
         /// </summary>
         /// <returns> Returns user set value for the current frame. Cannot provide actual playing current frame. </returns>
