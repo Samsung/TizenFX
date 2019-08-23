@@ -29,6 +29,8 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutController : global::System.IDisposable
     {
+        static bool LayoutDebugController = false; // Debug flag
+
         private global::System.Runtime.InteropServices.HandleRef unmanagedLayoutController;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -221,7 +223,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Parent not a View so assume it's a Layer which is the size of the window.
-                    rootSize = new Size2D(_window.Size.Width, _window.Size.Height);
+                    rootSize = _window.WindowSize;
                 }
 
                 // Determine measure specification for root.
@@ -335,6 +337,7 @@ namespace Tizen.NUI
         private void PlayAnimation()
         {
             _coreAnimation.Play();
+            Debug.WriteLineIf( LayoutDebugController, "LayoutController Core Duration:" + _coreAnimation.Duration);
         }
 
         private void AnimationFinished(object sender, EventArgs e)
@@ -405,14 +408,23 @@ namespace Tizen.NUI
             if( layoutPositionData.ConditionForAnimation != TransitionCondition.Remove )
             {
                 _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Position",
-                            new Vector3(layoutPositionData.Left, layoutPositionData.Top, 0.0f),
+                            new Vector3(layoutPositionData.Left,
+                                        layoutPositionData.Top,
+                                        layoutPositionData.Item.Owner.Position.Z),
                             positionTransitionComponents.Delay,
                             positionTransitionComponents.Duration,
                             positionTransitionComponents.AlphaFunction );
+
+                Debug.WriteLineIf( LayoutDebugController,
+                                   "LayoutController SetupAnimationForPosition View:" + layoutPositionData.Item.Owner.Name +
+                                   " left:" + layoutPositionData.Left +
+                                   " top:" + layoutPositionData.Top +
+                                   " delay:" + positionTransitionComponents.Delay +
+                                   " duration:" + positionTransitionComponents.Duration );
             }
         }
 
-        private void SetupAnimationForText(LayoutData layoutPositionData)
+        private void SetupAnimationForSize(LayoutData layoutPositionData, TransitionComponents sizeTransitionComponents)
         {
             // Text size cant be animated so is set to it's final size.
             // It is due to the internals of the Text not being able to recalculate fast enough.
@@ -428,18 +440,21 @@ namespace Tizen.NUI
                 _coreAnimation.AnimateTo(layoutPositionData.Item.Owner, "Size",
                                          new Vector3(layoutPositionData.Right-layoutPositionData.Left,
                                                      layoutPositionData.Bottom-layoutPositionData.Top,
-                                                     0.0f),
-                                         0, 1000);
+                                                     layoutPositionData.Item.Owner.Position.Z),
+                                         sizeTransitionComponents.Delay,
+                                         sizeTransitionComponents.Duration,
+                                         sizeTransitionComponents.AlphaFunction);
             }
         }
 
         void SetupAnimationForCustomTransitions(TransitionList transitionsToAnimate, View view )
         {
-            if (transitionsToAnimate.Count > 0)
+            if (transitionsToAnimate?.Count > 0)
             {
                 foreach (LayoutTransition transition in transitionsToAnimate)
                 {
-                    if ( transition.AnimatableProperty != AnimatableProperties.Position)
+                    if ( transition.AnimatableProperty != AnimatableProperties.Position &&
+                        transition.AnimatableProperty != AnimatableProperties.Size )
                     {
                         _coreAnimation.AnimateTo(view,
                                                  transition.AnimatableProperty.ToString(),
@@ -447,26 +462,38 @@ namespace Tizen.NUI
                                                  transition.Animator.Delay,
                                                  transition.Animator.Duration,
                                                  transition.Animator.AlphaFunction );
+
+                        Debug.WriteLineIf( LayoutDebugController,
+                                           "LayoutController SetupAnimationForCustomTransitions View:" + view.Name +
+                                           " Property:" + transition.AnimatableProperty.ToString() +
+                                           " delay:" + transition.Animator.Delay +
+                                           " duration:" + transition.Animator.Duration );
                     }
                 }
             }
         }
 
         /// <summary>
-        /// Interate transitions and replace Position Components if replacements found in list.
+        /// Iterate transitions and replace Position Components if replacements found in list.
         /// </summary>
         private void FindAndReplaceAnimatorComponentsForProperty(TransitionList sourceTransitionList,
                                                                  AnimatableProperties propertyToMatch,
                                                                  ref TransitionComponents transitionComponentToUpdate)
         {
-            foreach( LayoutTransition matchedTransitionList in sourceTransitionList)
+            foreach( LayoutTransition transition in sourceTransitionList)
             {
-                if (matchedTransitionList.AnimatableProperty == propertyToMatch)
+                if (transition.AnimatableProperty == propertyToMatch)
                 {
                     // Matched property to animate is for the propertyToMatch so use provided Animator.
-                    transitionComponentToUpdate = matchedTransitionList.Animator;
+                    transitionComponentToUpdate = transition.Animator;
                 }
             }
+        }
+
+        private TransitionComponents CreateDefaultTransitionComponent( int delay, int duration )
+        {
+            AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+            return new TransitionComponents(delay, duration, alphaFunction);
         }
 
         /// <summary>
@@ -475,6 +502,7 @@ namespace Tizen.NUI
         private void AddAnimatorsToAnimation( LayoutData layoutPositionData )
         {
             LayoutTransition positionTransition = new LayoutTransition();
+            LayoutTransition sizeTransition = new LayoutTransition();
             TransitionCondition conditionForAnimators = layoutPositionData.ConditionForAnimation;
 
             // LayoutChanged transitions overrides ChangeOnAdd and ChangeOnRemove as siblings will
@@ -484,73 +512,68 @@ namespace Tizen.NUI
                 conditionForAnimators = TransitionCondition.LayoutChanged;
             }
 
-            // Set up a default transition, will be overwritten if inherited from parent or set explicitly.
-            const int START_TIME = 0;
-            const int END_TIME = 100;
-            AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
-            // positionTransitionComponents will be overwritten if set explicitly
-            TransitionComponents positionTransitionComponents = new TransitionComponents(START_TIME, END_TIME, alphaFunction);
+            // Set up a default transitions, will be overwritten if inherited from parent or set explicitly.
+            TransitionComponents positionTransitionComponents = CreateDefaultTransitionComponent(0, 100);
+            TransitionComponents sizeTransitionComponents = CreateDefaultTransitionComponent(0, 0);
+
             bool matchedCustomTransitions = false;
 
             // Inherit parent transitions if none already set on View for the condition.
             // Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
-            // Still need to inherit Position animator from parent but not other animatable properties if already set.
 
-            TransitionList transitionsForCurrentCondition;
+            TransitionList transitionsForCurrentCondition = new TransitionList();
 
             ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
             if (layoutParent !=null)
             {
-                // Check if item to aninmate has it's own Transitions for this condition.
-                if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
+                // Check if item to animate has it's own Transitions for this condition.
+                // If a key exists then a List of atleast 1 transition exists.
+                if ( layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
                 {
-                    matchedCustomTransitions = true; // If a key exists then a List of atleast 1 transition exists.
+                    // Child has transitions for the condition
+                    matchedCustomTransitions = layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition);
                 }
                 else
                 {
                     // Item doesn't have it's own transitions for this condition so copy parents if
                     // has a parent with transitions.
-                    transitionsForCurrentCondition = new TransitionList();
                     LayoutGroup layoutGroup = layoutParent as LayoutGroup;
                     TransitionList parentTransitionList;
                     // Note TryGetValue returns null if key not matched.
-                    if (layoutGroup.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out parentTransitionList))
+                    if (layoutGroup !=null && layoutGroup.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out parentTransitionList))
                     {
-                        // Copy parent transitions for this condition to temporary TransitionList.
+                        // Copy parent transitions to temporary TransitionList. List contains transitions for the current condition.
                         LayoutTransitionsHelper.CopyTransitions(parentTransitionList,
                                                                 transitionsForCurrentCondition);
 
-                        SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
-                        matchedCustomTransitions = false;
+                        matchedCustomTransitions = false; // Using parent transition as no custom match.
                     }
                 }
             }
 
-            // SetupAnimationXXXX functions add Animators to the core Animation, these can be custom or set by the
-            // layout system in the case of Positioning.
+            // Position/Size transitions can be for a layout changing to another layout or an item being added or removed.
+            // There can only be one position transition and one size position, they will be replaced if set multiple times.
+            // transitionsForCurrentCondition represent all non position (custom) properties that should be animated.
 
-            if (matchedCustomTransitions)
-            {
-                // Position transition can be for a layout changing to another layout or an item being added or removed.
-                // There can only be one position transition, it will be replaced if set multiple times.
-                // transitionsForCurrentCondition represent all non position (custom) properties that should be animated.
-                // There can be multiple properties hence returned as a list.
-                if (layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition))
-                {
-                    // Search for Position property in the transitionsForCurrentCondition list of custom transitions,
-                    // and only use the particular parts of the animator as custom transitions should not effect all parameters of Position.
-                    // Typically Delay, Duration and Alphafunction can be custom.
-                    FindAndReplaceAnimatorComponentsForProperty(transitionsForCurrentCondition,
-                                                                AnimatableProperties.Position,
-                                                                ref positionTransitionComponents);
+            // Search for Position property in the transitionsForCurrentCondition list of custom transitions,
+            // and only use the particular parts of the animator as custom transitions should not effect all parameters of Position.
+            // Typically Delay, Duration and Alphafunction can be custom.
+            FindAndReplaceAnimatorComponentsForProperty(transitionsForCurrentCondition,
+                                                        AnimatableProperties.Position,
+                                                        ref positionTransitionComponents);
 
-                    SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
-                }
-            }
+            // Size
+            FindAndReplaceAnimatorComponentsForProperty(transitionsForCurrentCondition,
+                                                        AnimatableProperties.Size,
+                                                        ref sizeTransitionComponents);
+
+            // Add animators to the core Animation,
+
+            SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
 
             SetupAnimationForPosition(layoutPositionData, positionTransitionComponents);
 
-            SetupAnimationForText(layoutPositionData);
+            SetupAnimationForSize(layoutPositionData, sizeTransitionComponents);
         }
 
     } // class LayoutController

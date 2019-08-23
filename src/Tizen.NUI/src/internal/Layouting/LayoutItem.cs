@@ -15,8 +15,9 @@
  *
  */
 
+
 using System;
-using System.ComponentModel;
+using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -37,6 +38,7 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutItem
     {
+        static bool LayoutDebugFrameData = false; // Debug flag
         private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification OldHeightMeasureSpec;// Store measure specification to compare against later
 
@@ -167,7 +169,7 @@ namespace Tizen.NUI
             (parent?.Layout as LayoutGroup)?.Add( this );
 
             // If Add or ChangeOnAdd then do not update condition
-            if (ConditionForAnimation.HasFlag(TransitionCondition.Unspecified))
+            if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
             {
                 ConditionForAnimation = TransitionCondition.LayoutChanged;
             }
@@ -515,13 +517,19 @@ namespace Tizen.NUI
                 bool sizeChanged = ( newWidth != oldWidth ) || ( newHeight != oldHeight );
 
                 // Set condition to layout changed as currently unspecified. Add, Remove would have specified a condition.
-                if (ConditionForAnimation.HasFlag(TransitionCondition.Unspecified))
+                if (ConditionForAnimation.Equals(TransitionCondition.Unspecified))
                 {
                     ConditionForAnimation = TransitionCondition.LayoutChanged;
                 }
 
                 // Store new layout position data
                 _layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
+
+                Debug.WriteLineIf( LayoutDebugFrameData, "LayoutItem FramePositionData View:" + _layoutPositionData.Item.Owner.Name +
+                                                         " left:" + _layoutPositionData.Left +
+                                                         " top:" + _layoutPositionData.Top +
+                                                         " right:" + _layoutPositionData.Right +
+                                                         " bottom:" + _layoutPositionData.Right );
 
                 Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
 
