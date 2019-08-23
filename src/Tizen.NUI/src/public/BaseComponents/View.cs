@@ -2506,7 +2506,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(ParentOriginProperty);
+                Position tmp = (Position)GetValue(ParentOriginProperty);
+                return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -2528,7 +2529,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(PivotPointProperty);
+                Position tmp = (Position)GetValue(PivotPointProperty);
+                return new Position(OnPivotPointChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -2583,7 +2585,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(PositionProperty);
+                Position tmp = (Position)GetValue(PositionProperty);
+                return new Position(OnPositionChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -3135,7 +3138,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size2D)GetValue(MinimumSizeProperty);
+                Size2D tmp = (Size2D)GetValue(MinimumSizeProperty);
+                return new Size2D(OnMinimumSizeChanged, tmp.Width, tmp.Height);
             }
             set
             {
@@ -3160,7 +3164,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size2D)GetValue(MaximumSizeProperty);
+                Size2D tmp = (Size2D)GetValue(MaximumSizeProperty);
+                return new Size2D(OnMaximumSizeChanged, tmp.Width, tmp.Height);
             }
             set
             {
@@ -3272,7 +3277,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size)GetValue(SizeProperty);
+                Size tmp = (Size)GetValue(SizeProperty);
+                return new Size(OnSizeChanged, tmp.Width, tmp.Height, tmp.Depth);
             }
             set
             {
@@ -5324,9 +5330,39 @@ namespace Tizen.NUI.BaseComponents
             Size2D = new Size2D(width, height);
         }
 
+        private void OnMinimumSizeChanged(int width, int height)
+        {
+            MinimumSize = new Size2D(width, height);
+        }
+
+        private void OnMaximumSizeChanged(int width, int height)
+        {
+            MaximumSize = new Size2D(width, height);
+        }
+
         private void OnPosition2DChanged(int x, int y)
         {
             Position2D = new Position2D(x, y);
+        }
+
+        private void OnSizeChanged(float width, float height, float depth)
+        {
+            Size = new Size(width, height, depth);
+        }
+
+        private void OnPositionChanged(float x, float y, float z)
+        {
+            Position = new Position(x, y, z);
+        }
+
+        private void OnParentOriginChanged(float x, float y, float z)
+        {
+            ParentOrigin = new Position(x, y, z);
+        }
+
+        private void OnPivotPointChanged(float x, float y, float z)
+        {
+            PivotPoint = new Position(x, y, z);
         }
 
         private void DisConnectFromSignals()
