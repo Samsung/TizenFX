@@ -537,6 +537,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Creates the TextLabel with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
+        }
+
+        /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
         /// <param name="text">The text to display</param>
@@ -546,14 +558,37 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal TextLabel(TextLabel handle) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
+        /// <summary>
+        /// Creates the TextLabel with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="text">The text to display</param>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(string text, bool shown) : this(Interop.TextLabel.TextLabel_New__SWIG_1(text), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
-        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextLabel(TextLabel handle, bool shown = true) : this(Interop.TextLabel.new_TextLabel__SWIG_1(TextLabel.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         /// <summary>

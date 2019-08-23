@@ -1346,12 +1346,29 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal View(View uiControl) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+
+        /// <summary>
+        /// Create a new instance of a View with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(bool shown) : this(Interop.View.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
+        internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if(!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (HasBody())
@@ -1361,11 +1378,21 @@ namespace Tizen.NUI.BaseComponents
 
             _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
-        internal View(ViewImpl implementation) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
+        internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]

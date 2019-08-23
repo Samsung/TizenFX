@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value == mResourceURL)
                 {
                     tlog.Fatal(tag, $"set same URL! ");
-                    //return;
+                    return;
                 }
                 mResourceURL = (value == null) ? "" : value;
                 URL = mResourceURL;
