@@ -2384,16 +2384,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated.
+        /// Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead!
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use PositionUsesPivotPoint.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use PositionUsesPivotPoint instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
-            "view.PositionUsesPivotPoint = true;")]
+            "view.PositionUsesPivotPoint = true;" + 
+            " Deprecated in API5: Will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
         {
@@ -3228,12 +3227,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Deprecated in API5; Will be removed in API8. Please use PivotPoint instead!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use PivotPoint.
-        [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
@@ -3286,10 +3283,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
+        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! 
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use 'Container GetParent() for derived class' instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! " +
             "Like: " +
             "Container parent =  view.GetParent(); " +
             "View view = parent as View;")]
@@ -3481,6 +3478,28 @@ namespace Tizen.NUI.BaseComponents
                 LayoutTransitionsHelper.AddTransitionForCondition(_layoutTransitions,value.Condition,value, true);
 
                 AttachTransitionsToChildren(value);
+            }
+        }
+
+        /// <summary>
+        /// Deprecated in API5; Will be removed in API8. Please use Padding instead.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents PaddingEX
+        {
+            get
+            {
+                Extents temp = new Extents(0, 0, 0, 0);
+                GetProperty(View.Property.PADDING).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
+                _layout?.RequestLayout();
             }
         }
 
