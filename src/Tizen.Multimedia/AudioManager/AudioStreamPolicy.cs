@@ -305,6 +305,72 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets or sets the preferred input device id.
+        /// </summary>
+        /// <value>
+        /// A device id which is greater than or equal to 0.<br/>
+        /// The default is 0 which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for input.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public int PreferredInputDeviceId
+        {
+            get
+            {
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
+                    ThrowIfError("Failed to get preferred input device");
+
+                return inDeviceId;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, value).
+                    ThrowIfError("Failed to set preferred input device");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the preferred output device id.
+        /// </summary>
+        /// <value>
+        /// A device id which is greater than or equal to 0.<br/>
+        /// The default is 0 which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for output.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public int PreferredOutputDeviceId
+        {
+            get
+            {
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
+                    ThrowIfError("Failed to get preferred output device");
+
+                return outDeviceId;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, value).
+                    ThrowIfError("Failed to set preferred output device");
+            }
+        }
+
+        /// <summary>
         /// Checks if any stream from the current AudioStreamPolicy is using the device.
         /// </summary>
         /// <returns>true if any audio stream from the current AudioStreamPolicy is using the device; otherwise, false.</returns>
