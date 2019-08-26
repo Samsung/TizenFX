@@ -81,7 +81,5 @@ namespace Tizen.NUI
         {
             return value * (defaultDpi / Window.Instance.Dpi.X);
         }
-
     }
-
 }

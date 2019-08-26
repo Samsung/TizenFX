@@ -33,7 +33,6 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-
         /// <summary>
         /// The scale factor from the start of the pinch gesture till the latest pinch gesture.<br />
         /// If the user is moving their fingers away from each other, then
@@ -182,13 +181,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -205,7 +197,5 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
     }
-
 }
