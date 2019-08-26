@@ -1377,6 +1377,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
+<<<<<<< HEAD
         }
 
         internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
@@ -1388,6 +1389,19 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+=======
+        }
+
+        internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if(!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+>>>>>>> 2e2d0fe... [NUI] Integreation from dalihub (#988)
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
