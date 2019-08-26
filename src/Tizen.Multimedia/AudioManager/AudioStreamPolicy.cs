@@ -307,7 +307,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the preferred device.
+        /// Gets or sets the preferred input device.
         /// </summary>
         /// <value>
         /// The <see cref="AudioDevice"/> instance.<br/>
