@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
 
@@ -96,7 +95,6 @@ namespace Tizen.NUI
         {
             Handlers.Add(evType, handler);
         }
-
 
         /// <summary>
         /// The Dispose function.
@@ -331,14 +329,12 @@ namespace Tizen.NUI
             handler?.Invoke();
         }
 
-
-	internal Application ApplicationHandle
-	{
-		get
-		{
-			return _application;
-		}
-	}
-
+        internal Application ApplicationHandle
+        {
+            get
+            {
+                return _application;
+            }
+        }
     }
 }

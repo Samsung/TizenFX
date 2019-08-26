@@ -14,16 +14,12 @@
  * limitations under the License.
  *
  */
-
+using System;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
-
     internal class GaussianBlurView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -45,14 +41,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -69,8 +57,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
-
 
         /// <since_tizen> 3 </since_tizen>
         public class FinishedEventArgs : EventArgs
@@ -145,18 +131,18 @@ namespace Tizen.NUI
         public GaussianBlurView() : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public GaussianBlurView(uint numSamples, float blurBellCurveWidth, PixelFormat renderTargetPixelFormat, float downsampleWidthScale, float downsampleHeightScale, bool blurUserImage) : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_1(numSamples, blurBellCurveWidth, (int)renderTargetPixelFormat, downsampleWidthScale, downsampleHeightScale, blurUserImage), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public GaussianBlurView(uint numSamples, float blurBellCurveWidth, PixelFormat renderTargetPixelFormat, float downsampleWidthScale, float downsampleHeightScale) : this(Interop.GaussianBlurView.GaussianBlurView_New__SWIG_2(numSamples, blurBellCurveWidth, (int)renderTargetPixelFormat, downsampleWidthScale, downsampleHeightScale), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public GaussianBlurView(GaussianBlurView handle) : this(Interop.GaussianBlurView.new_GaussianBlurView__SWIG_1(GaussianBlurView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -245,7 +231,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
     }
-
 }

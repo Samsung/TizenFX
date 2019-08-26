@@ -15,14 +15,12 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-
     internal class Builder : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,19 +42,9 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -69,8 +57,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
-
 
         /// <since_tizen> 3 </since_tizen>
         public class QuitEventArgs : EventArgs
@@ -148,13 +134,11 @@ namespace Tizen.NUI
             }
         }
 
-
-
         public Builder() : this(Interop.Builder.Builder_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public void LoadFromString(string data, Builder.UIFormat format)
         {
             Interop.Builder.Builder_LoadFromString__SWIG_0(swigCPtr, data, (int)format);
@@ -307,7 +291,5 @@ namespace Tizen.NUI
         {
             JSON
         }
-
     }
-
 }

@@ -19,7 +19,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum DefaultItemLayoutProperty
@@ -180,5 +179,4 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         SPIRAL_TOP_ITEM_ALIGNMENT
     }
-
 }

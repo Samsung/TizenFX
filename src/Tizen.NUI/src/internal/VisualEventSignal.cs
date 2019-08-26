@@ -20,53 +20,18 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    internal class VisualEventSignal : IDisposable
+    internal class VisualEventSignal : Disposable
     {
         public VisualEventSignal() : this(Interop.VisualEventSignal.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        ~VisualEventSignal()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -82,7 +47,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new HandleRef(null, IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
 
         public bool Empty()
@@ -140,9 +105,5 @@ namespace Tizen.NUI
 
         private HandleRef swigCPtr;
         protected bool swigCMemOwn;
-
-        private bool isDisposeQueued = false;
-        protected bool disposed = false;
-
     }
 }

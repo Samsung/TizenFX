@@ -10,7 +10,6 @@
 
 namespace Tizen.NUI
 {
-
     internal class SWIGTYPE_p_f_p_Dali__BaseObject_p_Dali__ConnectionTrackerInterface_r_q_const__std__string_p_Dali__FunctorDelegate__bool
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -30,5 +29,4 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
     }
-
 }

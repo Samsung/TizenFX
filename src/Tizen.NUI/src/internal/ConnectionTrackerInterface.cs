@@ -45,14 +45,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -70,7 +62,6 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
         /// <summary>
         /// Called when a signal is connected.
         /// </summary>
@@ -82,7 +73,5 @@ namespace Tizen.NUI
             Interop.ConnectionTracker.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
-
 }

@@ -17,8 +17,7 @@
 
 namespace Tizen.NUI
 {
-
-    internal class TimerSignalType : global::System.IDisposable
+    internal class TimerSignalType : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
@@ -34,53 +33,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
-        protected bool disposed = false;
-
-
-        ~TimerSignalType()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -97,9 +54,8 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            base.Dispose(type);
         }
-
 
         public bool Empty()
         {
@@ -145,7 +101,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
         public bool Emit()
         {
             bool ret = Interop.Timer.TimerSignalType_Emit(swigCPtr);
@@ -157,7 +112,5 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
-
 }
