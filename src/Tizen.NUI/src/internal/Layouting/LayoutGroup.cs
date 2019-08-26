@@ -89,10 +89,12 @@ namespace Tizen.NUI
                 {
                     Window.Instance.LayoutController.AddToRemovalStack(childLayout);
                     _children.Remove(childLayout);
-                    ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
+                    childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                     // Add LayoutItem to the transition stack so can animate it out.
                     Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0,0,0,0));
-
+                    // Reset condition for animation ready for next transition when required.
+                    // SetFrame usually would do this but this LayoutItem is being removed.
+                    childLayout.ConditionForAnimation = TransitionCondition.Unspecified;
                     childRemoved = true;
                 }
             }
