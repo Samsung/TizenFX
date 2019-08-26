@@ -1346,12 +1346,29 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal View(View uiControl) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+
+        /// <summary>
+        /// Create a new instance of a View with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(bool shown) : this(Interop.View.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
+        internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if(!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (HasBody())
@@ -1361,11 +1378,21 @@ namespace Tizen.NUI.BaseComponents
 
             _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
-        internal View(ViewImpl implementation) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
+        internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -2384,16 +2411,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated.
+        /// Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead!
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use PositionUsesPivotPoint.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use PositionUsesPivotPoint instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
-            "view.PositionUsesPivotPoint = true;")]
+            "view.PositionUsesPivotPoint = true;" + 
+            " Deprecated in API5: Will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
         {
@@ -2506,7 +2532,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(ParentOriginProperty);
+                Position tmp = (Position)GetValue(ParentOriginProperty);
+                return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -2528,7 +2555,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(PivotPointProperty);
+                Position tmp = (Position)GetValue(PivotPointProperty);
+                return new Position(OnPivotPointChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -2583,7 +2611,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Position)GetValue(PositionProperty);
+                Position tmp = (Position)GetValue(PositionProperty);
+                return new Position(OnPositionChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
@@ -3135,7 +3164,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size2D)GetValue(MinimumSizeProperty);
+                Size2D tmp = (Size2D)GetValue(MinimumSizeProperty);
+                return new Size2D(OnMinimumSizeChanged, tmp.Width, tmp.Height);
             }
             set
             {
@@ -3160,7 +3190,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size2D)GetValue(MaximumSizeProperty);
+                Size2D tmp = (Size2D)GetValue(MaximumSizeProperty);
+                return new Size2D(OnMaximumSizeChanged, tmp.Width, tmp.Height);
             }
             set
             {
@@ -3228,12 +3259,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Deprecated in API5; Will be removed in API8. Please use PivotPoint instead!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use PivotPoint.
-        [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PivotPoint instead! " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
@@ -3272,7 +3301,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Size)GetValue(SizeProperty);
+                Size tmp = (Size)GetValue(SizeProperty);
+                return new Size(OnSizeChanged, tmp.Width, tmp.Height, tmp.Depth);
             }
             set
             {
@@ -3286,10 +3316,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
+        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! 
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use 'Container GetParent() for derived class' instead! " +
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! " +
             "Like: " +
             "Container parent =  view.GetParent(); " +
             "View view = parent as View;")]
@@ -3487,12 +3517,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Deprecated in API5; Will be removed in API8. Please use Padding instead.
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use Padding.
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, instead please use Padding.")]
+        [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents PaddingEX
         {
@@ -5350,9 +5378,39 @@ namespace Tizen.NUI.BaseComponents
             Size2D = new Size2D(width, height);
         }
 
+        private void OnMinimumSizeChanged(int width, int height)
+        {
+            MinimumSize = new Size2D(width, height);
+        }
+
+        private void OnMaximumSizeChanged(int width, int height)
+        {
+            MaximumSize = new Size2D(width, height);
+        }
+
         private void OnPosition2DChanged(int x, int y)
         {
             Position2D = new Position2D(x, y);
+        }
+
+        private void OnSizeChanged(float width, float height, float depth)
+        {
+            Size = new Size(width, height, depth);
+        }
+
+        private void OnPositionChanged(float x, float y, float z)
+        {
+            Position = new Position(x, y, z);
+        }
+
+        private void OnParentOriginChanged(float x, float y, float z)
+        {
+            ParentOrigin = new Position(x, y, z);
+        }
+
+        private void OnPivotPointChanged(float x, float y, float z)
+        {
+            PivotPoint = new Position(x, y, z);
         }
 
         private void DisConnectFromSignals()

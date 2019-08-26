@@ -111,6 +111,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Width, Height, Depth);
             }
             get
             {
@@ -130,6 +132,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Width, Height, Depth);
             }
             get
             {
@@ -149,6 +153,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Width, Height, Depth);
             }
             get
             {
@@ -463,6 +469,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        internal delegate void SizeChangedCallback(float width, float height, float depth);
+
+        internal Size(SizeChangedCallback cb, float w, float h, float d) : this(Interop.Vector3.new_Vector3__SWIG_1(w, h, d), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private SizeChangedCallback callback = null;
     }
 }
 

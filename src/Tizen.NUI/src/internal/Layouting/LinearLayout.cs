@@ -839,7 +839,5 @@ namespace Tizen.NUI
                 }
             }
         }
-
     } //LinearLayout
-
 } // namespace

@@ -23,7 +23,6 @@ namespace Tizen.NUI
     /// </summary>
     internal interface ILayoutParent
     {
-
         /// <summary>
         /// Add this child to the parent.
         /// </summary>

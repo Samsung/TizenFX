@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
                 if (value == mResourceURL)
                 {
                     tlog.Fatal(tag, $"set same URL! ");
-                    //return;
+                    return;
                 }
                 mResourceURL = (value == null) ? "" : value;
                 URL = mResourceURL;
@@ -132,6 +132,16 @@ namespace Tizen.NUI.BaseComponents
                 tlog.Fatal(tag, $"[{GetId()}] VectorAnimationView.RepeatCount SET mRepeatCount={mRepeatCount} >>>");
             }
             get => mRepeatCount;
+        }
+
+        /// <summary>
+        /// TotalFrame of animation.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int TotalFrame
+        {
+            get => TotalFrameNumber;
         }
 
         /// <summary>

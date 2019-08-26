@@ -1194,10 +1194,29 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public static Application NewApplication(string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            Application ret = New(1, stylesheet, windowMode, positionSize);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // set the singleton
+            _instance = ret;
+            return ret;
+        }
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // set the singleton
+            _instance = ret;
+            return _instance;
+        }
+
+        public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            Application ret = New(args, stylesheet, (Application.WindowMode)windowMode, positionSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // set the singleton
@@ -1268,6 +1287,16 @@ namespace Tizen.NUI
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
         {
             Application ret = new Application(Interop.Application.Application_New__SWIG_4(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode, Rectangle positionSize)
+        {
+            int argc = args.Length;
+            string argvStr = string.Join(" ", args);
+
+            Application ret = new Application(NDalicPINVOKE.Application_New_WithWindowSizePosition(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
