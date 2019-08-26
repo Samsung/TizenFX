@@ -22,5 +22,6 @@ namespace Tizen.Multimedia
         internal const string RawVideo = "http://tizen.org/feature/multimedia.raw_video";
         internal const string OpenGl = "http://tizen.org/feature/opengles.version.2_0";
         internal const string SphericalVideo = "http://tizen.org/feature/multimedia.player.spherical_video";
+        internal const string AudioOffload = "http://tizen.org/feature/multimedia.player.audio_offload";
     }
 }
