@@ -22,7 +22,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ItemView : Scrollable
@@ -46,14 +45,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -89,57 +80,20 @@ namespace Tizen.NUI
             }
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new class Property
+        internal new class Property
         {
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int LAYOUT = Interop.ItemView.ItemView_Property_LAYOUT_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int MINIMUM_SWIPE_SPEED = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int MINIMUM_SWIPE_DISTANCE = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ItemView.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SNAP_TO_ITEM_ENABLED = Interop.ItemView.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int REFRESH_INTERVAL = Interop.ItemView.ItemView_Property_REFRESH_INTERVAL_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int LAYOUT_POSITION = Interop.ItemView.ItemView_Property_LAYOUT_POSITION_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_SPEED = Interop.ItemView.ItemView_Property_SCROLL_SPEED_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int OVERSHOOT = Interop.ItemView.ItemView_Property_OVERSHOOT_get();
-            
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_DIRECTION = Interop.ItemView.ItemView_Property_SCROLL_DIRECTION_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int LAYOUT_ORIENTATION = Interop.ItemView.ItemView_Property_LAYOUT_ORIENTATION_get();
-
-            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static readonly int SCROLL_CONTENT_SIZE = Interop.ItemView.ItemView_Property_SCROLL_CONTENT_SIZE_get();
+            internal static readonly int LAYOUT = Interop.ItemView.ItemView_Property_LAYOUT_get();
+            internal static readonly int MINIMUM_SWIPE_SPEED = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
+            internal static readonly int MINIMUM_SWIPE_DISTANCE = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
+            internal static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ItemView.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
+            internal static readonly int SNAP_TO_ITEM_ENABLED = Interop.ItemView.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
+            internal static readonly int REFRESH_INTERVAL = Interop.ItemView.ItemView_Property_REFRESH_INTERVAL_get();
+            internal static readonly int LAYOUT_POSITION = Interop.ItemView.ItemView_Property_LAYOUT_POSITION_get();
+            internal static readonly int SCROLL_SPEED = Interop.ItemView.ItemView_Property_SCROLL_SPEED_get();
+            internal static readonly int OVERSHOOT = Interop.ItemView.ItemView_Property_OVERSHOOT_get();
+            internal static readonly int SCROLL_DIRECTION = Interop.ItemView.ItemView_Property_SCROLL_DIRECTION_get();
+            internal static readonly int LAYOUT_ORIENTATION = Interop.ItemView.ItemView_Property_LAYOUT_ORIENTATION_get();
+            internal static readonly int SCROLL_CONTENT_SIZE = Interop.ItemView.ItemView_Property_SCROLL_CONTENT_SIZE_get();
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -147,7 +101,6 @@ namespace Tizen.NUI
         public ItemView(ItemFactory factory) : this(Interop.ItemView.ItemView_New(ItemFactory.getCPtr(factory)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         internal static ItemView DownCast(BaseHandle handle)
@@ -647,7 +600,5 @@ namespace Tizen.NUI
                 SetProperty(ItemView.Property.SCROLL_CONTENT_SIZE, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }
