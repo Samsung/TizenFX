@@ -31,7 +31,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Application id.</value>
-        public string AppId{ get; set; }
+        public string AppId { get; set; }
 
         /// <summary>
         /// A property for "from" value of time interval for statistics filter.

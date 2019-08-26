@@ -66,6 +66,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>The instance of the SafeStcHandle.</returns>
+        /// <feature>http://tizen.org/feature/network.traffic_control</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
@@ -82,6 +83,7 @@ namespace Tizen.Network.Stc
         /// <since_tizen> 6 </since_tizen>
         /// <param name="filter"> The StatisticsFilter object.</param>
         /// <returns>A list of the NetworkStatistics objects.</returns>
+        /// <feature>http://tizen.org/feature/network.traffic_control</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>

@@ -30,7 +30,7 @@ namespace Tizen.Network.Stc
             case StcError.OutOfMemory:
                 throw new InvalidOperationException("Out of memory");
             case StcError.PermissionDenied:
-                throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/Stc)");
+                throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/network.get)");
             case StcError.ResourceBusy:
                 throw new InvalidOperationException("Resource is busy");
             case StcError.InvalidOperation:
@@ -38,7 +38,7 @@ namespace Tizen.Network.Stc
             case StcError.InvalidParameter:
                 throw new InvalidOperationException("Invalid parameter");
             case StcError.NotSupported:
-                throw new NotSupportedException("Not supported");
+                throw new NotSupportedException("Unsupported STC feature http://tizen.org/feature/network.traffic_control");
             case StcError.OperationFailed:
                 throw new InvalidOperationException("Operation failed");
             case StcError.NotInitialized:
