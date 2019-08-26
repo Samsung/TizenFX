@@ -28,6 +28,8 @@ namespace Tizen.Multimedia
         private AudioStreamPolicyHandle _handle;
         private bool _disposed = false;
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
+        private static AudioDevice _inputDevice = null;
+        private static AudioDevice _outputDevice = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>.
@@ -305,11 +307,11 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the preferred input device id.
+        /// Gets or sets the preferred device.
         /// </summary>
         /// <value>
-        /// A device id which is greater than or equal to 0.<br/>
-        /// The default is 0 which means any device is not set on this property.
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
         /// </value>
         /// <remarks>
         /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
@@ -321,28 +323,51 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
-        public int PreferredInputDeviceId
+        public AudioDevice PreferredInputDevice
         {
             get
             {
+                if (_inputDevice == null)
+                {
+                    return null;
+                }
+
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
                     ThrowIfError("Failed to get preferred input device");
 
-                return inDeviceId;
+                if (inDeviceId != _inputDevice.Id)
+                {
+                    throw new InvalidOperationException("output device id does not match");
+                }
+
+                return _inputDevice;
             }
             set
             {
-                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, value).
+                int deviceId;
+
+                if (value == null)
+                {
+                    deviceId = 0;
+                }
+                else
+                {
+                    deviceId = value.Id;
+                }
+
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, deviceId).
                     ThrowIfError("Failed to set preferred input device");
+
+                _inputDevice = value;
             }
         }
 
         /// <summary>
-        /// Gets or sets the preferred output device id.
+        /// Gets or sets the preferred output device.
         /// </summary>
         /// <value>
-        /// A device id which is greater than or equal to 0.<br/>
-        /// The default is 0 which means any device is not set on this property.
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
         /// </value>
         /// <remarks>
         /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
@@ -354,19 +379,42 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
-        public int PreferredOutputDeviceId
+        public AudioDevice PreferredOutputDevice
         {
             get
             {
+                if (_outputDevice == null)
+                {
+                    return null;
+                }
+
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
                     ThrowIfError("Failed to get preferred output device");
 
-                return outDeviceId;
+                if (outDeviceId != _outputDevice.Id)
+                {
+                    throw new InvalidOperationException("output device id does not match");
+                }
+
+                return _outputDevice;
             }
             set
             {
-                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, value).
+                int deviceId;
+
+                if (value == null)
+                {
+                    deviceId = 0;
+                }
+                else
+                {
+                    deviceId = value.Id;
+                }
+
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, deviceId).
                     ThrowIfError("Failed to set preferred output device");
+
+                _outputDevice = value;
             }
         }
 
