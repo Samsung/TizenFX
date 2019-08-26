@@ -19,7 +19,6 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     internal class Model3dView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -41,14 +40,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -66,116 +57,16 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// <since_tizen> 3 </since_tizen>
-        public new class Property : global::System.IDisposable
+        internal new class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.Model3DView.delete_Model3dView_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public Property() : this(Interop.Model3DView.new_Model3dView_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int GEOMETRY_URL = Interop.Model3DView.Model3dView_Property_GEOMETRY_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int MATERIAL_URL = Interop.Model3DView.Model3dView_Property_MATERIAL_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int IMAGES_URL = Interop.Model3DView.Model3dView_Property_IMAGES_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int ILLUMINATION_TYPE = Interop.Model3DView.Model3dView_Property_ILLUMINATION_TYPE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE0_URL = Interop.Model3DView.Model3dView_Property_TEXTURE0_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE1_URL = Interop.Model3DView.Model3dView_Property_TEXTURE1_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE2_URL = Interop.Model3DView.Model3dView_Property_TEXTURE2_URL_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int LIGHT_POSITION = Interop.Model3DView.Model3dView_Property_LIGHT_POSITION_get();
-
+            internal static readonly int GEOMETRY_URL = Interop.Model3DView.Model3dView_Property_GEOMETRY_URL_get();
+            internal static readonly int MATERIAL_URL = Interop.Model3DView.Model3dView_Property_MATERIAL_URL_get();
+            internal static readonly int IMAGES_URL = Interop.Model3DView.Model3dView_Property_IMAGES_URL_get();
+            internal static readonly int ILLUMINATION_TYPE = Interop.Model3DView.Model3dView_Property_ILLUMINATION_TYPE_get();
+            internal static readonly int TEXTURE0_URL = Interop.Model3DView.Model3dView_Property_TEXTURE0_URL_get();
+            internal static readonly int TEXTURE1_URL = Interop.Model3DView.Model3dView_Property_TEXTURE1_URL_get();
+            internal static readonly int TEXTURE2_URL = Interop.Model3DView.Model3dView_Property_TEXTURE2_URL_get();
+            internal static readonly int LIGHT_POSITION = Interop.Model3DView.Model3dView_Property_LIGHT_POSITION_get();
         }
 
         public Model3dView() : this(Interop.Model3DView.Model3dView_New__SWIG_0(), true)
@@ -319,7 +210,5 @@ namespace Tizen.NUI
                 SetProperty(Model3dView.Property.LIGHT_POSITION, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }

@@ -595,18 +595,9 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -653,133 +644,32 @@ namespace Tizen.NUI
             public static readonly int FOREGROUND_EFFECT = Interop.Renderer.Renderer_Ranges_FOREGROUND_EFFECT_get();
         }
 
-        /// <summary>
-        /// Enumeration for instances of properties belonging to the Renderer class.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class Property
+        internal class Property
         {
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_INDEX = Interop.Renderer.Renderer_Property_DEPTH_INDEX_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int FACE_CULLING_MODE = Interop.Renderer.Renderer_Property_FACE_CULLING_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_MODE = Interop.Renderer.Renderer_Property_BLEND_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_EQUATION_RGB = Interop.Renderer.Renderer_Property_BLEND_EQUATION_RGB_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_EQUATION_ALPHA = Interop.Renderer.Renderer_Property_BLEND_EQUATION_ALPHA_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_SRC_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_DEST_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_SRC_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_FACTOR_DEST_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_COLOR = Interop.Renderer.Renderer_Property_BLEND_COLOR_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BLEND_PRE_MULTIPLIED_ALPHA = Interop.Renderer.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int INDEX_RANGE_FIRST = Interop.Renderer.Renderer_Property_INDEX_RANGE_FIRST_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int INDEX_RANGE_COUNT = Interop.Renderer.Renderer_Property_INDEX_RANGE_COUNT_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_WRITE_MODE = Interop.Renderer.Renderer_Property_DEPTH_WRITE_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_FUNCTION = Interop.Renderer.Renderer_Property_DEPTH_FUNCTION_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int DEPTH_TEST_MODE = Interop.Renderer.Renderer_Property_DEPTH_TEST_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int RENDER_MODE = Interop.Renderer.Renderer_Property_RENDER_MODE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION_MASK = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_MASK_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_FUNCTION_REFERENCE = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_MASK = Interop.Renderer.Renderer_Property_STENCIL_MASK_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_Z_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STENCIL_OPERATION_ON_Z_PASS = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
+            internal static readonly int DEPTH_INDEX = Interop.Renderer.Renderer_Property_DEPTH_INDEX_get();
+            internal static readonly int FACE_CULLING_MODE = Interop.Renderer.Renderer_Property_FACE_CULLING_MODE_get();
+            internal static readonly int BLEND_MODE = Interop.Renderer.Renderer_Property_BLEND_MODE_get();
+            internal static readonly int BLEND_EQUATION_RGB = Interop.Renderer.Renderer_Property_BLEND_EQUATION_RGB_get();
+            internal static readonly int BLEND_EQUATION_ALPHA = Interop.Renderer.Renderer_Property_BLEND_EQUATION_ALPHA_get();
+            internal static readonly int BLEND_FACTOR_SRC_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_RGB_get();
+            internal static readonly int BLEND_FACTOR_DEST_RGB = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_RGB_get();
+            internal static readonly int BLEND_FACTOR_SRC_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_SRC_ALPHA_get();
+            internal static readonly int BLEND_FACTOR_DEST_ALPHA = Interop.Renderer.Renderer_Property_BLEND_FACTOR_DEST_ALPHA_get();
+            internal static readonly int BLEND_COLOR = Interop.Renderer.Renderer_Property_BLEND_COLOR_get();
+            internal static readonly int BLEND_PRE_MULTIPLIED_ALPHA = Interop.Renderer.Renderer_Property_BLEND_PRE_MULTIPLIED_ALPHA_get();
+            internal static readonly int INDEX_RANGE_FIRST = Interop.Renderer.Renderer_Property_INDEX_RANGE_FIRST_get();
+            internal static readonly int INDEX_RANGE_COUNT = Interop.Renderer.Renderer_Property_INDEX_RANGE_COUNT_get();
+            internal static readonly int DEPTH_WRITE_MODE = Interop.Renderer.Renderer_Property_DEPTH_WRITE_MODE_get();
+            internal static readonly int DEPTH_FUNCTION = Interop.Renderer.Renderer_Property_DEPTH_FUNCTION_get();
+            internal static readonly int DEPTH_TEST_MODE = Interop.Renderer.Renderer_Property_DEPTH_TEST_MODE_get();
+            internal static readonly int RENDER_MODE = Interop.Renderer.Renderer_Property_RENDER_MODE_get();
+            internal static readonly int STENCIL_FUNCTION = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_get();
+            internal static readonly int STENCIL_FUNCTION_MASK = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_MASK_get();
+            internal static readonly int STENCIL_FUNCTION_REFERENCE = Interop.Renderer.Renderer_Property_STENCIL_FUNCTION_REFERENCE_get();
+            internal static readonly int STENCIL_MASK = Interop.Renderer.Renderer_Property_STENCIL_MASK_get();
+            internal static readonly int STENCIL_OPERATION_ON_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_FAIL_get();
+            internal static readonly int STENCIL_OPERATION_ON_Z_FAIL = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_FAIL_get();
+            internal static readonly int STENCIL_OPERATION_ON_Z_PASS = Interop.Renderer.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
         }
-
     }
 }
