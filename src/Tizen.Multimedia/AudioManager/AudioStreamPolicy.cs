@@ -344,18 +344,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                int deviceId;
-
-                if (value == null)
-                {
-                    deviceId = 0;
-                }
-                else
-                {
-                    deviceId = value.Id;
-                }
-
-                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, deviceId).
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, value?.Id ?? 0).
                     ThrowIfError("Failed to set preferred input device");
 
                 _inputDevice = value;
@@ -400,18 +389,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                int deviceId;
-
-                if (value == null)
-                {
-                    deviceId = 0;
-                }
-                else
-                {
-                    deviceId = value.Id;
-                }
-
-                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, deviceId).
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, value?.Id ?? 0).
                     ThrowIfError("Failed to set preferred output device");
 
                 _outputDevice = value;
