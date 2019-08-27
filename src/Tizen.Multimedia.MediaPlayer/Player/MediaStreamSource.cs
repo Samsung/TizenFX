@@ -259,15 +259,13 @@ namespace Tizen.Multimedia
                 Log.Error(PlayerLog.Tag, "The source is not set as a source to a player yet.");
                 throw new InvalidOperationException("The source is not set as a source to a player yet.");
             }
-            if (_audioMediaFormat == null && _videoMediaFormat == null)
-            {
-                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
-            }
+
             if (packet == null)
             {
                 Log.Error(PlayerLog.Tag, "packet is null");
                 throw new ArgumentNullException(nameof(packet));
             }
+
             if (packet.IsDisposed)
             {
                 Log.Error(PlayerLog.Tag, "packet is disposed");
@@ -291,6 +289,7 @@ namespace Tizen.Multimedia
                 Log.Error(PlayerLog.Tag, "Video is not configured with the current source.");
                 throw new ArgumentException("Video is not configured with the current source.");
             }
+
             if (packet.Format.Type == MediaFormatType.Audio && _audioMediaFormat == null)
             {
                 Log.Error(PlayerLog.Tag, "Audio is not configured with the current source.");
