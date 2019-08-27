@@ -33,6 +33,8 @@ namespace Tizen.Multimedia
     {
         private readonly MediaFormat _audioMediaFormat;
         private readonly MediaFormat _videoMediaFormat;
+        private static PlayerHandle _playerHandle;
+        private static IntPtr _handle;
 
         /// <summary>
         /// Gets all supported audio types.
@@ -42,7 +44,39 @@ namespace Tizen.Multimedia
         {
             get
             {
-                yield return MediaFormatAudioMimeType.Aac;
+                NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
+                _handle = _playerHandle.DangerousGetHandle();
+                Debug.Assert(_handle != IntPtr.Zero);
+
+                try
+                {
+                    List<MediaFormatAudioMimeType> audioFormats = new List<MediaFormatAudioMimeType>();
+
+                    NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
+                    {
+                        if (!Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
+                        }
+                        else
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
+                            audioFormats.Add((MediaFormatAudioMimeType)format);
+                        }
+
+                        return true;
+                    };
+
+                    NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
+                        ThrowIfFailed(null, "Failed to get the list");
+
+                    return audioFormats.AsReadOnly();
+                }
+                finally
+                {
+                    _playerHandle.Dispose();
+                    _handle = IntPtr.Zero;
+                }
             }
         }
 
@@ -54,7 +88,39 @@ namespace Tizen.Multimedia
         {
             get
             {
-                yield return MediaFormatVideoMimeType.H264SP;
+                NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
+                _handle = _playerHandle.DangerousGetHandle();
+                Debug.Assert(_handle != IntPtr.Zero);
+
+                try
+                {
+                    List<MediaFormatVideoMimeType> videoFormats = new List<MediaFormatVideoMimeType>();
+
+                    NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
+                    {
+                        if (!Enum.IsDefined(typeof(MediaFormatVideoMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
+                        }
+                        else
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
+                            videoFormats.Add((MediaFormatVideoMimeType)format);
+                        }
+
+                        return true;
+                    };
+
+                    NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
+                        ThrowIfFailed(null, "Failed to get the list"); ;
+
+                    return videoFormats.AsReadOnly();
+                }
+                finally
+                {
+                    _playerHandle.Dispose();
+                    _handle = IntPtr.Zero;
+                }
             }
         }
 
@@ -92,7 +158,6 @@ namespace Tizen.Multimedia
             return new MediaStreamConfiguration(this, StreamType.Video);
         }
 
-
         /// <summary>
         /// Initializes a new instance of the MediaStreamSource class
         /// with the specified <see cref="AudioMediaFormat"/> and <see cref="VideoMediaFormat"/>.
@@ -113,7 +178,7 @@ namespace Tizen.Multimedia
         {
             if (audioMediaFormat == null && videoMediaFormat == null)
             {
-                throw new ArgumentNullException(nameof(audioMediaFormat) + " and " + nameof(videoMediaFormat));
+                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
             }
 
             _audioMediaFormat = audioMediaFormat;
@@ -134,13 +199,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(AudioMediaFormat audioMediaFormat)
         {
-            if (audioMediaFormat == null)
-            {
-                throw new ArgumentNullException(nameof(audioMediaFormat));
-            }
-
-            _audioMediaFormat = audioMediaFormat;
-
+            _audioMediaFormat = audioMediaFormat ?? throw new ArgumentNullException(nameof(audioMediaFormat));
             AudioConfiguration = CreateAudioConfiguration(audioMediaFormat);
         }
         /// <summary>
@@ -154,13 +213,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(VideoMediaFormat videoMediaFormat)
         {
-            if (videoMediaFormat == null)
-            {
-                throw new ArgumentNullException(nameof(videoMediaFormat));
-            }
-
-            _videoMediaFormat = videoMediaFormat;
-
+            _videoMediaFormat = videoMediaFormat ?? throw new ArgumentNullException(nameof(videoMediaFormat));
             VideoConfiguration = CreateVideoConfiguration(videoMediaFormat);
         }
 
@@ -205,6 +258,10 @@ namespace Tizen.Multimedia
             {
                 Log.Error(PlayerLog.Tag, "The source is not set as a source to a player yet.");
                 throw new InvalidOperationException("The source is not set as a source to a player yet.");
+            }
+            if (_audioMediaFormat == null && _videoMediaFormat == null)
+            {
+                throw new ArgumentNullException(string.Concat(nameof(_audioMediaFormat), " and ", nameof(_videoMediaFormat)));
             }
             if (packet == null)
             {
