@@ -44,44 +44,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                if (_supportedAudioFormats == null)
-                {
-                    PlayerHandle _playerHandle;
-                    IntPtr _handle;
-
-                    NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
-                    _handle = _playerHandle.DangerousGetHandle();
-                    Debug.Assert(_handle != IntPtr.Zero);
-
-                    try
-                    {
-                        _supportedAudioFormats = new List<MediaFormatAudioMimeType>();
-
-                        NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
-                        {
-                            if (!Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
-                            {
-                                Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
-                            }
-                            else
-                            {
-                                Log.Debug(PlayerLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
-                                _supportedAudioFormats.Add((MediaFormatAudioMimeType)format);
-                            }
-
-                            return true;
-                        };
-
-                        NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
-                            ThrowIfFailed(null, "Failed to get the list");
-                    }
-                    finally
-                    {
-                        _playerHandle.Dispose();
-                        _handle = IntPtr.Zero;
-                    }
-                }
-
+                GetSupportedTypes();
                 return _supportedAudioFormats.AsReadOnly();
             }
         }
@@ -94,45 +57,54 @@ namespace Tizen.Multimedia
         {
             get
             {
-                if (_supportedVideoFormats == null)
-                {
-                    PlayerHandle _playerHandle;
-                    IntPtr _handle;
-
-                    NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
-                    _handle = _playerHandle.DangerousGetHandle();
-                    Debug.Assert(_handle != IntPtr.Zero);
-
-                    try
-                    {
-                        _supportedVideoFormats = new List<MediaFormatVideoMimeType>();
-
-                        NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
-                        {
-                            if (!Enum.IsDefined(typeof(MediaFormatVideoMimeType), format))
-                            {
-                                Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
-                            }
-                            else
-                            {
-                                Log.Debug(PlayerLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
-                                _supportedVideoFormats.Add((MediaFormatVideoMimeType)format);
-                            }
-
-                            return true;
-                        };
-
-                        NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
-                            ThrowIfFailed(null, "Failed to get the list"); ;
-                    }
-                    finally
-                    {
-                        _playerHandle.Dispose();
-                        _handle = IntPtr.Zero;
-                    }
-                }
-
+                GetSupportedTypes();
                 return _supportedVideoFormats.AsReadOnly();
+            }
+        }
+
+        private static void GetSupportedTypes()
+        {
+            if (_supportedAudioFormats == null && _supportedVideoFormats == null)
+            {
+                PlayerHandle _playerHandle;
+                IntPtr _handle;
+
+                NativePlayer.Create(out _playerHandle).ThrowIfFailed(null, "Failed to create player");
+                _handle = _playerHandle.DangerousGetHandle();
+                Debug.Assert(_handle != IntPtr.Zero);
+
+                try
+                {
+                    _supportedAudioFormats = new List<MediaFormatAudioMimeType>();
+                    _supportedVideoFormats = new List<MediaFormatVideoMimeType>();
+
+                    NativePlayer.SupportedMediaFormatCallback callback = (int format, IntPtr userData) =>
+                    {
+                        if (Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
+                            _supportedAudioFormats.Add((MediaFormatAudioMimeType)format);
+                        }
+                        else if (Enum.IsDefined(typeof(MediaFormatVideoMimeType), format))
+                        {
+                            Log.Debug(PlayerLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
+                            _supportedVideoFormats.Add((MediaFormatVideoMimeType)format);
+                        }
+                        else
+                        {
+                            Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
+                        }
+
+                        return true;
+                    };
+
+                    NativePlayer.SupportedMediaStreamFormat(_handle, callback, IntPtr.Zero).
+                        ThrowIfFailed(null, "Failed to get the list");
+                }
+                finally
+                {
+                    _playerHandle.Dispose();
+                }
             }
         }
 
