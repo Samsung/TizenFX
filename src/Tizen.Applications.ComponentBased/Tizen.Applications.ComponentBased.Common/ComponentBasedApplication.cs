@@ -23,10 +23,10 @@ namespace Tizen.Applications.ComponentBased.Common
     /// The class for supporting multi-components based application model.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class ComponentBasedApplication : Application
+    public abstract class ComponentBasedApplication : Application
     {
         private const string LogTag = "Tizen.Applications.ComponentBasedApplicationBase";
-        private Dictionary<Type, ComponentFactoryBase> _componentFactories = new Dictionary<Type, ComponentFactoryBase>();
+        private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
         private bool _disposedValue = false;
 
@@ -34,7 +34,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Initializes the ComponentBasedApplicationBase class.
         /// </summary>
         /// <param name="typeInfo">The component type information.
-        /// The key should be a class type of BaseComponent subclass.
+        /// The key should be a class type of FrameComponent or SubComponent subclass.
         /// The value should be a component id which is declared in tizen-manifest.xml.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
@@ -58,34 +58,28 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="compType">Class type</param>
         /// <param name="compId">Component ID</param>
-        /// <exception cref="InvalidOperationException">Thrown when component type is already added.</exception>
+        /// <exception cref="ArgumentException">Thrown when component type is already added.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
             if (_componentFactories.ContainsKey(compType))
             {
-                throw new InvalidOperationException("Already exist type");
+                throw new ArgumentException("Already exist type");
             }
 
             if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add frame component");
-                _componentFactories.Add(compType, new FrameFactory(compType, compId, this));
+                _componentFactories.Add(compType, new FrameComponentStateManager(compType, compId, this));
             }
             else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
                 Log.Info(LogTag, "Add service component");
-                _componentFactories.Add(compType, new ServiceFactory(compType, compId, this));
-            }
-            else if (typeof(BaseComponent).IsAssignableFrom(compType))
-            {
-                Log.Info(LogTag, "Add base component");
-                BaseComponent b = Activator.CreateInstance(compType) as BaseComponent;
-                _componentFactories.Add(compType, new BaseFactory(compType, compId, b.ComponentType, this));
+                _componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, this));
             }
             else
             {
-                throw new ArgumentException("Invalid type");
+                throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", "compType");
             }
         }
 
@@ -127,7 +121,7 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             Log.Debug(LogTag, "On create");
             IntPtr h = IntPtr.Zero;
-            foreach(KeyValuePair<Type, ComponentFactoryBase> entry in _componentFactories)
+            foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
             {
                 h = entry.Value.Bind(h);
             }
@@ -180,9 +174,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// This method will be called to start main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnRun()
-        {
-        }
+        protected abstract void OnRun();
 
         /// <summary>
         /// This method will be called to exit main-loop

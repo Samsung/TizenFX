@@ -4,12 +4,11 @@ using System.Text;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal class FrameFactory : ComponentFactoryBase
+    internal class FrameComponentStateManager : ComponentStateManger
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
-        private ComponentBasedApplication _parent;
 
-        internal FrameFactory(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, ComponentType.Frame, parent)
+        internal FrameComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.FrameActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.FrameDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -26,7 +25,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnResume = new Interop.CBApplication.FrameResumeCallback(OnResumeCallback);
             _callbacks.OnStart = new Interop.CBApplication.FrameStartCallback(OnStartCallback);
             _callbacks.OnStop = new Interop.CBApplication.FrameStopCallback(OnStopCallback);
-            _parent = parent;
+            Parent = parent;
         }
 
         private IntPtr OnCreateCallback(IntPtr context, IntPtr userData)
@@ -37,23 +36,23 @@ namespace Tizen.Applications.ComponentBased.Common
 
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
-            fc.Bind(context, ComponentId, id, _parent);
+            fc.Bind(context, ComponentId, id, Parent);
 
             IntPtr winHandle;
-            IWindowInfo win = fc.OnCreate();
+            IWindowInfo win = fc.CreateWindowInfo();
             if (win == null)
                 return IntPtr.Zero;
 
-            fc.WindowInfo = win;
+            fc.OnCreate();
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
 
-            ComponentInstances.Add(fc);
+            AddComponent(fc);
             return winHandle;
         }
 
         private void OnStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData)
         {
-            foreach (FrameComponent fc in ComponentInstances)
+            foreach (FrameComponent fc in Instances)
             {
                 if (fc.Handle == context)
                 {
@@ -67,7 +66,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnResumeCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in ComponentInstances)
+            foreach (FrameComponent fc in Instances)
             {
                 if (fc.Handle == context)
                 {
@@ -79,7 +78,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnPauseCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in ComponentInstances)
+            foreach (FrameComponent fc in Instances)
             {
                 if (fc.Handle == context)
                 {
@@ -91,7 +90,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnStopCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in ComponentInstances)
+            foreach (FrameComponent fc in Instances)
             {
                 if (fc.Handle == context)
                 {
@@ -103,12 +102,12 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnDestroyCallback(IntPtr context, IntPtr userData)
         {
-            foreach (FrameComponent fc in ComponentInstances)
+            foreach (FrameComponent fc in Instances)
             {
                 if (fc.Handle == context)
                 {
                     fc.OnDestroy();
-                    ComponentInstances.Remove(fc);
+                    RemoveComponent(fc);
                     break;
                 }
             }

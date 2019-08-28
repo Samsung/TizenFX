@@ -125,18 +125,6 @@ internal static partial class Interop
         internal delegate void BaseLowMemoryCallback(IntPtr context, int status, IntPtr userData);
         internal delegate void BaseSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
 
-        internal struct BaseLifecycleCallbacks
-        {
-            public BaseRestoreCallback OnRestore;
-            public BaseSaveCallback OnSave;
-            public BaseDeviceOrientationChangedCallback OnDeviceOrientationChanged;
-            public BaseLanguageChangedCallback OnLanguageChanged;
-            public BaseRegionFormatChangedCallback OnRegionFormatChanged;
-            public BaseLowBatteryCallback OnLowBattery;
-            public BaseLowMemoryCallback OnLowMemory;
-            public BaseSuspendedStateCallback OnSuspendedState;
-        }
-
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_main")]
         internal static extern ErrorCode BaseMain(int argc, string[] argv, ref CBAppLifecycleCallbacks callback, IntPtr userData);
 
@@ -148,9 +136,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_service_component")]
         internal static extern IntPtr BaseAddServiceComponent(IntPtr comp_class, string compId, ref ServiceLifecycleCallbacks callback, IntPtr userData);
-
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_base_component")]
-        internal static extern IntPtr BaseAddComponent(IntPtr comp_class, NativeComponentType type, string compId, ref BaseLifecycleCallbacks callback, IntPtr userData);
 
         [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
         internal static extern IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);

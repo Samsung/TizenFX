@@ -29,17 +29,17 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Gets the frame component's window information.
+        /// Overrides this method to handle behavior when the component is launched.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IWindowInfo WindowInfo { get; internal set; }
+        public abstract void OnCreate();
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is launched.
+        /// Overrides this method to create window. It will be called before OnCreate method.
         /// </summary>
         /// <returns>Window object to use</returns>
         /// <since_tizen> 6 </since_tizen>
-        public abstract IWindowInfo OnCreate();
+        public abstract IWindowInfo CreateWindowInfo();
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the component receives the appcontrol message.
@@ -81,18 +81,6 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnDestroy()
         {
-        }
-
-        /// <summary>
-        /// Gets the component type.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public override ComponentType ComponentType
-        {
-            get
-            {
-                return ComponentType.Frame;
-            }
         }
     }
 }

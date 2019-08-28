@@ -4,12 +4,11 @@ using System.Text;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal class ServiceFactory : ComponentFactoryBase
+    internal class ServiceComponentStateManager : ComponentStateManger
     {
         private Interop.CBApplication.ServiceLifecycleCallbacks _callbacks;
-        private ComponentBasedApplication _parent;
 
-        internal ServiceFactory(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, ComponentType.Service, parent)
+        internal ServiceComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
             _callbacks.OnAction = new Interop.CBApplication.ServiceActionCallback(OnActionCallback);
             _callbacks.OnDeviceOrientationChanged = new Interop.CBApplication.ServiceDeviceOrientationChangedCallback(OnDeviceOrientationChangedCallback);
@@ -23,7 +22,7 @@ namespace Tizen.Applications.ComponentBased.Common
             _callbacks.OnCreate = new Interop.CBApplication.ServiceCreateCallback(OnCreateCallback);
             _callbacks.OnDestroy = new Interop.CBApplication.ServiceDestroyCallback(OnDestroyCallback);
             _callbacks.OnStart = new Interop.CBApplication.ServiceStartCommandCallback(OnStartCallback);
-            _parent = parent;
+            Parent = parent;
         }
 
         private bool OnCreateCallback(IntPtr context, IntPtr userData)
@@ -34,7 +33,7 @@ namespace Tizen.Applications.ComponentBased.Common
 
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
-            sc.Bind(context, ComponentId, id, _parent);
+            sc.Bind(context, ComponentId, id, Parent);
 
             bool result = sc.OnCreate();
             if (!result)
@@ -42,13 +41,13 @@ namespace Tizen.Applications.ComponentBased.Common
                 return false;
             }
 
-            ComponentInstances.Add(sc);
+            AddComponent(sc);
             return true;
         }
 
         private void OnStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData)
         {
-            foreach (ServiceComponent sc in ComponentInstances)
+            foreach (ServiceComponent sc in Instances)
             {
                 if (sc.Handle == context)
                 {
@@ -62,12 +61,12 @@ namespace Tizen.Applications.ComponentBased.Common
 
         private void OnDestroyCallback(IntPtr context, IntPtr userData)
         {
-            foreach (ServiceComponent sc in ComponentInstances)
+            foreach (ServiceComponent sc in Instances)
             {
                 if (sc.Handle == context)
                 {
                     sc.OnDestroy();
-                    ComponentInstances.Remove(sc);
+                    RemoveComponent(sc);
                     break;
                 }
             }

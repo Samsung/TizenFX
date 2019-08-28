@@ -20,15 +20,16 @@ using System.Threading.Tasks;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// This is a base-component class. The base-component includes only a few basic overridable lifecycle functions.
-    /// If you want to make a new component that different with FrameComponent or ServiceComponent,
-    /// you can inherit this class and implement your own lifecycle.
+    /// This is a base-component class.
+    /// It provides common functions of FrameComponent and ServiceComponent.
     /// </summary>
+    /// <remarks>
+    /// This class cannot be registered by ComponentBased applications.
+    /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public abstract class BaseComponent
     {
         internal IntPtr Handle;
-        private const string LogTag = "Tizen.Applications.BaseComponent";
 
         /// <summary>
         /// Occurs when the system memory is low.
@@ -103,22 +104,9 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to specify a type of this component.
-        /// Default component type is Service type.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public virtual ComponentType ComponentType
-        {
-            get
-            {
-                return ComponentType.Service;
-            }
-        }
-
-        /// <summary>
         /// Overrides this method if want to handle behavior to restore the previous status.
         /// </summary>
-        /// <param name="c">Contents</param>
+        /// <param name="c">Contents. It can be used only in the callback. To use outside, make a copy. </param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnRestoreContents(Bundle c)
         {
@@ -127,7 +115,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method if want to handle behavior to save current status.
         /// </summary>
-        /// <param name="c">Contents</param>
+        /// <param name="c">Contents. It can be used only in the callback. To use outside, make a copy. </param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnSaveContent(Bundle c)
         {
@@ -173,6 +161,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
         /// <returns>A task with the result of the launch request.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when fail to set component information to the AppControl.</exception>
         /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
@@ -181,7 +170,7 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             int ret = Interop.AppControl.SetCallerInstanceId(control.SafeAppControlHandle, Id);
             if (ret != 0)
-                throw new ArgumentException("Failed to set id");
+                throw new InvalidOperationException("Failed to set id");
 
             return AppControl.SendLaunchRequestAsync(control, replyAfterLaunching);
         }

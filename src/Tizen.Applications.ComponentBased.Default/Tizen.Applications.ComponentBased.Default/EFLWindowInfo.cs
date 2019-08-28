@@ -37,7 +37,7 @@ namespace Tizen.Applications.ComponentBased.Default
                 {
                     int err = Interop.EflCBApplication.GetResourceId(_win.RealHandle, out _resId);
                     if (err != 0)
-                        Log.Info(LogTag, "elm_config_accel_preference_set is not called");
+                        Log.Info(LogTag, "Fail to get resource ID");
                 }
 
                 return _resId;

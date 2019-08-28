@@ -7,21 +7,29 @@ using static Tizen.Applications.CoreBackend.DefaultCoreBackend;
 
 namespace Tizen.Applications.ComponentBased.Common
 {
-    internal abstract class ComponentFactoryBase
+    internal abstract class ComponentStateManger
     {
-        public IList<BaseComponent> ComponentInstances { get; }
-        public Type ComponentClassType { get; }
-        public ComponentType ComponentType { get; }
-        public string ComponentId { get; }
-        public ComponentBasedApplication Parent { get; }
-
-        internal ComponentFactoryBase(Type ctype, string id, ComponentType comp_type, ComponentBasedApplication parent)
+        private IList<BaseComponent> ComponentInstances { get; }
+        public IEnumerable<BaseComponent> Instances => ComponentInstances;
+        protected void AddComponent(BaseComponent comp)
         {
-            ComponentType = comp_type;
+            ComponentInstances.Add(comp);
+        }
+
+        protected void RemoveComponent(BaseComponent comp)
+        {
+            ComponentInstances.Remove(comp);
+        }
+        public Type ComponentClassType { get; }
+        public string ComponentId { get; }
+        protected ComponentBasedApplication Parent { get; set; }
+
+        internal ComponentStateManger(Type ctype, string id, ComponentBasedApplication parent)
+        {
             ComponentClassType = ctype;
             ComponentId = id;
-            Parent = parent;
             ComponentInstances = new List<BaseComponent>();
+            Parent = parent;
         }
 
         protected void OnLanguageChangedCallback(IntPtr context, string language, IntPtr userData)

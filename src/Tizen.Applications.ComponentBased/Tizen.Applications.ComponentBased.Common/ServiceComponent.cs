@@ -36,17 +36,5 @@ namespace Tizen.Applications.ComponentBased.Common
         public virtual void OnDestroy()
         {
         }
-
-        /// <summary>
-        /// Gets the component type.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public override ComponentType ComponentType
-        {
-            get
-            {
-                return ComponentType.Service;
-            }
-        }
     }
 }
