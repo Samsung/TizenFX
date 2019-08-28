@@ -31,8 +31,9 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Overrides this method to handle behavior when the component is launched.
         /// </summary>
+        /// <returns>True if a service component is successfully created</returns>
         /// <since_tizen> 6 </since_tizen>
-        public abstract void OnCreate();
+        public abstract bool OnCreate();
 
         /// <summary>
         /// Overrides this method to create window. It will be called before OnCreate method.

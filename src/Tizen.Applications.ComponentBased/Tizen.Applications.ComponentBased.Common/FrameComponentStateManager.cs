@@ -43,7 +43,11 @@ namespace Tizen.Applications.ComponentBased.Common
             if (win == null)
                 return IntPtr.Zero;
 
-            fc.OnCreate();
+            bool result = fc.OnCreate();
+            if (!result)
+            {
+                return IntPtr.Zero;
+            }
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);
 
             AddComponent(fc);

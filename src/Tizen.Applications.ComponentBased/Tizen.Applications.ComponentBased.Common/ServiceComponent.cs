@@ -11,13 +11,10 @@ namespace Tizen.Applications.ComponentBased.Common
     public abstract class ServiceComponent : BaseComponent
     {
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is created.
+        /// Overrides this method to handle behavior when the component is created.
         /// </summary>
         /// <returns>True if a service component is successfully created</returns>
-        public virtual bool OnCreate()
-        {
-            return true;
-        }
+        public abstract bool OnCreate();
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the component receives the start command message.

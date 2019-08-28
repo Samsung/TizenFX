@@ -58,7 +58,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="compType">Class type</param>
         /// <param name="compId">Component ID</param>
-        /// <exception cref="ArgumentException">Thrown when component type is already added.</exception>
+        /// <exception cref="ArgumentException">Thrown when component type is already added or not sub-class of FrameComponent or ServiceComponent</exception>
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
