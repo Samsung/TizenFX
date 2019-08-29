@@ -29,12 +29,6 @@ namespace Tizen.Multimedia
 
         protected override bool ReleaseHandle()
         {
-            Interop.AudioDucking.IsDucked(this, out bool isDucked);
-            if (isDucked)
-            {
-                Interop.AudioDucking.Deactivate(this);
-            }
-
             var ret = Interop.AudioDucking.Destroy(handle);
             if (ret != AudioManagerError.None)
             {
