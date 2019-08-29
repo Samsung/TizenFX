@@ -81,4 +81,16 @@ namespace Tizen.Multimedia.Remoting
         Episode,
         Resolution
     }
+
+    internal enum MediaControlCapabilityCategory
+    {
+        Shuffle,
+        Repeat,
+        PlaybackPosition,
+        Playlist,
+        ClientCustom,
+        Search,
+        Subtitle,
+        Mode360
+    }
 }
