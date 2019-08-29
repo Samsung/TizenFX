@@ -56,10 +56,11 @@ namespace Tizen.Multimedia.Vision
             }
 
             var tcs = new TaskCompletionSource<ImageClassificationResult>();
+            var roi = config.Roi.Value.ToMarshalable();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
-                InteropInference.ClassifyImage(source.Handle, config.GetHandle(), cb.Target).
+                InteropInference.ClassifyImage(source.Handle, config.GetHandle(), ref roi, cb.Target).
                     Validate("Failed to detect face.");
 
                 return await tcs.Task;

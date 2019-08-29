@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System.Collections.ObjectModel;
+
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
@@ -28,15 +30,8 @@ namespace Tizen.Multimedia.Vision
             if (size > 0)
             {
                 Number = size;
-                Confidences = new float[size];
-                Locations = new Rectangle[size];
-
-                confidence.CopyTo(Confidences, 0);
-
-                for (int i = 0; i < size; i++)
-                {
-                    Locations[i] = locations[i].ToApiStruct();
-                }
+                Confidences = new ReadOnlyCollection<float>(confidence);
+                Locations = new ReadOnlyCollection<Rectangle>(locations.ToApiStruct());
             }
         }
 
@@ -50,12 +45,12 @@ namespace Tizen.Multimedia.Vision
         /// Gets the confidences of detected faces.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public float[] Confidences { get; }
+        public ReadOnlyCollection<float> Confidences { get; }
 
         /// <summary>
         /// Gets the locations of detected faces.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Rectangle[] Locations { get; }
+        public ReadOnlyCollection<Rectangle> Locations { get; }
     }
 }

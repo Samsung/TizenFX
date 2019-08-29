@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using InteropInference = Interop.MediaVision.Inference;
 
@@ -30,6 +32,10 @@ namespace Tizen.Multimedia.Vision
         /// Detects facial landmarks on the source image using inference engine which set by <paramref name="config"/>.<br/>
         /// Each time when DetectAsync is called, a set of the detected facial landmark at the media source are received asynchronously.
         /// </summary>
+        /// <remarks>
+        /// If user want to set region-of-interest area in source image, Please set <see cref="InferenceModelConfiguration.Roi"/>.
+        /// If not, full image area will be used to detect facail landmark.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
@@ -43,7 +49,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
-        public static async Task<Point[]> DetectAsync(MediaVisionSource source,
+        public static async Task<IEnumerable<Point>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
             if (source == null)
@@ -56,10 +62,11 @@ namespace Tizen.Multimedia.Vision
             }
 
             var tcs = new TaskCompletionSource<Point[]>();
+            var roi = config.Roi.Value.ToMarshalable();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
-                InteropInference.DetectFacialLandmark(source.Handle, config.GetHandle(), cb.Target).
+                InteropInference.DetectFacialLandmark(source.Handle, config.GetHandle(), ref roi , cb.Target).
                     Validate("Failed to detect facial landmark.");
 
                 return await tcs.Task;

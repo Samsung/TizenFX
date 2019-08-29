@@ -48,7 +48,7 @@ namespace Tizen.Multimedia.Vision
         private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS";
         private const string _keyInputNodeName = "MV_INFERENCE_INPUT_NODE_NAME";
         private const string _keyOutputNodeNames = "MV_INFERENCE_OUTPUT_NODE_NAMES";
-        private const string _keyOutputMaxNumvers = "MV_INFERENCE_OUTPUT_MAX_NUMBERS";
+        private const string _keyOutputMaxNumbers = "MV_INFERENCE_OUTPUT_MAX_NUMBERS";
         private const string _keyConfidenceThreshold = "MV_INFERENCE_CONFIDENCE_THRESHOLD";
 
         // The following strings are fixed in native and will not be changed.
@@ -120,7 +120,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets the list of inference backend engine which is supported in the current device.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IList<InferenceBackendType> SupportedBackendType
+        public IList<InferenceBackendType> SupportedBackend
         {
             get
             {
@@ -284,7 +284,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>The default backend type is <see cref="InferenceBackendType.OpenCV"/></remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="NotSupportedException">The engine type is not supported.</exception>
-        /// <seealso cref="SupportedBackendType"/>
+        /// <seealso cref="SupportedBackend"/>
         /// <since_tizen> 6 </since_tizen>
         public InferenceBackendType Backend
         {
@@ -296,7 +296,7 @@ namespace Tizen.Multimedia.Vision
             {
                 ValidationUtil.ValidateEnum(typeof(InferenceBackendType), value, nameof(Backend));
 
-                if (!SupportedBackendType.Contains(value))
+                if (!SupportedBackend.Contains(value))
                 {
                     throw new NotSupportedException("Not supported engine type. " +
                         "Please check supported engine using 'SupportedBackendType'.");
@@ -414,7 +414,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public string[] OutputNodeName
+        public IList<string> OutputNodeName
         {
             get
             {
@@ -427,7 +427,9 @@ namespace Tizen.Multimedia.Vision
                     throw new ArgumentNullException(nameof(value), "OutputNodeName can't be null.");
                 }
 
-                Set(_keyOutputNodeNames, value);
+                var name = new string[value.Count];
+                value.CopyTo(name, 0);
+                Set(_keyOutputNodeNames, name);
             }
         }
 
@@ -435,18 +437,19 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the maximum output number of detection or classification.
         /// </summary>
         /// <remarks>
-        /// The input value over 10 will be set to 10 and the input value under 1 will be set to 1.
+        /// The input value over 10 will be set to 10 and the input value under 1 will be set to 1.<br/>
+        /// This value can be used to decide the size of <see cref="Roi"/>, it's length should be the same.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public int MaxOutputNumber
         {
             get
             {
-                return GetInt(_keyOutputMaxNumvers);
+                return GetInt(_keyOutputMaxNumbers);
             }
             set
             {
-                Set(_keyOutputMaxNumvers, value);
+                Set(_keyOutputMaxNumbers, value);
             }
         }
 
@@ -479,6 +482,68 @@ namespace Tizen.Multimedia.Vision
                 }
 
                 Set(_keyConfidenceThreshold, value);
+            }
+        }
+
+        private Rectangle? _roi;
+
+        /// <summary>
+        /// Gets or sets the ROI(Region Of Interest) of <see cref="ImageClassifier"/> and <see cref="FacialLandmarkDetector"/>
+        /// </summary>
+        /// <remarks>
+        /// Default value is null. If Roi is null, the entire region of <see cref="MediaVisionSource"/> will be analyzed.
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width of <paramref name="value"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The height of <paramref name="value"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The x position of <paramref name="value"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     The y position of <paramref name="value"/> is less than zero.
+        /// </exception>
+        /// <seealso cref="MaxOutputNumber"/>
+        /// <since_tizen> 6 </since_tizen>
+        public Rectangle? Roi
+        {
+            get
+            {
+                return _roi;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    ValidateRoi(value.Value);
+                    _roi = value;
+                }
+            }
+        }
+
+        private static void ValidateRoi(Rectangle roi)
+        {
+            if (roi.Width <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Roi.Width", roi.Width,
+                    "The width of roi can't be less than or equal to zero.");
+            }
+
+            if (roi.Height <= 0)
+            {
+                throw new ArgumentOutOfRangeException("Roi.Height", roi.Height,
+                    "The height of roi can't be less than or equal to zero.");
+            }
+
+            if (roi.X < 0)
+            {
+                throw new ArgumentOutOfRangeException("Roi.X", roi.X,
+                    "The x position of roi can't be less than zero.");
+            }
+
+            if (roi.Y < 0)
+            {
+                throw new ArgumentOutOfRangeException("Roi.Y", roi.Y,
+                    "The y position of roi can't be less than zero.");
             }
         }
 

@@ -80,13 +80,24 @@ internal static partial class Interop
         };
     }
 
-    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(MediaVision.Rectangle[] rects)
+    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(this MediaVision.Rectangle[] rects)
     {
         var result = new Tizen.Multimedia.Rectangle[rects.Length];
 
         for (int i = 0; i < rects.Length; i++)
         {
             result[i] = rects[i].ToApiStruct();
+        }
+        return result;
+    }
+
+    internal static MediaVision.Rectangle[] ToMarShalable(this Tizen.Multimedia.Rectangle[] rects)
+    {
+        var result = new MediaVision.Rectangle[rects.Length];
+
+        for (int i = 0; i < rects.Length; i++)
+        {
+            result[i] = rects[i].ToMarshalable();
         }
         return result;
     }

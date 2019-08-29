@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System.Collections.ObjectModel;
 
 namespace Tizen.Multimedia.Vision
 {
@@ -28,13 +29,9 @@ namespace Tizen.Multimedia.Vision
             if (size > 0)
             {
                 Number = size;
-                Indices = new int[size];
-                Names = new string[size];
-                Confidences = new float[size];
-
-                indices.CopyTo(Indices, 0);
-                names.CopyTo(Names, 0);
-                confidence.CopyTo(Confidences, 0);
+                Indices = new ReadOnlyCollection<int>(indices);
+                Names = new ReadOnlyCollection<string>(names);
+                Confidences = new ReadOnlyCollection<float>(confidence);
             }
         }
 
@@ -48,18 +45,18 @@ namespace Tizen.Multimedia.Vision
         /// Gets the indices of detected objects.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int[] Indices { get; }
+        public ReadOnlyCollection<int> Indices { get; }
 
         /// <summary>
         /// Gets the names of detected objects.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string[] Names { get; }
+        public ReadOnlyCollection<string> Names { get; }
 
         /// <summary>
         /// Gets the confidences of detected objects.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public float[] Confidences { get; }
+        public ReadOnlyCollection<float> Confidences { get; }
     }
 }
