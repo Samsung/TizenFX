@@ -650,7 +650,8 @@ namespace Tizen.Multimedia.Remoting
                 Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
                     ThrowIfError("Failed to get playback capability handle.");
 
-                Native.GetShuffleCapability(Manager.Handle, ServerAppId, out MediaControlCapabilitySupport support);
+                Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlCapabilityCategory.Shuffle, out MediaControlCapabilitySupport support).
+                    ThrowIfError("Failed to get shuffle mode capability");
 
                 return support;
             }
@@ -685,7 +686,8 @@ namespace Tizen.Multimedia.Remoting
                 Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
                     ThrowIfError("Failed to get playback capability handle.");
 
-                Native.GetRepeatCapability(Manager.Handle, ServerAppId, out MediaControlCapabilitySupport support);
+                Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlCapabilityCategory.Repeat, out MediaControlCapabilitySupport support).
+                    ThrowIfError("Failed to get repeat mode capability");
 
                 return support;
             }
