@@ -714,7 +714,6 @@ namespace Tizen.NUI.BaseComponents
         ///  Whether to crop image to mask or scale mask to fit image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CropToMask
         {
             get
