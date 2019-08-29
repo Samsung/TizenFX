@@ -346,16 +346,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Prepares the cancellable media player for playback, asynchronously.
+        /// Prepares the cancelable media player for playback, asynchronously.
         /// </summary>
         /// <param name="cancellationToken">The cancellation token to cancel preparing.</param>
         /// <seealso cref="CancellationToken"/>
-        /// <returns>A task that represents the asynchronous prepare operation.</returns>
+        /// <returns>The task that represents the asynchronous prepare operation.</returns>
         /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
         /// and a source must be set.
         /// The state must be <see cref="PlayerState.Preparing"/> to cancel preparing.
         /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.</remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         ///     -or-<br/>
