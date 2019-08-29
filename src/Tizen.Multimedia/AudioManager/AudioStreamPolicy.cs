@@ -30,6 +30,7 @@ namespace Tizen.Multimedia
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
         private static AudioDevice _inputDevice = null;
         private static AudioDevice _outputDevice = null;
+        private const string Tag = "Tizen.Multimedia.AudioStreamPolicy";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>.
@@ -327,8 +328,12 @@ namespace Tizen.Multimedia
         {
             get
             {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
                     ThrowIfError("Failed to get preferred input device");
+
+                Log.Debug(Tag, $"preferred input device id:{inDeviceId}");
 
                 return _inputDevice;
             }
@@ -362,8 +367,12 @@ namespace Tizen.Multimedia
         {
             get
             {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
                     ThrowIfError("Failed to get preferred output device");
+
+                Log.Debug(Tag, $"preferred output device id:{outDeviceId}");
 
                 return _outputDevice;
             }
