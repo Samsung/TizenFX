@@ -7,6 +7,7 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class FrameComponentStateManager : ComponentStateManger
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
+        private const string LogTag = "Tizen.Applications.FrameComponentStateManager";
 
         internal FrameComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
@@ -32,7 +33,10 @@ namespace Tizen.Applications.ComponentBased.Common
         {
             FrameComponent fc = Activator.CreateInstance(ComponentClassType) as FrameComponent;
             if (fc == null)
+            {
+                Log.Error(LogTag, "Fail to create instance");
                 return IntPtr.Zero;
+            }
 
             string id;
             Interop.CBApplication.GetInstanceId(context, out id);
@@ -43,9 +47,9 @@ namespace Tizen.Applications.ComponentBased.Common
             if (win == null)
                 return IntPtr.Zero;
 
-            bool result = fc.OnCreate();
-            if (!result)
+            if (!fc.OnCreate())
             {
+                Log.Error(LogTag, "OnCreate fail");
                 return IntPtr.Zero;
             }
             Interop.CBApplication.BaseFrameCreateWindow(out winHandle, win.ResourceId, IntPtr.Zero);

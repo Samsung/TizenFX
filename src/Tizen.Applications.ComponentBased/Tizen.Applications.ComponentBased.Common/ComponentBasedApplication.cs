@@ -120,13 +120,13 @@ namespace Tizen.Applications.ComponentBased.Common
         private IntPtr OnCreateNative(IntPtr data)
         {
             Log.Debug(LogTag, "On create");
-            IntPtr h = IntPtr.Zero;
+            IntPtr nativeComponentFactoryMap = IntPtr.Zero;
             foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
             {
-                h = entry.Value.Bind(h);
+                nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
             }
 
-            return h;
+            return nativeComponentFactoryMap;
         }
 
         private void OnTerminateNative(IntPtr data)
@@ -194,8 +194,8 @@ namespace Tizen.Applications.ComponentBased.Common
             if (!_disposedValue)
             {
                 _disposedValue = true;
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Tizen.Applications.ComponentBased.Default
     public class EFLWindowInfo : IWindowInfo
     {
         private const string LogTag = "Tizen.Applications.EFLWindow";
-        private EvasObject _win;
+        private Window _win;
         private int _resId;
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <param name="win">The window object of component.</param>
         /// <since_tizen> 6 </since_tizen>
-        public EFLWindowInfo(EvasObject win)
+        public EFLWindowInfo(Window win)
         {
             _win = win;
         }

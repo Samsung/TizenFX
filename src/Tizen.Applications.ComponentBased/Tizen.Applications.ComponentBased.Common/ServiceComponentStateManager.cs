@@ -35,8 +35,7 @@ namespace Tizen.Applications.ComponentBased.Common
             Interop.CBApplication.GetInstanceId(context, out id);
             sc.Bind(context, ComponentId, id, Parent);
 
-            bool result = sc.OnCreate();
-            if (!result)
+            if (!sc.OnCreate())
             {
                 return false;
             }
