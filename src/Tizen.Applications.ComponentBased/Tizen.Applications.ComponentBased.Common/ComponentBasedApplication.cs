@@ -28,7 +28,6 @@ namespace Tizen.Applications.ComponentBased.Common
         private const string LogTag = "Tizen.Applications.ComponentBasedApplicationBase";
         private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
-        private bool _disposedValue = false;
 
         /// <summary>
         /// Initializes the ComponentBasedApplicationBase class.
