@@ -1459,6 +1459,46 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets parent window of the window.
+        /// After setting that, these windows do together when raise-up, lower and iconified/deiconified.
+        /// Initially, the window is located on top of the parent. The window can go below parent by calling Lower().
+        /// If parent's window stack is changed by calling Raise() or Lower(), child windows are located on top of the parent again.
+        /// </summary>
+        /// <param name="parent">The parent window.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParent(Window parent) {
+            Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Unsets parent window of the window.
+        /// After unsetting, the window is disconnected his parent window.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Unparent() {
+            Interop.Window.Unparent(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets parent window of the window.
+        /// </summary>
+        /// <returns>The parent window of the window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window GetParent() {
+            Window ret = new Window(Interop.Window.GetParent(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Dispose for Window
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
