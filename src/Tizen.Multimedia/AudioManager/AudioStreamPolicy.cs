@@ -327,18 +327,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                if (_inputDevice == null)
-                {
-                    return null;
-                }
-
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
                     ThrowIfError("Failed to get preferred input device");
-
-                if (inDeviceId != _inputDevice.Id)
-                {
-                    throw new InvalidOperationException("output device id does not match");
-                }
 
                 return _inputDevice;
             }
@@ -372,18 +362,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                if (_outputDevice == null)
-                {
-                    return null;
-                }
-
                 Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
                     ThrowIfError("Failed to get preferred output device");
-
-                if (outDeviceId != _outputDevice.Id)
-                {
-                    throw new InvalidOperationException("output device id does not match");
-                }
 
                 return _outputDevice;
             }
