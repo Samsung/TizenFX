@@ -48,6 +48,8 @@ namespace Tizen.Applications
 
         private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
         private int _callbackId = 0;
+        private List<PackageDependencyInformation> _dependency_to;
+        private List<PackageDependencyInformation> _dependency_from;
 
         private Package(string pkgId)
         {
@@ -217,6 +219,18 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Requested privilege for the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<PackageDependencyInformation> DependencyTo { get { return _dependency_to; } }
+
+        /// <summary>
+        /// Requested privilege for the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependency_from; } }
+
+        /// <summary>
         /// Gets the package size information.
         /// </summary>
         /// <returns>Package size information.</returns>
@@ -360,6 +374,8 @@ namespace Tizen.Applications
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
             package._privileges = GetPackagePrivilegeInformation(handle);
+            package._dependency_to = GetPackageDependencyInformation(handle);
+            package._dependency_from = GetPackageDependencyInformationDependsOn(handle);
             return package;
         }
 
@@ -423,6 +439,40 @@ namespace Tizen.Applications
                 applicationType = Tizen.Applications.ApplicationType.Watch;
 
             return applicationType;
+        }
+
+        private static List<PackageDependencyInformation> GetPackageDependencyInformation(IntPtr packageInfoHandle)
+        {
+            List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
+            Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
+            {
+                dependencies.Add(new PackageDependencyInformation(from, to, type, requiredVersion));
+                return true;
+            };
+
+            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfo(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+            }
+            return dependencies;
+        }
+
+        private static List<PackageDependencyInformation> GetPackageDependencyInformationDependsOn(IntPtr packageInfoHandle)
+        {
+            List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
+            Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
+            {
+                dependencies.Add(new PackageDependencyInformation(from, to, type, requiredVersion));
+                return true;
+            };
+
+            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfoDependsOn(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+            }
+            return dependencies;
         }
     }
 }
