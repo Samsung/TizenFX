@@ -17,7 +17,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
     /// This class provides methods and properties to get information of the component.
