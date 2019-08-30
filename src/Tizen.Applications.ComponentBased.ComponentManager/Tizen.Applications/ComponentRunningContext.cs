@@ -20,7 +20,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
     /// This class provides methods and properties to get information of the running component.

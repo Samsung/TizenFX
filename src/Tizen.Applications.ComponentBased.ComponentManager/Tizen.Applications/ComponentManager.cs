@@ -20,7 +20,7 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
     /// This class has the methods and events of the ComponentManager.
