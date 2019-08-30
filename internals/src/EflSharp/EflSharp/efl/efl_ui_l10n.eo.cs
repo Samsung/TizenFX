@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,6 +12,7 @@ namespace Ui {
 
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IL10nConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IL10n : 
@@ -35,12 +37,13 @@ void UpdateTranslation();
             }
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
-sealed public class IL10nConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IL10nConcrete :
     Efl.Eo.EoWrapper
     , IL10n
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -56,7 +59,8 @@ sealed public class IL10nConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IL10nConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -270,3 +274,10 @@ sealed public class IL10nConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIL10nConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

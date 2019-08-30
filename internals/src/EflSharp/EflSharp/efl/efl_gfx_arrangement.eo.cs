@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>API common to all UI container objects.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IArrangementConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IArrangement : 
@@ -33,14 +35,27 @@ void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scala
 /// <param name="pad_vert">Vertical padding</param>
 /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
 void SetContentPadding(double pad_horiz, double pad_vert, bool scalable);
-                }
+                    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    (double, double) ContentAlign {
+        get;
+        set;
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    (double, double, bool) ContentPadding {
+        get;
+        set;
+    }
+}
 /// <summary>API common to all UI container objects.</summary>
-sealed public class IArrangementConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IArrangementConcrete :
     Efl.Eo.EoWrapper
     , IArrangement
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -56,7 +71,8 @@ sealed public class IArrangementConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IArrangementConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -101,6 +117,29 @@ sealed public class IArrangementConcrete :
                                                                                  Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate(this.NativeHandle,pad_horiz, pad_vert, scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    public (double, double) ContentAlign {
+        get {
+            double _out_align_horiz = default(double);
+            double _out_align_vert = default(double);
+            GetContentAlign(out _out_align_horiz,out _out_align_vert);
+            return (_out_align_horiz,_out_align_vert);
+        }
+        set { SetContentAlign( value.Item1,  value.Item2); }
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    public (double, double, bool) ContentPadding {
+        get {
+            double _out_pad_horiz = default(double);
+            double _out_pad_vert = default(double);
+            bool _out_scalable = default(bool);
+            GetContentPadding(out _out_pad_horiz,out _out_pad_vert,out _out_scalable);
+            return (_out_pad_horiz,_out_pad_vert,_out_scalable);
+        }
+        set { SetContentPadding( value.Item1,  value.Item2,  value.Item3); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Gfx.IArrangementConcrete.efl_gfx_arrangement_interface_get();
@@ -316,3 +355,11 @@ sealed public class IArrangementConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIArrangementConcrete_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

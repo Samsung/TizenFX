@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -41,19 +42,21 @@ Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining);
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
     event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt;
     /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     bool CanWrite {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Io.IWriter.CanWriteChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Io.IWriter.CanWriteChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IWriterCanWriteChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Notifies can_write property changed.</value>
     public bool arg { get; set; }
 }
 /// <summary>Generic interface for objects that can write data from a provided memory.
@@ -61,12 +64,12 @@ public class IWriterCanWriteChangedEvt_Args : EventArgs {
 /// 
 /// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.
 /// (Since EFL 1.22)</summary>
-sealed public class IWriterConcrete :
+sealed public  class IWriterConcrete :
     Efl.Eo.EoWrapper
     , IWriter
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -82,7 +85,8 @@ sealed public class IWriterConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IWriterConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -102,6 +106,7 @@ sealed public class IWriterConcrete :
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt
     {
         add
@@ -141,7 +146,7 @@ sealed public class IWriterConcrete :
             }
         }
     }
-    ///<summary>Method to raise event CanWriteChangedEvt.</summary>
+    /// <summary>Method to raise event CanWriteChangedEvt.</summary>
     public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
@@ -369,3 +374,13 @@ sealed public class IWriterConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_IoIWriterConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> CanWrite<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IWriter, T>magic = null) where T : Efl.Io.IWriter {
+        return new Efl.BindableProperty<bool>("can_write", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

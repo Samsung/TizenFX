@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics gradient radial class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.GradientRadial.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected GradientRadial(ConstructingHandle ch) : base(ch)
     {
@@ -104,11 +107,33 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
                                                          Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_focal_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
+    /// <summary>Gets the center of this radial gradient.</summary>
+    /// <value>X co-ordinate of center point</value>
+    public (double, double) Center {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCenter(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetCenter( value.Item1,  value.Item2); }
+    }
     /// <summary>Gets the center radius of this radial gradient.</summary>
     /// <value>Center radius</value>
     public double Radius {
         get { return GetRadius(); }
         set { SetRadius(value); }
+    }
+    /// <summary>Gets the focal point of this radial gradient.</summary>
+    /// <value>X co-ordinate of focal point</value>
+    public (double, double) Focal {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetFocal(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetFocal( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -419,3 +444,15 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgGradientRadial_ExtensionMethods {
+    
+    public static Efl.BindableProperty<double> Radius<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.GradientRadial, T>magic = null) where T : Efl.Canvas.Vg.GradientRadial {
+        return new Efl.BindableProperty<double>("radius", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

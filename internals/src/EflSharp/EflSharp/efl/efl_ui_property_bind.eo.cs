@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI Property_Bind interface. view object can have <see cref="Efl.IModel"/> to manage the data, the interface can help loading and tracking child data from the model property. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IPropertyBindConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPropertyBind : 
@@ -21,29 +23,34 @@ public interface IPropertyBind :
 /// <returns>0 when it succeed, an error code otherwise.</returns>
 Eina.Error PropertyBind(System.String key, System.String property);
         /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
+    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt;
     /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
+    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
     event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt;
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertiesChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertiesChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IPropertyBindPropertiesChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</value>
     public Efl.Ui.PropertyEvent arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertyBoundEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertyBoundEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IPropertyBindPropertyBoundEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</value>
     public System.String arg { get; set; }
 }
 /// <summary>Efl UI Property_Bind interface. view object can have <see cref="Efl.IModel"/> to manage the data, the interface can help loading and tracking child data from the model property. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
-sealed public class IPropertyBindConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IPropertyBindConcrete :
     Efl.Eo.EoWrapper
     , IPropertyBind
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -59,7 +66,8 @@ sealed public class IPropertyBindConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPropertyBindConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -75,6 +83,7 @@ sealed public class IPropertyBindConcrete :
     }
 
     /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
+    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt
     {
         add
@@ -114,7 +123,7 @@ sealed public class IPropertyBindConcrete :
             }
         }
     }
-    ///<summary>Method to raise event PropertiesChangedEvt.</summary>
+    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
     public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
@@ -137,6 +146,7 @@ sealed public class IPropertyBindConcrete :
         }
     }
     /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
+    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt
     {
         add
@@ -176,7 +186,7 @@ sealed public class IPropertyBindConcrete :
             }
         }
     }
-    ///<summary>Method to raise event PropertyBoundEvt.</summary>
+    /// <summary>Method to raise event PropertyBoundEvt.</summary>
     public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
@@ -287,6 +297,12 @@ sealed public class IPropertyBindConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIPropertyBindConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -298,15 +314,16 @@ public struct PropertyEvent
 {
     /// <summary>List of changed properties</summary>
     public Eina.Array<Eina.Stringshare> Changed_properties;
-    ///<summary>Constructor for PropertyEvent.</summary>
+    /// <summary>Constructor for PropertyEvent.</summary>
+    /// <param name="Changed_properties">List of changed properties</param>;
     public PropertyEvent(
         Eina.Array<Eina.Stringshare> Changed_properties = default(Eina.Array<Eina.Stringshare>)    )
     {
         this.Changed_properties = Changed_properties;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator PropertyEvent(IntPtr ptr)
     {
         var tmp = (PropertyEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(PropertyEvent.NativeStruct));
@@ -315,13 +332,13 @@ public struct PropertyEvent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct PropertyEvent.</summary>
+    /// <summary>Internal wrapper for struct PropertyEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public System.IntPtr Changed_properties;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator PropertyEvent.NativeStruct(PropertyEvent _external_struct)
         {
             var _internal_struct = new PropertyEvent.NativeStruct();
@@ -329,7 +346,7 @@ public struct PropertyEvent
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator PropertyEvent(PropertyEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new PropertyEvent();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI video class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Video.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Video : Efl.Ui.LayoutBase, Efl.IFile, Efl.IPlayer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class Video : Efl.Ui.LayoutBase, Efl.IFile, Efl.IPlayer
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Video(ConstructingHandle ch) : base(ch)
     {
@@ -1759,3 +1762,52 @@ public class Video : Efl.Ui.LayoutBase, Efl.IFile, Efl.IPlayer
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiVideo_ExtensionMethods {
+    public static Efl.BindableProperty<bool> RememberPosition<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<bool>("remember_position", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Video, T>magic = null) where T : Efl.Ui.Video {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

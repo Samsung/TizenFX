@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Color Class mixin class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IColorClassConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IColorClass : 
@@ -88,12 +90,13 @@ void DelColorClass(System.String color_class);
 void ClearColorClass();
                             }
 /// <summary>Efl Gfx Color Class mixin class</summary>
-sealed public class IColorClassConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IColorClassConcrete :
     Efl.Eo.EoWrapper
     , IColorClass
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -109,7 +112,8 @@ sealed public class IColorClassConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IColorClassConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -576,3 +580,12 @@ sealed public class IColorClassConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIColorClassConcrete_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -68,16 +69,16 @@ void Unload();
     /// (Since EFL 1.22)</summary>
     /// <value>The handle to the <see cref="Eina.File"/> that will be used</value>
     Eina.File Mmap {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Retrieve the file path from where an object is to fetch the data.
     /// You must not modify the strings on the returned pointers.
     /// (Since EFL 1.22)</summary>
     /// <value>The file path.</value>
     System.String File {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the previously-set key which corresponds to the target data within a file.
     /// Some filetypes can contain multiple data streams which are indexed by a key. Use this property for such cases (See for example <see cref="Efl.Ui.Image"/> or <see cref="Efl.Ui.Layout"/>).
@@ -86,24 +87,24 @@ void Unload();
     /// (Since EFL 1.22)</summary>
     /// <value>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</value>
     System.String Key {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if the object is loaded, <c>false</c> otherwise.</value>
     bool Loaded {
-        get ;
+        get;
     }
 }
 /// <summary>Efl file interface
 /// (Since EFL 1.22)</summary>
-sealed public class IFileConcrete :
+sealed public  class IFileConcrete :
     Efl.Eo.EoWrapper
     , IFile
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -119,7 +120,8 @@ sealed public class IFileConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IFileConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -694,3 +696,22 @@ sealed public class IFileConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIFileConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IFile, T>magic = null) where T : Efl.IFile {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IFile, T>magic = null) where T : Efl.IFile {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IFile, T>magic = null) where T : Efl.IFile {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

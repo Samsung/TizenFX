@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl graphics fill interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IFillConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFill : 
@@ -51,8 +53,8 @@ void SetFill(Eina.Rect fill);
     /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
     /// <value><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</value>
     bool FillAuto {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
     /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
@@ -60,17 +62,18 @@ void SetFill(Eina.Rect fill);
     /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
     /// <value>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</value>
     Eina.Rect Fill {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Efl graphics fill interface</summary>
-sealed public class IFillConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IFillConcrete :
     Efl.Eo.EoWrapper
     , IFill
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -86,7 +89,8 @@ sealed public class IFillConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IFillConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -382,3 +386,17 @@ sealed public class IFillConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIFillConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> FillAuto<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IFill, T>magic = null) where T : Efl.Gfx.IFill {
+        return new Efl.BindableProperty<bool>("fill_auto", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Fill<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IFill, T>magic = null) where T : Efl.Gfx.IFill {
+        return new Efl.BindableProperty<Eina.Rect>("fill", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

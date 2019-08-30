@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl observer interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.IObserverConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IObserver : 
@@ -20,12 +22,13 @@ public interface IObserver :
 void Update(Efl.Object obs, System.String key, System.IntPtr data);
     }
 /// <summary>Efl observer interface</summary>
-sealed public class IObserverConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IObserverConcrete :
     Efl.Eo.EoWrapper
     , IObserver
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +44,8 @@ sealed public class IObserverConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IObserverConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -142,3 +146,9 @@ sealed public class IObserverConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIObserverConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

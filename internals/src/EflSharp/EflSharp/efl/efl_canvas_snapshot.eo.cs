@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Low-level snapshot image object.
 /// A snapshot is a special kind of image containing the pixels from all the objects below it. This allows applications to save screenshots of all or part of their UI, or apply filters to parts of the UI.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Snapshot.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Snapshot : Efl.Canvas.ImageInternal
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class Snapshot : Efl.Canvas.ImageInternal
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Snapshot(ConstructingHandle ch) : base(ch)
     {
@@ -95,3 +98,9 @@ public class Snapshot : Efl.Canvas.ImageInternal
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasSnapshot_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

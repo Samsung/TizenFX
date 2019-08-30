@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,12 +12,14 @@ namespace Ui {
 
 /// <summary>Elementary layout class
 /// When loading layouts from a file, use the <see cref="Efl.IFile.Key"/> property to specify the group that the data belongs to, in case it&apos;s an EET file (including Edje files).
+/// 
+/// By default, layouts do not apply the finger_size global configuration value when calculating their geometries.
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.Layout.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Layout : Efl.Ui.LayoutBase, Efl.IFile
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -48,7 +51,8 @@ public class Layout : Efl.Ui.LayoutBase, Efl.IFile
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Layout(ConstructingHandle ch) : base(ch)
     {
@@ -632,3 +636,22 @@ public class Layout : Efl.Ui.LayoutBase, Efl.IFile
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayout_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Layout, T>magic = null) where T : Efl.Ui.Layout {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Layout, T>magic = null) where T : Efl.Ui.Layout {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Layout, T>magic = null) where T : Efl.Ui.Layout {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

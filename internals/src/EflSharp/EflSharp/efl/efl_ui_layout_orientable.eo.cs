@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -34,18 +35,18 @@ void SetOrientation(Efl.Ui.LayoutOrientation dir);
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <value>Direction of the widget.</value>
     Efl.Ui.LayoutOrientation Orientation {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
-sealed public class ILayoutOrientableConcrete :
+sealed public  class ILayoutOrientableConcrete :
     Efl.Eo.EoWrapper
     , ILayoutOrientable
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -61,7 +62,8 @@ sealed public class ILayoutOrientableConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ILayoutOrientableConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -230,6 +232,16 @@ sealed public class ILayoutOrientableConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiILayoutOrientableConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ILayoutOrientable, T>magic = null) where T : Efl.Ui.ILayoutOrientable {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>The bg (background) widget is used for setting (solid) background decorations for a window (unless it has transparency enabled) or for any container object. It works just like an image, but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Bg.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLoadController
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Bg(ConstructingHandle ch) : base(ch)
     {
@@ -106,7 +109,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             }
         }
     }
-    ///<summary>Method to raise event ImagePreloadEvt.</summary>
+    /// <summary>Method to raise event ImagePreloadEvt.</summary>
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
@@ -158,7 +161,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             }
         }
     }
-    ///<summary>Method to raise event ImageResizeEvt.</summary>
+    /// <summary>Method to raise event ImageResizeEvt.</summary>
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
@@ -210,7 +213,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             }
         }
     }
-    ///<summary>Method to raise event ImageUnloadEvt.</summary>
+    /// <summary>Method to raise event ImageUnloadEvt.</summary>
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
@@ -262,7 +265,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             }
         }
     }
-    ///<summary>Method to raise event LoadDoneEvt.</summary>
+    /// <summary>Method to raise event LoadDoneEvt.</summary>
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
@@ -276,6 +279,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when an error happened during image loading</summary>
+    /// <value><see cref="Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt
     {
         add
@@ -315,7 +319,7 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             }
         }
     }
-    ///<summary>Method to raise event LoadErrorEvt.</summary>
+    /// <summary>Method to raise event LoadErrorEvt.</summary>
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
@@ -452,6 +456,32 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
                                  Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale_type);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <returns>Allow image upscaling</returns>
+    virtual public bool GetCanUpscale() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_upscale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <param name="upscale">Allow image upscaling</param>
+    virtual public void SetCanUpscale(bool upscale) {
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_upscale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),upscale);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <returns>Allow image downscaling</returns>
+    virtual public bool GetCanDownscale() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_downscale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <param name="downscale">Allow image downscaling</param>
+    virtual public void SetCanDownscale(bool downscale) {
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_downscale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),downscale);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>Returns 1.0 if not applicable (eg. height = 0).</summary>
     /// <returns>The image&apos;s ratio.</returns>
     virtual public double GetRatio() {
@@ -547,20 +577,20 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
     /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
     /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
-    virtual public void GetStretchRegion(out Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+    virtual public void GetStretchRegion(out Eina.Iterator<Efl.Gfx.ImageStretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.ImageStretchRegion> vertical) {
                          System.IntPtr _out_horizontal = System.IntPtr.Zero;
         System.IntPtr _out_vertical = System.IntPtr.Zero;
                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_horizontal, out _out_vertical);
         Eina.Error.RaiseIfUnhandledException();
-        horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_horizontal, false);
-        vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(_out_vertical, false);
+        horizontal = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(_out_horizontal, false);
+        vertical = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(_out_vertical, false);
                          }
     /// <summary>This property defines the stretchable pixels region of an image.
     /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
     /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
     /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
     /// <returns>return an error code if the stretch_region provided are incorrect.</returns>
-    virtual public Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.Image.StretchRegion> horizontal, Eina.Iterator<Efl.Gfx.Image.StretchRegion> vertical) {
+    virtual public Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.ImageStretchRegion> horizontal, Eina.Iterator<Efl.Gfx.ImageStretchRegion> vertical) {
          var _in_horizontal = horizontal.Handle;
         var _in_vertical = vertical.Handle;
                                         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_horizontal, _in_vertical);
@@ -773,6 +803,18 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
         get { return GetScaleType(); }
         set { SetScaleType(value); }
     }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <value>Allow image upscaling</value>
+    public bool CanUpscale {
+        get { return GetCanUpscale(); }
+        set { SetCanUpscale(value); }
+    }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <value>Allow image downscaling</value>
+    public bool CanDownscale {
+        get { return GetCanDownscale(); }
+        set { SetCanDownscale(value); }
+    }
     /// <summary>The native width/height ratio of the image.</summary>
     /// <value>The image&apos;s ratio.</value>
     public double Ratio {
@@ -785,6 +827,28 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     /// <value>A rectangle inside the object boundary that where content is expected.</value>
     public Eina.Rect ContentRegion {
         get { return GetContentRegion(); }
+    }
+    /// <summary>Dimensions of this image&apos;s border, a region that does not scale with the center area.
+    /// When EFL renders an image, its source may be scaled to fit the size of the object. This function sets an area from the borders of the image inwards which is not to be scaled. This function is useful for making frames and for widget theming, where, for example, buttons may be of varying sizes, but their border size must remain constant.
+    /// 
+    /// The units used for <c>l</c>, <c>r</c>, <c>t</c> and <c>b</c> are canvas units (pixels).
+    /// 
+    /// Note: The border region itself may be scaled by the <see cref="Efl.Gfx.IImage.SetBorderScale"/> function.
+    /// 
+    /// Note: By default, image objects have no borders set, i.e. <c>l</c>, <c>r</c>, <c>t</c> and <c>b</c> start as 0.
+    /// 
+    /// Note: Similar to the concepts of 9-patch images or cap insets.</summary>
+    /// <value>The border&apos;s left width.</value>
+    public (int, int, int, int) Border {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetBorder(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+        set { SetBorder( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Scaling factor applied to the image borders.
     /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
@@ -803,6 +867,18 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
     public Efl.Gfx.BorderFillMode BorderCenterFill {
         get { return GetBorderCenterFill(); }
         set { SetBorderCenterFill(value); }
+    }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <value>Representation of area that are stretchable in the image horizontal space.</value>
+    public (Eina.Iterator<Efl.Gfx.ImageStretchRegion>, Eina.Iterator<Efl.Gfx.ImageStretchRegion>) StretchRegion {
+        get {
+            Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+            Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+            GetStretchRegion(out _out_horizontal,out _out_vertical);
+            return (_out_horizontal,_out_vertical);
+        }
+        set { SetStretchRegion( value.Item1,  value.Item2); }
     }
     /// <summary>This represents the size of the original image in pixels.
     /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
@@ -1027,6 +1103,46 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             if (methods.FirstOrDefault(m => m.Name == "SetScaleType") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_scale_type_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_scale_type_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_upscale_get_static_delegate == null)
+            {
+                efl_gfx_image_can_upscale_get_static_delegate = new efl_gfx_image_can_upscale_get_delegate(can_upscale_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanUpscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_upscale_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_upscale_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_upscale_set_static_delegate == null)
+            {
+                efl_gfx_image_can_upscale_set_static_delegate = new efl_gfx_image_can_upscale_set_delegate(can_upscale_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanUpscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_upscale_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_upscale_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_downscale_get_static_delegate == null)
+            {
+                efl_gfx_image_can_downscale_get_static_delegate = new efl_gfx_image_can_downscale_get_delegate(can_downscale_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanDownscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_downscale_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_downscale_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_downscale_set_static_delegate == null)
+            {
+                efl_gfx_image_can_downscale_set_static_delegate = new efl_gfx_image_can_downscale_set_delegate(can_downscale_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanDownscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_downscale_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_downscale_set_static_delegate) });
             }
 
             if (efl_gfx_image_ratio_get_static_delegate == null)
@@ -1815,6 +1931,148 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
 
         private static efl_gfx_image_scale_type_set_delegate efl_gfx_image_scale_type_set_static_delegate;
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_gfx_image_can_upscale_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_gfx_image_can_upscale_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_get_api_delegate> efl_gfx_image_can_upscale_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_get_api_delegate>(Module, "efl_gfx_image_can_upscale_get");
+
+        private static bool can_upscale_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_upscale_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Bg)ws.Target).GetCanUpscale();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_can_upscale_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_can_upscale_get_delegate efl_gfx_image_can_upscale_get_static_delegate;
+
+        
+        private delegate void efl_gfx_image_can_upscale_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool upscale);
+
+        
+        public delegate void efl_gfx_image_can_upscale_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool upscale);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_set_api_delegate> efl_gfx_image_can_upscale_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_set_api_delegate>(Module, "efl_gfx_image_can_upscale_set");
+
+        private static void can_upscale_set(System.IntPtr obj, System.IntPtr pd, bool upscale)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_upscale_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Bg)ws.Target).SetCanUpscale(upscale);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_image_can_upscale_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), upscale);
+            }
+        }
+
+        private static efl_gfx_image_can_upscale_set_delegate efl_gfx_image_can_upscale_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_gfx_image_can_downscale_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_gfx_image_can_downscale_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_get_api_delegate> efl_gfx_image_can_downscale_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_get_api_delegate>(Module, "efl_gfx_image_can_downscale_get");
+
+        private static bool can_downscale_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_downscale_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Bg)ws.Target).GetCanDownscale();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_can_downscale_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_can_downscale_get_delegate efl_gfx_image_can_downscale_get_static_delegate;
+
+        
+        private delegate void efl_gfx_image_can_downscale_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool downscale);
+
+        
+        public delegate void efl_gfx_image_can_downscale_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool downscale);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_set_api_delegate> efl_gfx_image_can_downscale_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_set_api_delegate>(Module, "efl_gfx_image_can_downscale_set");
+
+        private static void can_downscale_set(System.IntPtr obj, System.IntPtr pd, bool downscale)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_downscale_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Bg)ws.Target).SetCanDownscale(downscale);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_image_can_downscale_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), downscale);
+            }
+        }
+
+        private static efl_gfx_image_can_downscale_set_delegate efl_gfx_image_can_downscale_set_static_delegate;
+
         
         private delegate double efl_gfx_image_ratio_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2113,8 +2371,8 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
-        Eina.Iterator<Efl.Gfx.Image.StretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.Image.StretchRegion>);
+                        Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+        Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
                             
                 try
                 {
@@ -2152,8 +2410,8 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_horizontal = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(horizontal, false);
-        var _in_vertical = new Eina.Iterator<Efl.Gfx.Image.StretchRegion>(vertical, false);
+        var _in_horizontal = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(horizontal, false);
+        var _in_vertical = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(vertical, false);
                                             Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
@@ -2932,3 +3190,85 @@ public class Bg : Efl.Ui.LayoutBase, Efl.IFile, Efl.Gfx.IImage, Efl.Gfx.IImageLo
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiBg_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> SmoothScale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<bool>("smooth_scale", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.ImageScaleType> ScaleType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Efl.Gfx.ImageScaleType>("scale_type", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanUpscale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<bool>("can_upscale", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanDownscale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<bool>("can_downscale", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<double> BorderScale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<double>("border_scale", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.BorderFillMode> BorderCenterFill<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Efl.Gfx.BorderFillMode>("border_center_fill", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Gfx.ImageContentHint> ContentHint<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Efl.Gfx.ImageContentHint>("content_hint", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.ImageScaleHint> ScaleHint<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Efl.Gfx.ImageScaleHint>("scale_hint", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Size2D> LoadSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Eina.Size2D>("load_size", fac);
+    }
+
+    public static Efl.BindableProperty<double> LoadDpi<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<double>("load_dpi", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Rect> LoadRegion<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<Eina.Rect>("load_region", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<bool>("load_orientation", fac);
+    }
+
+    public static Efl.BindableProperty<int> LoadScaleDown<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<int>("load_scale_down", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadSkipHeader<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Bg, T>magic = null) where T : Efl.Ui.Bg {
+        return new Efl.BindableProperty<bool>("load_skip_header", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

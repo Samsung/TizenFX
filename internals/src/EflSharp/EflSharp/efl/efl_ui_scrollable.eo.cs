@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI scrollable interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IScrollableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IScrollable : 
@@ -47,12 +49,13 @@ public interface IScrollable :
     event EventHandler ScrollDragStopEvt;
 }
 /// <summary>Efl UI scrollable interface</summary>
-sealed public class IScrollableConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IScrollableConcrete :
     Efl.Eo.EoWrapper
     , IScrollable
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -68,7 +71,8 @@ sealed public class IScrollableConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IScrollableConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -122,7 +126,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollStartEvt.</summary>
+    /// <summary>Method to raise event ScrollStartEvt.</summary>
     public void OnScrollStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_START";
@@ -174,7 +178,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollEvt.</summary>
+    /// <summary>Method to raise event ScrollEvt.</summary>
     public void OnScrollEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL";
@@ -226,7 +230,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollStopEvt.</summary>
+    /// <summary>Method to raise event ScrollStopEvt.</summary>
     public void OnScrollStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_STOP";
@@ -278,7 +282,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollUpEvt.</summary>
+    /// <summary>Method to raise event ScrollUpEvt.</summary>
     public void OnScrollUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
@@ -330,7 +334,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollDownEvt.</summary>
+    /// <summary>Method to raise event ScrollDownEvt.</summary>
     public void OnScrollDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
@@ -382,7 +386,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollLeftEvt.</summary>
+    /// <summary>Method to raise event ScrollLeftEvt.</summary>
     public void OnScrollLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
@@ -434,7 +438,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollRightEvt.</summary>
+    /// <summary>Method to raise event ScrollRightEvt.</summary>
     public void OnScrollRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
@@ -486,7 +490,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event EdgeUpEvt.</summary>
+    /// <summary>Method to raise event EdgeUpEvt.</summary>
     public void OnEdgeUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
@@ -538,7 +542,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event EdgeDownEvt.</summary>
+    /// <summary>Method to raise event EdgeDownEvt.</summary>
     public void OnEdgeDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
@@ -590,7 +594,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event EdgeLeftEvt.</summary>
+    /// <summary>Method to raise event EdgeLeftEvt.</summary>
     public void OnEdgeLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
@@ -642,7 +646,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event EdgeRightEvt.</summary>
+    /// <summary>Method to raise event EdgeRightEvt.</summary>
     public void OnEdgeRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
@@ -694,7 +698,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollAnimStartEvt.</summary>
+    /// <summary>Method to raise event ScrollAnimStartEvt.</summary>
     public void OnScrollAnimStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
@@ -746,7 +750,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollAnimStopEvt.</summary>
+    /// <summary>Method to raise event ScrollAnimStopEvt.</summary>
     public void OnScrollAnimStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
@@ -798,7 +802,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollDragStartEvt.</summary>
+    /// <summary>Method to raise event ScrollDragStartEvt.</summary>
     public void OnScrollDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
@@ -850,7 +854,7 @@ sealed public class IScrollableConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ScrollDragStopEvt.</summary>
+    /// <summary>Method to raise event ScrollDragStopEvt.</summary>
     public void OnScrollDragStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
@@ -895,6 +899,12 @@ sealed public class IScrollableConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIScrollableConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {

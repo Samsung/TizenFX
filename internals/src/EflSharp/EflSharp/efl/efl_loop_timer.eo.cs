@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -16,7 +17,7 @@ namespace Efl {
 [Efl.Eo.BindingEntity]
 public class LoopTimer : Efl.LoopConsumer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -48,7 +49,8 @@ public class LoopTimer : Efl.LoopConsumer
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopTimer(ConstructingHandle ch) : base(ch)
     {
@@ -109,7 +111,7 @@ public class LoopTimer : Efl.LoopConsumer
             }
         }
     }
-    ///<summary>Method to raise event TimerTickEvt.</summary>
+    /// <summary>Method to raise event TimerTickEvt.</summary>
     public void OnTimerTickEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_TIMER_EVENT_TIMER_TICK";
@@ -484,3 +486,14 @@ public class LoopTimer : Efl.LoopConsumer
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopTimer_ExtensionMethods {
+    public static Efl.BindableProperty<double> TimerInterval<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopTimer, T>magic = null) where T : Efl.LoopTimer {
+        return new Efl.BindableProperty<double>("timer_interval", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

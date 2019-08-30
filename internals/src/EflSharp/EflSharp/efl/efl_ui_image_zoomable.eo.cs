@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,24 +10,27 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.ImageZoomable.DownloadProgressEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ImageZoomable.DownloadProgressEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ImageZoomableDownloadProgressEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when photocam download progress updated</value>
     public Elm.Photocam.Progress arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.ImageZoomable.DownloadErrorEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ImageZoomable.DownloadErrorEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ImageZoomableDownloadErrorEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when photocam download failed</value>
     public Elm.Photocam.Error arg { get; set; }
 }
 /// <summary>Elementary Image Zoomable class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ImageZoomable.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollableInteractive, Efl.Ui.IScrollbar, Efl.Ui.IZoom
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -58,7 +62,8 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected ImageZoomable(ConstructingHandle ch) : base(ch)
     {
@@ -118,7 +123,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event PressEvt.</summary>
+    /// <summary>Method to raise event PressEvt.</summary>
     public void OnPressEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_PRESS";
@@ -170,7 +175,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event LoadEvt.</summary>
+    /// <summary>Method to raise event LoadEvt.</summary>
     public void OnLoadEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_LOAD";
@@ -222,7 +227,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event LoadedEvt.</summary>
+    /// <summary>Method to raise event LoadedEvt.</summary>
     public void OnLoadedEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_LOADED";
@@ -274,7 +279,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event LoadDetailEvt.</summary>
+    /// <summary>Method to raise event LoadDetailEvt.</summary>
     public void OnLoadDetailEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_LOAD_DETAIL";
@@ -326,7 +331,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event LoadedDetailEvt.</summary>
+    /// <summary>Method to raise event LoadedDetailEvt.</summary>
     public void OnLoadedDetailEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_LOADED_DETAIL";
@@ -378,7 +383,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event DownloadStartEvt.</summary>
+    /// <summary>Method to raise event DownloadStartEvt.</summary>
     public void OnDownloadStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_DOWNLOAD_START";
@@ -392,6 +397,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when photocam download progress updated</summary>
+    /// <value><see cref="Efl.Ui.ImageZoomableDownloadProgressEvt_Args"/></value>
     public event EventHandler<Efl.Ui.ImageZoomableDownloadProgressEvt_Args> DownloadProgressEvt
     {
         add
@@ -431,7 +437,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event DownloadProgressEvt.</summary>
+    /// <summary>Method to raise event DownloadProgressEvt.</summary>
     public void OnDownloadProgressEvt(Efl.Ui.ImageZoomableDownloadProgressEvt_Args e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_DOWNLOAD_PROGRESS";
@@ -491,7 +497,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event DownloadDoneEvt.</summary>
+    /// <summary>Method to raise event DownloadDoneEvt.</summary>
     public void OnDownloadDoneEvt(EventArgs e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_DOWNLOAD_DONE";
@@ -505,6 +511,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when photocam download failed</summary>
+    /// <value><see cref="Efl.Ui.ImageZoomableDownloadErrorEvt_Args"/></value>
     public event EventHandler<Efl.Ui.ImageZoomableDownloadErrorEvt_Args> DownloadErrorEvt
     {
         add
@@ -544,7 +551,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event DownloadErrorEvt.</summary>
+    /// <summary>Method to raise event DownloadErrorEvt.</summary>
     public void OnDownloadErrorEvt(Efl.Ui.ImageZoomableDownloadErrorEvt_Args e)
     {
         var key = "_EFL_UI_IMAGE_ZOOMABLE_EVENT_DOWNLOAD_ERROR";
@@ -604,7 +611,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollStartEvt.</summary>
+    /// <summary>Method to raise event ScrollStartEvt.</summary>
     public void OnScrollStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_START";
@@ -656,7 +663,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollEvt.</summary>
+    /// <summary>Method to raise event ScrollEvt.</summary>
     public void OnScrollEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL";
@@ -708,7 +715,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollStopEvt.</summary>
+    /// <summary>Method to raise event ScrollStopEvt.</summary>
     public void OnScrollStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_STOP";
@@ -760,7 +767,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollUpEvt.</summary>
+    /// <summary>Method to raise event ScrollUpEvt.</summary>
     public void OnScrollUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
@@ -812,7 +819,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollDownEvt.</summary>
+    /// <summary>Method to raise event ScrollDownEvt.</summary>
     public void OnScrollDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
@@ -864,7 +871,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollLeftEvt.</summary>
+    /// <summary>Method to raise event ScrollLeftEvt.</summary>
     public void OnScrollLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
@@ -916,7 +923,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollRightEvt.</summary>
+    /// <summary>Method to raise event ScrollRightEvt.</summary>
     public void OnScrollRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
@@ -968,7 +975,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event EdgeUpEvt.</summary>
+    /// <summary>Method to raise event EdgeUpEvt.</summary>
     public void OnEdgeUpEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
@@ -1020,7 +1027,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event EdgeDownEvt.</summary>
+    /// <summary>Method to raise event EdgeDownEvt.</summary>
     public void OnEdgeDownEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
@@ -1072,7 +1079,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event EdgeLeftEvt.</summary>
+    /// <summary>Method to raise event EdgeLeftEvt.</summary>
     public void OnEdgeLeftEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
@@ -1124,7 +1131,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event EdgeRightEvt.</summary>
+    /// <summary>Method to raise event EdgeRightEvt.</summary>
     public void OnEdgeRightEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
@@ -1176,7 +1183,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollAnimStartEvt.</summary>
+    /// <summary>Method to raise event ScrollAnimStartEvt.</summary>
     public void OnScrollAnimStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
@@ -1228,7 +1235,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollAnimStopEvt.</summary>
+    /// <summary>Method to raise event ScrollAnimStopEvt.</summary>
     public void OnScrollAnimStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
@@ -1280,7 +1287,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollDragStartEvt.</summary>
+    /// <summary>Method to raise event ScrollDragStartEvt.</summary>
     public void OnScrollDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
@@ -1332,7 +1339,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ScrollDragStopEvt.</summary>
+    /// <summary>Method to raise event ScrollDragStopEvt.</summary>
     public void OnScrollDragStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
@@ -1346,6 +1353,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when bar is pressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarPressEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarPressEvt_Args> BarPressEvt
     {
         add
@@ -1358,7 +1366,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1385,7 +1393,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarPressEvt.</summary>
+    /// <summary>Method to raise event BarPressEvt.</summary>
     public void OnBarPressEvt(Efl.Ui.IScrollbarBarPressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
@@ -1407,6 +1415,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         }
     }
     /// <summary>Called when bar is unpressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarUnpressEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarUnpressEvt_Args> BarUnpressEvt
     {
         add
@@ -1419,7 +1428,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1446,7 +1455,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarUnpressEvt.</summary>
+    /// <summary>Method to raise event BarUnpressEvt.</summary>
     public void OnBarUnpressEvt(Efl.Ui.IScrollbarBarUnpressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
@@ -1468,6 +1477,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         }
     }
     /// <summary>Called when bar is dragged.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarDragEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarDragEvt_Args> BarDragEvt
     {
         add
@@ -1480,7 +1490,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1507,7 +1517,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarDragEvt.</summary>
+    /// <summary>Method to raise event BarDragEvt.</summary>
     public void OnBarDragEvt(Efl.Ui.IScrollbarBarDragEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
@@ -1567,7 +1577,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarSizeChangedEvt.</summary>
+    /// <summary>Method to raise event BarSizeChangedEvt.</summary>
     public void OnBarSizeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
@@ -1619,7 +1629,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarPosChangedEvt.</summary>
+    /// <summary>Method to raise event BarPosChangedEvt.</summary>
     public void OnBarPosChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
@@ -1633,6 +1643,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Callend when bar is shown.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarShowEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarShowEvt_Args> BarShowEvt
     {
         add
@@ -1645,7 +1656,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1672,7 +1683,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarShowEvt.</summary>
+    /// <summary>Method to raise event BarShowEvt.</summary>
     public void OnBarShowEvt(Efl.Ui.IScrollbarBarShowEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
@@ -1694,6 +1705,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         }
     }
     /// <summary>Called when bar is hidden.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarHideEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarHideEvt_Args> BarHideEvt
     {
         add
@@ -1706,7 +1718,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1733,7 +1745,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event BarHideEvt.</summary>
+    /// <summary>Method to raise event BarHideEvt.</summary>
     public void OnBarHideEvt(Efl.Ui.IScrollbarBarHideEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
@@ -1793,7 +1805,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ZoomStartEvt.</summary>
+    /// <summary>Method to raise event ZoomStartEvt.</summary>
     public void OnZoomStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_START";
@@ -1845,7 +1857,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ZoomStopEvt.</summary>
+    /// <summary>Method to raise event ZoomStopEvt.</summary>
     public void OnZoomStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_STOP";
@@ -1897,7 +1909,7 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
             }
         }
     }
-    ///<summary>Method to raise event ZoomChangeEvt.</summary>
+    /// <summary>Method to raise event ZoomChangeEvt.</summary>
     public void OnZoomChangeEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_CHANGE";
@@ -2217,6 +2229,18 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
     public Eina.Rect ViewportGeometry {
         get { return GetViewportGeometry(); }
     }
+    /// <summary>Bouncing behavior
+    /// When scrolling, the scroller may &quot;bounce&quot; when reaching the edge of the content object. This is a visual way to indicate the end has been reached. This is enabled by default for both axes. This API will determine if it&apos;s enabled for the given axis with the boolean parameters for each one.</summary>
+    /// <value>Horizontal bounce policy.</value>
+    public (bool, bool) BounceEnabled {
+        get {
+            bool _out_horiz = default(bool);
+            bool _out_vert = default(bool);
+            GetBounceEnabled(out _out_horiz,out _out_vert);
+            return (_out_horiz,_out_vert);
+        }
+        set { SetBounceEnabled( value.Item1,  value.Item2); }
+    }
     /// <summary>Freeze property This function will freeze scrolling movement (by input of a user). Unlike efl_ui_scrollable_movement_block_set, this function freezes bidirectionally. If you want to freeze in only one direction, See <see cref="Efl.Ui.IScrollableInteractive.SetMovementBlock"/>.</summary>
     /// <value><c>true</c> if freeze, <c>false</c> otherwise</value>
     public bool ScrollFreeze {
@@ -2229,6 +2253,17 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         get { return GetScrollHold(); }
         set { SetScrollHold(value); }
     }
+    /// <summary>Controls an infinite loop for a scroller.</summary>
+    /// <value>The scrolling horizontal loop</value>
+    public (bool, bool) Looping {
+        get {
+            bool _out_loop_h = default(bool);
+            bool _out_loop_v = default(bool);
+            GetLooping(out _out_loop_h,out _out_loop_v);
+            return (_out_loop_h,_out_loop_v);
+        }
+        set { SetLooping( value.Item1,  value.Item2); }
+    }
     /// <summary>Blocking of scrolling (per axis)
     /// This function will block scrolling movement (by input of a user) in a given direction. You can disable movements in the X axis, the Y axis or both. The default value is <c>none</c>, where movements are allowed in both directions.</summary>
     /// <value>Which axis (or axes) to block</value>
@@ -2236,12 +2271,67 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
         get { return GetMovementBlock(); }
         set { SetMovementBlock(value); }
     }
+    /// <summary>Control scrolling gravity on the scrollable
+    /// The gravity defines how the scroller will adjust its view when the size of the scroller contents increases.
+    /// 
+    /// The scroller will adjust the view to glue itself as follows.
+    /// 
+    /// x=0.0, for staying where it is relative to the left edge of the content x=1.0, for staying where it is relative to the right edge of the content y=0.0, for staying where it is relative to the top edge of the content y=1.0, for staying where it is relative to the bottom edge of the content
+    /// 
+    /// Default values for x and y are 0.0</summary>
+    /// <value>Horizontal scrolling gravity</value>
+    public (double, double) Gravity {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetGravity(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetGravity( value.Item1,  value.Item2); }
+    }
+    /// <summary>Prevent the scrollable from being smaller than the minimum size of the content.
+    /// By default the scroller will be as small as its design allows, irrespective of its content. This will make the scroller minimum size the right size horizontally and/or vertically to perfectly fit its content in that direction.</summary>
+    /// <value>Whether to limit the minimum horizontal size</value>
+    public (bool, bool) MatchContent {
+        set { SetMatchContent( value.Item1,  value.Item2); }
+    }
     /// <summary>Control the step size
     /// Use this call to set step size. This value is used when scroller scroll by arrow key event.</summary>
     /// <value>The step size in pixels</value>
     public Eina.Position2D StepSize {
         get { return GetStepSize(); }
         set { SetStepSize(value); }
+    }
+    /// <summary>Scrollbar visibility policy</summary>
+    /// <value>Horizontal scrollbar.</value>
+    public (Efl.Ui.ScrollbarMode, Efl.Ui.ScrollbarMode) BarMode {
+        get {
+            Efl.Ui.ScrollbarMode _out_hbar = default(Efl.Ui.ScrollbarMode);
+            Efl.Ui.ScrollbarMode _out_vbar = default(Efl.Ui.ScrollbarMode);
+            GetBarMode(out _out_hbar,out _out_vbar);
+            return (_out_hbar,_out_vbar);
+        }
+        set { SetBarMode( value.Item1,  value.Item2); }
+    }
+    /// <summary>Scrollbar size. It is calculated based on viewport size-content sizes.</summary>
+    public (double, double) BarSize {
+        get {
+            double _out_width = default(double);
+            double _out_height = default(double);
+            GetBarSize(out _out_width,out _out_height);
+            return (_out_width,_out_height);
+        }
+    }
+    /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
+    /// <value>Value between 0.0 and 1.0.</value>
+    public (double, double) BarPosition {
+        get {
+            double _out_posx = default(double);
+            double _out_posy = default(double);
+            GetBarPosition(out _out_posx,out _out_posy);
+            return (_out_posx,_out_posy);
+        }
+        set { SetBarPosition( value.Item1,  value.Item2); }
     }
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <value>The paused state.</value>
@@ -3935,6 +4025,61 @@ public class ImageZoomable : Efl.Ui.Image, Efl.Ui.IScrollable, Efl.Ui.IScrollabl
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiImageZoomable_ExtensionMethods {
+    public static Efl.BindableProperty<bool> GestureEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<bool>("gesture_enabled", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> ImageRegion<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<Eina.Rect>("image_region", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> ContentPos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<Eina.Position2D>("content_pos", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<bool> ScrollFreeze<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<bool>("scroll_freeze", fac);
+    }
+
+    public static Efl.BindableProperty<bool> ScrollHold<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<bool>("scroll_hold", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Ui.ScrollBlock> MovementBlock<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<Efl.Ui.ScrollBlock>("movement_block", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Eina.Position2D> StepSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<Eina.Position2D>("step_size", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<bool> ZoomAnimation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<bool>("zoom_animation", fac);
+    }
+
+    public static Efl.BindableProperty<double> ZoomLevel<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<double>("zoom_level", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.ZoomMode> ZoomMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ImageZoomable, T>magic = null) where T : Efl.Ui.ImageZoomable {
+        return new Efl.BindableProperty<Efl.Ui.ZoomMode>("zoom_mode", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Elm {
 
 namespace Photocam {
@@ -3944,10 +4089,10 @@ namespace Photocam {
 [Efl.Eo.BindingEntity]
 public struct Error
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Error(IntPtr ptr)
     {
         var tmp = (Error.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Error.NativeStruct));
@@ -3956,19 +4101,19 @@ public struct Error
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Error.</summary>
+    /// <summary>Internal wrapper for struct Error.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Error.NativeStruct(Error _external_struct)
         {
             var _internal_struct = new Error.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Error(Error.NativeStruct _internal_struct)
         {
             var _external_struct = new Error();
@@ -3994,10 +4139,10 @@ namespace Photocam {
 [Efl.Eo.BindingEntity]
 public struct Progress
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Progress(IntPtr ptr)
     {
         var tmp = (Progress.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Progress.NativeStruct));
@@ -4006,19 +4151,19 @@ public struct Progress
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Progress.</summary>
+    /// <summary>Internal wrapper for struct Progress.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Progress.NativeStruct(Progress _external_struct)
         {
             var _internal_struct = new Progress.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Progress(Progress.NativeStruct _internal_struct)
         {
             var _external_struct = new Progress();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>An object that describes an low-level source of I/O to listen to for available data to be read or written, depending on the OS and data source type. When I/O becomes available various events are produced and the callbacks attached to them will be called.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopHandler.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopHandler : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class LoopHandler : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopHandler(ConstructingHandle ch) : base(ch)
     {
@@ -98,7 +101,7 @@ public class LoopHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event ReadEvt.</summary>
+    /// <summary>Method to raise event ReadEvt.</summary>
     public void OnReadEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_HANDLER_EVENT_READ";
@@ -150,7 +153,7 @@ public class LoopHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event WriteEvt.</summary>
+    /// <summary>Method to raise event WriteEvt.</summary>
     public void OnWriteEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_HANDLER_EVENT_WRITE";
@@ -202,7 +205,7 @@ public class LoopHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event ErrorEvt.</summary>
+    /// <summary>Method to raise event ErrorEvt.</summary>
     public void OnErrorEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_HANDLER_EVENT_ERROR";
@@ -254,7 +257,7 @@ public class LoopHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event BufferEvt.</summary>
+    /// <summary>Method to raise event BufferEvt.</summary>
     public void OnBufferEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_HANDLER_EVENT_BUFFER";
@@ -306,7 +309,7 @@ public class LoopHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event PrepareEvt.</summary>
+    /// <summary>Method to raise event PrepareEvt.</summary>
     public void OnPrepareEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_HANDLER_EVENT_PREPARE";
@@ -793,6 +796,28 @@ public class LoopHandler : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopHandler_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.LoopHandlerFlags> Active<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopHandler, T>magic = null) where T : Efl.LoopHandler {
+        return new Efl.BindableProperty<Efl.LoopHandlerFlags>("active", fac);
+    }
+
+    public static Efl.BindableProperty<int> Fd<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopHandler, T>magic = null) where T : Efl.LoopHandler {
+        return new Efl.BindableProperty<int>("fd", fac);
+    }
+
+    public static Efl.BindableProperty<int> FdFile<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopHandler, T>magic = null) where T : Efl.LoopHandler {
+        return new Efl.BindableProperty<int>("fd_file", fac);
+    }
+
+    public static Efl.BindableProperty<System.IntPtr> Win32<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopHandler, T>magic = null) where T : Efl.LoopHandler {
+        return new Efl.BindableProperty<System.IntPtr>("win32", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>A set of flags that can be OR&apos;d together to indicate which are desired</summary>

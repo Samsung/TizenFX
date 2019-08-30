@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,11 +10,12 @@ namespace Efl {
 
 /// <summary>Fds are objects that watch the activity on a given file descriptor. This file descriptor can be a network, a file, provided by a library.
 /// The object will trigger relevant events depending on what&apos;s happening.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopFd.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopFd : Efl.LoopConsumer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,7 +41,8 @@ public class LoopFd : Efl.LoopConsumer
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopFd(ConstructingHandle ch) : base(ch)
     {
@@ -99,7 +102,7 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    ///<summary>Method to raise event ReadEvt.</summary>
+    /// <summary>Method to raise event ReadEvt.</summary>
     public void OnReadEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_READ";
@@ -151,7 +154,7 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    ///<summary>Method to raise event WriteEvt.</summary>
+    /// <summary>Method to raise event WriteEvt.</summary>
     public void OnWriteEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_WRITE";
@@ -203,7 +206,7 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    ///<summary>Method to raise event ErrorEvt.</summary>
+    /// <summary>Method to raise event ErrorEvt.</summary>
     public void OnErrorEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_ERROR";
@@ -470,3 +473,17 @@ public class LoopFd : Efl.LoopConsumer
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopFd_ExtensionMethods {
+    public static Efl.BindableProperty<int> Fd<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopFd, T>magic = null) where T : Efl.LoopFd {
+        return new Efl.BindableProperty<int>("fd", fac);
+    }
+
+    public static Efl.BindableProperty<int> FdFile<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopFd, T>magic = null) where T : Efl.LoopFd {
+        return new Efl.BindableProperty<int>("fd_file", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

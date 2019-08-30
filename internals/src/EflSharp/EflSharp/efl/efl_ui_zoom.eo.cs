@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI zoom interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IZoomConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IZoom : 
@@ -48,31 +50,32 @@ void SetZoomMode(Efl.Ui.ZoomMode mode);
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <value>The paused state.</value>
     bool ZoomAnimation {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the zoom level of the photo
     /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
     /// <value>The zoom level to set</value>
     double ZoomLevel {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the zoom mode
     /// This gets the current zoom mode of the zoomable object.</summary>
     /// <value>The zoom mode.</value>
     Efl.Ui.ZoomMode ZoomMode {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Efl UI zoom interface</summary>
-sealed public class IZoomConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IZoomConcrete :
     Efl.Eo.EoWrapper
     , IZoom
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -88,7 +91,8 @@ sealed public class IZoomConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IZoomConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -142,7 +146,7 @@ sealed public class IZoomConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ZoomStartEvt.</summary>
+    /// <summary>Method to raise event ZoomStartEvt.</summary>
     public void OnZoomStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_START";
@@ -194,7 +198,7 @@ sealed public class IZoomConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ZoomStopEvt.</summary>
+    /// <summary>Method to raise event ZoomStopEvt.</summary>
     public void OnZoomStopEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_STOP";
@@ -246,7 +250,7 @@ sealed public class IZoomConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ZoomChangeEvt.</summary>
+    /// <summary>Method to raise event ZoomChangeEvt.</summary>
     public void OnZoomChangeEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_CHANGE";
@@ -632,6 +636,24 @@ sealed public class IZoomConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIZoomConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> ZoomAnimation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IZoom, T>magic = null) where T : Efl.Ui.IZoom {
+        return new Efl.BindableProperty<bool>("zoom_animation", fac);
+    }
+
+    public static Efl.BindableProperty<double> ZoomLevel<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IZoom, T>magic = null) where T : Efl.Ui.IZoom {
+        return new Efl.BindableProperty<double>("zoom_level", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.ZoomMode> ZoomMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IZoom, T>magic = null) where T : Efl.Ui.IZoom {
+        return new Efl.BindableProperty<Efl.Ui.ZoomMode>("zoom_mode", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {

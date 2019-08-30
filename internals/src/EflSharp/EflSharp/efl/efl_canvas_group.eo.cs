@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,16 +10,18 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class GroupMemberAddedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when a member is added to the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class GroupMemberRemovedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when a member is removed from the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
 /// <summary>A group object is a container for other canvas objects. Its children move along their parent and are often clipped with a common clipper. This is part of the legacy smart object concept.
@@ -28,7 +31,7 @@ public class GroupMemberRemovedEvt_Args : EventArgs {
 [Efl.Eo.BindingEntity]
 public class Group : Efl.Canvas.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -54,7 +57,8 @@ public class Group : Efl.Canvas.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Group(ConstructingHandle ch) : base(ch)
     {
@@ -77,6 +81,7 @@ public class Group : Efl.Canvas.Object
 
     /// <summary>Called when a member is added to the group.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.GroupMemberAddedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.GroupMemberAddedEvt_Args> MemberAddedEvt
     {
         add
@@ -116,7 +121,7 @@ public class Group : Efl.Canvas.Object
             }
         }
     }
-    ///<summary>Method to raise event MemberAddedEvt.</summary>
+    /// <summary>Method to raise event MemberAddedEvt.</summary>
     public void OnMemberAddedEvt(Efl.Canvas.GroupMemberAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_ADDED";
@@ -132,6 +137,7 @@ public class Group : Efl.Canvas.Object
     }
     /// <summary>Called when a member is removed from the group.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.GroupMemberRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.GroupMemberRemovedEvt_Args> MemberRemovedEvt
     {
         add
@@ -171,7 +177,7 @@ public class Group : Efl.Canvas.Object
             }
         }
     }
-    ///<summary>Method to raise event MemberRemovedEvt.</summary>
+    /// <summary>Method to raise event MemberRemovedEvt.</summary>
     public void OnMemberRemovedEvt(Efl.Canvas.GroupMemberRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_REMOVED";
@@ -736,3 +742,14 @@ public class Group : Efl.Canvas.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasGroup_ExtensionMethods {
+    public static Efl.BindableProperty<bool> GroupNeedRecalculate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Group, T>magic = null) where T : Efl.Canvas.Group {
+        return new Efl.BindableProperty<bool>("group_need_recalculate", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

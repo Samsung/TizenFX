@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>Timepicker widget
 /// This is a widget which allows the user to pick a time using internal spinner. User can use the internal spinner to select hour, minute, AM/PM or user can input value using internal entry.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Timepicker.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Timepicker : Efl.Ui.LayoutBase
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class Timepicker : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Timepicker(ConstructingHandle ch) : base(ch)
     {
@@ -107,7 +110,7 @@ public class Timepicker : Efl.Ui.LayoutBase
             }
         }
     }
-    ///<summary>Method to raise event ChangedEvt.</summary>
+    /// <summary>Method to raise event ChangedEvt.</summary>
     public void OnChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TIMEPICKER_EVENT_CHANGED";
@@ -153,6 +156,20 @@ public class Timepicker : Efl.Ui.LayoutBase
                                  Efl.Ui.Timepicker.NativeMethods.efl_ui_timepicker_ampm_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_24hour);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>The current value of time
+    /// <c>hour</c>: Hour. The hour value is in terms of 24 hour format from 0 to 23.
+    /// 
+    /// <c>min</c>: Minute. The minute range is from 0 to 59.</summary>
+    /// <value>The hour value from 0 to 23.</value>
+    public (int, int) Time {
+        get {
+            int _out_hour = default(int);
+            int _out_min = default(int);
+            GetTime(out _out_hour,out _out_min);
+            return (_out_hour,_out_min);
+        }
+        set { SetTime( value.Item1,  value.Item2); }
+    }
     /// <summary>Control if the Timepicker displays 24 hour time or 12 hour time including AM/PM button.</summary>
     /// <value><c>true</c> to display the 24 hour time, <c>false</c> to display 12 hour time including AM/PM button.</value>
     public bool Ampm {
@@ -376,3 +393,14 @@ public class Timepicker : Efl.Ui.LayoutBase
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTimepicker_ExtensionMethods {
+    
+    public static Efl.BindableProperty<bool> Ampm<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Timepicker, T>magic = null) where T : Efl.Ui.Timepicker {
+        return new Efl.BindableProperty<bool>("ampm", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

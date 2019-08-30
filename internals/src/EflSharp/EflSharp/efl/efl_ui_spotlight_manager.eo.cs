@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,19 +12,21 @@ namespace Ui {
 
 namespace Spotlight {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Manager.PosUpdateEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Manager.PosUpdateEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ManagerPosUpdateEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Index of the sub-widget currently being displayed. Fractional values indicate a position in-between sub-widgets. For instance, when transitioning from sub-widget 2 to sub-widget 3, this event should be emitted with monotonically increasing values ranging from 2.0 to 3.0. Animations can perform any movement they want, but the reported <c>pos_update</c> must move in the same direction.</value>
     public double arg { get; set; }
 }
 /// <summary>Manager object used by <see cref="Efl.Ui.Spotlight.Container"/> to handle rendering and animation of its sub-widgets, and user interaction.
 /// For instance, changes to the current sub-widget in the spotlight (<see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/>) can be animated with a transition. This object can also handle user interaction. For example, dragging the sub-widget to one side to get to a different sub-widget (like an smartphone home screen). Such user interactions should end up setting a new <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/>. During a transition, the evolution of the current position should be exposed by emitting <c>pos_update</c> events.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Spotlight.Manager.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Manager : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -49,7 +52,8 @@ public abstract class Manager : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Manager(ConstructingHandle ch) : base(ch)
     {
@@ -78,6 +82,7 @@ public abstract class Manager : Efl.Object
     }
 
     /// <summary>Index of the sub-widget currently being displayed. Fractional values indicate a position in-between sub-widgets. For instance, when transitioning from sub-widget 2 to sub-widget 3, this event should be emitted with monotonically increasing values ranging from 2.0 to 3.0. Animations can perform any movement they want, but the reported <c>pos_update</c> must move in the same direction.</summary>
+    /// <value><see cref="Efl.Ui.Spotlight.ManagerPosUpdateEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Spotlight.ManagerPosUpdateEvt_Args> PosUpdateEvt
     {
         add
@@ -117,7 +122,7 @@ public abstract class Manager : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event PosUpdateEvt.</summary>
+    /// <summary>Method to raise event PosUpdateEvt.</summary>
     public void OnPosUpdateEvt(Efl.Ui.Spotlight.ManagerPosUpdateEvt_Args e)
     {
         var key = "_EFL_UI_SPOTLIGHT_MANAGER_EVENT_POS_UPDATE";
@@ -554,3 +559,17 @@ public abstract class Manager : Efl.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_SpotlightManager_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Manager, T>magic = null) where T : Efl.Ui.Spotlight.Manager {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<bool> AnimationEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Manager, T>magic = null) where T : Efl.Ui.Spotlight.Manager {
+        return new Efl.BindableProperty<bool>("animation_enabled", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

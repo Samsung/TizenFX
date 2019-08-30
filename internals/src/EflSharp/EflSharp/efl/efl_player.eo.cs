@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl media player interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.IPlayerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPlayer : 
@@ -70,65 +72,66 @@ void Stop();
                                                                     /// <summary>Whether or not the playable can be played.</summary>
     /// <value><c>true</c> if the object have playable data, <c>false</c> otherwise</value>
     bool Playable {
-        get ;
+        get;
     }
     /// <summary>Get play/pause state of the media file.</summary>
     /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     bool Play {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the position in the media file.
     /// The position is returned as the number of seconds since the beginning of the media file.</summary>
     /// <value>The position (in seconds).</value>
     double Pos {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get how much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <value>The progress within the [0, 1] range.</value>
     double Progress {
-        get ;
+        get;
     }
     /// <summary>Control the play speed of the media file.
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <value>The play speed in the [0, infinity) range.</value>
     double PlaySpeed {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <value>The volume level</value>
     double Volume {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>This property controls the audio mute state.</summary>
     /// <value>The mute state. <c>true</c> or <c>false</c>.</value>
     bool Mute {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the length of play for the media file.</summary>
     /// <value>The length of the stream in seconds.</value>
     double Length {
-        get ;
+        get;
     }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <value><c>true</c> if seekable.</value>
     bool Seekable {
-        get ;
+        get;
     }
 }
 /// <summary>Efl media player interface</summary>
-sealed public class IPlayerConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IPlayerConcrete :
     Efl.Eo.EoWrapper
     , IPlayer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -144,7 +147,8 @@ sealed public class IPlayerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPlayerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -1086,3 +1090,33 @@ sealed public class IPlayerConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIPlayerConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

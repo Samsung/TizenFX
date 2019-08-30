@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl graphics view interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IViewConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IView : 
@@ -51,17 +53,18 @@ void SetViewSize(Eina.Size2D size);
     /// Refer to each implementing class specific documentation for more details.</summary>
     /// <value>Size of the view.</value>
     Eina.Size2D ViewSize {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Efl graphics view interface</summary>
-sealed public class IViewConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IViewConcrete :
     Efl.Eo.EoWrapper
     , IView
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -77,7 +80,8 @@ sealed public class IViewConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IViewConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -266,3 +270,13 @@ sealed public class IViewConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIViewConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Size2D> ViewSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IView, T>magic = null) where T : Efl.Gfx.IView {
+        return new Efl.BindableProperty<Eina.Size2D>("view_size", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

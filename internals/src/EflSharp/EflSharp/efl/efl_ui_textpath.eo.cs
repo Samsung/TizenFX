@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl Ui Textpath class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Textpath.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Textpath(ConstructingHandle ch) : base(ch)
     {
@@ -68,7 +71,7 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
     }
 
     /// <summary>The number of slices. The larger the number of slice_num is, The better the text follows the path.
-    /// @internal</summary>
+    /// internal</summary>
     /// <returns>Number of slices</returns>
     virtual public int GetSliceNumber() {
          var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -76,14 +79,14 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         return _ret_var;
  }
     /// <summary>The number of slices. The larger the number of slice_num is, The better the text follows the path.
-    /// @internal</summary>
+    /// internal</summary>
     /// <param name="slice_no">Number of slices</param>
     virtual public void SetSliceNumber(int slice_no) {
                                  Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_slice_number_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),slice_no);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the ellipsis behavior of the textpath.
-    /// @since_tizen 5.5</summary>
+    /// since_tizen 5.5</summary>
     /// <returns>To ellipsis text or not</returns>
     virtual public bool GetEllipsis() {
          var _ret_var = Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -91,23 +94,21 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         return _ret_var;
  }
     /// <summary>Control the ellipsis behavior of the textpath.
-    /// @since_tizen 5.5</summary>
+    /// since_tizen 5.5</summary>
     /// <param name="ellipsis">To ellipsis text or not</param>
     virtual public void SetEllipsis(bool ellipsis) {
                                  Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_ellipsis_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ellipsis);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Set a circle with given center, radius, and start angle.
-    /// @since_tizen 5.5</summary>
-    /// <param name="x">X coordinate of center</param>
-    /// <param name="y">Y coordinate of center</param>
+    /// <summary>Set a circle with given radius and start angle. The center of the circle will be decided by the object center position.
+    /// since_tizen 5.5</summary>
     /// <param name="radius">Radius of the circle</param>
     /// <param name="start_angle">Start angle of the circle</param>
     /// <param name="direction">Textpath direction</param>
-    virtual public void SetCircle(double x, double y, double radius, double start_angle, Efl.Ui.TextpathDirection direction) {
-                                                                                                                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_circle_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, radius, start_angle, direction);
+    virtual public void SetCircular(double radius, double start_angle, Efl.Ui.TextpathDirection direction) {
+                                                                                 Efl.Ui.Textpath.NativeMethods.efl_ui_textpath_circular_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),radius, start_angle, direction);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
+                                                         }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
     /// Do not free() the return value.
     /// 
@@ -338,18 +339,56 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The number of slices. The larger the number of slice_num is, The better the text follows the path.
-    /// @internal</summary>
+    /// internal</summary>
     /// <value>Number of slices</value>
     public int SliceNumber {
         get { return GetSliceNumber(); }
         set { SetSliceNumber(value); }
     }
     /// <summary>Control the ellipsis behavior of the textpath.
-    /// @since_tizen 5.5</summary>
+    /// since_tizen 5.5</summary>
     /// <value>To ellipsis text or not</value>
     public bool Ellipsis {
         get { return GetEllipsis(); }
         set { SetEllipsis(value); }
+    }
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    public (Efl.Gfx.PathCommandType, double) Path {
+        get {
+            Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+            double _out_points = default(double);
+            GetPath(out _out_op,out _out_points);
+            return (_out_op,_out_points);
+        }
+        set { SetPath( value.Item1,  value.Item2); }
+    }
+    /// <summary>Path length property</summary>
+    public (uint, uint) Length {
+        get {
+            uint _out_commands = default(uint);
+            uint _out_points = default(uint);
+            GetLength(out _out_commands,out _out_points);
+            return (_out_commands,_out_points);
+        }
+    }
+    /// <summary>Current point coordinates</summary>
+    public (double, double) Current {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrent(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
+    /// <summary>Current control point coordinates</summary>
+    public (double, double) CurrentCtrl {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrentCtrl(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -407,14 +446,14 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_textpath_ellipsis_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_textpath_ellipsis_set_static_delegate) });
             }
 
-            if (efl_ui_textpath_circle_set_static_delegate == null)
+            if (efl_ui_textpath_circular_set_static_delegate == null)
             {
-                efl_ui_textpath_circle_set_static_delegate = new efl_ui_textpath_circle_set_delegate(circle_set);
+                efl_ui_textpath_circular_set_static_delegate = new efl_ui_textpath_circular_set_delegate(circular_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetCircle") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetCircular") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_textpath_circle_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_textpath_circle_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_textpath_circular_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_textpath_circular_set_static_delegate) });
             }
 
             if (efl_text_get_static_delegate == null)
@@ -832,23 +871,23 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
         private static efl_ui_textpath_ellipsis_set_delegate efl_ui_textpath_ellipsis_set_static_delegate;
 
         
-        private delegate void efl_ui_textpath_circle_set_delegate(System.IntPtr obj, System.IntPtr pd,  double x,  double y,  double radius,  double start_angle,  Efl.Ui.TextpathDirection direction);
+        private delegate void efl_ui_textpath_circular_set_delegate(System.IntPtr obj, System.IntPtr pd,  double radius,  double start_angle,  Efl.Ui.TextpathDirection direction);
 
         
-        public delegate void efl_ui_textpath_circle_set_api_delegate(System.IntPtr obj,  double x,  double y,  double radius,  double start_angle,  Efl.Ui.TextpathDirection direction);
+        public delegate void efl_ui_textpath_circular_set_api_delegate(System.IntPtr obj,  double radius,  double start_angle,  Efl.Ui.TextpathDirection direction);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_textpath_circle_set_api_delegate> efl_ui_textpath_circle_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_textpath_circle_set_api_delegate>(Module, "efl_ui_textpath_circle_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_textpath_circular_set_api_delegate> efl_ui_textpath_circular_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_textpath_circular_set_api_delegate>(Module, "efl_ui_textpath_circular_set");
 
-        private static void circle_set(System.IntPtr obj, System.IntPtr pd, double x, double y, double radius, double start_angle, Efl.Ui.TextpathDirection direction)
+        private static void circular_set(System.IntPtr obj, System.IntPtr pd, double radius, double start_angle, Efl.Ui.TextpathDirection direction)
         {
-            Eina.Log.Debug("function efl_ui_textpath_circle_set was called");
+            Eina.Log.Debug("function efl_ui_textpath_circular_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                    
+                                                                                    
                 try
                 {
-                    ((Textpath)ws.Target).SetCircle(x, y, radius, start_angle, direction);
+                    ((Textpath)ws.Target).SetCircular(radius, start_angle, direction);
                 }
                 catch (Exception e)
                 {
@@ -856,15 +895,15 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        
+                                                        
             }
             else
             {
-                efl_ui_textpath_circle_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), x, y, radius, start_angle, direction);
+                efl_ui_textpath_circular_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), radius, start_angle, direction);
             }
         }
 
-        private static efl_ui_textpath_circle_set_delegate efl_ui_textpath_circle_set_static_delegate;
+        private static efl_ui_textpath_circular_set_delegate efl_ui_textpath_circular_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_text_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1795,12 +1834,31 @@ public class Textpath : Efl.Ui.LayoutBase, Efl.IText, Efl.Gfx.IPath
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTextpath_ExtensionMethods {
+    public static Efl.BindableProperty<int> SliceNumber<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Textpath, T>magic = null) where T : Efl.Ui.Textpath {
+        return new Efl.BindableProperty<int>("slice_number", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Textpath, T>magic = null) where T : Efl.Ui.Textpath {
+        return new Efl.BindableProperty<bool>("ellipsis", fac);
+    }
+
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
 
 /// <summary>Textpath direction
-/// @since_tizen 5.5</summary>
+/// since_tizen 5.5</summary>
 [Efl.Eo.BindingEntity]
 public enum TextpathDirection
 {

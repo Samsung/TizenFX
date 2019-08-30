@@ -32,10 +32,10 @@ namespace Canvas {
 [Efl.Eo.BindingEntity]
 public struct AnimationPlayerEventRunning
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator AnimationPlayerEventRunning(IntPtr ptr)
     {
         var tmp = (AnimationPlayerEventRunning.NativeStruct)Marshal.PtrToStructure(ptr, typeof(AnimationPlayerEventRunning.NativeStruct));
@@ -44,19 +44,19 @@ public struct AnimationPlayerEventRunning
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct AnimationPlayerEventRunning.</summary>
+    /// <summary>Internal wrapper for struct AnimationPlayerEventRunning.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator AnimationPlayerEventRunning.NativeStruct(AnimationPlayerEventRunning _external_struct)
         {
             var _internal_struct = new AnimationPlayerEventRunning.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator AnimationPlayerEventRunning(AnimationPlayerEventRunning.NativeStruct _internal_struct)
         {
             var _external_struct = new AnimationPlayerEventRunning();

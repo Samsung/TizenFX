@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Native surfaces usually bound to an externally-managed buffer.
 /// The attached <see cref="Efl.Canvas.Surface.NativeBuffer"/> is entirely platform-dependent, which means some of this mixin&apos;s subclasses will not work (constructor returns <c>null</c>) on some platforms. This class is meant to be used from native code only (C or C++), with direct access to the display system or a buffer allocation system.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Surface.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Surface : Efl.Canvas.ImageInternal
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public abstract class Surface : Efl.Canvas.ImageInternal
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Surface(ConstructingHandle ch) : base(ch)
     {
@@ -220,3 +223,13 @@ public abstract class Surface : Efl.Canvas.ImageInternal
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasSurface_ExtensionMethods {
+    public static Efl.BindableProperty<System.IntPtr> NativeBuffer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Surface, T>magic = null) where T : Efl.Canvas.Surface {
+        return new Efl.BindableProperty<System.IntPtr>("native_buffer", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

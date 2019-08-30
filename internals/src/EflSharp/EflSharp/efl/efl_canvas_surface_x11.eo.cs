@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Native X11 surface for Efl canvas</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.SurfaceX11.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class SurfaceX11 : Efl.Canvas.Surface
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class SurfaceX11 : Efl.Canvas.Surface
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected SurfaceX11(ConstructingHandle ch) : base(ch)
     {
@@ -77,6 +80,17 @@ public class SurfaceX11 : Efl.Canvas.Surface
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
+    /// <value>X11 Visual for this Pixmap.</value>
+    public (System.IntPtr, uint) Pixmap {
+        get {
+            System.IntPtr _out_visual = default(System.IntPtr);
+            uint _out_pixmap = default(uint);
+            GetPixmap(out _out_visual,out _out_pixmap);
+            return (_out_visual,_out_pixmap);
+        }
+        set { SetPixmap( value.Item1,  value.Item2); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.SurfaceX11.efl_canvas_surface_x11_class_get();
@@ -204,6 +218,13 @@ public class SurfaceX11 : Efl.Canvas.Surface
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasSurfaceX11_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Canvas {
@@ -217,7 +238,9 @@ public struct SurfaceX11Pixmap
     public System.IntPtr Visual;
     /// <summary>X11 Pixmap ID.</summary>
     public uint Pixmap;
-    ///<summary>Constructor for SurfaceX11Pixmap.</summary>
+    /// <summary>Constructor for SurfaceX11Pixmap.</summary>
+    /// <param name="Visual">X11 Visual for this Pixmap.</param>;
+    /// <param name="Pixmap">X11 Pixmap ID.</param>;
     public SurfaceX11Pixmap(
         System.IntPtr Visual = default(System.IntPtr),
         uint Pixmap = default(uint)    )
@@ -226,8 +249,8 @@ public struct SurfaceX11Pixmap
         this.Pixmap = Pixmap;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator SurfaceX11Pixmap(IntPtr ptr)
     {
         var tmp = (SurfaceX11Pixmap.NativeStruct)Marshal.PtrToStructure(ptr, typeof(SurfaceX11Pixmap.NativeStruct));
@@ -236,7 +259,7 @@ public struct SurfaceX11Pixmap
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct SurfaceX11Pixmap.</summary>
+    /// <summary>Internal wrapper for struct SurfaceX11Pixmap.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -244,7 +267,7 @@ public struct SurfaceX11Pixmap
         public System.IntPtr Visual;
         
         public uint Pixmap;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator SurfaceX11Pixmap.NativeStruct(SurfaceX11Pixmap _external_struct)
         {
             var _internal_struct = new SurfaceX11Pixmap.NativeStruct();
@@ -253,7 +276,7 @@ public struct SurfaceX11Pixmap
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator SurfaceX11Pixmap(SurfaceX11Pixmap.NativeStruct _internal_struct)
         {
             var _external_struct = new SurfaceX11Pixmap();

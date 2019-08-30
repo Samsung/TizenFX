@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Elementary layout internal part class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.LayoutPartContent.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartContent : Efl.Ui.LayoutPart, Efl.IContent
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class LayoutPartContent : Efl.Ui.LayoutPart, Efl.IContent
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartContent(ConstructingHandle ch) : base(ch)
     {
@@ -63,6 +66,7 @@ public class LayoutPartContent : Efl.Ui.LayoutPart, Efl.IContent
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -102,7 +106,7 @@ public class LayoutPartContent : Efl.Ui.LayoutPart, Efl.IContent
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -325,3 +329,13 @@ public class LayoutPartContent : Efl.Ui.LayoutPart, Efl.IContent
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayoutPartContent_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartContent, T>magic = null) where T : Efl.Ui.LayoutPartContent {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

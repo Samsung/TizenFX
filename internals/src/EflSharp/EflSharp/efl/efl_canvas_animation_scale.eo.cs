@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl scale animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationScale.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AnimationScale : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class AnimationScale : Efl.Canvas.Animation
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AnimationScale(ConstructingHandle ch) : base(ch)
     {
@@ -107,6 +110,37 @@ public class AnimationScale : Efl.Canvas.Animation
                                                                                                                                                          Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
+    /// <summary>Scale property</summary>
+    /// <value>Scale factor along x axis when animation starts</value>
+    public (double, double, double, double, Efl.Canvas.Object, double, double) Scale {
+        get {
+            double _out_from_scale_x = default(double);
+            double _out_from_scale_y = default(double);
+            double _out_to_scale_x = default(double);
+            double _out_to_scale_y = default(double);
+            Efl.Canvas.Object _out_pivot = default(Efl.Canvas.Object);
+            double _out_cx = default(double);
+            double _out_cy = default(double);
+            GetScale(out _out_from_scale_x,out _out_from_scale_y,out _out_to_scale_x,out _out_to_scale_y,out _out_pivot,out _out_cx,out _out_cy);
+            return (_out_from_scale_x,_out_from_scale_y,_out_to_scale_x,_out_to_scale_y,_out_pivot,_out_cx,_out_cy);
+        }
+        set { SetScale( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5,  value.Item6,  value.Item7); }
+    }
+    /// <summary>Scale absolute property</summary>
+    /// <value>Scale factor along x axis when animation starts</value>
+    public (double, double, double, double, int, int) ScaleAbsolute {
+        get {
+            double _out_from_scale_x = default(double);
+            double _out_from_scale_y = default(double);
+            double _out_to_scale_x = default(double);
+            double _out_to_scale_y = default(double);
+            int _out_cx = default(int);
+            int _out_cy = default(int);
+            GetScaleAbsolute(out _out_from_scale_x,out _out_from_scale_y,out _out_to_scale_x,out _out_to_scale_y,out _out_cx,out _out_cy);
+            return (_out_from_scale_x,_out_from_scale_y,_out_to_scale_x,_out_to_scale_y,_out_cx,_out_cy);
+        }
+        set { SetScaleAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5,  value.Item6); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationScale.efl_canvas_animation_scale_class_get();
@@ -323,3 +357,11 @@ public class AnimationScale : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationScale_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

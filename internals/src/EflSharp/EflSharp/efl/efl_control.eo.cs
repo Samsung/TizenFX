@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl control interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.IControlConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IControl : 
@@ -28,23 +30,24 @@ void SetSuspend(bool suspend);
                     /// <summary>Control the priority of the object.</summary>
     /// <value>The priority of the object</value>
     int Priority {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Controls whether the object is suspended or not.</summary>
     /// <value>Controls whether the object is suspended or not.</value>
     bool Suspend {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Efl control interface</summary>
-sealed public class IControlConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IControlConcrete :
     Efl.Eo.EoWrapper
     , IControl
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -60,7 +63,8 @@ sealed public class IControlConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IControlConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -328,3 +332,17 @@ sealed public class IControlConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIControlConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<int> Priority<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IControl, T>magic = null) where T : Efl.IControl {
+        return new Efl.BindableProperty<int>("priority", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Suspend<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IControl, T>magic = null) where T : Efl.IControl {
+        return new Efl.BindableProperty<bool>("suspend", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

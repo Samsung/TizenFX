@@ -1,3 +1,4 @@
+#define EFL_BETA
 using System;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -47,6 +48,7 @@ public abstract class Application
         Efl.Eo.Config.Init();
         ecore_init();
         evas_init();
+        //eldbus.Config.Init();
 
         if (component == Components.Ui)
         {
@@ -81,6 +83,7 @@ public abstract class Application
             elm_shutdown();
         }
 
+        //eldbus.Config.Shutdown();
         evas_shutdown();
         ecore_shutdown();
         Efl.Eo.Config.Shutdown();
