@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -137,9 +138,22 @@ namespace Tizen.NUI
             }
         }
 
-        internal class Property
+        /// <summary>
+        /// Enumeration for instances of properties belonging to the Shader class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
+        public class Property
         {
-            internal static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
+            /// <summary>
+            /// The default value is empty.
+            /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
+            public static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
         }
     }
 }
