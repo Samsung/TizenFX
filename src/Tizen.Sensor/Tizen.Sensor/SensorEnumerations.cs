@@ -319,4 +319,127 @@ namespace Tizen.Sensor
         /// <since_tizen> 3 </since_tizen>
         Detected = 1
     }
+
+    /// <summary>
+    /// Enumeration for option parameters for sensor recording.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum RecorderOption
+    {
+        /// <summary>
+        /// Desired retention period for the recorded sensor data.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        RetentionPeriod,
+
+        /// <summary>
+        /// Desired interval between data records.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Interval
+    }
+
+    /// <summary>
+    /// Enumeration for filtering and aggregation parameters for querying sensor records.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum RecorderQuery
+    {
+        /// <summary>
+        /// Start time of the data to be queried.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        StartTime = 0,
+
+        /// <summary>
+        /// End time of the data to be queried. 
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        EndTime,
+
+        /// <summary>
+        /// The anchor time to slice the querying duration of time.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        AnchorTime,
+
+        /// <summary>
+        /// The interval of each sliced querying duration.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        TimeInterval
+    }
+
+    /// <summary>
+    /// Enumeration for data attributes.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum RecorderData
+    {
+        /// <summary>
+        /// Count of both walking and running steps.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Steps,
+
+        /// <summary>
+        /// Count of walking steps.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        WalkSteps,
+
+        /// <summary>
+        /// Count of running steps.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        RunSteps,
+
+        /// <summary>
+        /// Distance walked or ran.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Distance,
+
+        /// <summary>
+        /// Calorie burned.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Calorie,
+
+        /// <summary>
+        /// Heart Rate.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        HeartRate = 0x10,
+
+        /// <summary>
+        /// Sleep state.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        SleepState = 0x20,
+
+        /// <summary>
+        /// Pressure.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Pressure = 0x30,
+
+        /// <summary>
+        /// Max pressure.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MaxPressure,
+
+        /// <summary>
+        /// Min pressure.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MinPressure,
+
+        /// <summary>
+        /// Average pressure.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        AveragePressure
+    }
 }
