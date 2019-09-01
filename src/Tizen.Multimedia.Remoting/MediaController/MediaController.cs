@@ -68,6 +68,8 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+
+        #region Get information
         /// <summary>
         /// Returns the playback state set by the server.
         /// </summary>
@@ -77,7 +79,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.SetPlaybackState(MediaControlPlaybackState, long)"/>
         /// <since_tizen> 4 </since_tizen>
         public MediaControlPlaybackState GetPlaybackState()
@@ -88,7 +90,7 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
                 Native.GetPlaybackState(playbackHandle, out var playbackCode).ThrowIfError("Failed to get state.");
 
@@ -112,7 +114,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.SetPlaybackState(MediaControlPlaybackState, long)"/>
         /// <since_tizen> 4 </since_tizen>
         public long GetPlaybackPosition()
@@ -123,7 +125,7 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
                 Native.GetPlaybackPosition(playbackHandle, out var position).ThrowIfError("Failed to get position.");
 
@@ -147,7 +149,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.SetMetadata(MediaControlMetadata)"/>
         /// <since_tizen> 4 </since_tizen>
         public MediaControlMetadata GetMetadata()
@@ -181,7 +183,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<MediaControlPlaylist> GetPlaylists()
         {
@@ -225,7 +227,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlPlaylist GetPlaylistOfCurrentPlayingMedia()
         {
@@ -236,7 +238,7 @@ namespace Tizen.Multimedia.Remoting
             // Get the playlist name of current playing media.
             try
             {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
                 var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
 
@@ -260,7 +262,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 5 </since_tizen>
         public string GetIndexOfCurrentPlayingMedia()
         {
@@ -270,7 +272,7 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
                 var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
                 return index;
@@ -293,7 +295,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.SetShuffleModeEnabled(bool)"/>
         /// <since_tizen> 4 </since_tizen>
         public bool IsShuffleModeEnabled()
@@ -315,7 +317,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.SetRepeatMode(MediaControlRepeatMode)"/>
         /// <since_tizen> 4 </since_tizen>
         public MediaControlRepeatMode GetRepeatMode()
@@ -328,6 +330,364 @@ namespace Tizen.Multimedia.Remoting
             return repeatMode.ToPublic();
         }
 
+        /// <summary>
+        /// Gets the content type of current playing media.
+        /// </summary>
+        /// <returns>The <see cref="MediaControlContentType"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlContentType GetContentTypeOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                Native.GetPlaybackContentType(playbackHandle, out MediaControlContentType type).
+                    ThrowIfError("Failed to get playback content type");
+
+                return type;
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the icon path.
+        /// </summary>
+        /// <returns>The icon path.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public string GetIconPath()
+        {
+            ThrowIfStopped();
+
+            Native.GetServerIcon(Manager.Handle, ServerAppId, out string uri).
+                ThrowIfError("Failed to get icon path.");
+
+            return uri;
+        }
+
+        /// <summary>
+        /// Gets the age rating of current playing media.
+        /// </summary>
+        /// <returns>The Age rating of current playing media. The range is 0 to 19, inclusive.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public int GetAgeRatingOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetServerPlaybackHandle(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                Native.GetAgeRating(playbackHandle, out int ageRating).ThrowIfError("Failed to get age rating.");
+
+                return ageRating;
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets whether the subtitle mode is enabled or not.
+        /// </summary>
+        /// <returns>A value indicating whether the subtitle mode is enabled or not.</returns>
+        /// <value>true if the subtitle mode is enabled; otherwise, false.</value>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsSubtitleModeEnabled()
+        {
+            ThrowIfStopped();
+
+            Native.IsSubtitleEnabled(Manager.Handle, ServerAppId, out var isEnabled).
+                ThrowIfError("Failed to get subtitle mode state.");
+
+            return isEnabled;
+        }
+
+        /// <summary>
+        /// Gets whether the 360 mode is enabled or not.
+        /// </summary>
+        /// <returns>A value indicating whether the 360 mode is enabled or not.</returns>
+        /// <value>true if the 360 mode is enabled; otherwise, false.</value>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsMode360Enabled()
+        {
+            ThrowIfStopped();
+
+            Native.IsMode360Enabled(Manager.Handle, ServerAppId, out var isEnabled).
+                ThrowIfError("Failed to get 360 mode state.");
+
+            return isEnabled;
+        }
+
+        /// <summary>
+        /// Gets the current display mode.
+        /// </summary>
+        /// <returns>The <see cref="MediaControlDisplayMode"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="MediaControllerManager"/> has already been disposed.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlDisplayMode GetDisplayMode()
+        {
+            ThrowIfStopped();
+
+            Native.GetDisplayMode(Manager.Handle, ServerAppId, out var mode).
+                ThrowIfError("Failed to get display mode state.");
+
+            return mode.ToPublic();
+        }
+
+        /// <summary>
+        /// Gets the current display rotation.
+        /// </summary>
+        /// <returns>The <see cref="Rotation"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="MediaControllerManager"/> has already been disposed.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public Rotation GetDisplayRotation()
+        {
+            ThrowIfStopped();
+
+            Native.GetDisplayRotation(Manager.Handle, ServerAppId, out var rotation).
+                ThrowIfError("Failed to get display rotation state.");
+
+            return rotation.ToPublic();
+        }
+        #endregion Get information
+
+
+        #region Capability
+        /// <summary>
+        /// Gets the value whether <see cref="MediaControlPlaybackCommand"/> is supported or not.
+        /// </summary>
+        /// <returns>
+        /// the set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> GetPlaybackCapabilities()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackCapaHandle = IntPtr.Zero;
+
+            var playbackCapabilities = new Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport>();
+
+            try
+            {
+                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
+                    ThrowIfError("Failed to get playback capability handle.");
+
+                foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
+                {
+                    Native.GetPlaybackCapability(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
+                    playbackCapabilities.Add(action.ToPublic(), support);
+                }
+
+                return playbackCapabilities;
+            }
+            finally
+            {
+                if (playbackCapaHandle != IntPtr.Zero)
+                {
+                    Native.DestroyCapability(playbackCapaHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the value whether <paramref name="action"/> is supported or not.
+        /// </summary>
+        /// <param name="action">A playback command.</param>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlCapabilitySupport GetPlaybackCapability(MediaControlPlaybackCommand action)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+
+            IntPtr playbackCapaHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
+                    ThrowIfError("Failed to get playback capability handle.");
+
+                Native.GetPlaybackCapability(playbackCapaHandle, action.ToNative(), out MediaControlCapabilitySupport support);
+
+                return support;
+            }
+            finally
+            {
+                if (playbackCapaHandle != IntPtr.Zero)
+                {
+                    Native.DestroyCapability(playbackCapaHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the value whether the shuffle mode is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlCapabilitySupport GetShuffleModeCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Shuffle, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get shuffle mode capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the repeat mode is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlCapabilitySupport GetRepeatModeCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Repeat, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get repeat mode capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the repeat mode is supported or not.
+        /// </summary>
+        /// <returns>
+        /// If there's no supported display mode by server, it will return null.
+        /// otherwise, it will return the supported list of <see cref="MediaControlDisplayMode"/>.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<MediaControlDisplayMode> GetDisplayModeCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetDisplayModeCapability(Manager.Handle, ServerAppId, out uint support).
+                ThrowIfError("Failed to get display mode capability");
+
+            return support != 0 ? ((MediaControlNativeDisplayMode)support).ToPublicList() : null;
+        }
+
+        /// <summary>
+        /// Gets the value whether the display mode is supported or not.
+        /// </summary>
+        /// <returns>
+        /// If there's no supported display rotation by server, it will return null.
+        /// otherwise, it will return the supported list of <see cref="Rotation"/>.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<Rotation> GetDisplayRotationapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetDisplayRotationCapability(Manager.Handle, ServerAppId, out uint support).
+                ThrowIfError("Failed to get display mode capability");
+
+            return support != 0 ? ((MediaControlNativeDisplayRotation)support).ToPublicList() : null;
+        }
+        #endregion Capability
+
+
+        #region Command
         /// <summary>
         /// Requests command to the server.
         /// </summary>
@@ -344,7 +704,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 5 </since_tizen>
         public async Task<Bundle> RequestAsync(Command command)
         {
@@ -441,7 +801,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="command"/> is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <seealso cref="MediaControlServer.PlaybackCommandReceived"/>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated. Please use Request instead.")]
@@ -454,251 +814,6 @@ namespace Tizen.Multimedia.Remoting
             Native.SendPlaybackActionCommandWithoutReqId(Manager.Handle, ServerAppId, command.ToNative()).
                 ThrowIfError("Failed to send command.");
         }
-
-        #region Capabilities
-        /// <summary>
-        /// Gets the content type of current playing media.
-        /// </summary>
-        /// <returns>The <see cref="MediaControlContentType"/>.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlContentType GetContentTypeOfCurrentPlayingMedia()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
-
-                Native.GetPlaybackContentType(playbackHandle, out MediaControlContentType type).
-                    ThrowIfError("Failed to get playback content type");
-
-                return type;
-            }
-            finally
-            {
-                if (playbackHandle != IntPtr.Zero)
-                {
-                    Native.DestroyPlayback(playbackHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the icon path.
-        /// </summary>
-        /// <returns>The icon path.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public string GetIconPath()
-        {
-            ThrowIfStopped();
-
-            Native.GetServerIcon(Manager.Handle, ServerAppId, out string uri).
-                ThrowIfError("Failed to get icon path.");
-
-            return uri;
-        }
-
-        /// <summary>
-        /// Gets the age rating of current playing media.
-        /// </summary>
-        /// <returns>The Age rating of current playing media. The range is 0 to 19, inclusive.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public int GetAgeRatingOfCurrentPlayingMedia()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
-
-                Native.GetAgeRating(playbackHandle, out int ageRating).ThrowIfError("Failed to get age rating.");
-
-                return ageRating;
-            }
-            finally
-            {
-                if (playbackHandle != IntPtr.Zero)
-                {
-                    Native.DestroyPlayback(playbackHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the value whether <see cref="MediaControlPlaybackCommand"/> is supported or not.
-        /// </summary>
-        /// <returns>
-        /// the set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.
-        /// </returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> GetPlaybackCapabilities()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackCapaHandle = IntPtr.Zero;
-
-            var playbackCapabilities = new Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport>();
-
-            try
-            {
-                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
-                    ThrowIfError("Failed to get playback capability handle.");
-
-                foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
-                {
-                    Native.IsCapabilitySupported(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
-                    playbackCapabilities.Add(action.ToPublic(), support);
-                }
-
-                return playbackCapabilities;
-            }
-            finally
-            {
-                if (playbackCapaHandle != IntPtr.Zero)
-                {
-                    Native.DestroyCapability(playbackCapaHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the value whether <paramref name="action"/> is supported or not.
-        /// </summary>
-        /// <param name="action">A playback command.</param>
-        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
-        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlCapabilitySupport GetPlaybackCapability(MediaControlPlaybackCommand action)
-        {
-            ThrowIfStopped();
-
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
-
-            IntPtr playbackCapaHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
-                    ThrowIfError("Failed to get playback capability handle.");
-
-                Native.IsCapabilitySupported(playbackCapaHandle, action.ToNative(), out MediaControlCapabilitySupport support);
-
-                return support;
-            }
-            finally
-            {
-                if (playbackCapaHandle != IntPtr.Zero)
-                {
-                    Native.DestroyCapability(playbackCapaHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the value whether the shuffle mode is supported or not.
-        /// </summary>
-        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlCapabilitySupport GetShuffleModeCapability()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackCapaHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
-                    ThrowIfError("Failed to get playback capability handle.");
-
-                Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlCapabilityCategory.Shuffle, out MediaControlCapabilitySupport support).
-                    ThrowIfError("Failed to get shuffle mode capability");
-
-                return support;
-            }
-            finally
-            {
-                if (playbackCapaHandle != IntPtr.Zero)
-                {
-                    Native.DestroyCapability(playbackCapaHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets the value whether the repeat mode is supported or not.
-        /// </summary>
-        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlCapabilitySupport GetRepeatModeCapability()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackCapaHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetPlaybackCapabilityHandle(Manager.Handle, ServerAppId, out playbackCapaHandle).
-                    ThrowIfError("Failed to get playback capability handle.");
-
-                Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlCapabilityCategory.Repeat, out MediaControlCapabilitySupport support).
-                    ThrowIfError("Failed to get repeat mode capability");
-
-                return support;
-            }
-            finally
-            {
-                if (playbackCapaHandle != IntPtr.Zero)
-                {
-                    Native.DestroyCapability(playbackCapaHandle);
-                }
-            }
-        }
-        #endregion Capabilities
+        #endregion Command
     }
 }
