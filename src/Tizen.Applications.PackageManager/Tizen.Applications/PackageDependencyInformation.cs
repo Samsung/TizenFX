@@ -27,38 +27,38 @@ namespace Tizen.Applications
         private string _from;
         private string _to;
         private string _type;
-        private string _required_version;
+        private string _requiredVersion;
 
         public PackageDependencyInformation(string from, string to, string type, string required_version)
         {
             _from = from;
             _to = to;
             _type = type;
-            _required_version = required_version;
+            _requiredVersion = required_version;
         }
 
         /// <summary>
-        /// The pacakge to.
+        /// The ID of package that depends on another.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string From { get { return _from; } }
 
         /// <summary>
-        /// The package from.
+        /// The ID of package that is required by another.
         /// </summary>
         /// <since_tizen>  </since_tizen>
         public string To { get { return _to; } }
 
         /// <summary>
-        /// The required version.
+        /// The Type of dependency.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string Type { get { return _type; } }
 
         /// <summary>
-        /// The required_version of package.
+        /// The required version.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string RequiredVersion { get { return _required_version; } }
+        public string RequiredVersion { get { return _requiredVersion; } }
     }
 }

@@ -48,8 +48,8 @@ namespace Tizen.Applications
 
         private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
         private int _callbackId = 0;
-        private List<PackageDependencyInformation> _dependency_to;
-        private List<PackageDependencyInformation> _dependency_from;
+        private List<PackageDependencyInformation> _dependencyTo;
+        private List<PackageDependencyInformation> _dependencyFrom;
 
         private Package(string pkgId)
         {
@@ -222,13 +222,13 @@ namespace Tizen.Applications
         /// Packages that this package is required.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IEnumerable<PackageDependencyInformation> DependencyTo { get { return _dependency_to; } }
+        public IEnumerable<PackageDependencyInformation> DependencyTo { get { return _dependencyTo; } }
 
         /// <summary>
         /// Packages that is requiring this package
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependency_from; } }
+        public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependencyFrom; } }
 
         /// <summary>
         /// Gets the package size information.
@@ -374,8 +374,8 @@ namespace Tizen.Applications
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
             package._privileges = GetPackagePrivilegeInformation(handle);
-            package._dependency_to = GetPackageDependencyInformation(handle);
-            package._dependency_from = GetPackageDependencyInformationDependsOn(handle);
+            package._dependencyTo = GetPackageDependencyInformation(handle);
+            package._dependencyFrom = GetPackageDependencyInformationDependsOn(handle);
             return package;
         }
 
