@@ -29,12 +29,12 @@ namespace Tizen.Applications
         private string _type;
         private string _requiredVersion;
 
-        public PackageDependencyInformation(string from, string to, string type, string required_version)
+        public PackageDependencyInformation(string from, string to, string type, string requiredVersion)
         {
             _from = from;
             _to = to;
             _type = type;
-            _requiredVersion = required_version;
+            _requiredVersion = requiredVersion;
         }
 
         /// <summary>
