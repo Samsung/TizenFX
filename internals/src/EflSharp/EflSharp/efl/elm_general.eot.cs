@@ -250,10 +250,10 @@ namespace Elm {
 [Efl.Eo.BindingEntity]
 public struct ValidateContent
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ValidateContent(IntPtr ptr)
     {
         var tmp = (ValidateContent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ValidateContent.NativeStruct));
@@ -262,19 +262,19 @@ public struct ValidateContent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ValidateContent.</summary>
+    /// <summary>Internal wrapper for struct ValidateContent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ValidateContent.NativeStruct(ValidateContent _external_struct)
         {
             var _internal_struct = new ValidateContent.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ValidateContent(ValidateContent.NativeStruct _internal_struct)
         {
             var _external_struct = new ValidateContent();
@@ -296,10 +296,10 @@ namespace Elm {
 [Efl.Eo.BindingEntity]
 public struct EntryAnchorInfo
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EntryAnchorInfo(IntPtr ptr)
     {
         var tmp = (EntryAnchorInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EntryAnchorInfo.NativeStruct));
@@ -308,19 +308,19 @@ public struct EntryAnchorInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EntryAnchorInfo.</summary>
+    /// <summary>Internal wrapper for struct EntryAnchorInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EntryAnchorInfo.NativeStruct(EntryAnchorInfo _external_struct)
         {
             var _internal_struct = new EntryAnchorInfo.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EntryAnchorInfo(EntryAnchorInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new EntryAnchorInfo();
@@ -342,10 +342,10 @@ namespace Elm {
 [Efl.Eo.BindingEntity]
 public struct EntryAnchorHoverInfo
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EntryAnchorHoverInfo(IntPtr ptr)
     {
         var tmp = (EntryAnchorHoverInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EntryAnchorHoverInfo.NativeStruct));
@@ -354,19 +354,19 @@ public struct EntryAnchorHoverInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EntryAnchorHoverInfo.</summary>
+    /// <summary>Internal wrapper for struct EntryAnchorHoverInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EntryAnchorHoverInfo.NativeStruct(EntryAnchorHoverInfo _external_struct)
         {
             var _internal_struct = new EntryAnchorHoverInfo.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EntryAnchorHoverInfo(EntryAnchorHoverInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new EntryAnchorHoverInfo();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Tab_Page internal part class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TabPagePartTab.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected TabPagePartTab(ConstructingHandle ch) : base(ch)
     {
@@ -311,3 +314,17 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTabPagePartTab_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Icon<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.TabPagePartTab, T>magic = null) where T : Efl.Ui.TabPagePartTab {
+        return new Efl.BindableProperty<System.String>("icon", fac);
+    }
+public static Efl.BindableProperty<System.String> Icon<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.TabPagePartTab, T>magic = null) where T : Efl.Ui.TabPagePartTab {
+        return new Efl.BindableProperty<System.String>(part.PartName, "icon", part.Binder);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,6 +12,7 @@ namespace Canvas {
 
 /// <summary>Object factory that creates Efl.Canvas.Object objects.
 /// Translates a given key to an object (item), to be later placed in a text for higher level usages. The translation implementation is left to be decided by the inheriting class, whether it is by treating the <c>key</c> as an image path, or a key associated with a real-path in a hashtable or something else entirely.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.ITextFactoryConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextFactory : 
@@ -23,12 +25,13 @@ Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key);
     }
 /// <summary>Object factory that creates Efl.Canvas.Object objects.
 /// Translates a given key to an object (item), to be later placed in a text for higher level usages. The translation implementation is left to be decided by the inheriting class, whether it is by treating the <c>key</c> as an image path, or a key associated with a real-path in a hashtable or something else entirely.</summary>
-sealed public class ITextFactoryConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextFactoryConcrete :
     Efl.Eo.EoWrapper
     , ITextFactory
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -44,7 +47,8 @@ sealed public class ITextFactoryConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextFactoryConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -148,3 +152,9 @@ sealed public class ITextFactoryConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasITextFactoryConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

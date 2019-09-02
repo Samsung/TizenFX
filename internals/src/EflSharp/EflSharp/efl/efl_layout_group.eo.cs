@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -66,7 +67,7 @@ bool GetPartExist(System.String part);
     /// (Since EFL 1.22)</summary>
     /// <value>The minimum size as set in EDC.</value>
     Eina.Size2D GroupSizeMin {
-        get ;
+        get;
     }
     /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
     /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
@@ -79,17 +80,17 @@ bool GetPartExist(System.String part);
     /// (Since EFL 1.22)</summary>
     /// <value>The maximum size as set in EDC.</value>
     Eina.Size2D GroupSizeMax {
-        get ;
+        get;
     }
 }
 /// <summary>APIs representing static data from a group in an edje file.
 /// (Since EFL 1.22)</summary>
-sealed public class IGroupConcrete :
+sealed public  class IGroupConcrete :
     Efl.Eo.EoWrapper
     , IGroup
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -105,7 +106,8 @@ sealed public class IGroupConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IGroupConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -420,3 +422,13 @@ sealed public class IGroupConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_LayoutIGroupConcrete_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

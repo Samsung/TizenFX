@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Elementary accessible text interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.ITextConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IText : 
@@ -107,52 +109,57 @@ bool SelectionRemove(int selection_number);
                                                                             /// <summary>Caret moved</summary>
     event EventHandler AccessTextCaretMovedEvt;
     /// <summary>Text was inserted</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextInsertedEvt_Args"/></value>
     event EventHandler<Efl.Access.ITextAccessTextInsertedEvt_Args> AccessTextInsertedEvt;
     /// <summary>Text was removed</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextRemovedEvt_Args"/></value>
     event EventHandler<Efl.Access.ITextAccessTextRemovedEvt_Args> AccessTextRemovedEvt;
     /// <summary>Text selection has changed</summary>
     event EventHandler AccessTextSelectionChangedEvt;
     /// <summary>Caret offset property</summary>
     /// <value>Offset</value>
     int CaretOffset {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Default attributes</summary>
     /// <value>List of default attributes</value>
     Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
-        get ;
+        get;
     }
     /// <summary>Character count</summary>
     /// <value>Character count</value>
     int CharacterCount {
-        get ;
+        get;
     }
     /// <summary>Selection count property</summary>
     /// <value>Selection counter</value>
     int SelectionsCount {
-        get ;
+        get;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextInsertedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextInsertedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ITextAccessTextInsertedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Text was inserted</value>
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextRemovedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ITextAccessTextRemovedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Text was removed</value>
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
 /// <summary>Elementary accessible text interface</summary>
-sealed public class ITextConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -168,7 +175,8 @@ sealed public class ITextConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -222,7 +230,7 @@ sealed public class ITextConcrete :
             }
         }
     }
-    ///<summary>Method to raise event AccessTextCaretMovedEvt.</summary>
+    /// <summary>Method to raise event AccessTextCaretMovedEvt.</summary>
     public void OnAccessTextCaretMovedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED";
@@ -236,6 +244,7 @@ sealed public class ITextConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Text was inserted</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextInsertedEvt_Args"/></value>
     public event EventHandler<Efl.Access.ITextAccessTextInsertedEvt_Args> AccessTextInsertedEvt
     {
         add
@@ -275,7 +284,7 @@ sealed public class ITextConcrete :
             }
         }
     }
-    ///<summary>Method to raise event AccessTextInsertedEvt.</summary>
+    /// <summary>Method to raise event AccessTextInsertedEvt.</summary>
     public void OnAccessTextInsertedEvt(Efl.Access.ITextAccessTextInsertedEvt_Args e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED";
@@ -298,6 +307,7 @@ sealed public class ITextConcrete :
         }
     }
     /// <summary>Text was removed</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Access.ITextAccessTextRemovedEvt_Args> AccessTextRemovedEvt
     {
         add
@@ -337,7 +347,7 @@ sealed public class ITextConcrete :
             }
         }
     }
-    ///<summary>Method to raise event AccessTextRemovedEvt.</summary>
+    /// <summary>Method to raise event AccessTextRemovedEvt.</summary>
     public void OnAccessTextRemovedEvt(Efl.Access.ITextAccessTextRemovedEvt_Args e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED";
@@ -398,7 +408,7 @@ sealed public class ITextConcrete :
             }
         }
     }
-    ///<summary>Method to raise event AccessTextSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event AccessTextSelectionChangedEvt.</summary>
     public void OnAccessTextSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED";
@@ -1476,6 +1486,29 @@ sealed public class ITextConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessITextConcrete_ExtensionMethods {
+    
+    
+    
+    public static Efl.BindableProperty<int> CaretOffset<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IText, T>magic = null) where T : Efl.Access.IText {
+        return new Efl.BindableProperty<int>("caret_offset", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Access {
@@ -1535,7 +1568,9 @@ public struct TextAttribute
     public System.String Name;
     /// <summary>Text attribute value</summary>
     public System.String Value;
-    ///<summary>Constructor for TextAttribute.</summary>
+    /// <summary>Constructor for TextAttribute.</summary>
+    /// <param name="Name">Text attribute name</param>;
+    /// <param name="Value">Text attribute value</param>;
     public TextAttribute(
         System.String Name = default(System.String),
         System.String Value = default(System.String)    )
@@ -1544,8 +1579,8 @@ public struct TextAttribute
         this.Value = Value;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextAttribute(IntPtr ptr)
     {
         var tmp = (TextAttribute.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextAttribute.NativeStruct));
@@ -1554,15 +1589,15 @@ public struct TextAttribute
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct TextAttribute.</summary>
+    /// <summary>Internal wrapper for struct TextAttribute.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Name</summary>
+        /// <summary>Internal wrapper for field Name</summary>
         public System.IntPtr Name;
-        ///<summary>Internal wrapper for field Value</summary>
+        /// <summary>Internal wrapper for field Value</summary>
         public System.IntPtr Value;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator TextAttribute.NativeStruct(TextAttribute _external_struct)
         {
             var _internal_struct = new TextAttribute.NativeStruct();
@@ -1571,7 +1606,7 @@ public struct TextAttribute
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator TextAttribute(TextAttribute.NativeStruct _internal_struct)
         {
             var _external_struct = new TextAttribute();
@@ -1605,7 +1640,10 @@ public struct TextRange
     public int End_offset;
     /// <summary>Range content</summary>
     public char Content;
-    ///<summary>Constructor for TextRange.</summary>
+    /// <summary>Constructor for TextRange.</summary>
+    /// <param name="Start_offset">Range start offset</param>;
+    /// <param name="End_offset">Range end offset</param>;
+    /// <param name="Content">Range content</param>;
     public TextRange(
         int Start_offset = default(int),
         int End_offset = default(int),
@@ -1616,8 +1654,8 @@ public struct TextRange
         this.Content = Content;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextRange(IntPtr ptr)
     {
         var tmp = (TextRange.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextRange.NativeStruct));
@@ -1626,7 +1664,7 @@ public struct TextRange
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct TextRange.</summary>
+    /// <summary>Internal wrapper for struct TextRange.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1636,7 +1674,7 @@ public struct TextRange
         public int End_offset;
         
         public System.IntPtr Content;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator TextRange.NativeStruct(TextRange _external_struct)
         {
             var _internal_struct = new TextRange.NativeStruct();
@@ -1646,7 +1684,7 @@ public struct TextRange
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator TextRange(TextRange.NativeStruct _internal_struct)
         {
             var _external_struct = new TextRange();
@@ -1683,7 +1721,11 @@ public struct TextChangeInfo
     public uint Pos;
     /// <summary>Change length</summary>
     public uint Len;
-    ///<summary>Constructor for TextChangeInfo.</summary>
+    /// <summary>Constructor for TextChangeInfo.</summary>
+    /// <param name="Content">Change content</param>;
+    /// <param name="Inserted"><c>true</c> if text got inserted</param>;
+    /// <param name="Pos">Change position</param>;
+    /// <param name="Len">Change length</param>;
     public TextChangeInfo(
         System.String Content = default(System.String),
         bool Inserted = default(bool),
@@ -1696,8 +1738,8 @@ public struct TextChangeInfo
         this.Len = Len;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextChangeInfo(IntPtr ptr)
     {
         var tmp = (TextChangeInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextChangeInfo.NativeStruct));
@@ -1706,19 +1748,19 @@ public struct TextChangeInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct TextChangeInfo.</summary>
+    /// <summary>Internal wrapper for struct TextChangeInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Content</summary>
+        /// <summary>Internal wrapper for field Content</summary>
         public System.IntPtr Content;
-        ///<summary>Internal wrapper for field Inserted</summary>
+        /// <summary>Internal wrapper for field Inserted</summary>
         public System.Byte Inserted;
         
         public uint Pos;
         
         public uint Len;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator TextChangeInfo.NativeStruct(TextChangeInfo _external_struct)
         {
             var _internal_struct = new TextChangeInfo.NativeStruct();
@@ -1729,7 +1771,7 @@ public struct TextChangeInfo
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator TextChangeInfo(TextChangeInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new TextChangeInfo();

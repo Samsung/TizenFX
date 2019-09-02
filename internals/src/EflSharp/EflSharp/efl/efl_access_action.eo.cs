@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Accessible action mixin</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.IActionConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IAction : 
@@ -37,16 +39,17 @@ System.String GetActionKeybinding(int id);
                                 /// <summary>Get list of available widget actions</summary>
     /// <value>Contains statically allocated strings.</value>
     Eina.List<Efl.Access.ActionData> Actions {
-        get ;
+        get;
     }
 }
 /// <summary>Accessible action mixin</summary>
-sealed public class IActionConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IActionConcrete :
     Efl.Eo.EoWrapper
     , IAction
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -62,7 +65,8 @@ sealed public class IActionConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IActionConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -386,3 +390,13 @@ sealed public class IActionConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessIActionConcrete_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

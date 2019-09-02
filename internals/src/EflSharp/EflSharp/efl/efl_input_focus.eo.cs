@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,7 +16,7 @@ namespace Input {
 [Efl.Eo.BindingEntity]
 public class Focus : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +42,8 @@ public class Focus : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Focus(ConstructingHandle ch) : base(ch)
     {
@@ -925,3 +927,34 @@ public class Focus : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_InputFocus_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Object> Object<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<Efl.Object>("object", fac);
+    }
+
+    public static Efl.BindableProperty<double> Timestamp<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<double>("timestamp", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Device> Device<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<Efl.Input.Device>("device", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Flags> EventFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<Efl.Input.Flags>("event_flags", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Processed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<bool>("processed", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Scrolling<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Focus, T>magic = null) where T : Efl.Input.Focus {
+        return new Efl.BindableProperty<bool>("scrolling", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

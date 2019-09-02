@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Access {
 namespace Editable {
 
 /// <summary>Elementary editable text interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.Editable.ITextConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IText : 
@@ -48,16 +50,17 @@ bool Paste(int position);
                             /// <summary>Editable content property</summary>
     /// <value>Content</value>
     System.String TextContent {
-        set ;
+        set;
     }
 }
 /// <summary>Elementary editable text interface</summary>
-sealed public class ITextConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -73,7 +76,8 @@ sealed public class ITextConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -458,3 +462,13 @@ sealed public class ITextConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Access_EditableITextConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> TextContent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.Editable.IText, T>magic = null) where T : Efl.Access.Editable.IText {
+        return new Efl.BindableProperty<System.String>("text_content", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

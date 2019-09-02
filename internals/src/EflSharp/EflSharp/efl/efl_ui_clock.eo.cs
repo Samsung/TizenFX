@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI clock class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Clock.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Clock : Efl.Ui.LayoutBase
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class Clock : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Clock(ConstructingHandle ch) : base(ch)
     {
@@ -106,7 +109,7 @@ public class Clock : Efl.Ui.LayoutBase
             }
         }
     }
-    ///<summary>Method to raise event ChangedEvt.</summary>
+    /// <summary>Method to raise event ChangedEvt.</summary>
     public void OnChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_CLOCK_EVENT_CHANGED";
@@ -1150,6 +1153,38 @@ public class Clock : Efl.Ui.LayoutBase
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiClock_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Format<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<System.String>("format", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Pause<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<bool>("pause", fac);
+    }
+
+    public static Efl.BindableProperty<bool> EditMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<bool>("edit_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> TimeMin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<Efl.Time>("time_min", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> TimeMax<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<Efl.Time>("time_max", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> Time<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Clock, T>magic = null) where T : Efl.Ui.Clock {
+        return new Efl.BindableProperty<Efl.Time>("time", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {

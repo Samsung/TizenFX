@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>The relative layout class.
 /// A relative layout calculates the size and position of all the children based on their relationship to each other.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.RelativeLayout.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected RelativeLayout(ConstructingHandle ch) : base(ch)
     {
@@ -70,6 +73,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -109,7 +113,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -125,6 +129,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -164,7 +169,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -217,7 +222,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
             }
         }
     }
-    ///<summary>Method to raise event LayoutUpdatedEvt.</summary>
+    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
     public void OnLayoutUpdatedEvt(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
@@ -1120,3 +1125,13 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiRelativeLayout_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>An inlined window.
 /// The window is rendered onto an image buffer. No actual window is created, instead the window and all of its contents will be rendered to an image buffer. This allows child windows inside a parent just like any other object.  You can also do other things like apply map effects. This window must have a valid <see cref="Efl.Canvas.Object"/> parent.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WinInlined.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class WinInlined : Efl.Ui.Win
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -65,7 +67,8 @@ public class WinInlined : Efl.Ui.Win
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected WinInlined(ConstructingHandle ch) : base(ch)
     {
@@ -180,3 +183,10 @@ public class WinInlined : Efl.Ui.Win
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWinInlined_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

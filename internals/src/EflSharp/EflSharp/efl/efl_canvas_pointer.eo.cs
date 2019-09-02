@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -22,19 +23,21 @@ public interface IPointer :
 /// A return value of <c>true</c> indicates the mouse is logically inside the canvas, and <c>false</c> implies it is logically outside the canvas.
 /// 
 /// A canvas begins with the mouse being assumed outside (<c>false</c>).
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="seat">The seat to consider, if <c>null</c> then the default seat will be used.</param>
 /// <returns><c>true</c> if the mouse pointer is inside the canvas, <c>false</c> otherwise</returns>
 bool GetPointerInside(Efl.Input.Device seat);
     }
 /// <summary>Efl Canvas Pointer interface
 /// (Since EFL 1.22)</summary>
-sealed public class IPointerConcrete :
+sealed public  class IPointerConcrete :
     Efl.Eo.EoWrapper
     , IPointer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -50,7 +53,8 @@ sealed public class IPointerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPointerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -71,7 +75,9 @@ sealed public class IPointerConcrete :
     /// A return value of <c>true</c> indicates the mouse is logically inside the canvas, and <c>false</c> implies it is logically outside the canvas.
     /// 
     /// A canvas begins with the mouse being assumed outside (<c>false</c>).
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat to consider, if <c>null</c> then the default seat will be used.</param>
     /// <returns><c>true</c> if the mouse pointer is inside the canvas, <c>false</c> otherwise</returns>
     public bool GetPointerInside(Efl.Input.Device seat) {
@@ -160,3 +166,10 @@ sealed public class IPointerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasIPointerConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

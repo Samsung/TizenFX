@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -14,7 +15,7 @@ namespace Input {
 [Efl.Eo.BindingEntity]
 public class Device : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +41,8 @@ public class Device : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Device(ConstructingHandle ch) : base(ch)
     {
@@ -667,6 +669,27 @@ public class Device : Efl.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_InputDevice_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Input.DeviceType> DeviceType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Device, T>magic = null) where T : Efl.Input.Device {
+        return new Efl.BindableProperty<Efl.Input.DeviceType>("device_type", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Device> Source<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Device, T>magic = null) where T : Efl.Input.Device {
+        return new Efl.BindableProperty<Efl.Input.Device>("source", fac);
+    }
+
+    
+    public static Efl.BindableProperty<uint> SeatId<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Device, T>magic = null) where T : Efl.Input.Device {
+        return new Efl.BindableProperty<uint>("seat_id", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Input {

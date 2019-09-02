@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Used internally for futures on the loop</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageFuture.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopMessageFuture : Efl.LoopMessage
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class LoopMessageFuture : Efl.LoopMessage
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopMessageFuture(ConstructingHandle ch) : base(ch)
     {
@@ -203,3 +206,13 @@ public class LoopMessageFuture : Efl.LoopMessage
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessageFuture_ExtensionMethods {
+    public static Efl.BindableProperty<System.IntPtr> Data<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopMessageFuture, T>magic = null) where T : Efl.LoopMessageFuture {
+        return new Efl.BindableProperty<System.IntPtr>("data", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

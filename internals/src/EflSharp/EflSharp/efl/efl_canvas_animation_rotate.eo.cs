@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl rotate animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationRotate.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AnimationRotate : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class AnimationRotate : Efl.Canvas.Animation
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AnimationRotate(ConstructingHandle ch) : base(ch)
     {
@@ -99,6 +102,33 @@ public class AnimationRotate : Efl.Canvas.Animation
                                                                                                          Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_degree, to_degree, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
+    /// <summary>Rotate property</summary>
+    /// <value>Rotation degree when animation starts</value>
+    public (double, double, Efl.Canvas.Object, double, double) Rotate {
+        get {
+            double _out_from_degree = default(double);
+            double _out_to_degree = default(double);
+            Efl.Canvas.Object _out_pivot = default(Efl.Canvas.Object);
+            double _out_cx = default(double);
+            double _out_cy = default(double);
+            GetRotate(out _out_from_degree,out _out_to_degree,out _out_pivot,out _out_cx,out _out_cy);
+            return (_out_from_degree,_out_to_degree,_out_pivot,_out_cx,_out_cy);
+        }
+        set { SetRotate( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Rotate absolute property</summary>
+    /// <value>Rotation degree when animation starts</value>
+    public (double, double, int, int) RotateAbsolute {
+        get {
+            double _out_from_degree = default(double);
+            double _out_to_degree = default(double);
+            int _out_cx = default(int);
+            int _out_cy = default(int);
+            GetRotateAbsolute(out _out_from_degree,out _out_to_degree,out _out_cx,out _out_cy);
+            return (_out_from_degree,_out_to_degree,_out_cx,_out_cy);
+        }
+        set { SetRotateAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationRotate.efl_canvas_animation_rotate_class_get();
@@ -315,3 +345,11 @@ public class AnimationRotate : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationRotate_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

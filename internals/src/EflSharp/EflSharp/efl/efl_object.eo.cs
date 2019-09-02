@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -72,9 +73,9 @@ namespace Efl {
 /// (Since EFL 1.22)</summary>
 [Efl.Object.NativeMethods]
 [Efl.Eo.BindingEntity]
-public abstract class Object : Efl.Eo.EoWrapper
+public abstract partial class Object : Efl.Eo.EoWrapper
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -100,7 +101,8 @@ public abstract class Object : Efl.Eo.EoWrapper
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Object(ConstructingHandle ch) : base(ch)
     {
@@ -168,7 +170,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event DelEvt.</summary>
+    /// <summary>Method to raise event DelEvt.</summary>
     public void OnDelEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_DEL";
@@ -221,7 +223,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event InvalidateEvt.</summary>
+    /// <summary>Method to raise event InvalidateEvt.</summary>
     public void OnInvalidateEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_INVALIDATE";
@@ -274,7 +276,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event NorefEvt.</summary>
+    /// <summary>Method to raise event NorefEvt.</summary>
     public void OnNorefEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_NOREF";
@@ -327,7 +329,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event OwnershipUniqueEvt.</summary>
+    /// <summary>Method to raise event OwnershipUniqueEvt.</summary>
     public void OnOwnershipUniqueEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_OWNERSHIP_UNIQUE";
@@ -380,7 +382,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event OwnershipSharedEvt.</summary>
+    /// <summary>Method to raise event OwnershipSharedEvt.</summary>
     public void OnOwnershipSharedEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_OWNERSHIP_SHARED";
@@ -433,7 +435,7 @@ public abstract class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    ///<summary>Method to raise event DestructEvt.</summary>
+    /// <summary>Method to raise event DestructEvt.</summary>
     public void OnDestructEvt(EventArgs e)
     {
         var key = "_EFL_EVENT_DESTRUCT";
@@ -553,7 +555,9 @@ public abstract class Object : Efl.Eo.EoWrapper
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</returns>
     virtual public bool GetAllowParentUnref() {
          var _ret_var = Efl.Object.NativeMethods.efl_allow_parent_unref_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -566,7 +570,9 @@ public abstract class Object : Efl.Eo.EoWrapper
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="allow">Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</param>
     virtual public void SetAllowParentUnref(bool allow) {
                                  Efl.Object.NativeMethods.efl_allow_parent_unref_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
@@ -685,7 +691,9 @@ public abstract class Object : Efl.Eo.EoWrapper
     /// The class of comp_obj must be part of the extensions of the class of the parent. It isn&apos;t possible to attach more then 1 composite of the same class. This function also sets the parent of comp_obj to parent.
     /// 
     /// See <see cref="Efl.Object.CompositeDetach"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="comp_obj">the object that will be used to composite the parent.</param>
     /// <returns><c>true</c> if successful. <c>false</c> otherwise.</returns>
     virtual public bool AttachComposite(Efl.Object comp_obj) {
@@ -697,7 +705,9 @@ public abstract class Object : Efl.Eo.EoWrapper
     /// This functions also sets the parent of comp_obj to <c>null</c>.
     /// 
     /// See <see cref="Efl.Object.AttachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="comp_obj">The object that will be removed from the parent.</param>
     /// <returns><c>true</c> if successful. <c>false</c> otherwise.</returns>
     virtual public bool CompositeDetach(Efl.Object comp_obj) {
@@ -707,12 +717,34 @@ public abstract class Object : Efl.Eo.EoWrapper
  }
     /// <summary>Check if an object is part of a composite object.
     /// See <see cref="Efl.Object.AttachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns><c>true</c> if it is. <c>false</c> otherwise.</returns>
     virtual public bool IsCompositePart() {
          var _ret_var = Efl.Object.NativeMethods.efl_composite_part_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
+ }
+    /// <summary>Will register a manager of a specific class to be answered by eo.provider_find.
+    /// (Since EFL 1.22)</summary>
+    /// <param name="klass">The class provided by the registered provider.</param>
+    /// <param name="provider">The provider for the newly registered class that has to provide that said Efl.Class.</param>
+    /// <returns><c>true</c> if successfully register, <c>false</c> otherwise.</returns>
+    virtual public bool ProviderRegister(Type klass, Efl.Object provider) {
+                                                         var _ret_var = Efl.Object.NativeMethods.efl_provider_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
+        Eina.Error.RaiseIfUnhandledException();
+                                        return _ret_var;
+ }
+    /// <summary>Will unregister a manager of a specific class that was previously registered and answered by eo.provider_find.
+    /// (Since EFL 1.22)</summary>
+    /// <param name="klass">The class provided by the provider to unregister for.</param>
+    /// <param name="provider">The provider for the registered class to unregister.</param>
+    /// <returns><c>true</c> if successfully unregistered, <c>false</c> otherwise.</returns>
+    virtual public bool ProviderUnregister(Type klass, Efl.Object provider) {
+                                                         var _ret_var = Efl.Object.NativeMethods.efl_provider_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
+        Eina.Error.RaiseIfUnhandledException();
+                                        return _ret_var;
  }
     /// <summary>The parent of an object.
     /// Parents keep references to their children and will release these references when destroyed. In this way, objects can be assigned to a parent upon creation, tying their life cycle so the programmer does not need to worry about destroying the child object. In order to destroy an object before its parent, set the parent to <c>NULL</c> and use efl_unref(), or use efl_del() directly.
@@ -780,7 +812,9 @@ public abstract class Object : Efl.Eo.EoWrapper
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</value>
     public bool AllowParentUnref {
         get { return GetAllowParentUnref(); }
@@ -1060,6 +1094,26 @@ public abstract class Object : Efl.Eo.EoWrapper
             if (methods.FirstOrDefault(m => m.Name == "IsCompositePart") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_composite_part_is"), func = Marshal.GetFunctionPointerForDelegate(efl_composite_part_is_static_delegate) });
+            }
+
+            if (efl_provider_register_static_delegate == null)
+            {
+                efl_provider_register_static_delegate = new efl_provider_register_delegate(provider_register);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ProviderRegister") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_provider_register"), func = Marshal.GetFunctionPointerForDelegate(efl_provider_register_static_delegate) });
+            }
+
+            if (efl_provider_unregister_static_delegate == null)
+            {
+                efl_provider_unregister_static_delegate = new efl_provider_unregister_delegate(provider_unregister);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ProviderUnregister") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_provider_unregister"), func = Marshal.GetFunctionPointerForDelegate(efl_provider_unregister_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -2100,87 +2154,108 @@ public abstract class Object : Efl.Eo.EoWrapper
 
         private static efl_composite_part_is_delegate efl_composite_part_is_static_delegate;
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_provider_register_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_provider_register_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
+
+        public static Efl.Eo.FunctionWrapper<efl_provider_register_api_delegate> efl_provider_register_ptr = new Efl.Eo.FunctionWrapper<efl_provider_register_api_delegate>(Module, "efl_provider_register");
+
+        private static bool provider_register(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
+        {
+            Eina.Log.Debug("function efl_provider_register was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Object)ws.Target).ProviderRegister(klass, provider);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_provider_register_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), klass, provider);
+            }
+        }
+
+        private static efl_provider_register_delegate efl_provider_register_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_provider_unregister_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_provider_unregister_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
+
+        public static Efl.Eo.FunctionWrapper<efl_provider_unregister_api_delegate> efl_provider_unregister_ptr = new Efl.Eo.FunctionWrapper<efl_provider_unregister_api_delegate>(Module, "efl_provider_unregister");
+
+        private static bool provider_unregister(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
+        {
+            Eina.Log.Debug("function efl_provider_unregister was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Object)ws.Target).ProviderUnregister(klass, provider);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_provider_unregister_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), klass, provider);
+            }
+        }
+
+        private static efl_provider_unregister_delegate efl_provider_unregister_static_delegate;
+
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
 
-namespace Efl {
-
-/// <summary>A parameter passed in event callbacks holding extra event parameters.
-/// This is the full event information passed to callbacks in C.
-/// (Since EFL 1.22)</summary>
-[StructLayout(LayoutKind.Sequential)]
-[Efl.Eo.BindingEntity]
-public struct Event
-{
-    /// <summary>The object the callback was called on.
-    /// (Since EFL 1.22)</summary>
-    public Efl.Object Object;
-    /// <summary>The event description.
-    /// (Since EFL 1.22)</summary>
-    public Efl.EventDescription Desc;
-    /// <summary>Extra event information passed by the event caller. Must be cast to the event type declared in the EO file. Keep in mind that: 1) Objects are passed as a normal Eo*. Event subscribers can call functions on these objects. 2) Structs, built-in types and containers are passed as const pointers, with one level of indirection.
-    /// (Since EFL 1.22)</summary>
-    public System.IntPtr Info;
-    ///<summary>Constructor for Event.</summary>
-    public Event(
-        Efl.Object Object = default(Efl.Object),
-        Efl.EventDescription Desc = default(Efl.EventDescription),
-        System.IntPtr Info = default(System.IntPtr)    )
-    {
-        this.Object = Object;
-        this.Desc = Desc;
-        this.Info = Info;
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflObject_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Object> Parent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Object, T>magic = null) where T : Efl.Object {
+        return new Efl.BindableProperty<Efl.Object>("parent", fac);
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
-    public static implicit operator Event(IntPtr ptr)
-    {
-        var tmp = (Event.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Event.NativeStruct));
-        return tmp;
+    public static Efl.BindableProperty<System.String> Name<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Object, T>magic = null) where T : Efl.Object {
+        return new Efl.BindableProperty<System.String>("name", fac);
     }
 
-    #pragma warning disable CS1591
-
-    ///<summary>Internal wrapper for struct Event.</summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public struct NativeStruct
-    {
-        ///<summary>Internal wrapper for field Object</summary>
-        public System.IntPtr Object;
-        
-        public System.IntPtr Desc;
-        
-        public System.IntPtr Info;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
-        public static implicit operator Event.NativeStruct(Event _external_struct)
-        {
-            var _internal_struct = new Event.NativeStruct();
-            _internal_struct.Object = _external_struct.Object?.NativeHandle ?? System.IntPtr.Zero;
-            _internal_struct.Desc = Eina.PrimitiveConversion.ManagedToPointerAlloc(_external_struct.Desc);
-            _internal_struct.Info = _external_struct.Info;
-            return _internal_struct;
-        }
-
-        ///<summary>Implicit conversion to the managed representation.</summary>
-        public static implicit operator Event(Event.NativeStruct _internal_struct)
-        {
-            var _external_struct = new Event();
-
-            _external_struct.Object = (Efl.Object) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Object);
-            _external_struct.Desc = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(_internal_struct.Desc);
-            _external_struct.Info = _internal_struct.Info;
-            return _external_struct;
-        }
-
+    public static Efl.BindableProperty<System.String> Comment<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Object, T>magic = null) where T : Efl.Object {
+        return new Efl.BindableProperty<System.String>("comment", fac);
     }
 
-    #pragma warning restore CS1591
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> AllowParentUnref<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Object, T>magic = null) where T : Efl.Object {
+        return new Efl.BindableProperty<bool>("allow_parent_unref", fac);
+    }
 
 }
-
-}
-
+#pragma warning restore CS1591
+#endif

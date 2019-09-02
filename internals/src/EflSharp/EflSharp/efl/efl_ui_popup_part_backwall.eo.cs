@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI Popup internal part backwall class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.PopupPartBackwall.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected PopupPartBackwall(ConstructingHandle ch) : base(ch)
     {
@@ -737,3 +740,38 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiPopupPartBackwall_ExtensionMethods {
+    public static Efl.BindableProperty<bool> RepeatEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<bool>("repeat_events", fac);
+    }
+public static Efl.BindableProperty<bool> RepeatEvents<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<bool>(part.PartName, "repeat_events", part.Binder);
+    }
+
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<Eina.File>(part.PartName, "mmap", part.Binder);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+public static Efl.BindableProperty<System.String> File<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>(part.PartName, "file", part.Binder);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+public static Efl.BindableProperty<System.String> Key<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>(part.PartName, "key", part.Binder);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

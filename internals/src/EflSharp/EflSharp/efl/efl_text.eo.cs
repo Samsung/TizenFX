@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -29,12 +30,12 @@ void SetText(System.String text);
         }
 /// <summary>Efl text interface
 /// (Since EFL 1.22)</summary>
-sealed public class ITextConcrete :
+sealed public  class ITextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -50,7 +51,8 @@ sealed public class ITextConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -208,3 +210,10 @@ sealed public class ITextConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

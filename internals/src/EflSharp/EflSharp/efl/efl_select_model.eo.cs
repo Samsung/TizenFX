@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,24 +8,27 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.SelectModel.SelectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.SelectModel.SelectedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class SelectModelSelectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value></value>
     public Efl.Object arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.SelectModel.UnselectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.SelectModel.UnselectedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class SelectModelUnselectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value></value>
     public Efl.Object arg { get; set; }
 }
 /// <summary>Efl select model class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.SelectModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class SelectModel : Efl.BooleanModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -62,7 +66,8 @@ public class SelectModel : Efl.BooleanModel
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected SelectModel(ConstructingHandle ch) : base(ch)
     {
@@ -83,6 +88,7 @@ public class SelectModel : Efl.BooleanModel
     {
     }
 
+    /// <value><see cref="Efl.SelectModelSelectedEvt_Args"/></value>
     public event EventHandler<Efl.SelectModelSelectedEvt_Args> SelectedEvt
     {
         add
@@ -122,7 +128,7 @@ public class SelectModel : Efl.BooleanModel
             }
         }
     }
-    ///<summary>Method to raise event SelectedEvt.</summary>
+    /// <summary>Method to raise event SelectedEvt.</summary>
     public void OnSelectedEvt(Efl.SelectModelSelectedEvt_Args e)
     {
         var key = "_EFL_SELECT_MODEL_EVENT_SELECTED";
@@ -136,6 +142,7 @@ public class SelectModel : Efl.BooleanModel
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+    /// <value><see cref="Efl.SelectModelUnselectedEvt_Args"/></value>
     public event EventHandler<Efl.SelectModelUnselectedEvt_Args> UnselectedEvt
     {
         add
@@ -175,7 +182,7 @@ public class SelectModel : Efl.BooleanModel
             }
         }
     }
-    ///<summary>Method to raise event UnselectedEvt.</summary>
+    /// <summary>Method to raise event UnselectedEvt.</summary>
     public void OnUnselectedEvt(Efl.SelectModelUnselectedEvt_Args e)
     {
         var key = "_EFL_SELECT_MODEL_EVENT_UNSELECTED";
@@ -442,3 +449,13 @@ public class SelectModel : Efl.BooleanModel
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflSelectModel_ExtensionMethods {
+    public static Efl.BindableProperty<bool> SingleSelection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.SelectModel, T>magic = null) where T : Efl.SelectModel {
+        return new Efl.BindableProperty<bool>("single_selection", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

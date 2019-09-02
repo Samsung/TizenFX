@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ namespace Efl {
 [Efl.Eo.BindingEntity]
 public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,7 +40,8 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected App(ConstructingHandle ch) : base(ch)
     {
@@ -107,7 +109,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event PauseEvt.</summary>
+    /// <summary>Method to raise event PauseEvt.</summary>
     public void OnPauseEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_PAUSE";
@@ -160,7 +162,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event ResumeEvt.</summary>
+    /// <summary>Method to raise event ResumeEvt.</summary>
     public void OnResumeEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_RESUME";
@@ -213,7 +215,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event StandbyEvt.</summary>
+    /// <summary>Method to raise event StandbyEvt.</summary>
     public void OnStandbyEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_STANDBY";
@@ -266,7 +268,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event TerminateEvt.</summary>
+    /// <summary>Method to raise event TerminateEvt.</summary>
     public void OnTerminateEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_TERMINATE";
@@ -319,7 +321,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event SignalUsr1Evt.</summary>
+    /// <summary>Method to raise event SignalUsr1Evt.</summary>
     public void OnSignalUsr1Evt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR1";
@@ -372,7 +374,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event SignalUsr2Evt.</summary>
+    /// <summary>Method to raise event SignalUsr2Evt.</summary>
     public void OnSignalUsr2Evt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR2";
@@ -425,7 +427,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    ///<summary>Method to raise event SignalHupEvt.</summary>
+    /// <summary>Method to raise event SignalHupEvt.</summary>
     public void OnSignalHupEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_HUP";
@@ -898,3 +900,21 @@ array.OwnContent = false;
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflApp_ExtensionMethods {
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.App, T>magic = null) where T : Efl.App {
+        return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> CommandString<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.App, T>magic = null) where T : Efl.App {
+        return new Efl.BindableProperty<System.String>("command_string", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

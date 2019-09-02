@@ -569,11 +569,8 @@ public class Globals
 
     /// <summary>Creates a new wrapper for the given Eo id.
     ///
-    /// <para>If the Eo was created from a non-generated class (i.e. C#-pure class), it returns
-    /// the C# instance handle stored in the Eo's private data.</para>
-    ///
-    /// <para>For generated-class Eo instance, we use reflection to get the correct C# type to re-wrap
-    /// it.</para>
+    /// <para>If the Eo have a WrapperSupervisor, it returns the C# instance handle stored in its
+    /// WrapperSupervisor. otherwise, we use reflection to get the correct C# type to re-wrap it.</para>
     /// </summary>
     ///
     /// <param name="handle">The Eo id to be wrapped.</param>

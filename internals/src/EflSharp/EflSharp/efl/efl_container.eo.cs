@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -25,32 +26,36 @@ Eina.Iterator<Efl.Gfx.IEntity> ContentIterate();
 int ContentCount();
             /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt;
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt;
 }
-///<summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentAddedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IContainerContentAddedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Sent after a new sub-object was added.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentRemovedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IContainerContentRemovedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Sent after a sub-object was removed, before unref.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
 /// <summary>Common interface for objects (containers) that can have multiple contents (sub-objects).
 /// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.
 /// (Since EFL 1.22)</summary>
-sealed public class IContainerConcrete :
+sealed public  class IContainerConcrete :
     Efl.Eo.EoWrapper
     , IContainer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -66,7 +71,8 @@ sealed public class IContainerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IContainerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -83,6 +89,7 @@ sealed public class IContainerConcrete :
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -122,7 +129,7 @@ sealed public class IContainerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -138,6 +145,7 @@ sealed public class IContainerConcrete :
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -177,7 +185,7 @@ sealed public class IContainerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -332,3 +340,9 @@ sealed public class IContainerConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIContainerConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

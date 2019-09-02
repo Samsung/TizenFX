@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -82,7 +83,9 @@ Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.
 Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root);
     /// <summary>This will fetch the data from a registered node.
 /// Be aware this function will trigger a computation of all dirty nodes.
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="child">The child object to inspect.</param>
 /// <returns>The list of relations starting from <c>child</c>.</returns>
 Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child);
@@ -115,6 +118,7 @@ void FreezeDirtyLogic();
 void DirtyLogicUnfreeze();
                                                                             /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt;
     /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.
     /// (Since EFL 1.22)</summary>
@@ -124,69 +128,74 @@ void DirtyLogicUnfreeze();
     event EventHandler CoordsDirtyEvt;
     /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt;
     /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt;
     /// <summary>The element which is currently focused by this manager
     /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
     /// (Since EFL 1.22)</summary>
     /// <value>Currently focused element.</value>
     Efl.Ui.Focus.IObject ManagerFocus {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Add another manager to serve the move requests.
     /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
     /// (Since EFL 1.22)</summary>
     /// <value>The redirect manager.</value>
     Efl.Ui.Focus.IManager Redirect {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The list of elements which are at the border of the graph.
     /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
     /// (Since EFL 1.22)</summary>
     /// <value>An iterator over the border objects.</value>
     Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
-        get ;
+        get;
     }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
     /// (Since EFL 1.22)</summary>
     /// <value>Will be registered into this manager object.</value>
     Efl.Ui.Focus.IObject Root {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.RedirectChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.RedirectChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IManagerRedirectChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Redirect object has changed, the old manager is passed as an event argument.</value>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.ManagerFocusChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.ManagerFocusChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IManagerManagerFocusChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>The manager_focus property has changed. The previously focused object is passed as an event argument.</value>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.DirtyLogicFreezeChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.DirtyLogicFreezeChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IManagerDirtyLogicFreezeChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.</value>
     public bool arg { get; set; }
 }
 /// <summary>Interface for managing focus objects
 /// This interface is built in order to support movement of the focus property in a set of widgets. The movement of the focus property can happen in a tree manner, or a graph manner. The movement is also keeping track of the history of focused elements. The tree interpretation differentiates between logical and non-logical widgets, a logical widget cannot receive focus whereas a non-logical one can.
 /// (Since EFL 1.22)</summary>
-sealed public class IManagerConcrete :
+sealed public  class IManagerConcrete :
     Efl.Eo.EoWrapper
     , IManager
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -202,7 +211,8 @@ sealed public class IManagerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IManagerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -219,6 +229,7 @@ sealed public class IManagerConcrete :
 
     /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
     {
         add
@@ -258,7 +269,7 @@ sealed public class IManagerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event RedirectChangedEvt.</summary>
+    /// <summary>Method to raise event RedirectChangedEvt.</summary>
     public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
@@ -312,7 +323,7 @@ sealed public class IManagerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FlushPreEvt.</summary>
+    /// <summary>Method to raise event FlushPreEvt.</summary>
     public void OnFlushPreEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
@@ -365,7 +376,7 @@ sealed public class IManagerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event CoordsDirtyEvt.</summary>
+    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
     public void OnCoordsDirtyEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
@@ -380,6 +391,7 @@ sealed public class IManagerConcrete :
     }
     /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
     {
         add
@@ -419,7 +431,7 @@ sealed public class IManagerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ManagerFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
     public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
@@ -435,6 +447,7 @@ sealed public class IManagerConcrete :
     }
     /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
     {
         add
@@ -474,7 +487,7 @@ sealed public class IManagerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
     public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
@@ -601,7 +614,9 @@ sealed public class IManagerConcrete :
  }
     /// <summary>This will fetch the data from a registered node.
     /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
@@ -1547,6 +1562,26 @@ sealed public class IManagerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_FocusIManagerConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManager, T>magic = null) where T : Efl.Ui.Focus.IManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.Focus.IManager> Redirect<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManager, T>magic = null) where T : Efl.Ui.Focus.IManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManager, T>magic = null) where T : Efl.Ui.Focus.IManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -1580,7 +1615,18 @@ public struct Relations
     public bool Logical;
     /// <summary>The position in the history stack</summary>
     public int Position_in_history;
-    ///<summary>Constructor for Relations.</summary>
+    /// <summary>Constructor for Relations.</summary>
+    /// <param name="Right">List of objects on the right side</param>;
+    /// <param name="Left">List of objects on the left side</param>;
+    /// <param name="Top">List of objects above</param>;
+    /// <param name="Down">List of objects below</param>;
+    /// <param name="Next">Next object</param>;
+    /// <param name="Prev">Previous object</param>;
+    /// <param name="Parent">Parent object</param>;
+    /// <param name="Redirect">Redirect manager</param>;
+    /// <param name="Node">The node where this is the information from</param>;
+    /// <param name="Logical"><c>true</c> if this node is only logical</param>;
+    /// <param name="Position_in_history">The position in the history stack</param>;
     public Relations(
         Eina.List<Efl.Ui.Focus.IObject> Right = default(Eina.List<Efl.Ui.Focus.IObject>),
         Eina.List<Efl.Ui.Focus.IObject> Left = default(Eina.List<Efl.Ui.Focus.IObject>),
@@ -1607,8 +1653,8 @@ public struct Relations
         this.Position_in_history = Position_in_history;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Relations(IntPtr ptr)
     {
         var tmp = (Relations.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Relations.NativeStruct));
@@ -1617,7 +1663,7 @@ public struct Relations
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Relations.</summary>
+    /// <summary>Internal wrapper for struct Relations.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1629,21 +1675,21 @@ public struct Relations
         public System.IntPtr Top;
         
         public System.IntPtr Down;
-        ///<summary>Internal wrapper for field Next</summary>
+        /// <summary>Internal wrapper for field Next</summary>
         public System.IntPtr Next;
-        ///<summary>Internal wrapper for field Prev</summary>
+        /// <summary>Internal wrapper for field Prev</summary>
         public System.IntPtr Prev;
-        ///<summary>Internal wrapper for field Parent</summary>
+        /// <summary>Internal wrapper for field Parent</summary>
         public System.IntPtr Parent;
-        ///<summary>Internal wrapper for field Redirect</summary>
+        /// <summary>Internal wrapper for field Redirect</summary>
         public System.IntPtr Redirect;
-        ///<summary>Internal wrapper for field Node</summary>
+        /// <summary>Internal wrapper for field Node</summary>
         public System.IntPtr Node;
-        ///<summary>Internal wrapper for field Logical</summary>
+        /// <summary>Internal wrapper for field Logical</summary>
         public System.Byte Logical;
         
         public int Position_in_history;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Relations.NativeStruct(Relations _external_struct)
         {
             var _internal_struct = new Relations.NativeStruct();
@@ -1661,7 +1707,7 @@ public struct Relations
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Relations(Relations.NativeStruct _internal_struct)
         {
             var _external_struct = new Relations();
@@ -1712,7 +1758,9 @@ public struct ManagerLogicalEndDetail
     public bool Is_regular_end;
     /// <summary>The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/></summary>
     public Efl.Ui.Focus.IObject Element;
-    ///<summary>Constructor for ManagerLogicalEndDetail.</summary>
+    /// <summary>Constructor for ManagerLogicalEndDetail.</summary>
+    /// <param name="Is_regular_end"><c>true</c> if element is registered as regular element in the <see cref="Efl.Ui.Focus.IManager"/> obejct, <c>false</c> otherwise</param>;
+    /// <param name="Element">The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/></param>;
     public ManagerLogicalEndDetail(
         bool Is_regular_end = default(bool),
         Efl.Ui.Focus.IObject Element = default(Efl.Ui.Focus.IObject)    )
@@ -1721,8 +1769,8 @@ public struct ManagerLogicalEndDetail
         this.Element = Element;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ManagerLogicalEndDetail(IntPtr ptr)
     {
         var tmp = (ManagerLogicalEndDetail.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ManagerLogicalEndDetail.NativeStruct));
@@ -1731,15 +1779,15 @@ public struct ManagerLogicalEndDetail
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ManagerLogicalEndDetail.</summary>
+    /// <summary>Internal wrapper for struct ManagerLogicalEndDetail.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Is_regular_end</summary>
+        /// <summary>Internal wrapper for field Is_regular_end</summary>
         public System.Byte Is_regular_end;
-        ///<summary>Internal wrapper for field Element</summary>
+        /// <summary>Internal wrapper for field Element</summary>
         public System.IntPtr Element;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ManagerLogicalEndDetail.NativeStruct(ManagerLogicalEndDetail _external_struct)
         {
             var _internal_struct = new ManagerLogicalEndDetail.NativeStruct();
@@ -1748,7 +1796,7 @@ public struct ManagerLogicalEndDetail
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ManagerLogicalEndDetail(ManagerLogicalEndDetail.NativeStruct _internal_struct)
         {
             var _external_struct = new ManagerLogicalEndDetail();

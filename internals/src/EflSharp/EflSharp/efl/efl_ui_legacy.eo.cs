@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,6 +12,7 @@ namespace Ui {
 
 /// <summary>The bg (background) widget is used for setting (solid) background decorations
 /// in a window (unless it has transparency enabled) or on any container object. It works just like an image but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ILegacyConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ILegacy : 
@@ -19,12 +21,13 @@ public interface ILegacy :
 }
 /// <summary>The bg (background) widget is used for setting (solid) background decorations
 /// in a window (unless it has transparency enabled) or on any container object. It works just like an image but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
-sealed public class ILegacyConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ILegacyConcrete :
     Efl.Eo.EoWrapper
     , ILegacy
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +43,8 @@ sealed public class ILegacyConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ILegacyConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -87,3 +91,9 @@ sealed public class ILegacyConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiILegacyConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI Property interface. view object can have <see cref="Efl.IModel"/> and need to set cotent with those model stored data. the interface can help binding the factory to create object with model property data. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IFactoryBindConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFactoryBind : 
@@ -21,12 +23,13 @@ public interface IFactoryBind :
 void FactoryBind(System.String key, Efl.Ui.IFactory factory);
     }
 /// <summary>Efl UI Property interface. view object can have <see cref="Efl.IModel"/> and need to set cotent with those model stored data. the interface can help binding the factory to create object with model property data. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
-sealed public class IFactoryBindConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IFactoryBindConcrete :
     Efl.Eo.EoWrapper
     , IFactoryBind
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +45,8 @@ sealed public class IFactoryBindConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IFactoryBindConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -144,3 +148,9 @@ sealed public class IFactoryBindConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIFactoryBindConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

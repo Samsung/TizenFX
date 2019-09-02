@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl translate animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationTranslate.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AnimationTranslate : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class AnimationTranslate : Efl.Canvas.Animation
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AnimationTranslate(ConstructingHandle ch) : base(ch)
     {
@@ -97,6 +100,32 @@ public class AnimationTranslate : Efl.Canvas.Animation
                                                                                                          Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
+    /// <summary>Translate property</summary>
+    /// <value>Distance moved along x axis when animation starts</value>
+    public (int, int, int, int) Translate {
+        get {
+            int _out_from_x = default(int);
+            int _out_from_y = default(int);
+            int _out_to_x = default(int);
+            int _out_to_y = default(int);
+            GetTranslate(out _out_from_x,out _out_from_y,out _out_to_x,out _out_to_y);
+            return (_out_from_x,_out_from_y,_out_to_x,_out_to_y);
+        }
+        set { SetTranslate( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Translate absolute property</summary>
+    /// <value>X coordinate when animation starts</value>
+    public (int, int, int, int) TranslateAbsolute {
+        get {
+            int _out_from_x = default(int);
+            int _out_from_y = default(int);
+            int _out_to_x = default(int);
+            int _out_to_y = default(int);
+            GetTranslateAbsolute(out _out_from_x,out _out_from_y,out _out_to_x,out _out_to_y);
+            return (_out_from_x,_out_from_y,_out_to_x,_out_to_y);
+        }
+        set { SetTranslateAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationTranslate.efl_canvas_animation_translate_class_get();
@@ -313,3 +342,11 @@ public class AnimationTranslate : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationTranslate_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

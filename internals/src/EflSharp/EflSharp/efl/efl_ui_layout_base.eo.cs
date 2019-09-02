@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,7 +16,7 @@ namespace Ui {
 [Efl.Eo.BindingEntity]
 public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.IFactoryBind
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +48,8 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutBase(ConstructingHandle ch) : base(ch)
     {
@@ -115,7 +117,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
             }
         }
     }
-    ///<summary>Method to raise event ThemeChangedEvt.</summary>
+    /// <summary>Method to raise event ThemeChangedEvt.</summary>
     public void OnThemeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_LAYOUT_EVENT_THEME_CHANGED";
@@ -130,6 +132,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     }
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -169,7 +172,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -185,6 +188,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -224,7 +228,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -278,7 +282,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
             }
         }
     }
-    ///<summary>Method to raise event RecalcEvt.</summary>
+    /// <summary>Method to raise event RecalcEvt.</summary>
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
@@ -293,6 +297,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
         add
@@ -332,7 +337,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
             }
         }
     }
-    ///<summary>Method to raise event CircularDependencyEvt.</summary>
+    /// <summary>Method to raise event CircularDependencyEvt.</summary>
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
@@ -346,6 +351,28 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         IntPtr info = e.arg.Handle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+    /// <summary>Set a multiplier for applying finger size to the layout.
+    /// By default, any widget which inherits from this class will apply the finger_size global config value with a 1:1 width:height ratio during sizing calculations. This will cause the widget to scale its size based on the finger_size config value.
+    /// 
+    /// To disable finger_size in a layout&apos;s sizing calculations, set the multipliers for both axes to 0.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="multiplier_x">Multiplier for X axis.</param>
+    /// <param name="multiplier_y">Multiplier for Y axis.</param>
+    virtual public void GetFingerSizeMultiplier(out uint multiplier_x, out uint multiplier_y) {
+                                                         Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_finger_size_multiplier_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out multiplier_x, out multiplier_y);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>Set a multiplier for applying finger size to the layout.
+    /// By default, any widget which inherits from this class will apply the finger_size global config value with a 1:1 width:height ratio during sizing calculations. This will cause the widget to scale its size based on the finger_size config value.
+    /// 
+    /// To disable finger_size in a layout&apos;s sizing calculations, set the multipliers for both axes to 0.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="multiplier_x">Multiplier for X axis.</param>
+    /// <param name="multiplier_y">Multiplier for Y axis.</param>
+    virtual public void SetFingerSizeMultiplier(uint multiplier_x, uint multiplier_y) {
+                                                         Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_finger_size_multiplier_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),multiplier_x, multiplier_y);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
     /// <summary>The theme of this widget, defines which edje group will be used.
     /// Based on the type of widget (<c>klass</c>), a given <c>group</c> and a <c>style</c> (usually &quot;default&quot;), the edje group name will be formed for this object.
     /// 
@@ -381,7 +408,9 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
                                                         return _ret_var;
  }
     /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</returns>
     virtual public bool GetAutomaticThemeRotation() {
          var _ret_var = Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -389,14 +418,18 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         return _ret_var;
  }
     /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="automatic"><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</param>
     virtual public void SetAutomaticThemeRotation(bool automatic) {
                                  Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_automatic_theme_rotation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Apply a new rotation value to this object.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="orientation">The new rotation angle, in degrees.</param>
     virtual public void ThemeRotationApply(int orientation) {
                                  Efl.Ui.LayoutBase.NativeMethods.efl_ui_layout_theme_rotation_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),orientation);
@@ -567,7 +600,7 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
     /// 
     /// Though there are those common uses for the two strings, one is free to use them however they like.
     /// 
-    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[&quot; set of <c>fnmatch</c>() operators can be used, both for emission and source.
+    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
     /// 
     /// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
     /// 
@@ -632,8 +665,45 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
                                                          Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
+    /// <summary>Set a multiplier for applying finger size to the layout.
+    /// By default, any widget which inherits from this class will apply the finger_size global config value with a 1:1 width:height ratio during sizing calculations. This will cause the widget to scale its size based on the finger_size config value.
+    /// 
+    /// To disable finger_size in a layout&apos;s sizing calculations, set the multipliers for both axes to 0.
+    /// (Since EFL 1.23)</summary>
+    /// <value>Multiplier for X axis.</value>
+    public (uint, uint) FingerSizeMultiplier {
+        get {
+            uint _out_multiplier_x = default(uint);
+            uint _out_multiplier_y = default(uint);
+            GetFingerSizeMultiplier(out _out_multiplier_x,out _out_multiplier_y);
+            return (_out_multiplier_x,_out_multiplier_y);
+        }
+        set { SetFingerSizeMultiplier( value.Item1,  value.Item2); }
+    }
+    /// <summary>The theme of this widget, defines which edje group will be used.
+    /// Based on the type of widget (<c>klass</c>), a given <c>group</c> and a <c>style</c> (usually &quot;default&quot;), the edje group name will be formed for this object.
+    /// 
+    /// Widgets that inherit from this class will call this function automatically so it should not be called by applications, unless you are dealing directly with a <see cref="Efl.Ui.Layout"/> object.
+    /// 
+    /// Note that <c>style</c> will be the new style of this object, as retrieved by <see cref="Efl.Ui.Widget.Style"/>. As a consequence this function can only be called during construction of the object, before finalize.
+    /// 
+    /// If this returns <c>false</c> the widget is very likely to become non-functioning.
     /// (Since EFL 1.22)</summary>
+    /// <value>The class of the group, eg. &quot;button&quot;.</value>
+    public (System.String, System.String, System.String) Theme {
+        get {
+            System.String _out_klass = default(System.String);
+            System.String _out_group = default(System.String);
+            System.String _out_style = default(System.String);
+            GetTheme(out _out_klass,out _out_group,out _out_style);
+            return (_out_klass,_out_group,_out_style);
+        }
+        set { SetTheme( value.Item1,  value.Item2,  value.Item3); }
+    }
+    /// <summary>This flag tells if this object will automatically mirror the rotation changes of the window to this object.
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value><c>true</c> to mirror orientation changes to the theme <c>false</c> otherwise</value>
     public bool AutomaticThemeRotation {
         get { return GetAutomaticThemeRotation(); }
@@ -690,6 +760,26 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
+
+            if (efl_ui_layout_finger_size_multiplier_get_static_delegate == null)
+            {
+                efl_ui_layout_finger_size_multiplier_get_static_delegate = new efl_ui_layout_finger_size_multiplier_get_delegate(finger_size_multiplier_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetFingerSizeMultiplier") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_finger_size_multiplier_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_finger_size_multiplier_get_static_delegate) });
+            }
+
+            if (efl_ui_layout_finger_size_multiplier_set_static_delegate == null)
+            {
+                efl_ui_layout_finger_size_multiplier_set_static_delegate = new efl_ui_layout_finger_size_multiplier_set_delegate(finger_size_multiplier_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetFingerSizeMultiplier") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_finger_size_multiplier_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_finger_size_multiplier_set_static_delegate) });
+            }
 
             if (efl_ui_layout_theme_get_static_delegate == null)
             {
@@ -942,6 +1032,76 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
+
+        
+        private delegate void efl_ui_layout_finger_size_multiplier_get_delegate(System.IntPtr obj, System.IntPtr pd,  out uint multiplier_x,  out uint multiplier_y);
+
+        
+        public delegate void efl_ui_layout_finger_size_multiplier_get_api_delegate(System.IntPtr obj,  out uint multiplier_x,  out uint multiplier_y);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_finger_size_multiplier_get_api_delegate> efl_ui_layout_finger_size_multiplier_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_finger_size_multiplier_get_api_delegate>(Module, "efl_ui_layout_finger_size_multiplier_get");
+
+        private static void finger_size_multiplier_get(System.IntPtr obj, System.IntPtr pd, out uint multiplier_x, out uint multiplier_y)
+        {
+            Eina.Log.Debug("function efl_ui_layout_finger_size_multiplier_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        multiplier_x = default(uint);        multiplier_y = default(uint);                            
+                try
+                {
+                    ((LayoutBase)ws.Target).GetFingerSizeMultiplier(out multiplier_x, out multiplier_y);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_ui_layout_finger_size_multiplier_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out multiplier_x, out multiplier_y);
+            }
+        }
+
+        private static efl_ui_layout_finger_size_multiplier_get_delegate efl_ui_layout_finger_size_multiplier_get_static_delegate;
+
+        
+        private delegate void efl_ui_layout_finger_size_multiplier_set_delegate(System.IntPtr obj, System.IntPtr pd,  uint multiplier_x,  uint multiplier_y);
+
+        
+        public delegate void efl_ui_layout_finger_size_multiplier_set_api_delegate(System.IntPtr obj,  uint multiplier_x,  uint multiplier_y);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_layout_finger_size_multiplier_set_api_delegate> efl_ui_layout_finger_size_multiplier_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_finger_size_multiplier_set_api_delegate>(Module, "efl_ui_layout_finger_size_multiplier_set");
+
+        private static void finger_size_multiplier_set(System.IntPtr obj, System.IntPtr pd, uint multiplier_x, uint multiplier_y)
+        {
+            Eina.Log.Debug("function efl_ui_layout_finger_size_multiplier_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            
+                try
+                {
+                    ((LayoutBase)ws.Target).SetFingerSizeMultiplier(multiplier_x, multiplier_y);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_ui_layout_finger_size_multiplier_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), multiplier_x, multiplier_y);
+            }
+        }
+
+        private static efl_ui_layout_finger_size_multiplier_set_delegate efl_ui_layout_finger_size_multiplier_set_static_delegate;
 
         
         private delegate void efl_ui_layout_theme_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String group, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String style);
@@ -1815,3 +1975,23 @@ public abstract class LayoutBase : Efl.Ui.Widget, Efl.IContainer, Efl.Layout.ICa
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayoutBase_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<bool> AutomaticThemeRotation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutBase, T>magic = null) where T : Efl.Ui.LayoutBase {
+        return new Efl.BindableProperty<bool>("automatic_theme_rotation", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutBase, T>magic = null) where T : Efl.Ui.LayoutBase {
+        return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
+    }
+
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -108,6 +108,88 @@ public struct EventDescription
     }
 };
 
+/// <summary>
+/// A parameter passed in event callbacks holding extra event parameters.
+/// This is the full event information passed to callbacks in C.
+/// (Since EFL 1.22)
+/// </summary>
+[StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
+public struct Event
+{
+    /// <summary>The object the callback was called on.
+    /// (Since EFL 1.22)</summary>
+    public Efl.Object Object;
+
+    /// <summary>The event description.
+    /// (Since EFL 1.22)</summary>
+    public Efl.EventDescription Desc;
+
+    /// <summary>Extra event information passed by the event caller.
+    /// Must be cast to the event type declared in the EO file. Keep in mind that:
+    /// 1) Objects are passed as a normal Eo*. Event subscribers can call functions on these objects.
+    /// 2) Structs, built-in types and containers are passed as const pointers, with one level of indirection.
+    /// (Since EFL 1.22)</summary>
+    public System.IntPtr Info;
+
+    /// <summary>Constructor for Event.</summary>
+    public Event(
+        Efl.Object obj = default(Efl.Object),
+        Efl.EventDescription desc = default(Efl.EventDescription),
+        System.IntPtr info = default(System.IntPtr))
+    {
+        this.Object = obj;
+        this.Desc = desc;
+        this.Info = info;
+    }
+
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
+    public static implicit operator Event(IntPtr ptr)
+    {
+        var tmp = (Event.NativeStruct) Marshal.PtrToStructure(ptr, typeof(Event.NativeStruct));
+        return tmp;
+    }
+
+    /// <summary>Internal wrapper for struct Event.</summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct NativeStruct
+    {
+        /// <summary>Internal wrapper for field Object</summary>
+        public System.IntPtr Object;
+
+        /// <summary>Internal wrapper for field Desc</summary>
+        public System.IntPtr Desc;
+
+        /// <summary>Internal wrapper for field Info</summary>
+        public System.IntPtr Info;
+
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <param name="externalStruct">Managed struct to be converted.</param>
+        /// <returns>Native representation of the managed struct.</returns>
+        public static implicit operator Event.NativeStruct(Event externalStruct)
+        {
+            var internalStruct = new Event.NativeStruct();
+            internalStruct.Object = externalStruct.Object?.NativeHandle ?? System.IntPtr.Zero;
+            internalStruct.Desc = Eina.PrimitiveConversion.ManagedToPointerAlloc(externalStruct.Desc);
+            internalStruct.Info = externalStruct.Info;
+            return internalStruct;
+        }
+
+        /// <summary>Implicit conversion to the managed representation.</summary>
+        /// <param name="internalStruct">Native struct to be converted.</param>
+        /// <returns>Managed representation of the native struct.</returns>
+        public static implicit operator Event(Event.NativeStruct internalStruct)
+        {
+            var externalStruct = new Event();
+            externalStruct.Object = (Efl.Object) Efl.Eo.Globals.CreateWrapperFor(internalStruct.Object);
+            externalStruct.Desc = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(internalStruct.Desc);
+            externalStruct.Info = internalStruct.Info;
+            return externalStruct;
+        }
+    }
+}
+
 public delegate void EventCb(System.IntPtr data, ref Event.NativeStruct evt);
 public delegate void FreeWrapperSupervisorCb(System.IntPtr obj);
 

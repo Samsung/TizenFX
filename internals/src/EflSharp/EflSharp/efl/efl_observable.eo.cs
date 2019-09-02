@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl observable class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Observable.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Observable : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class Observable : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Observable(ConstructingHandle ch) : base(ch)
     {
@@ -409,6 +412,12 @@ public class Observable : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflObservable_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>This type describes an observable touple</summary>
@@ -420,7 +429,9 @@ public struct ObservableTuple
     public System.String Key;
     /// <summary>Touple data</summary>
     public Eina.Iterator<Efl.IObserver> Data;
-    ///<summary>Constructor for ObservableTuple.</summary>
+    /// <summary>Constructor for ObservableTuple.</summary>
+    /// <param name="Key">Touple key</param>;
+    /// <param name="Data">Touple data</param>;
     public ObservableTuple(
         System.String Key = default(System.String),
         Eina.Iterator<Efl.IObserver> Data = default(Eina.Iterator<Efl.IObserver>)    )
@@ -429,8 +440,8 @@ public struct ObservableTuple
         this.Data = Data;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ObservableTuple(IntPtr ptr)
     {
         var tmp = (ObservableTuple.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ObservableTuple.NativeStruct));
@@ -439,15 +450,15 @@ public struct ObservableTuple
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ObservableTuple.</summary>
+    /// <summary>Internal wrapper for struct ObservableTuple.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Key</summary>
+        /// <summary>Internal wrapper for field Key</summary>
         public System.IntPtr Key;
         
         public System.IntPtr Data;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ObservableTuple.NativeStruct(ObservableTuple _external_struct)
         {
             var _internal_struct = new ObservableTuple.NativeStruct();
@@ -456,7 +467,7 @@ public struct ObservableTuple
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ObservableTuple(ObservableTuple.NativeStruct _internal_struct)
         {
             var _external_struct = new ObservableTuple();
