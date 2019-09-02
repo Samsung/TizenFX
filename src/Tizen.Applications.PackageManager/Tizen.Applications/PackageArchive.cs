@@ -102,7 +102,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// dependency of the package.
+        /// Packages that this package is required.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public List<PackageDependencyInformation> DependencyTo { get { return _dependency_to; } }

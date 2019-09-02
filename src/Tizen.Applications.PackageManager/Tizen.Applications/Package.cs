@@ -219,13 +219,13 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Requested privilege for the package.
+        /// Packages that this package is required.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<PackageDependencyInformation> DependencyTo { get { return _dependency_to; } }
 
         /// <summary>
-        /// Requested privilege for the package.
+        /// Packages that is requiring this package
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<PackageDependencyInformation> DependencyFrom { get { return _dependency_from; } }
