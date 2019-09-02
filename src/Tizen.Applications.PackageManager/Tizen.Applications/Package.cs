@@ -374,8 +374,8 @@ namespace Tizen.Applications
 
             package._certificates = PackageCertificate.GetPackageCertificates(handle);
             package._privileges = GetPackagePrivilegeInformation(handle);
-            package._dependencyTo = GetPackageDependencyInformation(handle);
-            package._dependencyFrom = GetPackageDependencyInformationDependsOn(handle);
+            package._dependencyTo = GetPackageDependency(handle);
+            package._dependencyFrom = GetPackageDependencyDependsOn(handle);
             return package;
         }
 
@@ -441,12 +441,12 @@ namespace Tizen.Applications
             return applicationType;
         }
 
-        private static List<PackageDependencyInformation> GetPackageDependencyInformation(IntPtr packageInfoHandle)
+        private static List<PackageDependencyInformation> GetPackageDependency(IntPtr packageInfoHandle)
         {
             List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
             Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
             {
-                dependencies.Add(new PackageDependencyInformation(from, to, type, requiredVersion));
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
                 return true;
             };
 
@@ -458,12 +458,12 @@ namespace Tizen.Applications
             return dependencies;
         }
 
-        private static List<PackageDependencyInformation> GetPackageDependencyInformationDependsOn(IntPtr packageInfoHandle)
+        private static List<PackageDependencyInformation> GetPackageDependencyDependsOn(IntPtr packageInfoHandle)
         {
             List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
             Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
             {
-                dependencies.Add(new PackageDependencyInformation(from, to, type, requiredVersion));
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
                 return true;
             };
 

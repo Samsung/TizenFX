@@ -29,14 +29,6 @@ namespace Tizen.Applications
         private string _type;
         private string _requiredVersion;
 
-        public PackageDependencyInformation(string from, string to, string type, string requiredVersion)
-        {
-            _from = from;
-            _to = to;
-            _type = type;
-            _requiredVersion = requiredVersion;
-        }
-
         /// <summary>
         /// The ID of package that depends on another.
         /// </summary>
@@ -60,5 +52,14 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string RequiredVersion { get { return _requiredVersion; } }
+        internal static PackageDependencyInformation GetPackageDependencyInformation(string from, string to, string type, string requiredVersion)
+        {
+            var pkgDependencyInfo = new PackageDependencyInformation();
+            pkgDependencyInfo._from = from;
+            pkgDependencyInfo._to = to;
+            pkgDependencyInfo._type = type;
+            pkgDependencyInfo._requiredVersion = requiredVersion;
+            return pkgDependencyInfo;
+        }
     }
 }

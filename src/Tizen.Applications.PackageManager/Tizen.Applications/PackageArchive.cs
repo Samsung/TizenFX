@@ -182,7 +182,7 @@ namespace Tizen.Applications
             List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
             Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
             {
-                dependencies.Add(new PackageDependencyInformation(from, to, type, requiredVersion));
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
                 return true;
             };
 
