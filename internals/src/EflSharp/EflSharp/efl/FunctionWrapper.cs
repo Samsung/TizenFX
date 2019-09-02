@@ -131,7 +131,7 @@ public class FunctionLoadResult<T>
         {
             if (_Delegate == null)
             {
-                throw new InvalidOperationException($"Trying to get Delegate while not loaded. Load result: {Kind}");
+                throw new InvalidOperationException($"Trying to get Delegate of type {typeof(T).FullName} while not loaded. Load result: {Kind}");
             }
 
             return _Delegate;

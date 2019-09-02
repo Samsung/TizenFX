@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Elementary Panes internal part class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.PanesPart.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class PanesPart : Efl.Ui.LayoutPartContent
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class PanesPart : Efl.Ui.LayoutPartContent
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected PanesPart(ConstructingHandle ch) : base(ch)
     {
@@ -320,3 +323,17 @@ public class PanesPart : Efl.Ui.LayoutPartContent
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiPanesPart_ExtensionMethods {
+    public static Efl.BindableProperty<bool> HintMinAllow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PanesPart, T>magic = null) where T : Efl.Ui.PanesPart {
+        return new Efl.BindableProperty<bool>("hint_min_allow", fac);
+    }
+
+    public static Efl.BindableProperty<double> SplitRatioMin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PanesPart, T>magic = null) where T : Efl.Ui.PanesPart {
+        return new Efl.BindableProperty<double>("split_ratio_min", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Native Wayland surface for Efl canvas</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.SurfaceWayland.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class SurfaceWayland : Efl.Canvas.Surface
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class SurfaceWayland : Efl.Canvas.Surface
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected SurfaceWayland(ConstructingHandle ch) : base(ch)
     {
@@ -94,3 +97,9 @@ public class SurfaceWayland : Efl.Canvas.Surface
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasSurfaceWayland_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

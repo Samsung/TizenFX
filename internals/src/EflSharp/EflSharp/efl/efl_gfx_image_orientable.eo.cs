@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -27,17 +28,17 @@ void SetImageOrientation(Efl.Gfx.ImageOrientation dir);
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <value>The final orientation of the object.</value>
     Efl.Gfx.ImageOrientation ImageOrientation {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Interface for objects which can be oriented.</summary>
-sealed public class IImageOrientableConcrete :
+sealed public  class IImageOrientableConcrete :
     Efl.Eo.EoWrapper
     , IImageOrientable
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -53,7 +54,8 @@ sealed public class IImageOrientableConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IImageOrientableConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -216,6 +218,16 @@ sealed public class IImageOrientableConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIImageOrientableConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.ImageOrientation> ImageOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IImageOrientable, T>magic = null) where T : Efl.Gfx.IImageOrientable {
+        return new Efl.BindableProperty<Efl.Gfx.ImageOrientation>("image_orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Gfx {

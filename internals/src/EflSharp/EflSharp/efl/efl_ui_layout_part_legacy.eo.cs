@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Elementary layout internal part class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.LayoutPartLegacy.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.ITextMarkup, Efl.Ui.IL10n
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartLegacy(ConstructingHandle ch) : base(ch)
     {
@@ -63,6 +66,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -102,7 +106,7 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -709,3 +713,19 @@ public class LayoutPartLegacy : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayoutPartLegacy_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartLegacy, T>magic = null) where T : Efl.Ui.LayoutPartLegacy {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartLegacy, T>magic = null) where T : Efl.Ui.LayoutPartLegacy {
+        return new Efl.BindableProperty<System.String>("markup", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

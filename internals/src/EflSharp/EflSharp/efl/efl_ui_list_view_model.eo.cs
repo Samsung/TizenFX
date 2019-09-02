@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IListViewModelConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IListViewModel : 
@@ -22,21 +24,25 @@ Eina.Size2D GetMinSize();
 void SetMinSize(Eina.Size2D min);
     Efl.Ui.ListViewLayoutItem Realize(ref Efl.Ui.ListViewLayoutItem item);
     void Unrealize(ref Efl.Ui.ListViewLayoutItem item);
-                            int ModelSize {
-        get ;
+                            (int, int) LoadRange {
+        set;
+    }
+    int ModelSize {
+        get;
     }
     /// <summary>Minimal content size.</summary>
     Eina.Size2D MinSize {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-sealed public class IListViewModelConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IListViewModelConcrete :
     Efl.Eo.EoWrapper
     , IListViewModel
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -52,7 +58,8 @@ sealed public class IListViewModelConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IListViewModelConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -103,6 +110,9 @@ sealed public class IListViewModelConcrete :
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
          }
+    public (int, int) LoadRange {
+        set { SetLoadRange( value.Item1,  value.Item2); }
+    }
     public int ModelSize {
         get { return GetModelSize(); }
     }
@@ -424,3 +434,15 @@ sealed public class IListViewModelConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIListViewModelConcrete_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<Eina.Size2D> MinSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IListViewModel, T>magic = null) where T : Efl.Ui.IListViewModel {
+        return new Efl.BindableProperty<Eina.Size2D>("min_size", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

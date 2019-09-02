@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>Represents a Table created as part of a layout.
 /// Cannot be deleted. This is only a representation of an internal object of an EFL layout.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.LayoutPartTable.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.IPackTable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartTable(ConstructingHandle ch) : base(ch)
     {
@@ -64,6 +67,7 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -103,7 +107,7 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -119,6 +123,7 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -158,7 +163,7 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -229,18 +234,42 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Position and span of the <c>subobj</c> in this container, may be modified to move the <c>subobj</c></summary>
+    /// <summary>column of the <c>subobj</c> in this container.</summary>
     /// <param name="subobj">Child object</param>
     /// <param name="col">Column number</param>
-    /// <param name="row">Row number</param>
     /// <param name="colspan">Column span</param>
+    /// <returns>Returns false if item is not a child</returns>
+    virtual public bool GetTableCellColumn(Efl.Gfx.IEntity subobj, out int col, out int colspan) {
+                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_column_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out colspan);
+        Eina.Error.RaiseIfUnhandledException();
+                                                        return _ret_var;
+ }
+    /// <summary>column of the <c>subobj</c> in this container.</summary>
+    /// <param name="subobj">Child object</param>
+    /// <param name="col">Column number</param>
+    /// <param name="colspan">Column span</param>
+    virtual public void SetTableCellColumn(Efl.Gfx.IEntity subobj, int col, int colspan) {
+                                                                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_column_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, colspan);
+        Eina.Error.RaiseIfUnhandledException();
+                                                         }
+    /// <summary>row of the <c>subobj</c> in this container.</summary>
+    /// <param name="subobj">Child object</param>
+    /// <param name="row">Row number</param>
     /// <param name="rowspan">Row span</param>
     /// <returns>Returns false if item is not a child</returns>
-    virtual public bool GetTablePosition(Efl.Gfx.IEntity subobj, out int col, out int row, out int colspan, out int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out row, out colspan, out rowspan);
+    virtual public bool GetTableCellRow(Efl.Gfx.IEntity subobj, out int row, out int rowspan) {
+                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_row_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out row, out rowspan);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                        return _ret_var;
+                                                        return _ret_var;
  }
+    /// <summary>row of the <c>subobj</c> in this container.</summary>
+    /// <param name="subobj">Child object</param>
+    /// <param name="row">Row number</param>
+    /// <param name="rowspan">Row span</param>
+    virtual public void SetTableCellRow(Efl.Gfx.IEntity subobj, int row, int rowspan) {
+                                                                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_row_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, row, rowspan);
+        Eina.Error.RaiseIfUnhandledException();
+                                                         }
     /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
@@ -313,6 +342,22 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>Real part property</summary>
+    /// <value>Real part object</value>
+    protected (Efl.Object, System.String) RealPart {
+        set { SetRealPart( value.Item1,  value.Item2); }
+    }
+    /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
+    /// <value>Number of columns</value>
+    public (int, int) TableSize {
+        get {
+            int _out_cols = default(int);
+            int _out_rows = default(int);
+            GetTableSize(out _out_cols,out _out_rows);
+            return (_out_cols,_out_rows);
+        }
+        set { SetTableSize( value.Item1,  value.Item2); }
+    }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <value>Amount of columns.</value>
     public int TableColumns {
@@ -411,14 +456,44 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_static_delegate) });
             }
 
-            if (efl_pack_table_position_get_static_delegate == null)
+            if (efl_pack_table_cell_column_get_static_delegate == null)
             {
-                efl_pack_table_position_get_static_delegate = new efl_pack_table_position_get_delegate(table_position_get);
+                efl_pack_table_cell_column_get_static_delegate = new efl_pack_table_cell_column_get_delegate(table_cell_column_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetTablePosition") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetTableCellColumn") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_position_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_position_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_column_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_column_get_static_delegate) });
+            }
+
+            if (efl_pack_table_cell_column_set_static_delegate == null)
+            {
+                efl_pack_table_cell_column_set_static_delegate = new efl_pack_table_cell_column_set_delegate(table_cell_column_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetTableCellColumn") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_column_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_column_set_static_delegate) });
+            }
+
+            if (efl_pack_table_cell_row_get_static_delegate == null)
+            {
+                efl_pack_table_cell_row_get_static_delegate = new efl_pack_table_cell_row_get_delegate(table_cell_row_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetTableCellRow") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_row_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_row_get_static_delegate) });
+            }
+
+            if (efl_pack_table_cell_row_set_static_delegate == null)
+            {
+                efl_pack_table_cell_row_set_static_delegate = new efl_pack_table_cell_row_set_delegate(table_cell_row_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetTableCellRow") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_row_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_row_set_static_delegate) });
             }
 
             if (efl_pack_table_size_get_static_delegate == null)
@@ -775,23 +850,23 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
         private static efl_pack_delegate efl_pack_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_table_position_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int row,  out int colspan,  out int rowspan);
+        private delegate bool efl_pack_table_cell_column_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int colspan);
 
         [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_table_position_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int row,  out int colspan,  out int rowspan);
+        public delegate bool efl_pack_table_cell_column_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int colspan);
 
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_position_get_api_delegate> efl_pack_table_position_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_position_get_api_delegate>(Module, "efl_pack_table_position_get");
+        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_get_api_delegate> efl_pack_table_cell_column_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_get_api_delegate>(Module, "efl_pack_table_cell_column_get");
 
-        private static bool table_position_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, out int col, out int row, out int colspan, out int rowspan)
+        private static bool table_cell_column_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, out int col, out int colspan)
         {
-            Eina.Log.Debug("function efl_pack_table_position_get was called");
+            Eina.Log.Debug("function efl_pack_table_cell_column_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                        col = default(int);        row = default(int);        colspan = default(int);        rowspan = default(int);                                                    bool _ret_var = default(bool);
+                                        col = default(int);        colspan = default(int);                                    bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((LayoutPartTable)ws.Target).GetTablePosition(subobj, out col, out row, out colspan, out rowspan);
+                    _ret_var = ((LayoutPartTable)ws.Target).GetTableCellColumn(subobj, out col, out colspan);
                 }
                 catch (Exception e)
                 {
@@ -799,16 +874,122 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        return _ret_var;
+                                                        return _ret_var;
 
             }
             else
             {
-                return efl_pack_table_position_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, out col, out row, out colspan, out rowspan);
+                return efl_pack_table_cell_column_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, out col, out colspan);
             }
         }
 
-        private static efl_pack_table_position_get_delegate efl_pack_table_position_get_static_delegate;
+        private static efl_pack_table_cell_column_get_delegate efl_pack_table_cell_column_get_static_delegate;
+
+        
+        private delegate void efl_pack_table_cell_column_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int colspan);
+
+        
+        public delegate void efl_pack_table_cell_column_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int colspan);
+
+        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_set_api_delegate> efl_pack_table_cell_column_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_set_api_delegate>(Module, "efl_pack_table_cell_column_set");
+
+        private static void table_cell_column_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int col, int colspan)
+        {
+            Eina.Log.Debug("function efl_pack_table_cell_column_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                                                    
+                try
+                {
+                    ((LayoutPartTable)ws.Target).SetTableCellColumn(subobj, col, colspan);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        
+            }
+            else
+            {
+                efl_pack_table_cell_column_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, col, colspan);
+            }
+        }
+
+        private static efl_pack_table_cell_column_set_delegate efl_pack_table_cell_column_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_pack_table_cell_row_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int row,  out int rowspan);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_pack_table_cell_row_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int row,  out int rowspan);
+
+        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_get_api_delegate> efl_pack_table_cell_row_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_get_api_delegate>(Module, "efl_pack_table_cell_row_get");
+
+        private static bool table_cell_row_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, out int row, out int rowspan)
+        {
+            Eina.Log.Debug("function efl_pack_table_cell_row_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                        row = default(int);        rowspan = default(int);                                    bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((LayoutPartTable)ws.Target).GetTableCellRow(subobj, out row, out rowspan);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_pack_table_cell_row_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, out row, out rowspan);
+            }
+        }
+
+        private static efl_pack_table_cell_row_get_delegate efl_pack_table_cell_row_get_static_delegate;
+
+        
+        private delegate void efl_pack_table_cell_row_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int row,  int rowspan);
+
+        
+        public delegate void efl_pack_table_cell_row_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int row,  int rowspan);
+
+        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_set_api_delegate> efl_pack_table_cell_row_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_set_api_delegate>(Module, "efl_pack_table_cell_row_set");
+
+        private static void table_cell_row_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int row, int rowspan)
+        {
+            Eina.Log.Debug("function efl_pack_table_cell_row_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                                                    
+                try
+                {
+                    ((LayoutPartTable)ws.Target).SetTableCellRow(subobj, row, rowspan);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        
+            }
+            else
+            {
+                efl_pack_table_cell_row_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, row, rowspan);
+            }
+        }
+
+        private static efl_pack_table_cell_row_set_delegate efl_pack_table_cell_row_set_static_delegate;
 
         
         private delegate void efl_pack_table_size_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int cols,  out int rows);
@@ -1138,3 +1319,27 @@ public class LayoutPartTable : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayoutPartTable_ExtensionMethods {
+    
+    
+    
+    
+    public static Efl.BindableProperty<int> TableColumns<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartTable, T>magic = null) where T : Efl.Ui.LayoutPartTable {
+        return new Efl.BindableProperty<int>("table_columns", fac);
+    }
+public static Efl.BindableProperty<int> TableColumns<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartTable, T>magic = null) where T : Efl.Ui.LayoutPartTable {
+        return new Efl.BindableProperty<int>(part.PartName, "table_columns", part.Binder);
+    }
+
+    public static Efl.BindableProperty<int> TableRows<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartTable, T>magic = null) where T : Efl.Ui.LayoutPartTable {
+        return new Efl.BindableProperty<int>("table_rows", fac);
+    }
+public static Efl.BindableProperty<int> TableRows<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartTable, T>magic = null) where T : Efl.Ui.LayoutPartTable {
+        return new Efl.BindableProperty<int>(part.PartName, "table_rows", part.Binder);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

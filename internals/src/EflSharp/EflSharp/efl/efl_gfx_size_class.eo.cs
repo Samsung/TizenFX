@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Size Class interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.ISizeClassConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISizeClass : 
@@ -41,12 +43,13 @@ bool SetSizeClass(System.String size_class, int minw, int minh, int maxw, int ma
 void DelSizeClass(System.String size_class);
             }
 /// <summary>Efl Gfx Size Class interface</summary>
-sealed public class ISizeClassConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ISizeClassConcrete :
     Efl.Eo.EoWrapper
     , ISizeClass
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -62,7 +65,8 @@ sealed public class ISizeClassConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ISizeClassConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -284,3 +288,10 @@ sealed public class ISizeClassConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxISizeClassConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

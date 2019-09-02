@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -29,22 +30,30 @@ bool GetImageMaxSize(out Eina.Size2D max);
 /// <returns><c>true</c> if currently calculating group objects.</returns>
 bool GetGroupObjectsCalculating();
     /// <summary>Get a device by name.
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="name">The name of the seat to find.</param>
 /// <returns>The device or seat, <c>null</c> if not found.</returns>
 Efl.Input.Device GetDevice(System.String name);
     /// <summary>Get a seat by id.
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="id">The id of the seat to find.</param>
 /// <returns>The seat or <c>null</c> if not found.</returns>
 Efl.Input.Device GetSeat(int id);
     /// <summary>Get the default seat.
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>The default seat or <c>null</c> if one does not exist.</returns>
 Efl.Input.Device GetSeatDefault();
     /// <summary>This function returns the current known pointer coordinates
 /// This function returns the current position of the main input pointer (mouse, pen, etc...).
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="seat">The seat, or <c>null</c> to use the default.</param>
 /// <param name="pos">The pointer position in pixels.</param>
 /// <returns><c>true</c> if a pointer exists for the given seat, otherwise <c>false</c>.</returns>
@@ -94,7 +103,9 @@ Eina.Iterator<Efl.Gfx.IEntity> GetObjectsInRectangle(Eina.Rect rect, bool includ
 Efl.Gfx.IEntity GetObjectTopInRectangle(Eina.Rect rect, bool include_pass_events_objects, bool include_hidden_objects);
     /// <summary>Iterate over the available input device seats for the canvas.
 /// A &quot;seat&quot; is the term used for a group of input devices, typically including a pointer and a keyboard. A seat object is the parent of the individual input devices.
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>An iterator over the attached seats.</returns>
 Eina.Iterator<Efl.Input.Device> Seats();
                                                     /// <summary>Called when scene got focus
@@ -105,85 +116,108 @@ Eina.Iterator<Efl.Input.Device> Seats();
     event EventHandler SceneFocusOutEvt;
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusInEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneObjectFocusInEvt_Args> ObjectFocusInEvt;
     /// <summary>Called when object lost focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusOutEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneObjectFocusOutEvt_Args> ObjectFocusOutEvt;
     /// <summary>Called when pre render happens
     /// (Since EFL 1.22)</summary>
     event EventHandler RenderPreEvt;
     /// <summary>Called when post render happens
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneRenderPostEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneRenderPostEvt_Args> RenderPostEvt;
     /// <summary>Called when input device changed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceChangedEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneDeviceChangedEvt_Args> DeviceChangedEvt;
     /// <summary>Called when input device was added
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceAddedEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneDeviceAddedEvt_Args> DeviceAddedEvt;
     /// <summary>Called when input device was removed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceRemovedEvt_Args"/></value>
     event EventHandler<Efl.Canvas.ISceneDeviceRemovedEvt_Args> DeviceRemovedEvt;
+    /// <summary>Get the maximum image size the canvas can possibly handle.
+    /// This function returns the largest image or surface size that the canvas can handle in pixels, and if there is one, returns <c>true</c>. It returns <c>false</c> if no extra constraint on maximum image size exists.
+    /// 
+    /// The default limit is 65535x65535.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> on success, <c>false</c> otherwise</value>
+    Eina.Size2D ImageMaxSize {
+        get;
+    }
     /// <summary>Get if the canvas is currently calculating group objects.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if currently calculating group objects.</value>
     bool GroupObjectsCalculating {
-        get ;
+        get;
     }
     /// <summary>Get the default seat attached to this canvas.
     /// A canvas may have exactly one default seat.
     /// 
     /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>The default seat or <c>null</c> if one does not exist.</value>
     Efl.Input.Device SeatDefault {
-        get ;
+        get;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusInEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusInEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneObjectFocusInEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when object got focus</value>
     public Efl.Input.Focus arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusOutEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.ObjectFocusOutEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneObjectFocusOutEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when object lost focus</value>
     public Efl.Input.Focus arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.RenderPostEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.RenderPostEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneRenderPostEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when post render happens</value>
     public Efl.Gfx.Event.RenderPost arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneDeviceChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when input device changed</value>
     public Efl.Input.Device arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceAddedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneDeviceAddedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when input device was added</value>
     public Efl.Input.Device arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.IScene.DeviceRemovedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ISceneDeviceRemovedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when input device was removed</value>
     public Efl.Input.Device arg { get; set; }
 }
 /// <summary>Interface containing basic canvas-related methods and events.
 /// (Since EFL 1.22)</summary>
-sealed public class ISceneConcrete :
+sealed public  class ISceneConcrete :
     Efl.Eo.EoWrapper
     , IScene
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -199,7 +233,8 @@ sealed public class ISceneConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ISceneConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -254,7 +289,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event SceneFocusInEvt.</summary>
+    /// <summary>Method to raise event SceneFocusInEvt.</summary>
     public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
@@ -307,7 +342,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event SceneFocusOutEvt.</summary>
+    /// <summary>Method to raise event SceneFocusOutEvt.</summary>
     public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
@@ -322,6 +357,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusInEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneObjectFocusInEvt_Args> ObjectFocusInEvt
     {
         add
@@ -361,7 +397,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ObjectFocusInEvt.</summary>
+    /// <summary>Method to raise event ObjectFocusInEvt.</summary>
     public void OnObjectFocusInEvt(Efl.Canvas.ISceneObjectFocusInEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
@@ -377,6 +413,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when object lost focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusOutEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneObjectFocusOutEvt_Args> ObjectFocusOutEvt
     {
         add
@@ -416,7 +453,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ObjectFocusOutEvt.</summary>
+    /// <summary>Method to raise event ObjectFocusOutEvt.</summary>
     public void OnObjectFocusOutEvt(Efl.Canvas.ISceneObjectFocusOutEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
@@ -470,7 +507,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event RenderPreEvt.</summary>
+    /// <summary>Method to raise event RenderPreEvt.</summary>
     public void OnRenderPreEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
@@ -485,6 +522,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when post render happens
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneRenderPostEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneRenderPostEvt_Args> RenderPostEvt
     {
         add
@@ -524,7 +562,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event RenderPostEvt.</summary>
+    /// <summary>Method to raise event RenderPostEvt.</summary>
     public void OnRenderPostEvt(Efl.Canvas.ISceneRenderPostEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
@@ -548,6 +586,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when input device changed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceChangedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceChangedEvt_Args> DeviceChangedEvt
     {
         add
@@ -587,7 +626,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event DeviceChangedEvt.</summary>
+    /// <summary>Method to raise event DeviceChangedEvt.</summary>
     public void OnDeviceChangedEvt(Efl.Canvas.ISceneDeviceChangedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
@@ -603,6 +642,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when input device was added
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceAddedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceAddedEvt_Args> DeviceAddedEvt
     {
         add
@@ -642,7 +682,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event DeviceAddedEvt.</summary>
+    /// <summary>Method to raise event DeviceAddedEvt.</summary>
     public void OnDeviceAddedEvt(Efl.Canvas.ISceneDeviceAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
@@ -658,6 +698,7 @@ sealed public class ISceneConcrete :
     }
     /// <summary>Called when input device was removed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceRemovedEvt_Args> DeviceRemovedEvt
     {
         add
@@ -697,7 +738,7 @@ sealed public class ISceneConcrete :
             }
         }
     }
-    ///<summary>Method to raise event DeviceRemovedEvt.</summary>
+    /// <summary>Method to raise event DeviceRemovedEvt.</summary>
     public void OnDeviceRemovedEvt(Efl.Canvas.ISceneDeviceRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
@@ -734,7 +775,9 @@ sealed public class ISceneConcrete :
         return _ret_var;
  }
     /// <summary>Get a device by name.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="name">The name of the seat to find.</param>
     /// <returns>The device or seat, <c>null</c> if not found.</returns>
     public Efl.Input.Device GetDevice(System.String name) {
@@ -743,7 +786,9 @@ sealed public class ISceneConcrete :
                         return _ret_var;
  }
     /// <summary>Get a seat by id.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="id">The id of the seat to find.</param>
     /// <returns>The seat or <c>null</c> if not found.</returns>
     public Efl.Input.Device GetSeat(int id) {
@@ -752,7 +797,9 @@ sealed public class ISceneConcrete :
                         return _ret_var;
  }
     /// <summary>Get the default seat.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>The default seat or <c>null</c> if one does not exist.</returns>
     public Efl.Input.Device GetSeatDefault() {
          var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_default_get_ptr.Value.Delegate(this.NativeHandle);
@@ -761,7 +808,9 @@ sealed public class ISceneConcrete :
  }
     /// <summary>This function returns the current known pointer coordinates
     /// This function returns the current position of the main input pointer (mouse, pen, etc...).
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat, or <c>null</c> to use the default.</param>
     /// <param name="pos">The pointer position in pixels.</param>
     /// <returns><c>true</c> if a pointer exists for the given seat, otherwise <c>false</c>.</returns>
@@ -840,13 +889,28 @@ sealed public class ISceneConcrete :
  }
     /// <summary>Iterate over the available input device seats for the canvas.
     /// A &quot;seat&quot; is the term used for a group of input devices, typically including a pointer and a keyboard. A seat object is the parent of the individual input devices.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>An iterator over the attached seats.</returns>
     public Eina.Iterator<Efl.Input.Device> Seats() {
          var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seats_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Input.Device>(_ret_var, true);
  }
+    /// <summary>Get the maximum image size the canvas can possibly handle.
+    /// This function returns the largest image or surface size that the canvas can handle in pixels, and if there is one, returns <c>true</c>. It returns <c>false</c> if no extra constraint on maximum image size exists.
+    /// 
+    /// The default limit is 65535x65535.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> on success, <c>false</c> otherwise</value>
+    public Eina.Size2D ImageMaxSize {
+        get {
+            Eina.Size2D _out_max = default(Eina.Size2D);
+            GetImageMaxSize(out _out_max);
+            return (_out_max);
+        }
+    }
     /// <summary>Get if the canvas is currently calculating group objects.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if currently calculating group objects.</value>
@@ -857,7 +921,9 @@ sealed public class ISceneConcrete :
     /// A canvas may have exactly one default seat.
     /// 
     /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>The default seat or <c>null</c> if one does not exist.</value>
     public Efl.Input.Device SeatDefault {
         get { return GetSeatDefault(); }
@@ -1456,3 +1522,15 @@ sealed public class ISceneConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasISceneConcrete_ExtensionMethods {
+    
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

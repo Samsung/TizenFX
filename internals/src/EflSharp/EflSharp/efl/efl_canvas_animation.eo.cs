@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Animation.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Animation : Efl.Object, Efl.IPlayable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class Animation : Efl.Object, Efl.IPlayable
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Animation(ConstructingHandle ch) : base(ch)
     {
@@ -979,3 +982,36 @@ public class Animation : Efl.Object, Efl.IPlayable
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimation_ExtensionMethods {
+    public static Efl.BindableProperty<bool> FinalStateKeep<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<bool>("final_state_keep", fac);
+    }
+
+    public static Efl.BindableProperty<double> Duration<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<double>("duration", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.AnimationRepeatMode> RepeatMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<Efl.Canvas.AnimationRepeatMode>("repeat_mode", fac);
+    }
+
+    public static Efl.BindableProperty<int> RepeatCount<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<int>("repeat_count", fac);
+    }
+
+    public static Efl.BindableProperty<double> StartDelay<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<double>("start_delay", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.IInterpolator> Interpolator<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<Efl.IInterpolator>("interpolator", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

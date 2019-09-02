@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,11 +14,12 @@ namespace Spotlight {
 
 /// <summary>Object used by <see cref="Efl.Ui.Spotlight.Container"/> to render an indication of the active widgets&apos;s position among the rest of the container&apos;s widgets.
 /// An example would be Android&apos;s little dots in the home screen.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Spotlight.Indicator.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Indicator : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -43,7 +45,8 @@ public abstract class Indicator : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Indicator(ConstructingHandle ch) : base(ch)
     {
@@ -323,3 +326,9 @@ public abstract class Indicator : Efl.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_SpotlightIndicator_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

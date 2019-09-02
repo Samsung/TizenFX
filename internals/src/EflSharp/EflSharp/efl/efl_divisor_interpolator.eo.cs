@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl divisor interpolator class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.DivisorInterpolator.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class DivisorInterpolator : Efl.Object, Efl.IInterpolator
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class DivisorInterpolator : Efl.Object, Efl.IInterpolator
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected DivisorInterpolator(ConstructingHandle ch) : base(ch)
     {
@@ -81,6 +84,17 @@ public class DivisorInterpolator : Efl.Object, Efl.IInterpolator
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+    /// <summary>Factors property</summary>
+    /// <value>First factor of the interpolation function.</value>
+    public (double, double) Factors {
+        get {
+            double _out_factor1 = default(double);
+            double _out_factor2 = default(double);
+            GetFactors(out _out_factor1,out _out_factor2);
+            return (_out_factor1,_out_factor2);
+        }
+        set { SetFactors( value.Item1,  value.Item2); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.DivisorInterpolator.efl_divisor_interpolator_class_get();
@@ -251,3 +265,10 @@ public class DivisorInterpolator : Efl.Object, Efl.IInterpolator
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflDivisorInterpolator_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -17,6 +18,7 @@ namespace Focus {
 /// Each sub manager also has to be a focus object, the object itself will be registered into the parent manager. It will be used as logical parent while registering the border elements.
 /// 
 /// You can filter the border elements by overriding the property <see cref="Efl.Ui.Focus.IManager.GetBorderElements"/>.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Focus.IManagerSubConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IManagerSub : 
@@ -30,12 +32,13 @@ public interface IManagerSub :
 /// Each sub manager also has to be a focus object, the object itself will be registered into the parent manager. It will be used as logical parent while registering the border elements.
 /// 
 /// You can filter the border elements by overriding the property <see cref="Efl.Ui.Focus.IManager.GetBorderElements"/>.</summary>
-sealed public class IManagerSubConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IManagerSubConcrete :
     Efl.Eo.EoWrapper
     , IManagerSub
     , Efl.Ui.Focus.IManager
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -51,7 +54,8 @@ sealed public class IManagerSubConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IManagerSubConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -68,6 +72,7 @@ sealed public class IManagerSubConcrete :
 
     /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
     {
         add
@@ -107,7 +112,7 @@ sealed public class IManagerSubConcrete :
             }
         }
     }
-    ///<summary>Method to raise event RedirectChangedEvt.</summary>
+    /// <summary>Method to raise event RedirectChangedEvt.</summary>
     public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
@@ -161,7 +166,7 @@ sealed public class IManagerSubConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FlushPreEvt.</summary>
+    /// <summary>Method to raise event FlushPreEvt.</summary>
     public void OnFlushPreEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
@@ -214,7 +219,7 @@ sealed public class IManagerSubConcrete :
             }
         }
     }
-    ///<summary>Method to raise event CoordsDirtyEvt.</summary>
+    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
     public void OnCoordsDirtyEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
@@ -229,6 +234,7 @@ sealed public class IManagerSubConcrete :
     }
     /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
     {
         add
@@ -268,7 +274,7 @@ sealed public class IManagerSubConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ManagerFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
     public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
@@ -284,6 +290,7 @@ sealed public class IManagerSubConcrete :
     }
     /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
     {
         add
@@ -323,7 +330,7 @@ sealed public class IManagerSubConcrete :
             }
         }
     }
-    ///<summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
     public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
@@ -450,7 +457,9 @@ sealed public class IManagerSubConcrete :
  }
     /// <summary>This will fetch the data from a registered node.
     /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
@@ -1396,3 +1405,23 @@ sealed public class IManagerSubConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_FocusIManagerSubConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManagerSub, T>magic = null) where T : Efl.Ui.Focus.IManagerSub {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.Focus.IManager> Redirect<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManagerSub, T>magic = null) where T : Efl.Ui.Focus.IManagerSub {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManagerSub, T>magic = null) where T : Efl.Ui.Focus.IManagerSub {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

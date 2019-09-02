@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>Datepicker widget
 /// This is a widget which allows the user to pick a date using internal spinner. User can use the internal spinner to select year, month, day or user can input value using internal entry.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Datepicker.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Datepicker : Efl.Ui.LayoutBase
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class Datepicker : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Datepicker(ConstructingHandle ch) : base(ch)
     {
@@ -107,7 +110,7 @@ public class Datepicker : Efl.Ui.LayoutBase
             }
         }
     }
-    ///<summary>Method to raise event ChangedEvt.</summary>
+    /// <summary>Method to raise event ChangedEvt.</summary>
     public void OnChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_DATEPICKER_EVENT_CHANGED";
@@ -198,6 +201,57 @@ public class Datepicker : Efl.Ui.LayoutBase
                                                                                  Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>The lower boundary of date.
+    /// <c>year</c>: Year. The year range is from 1900 to 2137.
+    /// 
+    /// <c>month</c>: Month. The month range is from 1 to 12.
+    /// 
+    /// <c>day</c>: Day. The day range is from 1 to 31 according to <c>month</c>.</summary>
+    /// <value>The year value.</value>
+    public (int, int, int) Min {
+        get {
+            int _out_year = default(int);
+            int _out_month = default(int);
+            int _out_day = default(int);
+            GetMin(out _out_year,out _out_month,out _out_day);
+            return (_out_year,_out_month,_out_day);
+        }
+        set { SetMin( value.Item1,  value.Item2,  value.Item3); }
+    }
+    /// <summary>The upper boundary of date.
+    /// <c>year</c>: Year. The year range is from 1900 to 2137.
+    /// 
+    /// <c>month</c>: Month. The month range is from 1 to 12.
+    /// 
+    /// <c>day</c>: Day. The day range is from 1 to 31 according to <c>month</c>.</summary>
+    /// <value>The year value.</value>
+    public (int, int, int) Max {
+        get {
+            int _out_year = default(int);
+            int _out_month = default(int);
+            int _out_day = default(int);
+            GetMax(out _out_year,out _out_month,out _out_day);
+            return (_out_year,_out_month,_out_day);
+        }
+        set { SetMax( value.Item1,  value.Item2,  value.Item3); }
+    }
+    /// <summary>The current value of date.
+    /// <c>year</c>: Year. The year range is from 1900 to 2137.
+    /// 
+    /// <c>month</c>: Month. The month range is from 0 to 11.
+    /// 
+    /// <c>day</c>: Day. The day range is from 1 to 31 according to <c>month</c>.</summary>
+    /// <value>The year value.</value>
+    public (int, int, int) Date {
+        get {
+            int _out_year = default(int);
+            int _out_month = default(int);
+            int _out_day = default(int);
+            GetDate(out _out_year,out _out_month,out _out_day);
+            return (_out_year,_out_month,_out_day);
+        }
+        set { SetDate( value.Item1,  value.Item2,  value.Item3); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Datepicker.efl_ui_datepicker_class_get();
@@ -504,3 +558,12 @@ public class Datepicker : Efl.Ui.LayoutBase
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiDatepicker_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

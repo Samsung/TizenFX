@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,19 +10,20 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Object.AnimatorTickEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Object.AnimatorTickEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ObjectAnimatorTickEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Animator tick synchronized with screen vsync if possible.</value>
     public Efl.EventAnimatorTick arg { get; set; }
 }
 /// <summary>Efl canvas object abstract class
 /// (Since EFL 1.22)</summary>
 [Efl.Canvas.Object.NativeMethods]
 [Efl.Eo.BindingEntity]
-public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gesture.IEvents, Efl.Gfx.IColor, Efl.Gfx.IEntity, Efl.Gfx.IHint, Efl.Gfx.IMapping, Efl.Gfx.IStack, Efl.Input.IInterface, Efl.Ui.II18n
+public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gesture.IEvents, Efl.Gfx.IColor, Efl.Gfx.IEntity, Efl.Gfx.IHint, Efl.Gfx.IMapping, Efl.Gfx.IStack, Efl.Input.IInterface
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Object(ConstructingHandle ch) : base(ch)
     {
@@ -77,6 +80,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
 
     /// <summary>Animator tick synchronized with screen vsync if possible.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ObjectAnimatorTickEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ObjectAnimatorTickEvt_Args> AnimatorTickEvt
     {
         add
@@ -116,7 +120,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event AnimatorTickEvt.</summary>
+    /// <summary>Method to raise event AnimatorTickEvt.</summary>
     public void OnAnimatorTickEvt(Efl.Canvas.ObjectAnimatorTickEvt_Args e)
     {
         var key = "_EFL_CANVAS_OBJECT_EVENT_ANIMATOR_TICK";
@@ -139,6 +143,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         }
     }
     /// <summary>Event for tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureTapEvt_Args> GestureTapEvt
     {
         add
@@ -178,7 +183,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureTapEvt.</summary>
+    /// <summary>Method to raise event GestureTapEvt.</summary>
     public void OnGestureTapEvt(Efl.Gesture.IEventsGestureTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_TAP";
@@ -193,6 +198,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for double tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureDoubleTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureDoubleTapEvt_Args> GestureDoubleTapEvt
     {
         add
@@ -232,7 +238,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureDoubleTapEvt.</summary>
+    /// <summary>Method to raise event GestureDoubleTapEvt.</summary>
     public void OnGestureDoubleTapEvt(Efl.Gesture.IEventsGestureDoubleTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_DOUBLE_TAP";
@@ -247,6 +253,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for triple tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTripleTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureTripleTapEvt_Args> GestureTripleTapEvt
     {
         add
@@ -286,7 +293,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureTripleTapEvt.</summary>
+    /// <summary>Method to raise event GestureTripleTapEvt.</summary>
     public void OnGestureTripleTapEvt(Efl.Gesture.IEventsGestureTripleTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_TRIPLE_TAP";
@@ -301,6 +308,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for long tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureLongTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureLongTapEvt_Args> GestureLongTapEvt
     {
         add
@@ -340,7 +348,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureLongTapEvt.</summary>
+    /// <summary>Method to raise event GestureLongTapEvt.</summary>
     public void OnGestureLongTapEvt(Efl.Gesture.IEventsGestureLongTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_LONG_TAP";
@@ -355,6 +363,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for momentum gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureMomentumEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureMomentumEvt_Args> GestureMomentumEvt
     {
         add
@@ -394,7 +403,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureMomentumEvt.</summary>
+    /// <summary>Method to raise event GestureMomentumEvt.</summary>
     public void OnGestureMomentumEvt(Efl.Gesture.IEventsGestureMomentumEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_MOMENTUM";
@@ -409,6 +418,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for flick gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureFlickEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureFlickEvt_Args> GestureFlickEvt
     {
         add
@@ -448,7 +458,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureFlickEvt.</summary>
+    /// <summary>Method to raise event GestureFlickEvt.</summary>
     public void OnGestureFlickEvt(Efl.Gesture.IEventsGestureFlickEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_FLICK";
@@ -463,6 +473,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for zoom gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureZoomEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureZoomEvt_Args> GestureZoomEvt
     {
         add
@@ -502,7 +513,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event GestureZoomEvt.</summary>
+    /// <summary>Method to raise event GestureZoomEvt.</summary>
     public void OnGestureZoomEvt(Efl.Gesture.IEventsGestureZoomEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_ZOOM";
@@ -518,6 +529,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     }
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
@@ -557,7 +569,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -580,6 +592,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
@@ -619,7 +632,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -643,6 +656,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
@@ -682,7 +696,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -744,7 +758,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event HintsChangedEvt.</summary>
+    /// <summary>Method to raise event HintsChangedEvt.</summary>
     public void OnHintsChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_HINTS_CHANGED";
@@ -797,7 +811,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event StackingChangedEvt.</summary>
+    /// <summary>Method to raise event StackingChangedEvt.</summary>
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
@@ -811,6 +825,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Main pointer move (current and previous positions are known).</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerMoveEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerMoveEvt_Args> PointerMoveEvt
     {
         add
@@ -850,7 +865,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerMoveEvt.</summary>
+    /// <summary>Method to raise event PointerMoveEvt.</summary>
     public void OnPointerMoveEvt(Efl.Input.IInterfacePointerMoveEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_MOVE";
@@ -865,6 +880,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Main pointer button pressed (button id is known).</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerDownEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerDownEvt_Args> PointerDownEvt
     {
         add
@@ -904,7 +920,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerDownEvt.</summary>
+    /// <summary>Method to raise event PointerDownEvt.</summary>
     public void OnPointerDownEvt(Efl.Input.IInterfacePointerDownEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_DOWN";
@@ -919,6 +935,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Main pointer button released (button id is known).</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerUpEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerUpEvt_Args> PointerUpEvt
     {
         add
@@ -958,7 +975,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerUpEvt.</summary>
+    /// <summary>Method to raise event PointerUpEvt.</summary>
     public void OnPointerUpEvt(Efl.Input.IInterfacePointerUpEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_UP";
@@ -973,6 +990,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Main pointer button press was cancelled (button id is known). This can happen in rare cases when the window manager passes the focus to a more urgent window, for instance. You probably don&apos;t need to listen to this event, as it will be accompanied by an up event.</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerCancelEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerCancelEvt_Args> PointerCancelEvt
     {
         add
@@ -1012,7 +1030,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerCancelEvt.</summary>
+    /// <summary>Method to raise event PointerCancelEvt.</summary>
     public void OnPointerCancelEvt(Efl.Input.IInterfacePointerCancelEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_CANCEL";
@@ -1027,6 +1045,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Pointer entered a window or a widget.</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerInEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerInEvt_Args> PointerInEvt
     {
         add
@@ -1066,7 +1085,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerInEvt.</summary>
+    /// <summary>Method to raise event PointerInEvt.</summary>
     public void OnPointerInEvt(Efl.Input.IInterfacePointerInEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_IN";
@@ -1081,6 +1100,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Pointer left a window or a widget.</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerOutEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerOutEvt_Args> PointerOutEvt
     {
         add
@@ -1120,7 +1140,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerOutEvt.</summary>
+    /// <summary>Method to raise event PointerOutEvt.</summary>
     public void OnPointerOutEvt(Efl.Input.IInterfacePointerOutEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_OUT";
@@ -1135,6 +1155,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Mouse wheel event.</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerWheelEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerWheelEvt_Args> PointerWheelEvt
     {
         add
@@ -1174,7 +1195,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerWheelEvt.</summary>
+    /// <summary>Method to raise event PointerWheelEvt.</summary>
     public void OnPointerWheelEvt(Efl.Input.IInterfacePointerWheelEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_WHEEL";
@@ -1189,6 +1210,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Pen or other axis event update.</summary>
+    /// <value><see cref="Efl.Input.IInterfacePointerAxisEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfacePointerAxisEvt_Args> PointerAxisEvt
     {
         add
@@ -1228,7 +1250,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event PointerAxisEvt.</summary>
+    /// <summary>Method to raise event PointerAxisEvt.</summary>
     public void OnPointerAxisEvt(Efl.Input.IInterfacePointerAxisEvt_Args e)
     {
         var key = "_EFL_EVENT_POINTER_AXIS";
@@ -1243,6 +1265,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Finger moved (current and previous positions are known).</summary>
+    /// <value><see cref="Efl.Input.IInterfaceFingerMoveEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceFingerMoveEvt_Args> FingerMoveEvt
     {
         add
@@ -1282,7 +1305,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event FingerMoveEvt.</summary>
+    /// <summary>Method to raise event FingerMoveEvt.</summary>
     public void OnFingerMoveEvt(Efl.Input.IInterfaceFingerMoveEvt_Args e)
     {
         var key = "_EFL_EVENT_FINGER_MOVE";
@@ -1297,6 +1320,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Finger pressed (finger id is known).</summary>
+    /// <value><see cref="Efl.Input.IInterfaceFingerDownEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceFingerDownEvt_Args> FingerDownEvt
     {
         add
@@ -1336,7 +1360,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event FingerDownEvt.</summary>
+    /// <summary>Method to raise event FingerDownEvt.</summary>
     public void OnFingerDownEvt(Efl.Input.IInterfaceFingerDownEvt_Args e)
     {
         var key = "_EFL_EVENT_FINGER_DOWN";
@@ -1351,6 +1375,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Finger released (finger id is known).</summary>
+    /// <value><see cref="Efl.Input.IInterfaceFingerUpEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceFingerUpEvt_Args> FingerUpEvt
     {
         add
@@ -1390,7 +1415,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event FingerUpEvt.</summary>
+    /// <summary>Method to raise event FingerUpEvt.</summary>
     public void OnFingerUpEvt(Efl.Input.IInterfaceFingerUpEvt_Args e)
     {
         var key = "_EFL_EVENT_FINGER_UP";
@@ -1405,6 +1430,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Keyboard key press.</summary>
+    /// <value><see cref="Efl.Input.IInterfaceKeyDownEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceKeyDownEvt_Args> KeyDownEvt
     {
         add
@@ -1444,7 +1470,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event KeyDownEvt.</summary>
+    /// <summary>Method to raise event KeyDownEvt.</summary>
     public void OnKeyDownEvt(Efl.Input.IInterfaceKeyDownEvt_Args e)
     {
         var key = "_EFL_EVENT_KEY_DOWN";
@@ -1459,6 +1485,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Keyboard key release.</summary>
+    /// <value><see cref="Efl.Input.IInterfaceKeyUpEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceKeyUpEvt_Args> KeyUpEvt
     {
         add
@@ -1498,7 +1525,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event KeyUpEvt.</summary>
+    /// <summary>Method to raise event KeyUpEvt.</summary>
     public void OnKeyUpEvt(Efl.Input.IInterfaceKeyUpEvt_Args e)
     {
         var key = "_EFL_EVENT_KEY_UP";
@@ -1513,6 +1540,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>All input events are on hold or resumed.</summary>
+    /// <value><see cref="Efl.Input.IInterfaceHoldEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceHoldEvt_Args> HoldEvt
     {
         add
@@ -1552,7 +1580,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event HoldEvt.</summary>
+    /// <summary>Method to raise event HoldEvt.</summary>
     public void OnHoldEvt(Efl.Input.IInterfaceHoldEvt_Args e)
     {
         var key = "_EFL_EVENT_HOLD";
@@ -1567,6 +1595,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>A focus in event.</summary>
+    /// <value><see cref="Efl.Input.IInterfaceFocusInEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceFocusInEvt_Args> FocusInEvt
     {
         add
@@ -1606,7 +1635,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event FocusInEvt.</summary>
+    /// <summary>Method to raise event FocusInEvt.</summary>
     public void OnFocusInEvt(Efl.Input.IInterfaceFocusInEvt_Args e)
     {
         var key = "_EFL_EVENT_FOCUS_IN";
@@ -1621,6 +1650,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>A focus out event.</summary>
+    /// <value><see cref="Efl.Input.IInterfaceFocusOutEvt_Args"/></value>
     public event EventHandler<Efl.Input.IInterfaceFocusOutEvt_Args> FocusOutEvt
     {
         add
@@ -1660,7 +1690,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             }
         }
     }
-    ///<summary>Method to raise event FocusOutEvt.</summary>
+    /// <summary>Method to raise event FocusOutEvt.</summary>
     public void OnFocusOutEvt(Efl.Input.IInterfaceFocusOutEvt_Args e)
     {
         var key = "_EFL_EVENT_FOCUS_OUT";
@@ -1675,7 +1705,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Low-level pointer behaviour by device. See <see cref="Efl.Canvas.Object.GetPointerMode"/> and <see cref="Efl.Canvas.Object.SetPointerMode"/> for more explanation.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="dev">The pointer device to set/get the mode. Use <c>null</c> for the default pointer.</param>
     /// <returns>The pointer mode</returns>
     virtual public Efl.Input.ObjectPointerMode GetPointerModeByDevice(Efl.Input.Device dev) {
@@ -1684,7 +1716,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                         return _ret_var;
  }
     /// <summary>Low-level pointer behaviour by device. See <see cref="Efl.Canvas.Object.GetPointerMode"/> and <see cref="Efl.Canvas.Object.SetPointerMode"/> for more explanation.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="dev">The pointer device to set/get the mode. Use <c>null</c> for the default pointer.</param>
     /// <param name="pointer_mode">The pointer mode</param>
     /// <returns><c>true</c> if pointer mode was set, <c>false</c> otherwise</returns>
@@ -1701,7 +1735,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// If the value is <see cref="Efl.Input.ObjectPointerMode.NoGrab"/>, then events will be emitted just when inside this object area.
     /// 
     /// The default value is <see cref="Efl.Input.ObjectPointerMode.AutoGrab"/>. See also: <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> and <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> Note: This function will only set/get the mode for the default pointer.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Input pointer mode</returns>
     virtual public Efl.Input.ObjectPointerMode GetPointerMode() {
          var _ret_var = Efl.Canvas.Object.NativeMethods.efl_canvas_object_pointer_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -1716,7 +1752,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// If the value is <see cref="Efl.Input.ObjectPointerMode.NoGrab"/>, then events will be emitted just when inside this object area.
     /// 
     /// The default value is <see cref="Efl.Input.ObjectPointerMode.AutoGrab"/>. See also: <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> and <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> Note: This function will only set/get the mode for the default pointer.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="pointer_mode">Input pointer mode</param>
     /// <returns><c>true</c> if pointer behaviour was set, <c>false</c> otherwise</returns>
     virtual public bool SetPointerMode(Efl.Input.ObjectPointerMode pointer_mode) {
@@ -1774,6 +1812,31 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// <param name="clipper">The object to clip <c>obj</c> by.</param>
     virtual public void SetClipper(Efl.Canvas.Object clipper) {
                                  Efl.Canvas.Object.NativeMethods.efl_canvas_object_clipper_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),clipper);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>A hint for an object that its size will not change.
+    /// When this flag is set, various optimizations may be employed by the renderer based on the fixed size of the object.
+    /// 
+    /// It is a user error to change the size of an object while this flag is set.
+    /// (Since EFL 1.23)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <returns>Whether the object size is known to be static.</returns>
+    virtual public bool GetHasFixedSize() {
+         var _ret_var = Efl.Canvas.Object.NativeMethods.efl_canvas_object_has_fixed_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>A hint for an object that its size will not change.
+    /// When this flag is set, various optimizations may be employed by the renderer based on the fixed size of the object.
+    /// 
+    /// It is a user error to change the size of an object while this flag is set.
+    /// (Since EFL 1.23)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="enable">Whether the object size is known to be static.</param>
+    virtual public void SetHasFixedSize(bool enable) {
+                                 Efl.Canvas.Object.NativeMethods.efl_canvas_object_has_fixed_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Determine whether an object is set to repeat events.
@@ -1964,7 +2027,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                         return _ret_var;
  }
     /// <summary>Check if this object is focused by a given seat
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat to check if the object is focused. Use <c>null</c> for the default seat.</param>
     /// <returns><c>true</c> if focused or <c>false</c> otherwise.</returns>
     virtual public bool CheckSeatFocus(Efl.Input.Device seat) {
@@ -1976,7 +2041,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Evas allows the Efl.Canvas.Object to be focused by multiple seats at the same time. This function adds a new seat to the focus list. In other words, after the seat is added to the list this object will now be also focused by this new seat.
     /// 
     /// Note: The old focus APIs still work, however they will only act on the default seat.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat that should be added to the focus list. Use <c>null</c> for the default seat.</param>
     /// <returns><c>true</c> if the focus has been set or <c>false</c> otherwise.</returns>
     virtual public bool AddSeatFocus(Efl.Input.Device seat) {
@@ -1985,7 +2052,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                         return _ret_var;
  }
     /// <summary>Remove a seat from the focus list.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat that should be removed from the focus list. Use <c>null</c> for the default seat.</param>
     /// <returns><c>true</c> if the seat was removed from the focus list or <c>false</c> otherwise.</returns>
     virtual public bool DelSeatFocus(Efl.Input.Device seat) {
@@ -2006,7 +2075,7 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// 
     /// <c>keyname</c> is a platform dependent symbolic name for the key pressed.
     /// 
-    /// <c>modifiers</c> and <c>not_modifiers</c> are bit masks of all the modifiers that must and mustn&apos;t, respectively, be pressed along with <c>keyname</c> key in order to trigger this new key grab. Modifiers can be things such as Shift and Ctrl as well as user defined types via @ref evas_key_modifier_add. <c>exclusive</c> will make the given object the only one permitted to grab the given key. If given <c>true</c>, subsequent calls on this function with different <c>obj</c> arguments will fail, unless the key is ungrabbed again.
+    /// <c>modifiers</c> and <c>not_modifiers</c> are bit masks of all the modifiers that must and mustn&apos;t, respectively, be pressed along with <c>keyname</c> key in order to trigger this new key grab. Modifiers can be things such as Shift and Ctrl as well as user defined types via ref evas_key_modifier_add. <c>exclusive</c> will make the given object the only one permitted to grab the given key. If given <c>true</c>, subsequent calls on this function with different <c>obj</c> arguments will fail, unless the key is ungrabbed again.
     /// 
     /// Warning: Providing impossible modifier sets creates undefined behavior.
     /// (Since EFL 1.22)</summary>
@@ -2033,7 +2102,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Returns current canvas&apos;s gesture manager
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>The gesture manager</returns>
     virtual public Efl.Canvas.GestureManager GetGestureManager() {
          var _ret_var = Efl.Canvas.Object.NativeMethods.efl_canvas_object_gesture_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -2046,7 +2117,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// A return value of <c>true</c> indicates the mouse is logically inside the canvas, and <c>false</c> implies it is logically outside the canvas.
     /// 
     /// A canvas begins with the mouse being assumed outside (<c>false</c>).
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat to consider, if <c>null</c> then the default seat will be used.</param>
     /// <returns><c>true</c> if the mouse pointer is inside the canvas, <c>false</c> otherwise</returns>
     virtual public bool GetPointerInside(Efl.Input.Device seat) {
@@ -2203,6 +2276,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Values -1 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <returns>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</returns>
     virtual public Eina.Size2D GetHintSizeMax() {
@@ -2218,6 +2293,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Values -1 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <param name="sz">Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</param>
     virtual public void SetHintSizeMax(Eina.Size2D sz) {
@@ -2225,12 +2302,39 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Get the &quot;intrinsic&quot; maximum size of this object.
+    /// (Since EFL 1.22)</summary>
+    /// <returns>Maximum size (hint) in pixels.</returns>
+    virtual public Eina.Size2D GetHintSizeRestrictedMax() {
+         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>This function is protected as it is meant for widgets to indicate their &quot;intrinsic&quot; maximum size.
+    /// (Since EFL 1.22)</summary>
+    /// <param name="sz">Maximum size (hint) in pixels.</param>
+    virtual public void SetHintSizeRestrictedMax(Eina.Size2D sz) {
+         Eina.Size2D.NativeStruct _in_sz = sz;
+                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_sz);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
+    /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMax"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMax"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s maximum size.
+    /// (Since EFL 1.22)</summary>
+    /// <returns>Maximum size (hint) in pixels.</returns>
+    virtual public Eina.Size2D GetHintSizeCombinedMax() {
+         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_combined_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
     /// <summary>Hints on the object&apos;s minimum size.
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
     /// 
     /// Value 0 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <returns>Minimum size (hint) in pixels.</returns>
     virtual public Eina.Size2D GetHintSizeMin() {
@@ -2244,6 +2348,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Value 0 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <param name="sz">Minimum size (hint) in pixels.</param>
     virtual public void SetHintSizeMin(Eina.Size2D sz) {
@@ -2845,7 +2951,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
          Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_lower_to_bottom_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
-    /// <summary>Check if input events from a given seat is enabled.</summary>
+    /// <summary>Check if input events from a given seat is enabled.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat to act on.</param>
     /// <returns><c>true</c> to enable events for a seat or <c>false</c> otherwise.</returns>
     virtual public bool GetSeatEventFilter(Efl.Input.Device seat) {
@@ -2853,60 +2961,15 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Add or remove a given seat to the filter list. If the filter list is empty this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is in the list.</summary>
+    /// <summary>Add or remove a given seat to the filter list. If the filter list is empty this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is in the list.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat to act on.</param>
     /// <param name="enable"><c>true</c> to enable events for a seat or <c>false</c> otherwise.</param>
     virtual public void SetSeatEventFilter(Efl.Input.Device seat, bool enable) {
                                                          Efl.Input.IInterfaceConcrete.NativeMethods.efl_input_seat_event_filter_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),seat, enable);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Whether this object should be mirrored.
-    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-    /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
-    virtual public bool GetMirrored() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Whether this object should be mirrored.
-    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
-    virtual public void SetMirrored(bool rtl) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rtl);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
-    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
-    /// 
-    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-    /// <returns>Whether the widget uses automatic mirroring</returns>
-    virtual public bool GetMirroredAutomatic() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
-    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
-    /// 
-    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-    /// <param name="automatic">Whether the widget uses automatic mirroring</param>
-    virtual public void SetMirroredAutomatic(bool automatic) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Gets the language for this object.</summary>
-    /// <returns>The current language.</returns>
-    virtual public System.String GetLanguage() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Sets the language for this object.</summary>
-    /// <param name="language">The current language.</param>
-    virtual public void SetLanguage(System.String language) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),language);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>Low-level pointer behaviour.
     /// This function has a direct effect on event callbacks related to pointers (mouse, ...).
     /// 
@@ -2915,7 +2978,9 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// If the value is <see cref="Efl.Input.ObjectPointerMode.NoGrab"/>, then events will be emitted just when inside this object area.
     /// 
     /// The default value is <see cref="Efl.Input.ObjectPointerMode.AutoGrab"/>. See also: <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> and <see cref="Efl.Canvas.Object.GetPointerModeByDevice"/> Note: This function will only set/get the mode for the default pointer.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Input pointer mode</value>
     public Efl.Input.ObjectPointerMode PointerMode {
         get { return GetPointerMode(); }
@@ -2938,6 +3003,18 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     public Efl.Canvas.Object Clipper {
         get { return GetClipper(); }
         set { SetClipper(value); }
+    }
+    /// <summary>A hint for an object that its size will not change.
+    /// When this flag is set, various optimizations may be employed by the renderer based on the fixed size of the object.
+    /// 
+    /// It is a user error to change the size of an object while this flag is set.
+    /// (Since EFL 1.23)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <value>Whether the object size is known to be static.</value>
+    public bool HasFixedSize {
+        get { return GetHasFixedSize(); }
+        set { SetHasFixedSize(value); }
     }
     /// <summary>Determine whether an object is set to repeat events.
     /// (Since EFL 1.22)</summary>
@@ -3021,6 +3098,26 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         get { return GetNoRender(); }
         set { SetNoRender(value); }
     }
+    /// <summary>Retrieves the general/main color of the given Evas object.
+    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
+    /// (Since EFL 1.22)</summary>
+    public (int, int, int, int) Color {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <value>the hex color code.</value>
@@ -3070,6 +3167,21 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         get { return GetScale(); }
         set { SetScale(value); }
     }
+    /// <summary>Defines the aspect ratio to respect when scaling this object.
+    /// The aspect ratio is defined as the width / height ratio of the object. Depending on the object and its container, this hint may or may not be fully respected.
+    /// 
+    /// If any of the given aspect ratio terms are 0, the object&apos;s container will ignore the aspect and scale this object to occupy the whole available area, for any given policy.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Mode of interpretation.</value>
+    public (Efl.Gfx.HintAspect, Eina.Size2D) HintAspect {
+        get {
+            Efl.Gfx.HintAspect _out_mode = default(Efl.Gfx.HintAspect);
+            Eina.Size2D _out_sz = default(Eina.Size2D);
+            GetHintAspect(out _out_mode,out _out_sz);
+            return (_out_mode,_out_sz);
+        }
+        set { SetHintAspect( value.Item1,  value.Item2); }
+    }
     /// <summary>Hints on the object&apos;s maximum size.
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
     /// 
@@ -3078,11 +3190,34 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Values -1 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <value>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</value>
     public Eina.Size2D HintSizeMax {
         get { return GetHintSizeMax(); }
         set { SetHintSizeMax(value); }
+    }
+    /// <summary>Internal hints for an object&apos;s maximum size.
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Values -1 will be treated as unset hint components, when queried by managers.
+    /// 
+    /// Note: This property is internal and meant for widget developers to define the absolute maximum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Applications should use <see cref="Efl.Gfx.IHint.HintSizeMax"/> instead.
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Maximum size (hint) in pixels.</value>
+    public Eina.Size2D HintSizeRestrictedMax {
+        get { return GetHintSizeRestrictedMax(); }
+        set { SetHintSizeRestrictedMax(value); }
+    }
+    /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
+    /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMax"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMax"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s maximum size.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Maximum size (hint) in pixels.</value>
+    public Eina.Size2D HintSizeCombinedMax {
+        get { return GetHintSizeCombinedMax(); }
     }
     /// <summary>Hints on the object&apos;s minimum size.
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate. The object container is in charge of fetching this property and placing the object accordingly.
@@ -3090,6 +3225,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Value 0 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: This property is meant to be set by applications and not by EFL itself. Use this to request a specific size (treated as minimum size).
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeMin {
@@ -3102,6 +3239,8 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// Values 0 will be treated as unset hint components, when queried by managers.
     /// 
     /// Note: This property is internal and meant for widget developers to define the absolute minimum size of the object. EFL itself sets this size internally, so any change to it from an application might be ignored. Use <see cref="Efl.Gfx.IHint.HintSizeMin"/> instead.
+    /// 
+    /// Note: It is an error for the <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> to be smaller in either axis than <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/>. In this scenario, the max size hint will be prioritized over the user min size hint.
     /// (Since EFL 1.22)</summary>
     /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeRestrictedMin {
@@ -3114,6 +3253,80 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeCombinedMin {
         get { return GetHintSizeCombinedMin(); }
+    }
+    /// <summary>Hints for an object&apos;s margin or padding space.
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// The object container is in charge of fetching this property and placing the object accordingly.
+    /// 
+    /// Note: Smart objects (such as elementary) can have their own hint policy. So calling this API may or may not affect the size of smart objects.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Integer to specify left padding.</value>
+    public (int, int, int, int) HintMargin {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetHintMargin(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+        set { SetHintMargin( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Hints for an object&apos;s weight.
+    /// This is a hint on how a container object should resize a given child within its area. Containers may adhere to the simpler logic of just expanding the child object&apos;s dimensions to fit its own (see the <see cref="Efl.Gfx.Constants.HintExpand"/> helper weight macro) or the complete one of taking each child&apos;s weight hint as real weights to how much of its size to allocate for them in each axis. A container is supposed to, after normalizing the weights of its children (with weight  hints), distribut the space it has to layout them by those factors -- most weighted children get larger in this process than the least ones.
+    /// 
+    /// Accepted values are zero or positive values. Some containers might use this hint as a boolean, but some others might consider it as a proportion, see documentation of each container.
+    /// 
+    /// Note: Default weight hint values are 0.0, for both axis.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Non-negative double value to use as horizontal weight hint.</value>
+    public (double, double) HintWeight {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetHintWeight(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetHintWeight( value.Item1,  value.Item2); }
+    }
+    /// <summary>Hints for an object&apos;s alignment.
+    /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
+    /// 
+    /// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+    /// 
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Note: Default alignment hint values are 0.5, for both axes.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Double, ranging from 0.0 to 1.0.</value>
+    public (double, double) HintAlign {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetHintAlign(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetHintAlign( value.Item1,  value.Item2); }
+    }
+    /// <summary>Hints for an object&apos;s fill property that used to specify &quot;justify&quot; or &quot;fill&quot; by some users. <see cref="Efl.Gfx.IHint.GetHintFill"/> specify whether to fill the space inside the boundaries of a container/manager.
+    /// Maximum hints should be enforced with higher priority, if they are set. Also, any <see cref="Efl.Gfx.IHint.GetHintMargin"/> set on objects should add up to the object space on the final scene composition.
+    /// 
+    /// See documentation of possible users: in Evas, they are the <see cref="Efl.Ui.Box"/> &quot;box&quot; and <see cref="Efl.Ui.Table"/> &quot;table&quot; smart objects.
+    /// 
+    /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
+    /// 
+    /// Note: Default fill hint values are true, for both axes.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> if to fill the object space, <c>false</c> otherwise, to use as horizontal fill hint.</value>
+    public (bool, bool) HintFill {
+        get {
+            bool _out_x = default(bool);
+            bool _out_y = default(bool);
+            GetHintFill(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetHintFill( value.Item1,  value.Item2); }
     }
     /// <summary>Number of points of a map.
     /// This sets the number of points of map. Currently, the number of points must be multiples of 4.
@@ -3173,28 +3386,6 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Above {
         get { return GetAbove(); }
-    }
-    /// <summary>Whether this object should be mirrored.
-    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-    /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
-    public bool Mirrored {
-        get { return GetMirrored(); }
-        set { SetMirrored(value); }
-    }
-    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
-    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
-    /// 
-    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-    /// <value>Whether the widget uses automatic mirroring</value>
-    public bool MirroredAutomatic {
-        get { return GetMirroredAutomatic(); }
-        set { SetMirroredAutomatic(value); }
-    }
-    /// <summary>The (human) language for this object.</summary>
-    /// <value>The current language.</value>
-    public System.String Language {
-        get { return GetLanguage(); }
-        set { SetLanguage(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -3290,6 +3481,26 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             if (methods.FirstOrDefault(m => m.Name == "SetClipper") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_object_clipper_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_object_clipper_set_static_delegate) });
+            }
+
+            if (efl_canvas_object_has_fixed_size_get_static_delegate == null)
+            {
+                efl_canvas_object_has_fixed_size_get_static_delegate = new efl_canvas_object_has_fixed_size_get_delegate(has_fixed_size_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetHasFixedSize") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_object_has_fixed_size_get"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_object_has_fixed_size_get_static_delegate) });
+            }
+
+            if (efl_canvas_object_has_fixed_size_set_static_delegate == null)
+            {
+                efl_canvas_object_has_fixed_size_set_static_delegate = new efl_canvas_object_has_fixed_size_set_delegate(has_fixed_size_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetHasFixedSize") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_object_has_fixed_size_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_object_has_fixed_size_set_static_delegate) });
             }
 
             if (efl_canvas_object_repeat_events_get_static_delegate == null)
@@ -3750,6 +3961,36 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
             if (methods.FirstOrDefault(m => m.Name == "SetHintSizeMax") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_max_set_static_delegate) });
+            }
+
+            if (efl_gfx_hint_size_restricted_max_get_static_delegate == null)
+            {
+                efl_gfx_hint_size_restricted_max_get_static_delegate = new efl_gfx_hint_size_restricted_max_get_delegate(hint_size_restricted_max_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetHintSizeRestrictedMax") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_max_get_static_delegate) });
+            }
+
+            if (efl_gfx_hint_size_restricted_max_set_static_delegate == null)
+            {
+                efl_gfx_hint_size_restricted_max_set_static_delegate = new efl_gfx_hint_size_restricted_max_set_delegate(hint_size_restricted_max_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetHintSizeRestrictedMax") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_max_set_static_delegate) });
+            }
+
+            if (efl_gfx_hint_size_combined_max_get_static_delegate == null)
+            {
+                efl_gfx_hint_size_combined_max_get_static_delegate = new efl_gfx_hint_size_combined_max_get_delegate(hint_size_combined_max_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetHintSizeCombinedMax") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_combined_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_combined_max_get_static_delegate) });
             }
 
             if (efl_gfx_hint_size_min_get_static_delegate == null)
@@ -4262,66 +4503,6 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_seat_event_filter_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_seat_event_filter_set_static_delegate) });
             }
 
-            if (efl_ui_mirrored_get_static_delegate == null)
-            {
-                efl_ui_mirrored_get_static_delegate = new efl_ui_mirrored_get_delegate(mirrored_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetMirrored") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_get_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_set_static_delegate == null)
-            {
-                efl_ui_mirrored_set_static_delegate = new efl_ui_mirrored_set_delegate(mirrored_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetMirrored") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_set_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_automatic_get_static_delegate == null)
-            {
-                efl_ui_mirrored_automatic_get_static_delegate = new efl_ui_mirrored_automatic_get_delegate(mirrored_automatic_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetMirroredAutomatic") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_get_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_automatic_set_static_delegate == null)
-            {
-                efl_ui_mirrored_automatic_set_static_delegate = new efl_ui_mirrored_automatic_set_delegate(mirrored_automatic_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetMirroredAutomatic") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_set_static_delegate) });
-            }
-
-            if (efl_ui_language_get_static_delegate == null)
-            {
-                efl_ui_language_get_static_delegate = new efl_ui_language_get_delegate(language_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetLanguage") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_get_static_delegate) });
-            }
-
-            if (efl_ui_language_set_static_delegate == null)
-            {
-                efl_ui_language_set_static_delegate = new efl_ui_language_set_delegate(language_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetLanguage") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_set_static_delegate) });
-            }
-
             descs.AddRange(base.GetEoOps(type));
             return descs;
         }
@@ -4619,6 +4800,77 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         }
 
         private static efl_canvas_object_clipper_set_delegate efl_canvas_object_clipper_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_canvas_object_has_fixed_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_canvas_object_has_fixed_size_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_canvas_object_has_fixed_size_get_api_delegate> efl_canvas_object_has_fixed_size_get_ptr = new Efl.Eo.FunctionWrapper<efl_canvas_object_has_fixed_size_get_api_delegate>(Module, "efl_canvas_object_has_fixed_size_get");
+
+        private static bool has_fixed_size_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_canvas_object_has_fixed_size_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Object)ws.Target).GetHasFixedSize();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_canvas_object_has_fixed_size_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_canvas_object_has_fixed_size_get_delegate efl_canvas_object_has_fixed_size_get_static_delegate;
+
+        
+        private delegate void efl_canvas_object_has_fixed_size_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool enable);
+
+        
+        public delegate void efl_canvas_object_has_fixed_size_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool enable);
+
+        public static Efl.Eo.FunctionWrapper<efl_canvas_object_has_fixed_size_set_api_delegate> efl_canvas_object_has_fixed_size_set_ptr = new Efl.Eo.FunctionWrapper<efl_canvas_object_has_fixed_size_set_api_delegate>(Module, "efl_canvas_object_has_fixed_size_set");
+
+        private static void has_fixed_size_set(System.IntPtr obj, System.IntPtr pd, bool enable)
+        {
+            Eina.Log.Debug("function efl_canvas_object_has_fixed_size_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Object)ws.Target).SetHasFixedSize(enable);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_canvas_object_has_fixed_size_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), enable);
+            }
+        }
+
+        private static efl_canvas_object_has_fixed_size_set_delegate efl_canvas_object_has_fixed_size_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_canvas_object_repeat_events_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -6263,6 +6515,114 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
         }
 
         private static efl_gfx_hint_size_max_set_delegate efl_gfx_hint_size_max_set_static_delegate;
+
+        
+        private delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_restricted_max_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_restricted_max_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_get_api_delegate> efl_gfx_hint_size_restricted_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_get_api_delegate>(Module, "efl_gfx_hint_size_restricted_max_get");
+
+        private static Eina.Size2D.NativeStruct hint_size_restricted_max_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_hint_size_restricted_max_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Size2D _ret_var = default(Eina.Size2D);
+                try
+                {
+                    _ret_var = ((Object)ws.Target).GetHintSizeRestrictedMax();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_hint_size_restricted_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_hint_size_restricted_max_get_delegate efl_gfx_hint_size_restricted_max_get_static_delegate;
+
+        
+        private delegate void efl_gfx_hint_size_restricted_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Size2D.NativeStruct sz);
+
+        
+        public delegate void efl_gfx_hint_size_restricted_max_set_api_delegate(System.IntPtr obj,  Eina.Size2D.NativeStruct sz);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_set_api_delegate> efl_gfx_hint_size_restricted_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_set_api_delegate>(Module, "efl_gfx_hint_size_restricted_max_set");
+
+        private static void hint_size_restricted_max_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
+        {
+            Eina.Log.Debug("function efl_gfx_hint_size_restricted_max_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+        Eina.Size2D _in_sz = sz;
+                            
+                try
+                {
+                    ((Object)ws.Target).SetHintSizeRestrictedMax(_in_sz);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_hint_size_restricted_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), sz);
+            }
+        }
+
+        private static efl_gfx_hint_size_restricted_max_set_delegate efl_gfx_hint_size_restricted_max_set_static_delegate;
+
+        
+        private delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_combined_max_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_combined_max_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_hint_size_combined_max_get_api_delegate> efl_gfx_hint_size_combined_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_hint_size_combined_max_get_api_delegate>(Module, "efl_gfx_hint_size_combined_max_get");
+
+        private static Eina.Size2D.NativeStruct hint_size_combined_max_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_hint_size_combined_max_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Size2D _ret_var = default(Eina.Size2D);
+                try
+                {
+                    _ret_var = ((Object)ws.Target).GetHintSizeCombinedMax();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_hint_size_combined_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_hint_size_combined_max_get_delegate efl_gfx_hint_size_combined_max_get_static_delegate;
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_min_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -8063,219 +8423,6 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
 
         private static efl_input_seat_event_filter_set_delegate efl_input_seat_event_filter_set_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_mirrored_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_mirrored_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate> efl_ui_mirrored_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate>(Module, "efl_ui_mirrored_get");
-
-        private static bool mirrored_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Object)ws.Target).GetMirrored();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_mirrored_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_mirrored_get_delegate efl_ui_mirrored_get_static_delegate;
-
-        
-        private delegate void efl_ui_mirrored_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool rtl);
-
-        
-        public delegate void efl_ui_mirrored_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool rtl);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate> efl_ui_mirrored_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate>(Module, "efl_ui_mirrored_set");
-
-        private static void mirrored_set(System.IntPtr obj, System.IntPtr pd, bool rtl)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Object)ws.Target).SetMirrored(rtl);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_mirrored_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), rtl);
-            }
-        }
-
-        private static efl_ui_mirrored_set_delegate efl_ui_mirrored_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_mirrored_automatic_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_mirrored_automatic_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate> efl_ui_mirrored_automatic_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate>(Module, "efl_ui_mirrored_automatic_get");
-
-        private static bool mirrored_automatic_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_automatic_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Object)ws.Target).GetMirroredAutomatic();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_mirrored_automatic_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_mirrored_automatic_get_delegate efl_ui_mirrored_automatic_get_static_delegate;
-
-        
-        private delegate void efl_ui_mirrored_automatic_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool automatic);
-
-        
-        public delegate void efl_ui_mirrored_automatic_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool automatic);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate> efl_ui_mirrored_automatic_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate>(Module, "efl_ui_mirrored_automatic_set");
-
-        private static void mirrored_automatic_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_automatic_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Object)ws.Target).SetMirroredAutomatic(automatic);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_mirrored_automatic_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), automatic);
-            }
-        }
-
-        private static efl_ui_mirrored_automatic_set_delegate efl_ui_mirrored_automatic_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_ui_language_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_ui_language_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate> efl_ui_language_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate>(Module, "efl_ui_language_get");
-
-        private static System.String language_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_language_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Object)ws.Target).GetLanguage();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_language_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_language_get_delegate efl_ui_language_get_static_delegate;
-
-        
-        private delegate void efl_ui_language_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
-
-        
-        public delegate void efl_ui_language_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate> efl_ui_language_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate>(Module, "efl_ui_language_set");
-
-        private static void language_set(System.IntPtr obj, System.IntPtr pd, System.String language)
-        {
-            Eina.Log.Debug("function efl_ui_language_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Object)ws.Target).SetLanguage(language);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_language_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), language);
-            }
-        }
-
-        private static efl_ui_language_set_delegate efl_ui_language_set_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -8284,6 +8431,137 @@ public abstract class Object : Efl.LoopConsumer, Efl.Canvas.IPointer, Efl.Gestur
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasObject_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Efl.Input.ObjectPointerMode> PointerMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Efl.Input.ObjectPointerMode>("pointer_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.RenderOp> RenderOp<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Efl.Gfx.RenderOp>("render_op", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.Object> Clipper<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Efl.Canvas.Object>("clipper", fac);
+    }
+
+    public static Efl.BindableProperty<bool> HasFixedSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("has_fixed_size", fac);
+    }
+
+    public static Efl.BindableProperty<bool> RepeatEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("repeat_events", fac);
+    }
+
+    public static Efl.BindableProperty<bool> KeyFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("key_focus", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> PreciseIsInside<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("precise_is_inside", fac);
+    }
+
+    public static Efl.BindableProperty<bool> PropagateEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("propagate_events", fac);
+    }
+
+    public static Efl.BindableProperty<bool> PassEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("pass_events", fac);
+    }
+
+    public static Efl.BindableProperty<bool> AntiAlias<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("anti_alias", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.TextBidirectionalType> ParagraphDirection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Efl.TextBidirectionalType>("paragraph_direction", fac);
+    }
+
+    public static Efl.BindableProperty<bool> NoRender<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("no_render", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<System.String>("color_code", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Size2D> HintSizeMax<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_size_max", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> HintSizeRestrictedMax<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_size_restricted_max", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Size2D> HintSizeMin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_size_min", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> HintSizeRestrictedMin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_size_restricted_min", fac);
+    }
+
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<int> MappingPointCount<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<int>("mapping_point_count", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> MappingSmooth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("mapping_smooth", fac);
+    }
+
+    public static Efl.BindableProperty<bool> MappingAlpha<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<bool>("mapping_alpha", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Object, T>magic = null) where T : Efl.Canvas.Object {
+        return new Efl.BindableProperty<short>("layer", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Canvas {
@@ -8293,10 +8571,10 @@ namespace Canvas {
 [Efl.Eo.BindingEntity]
 public struct ObjectAnimationEvent
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ObjectAnimationEvent(IntPtr ptr)
     {
         var tmp = (ObjectAnimationEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ObjectAnimationEvent.NativeStruct));
@@ -8305,19 +8583,19 @@ public struct ObjectAnimationEvent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ObjectAnimationEvent.</summary>
+    /// <summary>Internal wrapper for struct ObjectAnimationEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ObjectAnimationEvent.NativeStruct(ObjectAnimationEvent _external_struct)
         {
             var _internal_struct = new ObjectAnimationEvent.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ObjectAnimationEvent(ObjectAnimationEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new ObjectAnimationEvent();
@@ -8342,16 +8620,18 @@ namespace Efl {
 public struct EventAnimatorTick
 {
     /// <summary>Area of the canvas that will be pushed to screen.</summary>
+    /// <value>A rectangle in pixel dimensions.</value>
     public Eina.Rect Update_area;
-    ///<summary>Constructor for EventAnimatorTick.</summary>
+    /// <summary>Constructor for EventAnimatorTick.</summary>
+    /// <param name="Update_area">Area of the canvas that will be pushed to screen.</param>;
     public EventAnimatorTick(
         Eina.Rect Update_area = default(Eina.Rect)    )
     {
         this.Update_area = Update_area;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EventAnimatorTick(IntPtr ptr)
     {
         var tmp = (EventAnimatorTick.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EventAnimatorTick.NativeStruct));
@@ -8360,13 +8640,13 @@ public struct EventAnimatorTick
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EventAnimatorTick.</summary>
+    /// <summary>Internal wrapper for struct EventAnimatorTick.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public Eina.Rect.NativeStruct Update_area;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EventAnimatorTick.NativeStruct(EventAnimatorTick _external_struct)
         {
             var _internal_struct = new EventAnimatorTick.NativeStruct();
@@ -8374,7 +8654,7 @@ public struct EventAnimatorTick
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EventAnimatorTick(EventAnimatorTick.NativeStruct _internal_struct)
         {
             var _external_struct = new EventAnimatorTick();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -79,11 +80,12 @@ internal class EflFilterModelWrapper : IDisposable
 namespace Efl {
 
 /// <summary>Efl model designed to filter its children.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.FilterModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class FilterModel : Efl.CompositeModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -127,7 +129,8 @@ public class FilterModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected FilterModel(ConstructingHandle ch) : base(ch)
     {
@@ -235,3 +238,9 @@ public class FilterModel : Efl.CompositeModel
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflFilterModel_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

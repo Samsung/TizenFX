@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics container class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Container.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Container : Efl.Canvas.Vg.Node
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public class Container : Efl.Canvas.Vg.Node
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Container(ConstructingHandle ch) : base(ch)
     {
@@ -208,3 +211,9 @@ public class Container : Efl.Canvas.Vg.Node
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgContainer_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

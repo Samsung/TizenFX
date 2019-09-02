@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,11 +14,12 @@ namespace Canvas {
 /// A gesture class defines a method that spcific gesture event and privides information about the gesture&apos;s type, state, and associated pointer information.
 /// 
 /// For cetain gesture types, additional methods are defined to provide meaningful gesture information to the user.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Gesture.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Gesture : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -43,7 +45,8 @@ public abstract class Gesture : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Gesture(ConstructingHandle ch) : base(ch)
     {
@@ -439,3 +442,21 @@ public abstract class Gesture : Efl.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasGesture_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.GestureState> State<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Gesture, T>magic = null) where T : Efl.Canvas.Gesture {
+        return new Efl.BindableProperty<Efl.Canvas.GestureState>("state", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> Hotspot<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Gesture, T>magic = null) where T : Efl.Canvas.Gesture {
+        return new Efl.BindableProperty<Eina.Position2D>("hotspot", fac);
+    }
+
+    public static Efl.BindableProperty<uint> Timestamp<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Gesture, T>magic = null) where T : Efl.Canvas.Gesture {
+        return new Efl.BindableProperty<uint>("timestamp", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

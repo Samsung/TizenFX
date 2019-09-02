@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,54 +10,62 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.ChangedUserEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.ChangedUserEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextChangedUserEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>The text object has changed due to user interaction</value>
     public Efl.Ui.TextChangeInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.ValidateEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.ValidateEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextValidateEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when validating</value>
     public Elm.ValidateContent arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorDownEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorDownEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextAnchorDownEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called on anchor down</value>
     public Elm.EntryAnchorInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorHoverOpenedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorHoverOpenedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextAnchorHoverOpenedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when hover opened</value>
     public Elm.EntryAnchorHoverInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorInEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorInEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextAnchorInEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called on anchor in</value>
     public Elm.EntryAnchorInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorOutEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorOutEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextAnchorOutEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called on anchor out</value>
     public Elm.EntryAnchorInfo arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorUpEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Text.AnchorUpEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TextAnchorUpEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>called on anchor up</value>
     public Elm.EntryAnchorInfo arg { get; set; }
 }
-/// <summary>Efl UI text class</summary>
+/// <summary>A flexible text widget which can be static (as a label) or editable by the user (as a text entry). It provides all sorts of editing facilities like automatic scrollbars, virtual keyboard, clipboard, configurable context menus, password mode or autocapitalization, for example.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Text.NativeMethods]
 [Efl.Eo.BindingEntity]
-public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.ITextFormat, Efl.ITextInteractive, Efl.ITextMarkup, Efl.ITextStyle, Efl.Access.IText, Efl.Access.Editable.IText, Efl.Ui.IClickable, Efl.Ui.ISelectable
+public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.ITextFormat, Efl.ITextInteractive, Efl.ITextMarkup, Efl.ITextStyle, Efl.Access.IText, Efl.Access.Editable.IText, Efl.Input.IClickable, Efl.Ui.ITextSelectable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -88,7 +97,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Text(ConstructingHandle ch) : base(ch)
     {
@@ -148,7 +158,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ChangedEvt.</summary>
+    /// <summary>Method to raise event ChangedEvt.</summary>
     public void OnChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_CHANGED";
@@ -162,6 +172,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>The text object has changed due to user interaction</summary>
+    /// <value><see cref="Efl.Ui.TextChangedUserEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextChangedUserEvt_Args> ChangedUserEvt
     {
         add
@@ -201,7 +212,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ChangedUserEvt.</summary>
+    /// <summary>Method to raise event ChangedUserEvt.</summary>
     public void OnChangedUserEvt(Efl.Ui.TextChangedUserEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_CHANGED_USER";
@@ -224,6 +235,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when validating</summary>
+    /// <value><see cref="Efl.Ui.TextValidateEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextValidateEvt_Args> ValidateEvt
     {
         add
@@ -263,7 +275,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ValidateEvt.</summary>
+    /// <summary>Method to raise event ValidateEvt.</summary>
     public void OnValidateEvt(Efl.Ui.TextValidateEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_VALIDATE";
@@ -323,7 +335,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ContextOpenEvt.</summary>
+    /// <summary>Method to raise event ContextOpenEvt.</summary>
     public void OnContextOpenEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_CONTEXT_OPEN";
@@ -375,7 +387,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event PreeditChangedEvt.</summary>
+    /// <summary>Method to raise event PreeditChangedEvt.</summary>
     public void OnPreeditChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_PREEDIT_CHANGED";
@@ -427,7 +439,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event PressEvt.</summary>
+    /// <summary>Method to raise event PressEvt.</summary>
     public void OnPressEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_PRESS";
@@ -479,7 +491,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event RedoRequestEvt.</summary>
+    /// <summary>Method to raise event RedoRequestEvt.</summary>
     public void OnRedoRequestEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_REDO_REQUEST";
@@ -531,7 +543,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event UndoRequestEvt.</summary>
+    /// <summary>Method to raise event UndoRequestEvt.</summary>
     public void OnUndoRequestEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_UNDO_REQUEST";
@@ -583,7 +595,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AbortedEvt.</summary>
+    /// <summary>Method to raise event AbortedEvt.</summary>
     public void OnAbortedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ABORTED";
@@ -597,6 +609,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called on anchor down</summary>
+    /// <value><see cref="Efl.Ui.TextAnchorDownEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextAnchorDownEvt_Args> AnchorDownEvt
     {
         add
@@ -636,7 +649,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AnchorDownEvt.</summary>
+    /// <summary>Method to raise event AnchorDownEvt.</summary>
     public void OnAnchorDownEvt(Efl.Ui.TextAnchorDownEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ANCHOR_DOWN";
@@ -658,6 +671,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when hover opened</summary>
+    /// <value><see cref="Efl.Ui.TextAnchorHoverOpenedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextAnchorHoverOpenedEvt_Args> AnchorHoverOpenedEvt
     {
         add
@@ -697,7 +711,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AnchorHoverOpenedEvt.</summary>
+    /// <summary>Method to raise event AnchorHoverOpenedEvt.</summary>
     public void OnAnchorHoverOpenedEvt(Efl.Ui.TextAnchorHoverOpenedEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ANCHOR_HOVER_OPENED";
@@ -719,6 +733,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called on anchor in</summary>
+    /// <value><see cref="Efl.Ui.TextAnchorInEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextAnchorInEvt_Args> AnchorInEvt
     {
         add
@@ -758,7 +773,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AnchorInEvt.</summary>
+    /// <summary>Method to raise event AnchorInEvt.</summary>
     public void OnAnchorInEvt(Efl.Ui.TextAnchorInEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ANCHOR_IN";
@@ -780,6 +795,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called on anchor out</summary>
+    /// <value><see cref="Efl.Ui.TextAnchorOutEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextAnchorOutEvt_Args> AnchorOutEvt
     {
         add
@@ -819,7 +835,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AnchorOutEvt.</summary>
+    /// <summary>Method to raise event AnchorOutEvt.</summary>
     public void OnAnchorOutEvt(Efl.Ui.TextAnchorOutEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ANCHOR_OUT";
@@ -841,6 +857,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>called on anchor up</summary>
+    /// <value><see cref="Efl.Ui.TextAnchorUpEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TextAnchorUpEvt_Args> AnchorUpEvt
     {
         add
@@ -880,7 +897,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AnchorUpEvt.</summary>
+    /// <summary>Method to raise event AnchorUpEvt.</summary>
     public void OnAnchorUpEvt(Efl.Ui.TextAnchorUpEvt_Args e)
     {
         var key = "_EFL_UI_TEXT_EVENT_ANCHOR_UP";
@@ -940,7 +957,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event CursorChangedManualEvt.</summary>
+    /// <summary>Method to raise event CursorChangedManualEvt.</summary>
     public void OnCursorChangedManualEvt(EventArgs e)
     {
         var key = "_EFL_UI_TEXT_EVENT_CURSOR_CHANGED_MANUAL";
@@ -992,7 +1009,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event TextSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event TextSelectionChangedEvt.</summary>
     public void OnTextSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_TEXT_INTERACTIVE_EVENT_TEXT_SELECTION_CHANGED";
@@ -1044,7 +1061,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AccessTextCaretMovedEvt.</summary>
+    /// <summary>Method to raise event AccessTextCaretMovedEvt.</summary>
     public void OnAccessTextCaretMovedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED";
@@ -1058,6 +1075,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Text was inserted</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextInsertedEvt_Args"/></value>
     public event EventHandler<Efl.Access.ITextAccessTextInsertedEvt_Args> AccessTextInsertedEvt
     {
         add
@@ -1097,7 +1115,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AccessTextInsertedEvt.</summary>
+    /// <summary>Method to raise event AccessTextInsertedEvt.</summary>
     public void OnAccessTextInsertedEvt(Efl.Access.ITextAccessTextInsertedEvt_Args e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED";
@@ -1120,6 +1138,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Text was removed</summary>
+    /// <value><see cref="Efl.Access.ITextAccessTextRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Access.ITextAccessTextRemovedEvt_Args> AccessTextRemovedEvt
     {
         add
@@ -1159,7 +1178,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AccessTextRemovedEvt.</summary>
+    /// <summary>Method to raise event AccessTextRemovedEvt.</summary>
     public void OnAccessTextRemovedEvt(Efl.Access.ITextAccessTextRemovedEvt_Args e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED";
@@ -1220,7 +1239,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event AccessTextSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event AccessTextSelectionChangedEvt.</summary>
     public void OnAccessTextSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED";
@@ -1234,7 +1253,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedEvt_Args> ClickedEvt
+    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt
     {
         add
         {
@@ -1245,7 +1265,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IClickableClickedEvt_Args args = new Efl.Ui.IClickableClickedEvt_Args();
+                        Efl.Input.IClickableClickedEvt_Args args = new Efl.Input.IClickableClickedEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1259,7 +1279,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_CLICKED";
+                string key = "_EFL_INPUT_EVENT_CLICKED";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -1268,15 +1288,15 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_CLICKED";
+                string key = "_EFL_INPUT_EVENT_CLICKED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(Efl.Ui.IClickableClickedEvt_Args e)
+    /// <summary>Method to raise event ClickedEvt.</summary>
+    public void OnClickedEvt(Efl.Input.IClickableClickedEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_CLICKED";
+        var key = "_EFL_INPUT_EVENT_CLICKED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -1296,7 +1316,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedAnyEvt_Args> ClickedAnyEvt
+    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt
     {
         add
         {
@@ -1307,7 +1328,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IClickableClickedAnyEvt_Args args = new Efl.Ui.IClickableClickedAnyEvt_Args();
+                        Efl.Input.IClickableClickedAnyEvt_Args args = new Efl.Input.IClickableClickedAnyEvt_Args();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1321,7 +1342,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -1330,15 +1351,15 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ClickedAnyEvt.</summary>
-    public void OnClickedAnyEvt(Efl.Ui.IClickableClickedAnyEvt_Args e)
+    /// <summary>Method to raise event ClickedAnyEvt.</summary>
+    public void OnClickedAnyEvt(Efl.Input.IClickableClickedAnyEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_CLICKED_ANY";
+        var key = "_EFL_INPUT_EVENT_CLICKED_ANY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -1358,7 +1379,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
+    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt
     {
         add
         {
@@ -1369,7 +1391,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
+                        Efl.Input.IClickablePressedEvt_Args args = new Efl.Input.IClickablePressedEvt_Args();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -1383,7 +1405,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_PRESSED";
+                string key = "_EFL_INPUT_EVENT_PRESSED";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -1392,15 +1414,15 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_PRESSED";
+                string key = "_EFL_INPUT_EVENT_PRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
+    /// <summary>Method to raise event PressedEvt.</summary>
+    public void OnPressedEvt(Efl.Input.IClickablePressedEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_PRESSED";
+        var key = "_EFL_INPUT_EVENT_PRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -1419,7 +1441,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
+    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt
     {
         add
         {
@@ -1430,7 +1453,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
+                        Efl.Input.IClickableUnpressedEvt_Args args = new Efl.Input.IClickableUnpressedEvt_Args();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -1444,7 +1467,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_UNPRESSED";
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -1453,15 +1476,15 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_UNPRESSED";
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
+    /// <summary>Method to raise event UnpressedEvt.</summary>
+    public void OnUnpressedEvt(Efl.Input.IClickableUnpressedEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_UNPRESSED";
+        var key = "_EFL_INPUT_EVENT_UNPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -1480,7 +1503,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         }
     }
     /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
+    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt
     {
         add
         {
@@ -1491,7 +1515,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
+                        Efl.Input.IClickableLongpressedEvt_Args args = new Efl.Input.IClickableLongpressedEvt_Args();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -1505,7 +1529,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -1514,15 +1538,15 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
+    /// <summary>Method to raise event LongpressedEvt.</summary>
+    public void OnLongpressedEvt(Efl.Input.IClickableLongpressedEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_LONGPRESSED";
+        var key = "_EFL_INPUT_EVENT_LONGPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -1539,114 +1563,6 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         {
             Marshal.FreeHGlobal(info);
         }
-    }
-    /// <summary>Called when selected</summary>
-    public event EventHandler<Efl.Ui.ISelectableItemSelectedEvt_Args> ItemSelectedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.ISelectableItemSelectedEvt_Args args = new Efl.Ui.ISelectableItemSelectedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ItemSelectedEvt.</summary>
-    public void OnItemSelectedEvt(Efl.Ui.ISelectableItemSelectedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_ITEM_SELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when no longer selected</summary>
-    public event EventHandler<Efl.Ui.ISelectableItemUnselectedEvt_Args> ItemUnselectedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.ISelectableItemUnselectedEvt_Args args = new Efl.Ui.ISelectableItemUnselectedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ItemUnselectedEvt.</summary>
-    public void OnItemUnselectedEvt(Efl.Ui.ISelectableItemUnselectedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Called when selection is pasted</summary>
     public event EventHandler SelectionPasteEvt
@@ -1687,7 +1603,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionPasteEvt.</summary>
+    /// <summary>Method to raise event SelectionPasteEvt.</summary>
     public void OnSelectionPasteEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_PASTE";
@@ -1739,7 +1655,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionCopyEvt.</summary>
+    /// <summary>Method to raise event SelectionCopyEvt.</summary>
     public void OnSelectionCopyEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_COPY";
@@ -1791,7 +1707,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionCutEvt.</summary>
+    /// <summary>Method to raise event SelectionCutEvt.</summary>
     public void OnSelectionCutEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CUT";
@@ -1843,7 +1759,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionStartEvt.</summary>
+    /// <summary>Method to raise event SelectionStartEvt.</summary>
     public void OnSelectionStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_START";
@@ -1895,7 +1811,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionChangedEvt.</summary>
+    /// <summary>Method to raise event SelectionChangedEvt.</summary>
     public void OnSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CHANGED";
@@ -1947,7 +1863,7 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SelectionClearedEvt.</summary>
+    /// <summary>Method to raise event SelectionClearedEvt.</summary>
     public void OnSelectionClearedEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTION_CLEARED";
@@ -1960,17 +1876,17 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Get the scrollable state of the entry
-    /// Normally the entry is not scrollable. This gets the scrollable state of the entry.</summary>
-    /// <returns><c>true</c> if it is to be scrollable, <c>false</c> otherwise.</returns>
+    /// <summary>Enable or disable scrolling in the widget.
+    /// When scrolling is enabled scrollbars will appear if the text does not fit the widget size.</summary>
+    /// <returns><c>true</c> to enable scrolling. Default is <c>false</c>.</returns>
     virtual public bool GetScrollable() {
          var _ret_var = Efl.Ui.Text.NativeMethods.efl_ui_text_scrollable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Enable or disable scrolling in entry
-    /// Normally the entry is not scrollable unless you enable it with this call.</summary>
-    /// <param name="scroll"><c>true</c> if it is to be scrollable, <c>false</c> otherwise.</param>
+    /// <summary>Enable or disable scrolling in the widget.
+    /// When scrolling is enabled scrollbars will appear if the text does not fit the widget size.</summary>
+    /// <param name="scroll"><c>true</c> to enable scrolling. Default is <c>false</c>.</param>
     virtual public void SetScrollable(bool scroll) {
                                  Efl.Ui.Text.NativeMethods.efl_ui_text_scrollable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll);
         Eina.Error.RaiseIfUnhandledException();
@@ -2372,6 +2288,8 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                                          }
     /// <summary>Set the font family, filename and size for a given text object.
     /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// 
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
     /// 
     /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
     /// <param name="font">The font family name or filename.</param>
@@ -3214,29 +3132,41 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    virtual public bool GetInteraction() {
+         var _ret_var = Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
     virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
     /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
     virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the scrollable state of the entry
-    /// Normally the entry is not scrollable. This gets the scrollable state of the entry.</summary>
-    /// <value><c>true</c> if it is to be scrollable, <c>false</c> otherwise.</value>
+    /// <summary>This aborts ongoing longpress event.
+    /// That is, this will stop the timer for longpress.</summary>
+    virtual public void LongpressAbort(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Enable or disable scrolling in the widget.
+    /// When scrolling is enabled scrollbars will appear if the text does not fit the widget size.</summary>
+    /// <value><c>true</c> to enable scrolling. Default is <c>false</c>.</value>
     public bool Scrollable {
         get { return GetScrollable(); }
         set { SetScrollable(value); }
@@ -3369,6 +3299,20 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     public bool Loaded {
         get { return GetLoaded(); }
     }
+    /// <summary>Retrieve the font family and size in use on a given text object.
+    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// <value>The font family name or filename.</value>
+    public (System.String, Efl.Font.Size) Font {
+        get {
+            System.String _out_font = default(System.String);
+            Efl.Font.Size _out_size = default(Efl.Font.Size);
+            GetFont(out _out_font,out _out_size);
+            return (_out_font,_out_size);
+        }
+        set { SetFont( value.Item1,  value.Item2); }
+    }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
     /// <value>The font file&apos;s path.</value>
@@ -3493,6 +3437,18 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         get { return GetSelectionAllowed(); }
         set { SetSelectionAllowed(value); }
     }
+    /// <summary>The cursors used for selection handling.
+    /// If the cursors are equal there&apos;s no selection.
+    /// 
+    /// You are allowed to retain and modify them. Modifying them modifies the selection of the object.</summary>
+    public (Efl.TextCursorCursor, Efl.TextCursorCursor) SelectionCursors {
+        get {
+            Efl.TextCursorCursor _out_start = default(Efl.TextCursorCursor);
+            Efl.TextCursorCursor _out_end = default(Efl.TextCursorCursor);
+            GetSelectionCursors(out _out_start,out _out_end);
+            return (_out_start,_out_end);
+        }
+    }
     /// <summary>Whether the entry is editable.
     /// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
     /// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
@@ -3506,11 +3462,37 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
+    /// <summary>Color of text, excluding style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) NormalColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetNormalColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetNormalColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Enable or disable backing type</summary>
     /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
+    }
+    /// <summary>Backing color</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) BackingColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetBackingColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetBackingColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Sets an underline style on the text</summary>
     /// <value>Underline type</value>
@@ -3518,11 +3500,37 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
+    /// <summary>Color of normal underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Height of underline style</summary>
     /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
+    }
+    /// <summary>Color of dashed underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineDashedColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineDashedColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineDashedColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Width of dashed underline style</summary>
     /// <value>Width</value>
@@ -3536,11 +3544,37 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
+    /// <summary>Color of underline2 style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Underline2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderline2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderline2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Type of strikethrough style</summary>
     /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
+    }
+    /// <summary>Color of strikethrough_style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) StrikethroughColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetStrikethroughColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetStrikethroughColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <value>Effect type</value>
@@ -3548,11 +3582,63 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
+    /// <summary>Color of outline effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) OutlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetOutlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetOutlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Direction of shadow effect</summary>
     /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
+    }
+    /// <summary>Color of shadow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) ShadowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetShadowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetShadowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Color of glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) GlowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Second color of the glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Glow2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlow2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlow2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
@@ -3586,6 +3672,10 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
     /// <value>Content</value>
     public System.String TextContent {
         set { SetTextContent(value); }
+    }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    public bool Interaction {
+        get { return GetInteraction(); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -5233,34 +5323,54 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_editable_text_paste"), func = Marshal.GetFunctionPointerForDelegate(efl_access_editable_text_paste_static_delegate) });
             }
 
-            if (efl_ui_clickable_press_static_delegate == null)
+            if (efl_input_clickable_interaction_get_static_delegate == null)
             {
-                efl_ui_clickable_press_static_delegate = new efl_ui_clickable_press_delegate(press);
+                efl_input_clickable_interaction_get_static_delegate = new efl_input_clickable_interaction_get_delegate(interaction_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetInteraction") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_interaction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_interaction_get_static_delegate) });
+            }
+
+            if (efl_input_clickable_press_static_delegate == null)
+            {
+                efl_input_clickable_press_static_delegate = new efl_input_clickable_press_delegate(press);
             }
 
             if (methods.FirstOrDefault(m => m.Name == "Press") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_press_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_press_static_delegate) });
             }
 
-            if (efl_ui_clickable_unpress_static_delegate == null)
+            if (efl_input_clickable_unpress_static_delegate == null)
             {
-                efl_ui_clickable_unpress_static_delegate = new efl_ui_clickable_unpress_delegate(unpress);
+                efl_input_clickable_unpress_static_delegate = new efl_input_clickable_unpress_delegate(unpress);
             }
 
             if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_unpress_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_unpress_static_delegate) });
             }
 
-            if (efl_ui_clickable_button_state_reset_static_delegate == null)
+            if (efl_input_clickable_button_state_reset_static_delegate == null)
             {
-                efl_ui_clickable_button_state_reset_static_delegate = new efl_ui_clickable_button_state_reset_delegate(button_state_reset);
+                efl_input_clickable_button_state_reset_static_delegate = new efl_input_clickable_button_state_reset_delegate(button_state_reset);
             }
 
             if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_button_state_reset_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_button_state_reset_static_delegate) });
+            }
+
+            if (efl_input_clickable_longpress_abort_static_delegate == null)
+            {
+                efl_input_clickable_longpress_abort_static_delegate = new efl_input_clickable_longpress_abort_delegate(longpress_abort);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "LongpressAbort") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_longpress_abort"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_longpress_abort_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -11071,17 +11181,53 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
 
         private static efl_access_editable_text_paste_delegate efl_access_editable_text_paste_static_delegate;
 
-        
-        private delegate void efl_ui_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_input_clickable_interaction_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_input_clickable_interaction_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate> efl_input_clickable_interaction_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate>(Module, "efl_input_clickable_interaction_get");
+
+        private static bool interaction_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_input_clickable_interaction_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Text)ws.Target).GetInteraction();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_input_clickable_interaction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_input_clickable_interaction_get_delegate efl_input_clickable_interaction_get_static_delegate;
 
         
-        public delegate void efl_ui_clickable_press_api_delegate(System.IntPtr obj,  uint button);
+        private delegate void efl_input_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate> efl_ui_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate>(Module, "efl_ui_clickable_press");
+        
+        public delegate void efl_input_clickable_press_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate> efl_input_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate>(Module, "efl_input_clickable_press");
 
         private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
         {
-            Eina.Log.Debug("function efl_ui_clickable_press was called");
+            Eina.Log.Debug("function efl_input_clickable_press was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
@@ -11100,23 +11246,23 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
             else
             {
-                efl_ui_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+                efl_input_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
             }
         }
 
-        private static efl_ui_clickable_press_delegate efl_ui_clickable_press_static_delegate;
+        private static efl_input_clickable_press_delegate efl_input_clickable_press_static_delegate;
 
         
-        private delegate void efl_ui_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+        private delegate void efl_input_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
         
-        public delegate void efl_ui_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
+        public delegate void efl_input_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate> efl_ui_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate>(Module, "efl_ui_clickable_unpress");
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate> efl_input_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate>(Module, "efl_input_clickable_unpress");
 
         private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
         {
-            Eina.Log.Debug("function efl_ui_clickable_unpress was called");
+            Eina.Log.Debug("function efl_input_clickable_unpress was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
@@ -11135,23 +11281,23 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
             else
             {
-                efl_ui_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+                efl_input_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
             }
         }
 
-        private static efl_ui_clickable_unpress_delegate efl_ui_clickable_unpress_static_delegate;
+        private static efl_input_clickable_unpress_delegate efl_input_clickable_unpress_static_delegate;
 
         
-        private delegate void efl_ui_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+        private delegate void efl_input_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
         
-        public delegate void efl_ui_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
+        public delegate void efl_input_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate> efl_ui_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate>(Module, "efl_ui_clickable_button_state_reset");
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate> efl_input_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate>(Module, "efl_input_clickable_button_state_reset");
 
         private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
         {
-            Eina.Log.Debug("function efl_ui_clickable_button_state_reset was called");
+            Eina.Log.Debug("function efl_input_clickable_button_state_reset was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
@@ -11170,11 +11316,46 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
             }
             else
             {
-                efl_ui_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+                efl_input_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
             }
         }
 
-        private static efl_ui_clickable_button_state_reset_delegate efl_ui_clickable_button_state_reset_static_delegate;
+        private static efl_input_clickable_button_state_reset_delegate efl_input_clickable_button_state_reset_static_delegate;
+
+        
+        private delegate void efl_input_clickable_longpress_abort_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_longpress_abort_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate> efl_input_clickable_longpress_abort_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate>(Module, "efl_input_clickable_longpress_abort");
+
+        private static void longpress_abort(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_longpress_abort was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Text)ws.Target).LongpressAbort(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_longpress_abort_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_longpress_abort_delegate efl_input_clickable_longpress_abort_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
@@ -11184,3 +11365,245 @@ public class Text : Efl.Ui.LayoutBase, Efl.IFile, Efl.IText, Efl.ITextFont, Efl.
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiText_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Scrollable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("scrollable", fac);
+    }
+
+    public static Efl.BindableProperty<bool> InputPanelShowOnDemand<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("input_panel_show_on_demand", fac);
+    }
+
+    public static Efl.BindableProperty<bool> ContextMenuDisabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("context_menu_disabled", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.SelectionFormat> CnpMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.Ui.SelectionFormat>("cnp_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Elm.Input.Panel.Lang> InputPanelLanguage<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Elm.Input.Panel.Lang>("input_panel_language", fac);
+    }
+
+    public static Efl.BindableProperty<bool> SelectionHandlerDisabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("selection_handler_disabled", fac);
+    }
+
+    public static Efl.BindableProperty<int> InputPanelLayoutVariation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<int>("input_panel_layout_variation", fac);
+    }
+
+    public static Efl.BindableProperty<Elm.Autocapital.Type> AutocapitalType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Elm.Autocapital.Type>("autocapital_type", fac);
+    }
+
+    public static Efl.BindableProperty<bool> PasswordMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("password_mode", fac);
+    }
+
+    public static Efl.BindableProperty<bool> InputPanelReturnKeyDisabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("input_panel_return_key_disabled", fac);
+    }
+
+    public static Efl.BindableProperty<bool> PredictionAllow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("prediction_allow", fac);
+    }
+
+    public static Efl.BindableProperty<Elm.Input.Hints> InputHint<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Elm.Input.Hints>("input_hint", fac);
+    }
+
+    public static Efl.BindableProperty<Elm.Input.Panel.Layout> InputPanelLayout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Elm.Input.Panel.Layout>("input_panel_layout", fac);
+    }
+
+    public static Efl.BindableProperty<Elm.Input.Panel.ReturnKey.Type> InputPanelReturnKeyType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Elm.Input.Panel.ReturnKey.Type>("input_panel_return_key_type", fac);
+    }
+
+    public static Efl.BindableProperty<bool> InputPanelEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("input_panel_enabled", fac);
+    }
+
+    public static Efl.BindableProperty<bool> InputPanelReturnKeyAutoenabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("input_panel_return_key_autoenabled", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.ITextFactory> ItemFactory<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.Canvas.ITextFactory>("item_factory", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> FontSource<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("font_source", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontFallbacks<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("font_fallbacks", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWeight> FontWeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFontWeight>("font_weight", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontSlant> FontSlant<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFontSlant>("font_slant", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWidth> FontWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFontWidth>("font_width", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontLang<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("font_lang", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontBitmapScalable> FontBitmapScalable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFontBitmapScalable>("font_bitmap_scalable", fac);
+    }
+
+    public static Efl.BindableProperty<double> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("ellipsis", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatWrap> Wrap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFormatWrap>("wrap", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Multiline<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("multiline", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType> HalignAutoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType>("halign_auto_type", fac);
+    }
+
+    public static Efl.BindableProperty<double> Halign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("halign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Valign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("valign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linegap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("linegap", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linerelgap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("linerelgap", fac);
+    }
+
+    public static Efl.BindableProperty<int> Tabstops<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<int>("tabstops", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Password<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("password", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> ReplacementChar<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("replacement_char", fac);
+    }
+
+    public static Efl.BindableProperty<bool> SelectionAllowed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("selection_allowed", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> Editable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<bool>("editable", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("markup", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleBackingType> BackingType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextStyleBackingType>("backing_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleUnderlineType> UnderlineType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextStyleUnderlineType>("underline_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> UnderlineHeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<double>("underline_height", fac);
+    }
+
+    
+    public static Efl.BindableProperty<int> UnderlineDashedWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<int>("underline_dashed_width", fac);
+    }
+
+    public static Efl.BindableProperty<int> UnderlineDashedGap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<int>("underline_dashed_gap", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleStrikethroughType> StrikethroughType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextStyleStrikethroughType>("strikethrough_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleEffectType> EffectType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextStyleEffectType>("effect_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleShadowDirection> ShadowDirection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<Efl.TextStyleShadowDirection>("shadow_direction", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> GfxFilter<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("gfx_filter", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<int> CaretOffset<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<int>("caret_offset", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<System.String> TextContent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Text, T>magic = null) where T : Efl.Ui.Text {
+        return new Efl.BindableProperty<System.String>("text_content", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

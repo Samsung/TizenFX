@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ namespace Efl {
 [Efl.Eo.BindingEntity]
 public abstract class LoopConsumer : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,7 +40,8 @@ public abstract class LoopConsumer : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopConsumer(ConstructingHandle ch) : base(ch)
     {
@@ -81,7 +83,7 @@ public abstract class LoopConsumer : Efl.Object
     /// This is a helper that behaves the same as eina_future_resolved.
     /// (Since EFL 1.22)</summary>
     /// <param name="result">The value to be delivered.
-    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using @ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
+    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
     virtual public  Eina.Future FutureResolved(Eina.Value result) {
          var _in_result = result.GetNative();
@@ -92,7 +94,7 @@ public abstract class LoopConsumer : Efl.Object
     /// <summary>Creates a new future that is already rejected to a specified error using the <see cref="Efl.LoopConsumer.GetLoop"/>.
     /// This function creates a new future with an already known error, that will be resolved and dispatched by the loop scheduler as usual.
     /// 
-    /// This is a helper that behaves the same as @ref eina_future_rejected.
+    /// This is a helper that behaves the same as ref eina_future_rejected.
     /// (Since EFL 1.22)</summary>
     /// <param name="error">An Eina_Error value</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
@@ -112,7 +114,7 @@ public abstract class LoopConsumer : Efl.Object
  }
     /// <summary>Async wrapper for <see cref="FutureResolved" />.</summary>
     /// <param name="result">The value to be delivered.
-    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using @ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
+    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
     /// <param name="token">Token to notify the async operation of external request to cancel.</param>
     /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> FutureResolvedAsync(Eina.Value result, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
@@ -356,3 +358,10 @@ public abstract class LoopConsumer : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopConsumer_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

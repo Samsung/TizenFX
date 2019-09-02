@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Object.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFrameController
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Object(ConstructingHandle ch) : base(ch)
     {
@@ -306,6 +309,17 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     public Eina.Rect Viewbox {
         get { return GetViewbox(); }
         set { SetViewbox(value); }
+    }
+    /// <summary>Control how the viewbox is positioned inside the viewport.</summary>
+    /// <value>Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</value>
+    public (double, double) ViewboxAlign {
+        get {
+            double _out_align_x = default(double);
+            double _out_align_y = default(double);
+            GetViewboxAlign(out _out_align_x,out _out_align_y);
+            return (_out_align_x,_out_align_y);
+        }
+        set { SetViewboxAlign( value.Item1,  value.Item2); }
     }
     /// <summary>Get the root node of the evas_object_vg.</summary>
     /// <value>Root node of the VG canvas.</value>
@@ -1618,6 +1632,48 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgObject_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.Vg.FillMode> FillMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Efl.Canvas.Vg.FillMode>("fill_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Viewbox<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Eina.Rect>("viewbox", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Canvas.Vg.Node> RootNode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Efl.Canvas.Vg.Node>("root_node", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<int> Frame<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<int>("frame", fac);
+    }
+
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Canvas {

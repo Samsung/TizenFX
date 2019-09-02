@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -32,31 +33,33 @@ bool SetContent(Efl.Gfx.IEntity content);
 Efl.Gfx.IEntity UnsetContent();
                 /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt;
     /// <summary>Sub-object currently set as this object&apos;s single content.
     /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
     /// (Since EFL 1.22)</summary>
     /// <value>The sub-object.</value>
     Efl.Gfx.IEntity Content {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.IContent.ContentChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IContent.ContentChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IContentContentChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Sent after the content is set or unset using the current content object.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
 /// <summary>Common interface for objects that have a single sub-object as content.
 /// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.
 /// (Since EFL 1.22)</summary>
-sealed public class IContentConcrete :
+sealed public  class IContentConcrete :
     Efl.Eo.EoWrapper
     , IContent
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -72,7 +75,8 @@ sealed public class IContentConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IContentConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -89,6 +93,7 @@ sealed public class IContentConcrete :
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -128,7 +133,7 @@ sealed public class IContentConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -348,3 +353,13 @@ sealed public class IContentConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIContentConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IContent, T>magic = null) where T : Efl.IContent {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

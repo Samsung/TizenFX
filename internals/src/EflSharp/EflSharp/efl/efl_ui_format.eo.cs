@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -92,6 +93,7 @@ namespace Ui {
 /// This conversion can be controlled through the <see cref="Efl.Ui.IFormat.FormatFunc"/>, <see cref="Efl.Ui.IFormat.FormatValues"/> and <see cref="Efl.Ui.IFormat.GetFormatString"/> properties. Only one of them needs to be set. When more than one is set <see cref="Efl.Ui.IFormat.FormatValues"/> has the highest priority, followed by <see cref="Efl.Ui.IFormat.FormatFunc"/> and then <see cref="Efl.Ui.IFormat.GetFormatString"/>. If one mechanism fails to produce a valid string the others will be tried (if provided) in descending order of priority. If no user-provided mechanism works, a fallback is used that just displays the value.
 /// 
 /// Widgets including this mixin offer their users different properties to control how <see cref="Eina.Value"/>&apos;s are converted to text.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IFormatConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFormat : 
@@ -146,14 +148,27 @@ void ApplyFormattedValue();
                                         /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
     /// <value>User-provided formatting function.</value>
     Efl.Ui.FormatFunc FormatFunc {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
     /// <value>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</value>
     Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <value>Formatting string containing regular characters and format specifiers.</value>
+    (System.String, Efl.Ui.FormatStringType) FormatString {
+        get;
+        set;
     }
 }
 /// <summary>Helper mixin that simplifies converting numerical values to text.
@@ -162,12 +177,13 @@ void ApplyFormattedValue();
 /// This conversion can be controlled through the <see cref="Efl.Ui.IFormat.FormatFunc"/>, <see cref="Efl.Ui.IFormat.FormatValues"/> and <see cref="Efl.Ui.IFormat.GetFormatString"/> properties. Only one of them needs to be set. When more than one is set <see cref="Efl.Ui.IFormat.FormatValues"/> has the highest priority, followed by <see cref="Efl.Ui.IFormat.FormatFunc"/> and then <see cref="Efl.Ui.IFormat.GetFormatString"/>. If one mechanism fails to produce a valid string the others will be tried (if provided) in descending order of priority. If no user-provided mechanism works, a fallback is used that just displays the value.
 /// 
 /// Widgets including this mixin offer their users different properties to control how <see cref="Eina.Value"/>&apos;s are converted to text.</summary>
-sealed public class IFormatConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IFormatConcrete :
     Efl.Eo.EoWrapper
     , IFormat
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -183,7 +199,8 @@ sealed public class IFormatConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IFormatConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -287,6 +304,24 @@ sealed public class IFormatConcrete :
     public Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
         get { return GetFormatValues(); }
         set { SetFormatValues(value); }
+    }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <value>Formatting string containing regular characters and format specifiers.</value>
+    public (System.String, Efl.Ui.FormatStringType) FormatString {
+        get {
+            System.String _out_kw_string = default(System.String);
+            Efl.Ui.FormatStringType _out_type = default(Efl.Ui.FormatStringType);
+            GetFormatString(out _out_kw_string,out _out_type);
+            return (_out_kw_string,_out_type);
+        }
+        set { SetFormatString( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -735,6 +770,21 @@ sealed public class IFormatConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIFormatConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.FormatFunc> FormatFunc<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IFormat, T>magic = null) where T : Efl.Ui.IFormat {
+        return new Efl.BindableProperty<Efl.Ui.FormatFunc>("format_func", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>> FormatValues<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IFormat, T>magic = null) where T : Efl.Ui.IFormat {
+        return new Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>>("format_values", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -766,7 +816,9 @@ public struct FormatValue
     public int Value;
     /// <summary>Text string to replace it.</summary>
     public System.String Text;
-    ///<summary>Constructor for FormatValue.</summary>
+    /// <summary>Constructor for FormatValue.</summary>
+    /// <param name="Value">Input value.</param>;
+    /// <param name="Text">Text string to replace it.</param>;
     public FormatValue(
         int Value = default(int),
         System.String Text = default(System.String)    )
@@ -775,8 +827,8 @@ public struct FormatValue
         this.Text = Text;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator FormatValue(IntPtr ptr)
     {
         var tmp = (FormatValue.NativeStruct)Marshal.PtrToStructure(ptr, typeof(FormatValue.NativeStruct));
@@ -785,15 +837,15 @@ public struct FormatValue
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct FormatValue.</summary>
+    /// <summary>Internal wrapper for struct FormatValue.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public int Value;
-        ///<summary>Internal wrapper for field Text</summary>
+        /// <summary>Internal wrapper for field Text</summary>
         public System.IntPtr Text;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator FormatValue.NativeStruct(FormatValue _external_struct)
         {
             var _internal_struct = new FormatValue.NativeStruct();
@@ -802,7 +854,7 @@ public struct FormatValue
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator FormatValue(FormatValue.NativeStruct _internal_struct)
         {
             var _external_struct = new FormatValue();

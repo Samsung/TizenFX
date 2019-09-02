@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>A standard <see cref="Efl.Ui.Box"/> container which automatically handles grouping of any <see cref="Efl.Ui.Radio"/> widget added to it.
 /// All <see cref="Efl.Ui.Radio"/> widgets are added to the same internal group which you only indirectly access through this object.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.RadioBox.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class RadioBox : Efl.Ui.Box, Efl.Ui.IRadioGroup
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class RadioBox : Efl.Ui.Box, Efl.Ui.IRadioGroup
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected RadioBox(ConstructingHandle ch) : base(ch)
     {
@@ -69,6 +72,7 @@ public class RadioBox : Efl.Ui.Box, Efl.Ui.IRadioGroup
     }
 
     /// <summary>Emitted each time the <c>selected_value</c> changes. The event information contains the <see cref="Efl.Ui.Radio.StateValue"/> of the newly selected button or -1 if no button is now selected.</summary>
+    /// <value><see cref="Efl.Ui.IRadioGroupValueChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IRadioGroupValueChangedEvt_Args> ValueChangedEvt
     {
         add
@@ -108,7 +112,7 @@ public class RadioBox : Efl.Ui.Box, Efl.Ui.IRadioGroup
             }
         }
     }
-    ///<summary>Method to raise event ValueChangedEvt.</summary>
+    /// <summary>Method to raise event ValueChangedEvt.</summary>
     public void OnValueChangedEvt(Efl.Ui.IRadioGroupValueChangedEvt_Args e)
     {
         var key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
@@ -499,3 +503,17 @@ public class RadioBox : Efl.Ui.Box, Efl.Ui.IRadioGroup
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiRadioBox_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Radio> SelectedObject<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.RadioBox, T>magic = null) where T : Efl.Ui.RadioBox {
+        return new Efl.BindableProperty<Efl.Ui.Radio>("selected_object", fac);
+    }
+
+    public static Efl.BindableProperty<int> SelectedValue<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.RadioBox, T>magic = null) where T : Efl.Ui.RadioBox {
+        return new Efl.BindableProperty<int>("selected_value", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

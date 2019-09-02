@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,7 +14,7 @@ namespace Efl {
 [Efl.Eo.BindingEntity]
 public abstract class Task : Efl.LoopConsumer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,7 +40,8 @@ public abstract class Task : Efl.LoopConsumer
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Task(ConstructingHandle ch) : base(ch)
     {
@@ -90,7 +92,7 @@ public abstract class Task : Efl.LoopConsumer
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Flags to further customize task&apos;s behavior.
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
     /// (Since EFL 1.22)</summary>
     /// <returns>Desired task flags.</returns>
     virtual public Efl.TaskFlags GetFlags() {
@@ -98,7 +100,7 @@ public abstract class Task : Efl.LoopConsumer
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Flags to further customize task&apos;s behavior.
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
     /// (Since EFL 1.22)</summary>
     /// <param name="flags">Desired task flags.</param>
     virtual public void SetFlags(Efl.TaskFlags flags) {
@@ -141,7 +143,7 @@ public abstract class Task : Efl.LoopConsumer
     public int ExitCode {
         get { return GetExitCode(); }
     }
-    /// <summary>Flags to further customize task&apos;s behavior.
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
     /// (Since EFL 1.22)</summary>
     /// <value>Desired task flags.</value>
     public Efl.TaskFlags Flags {
@@ -501,6 +503,21 @@ public abstract class Task : Efl.LoopConsumer
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflTask_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.TaskPriority> Priority<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Task, T>magic = null) where T : Efl.Task {
+        return new Efl.BindableProperty<Efl.TaskPriority>("priority", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TaskFlags> Flags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Task, T>magic = null) where T : Efl.Task {
+        return new Efl.BindableProperty<Efl.TaskFlags>("flags", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>How much processor time will this task get compared to other tasks running on the same processor.
@@ -537,6 +554,8 @@ UseStdin = 1,
 UseStdout = 2,
 /// <summary>Task will not produce an exit code upon termination.</summary>
 NoExitCodeError = 4,
+/// <summary>Exit when parent exits.</summary>
+ExitWithParent = 8,
 }
 
 }

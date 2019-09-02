@@ -182,7 +182,7 @@ public class List<T> : IEnumerable<T>, IDisposable
             return;
         }
 
-        if (OwnContent)
+        if (Own && OwnContent)
         {
             for (IntPtr curr = h; curr != IntPtr.Zero; curr = InternalNext(curr))
             {

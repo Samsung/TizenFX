@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>Represents a Box created as part of a layout.
 /// Cannot be deleted. This is only a representation of an internal object of an EFL layout.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.LayoutPartBox.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.IPackLinear, Efl.Ui.ILayoutOrientable, Efl.Ui.ILayoutOrientableReadonly
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartBox(ConstructingHandle ch) : base(ch)
     {
@@ -64,6 +67,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -103,7 +107,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -119,6 +123,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -158,7 +163,7 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -334,6 +339,11 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
                                  Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Real part property</summary>
+    /// <value>Real part object</value>
+    protected (Efl.Object, System.String) RealPart {
+        set { SetRealPart( value.Item1,  value.Item2); }
+    }
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
@@ -1159,3 +1169,17 @@ public class LayoutPartBox : Efl.Ui.LayoutPart, Efl.IContainer, Efl.IPack, Efl.I
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiLayoutPartBox_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartBox, T>magic = null) where T : Efl.Ui.LayoutPartBox {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.LayoutPartBox, T>magic = null) where T : Efl.Ui.LayoutPartBox {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>(part.PartName, "orientation", part.Binder);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

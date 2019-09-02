@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,10 +8,11 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Loop.ArgumentsEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Loop.ArgumentsEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class LoopArgumentsEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event happens when args are provided to the loop by args_add().</value>
     public Efl.LoopArguments arg { get; set; }
 }
 /// <summary>The Efl Main Loop
@@ -20,7 +22,7 @@ public class LoopArgumentsEvt_Args : EventArgs {
 [Efl.Eo.BindingEntity]
 public abstract class Loop : Efl.Task
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public abstract class Loop : Efl.Task
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Loop(ConstructingHandle ch) : base(ch)
     {
@@ -114,7 +117,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event IdleEnterEvt.</summary>
+    /// <summary>Method to raise event IdleEnterEvt.</summary>
     public void OnIdleEnterEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE_ENTER";
@@ -167,7 +170,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event IdleExitEvt.</summary>
+    /// <summary>Method to raise event IdleExitEvt.</summary>
     public void OnIdleExitEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE_EXIT";
@@ -220,7 +223,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event IdleEvt.</summary>
+    /// <summary>Method to raise event IdleEvt.</summary>
     public void OnIdleEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE";
@@ -235,6 +238,7 @@ public abstract class Loop : Efl.Task
     }
     /// <summary>Event happens when args are provided to the loop by args_add().
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.LoopArgumentsEvt_Args"/></value>
     public event EventHandler<Efl.LoopArgumentsEvt_Args> ArgumentsEvt
     {
         add
@@ -274,7 +278,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event ArgumentsEvt.</summary>
+    /// <summary>Method to raise event ArgumentsEvt.</summary>
     public void OnArgumentsEvt(Efl.LoopArgumentsEvt_Args e)
     {
         var key = "_EFL_LOOP_EVENT_ARGUMENTS";
@@ -336,7 +340,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event PollHighEvt.</summary>
+    /// <summary>Method to raise event PollHighEvt.</summary>
     public void OnPollHighEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_HIGH";
@@ -389,7 +393,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event PollMediumEvt.</summary>
+    /// <summary>Method to raise event PollMediumEvt.</summary>
     public void OnPollMediumEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_MEDIUM";
@@ -442,7 +446,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event PollLowEvt.</summary>
+    /// <summary>Method to raise event PollLowEvt.</summary>
     public void OnPollLowEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_LOW";
@@ -495,7 +499,7 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    ///<summary>Method to raise event QuitEvt.</summary>
+    /// <summary>Method to raise event QuitEvt.</summary>
     public void OnQuitEvt(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_QUIT";
@@ -596,26 +600,6 @@ public abstract class Loop : Efl.Task
                                  var _ret_var = Efl.Loop.NativeMethods.efl_loop_timeout_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
- }
-    /// <summary>Will register a manager of a specific class to be answered by eo.provider_find.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="klass">The class provided by the registered provider.</param>
-    /// <param name="provider">The provider for the newly registered class that has to provide that said Efl.Class.</param>
-    /// <returns><c>true</c> if successfully register, <c>false</c> otherwise.</returns>
-    virtual public bool Register(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>Will unregister a manager of a specific class that was previously registered and answered by eo.provider_find.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="klass">The class provided by the provider to unregister for.</param>
-    /// <param name="provider">The provider for the registered class to unregister.</param>
-    /// <returns><c>true</c> if successfully unregistered, <c>false</c> otherwise.</returns>
-    virtual public bool Unregister(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Loop.NativeMethods.efl_loop_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
  }
     /// <summary>Async wrapper for <see cref="Job" />.</summary>
     /// <param name="token">Token to notify the async operation of external request to cancel.</param>
@@ -783,26 +767,6 @@ public abstract class Loop : Efl.Task
             if (methods.FirstOrDefault(m => m.Name == "Timeout") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_timeout"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_timeout_static_delegate) });
-            }
-
-            if (efl_loop_register_static_delegate == null)
-            {
-                efl_loop_register_static_delegate = new efl_loop_register_delegate(register);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Register") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_register"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_register_static_delegate) });
-            }
-
-            if (efl_loop_unregister_static_delegate == null)
-            {
-                efl_loop_unregister_static_delegate = new efl_loop_unregister_delegate(unregister);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unregister") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_unregister"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_unregister_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -1210,84 +1174,26 @@ public abstract class Loop : Efl.Task
 
         private static efl_loop_timeout_delegate efl_loop_timeout_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_loop_register_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_loop_register_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
-
-        public static Efl.Eo.FunctionWrapper<efl_loop_register_api_delegate> efl_loop_register_ptr = new Efl.Eo.FunctionWrapper<efl_loop_register_api_delegate>(Module, "efl_loop_register");
-
-        private static bool register(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
-        {
-            Eina.Log.Debug("function efl_loop_register was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Loop)ws.Target).Register(klass, provider);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_loop_register_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), klass, provider);
-            }
-        }
-
-        private static efl_loop_register_delegate efl_loop_register_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_loop_unregister_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_loop_unregister_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEflClass))] Type klass, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object provider);
-
-        public static Efl.Eo.FunctionWrapper<efl_loop_unregister_api_delegate> efl_loop_unregister_ptr = new Efl.Eo.FunctionWrapper<efl_loop_unregister_api_delegate>(Module, "efl_loop_unregister");
-
-        private static bool unregister(System.IntPtr obj, System.IntPtr pd, Type klass, Efl.Object provider)
-        {
-            Eina.Log.Debug("function efl_loop_unregister was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Loop)ws.Target).Unregister(klass, provider);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_loop_unregister_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), klass, provider);
-            }
-        }
-
-        private static efl_loop_unregister_delegate efl_loop_unregister_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoop_ExtensionMethods {
+    public static Efl.BindableProperty<double> Throttle<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Loop, T>magic = null) where T : Efl.Loop {
+        return new Efl.BindableProperty<double>("throttle", fac);
+    }
+
+    public static Efl.BindableProperty<double> Time<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Loop, T>magic = null) where T : Efl.Loop {
+        return new Efl.BindableProperty<double>("time", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>EFL loop arguments data structure
@@ -1300,7 +1206,9 @@ public struct LoopArguments
     public Eina.Array<Eina.Stringshare> Argv;
     /// <summary>Set to <c>true</c> when the program should initialize its internal state. This happen once per process instance.</summary>
     public bool Initialization;
-    ///<summary>Constructor for LoopArguments.</summary>
+    /// <summary>Constructor for LoopArguments.</summary>
+    /// <param name="Argv">Array with loop arguments</param>;
+    /// <param name="Initialization">Set to <c>true</c> when the program should initialize its internal state. This happen once per process instance.</param>;
     public LoopArguments(
         Eina.Array<Eina.Stringshare> Argv = default(Eina.Array<Eina.Stringshare>),
         bool Initialization = default(bool)    )
@@ -1309,8 +1217,8 @@ public struct LoopArguments
         this.Initialization = Initialization;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator LoopArguments(IntPtr ptr)
     {
         var tmp = (LoopArguments.NativeStruct)Marshal.PtrToStructure(ptr, typeof(LoopArguments.NativeStruct));
@@ -1319,15 +1227,15 @@ public struct LoopArguments
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct LoopArguments.</summary>
+    /// <summary>Internal wrapper for struct LoopArguments.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public System.IntPtr Argv;
-        ///<summary>Internal wrapper for field Initialization</summary>
+        /// <summary>Internal wrapper for field Initialization</summary>
         public System.Byte Initialization;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator LoopArguments.NativeStruct(LoopArguments _external_struct)
         {
             var _internal_struct = new LoopArguments.NativeStruct();
@@ -1336,7 +1244,7 @@ public struct LoopArguments
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator LoopArguments(LoopArguments.NativeStruct _internal_struct)
         {
             var _external_struct = new LoopArguments();

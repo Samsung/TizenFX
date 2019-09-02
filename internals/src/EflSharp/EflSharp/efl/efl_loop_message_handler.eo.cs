@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,18 +8,20 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageHandler.MessageEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessageHandler.MessageEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class LoopMessageHandlerMessageEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>The message payload data</value>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Message handlers represent a single message type on the Efl.Loop parent object. These message handlers can be used to listen for that message type by listening to the message event for the generic case or a class specific event type to get specific message object typing correct.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageHandler.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopMessageHandler : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -44,7 +47,8 @@ public class LoopMessageHandler : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopMessageHandler(ConstructingHandle ch) : base(ch)
     {
@@ -66,6 +70,7 @@ public class LoopMessageHandler : Efl.Object
     }
 
     /// <summary>The message payload data</summary>
+    /// <value><see cref="Efl.LoopMessageHandlerMessageEvt_Args"/></value>
     public event EventHandler<Efl.LoopMessageHandlerMessageEvt_Args> MessageEvt
     {
         add
@@ -105,7 +110,7 @@ public class LoopMessageHandler : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event MessageEvt.</summary>
+    /// <summary>Method to raise event MessageEvt.</summary>
     public void OnMessageEvt(Efl.LoopMessageHandlerMessageEvt_Args e)
     {
         var key = "_EFL_LOOP_MESSAGE_HANDLER_EVENT_MESSAGE";
@@ -361,3 +366,9 @@ public class LoopMessageHandler : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessageHandler_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

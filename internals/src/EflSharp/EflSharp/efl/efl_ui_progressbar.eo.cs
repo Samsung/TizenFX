@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Elementary progressbar class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Progressbar.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.ITextMarkup, Efl.Access.IValue, Efl.Ui.IFormat, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeDisplay
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Progressbar(ConstructingHandle ch) : base(ch)
     {
@@ -67,60 +70,9 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
     {
     }
 
-    /// <summary>Called when progressbar changed</summary>
-    public event EventHandler ChangedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_PROGRESSBAR_EVENT_CHANGED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_PROGRESSBAR_EVENT_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ChangedEvt.</summary>
-    public void OnChangedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_PROGRESSBAR_EVENT_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -160,7 +112,7 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -173,6 +125,162 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
+    /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> is getting changed.</summary>
+    public event EventHandler ChangedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_UI_RANGE_EVENT_CHANGED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_UI_RANGE_EVENT_CHANGED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ChangedEvt.</summary>
+    public void OnChangedEvt(EventArgs e)
+    {
+        var key = "_EFL_UI_RANGE_EVENT_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
+    /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> has reached the minimum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
+    public event EventHandler MinReachedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_UI_RANGE_EVENT_MIN_REACHED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_UI_RANGE_EVENT_MIN_REACHED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event MinReachedEvt.</summary>
+    public void OnMinReachedEvt(EventArgs e)
+    {
+        var key = "_EFL_UI_RANGE_EVENT_MIN_REACHED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    }
+    /// <summary>Emitted when the <c>range_value</c> has reached the maximum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
+    public event EventHandler MaxReachedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        EventArgs args = EventArgs.Empty;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_UI_RANGE_EVENT_MAX_REACHED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_UI_RANGE_EVENT_MAX_REACHED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event MaxReachedEvt.</summary>
+    public void OnMaxReachedEvt(EventArgs e)
+    {
+        var key = "_EFL_UI_RANGE_EVENT_MAX_REACHED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Control whether a given progress bar widget is at &quot;pulsing mode&quot; or not.
     /// By default progress bars display values from low to high boundaries. There are situations however in which the progress of a given task is unknown. In these cases, you can set a progress bar widget to a &quot;pulsing state&quot; to give the user an idea that some computation is being done without showing the precise progress rate. In the default theme, it will animate the bar with content, switching constantly between filling it and back to non-filled in a loop. To start and stop this pulsing animation you need to explicitly call <see cref="Efl.Ui.Progressbar.SetPulse"/>.</summary>
@@ -405,27 +513,27 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
                                  Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Control the range value (in percentage) on a given range widget
-    /// Use this call to set range levels.
-    /// 
-    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-    /// <returns>The range value (must be between $0.0 and 1.0)</returns>
+    /// <summary>Control the value (position) of the widget within its valid range.
+    /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
+    /// <returns>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</returns>
     virtual public double GetRangeValue() {
          var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Control the range value (in percentage) on a given range widget
-    /// Use this call to set range levels.
-    /// 
-    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-    /// <param name="val">The range value (must be between $0.0 and 1.0)</param>
+    /// <summary>Control the value (position) of the widget within its valid range.
+    /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
+    /// <param name="val">The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</param>
     virtual public void SetRangeValue(double val) {
                                  Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the minimum and maximum values of the given range widget.
-    /// Note: If only one value is needed, the other pointer can be passed as <c>null</c>.</summary>
+    /// <summary>Set the minimum and maximum values for given range widget.
+    /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
+    /// 
+    /// The default minimum and maximum values may be different for each class.
+    /// 
+    /// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void GetRangeLimits(out double min, out double max) {
@@ -433,13 +541,11 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the minimum and maximum values for given range widget.
-    /// Define the allowed range of values to be selected by the user.
+    /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
     /// 
-    /// If actual value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The actual value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>
+    /// The default minimum and maximum values may be different for each class.
     /// 
-    /// The minimum and maximum values may be different for each class.
-    /// 
-    /// Warning: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
+    /// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     virtual public void SetRangeLimits(double min, double max) {
@@ -480,6 +586,27 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
+    /// <summary>Value and text property</summary>
+    /// <value>Value of widget casted to floating point number.</value>
+    public (double, System.String) ValueAndText {
+        get {
+            double _out_value = default(double);
+            System.String _out_text = default(System.String);
+            GetValueAndText(out _out_value,out _out_text);
+            return (_out_value,_out_text);
+        }
+        set { SetValueAndText( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets a range of all possible values and its description</summary>
+    public (double, double, System.String) Range {
+        get {
+            double _out_lower_limit = default(double);
+            double _out_upper_limit = default(double);
+            System.String _out_description = default(System.String);
+            GetRange(out _out_lower_limit,out _out_upper_limit,out _out_description);
+            return (_out_lower_limit,_out_upper_limit,_out_description);
+        }
+    }
     /// <summary>Gets an minimal incrementation value</summary>
     /// <value>Minimal incrementation value</value>
     public double Increment {
@@ -497,6 +624,24 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
         get { return GetFormatValues(); }
         set { SetFormatValues(value); }
     }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <value>Formatting string containing regular characters and format specifiers.</value>
+    public (System.String, Efl.Ui.FormatStringType) FormatString {
+        get {
+            System.String _out_kw_string = default(System.String);
+            Efl.Ui.FormatStringType _out_type = default(Efl.Ui.FormatStringType);
+            GetFormatString(out _out_kw_string,out _out_type);
+            return (_out_kw_string,_out_type);
+        }
+        set { SetFormatString( value.Item1,  value.Item2); }
+    }
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
@@ -506,14 +651,28 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
         get { return GetOrientation(); }
         set { SetOrientation(value); }
     }
-    /// <summary>Control the range value (in percentage) on a given range widget
-    /// Use this call to set range levels.
-    /// 
-    /// Note: If you pass a value out of the specified interval for <c>val</c>, it will be interpreted as the closest of the boundary values in the interval.</summary>
-    /// <value>The range value (must be between $0.0 and 1.0)</value>
+    /// <summary>Control the value (position) of the widget within its valid range.
+    /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
+    /// <value>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</value>
     public double RangeValue {
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
+    }
+    /// <summary>Set the minimum and maximum values for given range widget.
+    /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
+    /// 
+    /// The default minimum and maximum values may be different for each class.
+    /// 
+    /// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
+    /// <value>The minimum value.</value>
+    public (double, double) RangeLimits {
+        get {
+            double _out_min = default(double);
+            double _out_max = default(double);
+            GetRangeLimits(out _out_min,out _out_max);
+            return (_out_min,_out_max);
+        }
+        set { SetRangeLimits( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -2014,3 +2173,51 @@ public class Progressbar : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.IText
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiProgressbar_ExtensionMethods {
+    public static Efl.BindableProperty<bool> PulseMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<bool>("pulse_mode", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Pulse<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<bool>("pulse", fac);
+    }
+
+    public static Efl.BindableProperty<bool> ShowProgressLabel<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<bool>("show_progress_label", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<System.String>("markup", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.FormatFunc> FormatFunc<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<Efl.Ui.FormatFunc>("format_func", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>> FormatValues<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>>("format_values", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+    public static Efl.BindableProperty<double> RangeValue<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Progressbar, T>magic = null) where T : Efl.Ui.Progressbar {
+        return new Efl.BindableProperty<double>("range_value", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -43,9 +43,10 @@ namespace Efl
             /// The CircleSpinner is a widget to display and handle the spinner value by the rotary event.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            public class CircleSpinner : Efl.Ui.Spin, ICircleWidget
+            public class CircleSpinner : Efl.Ui.Spin, Efl.Ui.IRangeInteractive, ICircleWidget
             {
                 double _angleRatio = -1.0;
+                double _step = 1.0;
 
                 IntPtr _handle;
                 public virtual IntPtr CircleHandle => _handle;
@@ -55,6 +56,8 @@ namespace Efl
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
                 public CircleSpinnerMarker Marker;
+
+                public event EventHandler SteadyEvt;
 
                 /// <summary>
                 /// Creates and initializes a new instance of the CircleSpinner class.
@@ -166,6 +169,28 @@ namespace Efl
                     set
                     {
                         Interop.Eext.eext_circle_object_item_radius_set(CircleHandle, "default", value);
+                    }
+                }
+                
+                public double GetRangeStep()
+                {
+                    return _step;
+                }
+
+                public void SetRangeStep(double step)
+                {
+                    _step = step;
+                }
+
+                public double RangeStep
+                {
+                    get
+                    {
+                        return GetRangeStep();
+                    }
+                    set
+                    {
+                        SetRangeStep(value);
                     }
                 }
             }

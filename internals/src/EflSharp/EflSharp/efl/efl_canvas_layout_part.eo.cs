@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Common class for part proxy objects for <see cref="Efl.Canvas.Layout"/>.
 /// As an <see cref="Efl.IPart"/> implementation class, all objects of this class are meant to be used for one and only one function call. In pseudo-code, the use of object of this type looks like the following: rect = layout.part(&quot;somepart&quot;).geometry_get();</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.LayoutPart.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPart(ConstructingHandle ch) : base(ch)
     {
@@ -64,6 +67,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
@@ -103,7 +107,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -126,6 +130,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
@@ -165,7 +170,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -189,6 +194,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
@@ -228,7 +234,7 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -450,6 +456,16 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>The name and value of the current state of this part (read-only).
+    /// This is the state name as it appears in EDC description blocks. A state has both a name and a value (double). The default state is &quot;default&quot; 0.0, but this function will return &quot;&quot; if the part is invalid.</summary>
+    public (System.String, double) State {
+        get {
+            System.String _out_state = default(System.String);
+            double _out_val = default(double);
+            GetState(out _out_state,out _out_val);
+            return (_out_state,_out_val);
+        }
+    }
     /// <summary>Type of this part in the layout.</summary>
     /// <value>One of the types or <c>none</c> if not an existing part.</value>
     public Efl.Canvas.LayoutPartType PartType {
@@ -497,11 +513,75 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
         get { return GetScale(); }
         set { SetScale(value); }
     }
+    /// <summary>The draggable object relative location.
+    /// Some parts in Edje can be dragged along the X/Y axes, if the part contains a &quot;draggable&quot; section (in EDC). For instance, scroll bars can be draggable objects.
+    /// 
+    /// <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative position to the draggable area on that axis.
+    /// 
+    /// This value means, for the vertical axis, that 0.0 will be at the top if the first parameter of <c>y</c> in the draggable part theme is 1 and at the bottom if it is -1.
+    /// 
+    /// For the horizontal axis, 0.0 means left if the first parameter of <c>x</c> in the draggable part theme is 1, and right if it is -1.</summary>
+    /// <value>The x relative position, from 0 to 1.</value>
+    public (double, double) DragValue {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragValue(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragValue( value.Item1,  value.Item2); }
+    }
+    /// <summary>The draggable object relative size.
+    /// Values for <c>dw</c> and <c>dh</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis.
+    /// 
+    /// For instance a scroll bar handle size may depend on the size of the scroller&apos;s content.</summary>
+    /// <value>The drag relative width, from 0 to 1.</value>
+    public (double, double) DragSize {
+        get {
+            double _out_dw = default(double);
+            double _out_dh = default(double);
+            GetDragSize(out _out_dw,out _out_dh);
+            return (_out_dw,_out_dh);
+        }
+        set { SetDragSize( value.Item1,  value.Item2); }
+    }
     /// <summary>Determines the draggable directions (read-only).
     /// The draggable directions are defined in the EDC file, inside the &quot;draggable&quot; section, by the attributes <c>x</c> and <c>y</c>. See the EDC reference documentation for more information.</summary>
     /// <value>The direction(s) premitted for drag.</value>
     public Efl.Ui.DragDir DragDir {
         get { return GetDragDir(); }
+    }
+    /// <summary>The drag step increment.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragPage"/> in that this is meant to represent a unit increment, like a single line for example.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragPage"/>.</summary>
+    /// <value>The x step relative amount, from 0 to 1.</value>
+    public (double, double) DragStep {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragStep(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragStep( value.Item1,  value.Item2); }
+    }
+    /// <summary>The page step increments.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragStep"/> in that this is meant to be a larger step size, basically an entire page as opposed to a single or couple of lines.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragStep"/>.</summary>
+    /// <value>The x page step increment</value>
+    public (double, double) DragPage {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragPage(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragPage( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -1596,3 +1676,36 @@ public class LayoutPart : Efl.Object, Efl.Gfx.IEntity, Efl.Ui.IDrag
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasLayoutPart_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPart, T>magic = null) where T : Efl.Canvas.LayoutPart {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPart, T>magic = null) where T : Efl.Canvas.LayoutPart {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPart, T>magic = null) where T : Efl.Canvas.LayoutPart {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPart, T>magic = null) where T : Efl.Canvas.LayoutPart {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPart, T>magic = null) where T : Efl.Canvas.LayoutPart {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

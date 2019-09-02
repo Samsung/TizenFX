@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,11 +16,12 @@ namespace Canvas {
 /// Uesr can adjust the config value involved in gesture recognition through the method provided by the gesture recognizer.
 /// 
 /// The default config values follow the system default config value.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureRecognizer.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class GestureRecognizer : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -45,7 +47,8 @@ public abstract class GestureRecognizer : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected GestureRecognizer(ConstructingHandle ch) : base(ch)
     {
@@ -325,3 +328,10 @@ public abstract class GestureRecognizer : Efl.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasGestureRecognizer_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

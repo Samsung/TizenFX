@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -17,11 +18,12 @@ namespace Canvas {
 /// Child objects are not modified in any way, unlike other types of smart objects.
 /// 
 /// No child objects should be stacked above the event grabber parent while the grabber is visible. A critical error will be raised if this is detected.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.EventGrabber.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class EventGrabber : Efl.Canvas.Group
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class EventGrabber : Efl.Canvas.Group
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected EventGrabber(ConstructingHandle ch) : base(ch)
     {
@@ -214,3 +217,13 @@ public class EventGrabber : Efl.Canvas.Group
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasEventGrabber_ExtensionMethods {
+    public static Efl.BindableProperty<bool> FreezeWhenVisible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.EventGrabber, T>magic = null) where T : Efl.Canvas.EventGrabber {
+        return new Efl.BindableProperty<bool>("freeze_when_visible", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

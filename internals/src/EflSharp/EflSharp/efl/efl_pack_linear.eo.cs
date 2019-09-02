@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -72,12 +73,12 @@ Efl.Gfx.IEntity PackUnpackAt(int index);
                                 }
 /// <summary>Common interface for objects (containers) with multiple contents (sub-objects) which can be added and removed at runtime in a linear fashion.
 /// This means the sub-objects are internally organized in an ordered list.</summary>
-sealed public class IPackLinearConcrete :
+sealed public  class IPackLinearConcrete :
     Efl.Eo.EoWrapper
     , IPackLinear
     , Efl.IContainer, Efl.IPack
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -93,7 +94,8 @@ sealed public class IPackLinearConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPackLinearConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -110,6 +112,7 @@ sealed public class IPackLinearConcrete :
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -149,7 +152,7 @@ sealed public class IPackLinearConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -165,6 +168,7 @@ sealed public class IPackLinearConcrete :
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -204,7 +208,7 @@ sealed public class IPackLinearConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -1031,3 +1035,9 @@ sealed public class IPackLinearConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIPackLinearConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

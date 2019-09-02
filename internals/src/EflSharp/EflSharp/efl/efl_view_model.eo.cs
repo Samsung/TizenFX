@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -152,11 +153,12 @@ namespace Efl {
 
 /// <summary>Efl model providing helpers for custom properties used when linking a model to a view and you need to generate/adapt values for display.
 /// There is two ways to use this class, you can either inherit from it and have a custom constructor for example. Or you can just instantiate it and manually define your property on it via callbacks.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ViewModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class ViewModel : Efl.CompositeModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -200,7 +202,8 @@ public class ViewModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected ViewModel(ConstructingHandle ch) : base(ch)
     {
@@ -707,3 +710,13 @@ public class ViewModel : Efl.CompositeModel
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflViewModel_ExtensionMethods {
+    public static Efl.BindableProperty<bool> ChildrenBind<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ViewModel, T>magic = null) where T : Efl.ViewModel {
+        return new Efl.BindableProperty<bool>("children_bind", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Tab Bar class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TabBar.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class TabBar : Efl.Ui.LayoutBase
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class TabBar : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected TabBar(ConstructingHandle ch) : base(ch)
     {
@@ -454,3 +457,13 @@ public class TabBar : Efl.Ui.LayoutBase
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTabBar_ExtensionMethods {
+    public static Efl.BindableProperty<int> CurrentTab<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.TabBar, T>magic = null) where T : Efl.Ui.TabBar {
+        return new Efl.BindableProperty<int>("current_tab", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

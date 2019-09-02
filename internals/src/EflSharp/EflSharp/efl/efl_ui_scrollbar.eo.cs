@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Interface used by widgets which can display scrollbars, enabling them to contain more content than actually fits inside them.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IScrollbarConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IScrollbar : 
@@ -39,57 +41,84 @@ void SetBarPosition(double posx, double posy);
 /// The object will call this function whenever the bar needs to be shown or hidden.</summary>
 void UpdateBarVisibility();
                             /// <summary>Called when bar is pressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarPressEvt_Args"/></value>
     event EventHandler<Efl.Ui.IScrollbarBarPressEvt_Args> BarPressEvt;
     /// <summary>Called when bar is unpressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarUnpressEvt_Args"/></value>
     event EventHandler<Efl.Ui.IScrollbarBarUnpressEvt_Args> BarUnpressEvt;
     /// <summary>Called when bar is dragged.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarDragEvt_Args"/></value>
     event EventHandler<Efl.Ui.IScrollbarBarDragEvt_Args> BarDragEvt;
     /// <summary>Called when bar size is changed.</summary>
     event EventHandler BarSizeChangedEvt;
     /// <summary>Called when bar position is changed.</summary>
     event EventHandler BarPosChangedEvt;
     /// <summary>Callend when bar is shown.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarShowEvt_Args"/></value>
     event EventHandler<Efl.Ui.IScrollbarBarShowEvt_Args> BarShowEvt;
     /// <summary>Called when bar is hidden.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarHideEvt_Args"/></value>
     event EventHandler<Efl.Ui.IScrollbarBarHideEvt_Args> BarHideEvt;
+    /// <summary>Scrollbar visibility policy</summary>
+    /// <value>Horizontal scrollbar.</value>
+    (Efl.Ui.ScrollbarMode, Efl.Ui.ScrollbarMode) BarMode {
+        get;
+        set;
+    }
+    /// <summary>Scrollbar size. It is calculated based on viewport size-content sizes.</summary>
+    (double, double) BarSize {
+        get;
+    }
+    /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
+    /// <value>Value between 0.0 and 1.0.</value>
+    (double, double) BarPosition {
+        get;
+        set;
+    }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarPressEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarPressEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IScrollbarBarPressEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Ui.ScrollbarDirection arg { get; set; }
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when bar is pressed.</value>
+    public Efl.Ui.LayoutOrientation arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarUnpressEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarUnpressEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IScrollbarBarUnpressEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Ui.ScrollbarDirection arg { get; set; }
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when bar is unpressed.</value>
+    public Efl.Ui.LayoutOrientation arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarDragEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarDragEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IScrollbarBarDragEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Ui.ScrollbarDirection arg { get; set; }
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when bar is dragged.</value>
+    public Efl.Ui.LayoutOrientation arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarShowEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarShowEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IScrollbarBarShowEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Ui.ScrollbarDirection arg { get; set; }
+    /// <summary>Actual event payload.</summary>
+    /// <value>Callend when bar is shown.</value>
+    public Efl.Ui.LayoutOrientation arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarHideEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IScrollbar.BarHideEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IScrollbarBarHideEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Ui.ScrollbarDirection arg { get; set; }
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when bar is hidden.</value>
+    public Efl.Ui.LayoutOrientation arg { get; set; }
 }
 /// <summary>Interface used by widgets which can display scrollbars, enabling them to contain more content than actually fits inside them.</summary>
-sealed public class IScrollbarConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IScrollbarConcrete :
     Efl.Eo.EoWrapper
     , IScrollbar
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -105,7 +134,8 @@ sealed public class IScrollbarConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IScrollbarConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -121,6 +151,7 @@ sealed public class IScrollbarConcrete :
     }
 
     /// <summary>Called when bar is pressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarPressEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarPressEvt_Args> BarPressEvt
     {
         add
@@ -133,7 +164,7 @@ sealed public class IScrollbarConcrete :
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarPressEvt_Args args = new Efl.Ui.IScrollbarBarPressEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -160,7 +191,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarPressEvt.</summary>
+    /// <summary>Method to raise event BarPressEvt.</summary>
     public void OnBarPressEvt(Efl.Ui.IScrollbarBarPressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_PRESS";
@@ -182,6 +213,7 @@ sealed public class IScrollbarConcrete :
         }
     }
     /// <summary>Called when bar is unpressed.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarUnpressEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarUnpressEvt_Args> BarUnpressEvt
     {
         add
@@ -194,7 +226,7 @@ sealed public class IScrollbarConcrete :
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarUnpressEvt_Args args = new Efl.Ui.IScrollbarBarUnpressEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -221,7 +253,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarUnpressEvt.</summary>
+    /// <summary>Method to raise event BarUnpressEvt.</summary>
     public void OnBarUnpressEvt(Efl.Ui.IScrollbarBarUnpressEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_UNPRESS";
@@ -243,6 +275,7 @@ sealed public class IScrollbarConcrete :
         }
     }
     /// <summary>Called when bar is dragged.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarDragEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarDragEvt_Args> BarDragEvt
     {
         add
@@ -255,7 +288,7 @@ sealed public class IScrollbarConcrete :
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarDragEvt_Args args = new Efl.Ui.IScrollbarBarDragEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -282,7 +315,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarDragEvt.</summary>
+    /// <summary>Method to raise event BarDragEvt.</summary>
     public void OnBarDragEvt(Efl.Ui.IScrollbarBarDragEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_DRAG";
@@ -342,7 +375,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarSizeChangedEvt.</summary>
+    /// <summary>Method to raise event BarSizeChangedEvt.</summary>
     public void OnBarSizeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SIZE_CHANGED";
@@ -394,7 +427,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarPosChangedEvt.</summary>
+    /// <summary>Method to raise event BarPosChangedEvt.</summary>
     public void OnBarPosChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_POS_CHANGED";
@@ -408,6 +441,7 @@ sealed public class IScrollbarConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Callend when bar is shown.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarShowEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarShowEvt_Args> BarShowEvt
     {
         add
@@ -420,7 +454,7 @@ sealed public class IScrollbarConcrete :
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarShowEvt_Args args = new Efl.Ui.IScrollbarBarShowEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -447,7 +481,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarShowEvt.</summary>
+    /// <summary>Method to raise event BarShowEvt.</summary>
     public void OnBarShowEvt(Efl.Ui.IScrollbarBarShowEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_SHOW";
@@ -469,6 +503,7 @@ sealed public class IScrollbarConcrete :
         }
     }
     /// <summary>Called when bar is hidden.</summary>
+    /// <value><see cref="Efl.Ui.IScrollbarBarHideEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IScrollbarBarHideEvt_Args> BarHideEvt
     {
         add
@@ -481,7 +516,7 @@ sealed public class IScrollbarConcrete :
                     if (obj != null)
                     {
                         Efl.Ui.IScrollbarBarHideEvt_Args args = new Efl.Ui.IScrollbarBarHideEvt_Args();
-                        args.arg =  (Efl.Ui.ScrollbarDirection)evt.Info;
+                        args.arg =  (Efl.Ui.LayoutOrientation)evt.Info;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -508,7 +543,7 @@ sealed public class IScrollbarConcrete :
             }
         }
     }
-    ///<summary>Method to raise event BarHideEvt.</summary>
+    /// <summary>Method to raise event BarHideEvt.</summary>
     public void OnBarHideEvt(Efl.Ui.IScrollbarBarHideEvt_Args e)
     {
         var key = "_EFL_UI_SCROLLBAR_EVENT_BAR_HIDE";
@@ -570,6 +605,37 @@ sealed public class IScrollbarConcrete :
          Efl.Ui.IScrollbarConcrete.NativeMethods.efl_ui_scrollbar_bar_visibility_update_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
+    /// <summary>Scrollbar visibility policy</summary>
+    /// <value>Horizontal scrollbar.</value>
+    public (Efl.Ui.ScrollbarMode, Efl.Ui.ScrollbarMode) BarMode {
+        get {
+            Efl.Ui.ScrollbarMode _out_hbar = default(Efl.Ui.ScrollbarMode);
+            Efl.Ui.ScrollbarMode _out_vbar = default(Efl.Ui.ScrollbarMode);
+            GetBarMode(out _out_hbar,out _out_vbar);
+            return (_out_hbar,_out_vbar);
+        }
+        set { SetBarMode( value.Item1,  value.Item2); }
+    }
+    /// <summary>Scrollbar size. It is calculated based on viewport size-content sizes.</summary>
+    public (double, double) BarSize {
+        get {
+            double _out_width = default(double);
+            double _out_height = default(double);
+            GetBarSize(out _out_width,out _out_height);
+            return (_out_width,_out_height);
+        }
+    }
+    /// <summary>Scrollbar position. It is calculated based on current position-maximum positions.</summary>
+    /// <value>Value between 0.0 and 1.0.</value>
+    public (double, double) BarPosition {
+        get {
+            double _out_posx = default(double);
+            double _out_posy = default(double);
+            GetBarPosition(out _out_posx,out _out_posy);
+            return (_out_posx,_out_posy);
+        }
+        set { SetBarPosition( value.Item1,  value.Item2); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.IScrollbarConcrete.efl_ui_scrollbar_interface_get();
@@ -875,6 +941,15 @@ sealed public class IScrollbarConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIScrollbarConcrete_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -891,26 +966,6 @@ On = 1,
 Off = 2,
 /// <summary>For internal use only</summary>
 Last = 3,
-}
-
-}
-
-}
-
-namespace Efl {
-
-namespace Ui {
-
-/// <summary>What kind of scrollbar is this.</summary>
-[Efl.Eo.BindingEntity]
-public enum ScrollbarDirection
-{
-/// <summary>Goes along the X axis.</summary>
-Horizontal = 0,
-/// <summary>Goes along the Y axis.</summary>
-Vertical = 1,
-/// <summary>For internal use only</summary>
-Last = 2,
 }
 
 }
