@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The display rotation command.</param>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public DisplayRotationCommandReceivedEventArgs(DisplayRotationCommand command)
+        internal DisplayRotationCommandReceivedEventArgs(DisplayRotationCommand command)
         {
             Command = command ?? throw new ArgumentNullException(nameof(command));
         }

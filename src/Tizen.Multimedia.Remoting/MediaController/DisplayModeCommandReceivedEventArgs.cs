@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The display mode command.</param>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public DisplayModeCommandReceivedEventArgs(DisplayModeCommand command)
+        internal DisplayModeCommandReceivedEventArgs(DisplayModeCommand command)
         {
             Command = command ?? throw new ArgumentNullException(nameof(command));
         }
