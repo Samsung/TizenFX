@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 
@@ -159,14 +160,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -188,22 +181,30 @@ namespace Tizen.NUI
         /// This should be internal, please do not use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
         public new class Property
         {
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int STATE_VISUALS = Interop.ToggleButton.ToggleButton_Property_STATE_VISUALS_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int TOOLTIPS = Interop.ToggleButton.ToggleButton_Property_TOOLTIPS_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int CURRENT_STATE_INDEX = Interop.ToggleButton.ToggleButton_Property_CURRENT_STATE_INDEX_get();
         }
     }

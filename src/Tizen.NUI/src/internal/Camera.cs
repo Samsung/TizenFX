@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal class Camera : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -39,14 +38,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -64,142 +55,34 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
-
-        /// <since_tizen> 3 </since_tizen>
-        public class Property : global::System.IDisposable
+        internal class Property
         {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-            ~Property()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.CameraActor.delete_CameraActor_Property(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-
-            /// <since_tizen> 3 </since_tizen>
-            public Property() : this(Interop.CameraActor.new_CameraActor_Property(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TYPE = Interop.CameraActor.CameraActor_Property_TYPE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PROJECTION_MODE = Interop.CameraActor.CameraActor_Property_PROJECTION_MODE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int FIELD_OF_VIEW = Interop.CameraActor.CameraActor_Property_FIELD_OF_VIEW_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int ASPECT_RATIO = Interop.CameraActor.CameraActor_Property_ASPECT_RATIO_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int NEAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int FAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_FAR_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int LEFT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int RIGHT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TOP_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_TOP_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int BOTTOM_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TARGET_POSITION = Interop.CameraActor.CameraActor_Property_TARGET_POSITION_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int PROJECTION_MATRIX = Interop.CameraActor.CameraActor_Property_PROJECTION_MATRIX_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int VIEW_MATRIX = Interop.CameraActor.CameraActor_Property_VIEW_MATRIX_get();
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int INVERT_Y_AXIS = Interop.CameraActor.CameraActor_Property_INVERT_Y_AXIS_get();
-
+            internal static readonly int TYPE = Interop.CameraActor.CameraActor_Property_TYPE_get();
+            internal static readonly int PROJECTION_MODE = Interop.CameraActor.CameraActor_Property_PROJECTION_MODE_get();
+            internal static readonly int FIELD_OF_VIEW = Interop.CameraActor.CameraActor_Property_FIELD_OF_VIEW_get();
+            internal static readonly int ASPECT_RATIO = Interop.CameraActor.CameraActor_Property_ASPECT_RATIO_get();
+            internal static readonly int NEAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
+            internal static readonly int FAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_FAR_PLANE_DISTANCE_get();
+            internal static readonly int LEFT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
+            internal static readonly int RIGHT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
+            internal static readonly int TOP_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_TOP_PLANE_DISTANCE_get();
+            internal static readonly int BOTTOM_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
+            internal static readonly int TARGET_POSITION = Interop.CameraActor.CameraActor_Property_TARGET_POSITION_get();
+            internal static readonly int PROJECTION_MATRIX = Interop.CameraActor.CameraActor_Property_PROJECTION_MATRIX_get();
+            internal static readonly int VIEW_MATRIX = Interop.CameraActor.CameraActor_Property_VIEW_MATRIX_get();
+            internal static readonly int INVERT_Y_AXIS = Interop.CameraActor.CameraActor_Property_INVERT_Y_AXIS_get();
         }
 
         public Camera() : this(Interop.CameraActor.CameraActor_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public Camera(Vector2 size) : this(Interop.CameraActor.CameraActor_New__SWIG_1(Vector2.getCPtr(size)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
+
         public static Camera DownCast(BaseHandle handle)
         {
             Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
@@ -515,7 +398,5 @@ namespace Tizen.NUI
                 SetProperty(Camera.Property.INVERT_Y_AXIS, new Tizen.NUI.PropertyValue(value));
             }
         }
-
     }
-
 }
