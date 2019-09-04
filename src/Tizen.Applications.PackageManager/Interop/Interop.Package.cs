@@ -34,6 +34,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate bool PackageInfoPrivilegeInfoCallback(string privilege, IntPtr userData);
 
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate bool PackageInfoDependencyInfoCallback(string from, string to, string type, string requiredVersion, IntPtr userData);
+
         // Any change here might require changes in Tizen.Applications.AppType enum
         internal enum AppType
         {
@@ -114,5 +117,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_compare_package_cert_info")]
         internal static extern ErrorCode PackageCompareCertInfo(string lhsPackageId, string rhsPackageId, out CertCompareResultType result);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_dependency_info")]
+        internal static extern ErrorCode PackageInfoForeachDependencyInfo(IntPtr handle, PackageInfoDependencyInfoCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_foreach_dependency_info_depends_on")]
+        internal static extern ErrorCode PackageInfoForeachDependencyInfoDependsOn(IntPtr handle, PackageInfoDependencyInfoCallback callback, IntPtr userData);
     }
 }
