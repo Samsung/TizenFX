@@ -344,14 +344,14 @@ namespace Tizen.Multimedia
 
             if (AudioChannelMap != null)
             {
-                ret = Native.SetAudioChannelMask(handle, GetAudioChannelMask(handle));
+                ret = Native.SetAudioChannelMask(handle, GetAudioChannelMask(handle, AudioChannelMap));
                 MultimediaDebug.AssertNoError(ret);
             }
         }
 
-        private ulong GetAudioChannelMask(IntPtr handle)
+        private static ulong GetAudioChannelMask(IntPtr handle, IList<MediaFormatAudioChannelPosition> audioChannelMap)
         {
-            int ret = Native.GetMaskFromChannelPosition(handle, AudioChannelMap.ToArray(),
+            int ret = Native.GetMaskFromChannelPosition(handle, audioChannelMap.ToArray(),
                 out ulong mask);
             MultimediaDebug.AssertNoError(ret);
 
