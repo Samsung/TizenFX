@@ -85,7 +85,7 @@ namespace Tizen.Multimedia
         /// <paramref name="channel"/> should be set 1.<br/>
         /// User can not set <see cref="MediaFormatAudioChannelPosition.None"/> with another channel positions.<br/>
         /// User can not set <see cref="MediaFormatAudioChannelPosition.Mono"/> with another channel positions.<br/>
-        /// If same channel position is added in <paramref name="audioChannelMap"/> more than twice, its duplicaiton will be removed.
+        /// If same channel position is added in <paramref name="audioChannelMap"/> more than once, the duplicaiton will be removed.
         /// </remarks>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="channel">The channel value of the format.</param>
