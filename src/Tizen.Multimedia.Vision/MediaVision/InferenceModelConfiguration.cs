@@ -333,7 +333,13 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the size of inference model's tensor.
         /// </summary>
-        /// <remarks>Both width and height of tensor should be greater than 0.</remarks>
+        /// <remarks>
+        /// Both width and height of tensor should be greater than 0.<br/>
+        /// But, specially, -1 is allowed when user want to use original image source size as TensorSize.
+        /// In this case, user should set Size(-1, -1). Both Size(-1, 1) and Size(1, -1) are not allowed.
+        /// </remarks>
+        /// <exception cref="ArgumentException">
+        /// Only one of <paramref name="value.Width"/> or <paramref name="value.Height"/> have -1.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public Size TensorSize
@@ -347,13 +353,20 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                if (value.Width <= 0)
+                if (value.Equals(new Size(-1, 1)) || value.Equals(new Size(1, -1)))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Width should be greater than 0.");
+                    throw new ArgumentException("If user want to set -1, set -1 to both width and height.");
                 }
-                if (value.Height <= 0)
+
+                if (value.Width == 0 || value.Width <= -2)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Height should be greater than 0.");
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Width should be greater than 0." +
+                        "Or, set this property to Size(-1, -1), if you want to use original image size.");
+                }
+                if (value.Height == 0 || value.Height <= -2)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Height should be greater than 0." +
+                        "Or, set this property to Size(-1, -1), if you want to use original image size.");
                 }
 
                 Set(_keyInputTensorWidth, value.Width);
