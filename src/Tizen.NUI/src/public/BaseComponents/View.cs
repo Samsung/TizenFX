@@ -1258,6 +1258,26 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MARGIN).Get(temp);
             return temp;
         });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty UpdateSizeHintProperty = BindableProperty.Create("UpdateSizeHint", typeof(Vector2), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT, new Tizen.NUI.PropertyValue((Vector2)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+			
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT).Get(temp);
+            return temp;
+        });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
@@ -5946,6 +5966,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 UpdateSizeHint
+        {
+            get
+            {
+                return (Vector2)GetValue(UpdateSizeHintProperty);
+            }
+            set
+            {
+                SetValue(UpdateSizeHintProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
 
@@ -6077,6 +6111,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LAYOUT_DIRECTION = Interop.ActorProperty.Actor_Property_LAYOUT_DIRECTION_get();
             internal static readonly int MARGIN = Interop.ViewProperty.View_Property_MARGIN_get();
             internal static readonly int PADDING = Interop.ViewProperty.View_Property_PADDING_get();
+            internal static readonly int UPDATE_SIZE_HINT = Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get();
         }
     }
 }
