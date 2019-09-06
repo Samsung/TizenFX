@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,11 +8,12 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Thread.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IReader, Efl.Io.IWriter
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,7 +39,8 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Thread(ConstructingHandle ch) : base(ch)
     {
@@ -98,7 +101,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    ///<summary>Method to raise event ClosedEvt.</summary>
+    /// <summary>Method to raise event ClosedEvt.</summary>
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
@@ -116,6 +119,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt
     {
         add
@@ -155,7 +159,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    ///<summary>Method to raise event CanReadChangedEvt.</summary>
+    /// <summary>Method to raise event CanReadChangedEvt.</summary>
     public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
@@ -221,7 +225,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    ///<summary>Method to raise event EosEvt.</summary>
+    /// <summary>Method to raise event EosEvt.</summary>
     public void OnEosEvt(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
@@ -239,6 +243,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt
     {
         add
@@ -278,7 +283,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    ///<summary>Method to raise event CanWriteChangedEvt.</summary>
+    /// <summary>Method to raise event CanWriteChangedEvt.</summary>
     public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
@@ -322,16 +327,16 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
-    virtual public void Call(EFlThreadIOCall func) {
+    virtual public void Call(EflThreadIOCall func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
     /// <returns>No description supplied.</returns>
-    virtual public System.IntPtr CallSync(EFlThreadIOCallSync func) {
+    virtual public System.IntPtr CallSync(EflThreadIOCallSync func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EFlThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -986,20 +991,20 @@ array.OwnContent = false;
         private static efl_threadio_outdata_set_delegate efl_threadio_outdata_set_static_delegate;
 
         
-        private delegate void efl_threadio_call_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EFlThreadIOCallInternal func, EinaFreeCb func_free_cb);
+        private delegate void efl_threadio_call_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb);
 
         
-        public delegate void efl_threadio_call_api_delegate(System.IntPtr obj,  IntPtr func_data, EFlThreadIOCallInternal func, EinaFreeCb func_free_cb);
+        public delegate void efl_threadio_call_api_delegate(System.IntPtr obj,  IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb);
 
         public static Efl.Eo.FunctionWrapper<efl_threadio_call_api_delegate> efl_threadio_call_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_call_api_delegate>(Module, "efl_threadio_call");
 
-        private static void call(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EFlThreadIOCallInternal func, EinaFreeCb func_free_cb)
+        private static void call(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_threadio_call was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            EFlThreadIOCallWrapper func_wrapper = new EFlThreadIOCallWrapper(func, func_data, func_free_cb);
+                            EflThreadIOCallWrapper func_wrapper = new EflThreadIOCallWrapper(func, func_data, func_free_cb);
             
                 try
                 {
@@ -1022,20 +1027,20 @@ array.OwnContent = false;
         private static efl_threadio_call_delegate efl_threadio_call_static_delegate;
 
         
-        private delegate System.IntPtr efl_threadio_call_sync_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EFlThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
+        private delegate System.IntPtr efl_threadio_call_sync_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
 
         
-        public delegate System.IntPtr efl_threadio_call_sync_api_delegate(System.IntPtr obj,  IntPtr func_data, EFlThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
+        public delegate System.IntPtr efl_threadio_call_sync_api_delegate(System.IntPtr obj,  IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
 
         public static Efl.Eo.FunctionWrapper<efl_threadio_call_sync_api_delegate> efl_threadio_call_sync_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_call_sync_api_delegate>(Module, "efl_threadio_call_sync");
 
-        private static System.IntPtr call_sync(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EFlThreadIOCallSyncInternal func, EinaFreeCb func_free_cb)
+        private static System.IntPtr call_sync(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb)
         {
             Eina.Log.Debug("function efl_threadio_call_sync was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            EFlThreadIOCallSyncWrapper func_wrapper = new EFlThreadIOCallSyncWrapper(func, func_data, func_free_cb);
+                            EflThreadIOCallSyncWrapper func_wrapper = new EflThreadIOCallSyncWrapper(func, func_data, func_free_cb);
             System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
@@ -1709,3 +1714,47 @@ array.OwnContent = false;
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflThread_ExtensionMethods {
+    public static Efl.BindableProperty<System.IntPtr> Indata<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<System.IntPtr>("indata", fac);
+    }
+
+    public static Efl.BindableProperty<System.IntPtr> Outdata<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<System.IntPtr>("outdata", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> CommandString<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<System.String>("command_string", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<bool>("close_on_exec", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CloseOnInvalidate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<bool>("close_on_invalidate", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanRead<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<bool>("can_read", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Eos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<bool>("eos", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanWrite<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
+        return new Efl.BindableProperty<bool>("can_write", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

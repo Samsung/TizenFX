@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics gradient linear class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.GradientLinear.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientLinear
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientLinear
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected GradientLinear(ConstructingHandle ch) : base(ch)
     {
@@ -91,6 +94,28 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientLinear
                                                          Efl.Gfx.IGradientLinearConcrete.NativeMethods.efl_gfx_gradient_linear_end_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
+    /// <summary>Gets the start point of this linear gradient.</summary>
+    /// <value>X co-ordinate of start point</value>
+    public (double, double) Start {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetStart(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetStart( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets the end point of this linear gradient.</summary>
+    /// <value>X co-ordinate of end point</value>
+    public (double, double) End {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetEnd(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetEnd( value.Item1,  value.Item2); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Vg.GradientLinear.efl_canvas_vg_gradient_linear_class_get();
@@ -309,3 +334,11 @@ public class GradientLinear : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientLinear
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgGradientLinear_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

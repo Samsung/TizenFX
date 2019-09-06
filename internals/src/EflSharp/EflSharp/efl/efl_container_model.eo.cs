@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,11 +14,12 @@ namespace Efl {
 /// The data in the given containers are copied and stored internally.
 /// 
 /// Several containers can be supplied and the number of allocated children is based on the container of the largest size.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ContainerModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class ContainerModel : Efl.CompositeModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,7 +57,8 @@ public class ContainerModel : Efl.CompositeModel
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected ContainerModel(ConstructingHandle ch) : base(ch)
     {
@@ -149,15 +152,15 @@ values.Own = false;
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
-        
-        private delegate Eina.ValueType efl_container_model_child_property_value_type_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueTypeMarshaler))]
+        private delegate Eina.ValueTypeBox efl_container_model_child_property_value_type_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
 
-        
-        public delegate Eina.ValueType efl_container_model_child_property_value_type_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueTypeMarshaler))]
+        public delegate Eina.ValueTypeBox efl_container_model_child_property_value_type_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name);
 
         public static Efl.Eo.FunctionWrapper<efl_container_model_child_property_value_type_get_api_delegate> efl_container_model_child_property_value_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_container_model_child_property_value_type_get_api_delegate>(Module, "efl_container_model_child_property_value_type_get");
 
-        private static Eina.ValueType child_property_value_type_get(System.IntPtr obj, System.IntPtr pd, System.String name)
+        private static Eina.ValueTypeBox child_property_value_type_get(System.IntPtr obj, System.IntPtr pd, System.String name)
         {
             Eina.Log.Debug("function efl_container_model_child_property_value_type_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -186,14 +189,14 @@ values.Own = false;
         private static efl_container_model_child_property_value_type_get_delegate efl_container_model_child_property_value_type_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_container_model_child_property_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name,  Eina.ValueType type,  System.IntPtr values);
+        private delegate bool efl_container_model_child_property_add_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueTypeMarshaler))] Eina.ValueTypeBox type,  System.IntPtr values);
 
         [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_container_model_child_property_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name,  Eina.ValueType type,  System.IntPtr values);
+        public delegate bool efl_container_model_child_property_add_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.ValueTypeMarshaler))] Eina.ValueTypeBox type,  System.IntPtr values);
 
         public static Efl.Eo.FunctionWrapper<efl_container_model_child_property_add_api_delegate> efl_container_model_child_property_add_ptr = new Efl.Eo.FunctionWrapper<efl_container_model_child_property_add_api_delegate>(Module, "efl_container_model_child_property_add");
 
-        private static bool child_property_add(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.ValueType type, System.IntPtr values)
+        private static bool child_property_add(System.IntPtr obj, System.IntPtr pd, System.String name, Eina.ValueTypeBox type, System.IntPtr values)
         {
             Eina.Log.Debug("function efl_container_model_child_property_add was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -228,3 +231,9 @@ values.Own = false;
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflContainerModel_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

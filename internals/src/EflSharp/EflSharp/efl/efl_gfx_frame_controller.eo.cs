@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl frame controller of frame based animated object interface.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IFrameControllerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFrameController : 
@@ -59,20 +61,20 @@ double GetFrameDuration(int start_frame, int frame_num);
     /// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
     /// <value><c>true</c> if the object is animated</value>
     bool Animated {
-        get ;
+        get;
     }
     /// <summary>Index of the current frame of an animated object.
     /// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
     /// <value>The index of current frame.</value>
     int Frame {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the total number of frames of the object, if animated.
     /// Returns -1 if not animated.</summary>
     /// <value>The number of frames in the animated object.</value>
     int FrameCount {
-        get ;
+        get;
     }
     /// <summary>Get the kind of looping the animated object does.
     /// This returns the kind of looping the animated object wants to do.
@@ -84,7 +86,7 @@ double GetFrameDuration(int start_frame, int frame_num);
     /// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
     /// <value>Loop type of the animated object.</value>
     Efl.Gfx.FrameControllerLoopHint LoopType {
-        get ;
+        get;
     }
     /// <summary>Get the number times the animation of the object loops.
     /// This returns loop count of animated object. The loop count is the number of times the animation will play fully from first to last frame until the animation should stop (at the final frame).
@@ -92,16 +94,17 @@ double GetFrameDuration(int start_frame, int frame_num);
     /// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
     /// <value>The number of loop of an animated object.</value>
     int LoopCount {
-        get ;
+        get;
     }
 }
 /// <summary>Efl frame controller of frame based animated object interface.</summary>
-sealed public class IFrameControllerConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IFrameControllerConcrete :
     Efl.Eo.EoWrapper
     , IFrameController
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -117,7 +120,8 @@ sealed public class IFrameControllerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IFrameControllerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -596,6 +600,21 @@ sealed public class IFrameControllerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIFrameControllerConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<int> Frame<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IFrameController, T>magic = null) where T : Efl.Gfx.IFrameController {
+        return new Efl.BindableProperty<int>("frame", fac);
+    }
+
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Gfx {

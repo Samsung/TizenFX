@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Efl {
 
 /// <summary>Low-level APIs for object that can lay their children out.
 /// Used for containers (box, grid).</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.IPackLayoutConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPackLayout : 
@@ -27,12 +29,13 @@ void UpdateLayout();
 }
 /// <summary>Low-level APIs for object that can lay their children out.
 /// Used for containers (box, grid).</summary>
-sealed public class IPackLayoutConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IPackLayoutConcrete :
     Efl.Eo.EoWrapper
     , IPackLayout
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -48,7 +51,8 @@ sealed public class IPackLayoutConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPackLayoutConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -102,7 +106,7 @@ sealed public class IPackLayoutConcrete :
             }
         }
     }
-    ///<summary>Method to raise event LayoutUpdatedEvt.</summary>
+    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
     public void OnLayoutUpdatedEvt(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
@@ -252,3 +256,9 @@ sealed public class IPackLayoutConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIPackLayoutConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

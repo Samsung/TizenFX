@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Further customization of <see cref="Efl.Task"/>, including signals and environment control.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Exe.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IReader, Efl.Io.IWriter
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Exe(ConstructingHandle ch) : base(ch)
     {
@@ -99,7 +102,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
             }
         }
     }
-    ///<summary>Method to raise event ClosedEvt.</summary>
+    /// <summary>Method to raise event ClosedEvt.</summary>
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
@@ -117,6 +120,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt
     {
         add
@@ -156,7 +160,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
             }
         }
     }
-    ///<summary>Method to raise event CanReadChangedEvt.</summary>
+    /// <summary>Method to raise event CanReadChangedEvt.</summary>
     public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
@@ -222,7 +226,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
             }
         }
     }
-    ///<summary>Method to raise event EosEvt.</summary>
+    /// <summary>Method to raise event EosEvt.</summary>
     public void OnEosEvt(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
@@ -240,6 +244,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt
     {
         add
@@ -279,7 +284,7 @@ public class Exe : Efl.Task, Efl.Core.ICommandLine, Efl.Io.ICloser, Efl.Io.IRead
             }
         }
     }
-    ///<summary>Method to raise event CanWriteChangedEvt.</summary>
+    /// <summary>Method to raise event CanWriteChangedEvt.</summary>
     public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
@@ -1721,6 +1726,51 @@ array.OwnContent = false;
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflExe_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.ExeFlags> ExeFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<Efl.ExeFlags>("exe_flags", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Core.Env> Env<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<Efl.Core.Env>("env", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> CommandString<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<System.String>("command_string", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<bool>("close_on_exec", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CloseOnInvalidate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<bool>("close_on_invalidate", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanRead<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<bool>("can_read", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Eos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<bool>("eos", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanWrite<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Exe, T>magic = null) where T : Efl.Exe {
+        return new Efl.BindableProperty<bool>("can_write", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>Signal is a notification, a message sent by either operating system or some application to our program. Signals are a mechanism for one-way asynchronous notifications. A signal may be sent from the kernel to a process, from a process to another process, or from a process to itself. Signal typically alert a process to some event, such as a segmentation fault, or the user pressing Ctrl-C.</summary>
@@ -1759,8 +1809,6 @@ public enum ExeFlags
 None = 0,
 /// <summary>Process will be executed in its own session.</summary>
 GroupLeader = 1,
-/// <summary>Exit process when parent process exits.</summary>
-ExitWithParent = 2,
 /// <summary>All console IO will be hidden.</summary>
 HideIo = 4,
 }

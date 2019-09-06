@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Common interface for draggable objects and parts.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IDragConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IDrag : 
@@ -77,20 +79,65 @@ bool MoveDragStep(double dx, double dy);
 /// <param name="dy">The number of pages vertically.</param>
 /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
 bool MoveDragPage(double dx, double dy);
-                                                /// <summary>Determines the draggable directions (read-only).
+                                                /// <summary>The draggable object relative location.
+    /// Some parts in Edje can be dragged along the X/Y axes, if the part contains a &quot;draggable&quot; section (in EDC). For instance, scroll bars can be draggable objects.
+    /// 
+    /// <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative position to the draggable area on that axis.
+    /// 
+    /// This value means, for the vertical axis, that 0.0 will be at the top if the first parameter of <c>y</c> in the draggable part theme is 1 and at the bottom if it is -1.
+    /// 
+    /// For the horizontal axis, 0.0 means left if the first parameter of <c>x</c> in the draggable part theme is 1, and right if it is -1.</summary>
+    /// <value>The x relative position, from 0 to 1.</value>
+    (double, double) DragValue {
+        get;
+        set;
+    }
+    /// <summary>The draggable object relative size.
+    /// Values for <c>dw</c> and <c>dh</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis.
+    /// 
+    /// For instance a scroll bar handle size may depend on the size of the scroller&apos;s content.</summary>
+    /// <value>The drag relative width, from 0 to 1.</value>
+    (double, double) DragSize {
+        get;
+        set;
+    }
+    /// <summary>Determines the draggable directions (read-only).
     /// The draggable directions are defined in the EDC file, inside the &quot;draggable&quot; section, by the attributes <c>x</c> and <c>y</c>. See the EDC reference documentation for more information.</summary>
     /// <value>The direction(s) premitted for drag.</value>
     Efl.Ui.DragDir DragDir {
-        get ;
+        get;
+    }
+    /// <summary>The drag step increment.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragPage"/> in that this is meant to represent a unit increment, like a single line for example.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragPage"/>.</summary>
+    /// <value>The x step relative amount, from 0 to 1.</value>
+    (double, double) DragStep {
+        get;
+        set;
+    }
+    /// <summary>The page step increments.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragStep"/> in that this is meant to be a larger step size, basically an entire page as opposed to a single or couple of lines.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragStep"/>.</summary>
+    /// <value>The x page step increment</value>
+    (double, double) DragPage {
+        get;
+        set;
     }
 }
 /// <summary>Common interface for draggable objects and parts.</summary>
-sealed public class IDragConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IDragConcrete :
     Efl.Eo.EoWrapper
     , IDrag
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -106,7 +153,8 @@ sealed public class IDragConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IDragConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -227,11 +275,75 @@ sealed public class IDragConcrete :
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+    /// <summary>The draggable object relative location.
+    /// Some parts in Edje can be dragged along the X/Y axes, if the part contains a &quot;draggable&quot; section (in EDC). For instance, scroll bars can be draggable objects.
+    /// 
+    /// <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative position to the draggable area on that axis.
+    /// 
+    /// This value means, for the vertical axis, that 0.0 will be at the top if the first parameter of <c>y</c> in the draggable part theme is 1 and at the bottom if it is -1.
+    /// 
+    /// For the horizontal axis, 0.0 means left if the first parameter of <c>x</c> in the draggable part theme is 1, and right if it is -1.</summary>
+    /// <value>The x relative position, from 0 to 1.</value>
+    public (double, double) DragValue {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragValue(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragValue( value.Item1,  value.Item2); }
+    }
+    /// <summary>The draggable object relative size.
+    /// Values for <c>dw</c> and <c>dh</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis.
+    /// 
+    /// For instance a scroll bar handle size may depend on the size of the scroller&apos;s content.</summary>
+    /// <value>The drag relative width, from 0 to 1.</value>
+    public (double, double) DragSize {
+        get {
+            double _out_dw = default(double);
+            double _out_dh = default(double);
+            GetDragSize(out _out_dw,out _out_dh);
+            return (_out_dw,_out_dh);
+        }
+        set { SetDragSize( value.Item1,  value.Item2); }
+    }
     /// <summary>Determines the draggable directions (read-only).
     /// The draggable directions are defined in the EDC file, inside the &quot;draggable&quot; section, by the attributes <c>x</c> and <c>y</c>. See the EDC reference documentation for more information.</summary>
     /// <value>The direction(s) premitted for drag.</value>
     public Efl.Ui.DragDir DragDir {
         get { return GetDragDir(); }
+    }
+    /// <summary>The drag step increment.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragPage"/> in that this is meant to represent a unit increment, like a single line for example.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragPage"/>.</summary>
+    /// <value>The x step relative amount, from 0 to 1.</value>
+    public (double, double) DragStep {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragStep(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragStep( value.Item1,  value.Item2); }
+    }
+    /// <summary>The page step increments.
+    /// Values for <c>dx</c> and <c>dy</c> are real numbers that range from 0 to 1, representing the relative size of the draggable area on that axis by which the part will be moved.
+    /// 
+    /// This differs from <see cref="Efl.Ui.IDrag.GetDragStep"/> in that this is meant to be a larger step size, basically an entire page as opposed to a single or couple of lines.
+    /// 
+    /// See also <see cref="Efl.Ui.IDrag.GetDragStep"/>.</summary>
+    /// <value>The x page step increment</value>
+    public (double, double) DragPage {
+        get {
+            double _out_dx = default(double);
+            double _out_dy = default(double);
+            GetDragPage(out _out_dx,out _out_dy);
+            return (_out_dx,_out_dy);
+        }
+        set { SetDragPage( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -774,3 +886,14 @@ sealed public class IDragConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIDragConcrete_ExtensionMethods {
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -60,6 +60,23 @@ namespace Efl
                     get { return null; }
                     set { }
                 }
+
+                public (int, int, int, int) Color
+                {
+                    get
+                    {
+                        int _out_r = default(int);
+                        int _out_g = default(int);
+                        int _out_b = default(int);
+                        int _out_a = default(int);
+                        GetColor(out _out_r, out _out_g, out _out_b, out _out_a);
+                        return (_out_r, _out_g, _out_b, _out_a);
+                    }
+                    set
+                    {
+                        SetColor(value.Item1, value.Item2, value.Item3, value.Item4);
+                    }
+                }
             }
 
             /// <summary>

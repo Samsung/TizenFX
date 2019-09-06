@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Io {
 
 /// <summary>Generic interface for objects that can change or report position.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Io.IPositionerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPositioner : 
@@ -32,17 +34,18 @@ Eina.Error Seek(long offset, Efl.Io.PositionerWhence whence);
     /// <summary>Position property</summary>
     /// <value>Position in file or buffer</value>
     ulong Position {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Generic interface for objects that can change or report position.</summary>
-sealed public class IPositionerConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IPositionerConcrete :
     Efl.Eo.EoWrapper
     , IPositioner
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -58,7 +61,8 @@ sealed public class IPositionerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPositionerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -112,7 +116,7 @@ sealed public class IPositionerConcrete :
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(EventArgs e)
     {
         var key = "_EFL_IO_POSITIONER_EVENT_POSITION_CHANGED";
@@ -328,6 +332,16 @@ sealed public class IPositionerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_IoIPositionerConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<ulong> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IPositioner, T>magic = null) where T : Efl.Io.IPositioner {
+        return new Efl.BindableProperty<ulong>("position", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Io {

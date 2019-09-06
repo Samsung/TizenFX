@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Font settings of the text</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ITextFontConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextFont : 
@@ -22,6 +24,8 @@ public interface ITextFont :
 void GetFont(out System.String font, out Efl.Font.Size size);
     /// <summary>Set the font family, filename and size for a given text object.
 /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+/// 
+/// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
 /// 
 /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
 /// <param name="font">The font family name or filename.</param>
@@ -85,63 +89,73 @@ Efl.TextFontBitmapScalable GetFontBitmapScalable();
 /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
 /// <param name="scalable">Scalable</param>
 void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable);
-                                                                    /// <summary>Get the font file&apos;s path which is being used on a given text object.
+                                                                    /// <summary>Retrieve the font family and size in use on a given text object.
+    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// <value>The font family name or filename.</value>
+    (System.String, Efl.Font.Size) Font {
+        get;
+        set;
+    }
+    /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
     /// <value>The font file&apos;s path.</value>
     System.String FontSource {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Comma-separated list of font fallbacks
     /// Will be used in case the primary font isn&apos;t available.</summary>
     /// <value>Font name fallbacks</value>
     System.String FontFallbacks {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Type of weight of the displayed font
     /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
     /// <value>Font weight</value>
     Efl.TextFontWeight FontWeight {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Type of slant of the displayed font
     /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
     /// <value>Font slant</value>
     Efl.TextFontSlant FontSlant {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Type of width of the displayed font
     /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
     /// <value>Font width</value>
     Efl.TextFontWidth FontWidth {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Specific language of the displayed font
     /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
     /// <value>Language</value>
     System.String FontLang {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
     /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
     /// <value>Scalable</value>
     Efl.TextFontBitmapScalable FontBitmapScalable {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Font settings of the text</summary>
-sealed public class ITextFontConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextFontConcrete :
     Efl.Eo.EoWrapper
     , ITextFont
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -157,7 +171,8 @@ sealed public class ITextFontConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextFontConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -184,6 +199,8 @@ sealed public class ITextFontConcrete :
                                          }
     /// <summary>Set the font family, filename and size for a given text object.
     /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// 
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
     /// 
     /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
     /// <param name="font">The font family name or filename.</param>
@@ -299,6 +316,20 @@ sealed public class ITextFontConcrete :
                                  Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_set_ptr.Value.Delegate(this.NativeHandle,scalable);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Retrieve the font family and size in use on a given text object.
+    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// <value>The font family name or filename.</value>
+    public (System.String, Efl.Font.Size) Font {
+        get {
+            System.String _out_font = default(System.String);
+            Efl.Font.Size _out_size = default(Efl.Font.Size);
+            GetFont(out _out_font,out _out_size);
+            return (_out_font,_out_size);
+        }
+        set { SetFont( value.Item1,  value.Item2); }
+    }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
     /// <value>The font file&apos;s path.</value>
@@ -1110,6 +1141,41 @@ sealed public class ITextFontConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextFontConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<System.String> FontSource<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<System.String>("font_source", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontFallbacks<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<System.String>("font_fallbacks", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWeight> FontWeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<Efl.TextFontWeight>("font_weight", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontSlant> FontSlant<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<Efl.TextFontSlant>("font_slant", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWidth> FontWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<Efl.TextFontWidth>("font_width", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontLang<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<System.String>("font_lang", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontBitmapScalable> FontBitmapScalable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
+        return new Efl.BindableProperty<Efl.TextFontBitmapScalable>("font_bitmap_scalable", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>Type of font weight</summary>

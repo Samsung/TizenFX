@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,11 +8,12 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,7 +39,8 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopModel(ConstructingHandle ch) : base(ch)
     {
@@ -66,6 +69,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
     }
 
     /// <summary>Event dispatched when properties list is available.</summary>
+    /// <value><see cref="Efl.IModelPropertiesChangedEvt_Args"/></value>
     public event EventHandler<Efl.IModelPropertiesChangedEvt_Args> PropertiesChangedEvt
     {
         add
@@ -105,7 +109,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             }
         }
     }
-    ///<summary>Method to raise event PropertiesChangedEvt.</summary>
+    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
     public void OnPropertiesChangedEvt(Efl.IModelPropertiesChangedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
@@ -128,6 +132,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
         }
     }
     /// <summary>Event dispatched when new child is added.</summary>
+    /// <value><see cref="Efl.IModelChildAddedEvt_Args"/></value>
     public event EventHandler<Efl.IModelChildAddedEvt_Args> ChildAddedEvt
     {
         add
@@ -167,7 +172,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             }
         }
     }
-    ///<summary>Method to raise event ChildAddedEvt.</summary>
+    /// <summary>Method to raise event ChildAddedEvt.</summary>
     public void OnChildAddedEvt(Efl.IModelChildAddedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_ADDED";
@@ -190,6 +195,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
         }
     }
     /// <summary>Event dispatched when child is removed.</summary>
+    /// <value><see cref="Efl.IModelChildRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IModelChildRemovedEvt_Args> ChildRemovedEvt
     {
         add
@@ -229,7 +235,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             }
         }
     }
-    ///<summary>Method to raise event ChildRemovedEvt.</summary>
+    /// <summary>Method to raise event ChildRemovedEvt.</summary>
     public void OnChildRemovedEvt(Efl.IModelChildRemovedEvt_Args e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
@@ -290,7 +296,7 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
             }
         }
     }
-    ///<summary>Method to raise event ChildrenCountChangedEvt.</summary>
+    /// <summary>Method to raise event ChildrenCountChangedEvt.</summary>
     public void OnChildrenCountChangedEvt(EventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
@@ -894,3 +900,12 @@ public abstract class LoopModel : Efl.LoopConsumer, Efl.IModel
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopModel_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

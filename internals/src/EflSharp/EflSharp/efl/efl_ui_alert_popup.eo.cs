@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,18 +10,20 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.AlertPopup.ButtonClickedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.AlertPopup.ButtonClickedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class AlertPopupButtonClickedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when alert popup was clicked</value>
     public Efl.Ui.AlertPopupButtonClickedEvent arg { get; set; }
 }
 /// <summary>EFL UI Alert Popup class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.AlertPopup.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AlertPopup : Efl.Ui.Popup
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -52,7 +55,8 @@ public class AlertPopup : Efl.Ui.Popup
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AlertPopup(ConstructingHandle ch) : base(ch)
     {
@@ -74,6 +78,7 @@ public class AlertPopup : Efl.Ui.Popup
     }
 
     /// <summary>Called when alert popup was clicked</summary>
+    /// <value><see cref="Efl.Ui.AlertPopupButtonClickedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.AlertPopupButtonClickedEvt_Args> ButtonClickedEvt
     {
         add
@@ -113,7 +118,7 @@ public class AlertPopup : Efl.Ui.Popup
             }
         }
     }
-    ///<summary>Method to raise event ButtonClickedEvt.</summary>
+    /// <summary>Method to raise event ButtonClickedEvt.</summary>
     public void OnButtonClickedEvt(Efl.Ui.AlertPopupButtonClickedEvt_Args e)
     {
         var key = "_EFL_UI_ALERT_POPUP_EVENT_BUTTON_CLICKED";
@@ -143,6 +148,11 @@ public class AlertPopup : Efl.Ui.Popup
                                                                                  Efl.Ui.AlertPopup.NativeMethods.efl_ui_alert_popup_button_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, text, icon);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>Set popup buttons.</summary>
+    /// <value>Alert popup button type</value>
+    public (Efl.Ui.AlertPopupButton, System.String, Efl.Object) Button {
+        set { SetButton( value.Item1,  value.Item2,  value.Item3); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.AlertPopup.efl_ui_alert_popup_class_get();
@@ -224,6 +234,13 @@ public class AlertPopup : Efl.Ui.Popup
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiAlertPopup_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -254,16 +271,18 @@ namespace Ui {
 public struct AlertPopupButtonClickedEvent
 {
     /// <summary>Clicked button type</summary>
+    /// <value>Defines the type of the alert button.</value>
     public Efl.Ui.AlertPopupButton Button_type;
-    ///<summary>Constructor for AlertPopupButtonClickedEvent.</summary>
+    /// <summary>Constructor for AlertPopupButtonClickedEvent.</summary>
+    /// <param name="Button_type">Clicked button type</param>;
     public AlertPopupButtonClickedEvent(
         Efl.Ui.AlertPopupButton Button_type = default(Efl.Ui.AlertPopupButton)    )
     {
         this.Button_type = Button_type;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator AlertPopupButtonClickedEvent(IntPtr ptr)
     {
         var tmp = (AlertPopupButtonClickedEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(AlertPopupButtonClickedEvent.NativeStruct));
@@ -272,13 +291,13 @@ public struct AlertPopupButtonClickedEvent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct AlertPopupButtonClickedEvent.</summary>
+    /// <summary>Internal wrapper for struct AlertPopupButtonClickedEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public Efl.Ui.AlertPopupButton Button_type;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator AlertPopupButtonClickedEvent.NativeStruct(AlertPopupButtonClickedEvent _external_struct)
         {
             var _internal_struct = new AlertPopupButtonClickedEvent.NativeStruct();
@@ -286,7 +305,7 @@ public struct AlertPopupButtonClickedEvent
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator AlertPopupButtonClickedEvent(AlertPopupButtonClickedEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new AlertPopupButtonClickedEvent();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Efl {
 
 /// <summary>The look and layout of the text
 /// The text format can affect the geometry of the text object, as well as how characters are presented.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ITextFormatConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextFormat : 
@@ -89,81 +91,82 @@ void SetReplacementChar(System.String repch);
                                                                                             /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <value>Ellipsis value</value>
     double Ellipsis {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Wrap mode for use in the text</summary>
     /// <value>Wrap mode</value>
     Efl.TextFormatWrap Wrap {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Multiline is enabled or not</summary>
     /// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
     bool Multiline {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Alignment type</value>
     Efl.TextFormatHorizontalAlignmentAutoType HalignAutoType {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Horizontal alignment value</value>
     double Halign {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Vertical alignment of text</summary>
     /// <value>Vertical alignment value</value>
     double Valign {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <value>Line gap value</value>
     double Linegap {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <value>Relative line gap value</value>
     double Linerelgap {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Tabstops value</summary>
     /// <value>Tapstops value</value>
     int Tabstops {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Whether text is a password</summary>
     /// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
     bool Password {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <value>Replacement character</value>
     System.String ReplacementChar {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>The look and layout of the text
 /// The text format can affect the geometry of the text object, as well as how characters are presented.</summary>
-sealed public class ITextFormatConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextFormatConcrete :
     Efl.Eo.EoWrapper
     , ITextFormat
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -179,7 +182,8 @@ sealed public class ITextFormatConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextFormatConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -1446,6 +1450,56 @@ sealed public class ITextFormatConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextFormatConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<double> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<double>("ellipsis", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatWrap> Wrap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<Efl.TextFormatWrap>("wrap", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Multiline<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<bool>("multiline", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType> HalignAutoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType>("halign_auto_type", fac);
+    }
+
+    public static Efl.BindableProperty<double> Halign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<double>("halign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Valign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<double>("valign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linegap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<double>("linegap", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linerelgap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<double>("linerelgap", fac);
+    }
+
+    public static Efl.BindableProperty<int> Tabstops<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<int>("tabstops", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Password<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<bool>("password", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> ReplacementChar<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
+        return new Efl.BindableProperty<System.String>("replacement_char", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>Wrap mode of the text (not in effect if not multiline)</summary>

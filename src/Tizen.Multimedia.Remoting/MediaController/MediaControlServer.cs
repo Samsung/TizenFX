@@ -605,7 +605,8 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
 
-            Native.SetShuffleModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+            Native.SetSimpleCapability(Handle, MediaControlCapabilityCategory.Shuffle, support).
+                ThrowIfError("Failed to set shuffle mode capability.");
         }
 
         /// <summary>
@@ -623,7 +624,8 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
 
-            Native.SetRepeatModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+            Native.SetSimpleCapability(Handle, MediaControlCapabilityCategory.Repeat, support).
+                ThrowIfError("Failed to set repeat mode capability.");
         }
         #endregion Capabilities
 

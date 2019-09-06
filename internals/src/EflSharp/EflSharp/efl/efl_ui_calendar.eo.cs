@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>Calendar widget
 /// It helps applications to flexibly display a calendar with day of the week, date, year and month. Applications are able to set specific dates to be reported back, when selected, in the smart callbacks of the calendar widget.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Calendar.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposition
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Calendar(ConstructingHandle ch) : base(ch)
     {
@@ -107,7 +110,7 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
             }
         }
     }
-    ///<summary>Method to raise event ChangedEvt.</summary>
+    /// <summary>Method to raise event ChangedEvt.</summary>
     public void OnChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_CALENDAR_EVENT_CHANGED";
@@ -356,6 +359,24 @@ logical_order.Own = false;
     public Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
         get { return GetFormatValues(); }
         set { SetFormatValues(value); }
+    }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <value>Formatting string containing regular characters and format specifiers.</value>
+    public (System.String, Efl.Ui.FormatStringType) FormatString {
+        get {
+            System.String _out_kw_string = default(System.String);
+            Efl.Ui.FormatStringType _out_type = default(Efl.Ui.FormatStringType);
+            GetFormatString(out _out_kw_string,out _out_type);
+            return (_out_kw_string,_out_type);
+        }
+        set { SetFormatString( value.Item1,  value.Item2); }
     }
     /// <summary>Set the order of elements that will be used for composition
     /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
@@ -1467,6 +1488,45 @@ logical_order.Own = false;
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiCalendar_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.CalendarWeekday> FirstDayOfWeek<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Efl.Ui.CalendarWeekday>("first_day_of_week", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> DateMin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Efl.Time>("date_min", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> DateMax<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Efl.Time>("date_max", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Time> Date<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Efl.Time>("date", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.FormatFunc> FormatFunc<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Efl.Ui.FormatFunc>("format_func", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>> FormatValues<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>>("format_values", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.List<Efl.Gfx.IEntity>> CompositionElements<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<Eina.List<Efl.Gfx.IEntity>>("composition_elements", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LogicalMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
+        return new Efl.BindableProperty<bool>("logical_mode", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Low-level Image object.
 /// This replaces the legacy Evas Object Image, with only image-related interfaces: file and data images only. This object does not implement any special features such as proxy, snapshot or GL.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Image.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameController, Efl.Gfx.IImageLoadController
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Image(ConstructingHandle ch) : base(ch)
     {
@@ -101,7 +104,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
             }
         }
     }
-    ///<summary>Method to raise event LoadDoneEvt.</summary>
+    /// <summary>Method to raise event LoadDoneEvt.</summary>
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
@@ -115,6 +118,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when an error happened during image loading</summary>
+    /// <value><see cref="Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt
     {
         add
@@ -154,7 +158,7 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
             }
         }
     }
-    ///<summary>Method to raise event LoadErrorEvt.</summary>
+    /// <summary>Method to raise event LoadErrorEvt.</summary>
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
@@ -2016,3 +2020,56 @@ public class Image : Efl.Canvas.ImageInternal, Efl.IFile, Efl.Gfx.IFrameControll
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasImage_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<int> Frame<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<int>("frame", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.Size2D> LoadSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<Eina.Size2D>("load_size", fac);
+    }
+
+    public static Efl.BindableProperty<double> LoadDpi<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<double>("load_dpi", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Rect> LoadRegion<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<Eina.Rect>("load_region", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<bool>("load_orientation", fac);
+    }
+
+    public static Efl.BindableProperty<int> LoadScaleDown<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<int>("load_scale_down", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadSkipHeader<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Image, T>magic = null) where T : Efl.Canvas.Image {
+        return new Efl.BindableProperty<bool>("load_skip_header", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

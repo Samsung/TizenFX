@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,9 +14,9 @@ namespace Ui {
 /// Press it and run some function. It can contain a simple label and icon object and it also has an autorepeat feature.</summary>
 [Efl.Ui.Button.NativeMethods]
 [Efl.Eo.BindingEntity]
-public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutorepeat, Efl.Ui.IClickable
+public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Input.IClickable, Efl.Ui.IAutorepeat
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +48,8 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Button(ConstructingHandle ch) : base(ch)
     {
@@ -70,6 +72,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -109,7 +112,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -122,6 +125,318 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+    }
+    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
+    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableClickedEvt_Args args = new Efl.Input.IClickableClickedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_CLICKED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_CLICKED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ClickedEvt.</summary>
+    public void OnClickedEvt(Efl.Input.IClickableClickedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_CLICKED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
+    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableClickedAnyEvt_Args args = new Efl.Input.IClickableClickedAnyEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ClickedAnyEvt.</summary>
+    public void OnClickedAnyEvt(Efl.Input.IClickableClickedAnyEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickablePressedEvt_Args args = new Efl.Input.IClickablePressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_PRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_PRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event PressedEvt.</summary>
+    public void OnPressedEvt(Efl.Input.IClickablePressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_PRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableUnpressedEvt_Args args = new Efl.Input.IClickableUnpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event UnpressedEvt.</summary>
+    public void OnUnpressedEvt(Efl.Input.IClickableUnpressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_UNPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableLongpressedEvt_Args args = new Efl.Input.IClickableLongpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event LongpressedEvt.</summary>
+    public void OnLongpressedEvt(Efl.Input.IClickableLongpressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_LONGPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
     }
     /// <summary>Called when a repeated event is emitted</summary>
     public event EventHandler RepeatedEvt
@@ -162,7 +477,7 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
             }
         }
     }
-    ///<summary>Method to raise event RepeatedEvt.</summary>
+    /// <summary>Method to raise event RepeatedEvt.</summary>
     public void OnRepeatedEvt(EventArgs e)
     {
         var key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
@@ -174,313 +489,6 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
         }
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedEvt_Args> ClickedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableClickedEvt_Args args = new Efl.Ui.IClickableClickedEvt_Args();
-                        args.arg =  evt.Info;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(Efl.Ui.IClickableClickedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
-        try
-        {
-            Marshal.StructureToPtr(e.arg, info, false);
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedAnyEvt_Args> ClickedAnyEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableClickedAnyEvt_Args args = new Efl.Ui.IClickableClickedAnyEvt_Args();
-                        args.arg =  evt.Info;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedAnyEvt.</summary>
-    public void OnClickedAnyEvt(Efl.Ui.IClickableClickedAnyEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_ANY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
-        try
-        {
-            Marshal.StructureToPtr(e.arg, info, false);
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_PRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_PRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_PRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_UNPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_LONGPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
     /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
@@ -526,6 +534,38 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
                                  Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    virtual public bool GetInteraction() {
+         var _ret_var = Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Change internal states that a button got pressed.
+    /// When the button is already pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Press(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Change internal states that a button got unpressed.
+    /// When the button is not pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Unpress(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This aborts the internal state after a press call.
+    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
+    virtual public void ResetButtonState(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This aborts ongoing longpress event.
+    /// That is, this will stop the timer for longpress.</summary>
+    virtual public void LongpressAbort(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The initial timeout before the autorepeat event is generated.
@@ -581,26 +621,6 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
                                  Efl.Ui.IAutorepeatConcrete.NativeMethods.efl_ui_autorepeat_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),on);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Change internal states that a button got pressed.
-    /// When the button is already pressed, this is silently ignored.</summary>
-    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Change internal states that a button got unpressed.
-    /// When the button is not pressed, this is silently ignored.</summary>
-    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>This aborts the internal state after a press call.
-    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
-    virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>Sub-object currently set as this object&apos;s single content.
     /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
     /// (Since EFL 1.22)</summary>
@@ -608,6 +628,10 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
+    }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    public bool Interaction {
+        get { return GetInteraction(); }
     }
     /// <summary>The initial timeout before the autorepeat event is generated.
     /// Sets the timeout, in seconds, since the button is pressed until the first <c>repeated</c> signal is emitted. If <c>t</c> is 0.0 or less, there won&apos;t be any delay and the event will be fired the moment the button is pressed.
@@ -700,6 +724,56 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_set_static_delegate) });
             }
 
+            if (efl_input_clickable_interaction_get_static_delegate == null)
+            {
+                efl_input_clickable_interaction_get_static_delegate = new efl_input_clickable_interaction_get_delegate(interaction_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetInteraction") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_interaction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_interaction_get_static_delegate) });
+            }
+
+            if (efl_input_clickable_press_static_delegate == null)
+            {
+                efl_input_clickable_press_static_delegate = new efl_input_clickable_press_delegate(press);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_press_static_delegate) });
+            }
+
+            if (efl_input_clickable_unpress_static_delegate == null)
+            {
+                efl_input_clickable_unpress_static_delegate = new efl_input_clickable_unpress_delegate(unpress);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_unpress_static_delegate) });
+            }
+
+            if (efl_input_clickable_button_state_reset_static_delegate == null)
+            {
+                efl_input_clickable_button_state_reset_static_delegate = new efl_input_clickable_button_state_reset_delegate(button_state_reset);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_button_state_reset_static_delegate) });
+            }
+
+            if (efl_input_clickable_longpress_abort_static_delegate == null)
+            {
+                efl_input_clickable_longpress_abort_static_delegate = new efl_input_clickable_longpress_abort_delegate(longpress_abort);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "LongpressAbort") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_longpress_abort"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_longpress_abort_static_delegate) });
+            }
+
             if (efl_ui_autorepeat_initial_timeout_get_static_delegate == null)
             {
                 efl_ui_autorepeat_initial_timeout_get_static_delegate = new efl_ui_autorepeat_initial_timeout_get_delegate(autorepeat_initial_timeout_get);
@@ -758,36 +832,6 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
             if (methods.FirstOrDefault(m => m.Name == "SetAutorepeatEnabled") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_autorepeat_enabled_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_autorepeat_enabled_set_static_delegate) });
-            }
-
-            if (efl_ui_clickable_press_static_delegate == null)
-            {
-                efl_ui_clickable_press_static_delegate = new efl_ui_clickable_press_delegate(press);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_press_static_delegate) });
-            }
-
-            if (efl_ui_clickable_unpress_static_delegate == null)
-            {
-                efl_ui_clickable_unpress_static_delegate = new efl_ui_clickable_unpress_delegate(unpress);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_unpress_static_delegate) });
-            }
-
-            if (efl_ui_clickable_button_state_reset_static_delegate == null)
-            {
-                efl_ui_clickable_button_state_reset_static_delegate = new efl_ui_clickable_button_state_reset_delegate(button_state_reset);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_button_state_reset_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -980,6 +1024,182 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
         }
 
         private static efl_text_set_delegate efl_text_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_input_clickable_interaction_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_input_clickable_interaction_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate> efl_input_clickable_interaction_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate>(Module, "efl_input_clickable_interaction_get");
+
+        private static bool interaction_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_input_clickable_interaction_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Button)ws.Target).GetInteraction();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_input_clickable_interaction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_input_clickable_interaction_get_delegate efl_input_clickable_interaction_get_static_delegate;
+
+        
+        private delegate void efl_input_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_press_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate> efl_input_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate>(Module, "efl_input_clickable_press");
+
+        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_press was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Button)ws.Target).Press(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_press_delegate efl_input_clickable_press_static_delegate;
+
+        
+        private delegate void efl_input_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate> efl_input_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate>(Module, "efl_input_clickable_unpress");
+
+        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_unpress was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Button)ws.Target).Unpress(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_unpress_delegate efl_input_clickable_unpress_static_delegate;
+
+        
+        private delegate void efl_input_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate> efl_input_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate>(Module, "efl_input_clickable_button_state_reset");
+
+        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_button_state_reset was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Button)ws.Target).ResetButtonState(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_button_state_reset_delegate efl_input_clickable_button_state_reset_static_delegate;
+
+        
+        private delegate void efl_input_clickable_longpress_abort_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_longpress_abort_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate> efl_input_clickable_longpress_abort_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate>(Module, "efl_input_clickable_longpress_abort");
+
+        private static void longpress_abort(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_longpress_abort was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Button)ws.Target).LongpressAbort(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_longpress_abort_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_longpress_abort_delegate efl_input_clickable_longpress_abort_static_delegate;
 
         
         private delegate double efl_ui_autorepeat_initial_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1194,111 +1414,6 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
         private static efl_ui_autorepeat_enabled_set_delegate efl_ui_autorepeat_enabled_set_static_delegate;
 
-        
-        private delegate void efl_ui_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_press_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate> efl_ui_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate>(Module, "efl_ui_clickable_press");
-
-        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_press was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Button)ws.Target).Press(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_press_delegate efl_ui_clickable_press_static_delegate;
-
-        
-        private delegate void efl_ui_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate> efl_ui_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate>(Module, "efl_ui_clickable_unpress");
-
-        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_unpress was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Button)ws.Target).Unpress(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_unpress_delegate efl_ui_clickable_unpress_static_delegate;
-
-        
-        private delegate void efl_ui_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate> efl_ui_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate>(Module, "efl_ui_clickable_button_state_reset");
-
-        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_button_state_reset was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Button)ws.Target).ResetButtonState(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_button_state_reset_delegate efl_ui_clickable_button_state_reset_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -1307,3 +1422,27 @@ public class Button : Efl.Ui.LayoutBase, Efl.IContent, Efl.IText, Efl.Ui.IAutore
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiButton_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Button, T>magic = null) where T : Efl.Ui.Button {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<double> AutorepeatInitialTimeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Button, T>magic = null) where T : Efl.Ui.Button {
+        return new Efl.BindableProperty<double>("autorepeat_initial_timeout", fac);
+    }
+
+    public static Efl.BindableProperty<double> AutorepeatGapTimeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Button, T>magic = null) where T : Efl.Ui.Button {
+        return new Efl.BindableProperty<double>("autorepeat_gap_timeout", fac);
+    }
+
+    public static Efl.BindableProperty<bool> AutorepeatEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Button, T>magic = null) where T : Efl.Ui.Button {
+        return new Efl.BindableProperty<bool>("autorepeat_enabled", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

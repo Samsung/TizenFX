@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IDndContainerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IDndContainer : 
@@ -39,16 +41,17 @@ void DelDropItem(uint seat);
                             /// <summary>The time since mouse down happens to drag starts.</summary>
     /// <value>The drag delay time</value>
     double DragDelayTime {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-sealed public class IDndContainerConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IDndContainerConcrete :
     Efl.Eo.EoWrapper
     , IDndContainer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -64,7 +67,8 @@ sealed public class IDndContainerConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IDndContainerConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -442,3 +446,13 @@ sealed public class IDndContainerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIDndContainerConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<double> DragDelayTime<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IDndContainer, T>magic = null) where T : Efl.Ui.IDndContainer {
+        return new Efl.BindableProperty<double>("drag_delay_time", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

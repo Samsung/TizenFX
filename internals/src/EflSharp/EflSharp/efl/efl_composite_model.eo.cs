@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,12 +9,13 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl model for all composite class which provide a unified API to set source of data.
-/// This class also provide an <see cref="Efl.IModel.GetProperty"/> &quot;<c>child</c>.index&quot; that match the value of <see cref="Efl.CompositeModel.Index"/>.</summary>
+/// This class also provide an <see cref="Efl.IModel.GetProperty"/> &quot;child.index&quot; that match the value of <see cref="Efl.CompositeModel.Index"/>.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.CompositeModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -51,7 +53,8 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected CompositeModel(ConstructingHandle ch) : base(ch)
     {
@@ -72,15 +75,80 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
     {
     }
 
-    /// <summary>Get the index. It will only work after the object has been finalized.</summary>
-    /// <returns>Index of the object in the parent model. The index is uniq and start from zero.</returns>
+    /// <summary>Event dispatched when a new model is set.</summary>
+    /// <value><see cref="Efl.Ui.IViewModelChangedEvt_Args"/></value>
+    public event EventHandler<Efl.Ui.IViewModelChangedEvt_Args> ModelChangedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Ui.IViewModelChangedEvt_Args args = new Efl.Ui.IViewModelChangedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+                AddNativeEventHandler(efl.Libs.Ecore, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+                RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ModelChangedEvt.</summary>
+    public void OnModelChangedEvt(Efl.Ui.IViewModelChangedEvt_Args e)
+    {
+        var key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Position of this object in the parent model.
+    /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
+    /// <returns>Index of the object in the parent model. The index is unique and starts from zero.</returns>
     virtual public uint GetIndex() {
          var _ret_var = Efl.CompositeModel.NativeMethods.efl_composite_model_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set the index. It can only be set before the object is finalized, but after the Model it compose is set and only if that Model does not provide an index already.</summary>
-    /// <param name="index">Index of the object in the parent model. The index is uniq and start from zero.</param>
+    /// <summary>Position of this object in the parent model.
+    /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
+    /// <param name="index">Index of the object in the parent model. The index is unique and starts from zero.</param>
     virtual public void SetIndex(uint index) {
                                  Efl.CompositeModel.NativeMethods.efl_composite_model_index_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
@@ -98,8 +166,9 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
                                  Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Position of this object in the parent model.</summary>
-    /// <value>Index of the object in the parent model. The index is uniq and start from zero.</value>
+    /// <summary>Position of this object in the parent model.
+    /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
+    /// <value>Index of the object in the parent model. The index is unique and starts from zero.</value>
     public uint Index {
         get { return GetIndex(); }
         set { SetIndex(value); }
@@ -326,3 +395,17 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflCompositeModel_ExtensionMethods {
+    public static Efl.BindableProperty<uint> Index<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.CompositeModel, T>magic = null) where T : Efl.CompositeModel {
+        return new Efl.BindableProperty<uint>("index", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.IModel> Model<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.CompositeModel, T>magic = null) where T : Efl.CompositeModel {
+        return new Efl.BindableProperty<Efl.IModel>("model", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

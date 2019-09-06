@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,6 +9,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ITextMarkupConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextMarkup : 
@@ -22,17 +24,18 @@ void SetMarkup(System.String markup);
             /// <summary>Markup property</summary>
     /// <value>The markup-text representation set to this text.</value>
     System.String Markup {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
-sealed public class ITextMarkupConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextMarkupConcrete :
     Efl.Eo.EoWrapper
     , ITextMarkup
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -48,7 +51,8 @@ sealed public class ITextMarkupConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ITextMarkupConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -206,3 +210,13 @@ sealed public class ITextMarkupConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextMarkupConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextMarkup, T>magic = null) where T : Efl.ITextMarkup {
+        return new Efl.BindableProperty<System.String>("markup", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

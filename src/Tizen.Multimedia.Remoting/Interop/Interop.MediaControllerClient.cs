@@ -190,6 +190,10 @@ internal static partial class Interop
         internal delegate void RepeatCapabilityUpdatedCallback(string serverName, MediaControlCapabilitySupport support,
             IntPtr userData = default(IntPtr));
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SimpleCapabilityCallback(string serverName, MediaControlCapabilityCategory category,
+            MediaControlCapabilitySupport support, IntPtr userData = default(IntPtr));
+
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playback_content_type")]
         internal static extern MediaControllerError GetPlaybackContentType(IntPtr playbackHandle,
@@ -203,14 +207,6 @@ internal static partial class Interop
         internal static extern MediaControllerError GetPlaybackCapabilityHandle(MediaControllerClientHandle clientHandle,
             string serverName, out IntPtr capaHandle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_shuffle_ability_support")]
-        internal static extern MediaControllerError GetShuffleCapability(MediaControllerClientHandle clientHandle,
-            string serverName, out MediaControlCapabilitySupport type);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_repeat_ability_support")]
-        internal static extern MediaControllerError GetRepeatCapability(MediaControllerClientHandle clientHandle,
-            string serverName, out MediaControlCapabilitySupport type);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_playback_ability_updated_cb")]
         internal static extern MediaControllerError SetPlaybackCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
             PlaybackCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
@@ -218,19 +214,13 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_playback_ability_updated_cb")]
         internal static extern MediaControllerError UnsetPlaybackCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_shuffle_ability_updated_cb")]
-        internal static extern MediaControllerError SetShuffleCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
-            ShuffleCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_ability_support_updated_cb")]
+        internal static extern MediaControllerError SetSimpleCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
+            SimpleCapabilityCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_shuffle_ability_updated_cb")]
-        internal static extern MediaControllerError UnsetShuffleCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_repeat_ability_updated_cb")]
-        internal static extern MediaControllerError SetRepeatCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
-            RepeatCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_ability_updated_cb")]
-        internal static extern MediaControllerError UnsetRepeatCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_ability_support")]
+        internal static extern MediaControllerError GetSimpleCapability(MediaControllerClientHandle clientHandle,
+            string serverName, MediaControlCapabilityCategory category, out MediaControlCapabilitySupport type);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playback_ability_clone")]
         internal static extern MediaControllerError CloneCapability(IntPtr capaSrcHandle, out IntPtr capaDstHandle);

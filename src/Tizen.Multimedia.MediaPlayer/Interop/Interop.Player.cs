@@ -66,6 +66,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AdaptiveVariantCallback(int bandwidth, int width, int height, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SupportedMediaFormatCallback(int format, IntPtr userData);
+
         [DllImport(Libraries.Player, EntryPoint = "player_create")]
         internal static extern PlayerErrorCode Create(out PlayerHandle player);
 
@@ -363,6 +366,21 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_get_value")]
         internal static extern PlayerErrorCode GetAudioPitch(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_set_enabled")]
+        internal static extern PlayerErrorCode SetAudioOffloadEnabled(IntPtr player, bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_enabled")]
+        internal static extern PlayerErrorCode IsAudioOffloadEnabled(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_activated")]
+        internal static extern PlayerErrorCode IsAudioOffloadActivated(IntPtr player, out bool value);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_foreach_supported_format")]
+        internal static extern PlayerErrorCode SupportedAudioOffloadFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_media_stream_supported_format")]
+        internal static extern PlayerErrorCode SupportedMediaStreamFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
     }
 
     internal class PlayerHandle : SafeHandle

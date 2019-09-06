@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Efl cubic_bezier interpolator class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.CubicBezierInterpolator.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class CubicBezierInterpolator : Efl.Object, Efl.IInterpolator
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class CubicBezierInterpolator : Efl.Object, Efl.IInterpolator
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected CubicBezierInterpolator(ConstructingHandle ch) : base(ch)
     {
@@ -85,6 +88,19 @@ public class CubicBezierInterpolator : Efl.Object, Efl.IInterpolator
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+    /// <summary>Factors property</summary>
+    /// <value>First factor of the interpolation function.</value>
+    public (double, double, double, double) Factors {
+        get {
+            double _out_factor1 = default(double);
+            double _out_factor2 = default(double);
+            double _out_factor3 = default(double);
+            double _out_factor4 = default(double);
+            GetFactors(out _out_factor1,out _out_factor2,out _out_factor3,out _out_factor4);
+            return (_out_factor1,_out_factor2,_out_factor3,_out_factor4);
+        }
+        set { SetFactors( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.CubicBezierInterpolator.efl_cubic_bezier_interpolator_class_get();
@@ -255,3 +271,10 @@ public class CubicBezierInterpolator : Efl.Object, Efl.IInterpolator
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflCubicBezierInterpolator_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

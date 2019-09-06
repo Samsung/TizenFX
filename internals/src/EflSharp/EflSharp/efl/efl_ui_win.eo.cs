@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,31 +10,35 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.FullscreenChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Win.FullscreenChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class WinFullscreenChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when window is set to or from fullscreen</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.MaximizedChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Win.MaximizedChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class WinMaximizedChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when window is set to or from maximized</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Win.WinRotationChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Win.WinRotationChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class WinWinRotationChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when window rotation is changed, sends current rotation in degrees</value>
     public int arg { get; set; }
 }
-/// <summary>Efl UI window class
+/// <summary>Efl UI window class.
 /// (Since EFL 1.22)</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Win.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IText, Efl.Access.IWindow, Efl.Canvas.IScene, Efl.Input.IState, Efl.Ui.IWidgetFocusManager, Efl.Ui.Focus.IManager, Efl.Ui.Focus.IManagerWindowRoot
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -83,7 +88,8 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Win(ConstructingHandle ch) : base(ch)
     {
@@ -144,7 +150,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event DeleteRequestEvt.</summary>
+    /// <summary>Method to raise event DeleteRequestEvt.</summary>
     public void OnDeleteRequestEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_DELETE_REQUEST";
@@ -197,7 +203,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WithdrawnEvt.</summary>
+    /// <summary>Method to raise event WithdrawnEvt.</summary>
     public void OnWithdrawnEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_WITHDRAWN";
@@ -250,7 +256,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event MinimizedEvt.</summary>
+    /// <summary>Method to raise event MinimizedEvt.</summary>
     public void OnMinimizedEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_MINIMIZED";
@@ -303,7 +309,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event NormalEvt.</summary>
+    /// <summary>Method to raise event NormalEvt.</summary>
     public void OnNormalEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_NORMAL";
@@ -356,7 +362,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event StickEvt.</summary>
+    /// <summary>Method to raise event StickEvt.</summary>
     public void OnStickEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_STICK";
@@ -409,7 +415,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event UnstickEvt.</summary>
+    /// <summary>Method to raise event UnstickEvt.</summary>
     public void OnUnstickEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_UNSTICK";
@@ -424,6 +430,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when window is set to or from fullscreen
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.WinFullscreenChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.WinFullscreenChangedEvt_Args> FullscreenChangedEvt
     {
         add
@@ -463,7 +470,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event FullscreenChangedEvt.</summary>
+    /// <summary>Method to raise event FullscreenChangedEvt.</summary>
     public void OnFullscreenChangedEvt(Efl.Ui.WinFullscreenChangedEvt_Args e)
     {
         var key = "_EFL_UI_WIN_EVENT_FULLSCREEN_CHANGED";
@@ -486,6 +493,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when window is set to or from maximized
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.WinMaximizedChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.WinMaximizedChangedEvt_Args> MaximizedChangedEvt
     {
         add
@@ -525,7 +533,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event MaximizedChangedEvt.</summary>
+    /// <summary>Method to raise event MaximizedChangedEvt.</summary>
     public void OnMaximizedChangedEvt(Efl.Ui.WinMaximizedChangedEvt_Args e)
     {
         var key = "_EFL_UI_WIN_EVENT_MAXIMIZED_CHANGED";
@@ -586,7 +594,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event IndicatorPropChangedEvt.</summary>
+    /// <summary>Method to raise event IndicatorPropChangedEvt.</summary>
     public void OnIndicatorPropChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_INDICATOR_PROP_CHANGED";
@@ -601,6 +609,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when window rotation is changed, sends current rotation in degrees
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.WinWinRotationChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.WinWinRotationChangedEvt_Args> WinRotationChangedEvt
     {
         add
@@ -640,7 +649,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WinRotationChangedEvt.</summary>
+    /// <summary>Method to raise event WinRotationChangedEvt.</summary>
     public void OnWinRotationChangedEvt(Efl.Ui.WinWinRotationChangedEvt_Args e)
     {
         var key = "_EFL_UI_WIN_EVENT_WIN_ROTATION_CHANGED";
@@ -701,7 +710,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ProfileChangedEvt.</summary>
+    /// <summary>Method to raise event ProfileChangedEvt.</summary>
     public void OnProfileChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_PROFILE_CHANGED";
@@ -754,7 +763,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WmRotationChangedEvt.</summary>
+    /// <summary>Method to raise event WmRotationChangedEvt.</summary>
     public void OnWmRotationChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_WM_ROTATION_CHANGED";
@@ -807,7 +816,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ThemeChangedEvt.</summary>
+    /// <summary>Method to raise event ThemeChangedEvt.</summary>
     public void OnThemeChangedEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_THEME_CHANGED";
@@ -860,7 +869,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ElmActionBlockMenuEvt.</summary>
+    /// <summary>Method to raise event ElmActionBlockMenuEvt.</summary>
     public void OnElmActionBlockMenuEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_ELM_ACTION_BLOCK_MENU";
@@ -913,7 +922,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event PauseEvt.</summary>
+    /// <summary>Method to raise event PauseEvt.</summary>
     public void OnPauseEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_PAUSE";
@@ -966,7 +975,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ResumeEvt.</summary>
+    /// <summary>Method to raise event ResumeEvt.</summary>
     public void OnResumeEvt(EventArgs e)
     {
         var key = "_EFL_UI_WIN_EVENT_RESUME";
@@ -981,6 +990,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -1020,7 +1030,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -1073,7 +1083,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowCreatedEvt.</summary>
+    /// <summary>Method to raise event WindowCreatedEvt.</summary>
     public void OnWindowCreatedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
@@ -1125,7 +1135,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowDestroyedEvt.</summary>
+    /// <summary>Method to raise event WindowDestroyedEvt.</summary>
     public void OnWindowDestroyedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
@@ -1177,7 +1187,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowActivatedEvt.</summary>
+    /// <summary>Method to raise event WindowActivatedEvt.</summary>
     public void OnWindowActivatedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
@@ -1229,7 +1239,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowDeactivatedEvt.</summary>
+    /// <summary>Method to raise event WindowDeactivatedEvt.</summary>
     public void OnWindowDeactivatedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
@@ -1281,7 +1291,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowMaximizedEvt.</summary>
+    /// <summary>Method to raise event WindowMaximizedEvt.</summary>
     public void OnWindowMaximizedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
@@ -1333,7 +1343,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowMinimizedEvt.</summary>
+    /// <summary>Method to raise event WindowMinimizedEvt.</summary>
     public void OnWindowMinimizedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
@@ -1385,7 +1395,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event WindowRestoredEvt.</summary>
+    /// <summary>Method to raise event WindowRestoredEvt.</summary>
     public void OnWindowRestoredEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
@@ -1438,7 +1448,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event SceneFocusInEvt.</summary>
+    /// <summary>Method to raise event SceneFocusInEvt.</summary>
     public void OnSceneFocusInEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_IN";
@@ -1491,7 +1501,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event SceneFocusOutEvt.</summary>
+    /// <summary>Method to raise event SceneFocusOutEvt.</summary>
     public void OnSceneFocusOutEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_SCENE_FOCUS_OUT";
@@ -1506,6 +1516,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when object got focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusInEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneObjectFocusInEvt_Args> ObjectFocusInEvt
     {
         add
@@ -1545,7 +1556,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ObjectFocusInEvt.</summary>
+    /// <summary>Method to raise event ObjectFocusInEvt.</summary>
     public void OnObjectFocusInEvt(Efl.Canvas.ISceneObjectFocusInEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_IN";
@@ -1561,6 +1572,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when object lost focus
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneObjectFocusOutEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneObjectFocusOutEvt_Args> ObjectFocusOutEvt
     {
         add
@@ -1600,7 +1612,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ObjectFocusOutEvt.</summary>
+    /// <summary>Method to raise event ObjectFocusOutEvt.</summary>
     public void OnObjectFocusOutEvt(Efl.Canvas.ISceneObjectFocusOutEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_OBJECT_FOCUS_OUT";
@@ -1654,7 +1666,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event RenderPreEvt.</summary>
+    /// <summary>Method to raise event RenderPreEvt.</summary>
     public void OnRenderPreEvt(EventArgs e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_PRE";
@@ -1669,6 +1681,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when post render happens
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneRenderPostEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneRenderPostEvt_Args> RenderPostEvt
     {
         add
@@ -1708,7 +1721,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event RenderPostEvt.</summary>
+    /// <summary>Method to raise event RenderPostEvt.</summary>
     public void OnRenderPostEvt(Efl.Canvas.ISceneRenderPostEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_RENDER_POST";
@@ -1732,6 +1745,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when input device changed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceChangedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceChangedEvt_Args> DeviceChangedEvt
     {
         add
@@ -1771,7 +1785,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event DeviceChangedEvt.</summary>
+    /// <summary>Method to raise event DeviceChangedEvt.</summary>
     public void OnDeviceChangedEvt(Efl.Canvas.ISceneDeviceChangedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_CHANGED";
@@ -1787,6 +1801,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when input device was added
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceAddedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceAddedEvt_Args> DeviceAddedEvt
     {
         add
@@ -1826,7 +1841,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event DeviceAddedEvt.</summary>
+    /// <summary>Method to raise event DeviceAddedEvt.</summary>
     public void OnDeviceAddedEvt(Efl.Canvas.ISceneDeviceAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_ADDED";
@@ -1842,6 +1857,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when input device was removed
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.ISceneDeviceRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.ISceneDeviceRemovedEvt_Args> DeviceRemovedEvt
     {
         add
@@ -1881,7 +1897,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event DeviceRemovedEvt.</summary>
+    /// <summary>Method to raise event DeviceRemovedEvt.</summary>
     public void OnDeviceRemovedEvt(Efl.Canvas.ISceneDeviceRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_SCENE_EVENT_DEVICE_REMOVED";
@@ -1897,6 +1913,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
     {
         add
@@ -1936,7 +1953,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event RedirectChangedEvt.</summary>
+    /// <summary>Method to raise event RedirectChangedEvt.</summary>
     public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
@@ -1990,7 +2007,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event FlushPreEvt.</summary>
+    /// <summary>Method to raise event FlushPreEvt.</summary>
     public void OnFlushPreEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
@@ -2043,7 +2060,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event CoordsDirtyEvt.</summary>
+    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
     public void OnCoordsDirtyEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
@@ -2058,6 +2075,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
     {
         add
@@ -2097,7 +2115,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event ManagerFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
     public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
@@ -2113,6 +2131,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     }
     /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
     {
         add
@@ -2152,7 +2171,7 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
             }
         }
     }
-    ///<summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
     public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
@@ -2936,7 +2955,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
         return _ret_var;
  }
     /// <summary>Get a device by name.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="name">The name of the seat to find.</param>
     /// <returns>The device or seat, <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetDevice(System.String name) {
@@ -2945,7 +2966,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                         return _ret_var;
  }
     /// <summary>Get a seat by id.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="id">The id of the seat to find.</param>
     /// <returns>The seat or <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetSeat(int id) {
@@ -2954,7 +2977,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                         return _ret_var;
  }
     /// <summary>Get the default seat.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>The default seat or <c>null</c> if one does not exist.</returns>
     virtual public Efl.Input.Device GetSeatDefault() {
          var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seat_default_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -2963,7 +2988,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
  }
     /// <summary>This function returns the current known pointer coordinates
     /// This function returns the current position of the main input pointer (mouse, pen, etc...).
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="seat">The seat, or <c>null</c> to use the default.</param>
     /// <param name="pos">The pointer position in pixels.</param>
     /// <returns><c>true</c> if a pointer exists for the given seat, otherwise <c>false</c>.</returns>
@@ -3042,7 +3069,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
  }
     /// <summary>Iterate over the available input device seats for the canvas.
     /// A &quot;seat&quot; is the term used for a group of input devices, typically including a pointer and a keyboard. A seat object is the parent of the individual input devices.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>An iterator over the attached seats.</returns>
     virtual public Eina.Iterator<Efl.Input.Device> Seats() {
          var _ret_var = Efl.Canvas.ISceneConcrete.NativeMethods.efl_canvas_scene_seats_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
@@ -3050,7 +3079,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
         return new Eina.Iterator<Efl.Input.Device>(_ret_var, true);
  }
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="mod">The modifier key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key modifier is pressed.</returns>
@@ -3060,7 +3091,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
                                         return _ret_var;
  }
     /// <summary>Indicates whether a key lock is on, such as NumLock, CapsLock, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="kw_lock">The lock key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key lock is on.</returns>
@@ -3185,7 +3218,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
  }
     /// <summary>This will fetch the data from a registered node.
     /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
@@ -3255,6 +3290,21 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public Efl.Ui.WinKeyboardMode KeyboardMode {
         get { return GetKeyboardMode(); }
         set { SetKeyboardMode(value); }
+    }
+    /// <summary>Defines which rotations this window supports.
+    /// The window manager will refer to these hints and rotate the window accordingly, depending on the device orientation, for instance.
+    /// (Since EFL 1.22)</summary>
+    /// <value>Normal orientation.</value>
+    public (bool, bool, bool, bool) WmAvailableRotations {
+        get {
+            bool _out_allow_0 = default(bool);
+            bool _out_allow_90 = default(bool);
+            bool _out_allow_180 = default(bool);
+            bool _out_allow_270 = default(bool);
+            GetWmAvailableRotations(out _out_allow_0,out _out_allow_90,out _out_allow_180,out _out_allow_270);
+            return (_out_allow_0,_out_allow_90,_out_allow_180,_out_allow_270);
+        }
+        set { SetWmAvailableRotations( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Available profiles on a window.
     /// (Since EFL 1.22)</summary>
@@ -3555,6 +3605,29 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     public int ScreenRotation {
         get { return GetScreenRotation(); }
     }
+    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
+    /// (Since EFL 1.22)</summary>
+    public (int, int) ScreenDpi {
+        get {
+            int _out_xdpi = default(int);
+            int _out_ydpi = default(int);
+            GetScreenDpi(out _out_xdpi,out _out_ydpi);
+            return (_out_xdpi,_out_ydpi);
+        }
+    }
+    /// <summary>Get the maximum image size the canvas can possibly handle.
+    /// This function returns the largest image or surface size that the canvas can handle in pixels, and if there is one, returns <c>true</c>. It returns <c>false</c> if no extra constraint on maximum image size exists.
+    /// 
+    /// The default limit is 65535x65535.
+    /// (Since EFL 1.22)</summary>
+    /// <value><c>true</c> on success, <c>false</c> otherwise</value>
+    public Eina.Size2D ImageMaxSize {
+        get {
+            Eina.Size2D _out_max = default(Eina.Size2D);
+            GetImageMaxSize(out _out_max);
+            return (_out_max);
+        }
+    }
     /// <summary>Get if the canvas is currently calculating group objects.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if currently calculating group objects.</value>
@@ -3565,7 +3638,9 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
     /// A canvas may have exactly one default seat.
     /// 
     /// See also <see cref="Efl.Canvas.IScene.GetDevice"/> to find a seat by name. See also <see cref="Efl.Canvas.IScene.GetSeat"/> to find a seat by id.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>The default seat or <c>null</c> if one does not exist.</value>
     public Efl.Input.Device SeatDefault {
         get { return GetSeatDefault(); }
@@ -8597,11 +8672,167 @@ public class Win : Efl.Ui.Widget, Efl.IConfig, Efl.IContent, Efl.IScreen, Efl.IT
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWin_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.WinIndicatorMode> IndicatorMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.WinIndicatorMode>("indicator_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.WinKeyboardMode> KeyboardMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.WinKeyboardMode>("keyboard_mode", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Array<System.String>> WmAvailableProfiles<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Eina.Array<System.String>>("wm_available_profiles", fac);
+    }
+
+    public static Efl.BindableProperty<bool> ScreenConstrain<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("screen_constrain", fac);
+    }
+
+    public static Efl.BindableProperty<bool> PropFocusSkip<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("prop_focus_skip", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Autohide<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("autohide", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Value> ExitOnClose<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Eina.Value>("exit_on_close", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.Object> IconObject<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Canvas.Object>("icon_object", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Minimized<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("minimized", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Maximized<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("maximized", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Fullscreen<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("fullscreen", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Sticky<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("sticky", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.WinUrgentMode> Urgent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.WinUrgentMode>("urgent", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.WinModalMode> Modal<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.WinModalMode>("modal", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Borderless<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("borderless", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> WinRole<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<System.String>("win_role", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> WinName<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<System.String>("win_name", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.WinType> WinType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.WinType>("win_type", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> AccelPreference<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<System.String>("accel_preference", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Alpha<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("alpha", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> StackMasterId<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<System.String>("stack_master_id", fac);
+    }
+
+    public static Efl.BindableProperty<bool> StackBase<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("stack_base", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Value> ExitOnAllWindowsClosed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Eina.Value>("exit_on_all_windows_closed", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> HintBase<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_base", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> HintStep<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Eina.Size2D>("hint_step", fac);
+    }
+
+    public static Efl.BindableProperty<int> WinRotation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<int>("win_rotation", fac);
+    }
+
+    public static Efl.BindableProperty<bool> FocusHighlightEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("focus_highlight_enabled", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FocusHighlightStyle<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<System.String>("focus_highlight_style", fac);
+    }
+
+    public static Efl.BindableProperty<bool> FocusHighlightAnimate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<bool>("focus_highlight_animate", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.Focus.IManager> Redirect<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Win, T>magic = null) where T : Efl.Ui.Win {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
 
-/// <summary>Defines the types of window that can be created
+/// <summary>Defines the types of window that can be created.
 /// These are hints set on a window so that a running Window Manager knows how the window should be handled and/or what kind of decorations it should have.
 /// 
 /// Currently, only the X11 backed engines use them.</summary>
@@ -8618,23 +8849,23 @@ DialogBasic = 2,
 Desktop = 3,
 /// <summary>The window is used as a dock or panel. Usually would be kept on top of any other window by the Window Manager.</summary>
 Dock = 4,
-/// <summary>The window is used to hold a floating toolbar, or similar.</summary>
+/// <summary>The window is used to hold a floating toolbar or similar.</summary>
 Toolbar = 5,
-/// <summary>Similar to @.toolbar.</summary>
+/// <summary>Similar to <see cref="Efl.Ui.WinType.Toolbar"/>.</summary>
 Menu = 6,
 /// <summary>A persistent utility window, like a toolbox or palette.</summary>
 Utility = 7,
 /// <summary>Splash window for a starting up application.</summary>
 Splash = 8,
-/// <summary>The window is a dropdown menu, as when an  entry in a menubar is clicked. This hint exists for completion only, as the EFL way of implementing a menu would not normally use a separate window for its contents.</summary>
+/// <summary>The window is a dropdown menu, as when an  entry in a menu bar is clicked. This hint exists for completeness&apos; sake, as the EFL way of implementing a menu would not normally use a separate window for its contents.</summary>
 DropdownMenu = 9,
-/// <summary>Like @.dropdown_menu, but for the menu triggered by right-clicking an object.</summary>
+/// <summary>Like <see cref="Efl.Ui.WinType.DropdownMenu"/>, but for the menu triggered by right-clicking an object.</summary>
 PopupMenu = 10,
-/// <summary>The window is a tooltip. A short piece of explanatory text that typically appear after the mouse cursor hovers over an object for a while. Typically not very commonly used in the EFL.</summary>
+/// <summary>The window is a tooltip. A short piece of explanatory text that typically appear after the mouse cursor hovers over an object for a while. Not commonly used in the EFL.</summary>
 Tooltip = 11,
 /// <summary>A notification window, like a warning about battery life or a new E-Mail received.</summary>
 Notification = 12,
-/// <summary>A window holding the contents of a combo box. Not usually used in the EFL.</summary>
+/// <summary>A window holding the contents of a combo box. Not commonly used in the EFL.</summary>
 Combo = 13,
 /// <summary>Internal use.</summary>
 Dnd = 14,
@@ -8703,20 +8934,20 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Defines the type indicator that can be shown
+/// <summary>Defines the type indicator that can be shown.
 /// (Since EFL 1.22)</summary>
 [Efl.Eo.BindingEntity]
 public enum WinIndicatorMode
 {
-/// <summary>Request to deactivate the indicator</summary>
+/// <summary>Request to deactivate the indicator.</summary>
 Off = 0,
-/// <summary>The indicator icon is opaque, as is the indicator background. The content of window is located at the end of the indicator. The area of indicator and window content are not overlapped</summary>
+/// <summary>The indicator icon is opaque, as is the indicator background. The content of window is located at the end of the indicator. The area of indicator and window content are not overlapped.</summary>
 BgOpaque = 1,
 /// <summary>Be translucent the indicator</summary>
 Translucent = 2,
 /// <summary>Transparentizes the indicator</summary>
 Transparent = 3,
-/// <summary>The icon of indicator is opaque, but the background is transparent. The content of window is located under the indicator in Z-order. The area of indicator and window content are overlapped</summary>
+/// <summary>The icon of indicator is opaque, but the background is transparent. The content of window is located under the indicator in Z-order. The area of indicator and window content are overlapped.</summary>
 BgTransparent = 4,
 /// <summary>The indicator is hidden so user can see only the content of window such as in video mode. If user flicks the upper side of window, the indicator is shown temporarily.</summary>
 Hidden = 5,
@@ -8730,13 +8961,13 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Defines the mode of a modal window</summary>
+/// <summary>Defines the mode of a modal window.</summary>
 [Efl.Eo.BindingEntity]
 public enum WinModalMode
 {
-/// <summary>The window is not modal window.</summary>
+/// <summary>The window is not a modal window.</summary>
 None = 0,
-/// <summary>The window is modal window.</summary>
+/// <summary>The window is a modal window.</summary>
 Modal = 1,
 }
 
@@ -8766,7 +8997,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Define the move or resize mode of window.
+/// <summary>Define the move or resize mode of a window.
 /// The user can request the display server to start moving or resizing the window by combining these modes. However only limited combinations are allowed.
 /// 
 /// Currently, only the following 9 combinations are permitted. More combinations may be added in future: 1. move, 2. top, 3. bottom, 4. left, 5. right, 6. top | left, 7. top | right, 8. bottom | left, 9. bottom | right.

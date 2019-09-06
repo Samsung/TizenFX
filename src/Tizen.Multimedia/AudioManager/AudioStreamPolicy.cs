@@ -28,6 +28,9 @@ namespace Tizen.Multimedia
         private AudioStreamPolicyHandle _handle;
         private bool _disposed = false;
         private Interop.AudioStreamPolicy.FocusStateChangedCallback _focusStateChangedCallback;
+        private static AudioDevice _inputDevice = null;
+        private static AudioDevice _outputDevice = null;
+        private const string Tag = "Tizen.Multimedia.AudioStreamPolicy";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioStreamPolicy"/> class with <see cref="AudioStreamType"/>.
@@ -302,6 +305,84 @@ namespace Tizen.Multimedia
 
             Interop.AudioStreamPolicy.RemoveDeviceForStreamRouting(Handle, device.Id).
                 ThrowIfError("Failed to remove device for stream routing");
+        }
+
+        /// <summary>
+        /// Gets or sets the preferred input device.
+        /// </summary>
+        /// <value>
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for input.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioDevice PreferredInputDevice
+        {
+            get
+            {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out var inDeviceId, out _).
+                    ThrowIfError("Failed to get preferred input device");
+
+                Log.Debug(Tag, $"preferred input device id:{inDeviceId}");
+
+                return _inputDevice;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Input, value?.Id ?? 0).
+                    ThrowIfError("Failed to set preferred input device");
+
+                _inputDevice = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the preferred output device.
+        /// </summary>
+        /// <value>
+        /// The <see cref="AudioDevice"/> instance.<br/>
+        /// The default is null which means any device is not set on this property.
+        /// </value>
+        /// <remarks>
+        /// This property is to set a specific built-in device when the system has multiple devices of the same built-in device type.
+        /// When there's only one device for a built-in device type in the system, nothing will happen even if this property is set successfully.
+        /// </remarks>
+        /// <exception cref="ArgumentException">A device is not for output.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="AudioPolicyException">A device is not supported by this <see cref="AudioStreamPolicy"/> instance.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioDevice PreferredOutputDevice
+        {
+            get
+            {
+                /* This P/Invoke intends to validate if the core audio system
+                 * is normal. Otherwise, it'll throw an error here. */
+                Interop.AudioStreamPolicy.GetPreferredDevice(Handle, out _, out var outDeviceId).
+                    ThrowIfError("Failed to get preferred output device");
+
+                Log.Debug(Tag, $"preferred output device id:{outDeviceId}");
+
+                return _outputDevice;
+            }
+            set
+            {
+                Interop.AudioStreamPolicy.SetPreferredDevice(Handle, AudioDeviceIoDirection.Output, value?.Id ?? 0).
+                    ThrowIfError("Failed to set preferred output device");
+
+                _outputDevice = value;
+            }
         }
 
         /// <summary>

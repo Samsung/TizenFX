@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,11 +10,12 @@ namespace Efl {
 
 /// <summary>Efl accelerate interpolator class
 /// output = 1 - sin(Pi / 2 + input * Pi / 2);</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.AccelerateInterpolator.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AccelerateInterpolator : Efl.Object, Efl.IInterpolator
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,7 +41,8 @@ public class AccelerateInterpolator : Efl.Object, Efl.IInterpolator
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AccelerateInterpolator(ConstructingHandle ch) : base(ch)
     {
@@ -258,3 +261,13 @@ public class AccelerateInterpolator : Efl.Object, Efl.IInterpolator
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflAccelerateInterpolator_ExtensionMethods {
+    public static Efl.BindableProperty<double> Factor<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.AccelerateInterpolator, T>magic = null) where T : Efl.AccelerateInterpolator {
+        return new Efl.BindableProperty<double>("factor", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

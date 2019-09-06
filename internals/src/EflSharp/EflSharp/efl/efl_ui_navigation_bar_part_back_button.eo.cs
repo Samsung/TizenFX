@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl Ui Navigation_Bar internal part back button class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.NavigationBarPartBackButton.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.IText, Efl.Gfx.IEntity
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected NavigationBarPartBackButton(ConstructingHandle ch) : base(ch)
     {
@@ -63,6 +66,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -102,7 +106,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -118,6 +122,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     }
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
@@ -157,7 +162,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -180,6 +185,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
@@ -219,7 +225,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -243,6 +249,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
@@ -282,7 +289,7 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -1202,3 +1209,34 @@ public class NavigationBarPartBackButton : Efl.Ui.LayoutPart, Efl.IContent, Efl.
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiNavigationBarPartBackButton_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBarPartBackButton, T>magic = null) where T : Efl.Ui.NavigationBarPartBackButton {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

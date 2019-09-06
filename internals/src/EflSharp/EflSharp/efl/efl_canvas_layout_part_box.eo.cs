@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Represents a Box created as part of a layout.
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitly held.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.LayoutPartBox.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, Efl.IPackLinear, Efl.Ui.ILayoutOrientable, Efl.Ui.ILayoutOrientableReadonly
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartBox(ConstructingHandle ch) : base(ch)
     {
@@ -64,6 +67,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -103,7 +107,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -119,6 +123,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -158,7 +163,7 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -1107,3 +1112,13 @@ public class LayoutPartBox : Efl.Canvas.LayoutPart, Efl.IContainer, Efl.IPack, E
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasLayoutPartBox_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartBox, T>magic = null) where T : Efl.Canvas.LayoutPartBox {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

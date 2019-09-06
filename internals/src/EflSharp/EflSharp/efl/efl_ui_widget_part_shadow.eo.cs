@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -17,11 +18,12 @@ namespace Ui {
 /// As another example, here&apos;s a black drop-shadow: obj.shadow().color_set(0, 0, 0, 255); obj.shadow().grow_set(1); obj.shadow().radius_set(5, 5); obj.shadow().offset_set(5, 5);
 /// 
 /// It is also possible to manually specify which <see cref="Efl.Gfx.IFilter"/> program to use.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WidgetPartShadow.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor, Efl.Gfx.IFilter
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,7 +49,8 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected WidgetPartShadow(ConstructingHandle ch) : base(ch)
     {
@@ -247,6 +250,29 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
                                                                                  Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>The blur radius in pixels.</summary>
+    /// <value>The horizontal blur radius.</value>
+    public (double, double) Radius {
+        get {
+            double _out_rx = default(double);
+            double _out_ry = default(double);
+            GetRadius(out _out_rx,out _out_ry);
+            return (_out_rx,_out_ry);
+        }
+        set { SetRadius( value.Item1,  value.Item2); }
+    }
+    /// <summary>An offset relative to the original pixels.
+    /// This property allows for drop shadow effects.</summary>
+    /// <value>Horizontal offset in pixels.</value>
+    public (double, double) Offset {
+        get {
+            double _out_ox = default(double);
+            double _out_oy = default(double);
+            GetOffset(out _out_ox,out _out_oy);
+            return (_out_ox,_out_oy);
+        }
+        set { SetOffset( value.Item1,  value.Item2); }
+    }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
     /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
     /// 
@@ -256,12 +282,72 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
         get { return GetGrow(); }
         set { SetGrow(value); }
     }
+    /// <summary>Retrieves the general/main color of the given Evas object.
+    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
+    /// (Since EFL 1.22)</summary>
+    public (int, int, int, int) Color {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
+    }
+    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <value>The Lua program source code.</value>
+    public (System.String, System.String) FilterProgram {
+        get {
+            System.String _out_code = default(System.String);
+            System.String _out_name = default(System.String);
+            GetFilterProgram(out _out_code,out _out_name);
+            return (_out_code,_out_name);
+        }
+        set { SetFilterProgram( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set the current state of the filter.
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <value>Current state of the filter</value>
+    public (System.String, double, System.String, double, double) FilterState {
+        get {
+            System.String _out_cur_state = default(System.String);
+            double _out_cur_val = default(double);
+            System.String _out_next_state = default(System.String);
+            double _out_next_val = default(double);
+            double _out_pos = default(double);
+            GetFilterState(out _out_cur_state,out _out_cur_val,out _out_next_state,out _out_next_val,out _out_pos);
+            return (_out_cur_state,_out_cur_val,_out_next_state,_out_next_val,_out_pos);
+        }
+        set { SetFilterState( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Required padding to apply this filter without cropping.
+    /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
+    public (int, int, int, int) FilterPadding {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetFilterPadding(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -1167,3 +1253,25 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWidgetPartShadow_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<double> Grow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.WidgetPartShadow, T>magic = null) where T : Efl.Ui.WidgetPartShadow {
+        return new Efl.BindableProperty<double>("grow", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.WidgetPartShadow, T>magic = null) where T : Efl.Ui.WidgetPartShadow {
+        return new Efl.BindableProperty<System.String>("color_code", fac);
+    }
+
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

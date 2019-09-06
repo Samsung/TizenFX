@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -17,13 +18,17 @@ public interface IState :
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="mod">The modifier key to test.</param>
 /// <param name="seat">The seat device, may be <c>null</c></param>
 /// <returns><c>true</c> if the key modifier is pressed.</returns>
 bool GetModifierEnabled(Efl.Input.Modifier mod, Efl.Input.Device seat);
     /// <summary>Indicates whether a key lock is on, such as NumLock, CapsLock, ...
-/// (Since EFL 1.22)</summary>
+/// (Since EFL 1.22)
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="kw_lock">The lock key to test.</param>
 /// <param name="seat">The seat device, may be <c>null</c></param>
 /// <returns><c>true</c> if the key lock is on.</returns>
@@ -31,12 +36,12 @@ bool GetLockEnabled(Efl.Input.Lock kw_lock, Efl.Input.Device seat);
         }
 /// <summary>Efl input state interface.
 /// (Since EFL 1.22)</summary>
-sealed public class IStateConcrete :
+sealed public  class IStateConcrete :
     Efl.Eo.EoWrapper
     , IState
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -52,7 +57,8 @@ sealed public class IStateConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IStateConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -68,7 +74,9 @@ sealed public class IStateConcrete :
     }
 
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="mod">The modifier key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key modifier is pressed.</returns>
@@ -78,7 +86,9 @@ sealed public class IStateConcrete :
                                         return _ret_var;
  }
     /// <summary>Indicates whether a key lock is on, such as NumLock, CapsLock, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="kw_lock">The lock key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key lock is on.</returns>
@@ -214,3 +224,11 @@ sealed public class IStateConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_InputIStateConcrete_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

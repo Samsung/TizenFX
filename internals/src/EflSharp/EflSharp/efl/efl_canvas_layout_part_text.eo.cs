@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Represents a TEXT part of a layout
 /// Its lifetime is limited to one function call only, unless an extra reference is explicitly held.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.LayoutPartText.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor, Efl.ITextFont, Efl.ITextFormat, Efl.ITextMarkup, Efl.ITextMarkupInteractive, Efl.ITextStyle
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LayoutPartText(ConstructingHandle ch) : base(ch)
     {
@@ -317,6 +320,8 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
                                          }
     /// <summary>Set the font family, filename and size for a given text object.
     /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// 
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
     /// 
     /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
     /// <param name="font">The font family name or filename.</param>
@@ -924,6 +929,20 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         get { return GetTextExpand(); }
         set { SetTextExpand(value); }
     }
+    /// <summary>Retrieve the font family and size in use on a given text object.
+    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// <value>The font family name or filename.</value>
+    public (System.String, Efl.Font.Size) Font {
+        get {
+            System.String _out_font = default(System.String);
+            Efl.Font.Size _out_size = default(Efl.Font.Size);
+            GetFont(out _out_font,out _out_size);
+            return (_out_font,_out_size);
+        }
+        set { SetFont( value.Item1,  value.Item2); }
+    }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
     /// <value>The font file&apos;s path.</value>
@@ -1048,11 +1067,37 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
+    /// <summary>Color of text, excluding style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) NormalColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetNormalColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetNormalColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Enable or disable backing type</summary>
     /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
+    }
+    /// <summary>Backing color</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) BackingColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetBackingColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetBackingColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Sets an underline style on the text</summary>
     /// <value>Underline type</value>
@@ -1060,11 +1105,37 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
+    /// <summary>Color of normal underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Height of underline style</summary>
     /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
+    }
+    /// <summary>Color of dashed underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineDashedColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineDashedColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineDashedColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Width of dashed underline style</summary>
     /// <value>Width</value>
@@ -1078,11 +1149,37 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
+    /// <summary>Color of underline2 style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Underline2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderline2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderline2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Type of strikethrough style</summary>
     /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
+    }
+    /// <summary>Color of strikethrough_style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) StrikethroughColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetStrikethroughColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetStrikethroughColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <value>Effect type</value>
@@ -1090,11 +1187,63 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
+    /// <summary>Color of outline effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) OutlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetOutlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetOutlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Direction of shadow effect</summary>
     /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
+    }
+    /// <summary>Color of shadow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) ShadowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetShadowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetShadowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Color of glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) GlowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Second color of the glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Glow2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlow2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlow2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
@@ -6310,6 +6459,145 @@ public class LayoutPartText : Efl.Canvas.LayoutPart, Efl.IText, Efl.ITextCursor,
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasLayoutPartText_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.LayoutPartTextExpand> TextExpand<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.Canvas.LayoutPartTextExpand>("text_expand", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<System.String> FontSource<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("font_source", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontFallbacks<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("font_fallbacks", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWeight> FontWeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFontWeight>("font_weight", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontSlant> FontSlant<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFontSlant>("font_slant", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWidth> FontWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFontWidth>("font_width", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontLang<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("font_lang", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontBitmapScalable> FontBitmapScalable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFontBitmapScalable>("font_bitmap_scalable", fac);
+    }
+
+    public static Efl.BindableProperty<double> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("ellipsis", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatWrap> Wrap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFormatWrap>("wrap", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Multiline<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<bool>("multiline", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType> HalignAutoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType>("halign_auto_type", fac);
+    }
+
+    public static Efl.BindableProperty<double> Halign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("halign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Valign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("valign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linegap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("linegap", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linerelgap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("linerelgap", fac);
+    }
+
+    public static Efl.BindableProperty<int> Tabstops<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<int>("tabstops", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Password<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<bool>("password", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> ReplacementChar<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("replacement_char", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("markup", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.TextStyleBackingType> BackingType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextStyleBackingType>("backing_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleUnderlineType> UnderlineType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextStyleUnderlineType>("underline_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> UnderlineHeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<double>("underline_height", fac);
+    }
+
+    
+    public static Efl.BindableProperty<int> UnderlineDashedWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<int>("underline_dashed_width", fac);
+    }
+
+    public static Efl.BindableProperty<int> UnderlineDashedGap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<int>("underline_dashed_gap", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleStrikethroughType> StrikethroughType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextStyleStrikethroughType>("strikethrough_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleEffectType> EffectType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextStyleEffectType>("effect_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleShadowDirection> ShadowDirection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<Efl.TextStyleShadowDirection>("shadow_direction", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> GfxFilter<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.LayoutPartText, T>magic = null) where T : Efl.Canvas.LayoutPartText {
+        return new Efl.BindableProperty<System.String>("gfx_filter", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Canvas {

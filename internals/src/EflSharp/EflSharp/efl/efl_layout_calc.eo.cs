@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -69,6 +70,7 @@ void CalcForce();
     event EventHandler RecalcEvt;
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt;
     /// <summary>Whether this object updates its size hints automatically.
     /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
@@ -77,25 +79,26 @@ void CalcForce();
     /// (Since EFL 1.22)</summary>
     /// <value>Whether or not update the size hints.</value>
     bool CalcAutoUpdateHints {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ICalcCircularDependencyEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>A circular dependency between parts of the object was found.</value>
     public Eina.Array<System.String> arg { get; set; }
 }
 /// <summary>This interface defines a common set of APIs used to trigger calculations with layout objects.
 /// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
 /// (Since EFL 1.22)</summary>
-sealed public class ICalcConcrete :
+sealed public  class ICalcConcrete :
     Efl.Eo.EoWrapper
     , ICalc
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -111,7 +114,8 @@ sealed public class ICalcConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ICalcConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -166,7 +170,7 @@ sealed public class ICalcConcrete :
             }
         }
     }
-    ///<summary>Method to raise event RecalcEvt.</summary>
+    /// <summary>Method to raise event RecalcEvt.</summary>
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
@@ -181,6 +185,7 @@ sealed public class ICalcConcrete :
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
         add
@@ -220,7 +225,7 @@ sealed public class ICalcConcrete :
             }
         }
     }
-    ///<summary>Method to raise event CircularDependencyEvt.</summary>
+    /// <summary>Method to raise event CircularDependencyEvt.</summary>
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
@@ -674,3 +679,13 @@ sealed public class ICalcConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_LayoutICalcConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Layout.ICalc, T>magic = null) where T : Efl.Layout.ICalc {
+        return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Tab Pager class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TabPager.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class TabPager : Efl.Ui.Spotlight.Container
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class TabPager : Efl.Ui.Spotlight.Container
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected TabPager(ConstructingHandle ch) : base(ch)
     {
@@ -207,3 +210,13 @@ public class TabPager : Efl.Ui.Spotlight.Container
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTabPager_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.Object> TabBar<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.TabPager, T>magic = null) where T : Efl.Ui.TabPager {
+        return new Efl.BindableProperty<Efl.Canvas.Object>("tab_bar", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

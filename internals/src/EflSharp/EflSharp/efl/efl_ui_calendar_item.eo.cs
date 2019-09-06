@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>EFL UI Calendar Item class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.CalendarItem.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected CalendarItem(ConstructingHandle ch) : base(ch)
     {
@@ -63,6 +66,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
 
     /// <summary>Emitted if the focus state has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt
     {
         add
@@ -102,7 +106,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
             }
         }
     }
-    ///<summary>Method to raise event FocusChangedEvt.</summary>
+    /// <summary>Method to raise event FocusChangedEvt.</summary>
     public void OnFocusChangedEvt(Efl.Ui.Focus.IObjectFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
@@ -125,6 +129,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
     }
     /// <summary>Emitted when a new manager is the parent for this object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt
     {
         add
@@ -164,7 +169,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
             }
         }
     }
-    ///<summary>Method to raise event FocusManagerChangedEvt.</summary>
+    /// <summary>Method to raise event FocusManagerChangedEvt.</summary>
     public void OnFocusManagerChangedEvt(Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
@@ -180,6 +185,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
     }
     /// <summary>Emitted when a new logical parent should be used.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt
     {
         add
@@ -219,7 +225,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
             }
         }
     }
-    ///<summary>Method to raise event FocusParentChangedEvt.</summary>
+    /// <summary>Method to raise event FocusParentChangedEvt.</summary>
     public void OnFocusParentChangedEvt(Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
@@ -235,6 +241,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
     }
     /// <summary>Emitted if child_focus has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt
     {
         add
@@ -274,7 +281,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
             }
         }
     }
-    ///<summary>Method to raise event ChildFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ChildFocusChangedEvt.</summary>
     public void OnChildFocusChangedEvt(Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
@@ -297,6 +304,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
     }
     /// <summary>Emitted if focus geometry of this object has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt
     {
         add
@@ -336,7 +344,7 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
             }
         }
     }
-    ///<summary>Method to raise event FocusGeometryChangedEvt.</summary>
+    /// <summary>Method to raise event FocusGeometryChangedEvt.</summary>
     public void OnFocusGeometryChangedEvt(Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
@@ -1067,3 +1075,24 @@ public class CalendarItem : Efl.Object, Efl.Ui.Focus.IObject
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiCalendarItem_ExtensionMethods {
+    public static Efl.BindableProperty<int> DayNumber<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CalendarItem, T>magic = null) where T : Efl.Ui.CalendarItem {
+        return new Efl.BindableProperty<int>("day_number", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> Focus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CalendarItem, T>magic = null) where T : Efl.Ui.CalendarItem {
+        return new Efl.BindableProperty<bool>("focus", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> ChildFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CalendarItem, T>magic = null) where T : Efl.Ui.CalendarItem {
+        return new Efl.BindableProperty<bool>("child_focus", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

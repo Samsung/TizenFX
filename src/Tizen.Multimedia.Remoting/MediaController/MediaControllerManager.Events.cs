@@ -31,8 +31,7 @@ namespace Tizen.Multimedia.Remoting
         private NativePlaylist.MetadataUpdatedCallback _metadataUpdatedCallback;
         private NativePlaylist.PlaylistUpdatedCallback _playlistUpdatedCallback;
         private Native.PlaybackCapabilityUpdatedCallback _playbackCapabilityUpdatedCallback;
-        private Native.ShuffleCapabilityUpdatedCallback _shuffleModeCapabilityUpdatedCallback;
-        private Native.RepeatCapabilityUpdatedCallback _repeatModeCapabilityUpdatedCallback;
+        private Native.SimpleCapabilityCallback _simpleCapabilityUpdatedCallback;
         private Native.CustomCommandReceivedCallback _customCommandReceivedCallback;
 
         /// <summary>
@@ -57,9 +56,8 @@ namespace Tizen.Multimedia.Remoting
             RegisterPlaylistUpdatedEvent();
             RegisterCommandCompletedEvent();
             RegisterPlaybackCapabilitiesEvent();
-            RegisterRepeatModeCapabilitiesEvent();
-            RegisterShuffleModeCapabilitiesEvent();
             RegisterCustomCommandReceivedEvent();
+            RegisterSimpleCapabilityEvent();
         }
 
         private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
@@ -168,28 +166,6 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfError("Failed to init PlaybackCapabilityUpdated event.");
         }
 
-        private void RegisterRepeatModeCapabilitiesEvent()
-        {
-            _repeatModeCapabilityUpdatedCallback = (serverName, support, _) =>
-            {
-                GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
-            };
-
-            Native.SetRepeatCapabilityUpdatedCb(Handle, _repeatModeCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init RepeatModeCapabilityUpdated event.");
-        }
-
-        private void RegisterShuffleModeCapabilitiesEvent()
-        {
-            _shuffleModeCapabilityUpdatedCallback = (serverName, support, _) =>
-            {
-                GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
-            };
-
-            Native.SetShuffleCapabilityUpdatedCb(Handle, _shuffleModeCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init ShuffleModeCapabilityUpdated event.");
-        }
-
         private void RegisterCustomCommandReceivedEvent()
         {
             _customCommandReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
@@ -211,6 +187,25 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetCustomEventCb(Handle, _customCommandReceivedCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
+        }
+
+        private void RegisterSimpleCapabilityEvent()
+        {
+            _simpleCapabilityUpdatedCallback = (serverName, category, support, _) =>
+            {
+                switch (category)
+                {
+                    case MediaControlCapabilityCategory.Repeat:
+                        GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
+                        break;
+                    case MediaControlCapabilityCategory.Shuffle:
+                        GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
+                        break;
+                }
+            };
+
+            Native.SetSimpleCapabilityUpdatedCb(Handle, _simpleCapabilityUpdatedCallback).
+                ThrowIfError("Failed to init capability updated event.");
         }
     }
 }
