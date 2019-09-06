@@ -199,17 +199,14 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                imageView._synchronosLoading = (bool) newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
-            return ret;
+            return imageView._synchronosLoading;
         });
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -242,6 +239,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Rectangle _border;
         private string _resourceUrl = "";
+        private bool _synchronosLoading = false;
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -714,7 +712,6 @@ namespace Tizen.NUI.BaseComponents
         ///  Whether to crop image to mask or scale mask to fit image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CropToMask
         {
             get
@@ -978,7 +975,9 @@ namespace Tizen.NUI.BaseComponents
                 temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
                 temp.Insert(NpatchImageVisualProperty.Border, new PropertyValue(_border));
             }
-        
+
+            temp.Insert(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronosLoading));
+
             if (value != null)
             {
                 temp.Insert(key, value);

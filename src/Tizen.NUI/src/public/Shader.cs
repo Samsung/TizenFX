@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -36,7 +37,6 @@ namespace Tizen.NUI
         public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -48,7 +48,6 @@ namespace Tizen.NUI
         public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -88,14 +87,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -151,6 +142,8 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9.")]
         public class Property
         {
             /// <summary>
@@ -158,8 +151,9 @@ namespace Tizen.NUI
             /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int PROGRAM = Interop.Shader.Shader_Property_PROGRAM_get();
         }
-
     }
 }
