@@ -36,9 +36,10 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="modelAbsPath">Absolute path to the neural network model file.</param>
         /// <param name="inTensorsInfo">Input TensorsInfo object</param>
         /// <param name="outTensorsInfo">Output TensorsInfo object for inference result</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="IOException">Thrown when constructing the pipeline is failed.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the parameter is not available.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public SingleShot(string modelAbsPath, TensorsInfo inTensorsInfo, TensorsInfo outTensorsInfo)
         {
@@ -69,9 +70,11 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="inTensorsData">The input data to be inferred.</param>
         /// <returns>TensorsData instance which contains the inferred result.</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="IOException">Thrown when failed to push an input data into source element.</exception>
         /// <exception cref="TimeoutException">Thrown when failed to get the result from sink element.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public TensorsData Invoke(TensorsData inTensorsData)
         {

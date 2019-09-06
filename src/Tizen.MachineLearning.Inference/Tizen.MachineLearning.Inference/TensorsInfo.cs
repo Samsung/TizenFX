@@ -60,8 +60,10 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="type">Data element type of Tensor.</param>
         /// <param name="dimension">Dimension of Tensor. Note that we support up to 4th ranks.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SlzeLimit)</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void AddTensorInfo(TensorType type, int[] dimension)
         {
@@ -74,8 +76,10 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="name">Name of Tensor.</param>
         /// <param name="type">Data element type of Tensor.</param>
         /// <param name="dimension">Dimension of Tensor. Note that we support up to 4th ranks.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SlzeLimit)</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void AddTensorInfo(string name, TensorType type, int[] dimension)
         {
@@ -107,8 +111,10 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="name">The tensor name to be set.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SetTensorName(int idx, string name)
         {
@@ -141,8 +147,10 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="type">The tensor type to be set.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SetTensorType(int idx, TensorType type)
         {
@@ -176,8 +184,10 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="dimension">The tensor dimension to be set.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SetDimension(int idx, int[] dimension)
         {
@@ -210,7 +220,9 @@ namespace Tizen.MachineLearning.Inference
         /// Creates a TensorsData instance based on informations of TensorsInfo
         /// </summary>
         /// <returns>TensorsData instance</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to TensorsInfo's information is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public TensorsData GetTensorsData()
         {

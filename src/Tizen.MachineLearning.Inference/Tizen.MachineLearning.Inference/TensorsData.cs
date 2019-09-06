@@ -57,6 +57,8 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// Gets the number of Tensor in TensorsData class
         /// </summary>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public int Count
         {
@@ -78,7 +80,9 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="index">The index of the tensor.</param>
         /// <param name="buffer">Raw tensor data to be set.</param>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SetTensorData(int index, byte[] buffer)
         {
@@ -93,7 +97,9 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="index">The index of the tensor.</param>
         /// <returns>Raw tensor data</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public byte[] GetTensorData(int index)
         {
