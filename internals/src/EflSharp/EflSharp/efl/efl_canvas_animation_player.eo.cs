@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,18 +10,20 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.AnimationPlayer.RunningEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.AnimationPlayer.RunningEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class AnimationPlayerRunningEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Animation is running.</value>
     public Efl.Canvas.ObjectAnimationEvent arg { get; set; }
 }
 /// <summary>Efl animation object class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationPlayer.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AnimationPlayer : Efl.Object, Efl.IPlayer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +49,8 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AnimationPlayer(ConstructingHandle ch) : base(ch)
     {
@@ -106,7 +110,7 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
             }
         }
     }
-    ///<summary>Method to raise event StartedEvt.</summary>
+    /// <summary>Method to raise event StartedEvt.</summary>
     public void OnStartedEvt(EventArgs e)
     {
         var key = "_EFL_ANIMATION_PLAYER_EVENT_STARTED";
@@ -120,6 +124,7 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Animation is running.</summary>
+    /// <value><see cref="Efl.Canvas.AnimationPlayerRunningEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.AnimationPlayerRunningEvt_Args> RunningEvt
     {
         add
@@ -159,7 +164,7 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
             }
         }
     }
-    ///<summary>Method to raise event RunningEvt.</summary>
+    /// <summary>Method to raise event RunningEvt.</summary>
     public void OnRunningEvt(Efl.Canvas.AnimationPlayerRunningEvt_Args e)
     {
         var key = "_EFL_ANIMATION_PLAYER_EVENT_RUNNING";
@@ -219,7 +224,7 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
             }
         }
     }
-    ///<summary>Method to raise event EndedEvt.</summary>
+    /// <summary>Method to raise event EndedEvt.</summary>
     public void OnEndedEvt(EventArgs e)
     {
         var key = "_EFL_ANIMATION_PLAYER_EVENT_ENDED";
@@ -1486,3 +1491,45 @@ public class AnimationPlayer : Efl.Object, Efl.IPlayer
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationPlayer_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.Animation> Animation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<Efl.Canvas.Animation>("animation", fac);
+    }
+
+    public static Efl.BindableProperty<bool> AutoDel<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<bool>("auto_del", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.Object> Target<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<Efl.Canvas.Object>("target", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.AnimationPlayer, T>magic = null) where T : Efl.Canvas.AnimationPlayer {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

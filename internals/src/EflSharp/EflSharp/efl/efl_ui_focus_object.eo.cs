@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -59,90 +60,100 @@ void SetupOrderNonRecursive();
 bool UpdateOnFocus();
                                             /// <summary>Emitted if the focus state has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt;
     /// <summary>Emitted when a new manager is the parent for this object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt;
     /// <summary>Emitted when a new logical parent should be used.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt;
     /// <summary>Emitted if child_focus has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt;
     /// <summary>Emitted if focus geometry of this object has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt;
     /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
     /// (Since EFL 1.22)</summary>
     /// <value>The geometry to use.</value>
     Eina.Rect FocusGeometry {
-        get ;
+        get;
     }
     /// <summary>Returns whether the widget is currently focused or not.
     /// (Since EFL 1.22)</summary>
     /// <value>The focused state of the object.</value>
     bool Focus {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
     /// (Since EFL 1.22)</summary>
     /// <value>The manager object</value>
     Efl.Ui.Focus.IManager FocusManager {
-        get ;
+        get;
     }
     /// <summary>Describes which logical parent is used by this object.
     /// (Since EFL 1.22)</summary>
     /// <value>The focus parent.</value>
     Efl.Ui.Focus.IObject FocusParent {
-        get ;
+        get;
     }
     /// <summary>Indicates if a child of this object has focus set to true.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if a child has focus.</value>
     bool ChildFocus {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IObjectFocusChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted if the focus state has changed.</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IObjectFocusManagerChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted when a new manager is the parent for this object.</value>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IObjectFocusParentChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted when a new logical parent should be used.</value>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IObjectChildFocusChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted if child_focus has changed.</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IObjectFocusGeometryChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted if focus geometry of this object has changed.</value>
     public Eina.Rect arg { get; set; }
 }
 /// <summary>Functions of focusable objects.
 /// (Since EFL 1.22)</summary>
-sealed public class IObjectConcrete :
+sealed public  class IObjectConcrete :
     Efl.Eo.EoWrapper
     , IObject
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -158,7 +169,8 @@ sealed public class IObjectConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IObjectConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -175,6 +187,7 @@ sealed public class IObjectConcrete :
 
     /// <summary>Emitted if the focus state has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt
     {
         add
@@ -214,7 +227,7 @@ sealed public class IObjectConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FocusChangedEvt.</summary>
+    /// <summary>Method to raise event FocusChangedEvt.</summary>
     public void OnFocusChangedEvt(Efl.Ui.Focus.IObjectFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
@@ -237,6 +250,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Emitted when a new manager is the parent for this object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt
     {
         add
@@ -276,7 +290,7 @@ sealed public class IObjectConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FocusManagerChangedEvt.</summary>
+    /// <summary>Method to raise event FocusManagerChangedEvt.</summary>
     public void OnFocusManagerChangedEvt(Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
@@ -292,6 +306,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Emitted when a new logical parent should be used.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt
     {
         add
@@ -331,7 +346,7 @@ sealed public class IObjectConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FocusParentChangedEvt.</summary>
+    /// <summary>Method to raise event FocusParentChangedEvt.</summary>
     public void OnFocusParentChangedEvt(Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
@@ -347,6 +362,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Emitted if child_focus has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt
     {
         add
@@ -386,7 +402,7 @@ sealed public class IObjectConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ChildFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ChildFocusChangedEvt.</summary>
     public void OnChildFocusChangedEvt(Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
@@ -409,6 +425,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Emitted if focus geometry of this object has changed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt
     {
         add
@@ -448,7 +465,7 @@ sealed public class IObjectConcrete :
             }
         }
     }
-    ///<summary>Method to raise event FocusGeometryChangedEvt.</summary>
+    /// <summary>Method to raise event FocusGeometryChangedEvt.</summary>
     public void OnFocusGeometryChangedEvt(Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
@@ -1070,3 +1087,20 @@ sealed public class IObjectConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_FocusIObjectConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<bool> Focus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IObject, T>magic = null) where T : Efl.Ui.Focus.IObject {
+        return new Efl.BindableProperty<bool>("focus", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> ChildFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IObject, T>magic = null) where T : Efl.Ui.Focus.IObject {
+        return new Efl.BindableProperty<bool>("child_focus", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

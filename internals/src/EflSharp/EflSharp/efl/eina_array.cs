@@ -138,7 +138,7 @@ public class Array<T> : IEnumerable<T>, IDisposable
             return;
         }
 
-        if (OwnContent)
+        if (Own && OwnContent)
         {
             int len = (int)eina_array_count_custom_export_mono(h);
             for (int i = 0; i < len; ++i)

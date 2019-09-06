@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl graphics gradient linear interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IGradientLinearConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IGradientLinear : 
@@ -32,14 +34,27 @@ void GetEnd(out double x, out double y);
 /// <param name="x">X co-ordinate of end point</param>
 /// <param name="y">Y co-ordinate of end point</param>
 void SetEnd(double x, double y);
-                }
+                    /// <summary>Gets the start point of this linear gradient.</summary>
+    /// <value>X co-ordinate of start point</value>
+    (double, double) Start {
+        get;
+        set;
+    }
+    /// <summary>Gets the end point of this linear gradient.</summary>
+    /// <value>X co-ordinate of end point</value>
+    (double, double) End {
+        get;
+        set;
+    }
+}
 /// <summary>Efl graphics gradient linear interface</summary>
-sealed public class IGradientLinearConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IGradientLinearConcrete :
     Efl.Eo.EoWrapper
     , IGradientLinear
     , Efl.Gfx.IGradient
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,7 +70,8 @@ sealed public class IGradientLinearConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IGradientLinearConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -129,6 +145,39 @@ sealed public class IGradientLinearConcrete :
                                  Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate(this.NativeHandle,s);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Gets the start point of this linear gradient.</summary>
+    /// <value>X co-ordinate of start point</value>
+    public (double, double) Start {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetStart(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetStart( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets the end point of this linear gradient.</summary>
+    /// <value>X co-ordinate of end point</value>
+    public (double, double) End {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetEnd(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetEnd( value.Item1,  value.Item2); }
+    }
+    /// <summary>Get the list of color stops.</summary>
+    /// <value>Color stops list</value>
+    public (Efl.Gfx.GradientStop, uint) Stop {
+        get {
+            Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
+            uint _out_length = default(uint);
+            GetStop(out _out_colors,out _out_length);
+            return (_out_colors,_out_length);
+        }
+        set { SetStop(ref  value.Item1,  value.Item2); }
+    }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
@@ -535,3 +584,16 @@ sealed public class IGradientLinearConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIGradientLinearConcrete_ExtensionMethods {
+    
+    
+    
+    public static Efl.BindableProperty<Efl.Gfx.GradientSpread> Spread<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IGradientLinear, T>magic = null) where T : Efl.Gfx.IGradientLinear {
+        return new Efl.BindableProperty<Efl.Gfx.GradientSpread>("spread", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

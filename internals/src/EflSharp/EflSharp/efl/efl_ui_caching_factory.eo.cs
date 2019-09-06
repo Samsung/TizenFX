@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,11 +16,12 @@ namespace Ui {
 /// Creating objects is costly and time consuming, keeping a few on hand for when you next will need them helps a lot. This is what this factory caching infrastructure provides. It will create the object from the class defined on it and set the parent and the model as needed for all created items. The View has to release the Item using the release function of the Factory interface for all of this to work properly.
 /// 
 /// The cache might decide to flush itself when the application event pause is triggered.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.CachingFactory.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class CachingFactory : Efl.Ui.WidgetFactory
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -51,7 +53,8 @@ public class CachingFactory : Efl.Ui.WidgetFactory
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected CachingFactory(ConstructingHandle ch) : base(ch)
     {
@@ -328,3 +331,17 @@ public class CachingFactory : Efl.Ui.WidgetFactory
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiCachingFactory_ExtensionMethods {
+    public static Efl.BindableProperty<uint> MemoryLimit<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CachingFactory, T>magic = null) where T : Efl.Ui.CachingFactory {
+        return new Efl.BindableProperty<uint>("memory_limit", fac);
+    }
+
+    public static Efl.BindableProperty<uint> ItemsLimit<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CachingFactory, T>magic = null) where T : Efl.Ui.CachingFactory {
+        return new Efl.BindableProperty<uint>("items_limit", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

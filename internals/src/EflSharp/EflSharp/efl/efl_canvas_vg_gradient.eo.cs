@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vectopr graphics gradient abstract class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Gradient.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Gradient(ConstructingHandle ch) : base(ch)
     {
@@ -101,6 +104,17 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
                                  Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),s);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Get the list of color stops.</summary>
+    /// <value>Color stops list</value>
+    public (Efl.Gfx.GradientStop, uint) Stop {
+        get {
+            Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
+            uint _out_length = default(uint);
+            GetStop(out _out_colors,out _out_length);
+            return (_out_colors,_out_length);
+        }
+        set { SetStop(ref  value.Item1,  value.Item2); }
+    }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
@@ -330,3 +344,14 @@ public abstract class Gradient : Efl.Canvas.Vg.Node, Efl.Gfx.IGradient
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgGradient_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Efl.Gfx.GradientSpread> Spread<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Gradient, T>magic = null) where T : Efl.Canvas.Vg.Gradient {
+        return new Efl.BindableProperty<Efl.Gfx.GradientSpread>("spread", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

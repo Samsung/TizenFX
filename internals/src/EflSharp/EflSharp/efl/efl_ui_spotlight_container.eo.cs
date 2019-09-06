@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,16 +12,18 @@ namespace Ui {
 
 namespace Spotlight {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionStartEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionStartEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ContainerTransitionStartEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>A transition animation has started.</value>
     public Efl.Ui.Spotlight.TransitionEvent arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionEndEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionEndEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class ContainerTransitionEndEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>A transition animation has ended.</value>
     public Efl.Ui.Spotlight.TransitionEvent arg { get; set; }
 }
 /// <summary>The Spotlight widget is a container for other sub-widgets, where only one sub-widget is active at any given time.
@@ -33,11 +36,12 @@ public class ContainerTransitionEndEvt_Args : EventArgs {
 /// Also, an indicator widget can be used to show a visual cue of how many sub-widgets are there and which one is the active one.
 /// 
 /// This class can be used to create other widgets like Pagers, Tabbed pagers or Stacks, where each sub-widget represents a &quot;page&quot; full of other widgets. All these cases can be implemented with a different <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/> and use the same <see cref="Efl.Ui.Spotlight.Container"/>.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Spotlight.Container.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -69,7 +73,8 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Container(ConstructingHandle ch) : base(ch)
     {
@@ -91,6 +96,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     }
 
     /// <summary>A transition animation has started.</summary>
+    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args> TransitionStartEvt
     {
         add
@@ -130,7 +136,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
         }
     }
-    ///<summary>Method to raise event TransitionStartEvt.</summary>
+    /// <summary>Method to raise event TransitionStartEvt.</summary>
     public void OnTransitionStartEvt(Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args e)
     {
         var key = "_EFL_UI_SPOTLIGHT_EVENT_TRANSITION_START";
@@ -153,6 +159,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         }
     }
     /// <summary>A transition animation has ended.</summary>
+    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args> TransitionEndEvt
     {
         add
@@ -192,7 +199,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
         }
     }
-    ///<summary>Method to raise event TransitionEndEvt.</summary>
+    /// <summary>Method to raise event TransitionEndEvt.</summary>
     public void OnTransitionEndEvt(Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args e)
     {
         var key = "_EFL_UI_SPOTLIGHT_EVENT_TRANSITION_END";
@@ -1492,6 +1499,28 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_SpotlightContainer_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Spotlight.Manager> SpotlightManager<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
+        return new Efl.BindableProperty<Efl.Ui.Spotlight.Manager>("spotlight_manager", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.Spotlight.Indicator> Indicator<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
+        return new Efl.BindableProperty<Efl.Ui.Spotlight.Indicator>("indicator", fac);
+    }
+
+    public static Efl.BindableProperty<int> ActiveIndex<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
+        return new Efl.BindableProperty<int>("active_index", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> SpotlightSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
+        return new Efl.BindableProperty<Eina.Size2D>("spotlight_size", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -1507,7 +1536,9 @@ public struct TransitionEvent
     public int From;
     /// <summary>The index to where the transition is headed, -1 if not known.</summary>
     public int To;
-    ///<summary>Constructor for TransitionEvent.</summary>
+    /// <summary>Constructor for TransitionEvent.</summary>
+    /// <param name="From">The index from where the transition started, -1 if not known.</param>;
+    /// <param name="To">The index to where the transition is headed, -1 if not known.</param>;
     public TransitionEvent(
         int From = default(int),
         int To = default(int)    )
@@ -1516,8 +1547,8 @@ public struct TransitionEvent
         this.To = To;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TransitionEvent(IntPtr ptr)
     {
         var tmp = (TransitionEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TransitionEvent.NativeStruct));
@@ -1526,7 +1557,7 @@ public struct TransitionEvent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct TransitionEvent.</summary>
+    /// <summary>Internal wrapper for struct TransitionEvent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1534,7 +1565,7 @@ public struct TransitionEvent
         public int From;
         
         public int To;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator TransitionEvent.NativeStruct(TransitionEvent _external_struct)
         {
             var _internal_struct = new TransitionEvent.NativeStruct();
@@ -1543,7 +1574,7 @@ public struct TransitionEvent
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator TransitionEvent(TransitionEvent.NativeStruct _internal_struct)
         {
             var _external_struct = new TransitionEvent();

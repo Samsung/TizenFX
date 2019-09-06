@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,6 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ILayoutOrientableReadonlyConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ILayoutOrientableReadonly : 
@@ -16,12 +18,13 @@ public interface ILayoutOrientableReadonly :
     Efl.Eo.IWrapper, IDisposable
 {
 }
-sealed public class ILayoutOrientableReadonlyConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ILayoutOrientableReadonlyConcrete :
     Efl.Eo.EoWrapper
     , ILayoutOrientableReadonly
     , Efl.Ui.ILayoutOrientable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,7 +40,8 @@ sealed public class ILayoutOrientableReadonlyConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ILayoutOrientableReadonlyConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -206,3 +210,13 @@ sealed public class ILayoutOrientableReadonlyConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiILayoutOrientableReadonlyConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ILayoutOrientableReadonly, T>magic = null) where T : Efl.Ui.ILayoutOrientableReadonly {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

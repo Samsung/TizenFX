@@ -3,6 +3,7 @@
 #define CODE_ANALYSIS
 
 using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
@@ -515,6 +516,8 @@ static internal class UnsafeNativeMethods
     internal static extern IntPtr type_array();
     [DllImport(efl.Libs.CustomExports)]
     internal static extern IntPtr type_list();
+    [DllImport(efl.Libs.CustomExports)]
+    internal static extern IntPtr type_hash();
 
     // Optional
     [DllImport(efl.Libs.CustomExports)]
@@ -716,6 +719,39 @@ static class ValueTypeMethods
     }
 }
 
+/// <summary>Boxing class for custom marshalling of ValueType enums.
+///
+/// <para>As custom marshalling of enums (and other value types) is not supported, use
+/// use this boxing class as an intermediate at the Marshalling API level (like in
+/// marshall_type_impl.hh in the generator). User-facing API still uses Eina.ValueType
+/// normally.</para>
+/// </summary>
+[EditorBrowsable(EditorBrowsableState.Never)]
+public class ValueTypeBox
+{
+    public ValueType _payload;
+
+    public ValueTypeBox(ValueType v)
+    {
+        _payload = v;
+    }
+
+    public static implicit operator ValueTypeBox(ValueType v)
+    {
+        return new ValueTypeBox(v);
+    }
+
+    public static implicit operator ValueType(ValueTypeBox box)
+    {
+        if (box == null)
+        {
+            return Eina.ValueType.Empty;
+        }
+
+        return box._payload;
+    }
+}
+
 static class ValueTypeBridge
 {
     private static Dictionary<ValueType, IntPtr> ManagedToNative = new Dictionary<ValueType, IntPtr>();
@@ -859,6 +895,9 @@ static class ValueTypeBridge
 
         ManagedToNative.Add(ValueType.List, type_list());
         NativeToManaged.Add(type_list(), ValueType.List);
+
+        ManagedToNative.Add(ValueType.Hash, type_hash());
+        NativeToManaged.Add(type_hash(), ValueType.Hash);
 
         ManagedToNative.Add(ValueType.Optional, type_optional());
         NativeToManaged.Add(type_optional(), ValueType.Optional);
@@ -2898,6 +2937,7 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
 
 /// <summary> Custom marshaler to convert value pointers to managed values and back,
 /// without changing ownership.</summary>
+[EditorBrowsable(EditorBrowsableState.Never)]
 public class ValueMarshaler : ICustomMarshaler
 {
     /// <summary>Creates a managed value from a C pointer, whitout taking ownership of it.</summary>
@@ -2998,6 +3038,51 @@ public class ValueMarshalerOwn : ICustomMarshaler
     }
 
     static private ValueMarshalerOwn marshaler;
+}
+
+/// <summary> Custom marshaler to convert value type pointers to managed boxed enum values
+/// and back.</summary>
+public class ValueTypeMarshaler : ICustomMarshaler
+{
+    /// <summary>Creates a boxed ValueType enum value from a C pointer.</summary>
+    public object MarshalNativeToManaged(IntPtr pNativeData)
+    {
+        var r = ValueTypeBridge.GetManaged(pNativeData);
+        return new ValueTypeBox(r);
+    }
+    public static Eina.ValueType vtype;
+
+    /// <summary>Retrieves the C pointer from a given boxed enum value type.</summary>
+    public IntPtr MarshalManagedToNative(object managedObj)
+    {
+        ValueTypeBox v = (ValueTypeBox)managedObj;
+        return ValueTypeBridge.GetNative(v);
+    }
+
+    public void CleanUpNativeData(IntPtr pNativeData)
+    {
+    }
+
+    public void CleanUpManagedData(object managedObj)
+    {
+    }
+
+    public int GetNativeDataSize()
+    {
+        return -1;
+    }
+
+    public static ICustomMarshaler GetInstance(string cookie)
+    {
+        if (marshaler == null)
+        {
+            marshaler = new ValueTypeMarshaler();
+        }
+
+        return marshaler;
+    }
+
+    static private ValueTypeMarshaler marshaler;
 }
 
 }

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,11 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>This class is a singleton representing the global configuration for the running application.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ConfigGlobal.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class ConfigGlobal : Efl.Object, Efl.IConfig
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,7 +40,8 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected ConfigGlobal(ConstructingHandle ch) : base(ch)
     {
@@ -652,3 +655,14 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflConfigGlobal_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Profile<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ConfigGlobal, T>magic = null) where T : Efl.ConfigGlobal {
+        return new Efl.BindableProperty<System.String>("profile", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

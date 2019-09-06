@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -48,6 +49,7 @@ Eina.Error Read(ref  Eina.RwSlice rw_slice);
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
     event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt;
     /// <summary>Notifies end of stream, when property is marked as true.
     /// If this is used alongside with an <see cref="Efl.Io.ICloser"/>, then it should be emitted before that call.
@@ -61,21 +63,22 @@ Eina.Error Read(ref  Eina.RwSlice rw_slice);
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     bool CanRead {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>If <c>true</c> will notify end of stream.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     bool Eos {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Io.IReader.CanReadChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Io.IReader.CanReadChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class IReaderCanReadChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Notifies can_read property changed.</value>
     public bool arg { get; set; }
 }
 /// <summary>Generic interface for objects that can read data into a provided memory.
@@ -83,12 +86,12 @@ public class IReaderCanReadChangedEvt_Args : EventArgs {
 /// 
 /// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.
 /// (Since EFL 1.22)</summary>
-sealed public class IReaderConcrete :
+sealed public  class IReaderConcrete :
     Efl.Eo.EoWrapper
     , IReader
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -104,7 +107,8 @@ sealed public class IReaderConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IReaderConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -124,6 +128,7 @@ sealed public class IReaderConcrete :
     /// 
     /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
     public event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt
     {
         add
@@ -163,7 +168,7 @@ sealed public class IReaderConcrete :
             }
         }
     }
-    ///<summary>Method to raise event CanReadChangedEvt.</summary>
+    /// <summary>Method to raise event CanReadChangedEvt.</summary>
     public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
@@ -229,7 +234,7 @@ sealed public class IReaderConcrete :
             }
         }
     }
-    ///<summary>Method to raise event EosEvt.</summary>
+    /// <summary>Method to raise event EosEvt.</summary>
     public void OnEosEvt(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
@@ -561,3 +566,17 @@ sealed public class IReaderConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_IoIReaderConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> CanRead<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IReader, T>magic = null) where T : Efl.Io.IReader {
+        return new Efl.BindableProperty<bool>("can_read", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Eos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IReader, T>magic = null) where T : Efl.Io.IReader {
+        return new Efl.BindableProperty<bool>("eos", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

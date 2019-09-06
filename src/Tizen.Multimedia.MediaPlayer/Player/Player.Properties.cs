@@ -233,11 +233,16 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public AudioLatencyMode AudioLatencyMode
         {
             get
             {
+                AudioOffload.CheckDisabled();
+
                 NativePlayer.GetAudioLatencyMode(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the audio latency mode of the player");
 
@@ -246,6 +251,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
 
                 ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value, nameof(value));
 
@@ -540,13 +546,19 @@ namespace Tizen.Multimedia
         /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
         /// otherwise, the replaygain is not affected by tag and properties.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public bool ReplayGain
         {
             get
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
                 NativePlayer.IsReplayGain(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the replaygain of the player");
                 return value;
@@ -554,6 +566,8 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
                 NativePlayer.SetReplayGain(Handle, value).
                     ThrowIfFailed(this, "Failed to set the replaygain of the player");
             }
@@ -566,7 +580,11 @@ namespace Tizen.Multimedia
         /// <value>The value indicating whether or not AudioPitch is enabled. The default is false.</value>
         /// <remarks>This function is used for audio content only.
         /// To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <seealso cref="AudioPitch"/>
         /// <since_tizen> 6 </since_tizen>
@@ -575,6 +593,8 @@ namespace Tizen.Multimedia
             get
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
+
                 NativePlayer.IsAudioPitchEnabled(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get whether the audio pitch is enabled or not");
                 return value;
@@ -583,6 +603,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
                 ValidatePlayerState(PlayerState.Idle);
 
                 NativePlayer.SetAudioPitchEnabled(Handle, value).
@@ -596,7 +617,11 @@ namespace Tizen.Multimedia
         /// <value>The audio stream pitch value. The default is 1.</value>
         /// <remarks>Enabling pitch control could increase the CPU usage on some devices.
         /// This function is used for audio content only.</remarks>
-        /// <exception cref="InvalidOperationException">A pitch is not enabled.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     A pitch is not enabled.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     value is less than 0.5.
@@ -610,6 +635,7 @@ namespace Tizen.Multimedia
             get
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
 
                 if (AudioPitchEnabled == false)
                 {
@@ -625,6 +651,7 @@ namespace Tizen.Multimedia
             set
             {
                 ValidateNotDisposed();
+                AudioOffload.CheckDisabled();
 
                 if (AudioPitchEnabled == false)
                 {
@@ -675,6 +702,25 @@ namespace Tizen.Multimedia
                 }
 
                 return _adaptiveVariants;
+            }
+        }
+
+        private AudioOffload _audioOffload;
+
+        /// <summary>
+        /// Gets the setting for audio offload.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioOffload AudioOffload
+        {
+            get
+            {
+                if (_audioOffload == null)
+                {
+                    _audioOffload = new AudioOffload(this);
+                }
+
+                return _audioOffload;
             }
         }
     }

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,18 +10,20 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Layout.PartInvalidEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Layout.PartInvalidEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class LayoutPartInvalidEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted when trying to use an invalid part. The value passed is the part name.</value>
     public System.String arg { get; set; }
 }
 /// <summary>Edje object class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Layout.NativeMethods]
 [Efl.Eo.BindingEntity]
-public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver, Efl.IPart, Efl.IPlayer, Efl.Gfx.IColorClass, Efl.Gfx.ISizeClass, Efl.Gfx.ITextClass, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal
+public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver, Efl.IPart, Efl.IPlayer, Efl.Gfx.IColorClass, Efl.Gfx.ISizeClass, Efl.Gfx.ITextClass, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.II18n
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +49,8 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Layout(ConstructingHandle ch) : base(ch)
     {
@@ -68,6 +72,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
 
     /// <summary>Emitted when trying to use an invalid part. The value passed is the part name.</summary>
+    /// <value><see cref="Efl.Canvas.LayoutPartInvalidEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.LayoutPartInvalidEvt_Args> PartInvalidEvt
     {
         add
@@ -107,7 +112,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             }
         }
     }
-    ///<summary>Method to raise event PartInvalidEvt.</summary>
+    /// <summary>Method to raise event PartInvalidEvt.</summary>
     public void OnPartInvalidEvt(Efl.Canvas.LayoutPartInvalidEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_PART_INVALID";
@@ -130,6 +135,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -169,7 +175,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -185,6 +191,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -224,7 +231,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -278,7 +285,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             }
         }
     }
-    ///<summary>Method to raise event RecalcEvt.</summary>
+    /// <summary>Method to raise event RecalcEvt.</summary>
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
@@ -293,6 +300,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
         add
@@ -332,7 +340,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             }
         }
     }
-    ///<summary>Method to raise event CircularDependencyEvt.</summary>
+    /// <summary>Method to raise event CircularDependencyEvt.</summary>
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
@@ -387,7 +395,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <summary>Gets the object text min calculation policy.
     /// Do not use this API without understanding whats going on. It is made for internal usage.
     /// 
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="state_name">The state name</param>
     /// <param name="min_x">The min width policy</param>
@@ -401,7 +409,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <summary>Sets the object text min calculation policy.
     /// Do not use this API without understanding whats going on. It is made for internal usage.
     /// 
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="state_name">The state name</param>
     /// <param name="min_x">The min width policy</param>
@@ -413,7 +421,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                                                                         return _ret_var;
  }
     /// <summary>Gets the valign for text.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartTextValign(System.String part) {
@@ -422,7 +430,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the valign for text.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
@@ -432,7 +440,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                                         return _ret_var;
  }
     /// <summary>Gets the duration for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The duration. 0.0 for respect EDC&apos;s duration value.</returns>
     virtual public double GetPartTextMarqueeDuration(System.String part) {
@@ -441,7 +449,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the duration for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="duration">The duration. 0.0 for respect EDC&apos;s duration value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
@@ -451,7 +459,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                                         return _ret_var;
  }
     /// <summary>Gets the speed for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The speed. 0.0 for respect EDC&apos;s speed value.</returns>
     virtual public double GetPartTextMarqueeSpeed(System.String part) {
@@ -460,7 +468,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the speed for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="speed">The speed. 0.0 for respect EDC&apos;s speed value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
@@ -470,7 +478,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                                         return _ret_var;
  }
     /// <summary>Gets the always mode for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The always mode</returns>
     virtual public bool GetPartTextMarqueeAlways(System.String part) {
@@ -479,7 +487,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the always mode for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="always">The always mode</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
@@ -489,7 +497,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                                         return _ret_var;
  }
     /// <summary>Gets the valign for a common description.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartValign(System.String part) {
@@ -498,7 +506,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the valign for a common description.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
@@ -523,20 +531,20 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
                         return _ret_var;
  }
     /// <summary>Sets the parent object for color class.
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="parent">The parent object for color class</param>
     virtual public void SetColorClassParent(Efl.Object parent) {
                                  Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Unsets the parent object for color class.
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     virtual public void UnsetColorClassParent() {
          Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get a position of the given cursor
-    /// @internal</summary>
+    /// internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="cur">cursor type</param>
     /// <param name="x">w</param>
@@ -546,7 +554,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get a size of the given cursor
-    /// @internal</summary>
+    /// internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="cur">cursor type</param>
     /// <param name="w">w</param>
@@ -556,7 +564,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Returns the cursor geometry of the part relative to the edje object. The cursor geometry is kept in mouse down and move.
-    /// @internal @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+    /// internal if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="part">The part name</param>
     /// <param name="x">Cursor X position</param>
     /// <param name="y">Cursor Y position</param>
@@ -1106,7 +1114,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// 
     /// Though there are those common uses for the two strings, one is free to use them however they like.
     /// 
-    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[&quot; set of <c>fnmatch</c>() operators can be used, both for emission and source.
+    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
     /// 
     /// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
     /// 
@@ -1162,6 +1170,53 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="recurse">Whether to process messages on children objects.</param>
     virtual public void SignalProcess(bool recurse) {
                                  Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),recurse);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
+    virtual public bool GetMirrored() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
+    virtual public void SetMirrored(bool rtl) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rtl);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <returns>Whether the widget uses automatic mirroring</returns>
+    virtual public bool GetMirroredAutomatic() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <param name="automatic">Whether the widget uses automatic mirroring</param>
+    virtual public void SetMirroredAutomatic(bool automatic) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Gets the language for this object.</summary>
+    /// <returns>The current language.</returns>
+    virtual public System.String GetLanguage() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Sets the language for this object.</summary>
+    /// <param name="language">The current language.</param>
+    virtual public void SetLanguage(System.String language) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),language);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object is animating or not.
@@ -1298,6 +1353,28 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <value>The maximum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMax {
         get { return GetGroupSizeMax(); }
+    }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
+    public bool Mirrored {
+        get { return GetMirrored(); }
+        set { SetMirrored(value); }
+    }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <value>Whether the widget uses automatic mirroring</value>
+    public bool MirroredAutomatic {
+        get { return GetMirroredAutomatic(); }
+        set { SetMirroredAutomatic(value); }
+    }
+    /// <summary>The (human) language for this object.</summary>
+    /// <value>The current language.</value>
+    public System.String Language {
+        get { return GetLanguage(); }
+        set { SetLanguage(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -2133,6 +2210,66 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_get_static_delegate == null)
+            {
+                efl_ui_mirrored_get_static_delegate = new efl_ui_mirrored_get_delegate(mirrored_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetMirrored") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_get_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_set_static_delegate == null)
+            {
+                efl_ui_mirrored_set_static_delegate = new efl_ui_mirrored_set_delegate(mirrored_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetMirrored") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_set_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_automatic_get_static_delegate == null)
+            {
+                efl_ui_mirrored_automatic_get_static_delegate = new efl_ui_mirrored_automatic_get_delegate(mirrored_automatic_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetMirroredAutomatic") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_get_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_automatic_set_static_delegate == null)
+            {
+                efl_ui_mirrored_automatic_set_static_delegate = new efl_ui_mirrored_automatic_set_delegate(mirrored_automatic_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetMirroredAutomatic") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_set_static_delegate) });
+            }
+
+            if (efl_ui_language_get_static_delegate == null)
+            {
+                efl_ui_language_get_static_delegate = new efl_ui_language_get_delegate(language_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetLanguage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_get_static_delegate) });
+            }
+
+            if (efl_ui_language_set_static_delegate == null)
+            {
+                efl_ui_language_set_static_delegate = new efl_ui_language_set_delegate(language_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetLanguage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_set_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -5079,6 +5216,219 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_mirrored_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_mirrored_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate> efl_ui_mirrored_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate>(Module, "efl_ui_mirrored_get");
+
+        private static bool mirrored_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetMirrored();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_mirrored_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_mirrored_get_delegate efl_ui_mirrored_get_static_delegate;
+
+        
+        private delegate void efl_ui_mirrored_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool rtl);
+
+        
+        public delegate void efl_ui_mirrored_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool rtl);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate> efl_ui_mirrored_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate>(Module, "efl_ui_mirrored_set");
+
+        private static void mirrored_set(System.IntPtr obj, System.IntPtr pd, bool rtl)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetMirrored(rtl);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_mirrored_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), rtl);
+            }
+        }
+
+        private static efl_ui_mirrored_set_delegate efl_ui_mirrored_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_mirrored_automatic_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_mirrored_automatic_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate> efl_ui_mirrored_automatic_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate>(Module, "efl_ui_mirrored_automatic_get");
+
+        private static bool mirrored_automatic_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_automatic_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetMirroredAutomatic();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_mirrored_automatic_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_mirrored_automatic_get_delegate efl_ui_mirrored_automatic_get_static_delegate;
+
+        
+        private delegate void efl_ui_mirrored_automatic_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool automatic);
+
+        
+        public delegate void efl_ui_mirrored_automatic_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool automatic);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate> efl_ui_mirrored_automatic_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate>(Module, "efl_ui_mirrored_automatic_set");
+
+        private static void mirrored_automatic_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_automatic_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetMirroredAutomatic(automatic);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_mirrored_automatic_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), automatic);
+            }
+        }
+
+        private static efl_ui_mirrored_automatic_set_delegate efl_ui_mirrored_automatic_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_ui_language_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_ui_language_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate> efl_ui_language_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate>(Module, "efl_ui_language_get");
+
+        private static System.String language_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_language_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetLanguage();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_language_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_language_get_delegate efl_ui_language_get_static_delegate;
+
+        
+        private delegate void efl_ui_language_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
+
+        
+        public delegate void efl_ui_language_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate> efl_ui_language_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate>(Module, "efl_ui_language_set");
+
+        private static void language_set(System.IntPtr obj, System.IntPtr pd, System.String language)
+        {
+            Eina.Log.Debug("function efl_ui_language_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetLanguage(language);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_language_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), language);
+            }
+        }
+
+        private static efl_ui_language_set_delegate efl_ui_language_set_static_delegate;
+
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -5087,3 +5437,84 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasLayout_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Animation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("animation", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> Mirrored<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mirrored", fac);
+    }
+
+    public static Efl.BindableProperty<bool> MirroredAutomatic<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mirrored_automatic", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Language<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("language", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

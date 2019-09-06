@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,48 +10,55 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemSelectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemSelectedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsItemSelectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when item was selected</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemAddedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsItemAddedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when item was added</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemDeletedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemDeletedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsItemDeletedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when item was deleted</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemClickedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemClickedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsItemClickedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when item was clicked</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemLongpressedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ItemLongpressedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsItemLongpressedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when item got a longpress</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ExpandStateChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Tags.ExpandStateChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class TagsExpandStateChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when expanded state changed</value>
     public int arg { get; set; }
 }
 /// <summary>A widget displaying a list of tags. The user can remove tags by clicking on each tag &quot;close&quot; button and add new tags by typing text in the text entry at the end of the list.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Tags.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -82,7 +90,8 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Tags(ConstructingHandle ch) : base(ch)
     {
@@ -104,6 +113,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     }
 
     /// <summary>Called when item was selected</summary>
+    /// <value><see cref="Efl.Ui.TagsItemSelectedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsItemSelectedEvt_Args> ItemSelectedEvt
     {
         add
@@ -143,7 +153,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ItemSelectedEvt.</summary>
+    /// <summary>Method to raise event ItemSelectedEvt.</summary>
     public void OnItemSelectedEvt(Efl.Ui.TagsItemSelectedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_ITEM_SELECTED";
@@ -165,6 +175,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         }
     }
     /// <summary>Called when item was added</summary>
+    /// <value><see cref="Efl.Ui.TagsItemAddedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsItemAddedEvt_Args> ItemAddedEvt
     {
         add
@@ -204,7 +215,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ItemAddedEvt.</summary>
+    /// <summary>Method to raise event ItemAddedEvt.</summary>
     public void OnItemAddedEvt(Efl.Ui.TagsItemAddedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_ITEM_ADDED";
@@ -226,6 +237,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         }
     }
     /// <summary>Called when item was deleted</summary>
+    /// <value><see cref="Efl.Ui.TagsItemDeletedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsItemDeletedEvt_Args> ItemDeletedEvt
     {
         add
@@ -265,7 +277,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ItemDeletedEvt.</summary>
+    /// <summary>Method to raise event ItemDeletedEvt.</summary>
     public void OnItemDeletedEvt(Efl.Ui.TagsItemDeletedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_ITEM_DELETED";
@@ -287,6 +299,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         }
     }
     /// <summary>Called when item was clicked</summary>
+    /// <value><see cref="Efl.Ui.TagsItemClickedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsItemClickedEvt_Args> ItemClickedEvt
     {
         add
@@ -326,7 +339,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ItemClickedEvt.</summary>
+    /// <summary>Method to raise event ItemClickedEvt.</summary>
     public void OnItemClickedEvt(Efl.Ui.TagsItemClickedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_ITEM_CLICKED";
@@ -348,6 +361,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         }
     }
     /// <summary>Called when item got a longpress</summary>
+    /// <value><see cref="Efl.Ui.TagsItemLongpressedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsItemLongpressedEvt_Args> ItemLongpressedEvt
     {
         add
@@ -387,7 +401,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ItemLongpressedEvt.</summary>
+    /// <summary>Method to raise event ItemLongpressedEvt.</summary>
     public void OnItemLongpressedEvt(Efl.Ui.TagsItemLongpressedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_ITEM_LONGPRESSED";
@@ -447,7 +461,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ExpandedEvt.</summary>
+    /// <summary>Method to raise event ExpandedEvt.</summary>
     public void OnExpandedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TAGS_EVENT_EXPANDED";
@@ -499,7 +513,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ContractedEvt.</summary>
+    /// <summary>Method to raise event ContractedEvt.</summary>
     public void OnContractedEvt(EventArgs e)
     {
         var key = "_EFL_UI_TAGS_EVENT_CONTRACTED";
@@ -513,6 +527,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when expanded state changed</summary>
+    /// <value><see cref="Efl.Ui.TagsExpandStateChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.TagsExpandStateChangedEvt_Args> ExpandStateChangedEvt
     {
         add
@@ -552,7 +567,7 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
             }
         }
     }
-    ///<summary>Method to raise event ExpandStateChangedEvt.</summary>
+    /// <summary>Method to raise event ExpandStateChangedEvt.</summary>
     public void OnExpandStateChangedEvt(Efl.Ui.TagsExpandStateChangedEvt_Args e)
     {
         var key = "_EFL_UI_TAGS_EVENT_EXPAND_STATE_CHANGED";
@@ -742,6 +757,24 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
     public Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
         get { return GetFormatValues(); }
         set { SetFormatValues(value); }
+    }
+    /// <summary>A user-provided, string used to format the numerical value.
+    /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
+    /// 
+    /// This is the simplest formatting mechanism, working pretty much like <c>printf</c>.
+    /// 
+    /// Different format specifiers (the character after the %) are available, depending on the <c>type</c> used. Use <see cref="Efl.Ui.FormatStringType.Simple"/> for simple numerical values and <see cref="Efl.Ui.FormatStringType.Time"/> for time and date values. For instance, %d means &quot;integer&quot; when the first type is used, but it means &quot;day of the month as a decimal number&quot; in the second.
+    /// 
+    /// Pass <c>NULL</c> to disable this mechanism.</summary>
+    /// <value>Formatting string containing regular characters and format specifiers.</value>
+    public (System.String, Efl.Ui.FormatStringType) FormatString {
+        get {
+            System.String _out_kw_string = default(System.String);
+            Efl.Ui.FormatStringType _out_type = default(Efl.Ui.FormatStringType);
+            GetFormatString(out _out_kw_string,out _out_type);
+            return (_out_kw_string,_out_type);
+        }
+        set { SetFormatString( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -1556,3 +1589,31 @@ public class Tags : Efl.Ui.LayoutBase, Efl.IText, Efl.Ui.IFormat
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTags_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Editable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Tags, T>magic = null) where T : Efl.Ui.Tags {
+        return new Efl.BindableProperty<bool>("editable", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Expanded<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Tags, T>magic = null) where T : Efl.Ui.Tags {
+        return new Efl.BindableProperty<bool>("expanded", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Array<System.String>> Items<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Tags, T>magic = null) where T : Efl.Ui.Tags {
+        return new Efl.BindableProperty<Eina.Array<System.String>>("items", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Ui.FormatFunc> FormatFunc<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Tags, T>magic = null) where T : Efl.Ui.Tags {
+        return new Efl.BindableProperty<Efl.Ui.FormatFunc>("format_func", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>> FormatValues<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Tags, T>magic = null) where T : Efl.Ui.Tags {
+        return new Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>>("format_values", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

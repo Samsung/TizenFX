@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>List Placeholder Item class. This item have only one swallow space, thus user can decorate item by filling the swallow with any kind of container.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ListPlaceholderItem.NativeMethods]
 [Efl.Eo.BindingEntity]
-public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
+public class ListPlaceholderItem : Efl.Ui.Item, Efl.IContent
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +48,8 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected ListPlaceholderItem(ConstructingHandle ch) : base(ch)
     {
@@ -69,6 +72,7 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
 
     /// <summary>Sent after the content is set or unset using the current content object.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
     public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
     {
         add
@@ -108,7 +112,7 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
             }
         }
     }
-    ///<summary>Method to raise event ContentChangedEvt.</summary>
+    /// <summary>Method to raise event ContentChangedEvt.</summary>
     public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
@@ -123,11 +127,11 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>the content part for list placeholder item. the content part is empty slot for user customizing. fill the place with container widget such as layout, box, table.</summary>
-    public Efl.Ui.ItemPartContent ContentPart
+    public Efl.Ui.LayoutPartContent ContentPart
     {
         get
         {
-            return GetPart("content") as Efl.Ui.ItemPartContent;
+            return GetPart("content") as Efl.Ui.LayoutPartContent;
         }
     }
     /// <summary>Sub-object currently set as this object&apos;s single content.
@@ -171,7 +175,7 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public new class NativeMethods : Efl.Ui.ListItem.NativeMethods
+    public new class NativeMethods : Efl.Ui.Item.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -339,3 +343,18 @@ public class ListPlaceholderItem : Efl.Ui.ListItem, Efl.IContent
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiListPlaceholderItem_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ListPlaceholderItem, T>magic = null) where T : Efl.Ui.ListPlaceholderItem {
+        return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
+    }
+
+        public static Efl.BindableFactoryPart<Efl.Ui.LayoutPartContent> ContentPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ListPlaceholderItem, T> x=null) where T : Efl.Ui.ListPlaceholderItem
+    {
+        return new Efl.BindableFactoryPart<Efl.Ui.LayoutPartContent>("content" ,fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

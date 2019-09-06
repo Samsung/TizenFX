@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -41,7 +42,7 @@ void GetScreenDpi(out int xdpi, out int ydpi);
     /// (Since EFL 1.22)</summary>
     /// <value>The screen size in pixels.</value>
     Eina.Size2D ScreenSizeInPixels {
-        get ;
+        get;
     }
     /// <summary>Get screen scaling factor.
     /// This is the factor by which window contents will be scaled on the screen.
@@ -50,24 +51,29 @@ void GetScreenDpi(out int xdpi, out int ydpi);
     /// (Since EFL 1.22)</summary>
     /// <value>The screen scaling factor.</value>
     float ScreenScaleFactor {
-        get ;
+        get;
     }
     /// <summary>Get the rotation of the screen.
     /// Most engines only return multiples of 90.
     /// (Since EFL 1.22)</summary>
     /// <value>Screen rotation in degrees.</value>
     int ScreenRotation {
-        get ;
+        get;
+    }
+    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
+    /// (Since EFL 1.22)</summary>
+    (int, int) ScreenDpi {
+        get;
     }
 }
 /// <summary>Efl screen interface
 /// (Since EFL 1.22)</summary>
-sealed public class IScreenConcrete :
+sealed public  class IScreenConcrete :
     Efl.Eo.EoWrapper
     , IScreen
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -83,7 +89,8 @@ sealed public class IScreenConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IScreenConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -157,6 +164,16 @@ sealed public class IScreenConcrete :
     /// <value>Screen rotation in degrees.</value>
     public int ScreenRotation {
         get { return GetScreenRotation(); }
+    }
+    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
+    /// (Since EFL 1.22)</summary>
+    public (int, int) ScreenDpi {
+        get {
+            int _out_xdpi = default(int);
+            int _out_ydpi = default(int);
+            GetScreenDpi(out _out_xdpi,out _out_ydpi);
+            return (_out_xdpi,_out_ydpi);
+        }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -374,3 +391,13 @@ sealed public class IScreenConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIScreenConcrete_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,48 +10,49 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Efl UI selectable interface</summary>
+/// <summary>Selectable interface for ui objects
+/// A object implementing this can be selected. When the selected property of this object changes, the selected,changed event is emitted.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ISelectableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISelectable : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Called when selected</summary>
-    event EventHandler<Efl.Ui.ISelectableItemSelectedEvt_Args> ItemSelectedEvt;
-    /// <summary>Called when no longer selected</summary>
-    event EventHandler<Efl.Ui.ISelectableItemUnselectedEvt_Args> ItemUnselectedEvt;
-    /// <summary>Called when selection is pasted</summary>
-    event EventHandler SelectionPasteEvt;
-    /// <summary>Called when selection is copied</summary>
-    event EventHandler SelectionCopyEvt;
-    /// <summary>Called when selection is cut</summary>
-    event EventHandler SelectionCutEvt;
-    /// <summary>Called at selection start</summary>
-    event EventHandler SelectionStartEvt;
-    /// <summary>Called when selection is changed</summary>
-    event EventHandler SelectionChangedEvt;
-    /// <summary>Called when selection is cleared</summary>
-    event EventHandler SelectionClearedEvt;
+    /// <summary>The selected state of this object
+/// A change to this property emits the changed event.</summary>
+/// <returns>The selected state of this object</returns>
+bool GetSelected();
+    /// <summary>The selected state of this object
+/// A change to this property emits the changed event.</summary>
+/// <param name="selected">The selected state of this object</param>
+void SetSelected(bool selected);
+            /// <summary>Called when the selected state has changed</summary>
+    /// <value><see cref="Efl.Ui.ISelectableSelectedChangedEvt_Args"/></value>
+    event EventHandler<Efl.Ui.ISelectableSelectedChangedEvt_Args> SelectedChangedEvt;
+    /// <summary>The selected state of this object
+    /// A change to this property emits the changed event.</summary>
+    /// <value>The selected state of this object</value>
+    bool Selected {
+        get;
+        set;
+    }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.ItemSelectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.SelectedChangedEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ISelectableItemSelectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Object arg { get; set; }
+public class ISelectableSelectedChangedEvt_Args : EventArgs {
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when the selected state has changed</value>
+    public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.ItemUnselectedEvt"/>.</summary>
-[Efl.Eo.BindingEntity]
-public class ISelectableItemUnselectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
-    public Efl.Object arg { get; set; }
-}
-/// <summary>Efl UI selectable interface</summary>
-sealed public class ISelectableConcrete :
+/// <summary>Selectable interface for ui objects
+/// A object implementing this can be selected. When the selected property of this object changes, the selected,changed event is emitted.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ISelectableConcrete :
     Efl.Eo.EoWrapper
     , ISelectable
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -66,13 +68,14 @@ sealed public class ISelectableConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ISelectableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
-    [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
+    [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_selectable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
@@ -81,8 +84,9 @@ sealed public class ISelectableConcrete :
     {
     }
 
-    /// <summary>Called when selected</summary>
-    public event EventHandler<Efl.Ui.ISelectableItemSelectedEvt_Args> ItemSelectedEvt
+    /// <summary>Called when the selected state has changed</summary>
+    /// <value><see cref="Efl.Ui.ISelectableSelectedChangedEvt_Args"/></value>
+    public event EventHandler<Efl.Ui.ISelectableSelectedChangedEvt_Args> SelectedChangedEvt
     {
         add
         {
@@ -93,8 +97,8 @@ sealed public class ISelectableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.ISelectableItemSelectedEvt_Args args = new Efl.Ui.ISelectableItemSelectedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
+                        Efl.Ui.ISelectableSelectedChangedEvt_Args args = new Efl.Ui.ISelectableSelectedChangedEvt_Args();
+                        args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
                             value?.Invoke(obj, args);
@@ -107,8 +111,8 @@ sealed public class ISelectableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+                string key = "_EFL_UI_EVENT_SELECTED_CHANGED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
 
@@ -116,390 +120,53 @@ sealed public class ISelectableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_ITEM_SELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+                string key = "_EFL_UI_EVENT_SELECTED_CHANGED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ItemSelectedEvt.</summary>
-    public void OnItemSelectedEvt(Efl.Ui.ISelectableItemSelectedEvt_Args e)
+    /// <summary>Method to raise event SelectedChangedEvt.</summary>
+    public void OnSelectedChangedEvt(Efl.Ui.ISelectableSelectedChangedEvt_Args e)
     {
-        var key = "_EFL_UI_EVENT_ITEM_SELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        var key = "_EFL_UI_EVENT_SELECTED_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
             Eina.Log.Error($"Failed to get native event {key}");
             return;
         }
 
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when no longer selected</summary>
-    public event EventHandler<Efl.Ui.ISelectableItemUnselectedEvt_Args> ItemUnselectedEvt
-    {
-        add
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg ? (byte) 1 : (byte) 0);
+        try
         {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.ISelectableItemUnselectedEvt_Args args = new Efl.Ui.ISelectableItemUnselectedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
         }
-
-        remove
+        finally
         {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
+            Marshal.FreeHGlobal(info);
         }
     }
-    ///<summary>Method to raise event ItemUnselectedEvt.</summary>
-    public void OnItemUnselectedEvt(Efl.Ui.ISelectableItemUnselectedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = e.arg.NativeHandle;
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-    }
-    /// <summary>Called when selection is pasted</summary>
-    public event EventHandler SelectionPasteEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_PASTE";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionPasteEvt.</summary>
-    public void OnSelectionPasteEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_PASTE";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when selection is copied</summary>
-    public event EventHandler SelectionCopyEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_COPY";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionCopyEvt.</summary>
-    public void OnSelectionCopyEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_COPY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when selection is cut</summary>
-    public event EventHandler SelectionCutEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_CUT";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionCutEvt.</summary>
-    public void OnSelectionCutEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_CUT";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called at selection start</summary>
-    public event EventHandler SelectionStartEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_START";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_START";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionStartEvt.</summary>
-    public void OnSelectionStartEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_START";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when selection is changed</summary>
-    public event EventHandler SelectionChangedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionChangedEvt.</summary>
-    public void OnSelectionChangedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_CHANGED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
-    }
-    /// <summary>Called when selection is cleared</summary>
-    public event EventHandler SelectionClearedEvt
-    {
-        add
-        {
-            lock (eflBindingEventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        EventArgs args = EventArgs.Empty;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eflBindingEventLock)
-            {
-                string key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event SelectionClearedEvt.</summary>
-    public void OnSelectionClearedEvt(EventArgs e)
-    {
-        var key = "_EFL_UI_EVENT_SELECTION_CLEARED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
+    /// <summary>The selected state of this object
+    /// A change to this property emits the changed event.</summary>
+    /// <returns>The selected state of this object</returns>
+    public bool GetSelected() {
+         var _ret_var = Efl.Ui.ISelectableConcrete.NativeMethods.efl_ui_selectable_selected_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>The selected state of this object
+    /// A change to this property emits the changed event.</summary>
+    /// <param name="selected">The selected state of this object</param>
+    public void SetSelected(bool selected) {
+                                 Efl.Ui.ISelectableConcrete.NativeMethods.efl_ui_selectable_selected_set_ptr.Value.Delegate(this.NativeHandle,selected);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>The selected state of this object
+    /// A change to this property emits the changed event.</summary>
+    /// <value>The selected state of this object</value>
+    public bool Selected {
+        get { return GetSelected(); }
+        set { SetSelected(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -509,11 +176,34 @@ sealed public class ISelectableConcrete :
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
         public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
+
+            if (efl_ui_selectable_selected_get_static_delegate == null)
+            {
+                efl_ui_selectable_selected_get_static_delegate = new efl_ui_selectable_selected_get_delegate(selected_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetSelected") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selectable_selected_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selectable_selected_get_static_delegate) });
+            }
+
+            if (efl_ui_selectable_selected_set_static_delegate == null)
+            {
+                efl_ui_selectable_selected_set_static_delegate = new efl_ui_selectable_selected_set_delegate(selected_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetSelected") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selectable_selected_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selectable_selected_set_static_delegate) });
+            }
+
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -525,6 +215,77 @@ sealed public class ISelectableConcrete :
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_selectable_selected_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_selectable_selected_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_selectable_selected_get_api_delegate> efl_ui_selectable_selected_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selectable_selected_get_api_delegate>(Module, "efl_ui_selectable_selected_get");
+
+        private static bool selected_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_selectable_selected_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((ISelectable)ws.Target).GetSelected();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_selectable_selected_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_selectable_selected_get_delegate efl_ui_selectable_selected_get_static_delegate;
+
+        
+        private delegate void efl_ui_selectable_selected_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool selected);
+
+        
+        public delegate void efl_ui_selectable_selected_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool selected);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_selectable_selected_set_api_delegate> efl_ui_selectable_selected_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selectable_selected_set_api_delegate>(Module, "efl_ui_selectable_selected_set");
+
+        private static void selected_set(System.IntPtr obj, System.IntPtr pd, bool selected)
+        {
+            Eina.Log.Debug("function efl_ui_selectable_selected_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((ISelectable)ws.Target).SetSelected(selected);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_selectable_selected_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), selected);
+            }
+        }
+
+        private static efl_ui_selectable_selected_set_delegate efl_ui_selectable_selected_set_static_delegate;
+
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -533,3 +294,13 @@ sealed public class ISelectableConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiISelectableConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Selected<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ISelectable, T>magic = null) where T : Efl.Ui.ISelectable {
+        return new Efl.BindableProperty<bool>("selected", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

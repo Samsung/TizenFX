@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -57,23 +58,23 @@ Eina.Error Close();
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     bool Closed {
-        get ;
+        get;
     }
     /// <summary>If true will automatically close resources on exec() calls.
     /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     bool CloseOnExec {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>If true will automatically close() on object invalidate.
     /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     bool CloseOnInvalidate {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Generic interface for objects that can close themselves.
@@ -81,12 +82,12 @@ Eina.Error Close();
 /// 
 /// Calls to <see cref="Efl.Io.ICloser.Close"/> may or may not block, that&apos;s not up to this interface to specify.
 /// (Since EFL 1.22)</summary>
-sealed public class ICloserConcrete :
+sealed public  class ICloserConcrete :
     Efl.Eo.EoWrapper
     , ICloser
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -102,7 +103,8 @@ sealed public class ICloserConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ICloserConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -157,7 +159,7 @@ sealed public class ICloserConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ClosedEvt.</summary>
+    /// <summary>Method to raise event ClosedEvt.</summary>
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
@@ -556,3 +558,18 @@ sealed public class ICloserConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_IoICloserConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.ICloser, T>magic = null) where T : Efl.Io.ICloser {
+        return new Efl.BindableProperty<bool>("close_on_exec", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CloseOnInvalidate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.ICloser, T>magic = null) where T : Efl.Io.ICloser {
+        return new Efl.BindableProperty<bool>("close_on_invalidate", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

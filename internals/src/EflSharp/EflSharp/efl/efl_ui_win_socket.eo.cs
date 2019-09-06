@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Ui {
 
 /// <summary>An off-screen window to be displayed in a remote process.
 /// The window is rendered onto an image buffer to be displayed in another process&apos; plug image object. No actual window is created for this type. The window contents can then be sent over a socket so that another process displays it inside a plug image.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WinSocket.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class WinSocket : Efl.Ui.Win
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -65,7 +67,8 @@ public class WinSocket : Efl.Ui.Win
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected WinSocket(ConstructingHandle ch) : base(ch)
     {
@@ -178,3 +181,9 @@ public class WinSocket : Efl.Ui.Win
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWinSocket_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

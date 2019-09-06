@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -23,7 +24,7 @@ namespace Ui {
 [Efl.Eo.BindingEntity]
 public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Efl.IPackLinear, Efl.Gfx.IArrangement, Efl.Ui.ILayoutOrientable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,7 +56,8 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Box(ConstructingHandle ch) : base(ch)
     {
@@ -78,6 +80,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -117,7 +120,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -133,6 +136,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -172,7 +176,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -225,7 +229,7 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
             }
         }
     }
-    ///<summary>Method to raise event LayoutUpdatedEvt.</summary>
+    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
     public void OnLayoutUpdatedEvt(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
@@ -455,6 +459,29 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
     public bool Homogeneous {
         get { return GetHomogeneous(); }
         set { SetHomogeneous(value); }
+    }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    public (double, double) ContentAlign {
+        get {
+            double _out_align_horiz = default(double);
+            double _out_align_vert = default(double);
+            GetContentAlign(out _out_align_horiz,out _out_align_vert);
+            return (_out_align_horiz,_out_align_vert);
+        }
+        set { SetContentAlign( value.Item1,  value.Item2); }
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    public (double, double, bool) ContentPadding {
+        get {
+            double _out_pad_horiz = default(double);
+            double _out_pad_vert = default(double);
+            bool _out_scalable = default(bool);
+            GetContentPadding(out _out_pad_horiz,out _out_pad_vert,out _out_scalable);
+            return (_out_pad_horiz,_out_pad_vert,_out_scalable);
+        }
+        set { SetContentPadding( value.Item1,  value.Item2,  value.Item3); }
     }
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
@@ -1597,3 +1624,19 @@ public class Box : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, Ef
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiBox_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Homogeneous<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Box, T>magic = null) where T : Efl.Ui.Box {
+        return new Efl.BindableProperty<bool>("homogeneous", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Box, T>magic = null) where T : Efl.Ui.Box {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

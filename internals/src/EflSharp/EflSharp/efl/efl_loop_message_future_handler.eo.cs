@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,18 +8,20 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandlerMessageFutureEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>No description supplied.</value>
     public Efl.LoopMessageFuture arg { get; set; }
 }
 /// <summary>Internal use for future on an efl loop - replacing legacy ecore events</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageFutureHandler.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -44,7 +47,8 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopMessageFutureHandler(ConstructingHandle ch) : base(ch)
     {
@@ -66,6 +70,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     }
 
     /// <summary>No description supplied.</summary>
+    /// <value><see cref="Efl.LoopMessageFutureHandlerMessageFutureEvt_Args"/></value>
     public event EventHandler<Efl.LoopMessageFutureHandlerMessageFutureEvt_Args> MessageFutureEvt
     {
         add
@@ -105,7 +110,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
             }
         }
     }
-    ///<summary>Method to raise event MessageFutureEvt.</summary>
+    /// <summary>Method to raise event MessageFutureEvt.</summary>
     public void OnMessageFutureEvt(Efl.LoopMessageFutureHandlerMessageFutureEvt_Args e)
     {
         var key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
@@ -206,3 +211,9 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessageFutureHandler_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

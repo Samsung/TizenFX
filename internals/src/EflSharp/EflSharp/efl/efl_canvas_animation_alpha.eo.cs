@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,11 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl alpha animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationAlpha.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class AnimationAlpha : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +42,8 @@ public class AnimationAlpha : Efl.Canvas.Animation
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected AnimationAlpha(ConstructingHandle ch) : base(ch)
     {
@@ -75,6 +78,17 @@ public class AnimationAlpha : Efl.Canvas.Animation
                                                          Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_alpha, to_alpha);
         Eina.Error.RaiseIfUnhandledException();
                                          }
+    /// <summary>Alpha property</summary>
+    /// <value>Alpha value when animation starts</value>
+    public (double, double) Alpha {
+        get {
+            double _out_from_alpha = default(double);
+            double _out_to_alpha = default(double);
+            GetAlpha(out _out_from_alpha,out _out_to_alpha);
+            return (_out_from_alpha,_out_to_alpha);
+        }
+        set { SetAlpha( value.Item1,  value.Item2); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationAlpha.efl_canvas_animation_alpha_class_get();
@@ -201,3 +215,10 @@ public class AnimationAlpha : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationAlpha_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

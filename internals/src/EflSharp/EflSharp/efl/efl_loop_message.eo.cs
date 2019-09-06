@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,18 +8,20 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
 [Efl.Eo.BindingEntity]
 public class LoopMessageMessageEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>The message payload data</value>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Base message payload object class. Inherit this and extend for specific message types.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessage.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopMessage : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -44,7 +47,8 @@ public class LoopMessage : Efl.Object
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected LoopMessage(ConstructingHandle ch) : base(ch)
     {
@@ -66,6 +70,7 @@ public class LoopMessage : Efl.Object
     }
 
     /// <summary>The message payload data</summary>
+    /// <value><see cref="Efl.LoopMessageMessageEvt_Args"/></value>
     public event EventHandler<Efl.LoopMessageMessageEvt_Args> MessageEvt
     {
         add
@@ -105,7 +110,7 @@ public class LoopMessage : Efl.Object
             }
         }
     }
-    ///<summary>Method to raise event MessageEvt.</summary>
+    /// <summary>Method to raise event MessageEvt.</summary>
     public void OnMessageEvt(Efl.LoopMessageMessageEvt_Args e)
     {
         var key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
@@ -150,3 +155,9 @@ public class LoopMessage : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessage_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

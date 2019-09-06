@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI view interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IViewConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IView : 
@@ -21,20 +23,31 @@ Efl.IModel GetModel();
     /// <summary>Model that is/will be</summary>
 /// <param name="model">Efl model</param>
 void SetModel(Efl.IModel model);
-            /// <summary>Model that is/will be</summary>
+            /// <summary>Event dispatched when a new model is set.</summary>
+    /// <value><see cref="Efl.Ui.IViewModelChangedEvt_Args"/></value>
+    event EventHandler<Efl.Ui.IViewModelChangedEvt_Args> ModelChangedEvt;
+    /// <summary>Model that is/will be</summary>
     /// <value>Efl model</value>
     Efl.IModel Model {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IView.ModelChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
+public class IViewModelChangedEvt_Args : EventArgs {
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event dispatched when a new model is set.</value>
+    public Efl.ModelChangedEvent arg { get; set; }
+}
 /// <summary>Efl UI view interface</summary>
-sealed public class IViewConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IViewConcrete :
     Efl.Eo.EoWrapper
     , IView
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -50,7 +63,8 @@ sealed public class IViewConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IViewConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -65,6 +79,69 @@ sealed public class IViewConcrete :
     {
     }
 
+    /// <summary>Event dispatched when a new model is set.</summary>
+    /// <value><see cref="Efl.Ui.IViewModelChangedEvt_Args"/></value>
+    public event EventHandler<Efl.Ui.IViewModelChangedEvt_Args> ModelChangedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Ui.IViewModelChangedEvt_Args args = new Efl.Ui.IViewModelChangedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+                AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+                RemoveNativeEventHandler(efl.Libs.Efl, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ModelChangedEvt.</summary>
+    public void OnModelChangedEvt(Efl.Ui.IViewModelChangedEvt_Args e)
+    {
+        var key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
     /// <summary>Model that is/will be</summary>
     /// <returns>Efl model</returns>
     public Efl.IModel GetModel() {
@@ -206,6 +283,84 @@ sealed public class IViewConcrete :
 
 }
 }
+}
+
+}
+
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIViewConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.IModel> Model<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IView, T>magic = null) where T : Efl.Ui.IView {
+        return new Efl.BindableProperty<Efl.IModel>("model", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
+namespace Efl {
+
+/// <summary>Every time the model is changed on the object.</summary>
+[StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
+public struct ModelChangedEvent
+{
+    /// <summary>The newly set model.</summary>
+    public Efl.IModel Current;
+    /// <summary>The previously set model.</summary>
+    public Efl.IModel Previous;
+    /// <summary>Constructor for ModelChangedEvent.</summary>
+    /// <param name="Current">The newly set model.</param>;
+    /// <param name="Previous">The previously set model.</param>;
+    public ModelChangedEvent(
+        Efl.IModel Current = default(Efl.IModel),
+        Efl.IModel Previous = default(Efl.IModel)    )
+    {
+        this.Current = Current;
+        this.Previous = Previous;
+    }
+
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
+    public static implicit operator ModelChangedEvent(IntPtr ptr)
+    {
+        var tmp = (ModelChangedEvent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ModelChangedEvent.NativeStruct));
+        return tmp;
+    }
+
+    #pragma warning disable CS1591
+
+    /// <summary>Internal wrapper for struct ModelChangedEvent.</summary>
+    [StructLayout(LayoutKind.Sequential)]
+    public struct NativeStruct
+    {
+        /// <summary>Internal wrapper for field Current</summary>
+        public System.IntPtr Current;
+        /// <summary>Internal wrapper for field Previous</summary>
+        public System.IntPtr Previous;
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
+        public static implicit operator ModelChangedEvent.NativeStruct(ModelChangedEvent _external_struct)
+        {
+            var _internal_struct = new ModelChangedEvent.NativeStruct();
+            _internal_struct.Current = _external_struct.Current?.NativeHandle ?? System.IntPtr.Zero;
+            _internal_struct.Previous = _external_struct.Previous?.NativeHandle ?? System.IntPtr.Zero;
+            return _internal_struct;
+        }
+
+        /// <summary>Implicit conversion to the managed representation.</summary>
+        public static implicit operator ModelChangedEvent(ModelChangedEvent.NativeStruct _internal_struct)
+        {
+            var _external_struct = new ModelChangedEvent();
+
+            _external_struct.Current = (Efl.IModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Current);
+
+            _external_struct.Previous = (Efl.IModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Previous);
+            return _external_struct;
+        }
+
+    }
+
+    #pragma warning restore CS1591
+
 }
 
 }

@@ -346,16 +346,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Prepares the cancellable media player for playback, asynchronously.
+        /// Prepares the cancelable media player for playback, asynchronously.
         /// </summary>
         /// <param name="cancellationToken">The cancellation token to cancel preparing.</param>
         /// <seealso cref="CancellationToken"/>
-        /// <returns>A task that represents the asynchronous prepare operation.</returns>
+        /// <returns>The task that represents the asynchronous prepare operation.</returns>
         /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
         /// and a source must be set.
         /// The state must be <see cref="PlayerState.Preparing"/> to cancel preparing.
         /// When preparing is cancelled, a state will be changed to <see cref="PlayerState.Idle"/> from <see cref="PlayerState.Preparing"/>.</remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         ///     -or-<br/>
@@ -767,6 +767,8 @@ namespace Tizen.Multimedia
         ///     The player is not in the valid state.<br/>
         ///     -or-<br/>
         ///     Streaming playback.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="rate"/> is less than -5.0.<br/>
@@ -783,6 +785,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(rate), rate, "Valid range is -5.0 to 5.0 (except 0.0)");
             }
 
+            AudioOffload.CheckDisabled();
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed(this, "Failed to set the playback rate.");
@@ -975,14 +978,17 @@ namespace Tizen.Multimedia
         ///     Operation failed; internal error.
         ///     -or-<br/>
         ///     The player is not in the valid state.
+        ///     -or-<br/>
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
-            ValidatePlayerState(PlayerState.Idle);
             ValidationUtil.ValidateEnum(typeof(PlayerAudioExtractOption), option, nameof(option));
+            AudioOffload.CheckDisabled();
+            ValidatePlayerState(PlayerState.Idle);
 
             _audioFrameDecodedCallback = (IntPtr packetHandle, IntPtr userData) =>
             {

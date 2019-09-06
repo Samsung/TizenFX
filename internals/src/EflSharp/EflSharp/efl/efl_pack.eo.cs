@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -34,12 +35,12 @@ bool Unpack(Efl.Gfx.IEntity subobj);
 bool Pack(Efl.Gfx.IEntity subobj);
                 }
 /// <summary>Common interface for objects (containers) with multiple contents (sub-objects) which can be added and removed at runtime.</summary>
-sealed public class IPackConcrete :
+sealed public  class IPackConcrete :
     Efl.Eo.EoWrapper
     , IPack
     , Efl.IContainer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,7 +56,8 @@ sealed public class IPackConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IPackConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -72,6 +74,7 @@ sealed public class IPackConcrete :
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
@@ -111,7 +114,7 @@ sealed public class IPackConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -127,6 +130,7 @@ sealed public class IPackConcrete :
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
@@ -166,7 +170,7 @@ sealed public class IPackConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -539,3 +543,9 @@ sealed public class IPackConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIPackConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

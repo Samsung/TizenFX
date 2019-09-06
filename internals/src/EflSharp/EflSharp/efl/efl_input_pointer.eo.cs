@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -14,7 +15,7 @@ namespace Input {
 [Efl.Eo.BindingEntity]
 public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IState
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -40,7 +41,8 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Pointer(ConstructingHandle ch) : base(ch)
     {
@@ -74,7 +76,9 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
                                  Efl.Input.Pointer.NativeMethods.efl_input_pointer_action_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),act);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary><c>true</c> if this event carries a valid value for the specified <c>key</c>.</summary>
+    /// <summary><c>true</c> if this event carries a valid value for the specified <c>key</c>.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key">Pressed <c>key</c></param>
     /// <returns><c>true</c> if input value is valid, <c>false</c> otherwise</returns>
     virtual public bool GetValueHas(Efl.Input.Value key) {
@@ -85,7 +89,9 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <summary>Represents a generic value for this event.
     /// Refer to the documentation of <see cref="Efl.Input.Value"/> for each value&apos;s meaning, type and range. Call <see cref="Efl.Input.Pointer.GetValueHas"/> to determine whether the returned value is valid or not for this event.
     /// 
-    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.</summary>
+    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key"><c>key</c></param>
     /// <returns><c>key</c> value</returns>
     virtual public double GetValue(Efl.Input.Value key) {
@@ -96,7 +102,9 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <summary>Represents a generic value for this event.
     /// Refer to the documentation of <see cref="Efl.Input.Value"/> for each value&apos;s meaning, type and range. Call <see cref="Efl.Input.Pointer.GetValueHas"/> to determine whether the returned value is valid or not for this event.
     /// 
-    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.</summary>
+    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key"><c>key</c></param>
     /// <param name="val"><c>key</c> value</param>
     /// <returns><c>false</c> if the value could not be set (eg. delta).</returns>
@@ -377,7 +385,9 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="mod">The modifier key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key modifier is pressed.</returns>
@@ -387,7 +397,9 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
                                         return _ret_var;
  }
     /// <summary>Indicates whether a key lock is on, such as NumLock, CapsLock, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="kw_lock">The lock key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key lock is on.</returns>
@@ -2559,3 +2571,83 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_InputPointer_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Pointer.Action> Action<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Pointer.Action>("action", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<int> Button<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("button", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Vector2> PrecisePosition<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Vector2>("precise_position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> PreviousPosition<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Position2D>("previous_position", fac);
+    }
+
+    public static Efl.BindableProperty<int> TouchId<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("touch_id", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Object> Source<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Object>("source", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Pointer.Flags> ButtonFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Pointer.Flags>("button_flags", fac);
+    }
+
+    public static Efl.BindableProperty<bool> DoubleClick<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("double_click", fac);
+    }
+
+    public static Efl.BindableProperty<bool> TripleClick<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("triple_click", fac);
+    }
+
+    public static Efl.BindableProperty<bool> WheelHorizontal<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("wheel_horizontal", fac);
+    }
+
+    public static Efl.BindableProperty<int> WheelDelta<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("wheel_delta", fac);
+    }
+
+    public static Efl.BindableProperty<double> Timestamp<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<double>("timestamp", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Device> Device<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Input.Device>("device", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Flags> EventFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Input.Flags>("event_flags", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Processed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("processed", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Scrolling<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("scrolling", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Elementary access selection interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.ISelectionConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISelection : 
@@ -49,16 +51,17 @@ bool ChildDeselect(int child_index);
     /// <summary>Gets the number of currently selected children</summary>
     /// <value>Number of currently selected children</value>
     int SelectedChildrenCount {
-        get ;
+        get;
     }
 }
 /// <summary>Elementary access selection interface</summary>
-sealed public class ISelectionConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ISelectionConcrete :
     Efl.Eo.EoWrapper
     , ISelection
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -74,7 +77,8 @@ sealed public class ISelectionConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ISelectionConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -128,7 +132,7 @@ sealed public class ISelectionConcrete :
             }
         }
     }
-    ///<summary>Method to raise event AccessSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event AccessSelectionChangedEvt.</summary>
     public void OnAccessSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_SELECTION_EVENT_ACCESS_SELECTION_CHANGED";
@@ -610,3 +614,11 @@ sealed public class ISelectionConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessISelectionConcrete_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

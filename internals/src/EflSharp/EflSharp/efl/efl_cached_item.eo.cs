@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 namespace Cached {
 
 /// <summary>Efl Cached Item interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Cached.IItemConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IItem : 
@@ -21,16 +23,17 @@ uint GetMemorySize();
         /// <summary>Get the memory size associated with an object.</summary>
     /// <value>Bytes of memory consumed by this object.</value>
     uint MemorySize {
-        get ;
+        get;
     }
 }
 /// <summary>Efl Cached Item interface</summary>
-sealed public class IItemConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IItemConcrete :
     Efl.Eo.EoWrapper
     , IItem
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,7 +49,8 @@ sealed public class IItemConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IItemConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -154,3 +158,10 @@ sealed public class IItemConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CachedIItemConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

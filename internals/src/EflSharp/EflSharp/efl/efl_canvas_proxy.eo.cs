@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,11 +12,12 @@ namespace Canvas {
 
 /// <summary>Low-level proxy image object.
 /// A proxy is a special kind of image containing the pixels from a source object attached to it. It can be used to apply some sort of image transformation to any object (eg. filters, map or zoom).</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Proxy.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Proxy : Efl.Canvas.ImageInternal
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,7 +43,8 @@ public class Proxy : Efl.Canvas.ImageInternal
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Proxy(ConstructingHandle ch) : base(ch)
     {
@@ -470,3 +473,21 @@ public class Proxy : Efl.Canvas.ImageInternal
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasProxy_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.Object> Source<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Proxy, T>magic = null) where T : Efl.Canvas.Proxy {
+        return new Efl.BindableProperty<Efl.Canvas.Object>("source", fac);
+    }
+
+    public static Efl.BindableProperty<bool> SourceClip<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Proxy, T>magic = null) where T : Efl.Canvas.Proxy {
+        return new Efl.BindableProperty<bool>("source_clip", fac);
+    }
+
+    public static Efl.BindableProperty<bool> SourceEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Proxy, T>magic = null) where T : Efl.Canvas.Proxy {
+        return new Efl.BindableProperty<bool>("source_events", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

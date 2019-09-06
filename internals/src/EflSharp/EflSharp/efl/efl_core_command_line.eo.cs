@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,6 +12,7 @@ namespace Core {
 
 /// <summary>A mixin that implements standard functions for command lines.
 /// This object parses the command line that gets passed, later the object can be accessed via accessor or the string directly.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Core.ICommandLineConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ICommandLine : 
@@ -46,29 +48,30 @@ Eina.Accessor<Eina.Stringshare> CommandAccess();
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
     System.String Command {
-        get ;
+        get;
     }
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
     Eina.Array<Eina.Stringshare> CommandArray {
-        set ;
+        set;
     }
     /// <summary>Use a string to fill this object
     /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
     /// <value>A command in form of a string</value>
     System.String CommandString {
-        set ;
+        set;
     }
 }
 /// <summary>A mixin that implements standard functions for command lines.
 /// This object parses the command line that gets passed, later the object can be accessed via accessor or the string directly.</summary>
-sealed public class ICommandLineConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ICommandLineConcrete :
     Efl.Eo.EoWrapper
     , ICommandLine
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -84,7 +87,8 @@ sealed public class ICommandLineConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private ICommandLineConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -382,3 +386,18 @@ array.OwnContent = false;
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CoreICommandLineConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Core.ICommandLine, T>magic = null) where T : Efl.Core.ICommandLine {
+        return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> CommandString<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Core.ICommandLine, T>magic = null) where T : Efl.Core.ICommandLine {
+        return new Efl.BindableProperty<System.String>("command_string", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

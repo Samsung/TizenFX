@@ -23,6 +23,7 @@ internal static partial class Interop
 {
     internal static partial class PackageArchive
     {
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_create")]
         internal static extern ErrorCode PackageArchiveInfoCreate(string path, out IntPtr handle);
 
@@ -52,5 +53,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_get_icon")]
         internal static extern ErrorCode PackageArchiveInfoGetIcon(IntPtr handle, out IntPtr icon, out int iconSize);
+
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_archive_info_foreach_direct_dependency")]
+        internal static extern ErrorCode PackageArchiveInfoForeachDirectDependency(IntPtr handle, Package.PackageInfoDependencyInfoCallback callback, IntPtr userData);
     }
 }

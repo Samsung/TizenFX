@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,11 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics abstract class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Node.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx.IEntity, Efl.Gfx.IPath, Efl.Gfx.IStack
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -42,7 +44,8 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
         FinishInstantiation();
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     protected Node(ConstructingHandle ch) : base(ch)
     {
@@ -72,6 +75,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
@@ -111,7 +115,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -134,6 +138,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
@@ -173,7 +178,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -197,6 +202,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
@@ -236,7 +242,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -298,7 +304,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
             }
         }
     }
-    ///<summary>Method to raise event StackingChangedEvt.</summary>
+    /// <summary>Method to raise event StackingChangedEvt.</summary>
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
@@ -786,6 +792,42 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
         get { return GetTransformation(); }
         set { SetTransformation(ref value); }
     }
+    /// <summary>Gets the origin position of the node object.</summary>
+    /// <value><c>origin</c> x position.</value>
+    public (double, double) Origin {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetOrigin(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetOrigin( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set Mask Node to this renderer</summary>
+    /// <value>Mask object</value>
+    public (Efl.Canvas.Vg.Node, int) Mask {
+        set { SetMask( value.Item1,  value.Item2); }
+    }
+    /// <summary>Retrieves the general/main color of the given Evas object.
+    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
+    /// (Since EFL 1.22)</summary>
+    public (int, int, int, int) Color {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <value>the hex color code.</value>
@@ -834,6 +876,44 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public double Scale {
         get { return GetScale(); }
         set { SetScale(value); }
+    }
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    public (Efl.Gfx.PathCommandType, double) Path {
+        get {
+            Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+            double _out_points = default(double);
+            GetPath(out _out_op,out _out_points);
+            return (_out_op,_out_points);
+        }
+        set { SetPath( value.Item1,  value.Item2); }
+    }
+    /// <summary>Path length property</summary>
+    public (uint, uint) Length {
+        get {
+            uint _out_commands = default(uint);
+            uint _out_points = default(uint);
+            GetLength(out _out_commands,out _out_points);
+            return (_out_commands,_out_points);
+        }
+    }
+    /// <summary>Current point coordinates</summary>
+    public (double, double) Current {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrent(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
+    /// <summary>Current control point coordinates</summary>
+    public (double, double) CurrentCtrl {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrentCtrl(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
     }
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
     /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
@@ -3265,3 +3345,50 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgNode_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Matrix3> Transformation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Matrix3>("transformation", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<System.String>("color_code", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<short>("layer", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Access {
 namespace Widget {
 
 /// <summary>Access widget action mixin</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.Widget.IActionConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IAction : 
@@ -25,16 +27,17 @@ Efl.Access.ActionData GetElmActions();
     /// <summary>Elementary actions</summary>
     /// <value>NULL-terminated array of Efl.Access.Action_Data.</value>
     Efl.Access.ActionData ElmActions {
-        get ;
+        get;
     }
 }
 /// <summary>Access widget action mixin</summary>
-sealed public class IActionConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IActionConcrete :
     Efl.Eo.EoWrapper
     , IAction
     , Efl.Access.IAction
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -50,7 +53,8 @@ sealed public class IActionConcrete :
         }
     }
 
-    /// <summary>Constructor to be used when objects are expected to be constructed from native code.</summary>
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
     private IActionConcrete(ConstructingHandle ch) : base(ch)
     {
@@ -103,7 +107,7 @@ sealed public class IActionConcrete :
             }
         }
     }
-    ///<summary>Method to raise event ReadingStateChangedEvt.</summary>
+    /// <summary>Method to raise event ReadingStateChangedEvt.</summary>
     public void OnReadingStateChangedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_WIDGET_ACTION_EVENT_READING_STATE_CHANGED";
@@ -485,3 +489,14 @@ sealed public class IActionConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Access_WidgetIActionConcrete_ExtensionMethods {
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
