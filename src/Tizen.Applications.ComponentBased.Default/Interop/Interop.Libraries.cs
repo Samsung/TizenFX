@@ -19,6 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string Elementary = "libelementary.so.1";
-        public const string CompApplication = "libcomponent-based-application.so";
+        public const string CompApplication = "libcomponent-based-application.so.1";
     }
 }
