@@ -458,7 +458,7 @@ namespace Tizen.Applications
         /// AppControl appControl = new AppControl();
         /// appControl.ApplicationId = "org.tizen.component-based-app"; // component-based application
         /// appControl.ComponentId = "org.tizen.frame-component";
-        /// SendLaunchRequest(appControl);
+        /// AppControl.SendLaunchRequest(appControl);
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
