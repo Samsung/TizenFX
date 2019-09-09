@@ -18,10 +18,10 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string CompCoreBase = "libcomponent-based-core-base.so";
-        public const string CompApplication = "libcomponent-based-application.so";
-        public const string CompAppControl = "libcomponent-based-app-control.so";
-        public const string CompUri = "libcomponent-based-uri.so";
+        public const string CompCoreBase = "libcomponent-based-core-base.so.1";
+        public const string CompApplication = "libcomponent-based-application.so.1";
+        public const string CompAppControl = "libcomponent-based-app-control.so.1";
+        public const string CompUri = "libcomponent-based-uri.so.1";
         public const string AppControl = "libcapi-appfw-app-control.so.0";
     }
 }
