@@ -452,6 +452,7 @@ namespace Tizen.Applications
         /// (if the component ID is null for setter, it clears the previous value.)
         /// From Tizen 5.5, a new application model is supported that is component-based application.
         /// This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
+        /// If the target app is not component-based application, setting property is meaningless.
         /// </value>
         /// <example>
         /// <code>
