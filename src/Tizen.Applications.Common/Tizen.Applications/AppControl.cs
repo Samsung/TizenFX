@@ -446,7 +446,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets and sets the component ID of the component-based application.
+        /// Gets and sets the component ID to explicitly launch a component.
         /// </summary>
         /// <value>
         /// (if the component ID is null for setter, it clears the previous value.)
