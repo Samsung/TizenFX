@@ -115,7 +115,7 @@ namespace Efl
                 internal static extern bool elm_layout_content_set(IntPtr obj, string swallow, IntPtr content);
 
                 /// <summary>
-                // Sets or gets the disabled state of the circle genlist.
+                /// Sets or gets the disabled state of the circle genlist.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
                 public bool Disable
