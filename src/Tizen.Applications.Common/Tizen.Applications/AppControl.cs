@@ -58,6 +58,7 @@ namespace Tizen.Applications
         private string _category = null;
         private string _applicationId = null;
         private ExtraDataCollection _extraData = null;
+        private string _componentId = null;
 
         /// <summary>
         /// Initializes the instance of the AppControl class.
@@ -441,6 +442,52 @@ namespace Tizen.Applications
                 if (_extraData == null)
                     _extraData = new ExtraDataCollection(_handle);
                 return _extraData;
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the component ID to explicitly launch a component.
+        /// </summary>
+        /// <value>
+        /// (if the component ID is null for setter, it clears the previous value.)
+        /// From Tizen 5.5, a new application model is supported that is component-based application.
+        /// This property is for launching component-based application. If it's not set, the main component of component-based application will be launched.
+        /// If the target app is not component-based application, setting property is meaningless.
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.component-based-app"; // component-based application
+        /// appControl.ComponentId = "org.tizen.frame-component";
+        /// AppControl.SendLaunchRequest(appControl);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 6 </since_tizen>
+        public string ComponentId
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_componentId))
+                {
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetComponentId(_handle, out _componentId);
+                    if (err != Interop.AppControl.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the component id from the AppControl. Err = " + err);
+                    }
+                }
+                return _componentId;
+            }
+            set
+            {
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetComponentId(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
+                {
+                    _componentId = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the component id to the AppControl. Err = " + err);
+                }
             }
         }
 
