@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] This class implements a linear box layout, automatically handling right to left or left to right direction change.
     /// </summary>
-    internal class LinearLayout : LayoutGroup
+    public class LinearLayout : LayoutGroup
     {
         /// <summary>
         /// [Draft] Enumeration for the direction in which the content is laid out
@@ -136,6 +136,11 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>
+        /// Measure the layout and its content to determine the measured width and the measured height.
+        /// </summary>
+        /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
+        /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             if (_linearOrientation == Orientation.Horizontal)
@@ -148,6 +153,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Layout should assign a size and position to each of its children.<br />
+        /// </summary>
+        /// <param name="changed">This is a new size or position for this layout.</param>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top"> Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             if (_linearOrientation == Orientation.Horizontal)
@@ -261,7 +274,7 @@ namespace Tizen.NUI
             // Weighted children are not measured at this phase.
             // Available space for weighted children will be calculated in the phase 2 based on totalLength value.
             // Max height of children is stored.
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -366,10 +379,10 @@ namespace Tizen.NUI
                 maxHeight = 0;
                 _totalLength = 0;
 
-                int numberOfChildren = _children.Count;
+                int numberOfChildren = LayoutChildren.Count;
                 for( int i = 0; i < numberOfChildren; ++i )
                 {
-                    LayoutItem childLayout = _children[i];
+                    LayoutItem childLayout = LayoutChildren[i];
 
                     float desiredChildHeight = childLayout.Owner.HeightSpecification;
 
@@ -459,7 +472,7 @@ namespace Tizen.NUI
             // Weighted children are not measured in this phase.
             // Available space for weighted children will be calculated in the phase 2 based on _totalLength value.
             uint index = 0;
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
@@ -502,7 +515,7 @@ namespace Tizen.NUI
                     float length = childHeight + childMargin.Top + childMargin.Bottom;
                     float cellPadding = CellPadding.Height;
                     // No need to add cell padding to the end of last item.
-                    if (index>=_children.Count-1)
+                    if (index>=LayoutChildren.Count-1)
                     {
                         cellPadding = 0.0f;
                     }
@@ -570,10 +583,10 @@ namespace Tizen.NUI
 
                 _totalLength = 0;
 
-                int numberOfChildren = _children.Count;
+                int numberOfChildren = LayoutChildren.Count;
                 for( int i = 0; i < numberOfChildren; ++i )
                 {
-                    LayoutItem childLayout = _children[i];
+                    LayoutItem childLayout = LayoutChildren[i];
 
                     float desiredChildWidth = childLayout.Owner.WidthSpecification;
 
@@ -646,7 +659,7 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength( height - Padding.Top - Padding.Bottom);
 
-            int count = _children.Count;
+            int count = LayoutChildren.Count;
 
             switch (LinearAlignment)
             {
@@ -696,7 +709,7 @@ namespace Tizen.NUI
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = _children[childIndex];
+                LayoutItem childLayout = LayoutChildren[childIndex];
                 if( childLayout != null )
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
@@ -735,7 +748,7 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength( width - Padding.Start - Padding.End);
 
-            int count = _children.Count;
+            int count = LayoutChildren.Count;
 
             switch (LinearAlignment)
             {
@@ -757,7 +770,7 @@ namespace Tizen.NUI
 
             for( int i = 0; i < count; i++)
             {
-                LayoutItem childLayout = _children[i];
+                LayoutItem childLayout = LayoutChildren[i];
                 if( childLayout != null )
                 {
                     LayoutLength childWidth = childLayout.MeasuredWidth.Size;
@@ -797,7 +810,7 @@ namespace Tizen.NUI
           // ourselves. The measured height should be the max height of the children, changed
           // to accommodate the heightMeasureSpec from the parent
           MeasureSpecification uniformMeasureSpec = new MeasureSpecification( MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-          foreach (LayoutItem childLayout in _children)
+          foreach (LayoutItem childLayout in LayoutChildren)
           {
               int desiredChildHeight = childLayout.Owner.HeightSpecification;
               int desiredChildWidth = childLayout.Owner.WidthSpecification;
@@ -820,7 +833,7 @@ namespace Tizen.NUI
         {
             // Pretend that the linear layout has an exact size.
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification( MeasuredWidth.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in _children)
+            foreach (LayoutItem childLayout in LayoutChildren)
             {
                 int desiredChildWidth = childLayout.Owner.WidthSpecification;
                 int desiredChildHeight = childLayout.Owner.WidthSpecification;

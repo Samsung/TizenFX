@@ -1272,7 +1272,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-			
+
             Vector2 temp = new Vector2(0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT).Get(temp);
             return temp;
@@ -1377,7 +1377,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
-<<<<<<< HEAD
         }
 
         internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
@@ -1389,19 +1388,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-=======
-        }
-
-        internal View(View uiControl, bool shown = true) : this(Interop.View.new_View__SWIG_1(View.getCPtr(uiControl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if(!shown)
-            {
-                SetVisible(false);
-            }
-        }
-
->>>>>>> 2e2d0fe... [NUI] Integreation from dalihub (#988)
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -2452,7 +2438,7 @@ namespace Tizen.NUI.BaseComponents
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
-            "view.PositionUsesPivotPoint = true;" + 
+            "view.PositionUsesPivotPoint = true;" +
             " Deprecated in API5: Will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
@@ -3350,7 +3336,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! 
+        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! " +
@@ -5725,7 +5711,7 @@ namespace Tizen.NUI.BaseComponents
             View view = GetParent()?.FindCurrentChildById(id);
 
             //If we can't find the parent's children, find in the top layer.
-            if (!view) 
+            if (!view)
             {
                 Container parent = GetParent();
                 while ((parent is View) && (parent != null))

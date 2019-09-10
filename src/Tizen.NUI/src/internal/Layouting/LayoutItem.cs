@@ -36,7 +36,7 @@ namespace Tizen.NUI
     /// [Draft] Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
-    internal class LayoutItem
+    public class LayoutItem
     {
         static bool LayoutDebugFrameData = false; // Debug flag
         private MeasureSpecification OldWidthMeasureSpec; // Store measure specification to compare against later
@@ -51,6 +51,9 @@ namespace Tizen.NUI
         private Extents _padding;
         private Extents _margin;
 
+        /// <summary>
+        /// [Draft] Condition event that is causing this Layout to transition.
+        /// </summary>
         public TransitionCondition ConditionForAnimation{get; set;}
 
         /// <summary>
@@ -150,7 +153,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the View owning this LayoutItem
         /// </summary>
-        internal View GetOwner()
+        // <returns>View owning this Layout</returns>
+        public View GetOwner()
         {
             return Owner;
         }
@@ -283,6 +287,10 @@ namespace Tizen.NUI
             return result;
         }
 
+        /// <summary>
+        /// Get the Layouts parent
+        /// </summary>
+        /// <returns>Layout parent with an LayoutParent interface</returns>
         public ILayoutParent GetParent()
         {
             return Parent;
@@ -301,7 +309,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Predicate to determine if this layout has been requested to re-layout.<br />
         /// </summary>
-        public bool LayoutRequested
+        internal bool LayoutRequested
         {
             get
             {
