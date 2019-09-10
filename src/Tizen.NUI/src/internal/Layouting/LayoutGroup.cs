@@ -26,16 +26,19 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] LayoutGroup class providing container functionality.
     /// </summary>
-    internal class LayoutGroup : LayoutItem, ILayoutParent
+    public class LayoutGroup : LayoutItem, ILayoutParent
     {
-        protected List<LayoutItem> _children{ get;} // Children of this LayoutGroup
+        /// <summary>
+        /// [Draft] List of child layouts in this container.
+        /// </summary>
+        protected List<LayoutItem> LayoutChildren{ get;} // Children of this LayoutGroup
 
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
         public LayoutGroup()
         {
-            _children = new List<LayoutItem>();
+            LayoutChildren = new List<LayoutItem>();
         }
 
         /// <summary>
@@ -44,15 +47,15 @@ namespace Tizen.NUI
         /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
         public LayoutGroup(View owner) : base(owner)
         {
-            _children = new List<LayoutItem>();
+            LayoutChildren = new List<LayoutItem>();
         }
 
-          /// <summary>
+        /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
         public virtual void Add(LayoutItem childLayout)
         {
-            _children.Add(childLayout);
+            LayoutChildren.Add(childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
             childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Add;
@@ -67,12 +70,12 @@ namespace Tizen.NUI
         /// </summary>
         public void RemoveAll()
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
                 childLayout.Owner = null;
             }
-            _children.Clear();
+            LayoutChildren.Clear();
             // todo ensure child LayoutItems are still not parented to this group.
             RequestLayout();
         }
@@ -83,12 +86,12 @@ namespace Tizen.NUI
         public virtual void Remove(LayoutItem layoutItem)
         {
             bool childRemoved = false;
-            foreach( LayoutItem childLayout in _children.ToList() )
+            foreach( LayoutItem childLayout in LayoutChildren.ToList() )
             {
                 if( childLayout == layoutItem )
                 {
                     Window.Instance.LayoutController.AddToRemovalStack(childLayout);
-                    _children.Remove(childLayout);
+                    LayoutChildren.Remove(childLayout);
                     childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                     // Add LayoutItem to the transition stack so can animate it out.
                     Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0,0,0,0));
@@ -161,7 +164,7 @@ namespace Tizen.NUI
         /// </summary>
         private void SetConditionsForAnimationOnLayoutGroup( TransitionCondition conditionToSet)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 switch( conditionToSet )
                 {
@@ -330,7 +333,7 @@ namespace Tizen.NUI
             LayoutLength measuredHeight = new LayoutLength(0.0f);
 
             // Layout takes size of largest child width and largest child height dimensions
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if( childLayout != null )
                 {
@@ -344,7 +347,7 @@ namespace Tizen.NUI
                 }
             }
 
-            if( 0 == _children.Count )
+            if( 0 == LayoutChildren.Count )
             {
                 // Must be a leaf as has no children
                 measuredWidth = GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec );
@@ -366,7 +369,7 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if( childLayout !=null )
                 {
@@ -445,7 +448,7 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">The height requirements for this view.</param>
         protected virtual void MeasureChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
             }
@@ -454,7 +457,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Ask one of the children of this view to measure itself, taking into
         /// account both the MeasureSpec requirements for this view and its padding.<br />
-        /// The heavy lifting is done in GetChildMeasureSpec.<br />
+        /// The heavy lifting is done in GetChildMeasureSpecification.<br />
         /// </summary>
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>

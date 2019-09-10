@@ -632,6 +632,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        ///  Get the LayoutController for this Window.
+        /// </summary>
         internal LayoutController LayoutController
         {
             get

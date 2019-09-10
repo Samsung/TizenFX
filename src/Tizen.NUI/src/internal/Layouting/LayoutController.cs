@@ -39,7 +39,7 @@ namespace Tizen.NUI
         event Callback _instance;
 
         // A Flag to check if it is already disposed.
-        protected bool disposed = false;
+        private bool disposed = false;
 
         private Window _window;
 

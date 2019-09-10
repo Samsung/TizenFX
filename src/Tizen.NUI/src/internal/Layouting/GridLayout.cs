@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] This class implements a grid layout
     /// </summary>
-    internal class GridLayout : LayoutGroup
+    public class GridLayout : LayoutGroup
     {
         const int AUTO_FIT = -1;
         private int _columns = 1;
@@ -44,9 +44,9 @@ namespace Tizen.NUI
             _locations = new GridLocations();
         }
 
-        // <summary>
-        // [Draft] Get/Set the number of columns in the grid
-        // </summary>
+        /// <summary>
+        /// [Draft] Get/Set the number of columns in the grid
+        /// </summary>
         public int Columns
         {
             get
@@ -96,6 +96,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Measure the layout and its content to determine the measured width and the measured height.<br />
+        /// </summary>
+        /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
+        /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
             var gridWidthMode = widthMeasureSpec.Mode;
@@ -111,7 +116,7 @@ namespace Tizen.NUI
 
             Extents gridLayoutPadding = Padding;
 
-            var childCount = _children.Count;
+            var childCount = LayoutChildren.Count;
 
             // WIDTH SPECIFICATIONS
 
@@ -119,7 +124,7 @@ namespace Tizen.NUI
 
             if (childCount > 0)
             {
-                LayoutItem childLayoutItem = _children[0];
+                LayoutItem childLayoutItem = LayoutChildren[0];
                 View childOwner = childLayoutItem.Owner;
 
                 MeasureChild( childLayoutItem, widthMeasureSpec, heightMeasureSpec );
@@ -199,6 +204,14 @@ namespace Tizen.NUI
                                    ResolveSizeAndState( new LayoutLength(heightSize), heightMeasureSpec,  MeasuredSize.StateType.MeasuredSizeOK ) );
         }
 
+        /// <summary>
+        /// Assign a size and position to each of its children.<br />
+        /// </summary>
+        /// <param name="changed">This is a new size or position for this layout.</param>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top"> Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
             List<GridLocations.Cell> locations = _locations.GetLocations();
@@ -207,13 +220,13 @@ namespace Tizen.NUI
             Extents childMargins = new Extents();
 
             // Margin for all children dependant on if set on first child
-            if( _children.Count > 0 )
+            if( LayoutChildren.Count > 0 )
             {
-              childMargins = _children[0]?.Margin;
+              childMargins = LayoutChildren[0]?.Margin;
             }
 
             int index = 0;
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 // for each child
                 if( childLayout != null )

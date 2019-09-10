@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
     /// We implement the subset of the API in the class below.
     /// </summary>
-    internal class FlexLayout : LayoutGroup,  global::System.IDisposable
+    public class FlexLayout : LayoutGroup,  global::System.IDisposable
     {
         float Flex{ get; set;}
         int AlignSelf{get; set;}
@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
 
-        public struct MeasuredSize
+        internal struct MeasuredSize
         {
           public MeasuredSize(float x, float y)
           {
@@ -68,6 +68,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         public void Dispose()
         {
             // Throw exception if Dispose() is called in separate thread.
@@ -87,6 +90,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -390,14 +396,23 @@ namespace Tizen.NUI
         void InsertChild( LayoutItem child )
         {
             // Store created node for child
-            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, _children.Count-1);
+            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, LayoutChildren.Count-1);
         }
 
+        /// <summary>
+        /// Callback when child is added to container.<br />
+        /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
+        /// </summary>
+        /// <param name="child">The Layout child.</param>
         protected override void OnChildAdd(LayoutItem child)
         {
             InsertChild(child);
         }
 
+        /// <summary>
+        /// Callback when child is removed from container.<br />
+        /// </summary>
+        /// <param name="child">The Layout child.</param>
         protected override void OnChildRemove(LayoutItem child)
         {
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
@@ -405,6 +420,11 @@ namespace Tizen.NUI
             Interop.FlexLayout.FlexLayout_RemoveChild(swigCPtr, child);
         }
 
+        /// <summary>
+        /// Measure the layout and its content to determine the measured width and the measured height.<br />
+        /// </summary>
+        /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
+        /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
@@ -433,6 +453,14 @@ namespace Tizen.NUI
                                    GetDefaultSize( new LayoutLength( (float)Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr) ), heightMeasureSpec ) );
         }
 
+        /// <summary>
+        /// Assign a size and position to each of its children.<br />
+        /// </summary>
+        /// <param name="changed">This is a new size or position for this layout.</param>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top"> Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
 
@@ -443,10 +471,10 @@ namespace Tizen.NUI
             // Call to FlexLayout implementation to calculate layout values for later retrieval.
             Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl );
 
-            int count = _children.Count;
+            int count = LayoutChildren.Count;
             for( int childIndex = 0; childIndex < count; childIndex++)
             {
-                LayoutItem childLayout = _children[childIndex];
+                LayoutItem childLayout = LayoutChildren[childIndex];
                 if( childLayout != null )
                 {
                     // Get the frame for the child, start, top, end, bottom.

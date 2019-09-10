@@ -1258,6 +1258,26 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MARGIN).Get(temp);
             return temp;
         });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty UpdateSizeHintProperty = BindableProperty.Create("UpdateSizeHint", typeof(Vector2), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT, new Tizen.NUI.PropertyValue((Vector2)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT).Get(temp);
+            return temp;
+        });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
@@ -2418,7 +2438,7 @@ namespace Tizen.NUI.BaseComponents
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
-            "view.PositionUsesPivotPoint = true;" + 
+            "view.PositionUsesPivotPoint = true;" +
             " Deprecated in API5: Will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
@@ -3316,7 +3336,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! 
+        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! " +
@@ -5693,7 +5713,7 @@ namespace Tizen.NUI.BaseComponents
             View view = GetParent()?.FindCurrentChildById(id);
 
             //If we can't find the parent's children, find in the top layer.
-            if (!view) 
+            if (!view)
             {
                 Container parent = GetParent();
                 while ((parent is View) && (parent != null))
