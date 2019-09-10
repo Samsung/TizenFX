@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,19 +12,22 @@ namespace Ui {
 
 /// <summary>The bg (background) widget is used for setting (solid) background decorations
 /// in a window (unless it has transparency enabled) or on any container object. It works just like an image but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ILegacyConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ILegacy : 
     Efl.Eo.IWrapper, IDisposable
 {
 }
 /// <summary>The bg (background) widget is used for setting (solid) background decorations
 /// in a window (unless it has transparency enabled) or on any container object. It works just like an image but has some properties useful for backgrounds, such as setting it to tiled, centered, scaled or stretched.</summary>
-sealed public class ILegacyConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ILegacyConcrete :
     Efl.Eo.EoWrapper
     , ILegacy
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,11 +43,19 @@ sealed public class ILegacyConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ILegacyConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_legacy_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ILegacy"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ILegacyConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ILegacyConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -53,7 +65,7 @@ sealed public class ILegacyConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -79,3 +91,9 @@ sealed public class ILegacyConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiILegacyConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

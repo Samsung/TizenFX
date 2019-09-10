@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl Ui Selection class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ISelectionConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISelection : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -46,20 +49,24 @@ bool HasOwner(Efl.Ui.SelectionType type, uint seat);
     System.Threading.Tasks.Task<Eina.Value> SetSelectionAsync(Efl.Ui.SelectionType type,Efl.Ui.SelectionFormat format,Eina.Slice data,uint seat, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
 
                 /// <summary>Called when display server&apos;s selection has changed</summary>
+    /// <value><see cref="Efl.Ui.ISelectionWmSelectionChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt;
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.ISelection.WmSelectionChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelection.WmSelectionChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ISelectionWmSelectionChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when display server&apos;s selection has changed</value>
     public Efl.Ui.SelectionChanged arg { get; set; }
 }
 /// <summary>Efl Ui Selection class</summary>
-sealed public class ISelectionConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ISelectionConcrete :
     Efl.Eo.EoWrapper
     , ISelection
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -75,20 +82,29 @@ sealed public class ISelectionConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISelectionConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_selection_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="ISelection"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISelectionConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when display server&apos;s selection has changed</summary>
+    /// <value><see cref="Efl.Ui.ISelectionWmSelectionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -116,14 +132,14 @@ sealed public class ISelectionConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event WmSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event WmSelectionChangedEvt.</summary>
     public void OnWmSelectionChangedEvt(Efl.Ui.ISelectionWmSelectionChangedEvt_Args e)
     {
         var key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
@@ -201,7 +217,7 @@ sealed public class ISelectionConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -413,3 +429,9 @@ sealed public class ISelectionConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiISelectionConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

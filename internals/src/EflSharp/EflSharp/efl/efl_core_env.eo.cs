@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,10 +14,12 @@ namespace Core {
 /// A object of this type alone does not apply the object to the system. For getting the value into the system, see <see cref="Efl.Core.ProcEnv"/>.
 /// 
 /// A object can be forked, which will only copy its values, changes to the returned object will not change the object where it is forked off.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Core.Env.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Env : Efl.Object, Efl.IDuplicate
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,65 +40,71 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Env(Efl.Object parent= null
-            ) : base(efl_core_env_class_get(), typeof(Env), parent)
+            ) : base(efl_core_env_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Env(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Env(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Env(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Env"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Env(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Env(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Get the value of the <c>var</c>, or <c>null</c> if no such <c>var</c> exists in the object</summary>
-    /// <param name="var">The name of the variable</param>
+    /// <param name="kw_var">The name of the variable</param>
     /// <returns>Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</returns>
-    virtual public System.String GetEnv(System.String var) {
-                                 var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var);
+    virtual public System.String GetEnv(System.String kw_var) {
+                                 var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Add a new pair to this object</summary>
-    /// <param name="var">The name of the variable</param>
+    /// <param name="kw_var">The name of the variable</param>
     /// <param name="value">Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</param>
-    virtual public void SetEnv(System.String var, System.String value) {
-                                                         Efl.Core.Env.NativeMethods.efl_core_env_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var, value);
+    virtual public void SetEnv(System.String kw_var, System.String value) {
+                                                         Efl.Core.Env.NativeMethods.efl_core_env_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the content of this object.
     /// This will return a iterator that contains all keys that are part of this object.</summary>
     virtual public Eina.Iterator<System.String> GetContent() {
-         var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_content_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<System.String>(_ret_var, false, false);
+        return new Eina.Iterator<System.String>(_ret_var, false);
  }
     /// <summary>Remove the pair with the matching <c>var</c> from this object</summary>
-    /// <param name="var">The name of the variable</param>
-    virtual public void Unset(System.String var) {
-                                 Efl.Core.Env.NativeMethods.efl_core_env_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),var);
+    /// <param name="kw_var">The name of the variable</param>
+    virtual public void Unset(System.String kw_var) {
+                                 Efl.Core.Env.NativeMethods.efl_core_env_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Remove all pairs from this object</summary>
     virtual public void Clear() {
-         Efl.Core.Env.NativeMethods.efl_core_env_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Core.Env.NativeMethods.efl_core_env_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
     virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -193,14 +202,14 @@ public class Env : Efl.Object, Efl.IDuplicate
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_core_env_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var);
+        private delegate System.String efl_core_env_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var);
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_core_env_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var);
+        public delegate System.String efl_core_env_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var);
 
         public static Efl.Eo.FunctionWrapper<efl_core_env_get_api_delegate> efl_core_env_get_ptr = new Efl.Eo.FunctionWrapper<efl_core_env_get_api_delegate>(Module, "efl_core_env_get");
 
-        private static System.String env_get(System.IntPtr obj, System.IntPtr pd, System.String var)
+        private static System.String env_get(System.IntPtr obj, System.IntPtr pd, System.String kw_var)
         {
             Eina.Log.Debug("function efl_core_env_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -209,7 +218,7 @@ public class Env : Efl.Object, Efl.IDuplicate
                                     System.String _ret_var = default(System.String);
                 try
                 {
-                    _ret_var = ((Env)ws.Target).GetEnv(var);
+                    _ret_var = ((Env)ws.Target).GetEnv(kw_var);
                 }
                 catch (Exception e)
                 {
@@ -222,21 +231,21 @@ public class Env : Efl.Object, Efl.IDuplicate
             }
             else
             {
-                return efl_core_env_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), var);
+                return efl_core_env_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_var);
             }
         }
 
         private static efl_core_env_get_delegate efl_core_env_get_static_delegate;
 
         
-        private delegate void efl_core_env_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
+        private delegate void efl_core_env_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
 
         
-        public delegate void efl_core_env_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
+        public delegate void efl_core_env_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
 
         public static Efl.Eo.FunctionWrapper<efl_core_env_set_api_delegate> efl_core_env_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_env_set_api_delegate>(Module, "efl_core_env_set");
 
-        private static void env_set(System.IntPtr obj, System.IntPtr pd, System.String var, System.String value)
+        private static void env_set(System.IntPtr obj, System.IntPtr pd, System.String kw_var, System.String value)
         {
             Eina.Log.Debug("function efl_core_env_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -245,7 +254,7 @@ public class Env : Efl.Object, Efl.IDuplicate
                                                             
                 try
                 {
-                    ((Env)ws.Target).SetEnv(var, value);
+                    ((Env)ws.Target).SetEnv(kw_var, value);
                 }
                 catch (Exception e)
                 {
@@ -257,7 +266,7 @@ public class Env : Efl.Object, Efl.IDuplicate
             }
             else
             {
-                efl_core_env_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), var, value);
+                efl_core_env_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_var, value);
             }
         }
 
@@ -300,14 +309,14 @@ public class Env : Efl.Object, Efl.IDuplicate
         private static efl_core_env_content_get_delegate efl_core_env_content_get_static_delegate;
 
         
-        private delegate void efl_core_env_unset_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var);
+        private delegate void efl_core_env_unset_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var);
 
         
-        public delegate void efl_core_env_unset_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String var);
+        public delegate void efl_core_env_unset_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_var);
 
         public static Efl.Eo.FunctionWrapper<efl_core_env_unset_api_delegate> efl_core_env_unset_ptr = new Efl.Eo.FunctionWrapper<efl_core_env_unset_api_delegate>(Module, "efl_core_env_unset");
 
-        private static void unset(System.IntPtr obj, System.IntPtr pd, System.String var)
+        private static void unset(System.IntPtr obj, System.IntPtr pd, System.String kw_var)
         {
             Eina.Log.Debug("function efl_core_env_unset was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -316,7 +325,7 @@ public class Env : Efl.Object, Efl.IDuplicate
                                     
                 try
                 {
-                    ((Env)ws.Target).Unset(var);
+                    ((Env)ws.Target).Unset(kw_var);
                 }
                 catch (Exception e)
                 {
@@ -328,7 +337,7 @@ public class Env : Efl.Object, Efl.IDuplicate
             }
             else
             {
-                efl_core_env_unset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), var);
+                efl_core_env_unset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_var);
             }
         }
 
@@ -413,3 +422,11 @@ public class Env : Efl.Object, Efl.IDuplicate
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CoreEnv_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

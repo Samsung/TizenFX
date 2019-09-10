@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Gfx {
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
 [Efl.Gfx.IEntityConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IEntity : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -58,34 +60,37 @@ double GetScale();
 void SetScale(double scale);
                                             /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt;
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt;
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt;
     /// <summary>The 2D position of a canvas object.
     /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
     /// (Since EFL 1.22)</summary>
     /// <value>A 2D coordinate in pixel units.</value>
     Eina.Position2D Position {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The 2D size of a canvas object.
     /// (Since EFL 1.22)</summary>
     /// <value>A 2D size in pixel units.</value>
     Eina.Size2D Size {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Rectangular geometry that combines both position and size.
     /// (Since EFL 1.22)</summary>
     /// <value>The X,Y position and W,H size, in pixels.</value>
     Eina.Rect Geometry {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The visibility of a canvas object.
     /// All canvas objects will become visible by default just before render. This means that it is not required to call <see cref="Efl.Gfx.IEntity.SetVisible"/> after creating an object unless you want to create it without showing it. Note that this behavior is new since 1.21, and only applies to canvas objects created with the EO API (i.e. not the legacy C-only API). Other types of Gfx objects may or may not be visible by default.
@@ -94,8 +99,8 @@ void SetScale(double scale);
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if to make the object visible, <c>false</c> otherwise</value>
     bool Visible {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The scaling factor of an object.
     /// This property is an individual scaling factor on the object (Edje or UI widget). This property (or Edje&apos;s global scaling factor, when applicable), will affect this object&apos;s part sizes. If scale is not zero, than the individual scaling will override any global scaling set, for the object obj&apos;s parts. Set it back to zero to get the effects of the global scaling again.
@@ -104,33 +109,39 @@ void SetScale(double scale);
     /// (Since EFL 1.22)</summary>
     /// <value>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</value>
     double Scale {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.VisibilityChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.VisibilityChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntityVisibilityChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Object&apos;s visibility state changed, the event value is the new state.</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.PositionChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.PositionChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntityPositionChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Object was moved, its position during the event is the new one.</value>
     public Eina.Position2D arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.SizeChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.SizeChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEntitySizeChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Object was resized, its size during the event is the new one.</value>
     public Eina.Size2D arg { get; set; }
 }
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
-sealed public class IEntityConcrete :
+sealed public  class IEntityConcrete :
     Efl.Eo.EoWrapper
     , IEntity
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -146,21 +157,30 @@ sealed public class IEntityConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IEntityConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_entity_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IEntity"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IEntityConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IEntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -188,14 +208,14 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -218,11 +238,12 @@ sealed public class IEntityConcrete :
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -250,14 +271,14 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -281,11 +302,12 @@ sealed public class IEntityConcrete :
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -313,14 +335,14 @@ sealed public class IEntityConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -469,7 +491,7 @@ sealed public class IEntityConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -956,3 +978,29 @@ sealed public class IEntityConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIEntityConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

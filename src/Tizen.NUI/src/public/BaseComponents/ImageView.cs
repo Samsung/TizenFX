@@ -1,5 +1,5 @@
 /*
-* Copyright(c) 2018 Samsung Electronics Co., Ltd.
+* Copyright(c) 2019 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -199,17 +199,14 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                imageView._synchronosLoading = (bool) newValue;
                 imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
-            return ret;
+            return imageView._synchronosLoading;
         });
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -242,6 +239,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Rectangle _border;
         private string _resourceUrl = "";
+        private bool _synchronosLoading = false;
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -250,6 +248,18 @@ namespace Tizen.NUI.BaseComponents
         public ImageView() : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized ImageView with setting the status of shown or hidden.
+        /// </summary>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView(bool shown) : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
         }
 
         /// <summary>
@@ -264,15 +274,40 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        internal ImageView(string url, Uint16Pair size) : this(Interop.ImageView.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
+
+        /// <summary>
+        /// Creates an initialized ImageView from a URL to an image resource with setting shown or hidden.
+        /// </summary>
+        /// <param name="url">The URL of the image resource to display.</param>
+        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView(string url, bool shown) : this(Interop.ImageView.ImageView_New__SWIG_2(url), true)
+        {
+            ResourceUrl = url;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SetVisible(shown);
+        }
+
+        internal ImageView(string url, Uint16Pair size, bool shown = true) : this(Interop.ImageView.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
         {
             ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
+
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -677,7 +712,6 @@ namespace Tizen.NUI.BaseComponents
         ///  Whether to crop image to mask or scale mask to fit image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CropToMask
         {
             get
@@ -941,7 +975,9 @@ namespace Tizen.NUI.BaseComponents
                 temp.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
                 temp.Insert(NpatchImageVisualProperty.Border, new PropertyValue(_border));
             }
-        
+
+            temp.Insert(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue(_synchronosLoading));
+
             if (value != null)
             {
                 temp.Insert(key, value);
@@ -1008,7 +1044,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RESOURCE_URL = Interop.ImageView.ImageView_Property_RESOURCE_URL_get();
             internal static readonly int IMAGE = Interop.ImageView.ImageView_Property_IMAGE_get();
             internal static readonly int PRE_MULTIPLIED_ALPHA = Interop.ImageView.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
             internal static readonly int PIXEL_AREA = Interop.ImageView.ImageView_Property_PIXEL_AREA_get();

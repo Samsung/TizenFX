@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,7 +12,9 @@ namespace Gfx {
 
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IBlurConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IBlur : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -45,24 +48,38 @@ double GetGrow();
 /// This is can be used efficiently to create glow effects.</summary>
 /// <param name="radius">How much to grow the original pixel data.</param>
 void SetGrow(double radius);
-                            /// <summary>How much the original image should be &quot;grown&quot; before blurring.
+                            /// <summary>The blur radius in pixels.</summary>
+    /// <value>The horizontal blur radius.</value>
+    (double, double) Radius {
+        get;
+        set;
+    }
+    /// <summary>An offset relative to the original pixels.
+    /// This property allows for drop shadow effects.</summary>
+    /// <value>Horizontal offset in pixels.</value>
+    (double, double) Offset {
+        get;
+        set;
+    }
+    /// <summary>How much the original image should be &quot;grown&quot; before blurring.
     /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
     /// 
     /// This is can be used efficiently to create glow effects.</summary>
     /// <value>How much to grow the original pixel data.</value>
     double Grow {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
-sealed public class IBlurConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IBlurConcrete :
     Efl.Eo.EoWrapper
     , IBlur
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -78,11 +95,19 @@ sealed public class IBlurConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IBlurConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_blur_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IBlur"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IBlurConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IBlurConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -135,6 +160,29 @@ sealed public class IBlurConcrete :
                                  Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_set_ptr.Value.Delegate(this.NativeHandle,radius);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>The blur radius in pixels.</summary>
+    /// <value>The horizontal blur radius.</value>
+    public (double, double) Radius {
+        get {
+            double _out_rx = default(double);
+            double _out_ry = default(double);
+            GetRadius(out _out_rx,out _out_ry);
+            return (_out_rx,_out_ry);
+        }
+        set { SetRadius( value.Item1,  value.Item2); }
+    }
+    /// <summary>An offset relative to the original pixels.
+    /// This property allows for drop shadow effects.</summary>
+    /// <value>Horizontal offset in pixels.</value>
+    public (double, double) Offset {
+        get {
+            double _out_ox = default(double);
+            double _out_oy = default(double);
+            GetOffset(out _out_ox,out _out_oy);
+            return (_out_ox,_out_oy);
+        }
+        set { SetOffset( value.Item1,  value.Item2); }
+    }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
     /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
     /// 
@@ -150,7 +198,7 @@ sealed public class IBlurConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -450,3 +498,15 @@ sealed public class IBlurConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIBlurConcrete_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<double> Grow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IBlur, T>magic = null) where T : Efl.Gfx.IBlur {
+        return new Efl.BindableProperty<double>("grow", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

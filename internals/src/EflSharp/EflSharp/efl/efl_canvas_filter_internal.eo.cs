@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,7 +13,9 @@ namespace Canvas {
 namespace Filter {
 
 /// <summary>Evas internal implementation of filters.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Filter.IInternalConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IInternal : 
     Efl.Gfx.IFilter ,
     Efl.Eo.IWrapper, IDisposable
@@ -55,27 +58,28 @@ void FilterDirty();
                                 /// <summary>Marks this filter as changed.</summary>
     /// <value><c>true</c> if filter changed, <c>false</c> otherwise</value>
     bool FilterChanged {
-        set ;
+        set;
     }
     /// <summary>Marks this filter as invalid.</summary>
     /// <value><c>true</c> if filter is invalid, <c>false</c> otherwise</value>
     bool FilterInvalid {
-        set ;
+        set;
     }
     /// <summary>Retrieve cached output buffer, if any.
     /// Does not increment the reference count.</summary>
     /// <value>Output buffer</value>
     System.IntPtr FilterOutputBuffer {
-        get ;
+        get;
     }
 }
 /// <summary>Evas internal implementation of filters.</summary>
-sealed public class IInternalConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IInternalConcrete :
     Efl.Eo.EoWrapper
     , IInternal
     , Efl.Gfx.IFilter
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -91,11 +95,19 @@ sealed public class IInternalConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IInternalConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_filter_internal_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IInternal"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IInternalConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IInternalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -269,13 +281,53 @@ sealed public class IInternalConcrete :
     public System.IntPtr FilterOutputBuffer {
         get { return GetFilterOutputBuffer(); }
     }
+    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <value>The Lua program source code.</value>
+    public (System.String, System.String) FilterProgram {
+        get {
+            System.String _out_code = default(System.String);
+            System.String _out_name = default(System.String);
+            GetFilterProgram(out _out_code,out _out_name);
+            return (_out_code,_out_name);
+        }
+        set { SetFilterProgram( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set the current state of the filter.
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <value>Current state of the filter</value>
+    public (System.String, double, System.String, double, double) FilterState {
+        get {
+            System.String _out_cur_state = default(System.String);
+            double _out_cur_val = default(double);
+            System.String _out_next_state = default(System.String);
+            double _out_next_val = default(double);
+            double _out_pos = default(double);
+            GetFilterState(out _out_cur_state,out _out_cur_val,out _out_next_state,out _out_next_val,out _out_pos);
+            return (_out_cur_state,_out_cur_val,_out_next_state,_out_next_val,_out_pos);
+        }
+        set { SetFilterState( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Required padding to apply this filter without cropping.
+    /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
+    public (int, int, int, int) FilterPadding {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetFilterPadding(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Filter.IInternalConcrete.efl_canvas_filter_internal_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1042,12 +1094,33 @@ sealed public class IInternalConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_FilterIInternalConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> FilterChanged<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Filter.IInternal, T>magic = null) where T : Efl.Canvas.Filter.IInternal {
+        return new Efl.BindableProperty<bool>("filter_changed", fac);
+    }
+
+    public static Efl.BindableProperty<bool> FilterInvalid<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Filter.IInternal, T>magic = null) where T : Efl.Canvas.Filter.IInternal {
+        return new Efl.BindableProperty<bool>("filter_invalid", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Gfx {
 
 /// <summary>32 bit color data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Color32
 {
     /// <summary>Red component of the color</summary>
@@ -1058,7 +1131,11 @@ public struct Color32
     public byte B;
     /// <summary>Translucent component of the color</summary>
     public byte A;
-    ///<summary>Constructor for Color32.</summary>
+    /// <summary>Constructor for Color32.</summary>
+    /// <param name="R">Red component of the color</param>;
+    /// <param name="G">Green component of the color</param>;
+    /// <param name="B">Blue component of the color</param>;
+    /// <param name="A">Translucent component of the color</param>;
     public Color32(
         byte R = default(byte),
         byte G = default(byte),
@@ -1071,8 +1148,8 @@ public struct Color32
         this.A = A;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Color32(IntPtr ptr)
     {
         var tmp = (Color32.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Color32.NativeStruct));
@@ -1081,7 +1158,7 @@ public struct Color32
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Color32.</summary>
+    /// <summary>Internal wrapper for struct Color32.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1093,7 +1170,7 @@ public struct Color32
         public byte B;
         
         public byte A;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Color32.NativeStruct(Color32 _external_struct)
         {
             var _internal_struct = new Color32.NativeStruct();
@@ -1104,7 +1181,7 @@ public struct Color32
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Color32(Color32.NativeStruct _internal_struct)
         {
             var _external_struct = new Color32();
@@ -1133,13 +1210,16 @@ namespace Filter {
 
 /// <summary>Filter state name structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StateName
 {
     /// <summary>Filter state name</summary>
     public System.String Name;
     /// <summary>Filter state value</summary>
     public double Value;
-    ///<summary>Constructor for StateName.</summary>
+    /// <summary>Constructor for StateName.</summary>
+    /// <param name="Name">Filter state name</param>;
+    /// <param name="Value">Filter state value</param>;
     public StateName(
         System.String Name = default(System.String),
         double Value = default(double)    )
@@ -1148,8 +1228,8 @@ public struct StateName
         this.Value = Value;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StateName(IntPtr ptr)
     {
         var tmp = (StateName.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StateName.NativeStruct));
@@ -1158,15 +1238,15 @@ public struct StateName
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct StateName.</summary>
+    /// <summary>Internal wrapper for struct StateName.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Name</summary>
+        /// <summary>Internal wrapper for field Name</summary>
         public System.IntPtr Name;
         
         public double Value;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator StateName.NativeStruct(StateName _external_struct)
         {
             var _internal_struct = new StateName.NativeStruct();
@@ -1175,7 +1255,7 @@ public struct StateName
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator StateName(StateName.NativeStruct _internal_struct)
         {
             var _external_struct = new StateName();
@@ -1204,17 +1284,26 @@ namespace Filter {
 
 /// <summary>Filter state text structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct StateText
 {
     /// <summary>Text outline color</summary>
+    /// <value>32 bit color data structure</value>
     public Efl.Gfx.Color32 Outline;
     /// <summary>Text shadow color</summary>
+    /// <value>32 bit color data structure</value>
     public Efl.Gfx.Color32 Shadow;
     /// <summary>Text glow color</summary>
+    /// <value>32 bit color data structure</value>
     public Efl.Gfx.Color32 Glow;
     /// <summary>Text glow2 color</summary>
+    /// <value>32 bit color data structure</value>
     public Efl.Gfx.Color32 Glow2;
-    ///<summary>Constructor for StateText.</summary>
+    /// <summary>Constructor for StateText.</summary>
+    /// <param name="Outline">Text outline color</param>;
+    /// <param name="Shadow">Text shadow color</param>;
+    /// <param name="Glow">Text glow color</param>;
+    /// <param name="Glow2">Text glow2 color</param>;
     public StateText(
         Efl.Gfx.Color32 Outline = default(Efl.Gfx.Color32),
         Efl.Gfx.Color32 Shadow = default(Efl.Gfx.Color32),
@@ -1227,8 +1316,8 @@ public struct StateText
         this.Glow2 = Glow2;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator StateText(IntPtr ptr)
     {
         var tmp = (StateText.NativeStruct)Marshal.PtrToStructure(ptr, typeof(StateText.NativeStruct));
@@ -1237,7 +1326,7 @@ public struct StateText
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct StateText.</summary>
+    /// <summary>Internal wrapper for struct StateText.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1249,7 +1338,7 @@ public struct StateText
         public Efl.Gfx.Color32.NativeStruct Glow;
         
         public Efl.Gfx.Color32.NativeStruct Glow2;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator StateText.NativeStruct(StateText _external_struct)
         {
             var _internal_struct = new StateText.NativeStruct();
@@ -1260,7 +1349,7 @@ public struct StateText
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator StateText(StateText.NativeStruct _internal_struct)
         {
             var _external_struct = new StateText();
@@ -1291,15 +1380,20 @@ namespace Filter {
 
 /// <summary>Internal structure representing the state of a Gfx Filter</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct State
 {
     /// <summary>Text state</summary>
+    /// <value>Filter state text structure</value>
     public Efl.Canvas.Filter.StateText Text;
     /// <summary>Color</summary>
+    /// <value>32 bit color data structure</value>
     public Efl.Gfx.Color32 Color;
     /// <summary>Current state</summary>
+    /// <value>Filter state name structure</value>
     public Efl.Canvas.Filter.StateName Cur;
     /// <summary>Next state</summary>
+    /// <value>Filter state name structure</value>
     public Efl.Canvas.Filter.StateName Next;
     /// <summary>Width</summary>
     public int W;
@@ -1309,7 +1403,15 @@ public struct State
     public double Scale;
     /// <summary>Position</summary>
     public double Pos;
-    ///<summary>Constructor for State.</summary>
+    /// <summary>Constructor for State.</summary>
+    /// <param name="Text">Text state</param>;
+    /// <param name="Color">Color</param>;
+    /// <param name="Cur">Current state</param>;
+    /// <param name="Next">Next state</param>;
+    /// <param name="W">Width</param>;
+    /// <param name="H">Height</param>;
+    /// <param name="Scale">Scale factor</param>;
+    /// <param name="Pos">Position</param>;
     public State(
         Efl.Canvas.Filter.StateText Text = default(Efl.Canvas.Filter.StateText),
         Efl.Gfx.Color32 Color = default(Efl.Gfx.Color32),
@@ -1330,8 +1432,8 @@ public struct State
         this.Pos = Pos;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator State(IntPtr ptr)
     {
         var tmp = (State.NativeStruct)Marshal.PtrToStructure(ptr, typeof(State.NativeStruct));
@@ -1340,7 +1442,7 @@ public struct State
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct State.</summary>
+    /// <summary>Internal wrapper for struct State.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -1360,7 +1462,7 @@ public struct State
         public double Scale;
         
         public double Pos;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator State.NativeStruct(State _external_struct)
         {
             var _internal_struct = new State.NativeStruct();
@@ -1375,7 +1477,7 @@ public struct State
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator State(State.NativeStruct _internal_struct)
         {
             var _external_struct = new State();

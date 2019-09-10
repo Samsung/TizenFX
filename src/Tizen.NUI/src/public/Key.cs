@@ -167,6 +167,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get the actual string returned that should be used for input editors.
+        /// </summary>
+        /// <returns>The key string</returns>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string KeyString
+        {
+            get
+            {
+                return keyString;
+            }
+            set
+            {
+                keyString = value;
+            }
+        }
+
+        /// <summary>
         /// Keycode for the key pressed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -283,6 +301,21 @@ namespace Tizen.NUI
             get
             {
                 string ret = Interop.Key.Key_keyPressed_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        private string keyString
+        {
+            set
+            {
+                Interop.Key.Key_keyString_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = Interop.Key.Key_keyString_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }

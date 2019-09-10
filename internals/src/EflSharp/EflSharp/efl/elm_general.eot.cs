@@ -11,6 +11,7 @@ namespace Object {
 
 /// <summary>Possible values for the #ELM_OBJECT_SELECT_MODE policy.
 /// (Since EFL 1.7)</summary>
+[Efl.Eo.BindingEntity]
 public enum SelectMode
 {
 /// <summary>default select mode. Once an item is selected, it would stay highlighted and not going to call selected callback again even it was clicked. Items can get focus.</summary>
@@ -34,6 +35,7 @@ namespace Elm {
 namespace Icon {
 
 /// <summary>Elementary icon types</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>Icon has no type set</summary>
@@ -55,6 +57,7 @@ namespace Input {
 namespace Panel {
 
 /// <summary>Input panel (virtual keyboard) layout types. Type of input panel (virtual keyboard) to use - this is a hint and may not provide exactly what is desired.</summary>
+[Efl.Eo.BindingEntity]
 public enum Layout
 {
 /// <summary>Default layout.</summary>
@@ -105,6 +108,7 @@ namespace Input {
 namespace Panel {
 
 /// <summary>Input panel (virtual keyboard) language modes.</summary>
+[Efl.Eo.BindingEntity]
 public enum Lang
 {
 /// <summary>Automatic</summary>
@@ -124,6 +128,7 @@ namespace Elm {
 namespace Autocapital {
 
 /// <summary>Autocapitalization Types. Choose method of auto-capitalization.</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>No auto-capitalization when typing.</summary>
@@ -149,6 +154,7 @@ namespace Panel {
 namespace ReturnKey {
 
 /// <summary>&quot;Return&quot; Key types on the input panel (virtual keyboard).</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>Default.</summary>
@@ -186,6 +192,7 @@ namespace Input {
 
 /// <summary>Enumeration that defines the types of Input Hints.
 /// (Since EFL 1.12)</summary>
+[Efl.Eo.BindingEntity]
 public enum Hints
 {
 /// <summary>No active hints
@@ -240,12 +247,13 @@ namespace Elm {
 
 /// <summary>Data for the elm_validator_regexp_helper()</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ValidateContent
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ValidateContent(IntPtr ptr)
     {
         var tmp = (ValidateContent.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ValidateContent.NativeStruct));
@@ -254,19 +262,19 @@ public struct ValidateContent
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ValidateContent.</summary>
+    /// <summary>Internal wrapper for struct ValidateContent.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ValidateContent.NativeStruct(ValidateContent _external_struct)
         {
             var _internal_struct = new ValidateContent.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ValidateContent(ValidateContent.NativeStruct _internal_struct)
         {
             var _external_struct = new ValidateContent();
@@ -285,12 +293,13 @@ namespace Elm {
 
 /// <summary>The info sent in the callback for the &quot;anchor,clicked&quot; signals emitted by entries.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct EntryAnchorInfo
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EntryAnchorInfo(IntPtr ptr)
     {
         var tmp = (EntryAnchorInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EntryAnchorInfo.NativeStruct));
@@ -299,19 +308,19 @@ public struct EntryAnchorInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EntryAnchorInfo.</summary>
+    /// <summary>Internal wrapper for struct EntryAnchorInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EntryAnchorInfo.NativeStruct(EntryAnchorInfo _external_struct)
         {
             var _internal_struct = new EntryAnchorInfo.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EntryAnchorInfo(EntryAnchorInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new EntryAnchorInfo();
@@ -330,12 +339,13 @@ namespace Elm {
 
 /// <summary>The info sent in the callback for &quot;anchor,hover&quot; signals emitted by the Anchor_Hover widget</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct EntryAnchorHoverInfo
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EntryAnchorHoverInfo(IntPtr ptr)
     {
         var tmp = (EntryAnchorHoverInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EntryAnchorHoverInfo.NativeStruct));
@@ -344,19 +354,19 @@ public struct EntryAnchorHoverInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EntryAnchorHoverInfo.</summary>
+    /// <summary>Internal wrapper for struct EntryAnchorHoverInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EntryAnchorHoverInfo.NativeStruct(EntryAnchorHoverInfo _external_struct)
         {
             var _internal_struct = new EntryAnchorHoverInfo.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EntryAnchorHoverInfo(EntryAnchorHoverInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new EntryAnchorHoverInfo();

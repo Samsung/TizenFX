@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,21 +8,27 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.SelectModel.SelectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.SelectModel.SelectedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class SelectModelSelectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value></value>
     public Efl.Object arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.SelectModel.UnselectedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.SelectModel.UnselectedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class SelectModelUnselectedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value></value>
     public Efl.Object arg { get; set; }
 }
 /// <summary>Efl select model class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.SelectModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class SelectModel : Efl.BooleanModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,10 +48,10 @@ public class SelectModel : Efl.BooleanModel
         efl_select_model_class_get();
     /// <summary>Initializes a new instance of the <see cref="SelectModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel"/></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex"/></param>
+    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public SelectModel(Efl.Object parent
-            , Efl.IModel model, uint? index = null) : base(efl_select_model_class_get(), typeof(SelectModel), parent)
+            , Efl.IModel model, uint? index = null) : base(efl_select_model_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(model))
         {
@@ -59,27 +66,34 @@ public class SelectModel : Efl.BooleanModel
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected SelectModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="SelectModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected SelectModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected SelectModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="SelectModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected SelectModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected SelectModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
+    /// <value><see cref="Efl.SelectModelSelectedEvt_Args"/></value>
     public event EventHandler<Efl.SelectModelSelectedEvt_Args> SelectedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -107,14 +121,14 @@ public class SelectModel : Efl.BooleanModel
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_SELECT_MODEL_EVENT_SELECTED";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SelectedEvt.</summary>
+    /// <summary>Method to raise event SelectedEvt.</summary>
     public void OnSelectedEvt(Efl.SelectModelSelectedEvt_Args e)
     {
         var key = "_EFL_SELECT_MODEL_EVENT_SELECTED";
@@ -128,11 +142,12 @@ public class SelectModel : Efl.BooleanModel
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+    /// <value><see cref="Efl.SelectModelUnselectedEvt_Args"/></value>
     public event EventHandler<Efl.SelectModelUnselectedEvt_Args> UnselectedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -160,14 +175,14 @@ public class SelectModel : Efl.BooleanModel
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_SELECT_MODEL_EVENT_UNSELECTED";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event UnselectedEvt.</summary>
+    /// <summary>Method to raise event UnselectedEvt.</summary>
     public void OnUnselectedEvt(Efl.SelectModelUnselectedEvt_Args e)
     {
         var key = "_EFL_SELECT_MODEL_EVENT_UNSELECTED";
@@ -181,6 +196,42 @@ public class SelectModel : Efl.BooleanModel
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+    /// <summary>Define if we support only one exclusive selection at a time when set to <c>true</c>.
+    /// If disable with <c>false</c>, it will have the behavior of a multi select mode.</summary>
+    /// <returns><c>true</c> will enable the exclusive mode.</returns>
+    virtual public bool GetSingleSelection() {
+         var _ret_var = Efl.SelectModel.NativeMethods.efl_select_model_single_selection_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Define if we support only one exclusive selection at a time when set to <c>true</c>.
+    /// If disable with <c>false</c>, it will have the behavior of a multi select mode.</summary>
+    /// <param name="enable"><c>true</c> will enable the exclusive mode.</param>
+    virtual public void SetSingleSelection(bool enable) {
+                                 Efl.SelectModel.NativeMethods.efl_select_model_single_selection_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Get an iterator of all the selected child of this model.</summary>
+    /// <returns>The iterator give indexes of selected child. It is valid until any change is made on the model.</returns>
+    virtual public Eina.Iterator<ulong> GetSelected() {
+         var _ret_var = Efl.SelectModel.NativeMethods.efl_select_model_selected_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return new Eina.Iterator<ulong>(_ret_var, false);
+ }
+    /// <summary>Get an iterator of all the child of this model that are not selected.</summary>
+    /// <returns>The iterator give indexes of unselected child. It is valid until any change is made on the model.</returns>
+    virtual public Eina.Iterator<ulong> GetUnselected() {
+         var _ret_var = Efl.SelectModel.NativeMethods.efl_select_model_unselected_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return new Eina.Iterator<ulong>(_ret_var, false);
+ }
+    /// <summary>Define if we support only one exclusive selection at a time when set to <c>true</c>.
+    /// If disable with <c>false</c>, it will have the behavior of a multi select mode.</summary>
+    /// <value><c>true</c> will enable the exclusive mode.</value>
+    public bool SingleSelection {
+        get { return GetSingleSelection(); }
+        set { SetSingleSelection(value); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.SelectModel.efl_select_model_class_get();
@@ -189,11 +240,54 @@ public class SelectModel : Efl.BooleanModel
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.BooleanModel.NativeMethods
     {
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
         public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            var methods = Efl.Eo.Globals.GetUserMethods(type);
+
+            if (efl_select_model_single_selection_get_static_delegate == null)
+            {
+                efl_select_model_single_selection_get_static_delegate = new efl_select_model_single_selection_get_delegate(single_selection_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetSingleSelection") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_select_model_single_selection_get"), func = Marshal.GetFunctionPointerForDelegate(efl_select_model_single_selection_get_static_delegate) });
+            }
+
+            if (efl_select_model_single_selection_set_static_delegate == null)
+            {
+                efl_select_model_single_selection_set_static_delegate = new efl_select_model_single_selection_set_delegate(single_selection_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetSingleSelection") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_select_model_single_selection_set"), func = Marshal.GetFunctionPointerForDelegate(efl_select_model_single_selection_set_static_delegate) });
+            }
+
+            if (efl_select_model_selected_get_static_delegate == null)
+            {
+                efl_select_model_selected_get_static_delegate = new efl_select_model_selected_get_delegate(selected_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetSelected") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_select_model_selected_get"), func = Marshal.GetFunctionPointerForDelegate(efl_select_model_selected_get_static_delegate) });
+            }
+
+            if (efl_select_model_unselected_get_static_delegate == null)
+            {
+                efl_select_model_unselected_get_static_delegate = new efl_select_model_unselected_get_delegate(unselected_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetUnselected") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_select_model_unselected_get"), func = Marshal.GetFunctionPointerForDelegate(efl_select_model_unselected_get_static_delegate) });
+            }
+
             descs.AddRange(base.GetEoOps(type));
             return descs;
         }
@@ -206,9 +300,162 @@ public class SelectModel : Efl.BooleanModel
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_select_model_single_selection_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_select_model_single_selection_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_select_model_single_selection_get_api_delegate> efl_select_model_single_selection_get_ptr = new Efl.Eo.FunctionWrapper<efl_select_model_single_selection_get_api_delegate>(Module, "efl_select_model_single_selection_get");
+
+        private static bool single_selection_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_select_model_single_selection_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((SelectModel)ws.Target).GetSingleSelection();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_select_model_single_selection_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_select_model_single_selection_get_delegate efl_select_model_single_selection_get_static_delegate;
+
+        
+        private delegate void efl_select_model_single_selection_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool enable);
+
+        
+        public delegate void efl_select_model_single_selection_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool enable);
+
+        public static Efl.Eo.FunctionWrapper<efl_select_model_single_selection_set_api_delegate> efl_select_model_single_selection_set_ptr = new Efl.Eo.FunctionWrapper<efl_select_model_single_selection_set_api_delegate>(Module, "efl_select_model_single_selection_set");
+
+        private static void single_selection_set(System.IntPtr obj, System.IntPtr pd, bool enable)
+        {
+            Eina.Log.Debug("function efl_select_model_single_selection_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((SelectModel)ws.Target).SetSingleSelection(enable);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_select_model_single_selection_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), enable);
+            }
+        }
+
+        private static efl_select_model_single_selection_set_delegate efl_select_model_single_selection_set_static_delegate;
+
+        
+        private delegate System.IntPtr efl_select_model_selected_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_select_model_selected_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_select_model_selected_get_api_delegate> efl_select_model_selected_get_ptr = new Efl.Eo.FunctionWrapper<efl_select_model_selected_get_api_delegate>(Module, "efl_select_model_selected_get");
+
+        private static System.IntPtr selected_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_select_model_selected_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Iterator<ulong> _ret_var = default(Eina.Iterator<ulong>);
+                try
+                {
+                    _ret_var = ((SelectModel)ws.Target).GetSelected();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var.Handle;
+
+            }
+            else
+            {
+                return efl_select_model_selected_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_select_model_selected_get_delegate efl_select_model_selected_get_static_delegate;
+
+        
+        private delegate System.IntPtr efl_select_model_unselected_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate System.IntPtr efl_select_model_unselected_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_select_model_unselected_get_api_delegate> efl_select_model_unselected_get_ptr = new Efl.Eo.FunctionWrapper<efl_select_model_unselected_get_api_delegate>(Module, "efl_select_model_unselected_get");
+
+        private static System.IntPtr unselected_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_select_model_unselected_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Iterator<ulong> _ret_var = default(Eina.Iterator<ulong>);
+                try
+                {
+                    _ret_var = ((SelectModel)ws.Target).GetUnselected();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var.Handle;
+
+            }
+            else
+            {
+                return efl_select_model_unselected_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_select_model_unselected_get_delegate efl_select_model_unselected_get_static_delegate;
+
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflSelectModel_ExtensionMethods {
+    public static Efl.BindableProperty<bool> SingleSelection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.SelectModel, T>magic = null) where T : Efl.SelectModel {
+        return new Efl.BindableProperty<bool>("single_selection", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl scale animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationScale.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class AnimationScale : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,24 +37,30 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <summary>Initializes a new instance of the <see cref="AnimationScale"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationScale(Efl.Object parent= null
-            ) : base(efl_canvas_animation_scale_class_get(), typeof(AnimationScale), parent)
+            ) : base(efl_canvas_animation_scale_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationScale(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationScale"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationScale(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationScale(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationScale"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationScale(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationScale(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -64,7 +73,7 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
     virtual public void GetScale(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out Efl.Canvas.Object pivot, out double cx, out double cy) {
-                                                                                                                                                                                 Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out pivot, out cx, out cy);
+                                                                                                                                                                                 Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out pivot, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Scale property</summary>
@@ -76,7 +85,7 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
     virtual public void SetScale(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, Efl.Canvas.Object pivot, double cx, double cy) {
-                                                                                                                                                                                 Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_scale_x, from_scale_y, to_scale_x, to_scale_y, pivot, cx, cy);
+                                                                                                                                                                                 Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_scale_x, from_scale_y, to_scale_x, to_scale_y, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Scale absolute property</summary>
@@ -87,7 +96,7 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
     virtual public void GetScaleAbsolute(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out int cx, out int cy) {
-                                                                                                                                                         Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out cx, out cy);
+                                                                                                                                                         Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Scale absolute property</summary>
@@ -98,9 +107,40 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
     virtual public void SetScaleAbsolute(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, int cx, int cy) {
-                                                                                                                                                         Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
+                                                                                                                                                         Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
+    /// <summary>Scale property</summary>
+    /// <value>Scale factor along x axis when animation starts</value>
+    public (double, double, double, double, Efl.Canvas.Object, double, double) Scale {
+        get {
+            double _out_from_scale_x = default(double);
+            double _out_from_scale_y = default(double);
+            double _out_to_scale_x = default(double);
+            double _out_to_scale_y = default(double);
+            Efl.Canvas.Object _out_pivot = default(Efl.Canvas.Object);
+            double _out_cx = default(double);
+            double _out_cy = default(double);
+            GetScale(out _out_from_scale_x,out _out_from_scale_y,out _out_to_scale_x,out _out_to_scale_y,out _out_pivot,out _out_cx,out _out_cy);
+            return (_out_from_scale_x,_out_from_scale_y,_out_to_scale_x,_out_to_scale_y,_out_pivot,_out_cx,_out_cy);
+        }
+        set { SetScale( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5,  value.Item6,  value.Item7); }
+    }
+    /// <summary>Scale absolute property</summary>
+    /// <value>Scale factor along x axis when animation starts</value>
+    public (double, double, double, double, int, int) ScaleAbsolute {
+        get {
+            double _out_from_scale_x = default(double);
+            double _out_from_scale_y = default(double);
+            double _out_to_scale_x = default(double);
+            double _out_to_scale_y = default(double);
+            int _out_cx = default(int);
+            int _out_cy = default(int);
+            GetScaleAbsolute(out _out_from_scale_x,out _out_from_scale_y,out _out_to_scale_x,out _out_to_scale_y,out _out_cx,out _out_cy);
+            return (_out_from_scale_x,_out_from_scale_y,_out_to_scale_x,_out_to_scale_y,_out_cx,_out_cy);
+        }
+        set { SetScaleAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5,  value.Item6); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationScale.efl_canvas_animation_scale_class_get();
@@ -317,3 +357,11 @@ public class AnimationScale : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationScale_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

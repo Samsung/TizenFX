@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,7 +10,9 @@ namespace Efl {
 
 namespace Ui {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IDndContainerConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IDndContainer : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -38,16 +41,17 @@ void DelDropItem(uint seat);
                             /// <summary>The time since mouse down happens to drag starts.</summary>
     /// <value>The drag delay time</value>
     double DragDelayTime {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-sealed public class IDndContainerConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IDndContainerConcrete :
     Efl.Eo.EoWrapper
     , IDndContainer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -63,11 +67,19 @@ sealed public class IDndContainerConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IDndContainerConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_dnd_container_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IDndContainer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IDndContainerConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IDndContainerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -129,7 +141,7 @@ sealed public class IDndContainerConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -434,3 +446,13 @@ sealed public class IDndContainerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIDndContainerConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<double> DragDelayTime<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IDndContainer, T>magic = null) where T : Efl.Ui.IDndContainer {
+        return new Efl.BindableProperty<double>("drag_delay_time", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

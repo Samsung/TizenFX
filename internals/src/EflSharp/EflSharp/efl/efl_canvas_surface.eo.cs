@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Canvas {
 
 /// <summary>Native surfaces usually bound to an externally-managed buffer.
 /// The attached <see cref="Efl.Canvas.Surface.NativeBuffer"/> is entirely platform-dependent, which means some of this mixin&apos;s subclasses will not work (constructor returns <c>null</c>) on some platforms. This class is meant to be used from native code only (C or C++), with direct access to the display system or a buffer allocation system.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Surface.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class Surface : Efl.Canvas.ImageInternal
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -35,31 +38,37 @@ public abstract class Surface : Efl.Canvas.ImageInternal
     /// <summary>Initializes a new instance of the <see cref="Surface"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Surface(Efl.Object parent= null
-            ) : base(efl_canvas_surface_class_get(), typeof(Surface), parent)
+            ) : base(efl_canvas_surface_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Surface(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Surface"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Surface(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Surface(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class SurfaceRealized : Surface
     {
-        private SurfaceRealized(IntPtr ptr) : base(ptr)
+        private SurfaceRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Surface"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Surface(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Surface(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +76,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
     /// Set to <c>null</c> to detach this surface from the external buffer.</summary>
     /// <returns>The external buffer, depends on its type.</returns>
     virtual public System.IntPtr GetNativeBuffer() {
-         var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -75,7 +84,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
     /// <param name="buffer">The external buffer, depends on its type.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SetNativeBuffer(System.IntPtr buffer) {
-                                 var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),buffer);
+                                 var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),buffer);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -214,3 +223,13 @@ public abstract class Surface : Efl.Canvas.ImageInternal
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasSurface_ExtensionMethods {
+    public static Efl.BindableProperty<System.IntPtr> NativeBuffer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Surface, T>magic = null) where T : Efl.Canvas.Surface {
+        return new Efl.BindableProperty<System.IntPtr>("native_buffer", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

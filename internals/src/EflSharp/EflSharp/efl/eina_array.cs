@@ -138,7 +138,7 @@ public class Array<T> : IEnumerable<T>, IDisposable
             return;
         }
 
-        if (OwnContent)
+        if (Own && OwnContent)
         {
             int len = (int)eina_array_count_custom_export_mono(h);
             for (int i = 0; i < len; ++i)
@@ -315,7 +315,7 @@ public class Array<T> : IEnumerable<T>, IDisposable
 
     public Eina.Iterator<T> GetIterator()
     {
-        return new Eina.Iterator<T>(eina_array_iterator_new(Handle), true, false);
+        return new Eina.Iterator<T>(eina_array_iterator_new(Handle), true);
     }
 
     public IEnumerator<T> GetEnumerator()

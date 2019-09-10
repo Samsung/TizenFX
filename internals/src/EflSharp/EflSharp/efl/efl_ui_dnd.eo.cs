@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,7 +10,9 @@ namespace Efl {
 
 namespace Ui {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IDndConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IDnd : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -36,6 +39,7 @@ void AddDropTarget(Efl.Ui.SelectionFormat format, uint seat);
 /// <param name="seat">Specified seat for multiple seats case.</param>
 void DelDropTarget(Efl.Ui.SelectionFormat format, uint seat);
                         /// <summary>accept drag data</summary>
+    /// <value><see cref="Efl.Ui.IDndDragAcceptEvt_Args"/></value>
     event EventHandler<Efl.Ui.IDndDragAcceptEvt_Args> DragAcceptEvt;
     /// <summary>drag is done (mouse up)</summary>
     event EventHandler DragDoneEvt;
@@ -44,31 +48,40 @@ void DelDropTarget(Efl.Ui.SelectionFormat format, uint seat);
     /// <summary>called when the drag object leaves this object</summary>
     event EventHandler DragLeaveEvt;
     /// <summary>called when the drag object changes drag position</summary>
+    /// <value><see cref="Efl.Ui.IDndDragPosEvt_Args"/></value>
     event EventHandler<Efl.Ui.IDndDragPosEvt_Args> DragPosEvt;
     /// <summary>called when the drag object dropped on this object</summary>
+    /// <value><see cref="Efl.Ui.IDndDragDropEvt_Args"/></value>
     event EventHandler<Efl.Ui.IDndDragDropEvt_Args> DragDropEvt;
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragAcceptEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragAcceptEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDndDragAcceptEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>accept drag data</value>
     public bool arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragPosEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragPosEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDndDragPosEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>called when the drag object changes drag position</value>
     public Efl.Dnd.DragPos arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragDropEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IDnd.DragDropEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IDndDragDropEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>called when the drag object dropped on this object</value>
     public Efl.Ui.SelectionData arg { get; set; }
 }
-sealed public class IDndConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IDndConcrete :
     Efl.Eo.EoWrapper
     , IDnd
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -84,20 +97,29 @@ sealed public class IDndConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IDndConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_dnd_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IDnd"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IDndConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IDndConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>accept drag data</summary>
+    /// <value><see cref="Efl.Ui.IDndDragAcceptEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDndDragAcceptEvt_Args> DragAcceptEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -125,14 +147,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_ACCEPT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragAcceptEvt.</summary>
+    /// <summary>Method to raise event DragAcceptEvt.</summary>
     public void OnDragAcceptEvt(Efl.Ui.IDndDragAcceptEvt_Args e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_ACCEPT";
@@ -158,7 +180,7 @@ sealed public class IDndConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -185,14 +207,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_DONE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragDoneEvt.</summary>
+    /// <summary>Method to raise event DragDoneEvt.</summary>
     public void OnDragDoneEvt(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_DONE";
@@ -210,7 +232,7 @@ sealed public class IDndConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -237,14 +259,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_ENTER";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragEnterEvt.</summary>
+    /// <summary>Method to raise event DragEnterEvt.</summary>
     public void OnDragEnterEvt(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_ENTER";
@@ -262,7 +284,7 @@ sealed public class IDndConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -289,14 +311,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_LEAVE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragLeaveEvt.</summary>
+    /// <summary>Method to raise event DragLeaveEvt.</summary>
     public void OnDragLeaveEvt(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_LEAVE";
@@ -310,11 +332,12 @@ sealed public class IDndConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>called when the drag object changes drag position</summary>
+    /// <value><see cref="Efl.Ui.IDndDragPosEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDndDragPosEvt_Args> DragPosEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -342,14 +365,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_POS";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragPosEvt.</summary>
+    /// <summary>Method to raise event DragPosEvt.</summary>
     public void OnDragPosEvt(Efl.Ui.IDndDragPosEvt_Args e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_POS";
@@ -372,11 +395,12 @@ sealed public class IDndConcrete :
         }
     }
     /// <summary>called when the drag object dropped on this object</summary>
+    /// <value><see cref="Efl.Ui.IDndDragDropEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDndDragDropEvt_Args> DragDropEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -404,14 +428,14 @@ sealed public class IDndConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_DND_EVENT_DRAG_DROP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragDropEvt.</summary>
+    /// <summary>Method to raise event DragDropEvt.</summary>
     public void OnDragDropEvt(Efl.Ui.IDndDragDropEvt_Args e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_DROP";
@@ -477,7 +501,7 @@ sealed public class IDndConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -732,3 +756,9 @@ sealed public class IDndConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIDndConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

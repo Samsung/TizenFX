@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>EFL Gesture Zoom class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureZoom.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GestureZoom : Efl.Canvas.Gesture
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,38 +37,44 @@ public class GestureZoom : Efl.Canvas.Gesture
     /// <summary>Initializes a new instance of the <see cref="GestureZoom"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureZoom(Efl.Object parent= null
-            ) : base(efl_canvas_gesture_zoom_class_get(), typeof(GestureZoom), parent)
+            ) : base(efl_canvas_gesture_zoom_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GestureZoom(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GestureZoom"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GestureZoom(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GestureZoom(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GestureZoom"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GestureZoom(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GestureZoom(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Gets zoom center point reported to user</summary>
     /// <returns>The radius value</returns>
     virtual public double GetRadius() {
-         var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_radius_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_radius_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets zoom value. (1.0 means no zoom)</summary>
     /// <returns>The zoom value</returns>
     virtual public double GetZoom() {
-         var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -197,3 +206,9 @@ public class GestureZoom : Efl.Canvas.Gesture
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasGestureZoom_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

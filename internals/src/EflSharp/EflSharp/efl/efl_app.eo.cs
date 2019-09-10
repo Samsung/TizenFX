@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,9 +11,10 @@ namespace Efl {
 /// <summary>Object representing the application itself.
 /// (Since EFL 1.22)</summary>
 [Efl.App.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -33,31 +35,37 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// <summary>Initializes a new instance of the <see cref="App"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public App(Efl.Object parent= null
-            ) : base(efl_app_class_get(), typeof(App), parent)
+            ) : base(efl_app_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected App(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="App"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected App(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected App(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class AppRealized : App
     {
-        private AppRealized(IntPtr ptr) : base(ptr)
+        private AppRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="App"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected App(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected App(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -67,7 +75,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -94,14 +102,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_PAUSE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PauseEvt.</summary>
+    /// <summary>Method to raise event PauseEvt.</summary>
     public void OnPauseEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_PAUSE";
@@ -120,7 +128,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -147,14 +155,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_RESUME";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ResumeEvt.</summary>
+    /// <summary>Method to raise event ResumeEvt.</summary>
     public void OnResumeEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_RESUME";
@@ -173,7 +181,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -200,14 +208,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_STANDBY";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event StandbyEvt.</summary>
+    /// <summary>Method to raise event StandbyEvt.</summary>
     public void OnStandbyEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_STANDBY";
@@ -226,7 +234,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -253,14 +261,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_TERMINATE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event TerminateEvt.</summary>
+    /// <summary>Method to raise event TerminateEvt.</summary>
     public void OnTerminateEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_TERMINATE";
@@ -279,7 +287,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -306,14 +314,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_SIGNAL_USR1";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SignalUsr1Evt.</summary>
+    /// <summary>Method to raise event SignalUsr1Evt.</summary>
     public void OnSignalUsr1Evt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR1";
@@ -332,7 +340,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -359,14 +367,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_SIGNAL_USR2";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SignalUsr2Evt.</summary>
+    /// <summary>Method to raise event SignalUsr2Evt.</summary>
     public void OnSignalUsr2Evt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR2";
@@ -385,7 +393,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -412,14 +420,14 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_APP_EVENT_SIGNAL_HUP";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SignalHupEvt.</summary>
+    /// <summary>Method to raise event SignalHupEvt.</summary>
     public void OnSignalHupEvt(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_HUP";
@@ -446,7 +454,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl build version</returns>
     virtual public Efl.Version GetBuildEflVersion() {
-         var _ret_var = Efl.App.NativeMethods.efl_app_build_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.App.NativeMethods.efl_app_build_efl_version_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
         
@@ -457,7 +465,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl version</returns>
     virtual public Efl.Version GetEflVersion() {
-         var _ret_var = Efl.App.NativeMethods.efl_app_efl_version_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.App.NativeMethods.efl_app_efl_version_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
         
@@ -472,7 +480,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
     virtual public System.String GetCommand() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -480,11 +488,11 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandArray(Eina.Array<System.String> array) {
+    virtual public bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
          var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
-                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_array);
+                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -493,15 +501,15 @@ array.OwnContent = false;
     /// <param name="str">A command in form of a string</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
     virtual public bool SetCommandString(System.String str) {
-                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),str);
+                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    virtual public Eina.Accessor<System.String> CommandAccess() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Eina.Accessor<Eina.Stringshare> CommandAccess() {
+         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Accessor<System.String>(_ret_var, false, false);
+        return new Eina.Accessor<Eina.Stringshare>(_ret_var, false);
  }
     /// <summary>Returns the app object that is representing this process
     /// Note: This function call only works in the main loop thread of the process.
@@ -538,7 +546,7 @@ array.OwnContent = false;
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
-    public Eina.Array<System.String> CommandArray {
+    public Eina.Array<Eina.Stringshare> CommandArray {
         set { SetCommandArray(value); }
     }
     /// <summary>Use a string to fill this object
@@ -791,7 +799,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_array = new Eina.Array<System.String>(array, true, true);
+        var _in_array = new Eina.Array<Eina.Stringshare>(array, true, true);
                             bool _ret_var = default(bool);
                 try
                 {
@@ -864,7 +872,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Accessor<System.String> _ret_var = default(Eina.Accessor<System.String>);
+            Eina.Accessor<Eina.Stringshare> _ret_var = default(Eina.Accessor<Eina.Stringshare>);
                 try
                 {
                     _ret_var = ((App)ws.Target).CommandAccess();
@@ -892,3 +900,21 @@ array.OwnContent = false;
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflApp_ExtensionMethods {
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.App, T>magic = null) where T : Efl.App {
+        return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> CommandString<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.App, T>magic = null) where T : Efl.App {
+        return new Efl.BindableProperty<System.String>("command_string", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

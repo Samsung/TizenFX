@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl graphics gradient interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IGradientConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IGradient : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -28,20 +31,27 @@ Efl.Gfx.GradientSpread GetSpread();
     /// <summary>Specifies the spread method that should be used for this gradient.</summary>
 /// <param name="s">Spread type to be used</param>
 void SetSpread(Efl.Gfx.GradientSpread s);
-                    /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
+                    /// <summary>Get the list of color stops.</summary>
+    /// <value>Color stops list</value>
+    (Efl.Gfx.GradientStop, uint) Stop {
+        get;
+        set;
+    }
+    /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <value>Spread type to be used</value>
     Efl.Gfx.GradientSpread Spread {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Efl graphics gradient interface</summary>
-sealed public class IGradientConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IGradientConcrete :
     Efl.Eo.EoWrapper
     , IGradient
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -57,11 +67,19 @@ sealed public class IGradientConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IGradientConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradient"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGradientConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IGradientConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -96,6 +114,17 @@ sealed public class IGradientConcrete :
                                  Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate(this.NativeHandle,s);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Get the list of color stops.</summary>
+    /// <value>Color stops list</value>
+    public (Efl.Gfx.GradientStop, uint) Stop {
+        get {
+            Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
+            uint _out_length = default(uint);
+            GetStop(out _out_colors,out _out_length);
+            return (_out_colors,_out_length);
+        }
+        set { SetStop(ref  value.Item1,  value.Item2); }
+    }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <value>Spread type to be used</value>
     public Efl.Gfx.GradientSpread Spread {
@@ -108,7 +137,7 @@ sealed public class IGradientConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -322,3 +351,14 @@ sealed public class IGradientConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIGradientConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Efl.Gfx.GradientSpread> Spread<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IGradient, T>magic = null) where T : Efl.Gfx.IGradient {
+        return new Efl.BindableProperty<Efl.Gfx.GradientSpread>("spread", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

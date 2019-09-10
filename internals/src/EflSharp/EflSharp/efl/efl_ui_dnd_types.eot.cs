@@ -12,6 +12,7 @@ namespace Dnd {
 /// <param name="win">The window to create the objects relative to</param>
 /// <param name="drag_obj">The drag object</param>
 /// <param name="off">Offset from the icon position to the cursor</param>
+[Efl.Eo.BindingEntity]
 public delegate Efl.Canvas.Object DragIconCreate(Efl.Canvas.Object win, Efl.Canvas.Object drag_obj, out Eina.Position2D off);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Canvas.Object DragIconCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object win, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object drag_obj,  out Eina.Position2D.NativeStruct off);
 internal class DragIconCreateWrapper : IDisposable
@@ -94,6 +95,7 @@ namespace Dnd {
 /// <param name="format">Data format</param>
 /// <param name="drag_data">Data</param>
 /// <param name="action">The drag action</param>
+[Efl.Eo.BindingEntity]
 public delegate void DragDataGet(Efl.Canvas.Object obj, out Efl.Ui.SelectionFormat format, ref Eina.RwSlice drag_data, out Efl.Ui.SelectionAction action);
 public delegate void DragDataGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  out Efl.Ui.SelectionFormat format,  ref Eina.RwSlice drag_data,  out Efl.Ui.SelectionAction action);
 internal class DragDataGetWrapper : IDisposable
@@ -169,6 +171,7 @@ namespace Dnd {
 /// <param name="obj">The container object</param>
 /// <param name="pos">The coordinates to get item</param>
 /// <param name="posret">position relative to item (left (-1), middle (0), right (1)</param>
+[Efl.Eo.BindingEntity]
 public delegate Efl.Object ItemGet(Efl.Canvas.Object obj, Eina.Position2D pos, out Eina.Position2D posret);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Object ItemGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Position2D.NativeStruct pos,  out Eina.Position2D.NativeStruct posret);
 internal class ItemGetWrapper : IDisposable
@@ -250,6 +253,7 @@ namespace Efl {
 namespace Dnd {
 
 /// <param name="obj">The container object</param>
+[Efl.Eo.BindingEntity]
 public delegate Eina.List<Efl.Canvas.Object> DragIconListCreate(Efl.Canvas.Object obj);
 public delegate System.IntPtr DragIconListCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj);
 internal class DragIconListCreateWrapper : IDisposable
@@ -325,18 +329,20 @@ namespace Efl {
 namespace Dnd {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragAccept
 {
     public bool Accepted;
-    ///<summary>Constructor for DragAccept.</summary>
+    /// <summary>Constructor for DragAccept.</summary>
+    /// <param name="Accepted"></param>;
     public DragAccept(
         bool Accepted = default(bool)    )
     {
         this.Accepted = Accepted;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragAccept(IntPtr ptr)
     {
         var tmp = (DragAccept.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragAccept.NativeStruct));
@@ -345,13 +351,13 @@ public struct DragAccept
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct DragAccept.</summary>
+    /// <summary>Internal wrapper for struct DragAccept.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Accepted</summary>
+        /// <summary>Internal wrapper for field Accepted</summary>
         public System.Byte Accepted;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator DragAccept.NativeStruct(DragAccept _external_struct)
         {
             var _internal_struct = new DragAccept.NativeStruct();
@@ -359,7 +365,7 @@ public struct DragAccept
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator DragAccept(DragAccept.NativeStruct _internal_struct)
         {
             var _external_struct = new DragAccept();
@@ -381,18 +387,27 @@ namespace Efl {
 
 namespace Dnd {
 
+/// <summary>Dragging position information.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragPos
 {
     /// <summary>Evas Coordinate</summary>
+    /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
     /// <summary>The drag action</summary>
+    /// <value>Defines the kind of action associated with the drop data</value>
     public Efl.Ui.SelectionAction Action;
     /// <summary>The drag format</summary>
+    /// <value>Selection format</value>
     public Efl.Ui.SelectionFormat Format;
     /// <summary>The item object. It is only available for container object.</summary>
     public Efl.Canvas.Object Item;
-    ///<summary>Constructor for DragPos.</summary>
+    /// <summary>Constructor for DragPos.</summary>
+    /// <param name="Pos">Evas Coordinate</param>;
+    /// <param name="Action">The drag action</param>;
+    /// <param name="Format">The drag format</param>;
+    /// <param name="Item">The item object. It is only available for container object.</param>;
     public DragPos(
         Eina.Position2D Pos = default(Eina.Position2D),
         Efl.Ui.SelectionAction Action = default(Efl.Ui.SelectionAction),
@@ -405,8 +420,8 @@ public struct DragPos
         this.Item = Item;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragPos(IntPtr ptr)
     {
         var tmp = (DragPos.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragPos.NativeStruct));
@@ -415,7 +430,7 @@ public struct DragPos
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct DragPos.</summary>
+    /// <summary>Internal wrapper for struct DragPos.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -425,9 +440,9 @@ public struct DragPos
         public Efl.Ui.SelectionAction Action;
         
         public Efl.Ui.SelectionFormat Format;
-        ///<summary>Internal wrapper for field Item</summary>
+        /// <summary>Internal wrapper for field Item</summary>
         public System.IntPtr Item;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator DragPos.NativeStruct(DragPos _external_struct)
         {
             var _internal_struct = new DragPos.NativeStruct();
@@ -438,7 +453,7 @@ public struct DragPos
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator DragPos(DragPos.NativeStruct _internal_struct)
         {
             var _external_struct = new DragPos();
@@ -464,16 +479,23 @@ namespace Efl {
 
 namespace Dnd {
 
+/// <summary>Drop information for a drag&amp;drop operation.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct DragItemContainerDrop
 {
     /// <summary>The item object</summary>
     public Efl.Canvas.Object Item;
     /// <summary>The selection data</summary>
+    /// <value>Structure holding the info about selected data</value>
     public Efl.Ui.SelectionData Data;
     /// <summary>Position relative to item (left (-1), middle (0), right (1)</summary>
+    /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
-    ///<summary>Constructor for DragItemContainerDrop.</summary>
+    /// <summary>Constructor for DragItemContainerDrop.</summary>
+    /// <param name="Item">The item object</param>;
+    /// <param name="Data">The selection data</param>;
+    /// <param name="Pos">Position relative to item (left (-1), middle (0), right (1)</param>;
     public DragItemContainerDrop(
         Efl.Canvas.Object Item = default(Efl.Canvas.Object),
         Efl.Ui.SelectionData Data = default(Efl.Ui.SelectionData),
@@ -484,8 +506,8 @@ public struct DragItemContainerDrop
         this.Pos = Pos;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator DragItemContainerDrop(IntPtr ptr)
     {
         var tmp = (DragItemContainerDrop.NativeStruct)Marshal.PtrToStructure(ptr, typeof(DragItemContainerDrop.NativeStruct));
@@ -494,17 +516,17 @@ public struct DragItemContainerDrop
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct DragItemContainerDrop.</summary>
+    /// <summary>Internal wrapper for struct DragItemContainerDrop.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Item</summary>
+        /// <summary>Internal wrapper for field Item</summary>
         public System.IntPtr Item;
         
         public Efl.Ui.SelectionData.NativeStruct Data;
         
         public Eina.Position2D.NativeStruct Pos;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator DragItemContainerDrop.NativeStruct(DragItemContainerDrop _external_struct)
         {
             var _internal_struct = new DragItemContainerDrop.NativeStruct();
@@ -514,7 +536,7 @@ public struct DragItemContainerDrop
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator DragItemContainerDrop(DragItemContainerDrop.NativeStruct _internal_struct)
         {
             var _external_struct = new DragItemContainerDrop();

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,10 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Used internally for futures on the loop</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageFuture.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopMessageFuture : Efl.LoopMessage
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -32,38 +35,44 @@ public class LoopMessageFuture : Efl.LoopMessage
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFuture(Efl.Object parent= null
-            ) : base(efl_loop_message_future_class_get(), typeof(LoopMessageFuture), parent)
+            ) : base(efl_loop_message_future_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFuture(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFuture(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFuture(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFuture"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFuture(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFuture(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public System.IntPtr GetData() {
-         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>No description supplied.</summary>
     /// <param name="data">No description supplied.</param>
     virtual public void SetData(System.IntPtr data) {
-                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),data);
+                                 Efl.LoopMessageFuture.NativeMethods.efl_loop_message_future_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>No description supplied.</summary>
@@ -197,3 +206,13 @@ public class LoopMessageFuture : Efl.LoopMessage
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessageFuture_ExtensionMethods {
+    public static Efl.BindableProperty<System.IntPtr> Data<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.LoopMessageFuture, T>magic = null) where T : Efl.LoopMessageFuture {
+        return new Efl.BindableProperty<System.IntPtr>("data", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

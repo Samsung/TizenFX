@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,23 +10,28 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class GroupMemberAddedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when a member is added to the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class GroupMemberRemovedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when a member is removed from the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
 /// <summary>A group object is a container for other canvas objects. Its children move along their parent and are often clipped with a common clipper. This is part of the legacy smart object concept.
 /// A group is not necessarily a container (see <see cref="Efl.IContainer"/>) in the sense that a standard widget may not have any empty slots for content. However it&apos;s still a group of low-level canvas objects (clipper, raw objects, etc.).
 /// (Since EFL 1.22)</summary>
 [Efl.Canvas.Group.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Group : Efl.Canvas.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,34 +52,41 @@ public class Group : Efl.Canvas.Object
     /// <summary>Initializes a new instance of the <see cref="Group"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Group(Efl.Object parent= null
-            ) : base(efl_canvas_group_class_get(), typeof(Group), parent)
+            ) : base(efl_canvas_group_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Group(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Group"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Group(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Group(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Group"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Group(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Group(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Called when a member is added to the group.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.GroupMemberAddedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.GroupMemberAddedEvt_Args> MemberAddedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -101,14 +114,14 @@ public class Group : Efl.Canvas.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event MemberAddedEvt.</summary>
+    /// <summary>Method to raise event MemberAddedEvt.</summary>
     public void OnMemberAddedEvt(Efl.Canvas.GroupMemberAddedEvt_Args e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_ADDED";
@@ -124,11 +137,12 @@ public class Group : Efl.Canvas.Object
     }
     /// <summary>Called when a member is removed from the group.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Canvas.GroupMemberRemovedEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.GroupMemberRemovedEvt_Args> MemberRemovedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -156,14 +170,14 @@ public class Group : Efl.Canvas.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event MemberRemovedEvt.</summary>
+    /// <summary>Method to raise event MemberRemovedEvt.</summary>
     public void OnMemberRemovedEvt(Efl.Canvas.GroupMemberRemovedEvt_Args e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_REMOVED";
@@ -186,7 +200,7 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the group layout needs to be recalculated, <c>false</c> otherwise</returns>
     virtual public bool GetGroupNeedRecalculate() {
-         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -199,14 +213,14 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <param name="value"><c>true</c> if the group layout needs to be recalculated, <c>false</c> otherwise</param>
     virtual public void SetGroupNeedRecalculate(bool value) {
-                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),value);
+                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the internal clipper.
     /// (Since EFL 1.22)</summary>
     /// <returns>A clipper rectangle.</returns>
     virtual protected Efl.Canvas.Object GetGroupClipper() {
-         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_clipper_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_clipper_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -214,14 +228,14 @@ public class Group : Efl.Canvas.Object
     /// This also forcefully marks the given object as needing recalculation. As an effect, on the next rendering cycle its <see cref="Efl.Canvas.Group.CalculateGroup"/> method will be called.
     /// (Since EFL 1.22)</summary>
     virtual public void GroupChange() {
-         Efl.Canvas.Group.NativeMethods.efl_canvas_group_change_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Group.NativeMethods.efl_canvas_group_change_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Triggers an immediate recalculation of this object&apos;s geometry.
     /// This will also reset the flag <see cref="Efl.Canvas.Group.GroupNeedRecalculate"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void CalculateGroup() {
-         Efl.Canvas.Group.NativeMethods.efl_canvas_group_calculate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Group.NativeMethods.efl_canvas_group_calculate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Returns an iterator over the children of this object, which are canvas objects.
@@ -229,9 +243,9 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator to object children</returns>
     virtual public Eina.Iterator<Efl.Canvas.Object> GroupMembersIterate() {
-         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_members_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_members_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Canvas.Object>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Canvas.Object>(_ret_var, true);
  }
     /// <summary>Set a canvas object as a member of a given group (or smart object).
     /// Members will automatically be stacked and layered together with the smart object. The various stacking functions will operate on members relative to the other members instead of the entire canvas, since they now live on an exclusive layer (see <see cref="Efl.Gfx.IStack.StackAbove"/>, for more details).
@@ -242,7 +256,7 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">The member object.</param>
     virtual public void AddGroupMember(Efl.Canvas.Object sub_obj) {
-                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
+                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Removes a member object from a given smart object.
@@ -252,7 +266,7 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">The member object to remove.</param>
     virtual public void GroupMemberRemove(Efl.Canvas.Object sub_obj) {
-                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
+                                 Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Finds out if a given object is a member of this group.
@@ -260,7 +274,7 @@ public class Group : Efl.Canvas.Object
     /// <param name="sub_obj">A potential sub object.</param>
     /// <returns><c>true</c> if <c>sub_obj</c> is a member of this group.</returns>
     virtual public bool IsGroupMember(Efl.Canvas.Object sub_obj) {
-                                 var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_is_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sub_obj);
+                                 var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -728,3 +742,14 @@ public class Group : Efl.Canvas.Object
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasGroup_ExtensionMethods {
+    public static Efl.BindableProperty<bool> GroupNeedRecalculate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Group, T>magic = null) where T : Efl.Canvas.Group {
+        return new Efl.BindableProperty<bool>("group_need_recalculate", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

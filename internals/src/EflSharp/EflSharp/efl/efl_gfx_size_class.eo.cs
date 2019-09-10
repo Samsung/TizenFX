@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Size Class interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.ISizeClassConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ISizeClass : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -40,12 +43,13 @@ bool SetSizeClass(System.String size_class, int minw, int minh, int maxw, int ma
 void DelSizeClass(System.String size_class);
             }
 /// <summary>Efl Gfx Size Class interface</summary>
-sealed public class ISizeClassConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ISizeClassConcrete :
     Efl.Eo.EoWrapper
     , ISizeClass
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -61,11 +65,19 @@ sealed public class ISizeClassConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ISizeClassConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_size_class_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ISizeClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ISizeClassConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ISizeClassConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -110,7 +122,7 @@ sealed public class ISizeClassConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -276,3 +288,10 @@ sealed public class ISizeClassConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxISizeClassConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

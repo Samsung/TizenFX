@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,10 +10,12 @@ namespace Efl {
 
 /// <summary>Efl decelerate interpolator class
 /// output = sin(input * Pi / 2);</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.DecelerateInterpolator.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class DecelerateInterpolator : Efl.Object, Efl.IInterpolator
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -33,45 +36,51 @@ public class DecelerateInterpolator : Efl.Object, Efl.IInterpolator
     /// <summary>Initializes a new instance of the <see cref="DecelerateInterpolator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public DecelerateInterpolator(Efl.Object parent= null
-            ) : base(efl_decelerate_interpolator_class_get(), typeof(DecelerateInterpolator), parent)
+            ) : base(efl_decelerate_interpolator_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected DecelerateInterpolator(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="DecelerateInterpolator"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected DecelerateInterpolator(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected DecelerateInterpolator(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="DecelerateInterpolator"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected DecelerateInterpolator(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected DecelerateInterpolator(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Factor property</summary>
     /// <returns>Factor of the interpolation function.</returns>
     virtual public double GetFactor() {
-         var _ret_var = Efl.DecelerateInterpolator.NativeMethods.efl_decelerate_interpolator_factor_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.DecelerateInterpolator.NativeMethods.efl_decelerate_interpolator_factor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Factor property</summary>
     /// <param name="factor">Factor of the interpolation function.</param>
     virtual public void SetFactor(double factor) {
-                                 Efl.DecelerateInterpolator.NativeMethods.efl_decelerate_interpolator_factor_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),factor);
+                                 Efl.DecelerateInterpolator.NativeMethods.efl_decelerate_interpolator_factor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),factor);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     virtual public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress);
+                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -252,3 +261,13 @@ public class DecelerateInterpolator : Efl.Object, Efl.IInterpolator
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflDecelerateInterpolator_ExtensionMethods {
+    public static Efl.BindableProperty<double> Factor<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.DecelerateInterpolator, T>magic = null) where T : Efl.DecelerateInterpolator {
+        return new Efl.BindableProperty<double>("factor", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

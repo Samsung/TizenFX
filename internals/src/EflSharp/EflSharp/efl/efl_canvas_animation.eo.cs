@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Animation.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Animation : Efl.Object, Efl.IPlayable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,127 +37,133 @@ public class Animation : Efl.Object, Efl.IPlayable
     /// <summary>Initializes a new instance of the <see cref="Animation"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Animation(Efl.Object parent= null
-            ) : base(efl_canvas_animation_class_get(), typeof(Animation), parent)
+            ) : base(efl_canvas_animation_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Animation(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Animation"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Animation(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Animation(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Animation"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Animation(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Animation(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Keep final state property</summary>
     /// <returns><c>true</c> to keep final state, <c>false</c> otherwise.</returns>
     virtual public bool GetFinalStateKeep() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Keep final state property</summary>
     /// <param name="keep"><c>true</c> to keep final state, <c>false</c> otherwise.</param>
     virtual public void SetFinalStateKeep(bool keep) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),keep);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),keep);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Duration property</summary>
     /// <returns>Duration value.</returns>
     virtual public double GetDuration() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_duration_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Duration property</summary>
     /// <param name="sec">Duration value.</param>
     virtual public void SetDuration(double sec) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_duration_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_duration_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Repeat mode property</summary>
     /// <returns>Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</returns>
     virtual public Efl.Canvas.AnimationRepeatMode GetRepeatMode() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Repeat mode property</summary>
     /// <param name="mode">Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</param>
     virtual public void SetRepeatMode(Efl.Canvas.AnimationRepeatMode mode) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mode);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Repeat count property</summary>
     /// <returns>Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</returns>
     virtual public int GetRepeatCount() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Repeat count property</summary>
     /// <param name="count">Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</param>
     virtual public void SetRepeatCount(int count) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),count);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),count);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Start delay property</summary>
     /// <returns>Delay time, in seconds, from when the animation starts until the animation is animated</returns>
     virtual public double GetStartDelay() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start delay property</summary>
     /// <param name="sec">Delay time, in seconds, from when the animation starts until the animation is animated</param>
     virtual public void SetStartDelay(double sec) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Interpolator property</summary>
     /// <returns>Interpolator which indicates interpolation function. Efl_Interpolator is required.</returns>
     virtual public Efl.IInterpolator GetInterpolator() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Interpolator property</summary>
     /// <param name="interpolator">Interpolator which indicates interpolation function. Efl_Interpolator is required.</param>
     virtual public void SetInterpolator(Efl.IInterpolator interpolator) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),interpolator);
+                                 Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),interpolator);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <returns>Final applied progress.</returns>
     virtual public double AnimationApply(double progress, Efl.Canvas.Object target) {
-                                                         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_apply_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),progress, target);
+                                                         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress, target);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     virtual public double GetLength() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_seekable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -973,3 +982,36 @@ public class Animation : Efl.Object, Efl.IPlayable
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimation_ExtensionMethods {
+    public static Efl.BindableProperty<bool> FinalStateKeep<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<bool>("final_state_keep", fac);
+    }
+
+    public static Efl.BindableProperty<double> Duration<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<double>("duration", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Canvas.AnimationRepeatMode> RepeatMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<Efl.Canvas.AnimationRepeatMode>("repeat_mode", fac);
+    }
+
+    public static Efl.BindableProperty<int> RepeatCount<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<int>("repeat_count", fac);
+    }
+
+    public static Efl.BindableProperty<double> StartDelay<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<double>("start_delay", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.IInterpolator> Interpolator<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Animation, T>magic = null) where T : Efl.Canvas.Animation {
+        return new Efl.BindableProperty<Efl.IInterpolator>("interpolator", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

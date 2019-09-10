@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,17 +10,21 @@ namespace Efl {
 
 namespace Ui {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.Image.DropEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Image.DropEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class ImageDropEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when drop from drag and drop happened</value>
     public System.String arg { get; set; }
 }
 /// <summary>Efl UI image class
 /// When loading images from a file, the <see cref="Efl.IFile.Key"/> property can be used to access different streams. For example, when accessing Evas image caches.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Image.NativeMethods]
-public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.Gfx.IImageLoadController, Efl.Gfx.IImageOrientable, Efl.Gfx.IView, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.IClickable, Efl.Ui.IDraggable
+[Efl.Eo.BindingEntity]
+public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IArrangement, Efl.Gfx.IImage, Efl.Gfx.IImageLoadController, Efl.Gfx.IImageOrientable, Efl.Gfx.IView, Efl.Input.IClickable, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.IDraggable
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,9 +44,9 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         efl_ui_image_class_get();
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Image(Efl.Object parent
-            , System.String style = null) : base(efl_ui_image_class_get(), typeof(Image), parent)
+            , System.String style = null) : base(efl_ui_image_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -51,28 +56,35 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Image(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Image(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Image(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Image"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Image(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Image(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Called when drop from drag and drop happened</summary>
+    /// <value><see cref="Efl.Ui.ImageDropEvt_Args"/></value>
     public event EventHandler<Efl.Ui.ImageDropEvt_Args> DropEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -100,14 +112,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_IMAGE_EVENT_DROP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DropEvt.</summary>
+    /// <summary>Method to raise event DropEvt.</summary>
     public void OnDropEvt(Efl.Ui.ImageDropEvt_Args e)
     {
         var key = "_EFL_UI_IMAGE_EVENT_DROP";
@@ -133,7 +145,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -160,14 +172,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ImagePreloadEvt.</summary>
+    /// <summary>Method to raise event ImagePreloadEvt.</summary>
     public void OnImagePreloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_PRELOAD";
@@ -185,7 +197,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -212,14 +224,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ImageResizeEvt.</summary>
+    /// <summary>Method to raise event ImageResizeEvt.</summary>
     public void OnImageResizeEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_RESIZE";
@@ -237,7 +249,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -264,14 +276,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ImageUnloadEvt.</summary>
+    /// <summary>Method to raise event ImageUnloadEvt.</summary>
     public void OnImageUnloadEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_EVENT_IMAGE_UNLOAD";
@@ -289,7 +301,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -316,14 +328,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event LoadDoneEvt.</summary>
+    /// <summary>Method to raise event LoadDoneEvt.</summary>
     public void OnLoadDoneEvt(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
@@ -337,11 +349,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when an error happened during image loading</summary>
+    /// <value><see cref="Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -369,14 +382,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event LoadErrorEvt.</summary>
+    /// <summary>Method to raise event LoadErrorEvt.</summary>
     public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
@@ -397,13 +410,325 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             Marshal.FreeHGlobal(info);
         }
     }
+    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
+    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableClickedEvt_Args args = new Efl.Input.IClickableClickedEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_CLICKED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_CLICKED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ClickedEvt.</summary>
+    public void OnClickedEvt(Efl.Input.IClickableClickedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_CLICKED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
+    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableClickedAnyEvt_Args args = new Efl.Input.IClickableClickedAnyEvt_Args();
+                        args.arg =  evt.Info;
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event ClickedAnyEvt.</summary>
+    public void OnClickedAnyEvt(Efl.Input.IClickableClickedAnyEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_CLICKED_ANY";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
+        try
+        {
+            Marshal.StructureToPtr(e.arg, info, false);
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickablePressedEvt_Args args = new Efl.Input.IClickablePressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_PRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_PRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event PressedEvt.</summary>
+    public void OnPressedEvt(Efl.Input.IClickablePressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_PRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableUnpressedEvt_Args args = new Efl.Input.IClickableUnpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_UNPRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event UnpressedEvt.</summary>
+    public void OnUnpressedEvt(Efl.Input.IClickableUnpressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_UNPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
+    /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
+    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
+    public event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt
+    {
+        add
+        {
+            lock (eflBindingEventLock)
+            {
+                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
+                {
+                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
+                    if (obj != null)
+                    {
+                        Efl.Input.IClickableLongpressedEvt_Args args = new Efl.Input.IClickableLongpressedEvt_Args();
+                        args.arg = Marshal.ReadInt32(evt.Info);
+                        try
+                        {
+                            value?.Invoke(obj, args);
+                        }
+                        catch (Exception e)
+                        {
+                            Eina.Log.Error(e.ToString());
+                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                        }
+                    }
+                };
+
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
+                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
+            }
+        }
+
+        remove
+        {
+            lock (eflBindingEventLock)
+            {
+                string key = "_EFL_INPUT_EVENT_LONGPRESSED";
+                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
+            }
+        }
+    }
+    /// <summary>Method to raise event LongpressedEvt.</summary>
+    public void OnLongpressedEvt(Efl.Input.IClickableLongpressedEvt_Args e)
+    {
+        var key = "_EFL_INPUT_EVENT_LONGPRESSED";
+        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
+        if (desc == IntPtr.Zero)
+        {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return;
+        }
+
+        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
+        try
+        {
+            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
+        }
+        finally
+        {
+            Marshal.FreeHGlobal(info);
+        }
+    }
     /// <summary>The layout was recalculated.
     /// (Since EFL 1.22)</summary>
     public event EventHandler RecalcEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -430,14 +755,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event RecalcEvt.</summary>
+    /// <summary>Method to raise event RecalcEvt.</summary>
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
@@ -452,11 +777,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -484,14 +810,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event CircularDependencyEvt.</summary>
+    /// <summary>Method to raise event CircularDependencyEvt.</summary>
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
@@ -505,319 +831,13 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         IntPtr info = e.arg.Handle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedEvt_Args> ClickedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableClickedEvt_Args args = new Efl.Ui.IClickableClickedEvt_Args();
-                        args.arg =  evt.Info;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(Efl.Ui.IClickableClickedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
-        try
-        {
-            Marshal.StructureToPtr(e.arg, info, false);
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    public event EventHandler<Efl.Ui.IClickableClickedAnyEvt_Args> ClickedAnyEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableClickedAnyEvt_Args args = new Efl.Ui.IClickableClickedAnyEvt_Args();
-                        args.arg =  evt.Info;
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_CLICKED_ANY";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event ClickedAnyEvt.</summary>
-    public void OnClickedAnyEvt(Efl.Ui.IClickableClickedAnyEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_CLICKED_ANY";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Marshal.AllocHGlobal(Marshal.SizeOf(e.arg));
-        try
-        {
-            Marshal.StructureToPtr(e.arg, info, false);
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickablePressedEvt_Args> PressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickablePressedEvt_Args args = new Efl.Ui.IClickablePressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_PRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_PRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Ui.IClickablePressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_PRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableUnpressedEvt_Args> UnpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableUnpressedEvt_Args args = new Efl.Ui.IClickableUnpressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_UNPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Ui.IClickableUnpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_UNPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
-    /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    public event EventHandler<Efl.Ui.IClickableLongpressedEvt_Args> LongpressedEvt
-    {
-        add
-        {
-            lock (eventLock)
-            {
-                Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
-                {
-                    var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
-                    if (obj != null)
-                    {
-                        Efl.Ui.IClickableLongpressedEvt_Args args = new Efl.Ui.IClickableLongpressedEvt_Args();
-                        args.arg = Marshal.ReadInt32(evt.Info);
-                        try
-                        {
-                            value?.Invoke(obj, args);
-                        }
-                        catch (Exception e)
-                        {
-                            Eina.Log.Error(e.ToString());
-                            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                        }
-                    }
-                };
-
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
-            }
-        }
-
-        remove
-        {
-            lock (eventLock)
-            {
-                string key = "_EFL_UI_EVENT_LONGPRESSED";
-                RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
-            }
-        }
-    }
-    ///<summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Ui.IClickableLongpressedEvt_Args e)
-    {
-        var key = "_EFL_UI_EVENT_LONGPRESSED";
-        IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
-        if (desc == IntPtr.Zero)
-        {
-            Eina.Log.Error($"Failed to get native event {key}");
-            return;
-        }
-
-        IntPtr info = Eina.PrimitiveConversion.ManagedToPointerAlloc(e.arg);
-        try
-        {
-            Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
-        }
-        finally
-        {
-            Marshal.FreeHGlobal(info);
-        }
-    }
     /// <summary>Called when drag operation starts</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragEvt_Args> DragEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -845,14 +865,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragEvt.</summary>
+    /// <summary>Method to raise event DragEvt.</summary>
     public void OnDragEvt(Efl.Ui.IDraggableDragEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG";
@@ -871,7 +891,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -898,14 +918,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStartEvt.</summary>
+    /// <summary>Method to raise event DragStartEvt.</summary>
     public void OnDragStartEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START";
@@ -919,11 +939,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when drag stopped</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragStopEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragStopEvt_Args> DragStopEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -951,14 +972,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_STOP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStopEvt.</summary>
+    /// <summary>Method to raise event DragStopEvt.</summary>
     public void OnDragStopEvt(Efl.Ui.IDraggableDragStopEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_STOP";
@@ -977,7 +998,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1004,14 +1025,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_END";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragEndEvt.</summary>
+    /// <summary>Method to raise event DragEndEvt.</summary>
     public void OnDragEndEvt(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_DRAG_END";
@@ -1025,11 +1046,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when drag starts into up direction</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragStartUpEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragStartUpEvt_Args> DragStartUpEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1057,14 +1079,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_UP";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStartUpEvt.</summary>
+    /// <summary>Method to raise event DragStartUpEvt.</summary>
     public void OnDragStartUpEvt(Efl.Ui.IDraggableDragStartUpEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_UP";
@@ -1079,11 +1101,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Called when drag starts into down direction</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragStartDownEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragStartDownEvt_Args> DragStartDownEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1111,14 +1134,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_DOWN";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStartDownEvt.</summary>
+    /// <summary>Method to raise event DragStartDownEvt.</summary>
     public void OnDragStartDownEvt(Efl.Ui.IDraggableDragStartDownEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_DOWN";
@@ -1133,11 +1156,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Called when drag starts into right direction</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragStartRightEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragStartRightEvt_Args> DragStartRightEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1165,14 +1189,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStartRightEvt.</summary>
+    /// <summary>Method to raise event DragStartRightEvt.</summary>
     public void OnDragStartRightEvt(Efl.Ui.IDraggableDragStartRightEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_RIGHT";
@@ -1187,11 +1211,12 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Called when drag starts into left direction</summary>
+    /// <value><see cref="Efl.Ui.IDraggableDragStartLeftEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IDraggableDragStartLeftEvt_Args> DragStartLeftEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -1219,14 +1244,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_EVENT_DRAG_START_LEFT";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DragStartLeftEvt.</summary>
+    /// <summary>Method to raise event DragStartLeftEvt.</summary>
     public void OnDragStartLeftEvt(Efl.Ui.IDraggableDragStartLeftEvt_Args e)
     {
         var key = "_EFL_UI_EVENT_DRAG_START_LEFT";
@@ -1240,39 +1265,11 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Enable or disable scaling up or down the internal image.</summary>
-    /// <param name="scale_up">If <c>true</c>, the internal image might be scaled up if necessary according to the scale type. if <c>false</c>, the internal image is not scaled up no matter what the scale type is.</param>
-    /// <param name="scale_down">If <c>true</c>, the internal image might be scaled down if necessary according to the scale type. if <c>false</c>, the internal image is not scaled down no matter what the scale type is.</param>
-    virtual public void GetScalable(out bool scale_up, out bool scale_down) {
-                                                         Efl.Ui.Image.NativeMethods.efl_ui_image_scalable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out scale_up, out scale_down);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Enable or disable scaling up or down the internal image.</summary>
-    /// <param name="scale_up">If <c>true</c>, the internal image might be scaled up if necessary according to the scale type. if <c>false</c>, the internal image is not scaled up no matter what the scale type is.</param>
-    /// <param name="scale_down">If <c>true</c>, the internal image might be scaled down if necessary according to the scale type. if <c>false</c>, the internal image is not scaled down no matter what the scale type is.</param>
-    virtual public void SetScalable(bool scale_up, bool scale_down) {
-                                                         Efl.Ui.Image.NativeMethods.efl_ui_image_scalable_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale_up, scale_down);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Controls how the internal image is positioned inside an image object.</summary>
-    /// <param name="align_x">Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</param>
-    /// <param name="align_y">Alignment in the vertical axis (0 &lt;= align_y &lt;= 1).</param>
-    virtual public void GetAlign(out double align_x, out double align_y) {
-                                                         Efl.Ui.Image.NativeMethods.efl_ui_image_align_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out align_x, out align_y);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Controls how the internal image is positioned inside an image object.</summary>
-    /// <param name="align_x">Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</param>
-    /// <param name="align_y">Alignment in the vertical axis (0 &lt;= align_y &lt;= 1).</param>
-    virtual public void SetAlign(double align_x, double align_y) {
-                                                         Efl.Ui.Image.NativeMethods.efl_ui_image_align_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),align_x, align_y);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
     /// <summary>Get the icon name of image set by icon standard names.
     /// If the image was set using efl_file_set() instead of <see cref="Efl.Ui.Image.SetIcon"/>, then this function will return null.</summary>
     /// <returns>The icon name</returns>
     virtual public System.String GetIcon() {
-         var _ret_var = Efl.Ui.Image.NativeMethods.efl_ui_image_icon_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.Image.NativeMethods.efl_ui_image_icon_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1289,7 +1286,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="name">The icon name</param>
     /// <returns><c>true</c> on success, <c>false</c> on error</returns>
     virtual public bool SetIcon(System.String name) {
-                                 var _ret_var = Efl.Ui.Image.NativeMethods.efl_ui_image_icon_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Ui.Image.NativeMethods.efl_ui_image_icon_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1297,7 +1294,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1307,7 +1304,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1316,7 +1313,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1326,7 +1323,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1337,7 +1334,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1346,14 +1343,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1364,7 +1361,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1374,20 +1371,20 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Whether or not the playable can be played.</summary>
     /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
     virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get play/pause state of the media file.</summary>
     /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
     virtual public bool GetPlay() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1395,14 +1392,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
     virtual public void SetPlay(bool play) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),play);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),play);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the position in the media file.
     /// The position is returned as the number of seconds since the beginning of the media file.</summary>
     /// <returns>The position (in seconds).</returns>
     virtual public double GetPos() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1410,14 +1407,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <param name="sec">The position (in seconds).</param>
     virtual public void SetPos(double sec) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get how much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <returns>The progress within the [0, 1] range.</returns>
     virtual public double GetProgress() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1425,7 +1422,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <returns>The play speed in the [0, infinity) range.</returns>
     virtual public double GetPlaySpeed() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1433,14 +1430,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <param name="speed">The play speed in the [0, infinity) range.</param>
     virtual public void SetPlaySpeed(double speed) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),speed);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),speed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <returns>The volume level</returns>
     virtual public double GetVolume() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1448,53 +1445,83 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <param name="volume">The volume level</param>
     virtual public void SetVolume(double volume) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),volume);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),volume);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property controls the audio mute state.</summary>
     /// <returns>The mute state. <c>true</c> or <c>false</c>.</returns>
     virtual public bool GetMute() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property controls the audio mute state.</summary>
     /// <param name="mute">The mute state. <c>true</c> or <c>false</c>.</param>
     virtual public void SetMute(bool mute) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mute);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mute);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     virtual public double GetLength() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start a playing playable object.</summary>
     virtual public void Start() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stop playable object.</summary>
     virtual public void Stop() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <param name="align_horiz">Horizontal alignment</param>
+    /// <param name="align_vert">Vertical alignment</param>
+    virtual public void GetContentAlign(out double align_horiz, out double align_vert) {
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_horiz, out align_vert);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <param name="align_horiz">Horizontal alignment</param>
+    /// <param name="align_vert">Vertical alignment</param>
+    virtual public void SetContentAlign(double align_horiz, double align_vert) {
+                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_horiz, align_vert);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <param name="pad_horiz">Horizontal padding</param>
+    /// <param name="pad_vert">Vertical padding</param>
+    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
+    virtual public void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pad_horiz, out pad_vert, out scalable);
+        Eina.Error.RaiseIfUnhandledException();
+                                                         }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <param name="pad_horiz">Horizontal padding</param>
+    /// <param name="pad_vert">Vertical padding</param>
+    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
+    virtual public void SetContentPadding(double pad_horiz, double pad_vert, bool scalable) {
+                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pad_horiz, pad_vert, scalable);
+        Eina.Error.RaiseIfUnhandledException();
+                                                         }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
     /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
     /// 
     /// <c>true</c> by default</summary>
     /// <returns>Whether to use smooth scale or not.</returns>
     virtual public bool GetSmoothScale() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1504,26 +1531,62 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <c>true</c> by default</summary>
     /// <param name="smooth_scale">Whether to use smooth scale or not.</param>
     virtual public void SetSmoothScale(bool smooth_scale) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),smooth_scale);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_smooth_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),smooth_scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control how the image is scaled.</summary>
     /// <returns>Image scale type</returns>
     virtual public Efl.Gfx.ImageScaleType GetScaleType() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control how the image is scaled.</summary>
     /// <param name="scale_type">Image scale type</param>
     virtual public void SetScaleType(Efl.Gfx.ImageScaleType scale_type) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale_type);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale_type);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <returns>Allow image upscaling</returns>
+    virtual public bool GetCanUpscale() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_upscale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <param name="upscale">Allow image upscaling</param>
+    virtual public void SetCanUpscale(bool upscale) {
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_upscale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),upscale);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <returns>Allow image downscaling</returns>
+    virtual public bool GetCanDownscale() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_downscale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <param name="downscale">Allow image downscaling</param>
+    virtual public void SetCanDownscale(bool downscale) {
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_can_downscale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),downscale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns 1.0 if not applicable (eg. height = 0).</summary>
     /// <returns>The image&apos;s ratio.</returns>
     virtual public double GetRatio() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_ratio_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_ratio_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <returns>A rectangle inside the object boundary that where content is expected.</returns>
+    virtual public Eina.Rect GetContentRegion() {
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1542,7 +1605,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="t">The border&apos;s top height.</param>
     /// <param name="b">The border&apos;s bottom height.</param>
     virtual public void GetBorder(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Dimensions of this image&apos;s border, a region that does not scale with the center area.
@@ -1560,7 +1623,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="t">The border&apos;s top height.</param>
     /// <param name="b">The border&apos;s bottom height.</param>
     virtual public void SetBorder(int l, int r, int t, int b) {
-                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),l, r, t, b);
+                                                                                                         Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),l, r, t, b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Scaling factor applied to the image borders.
@@ -1569,7 +1632,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Default value is 1.0 (no scaling).</summary>
     /// <returns>The scale factor.</returns>
     virtual public double GetBorderScale() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1579,7 +1642,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Default value is 1.0 (no scaling).</summary>
     /// <param name="scale">The scale factor.</param>
     virtual public void SetBorderScale(double scale) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies how the center part of the object (not the borders) should be drawn when EFL is rendering it.
@@ -1588,7 +1651,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
     /// <returns>Fill mode of the center region.</returns>
     virtual public Efl.Gfx.BorderFillMode GetBorderCenterFill() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1598,16 +1661,40 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// The default value is <see cref="Efl.Gfx.BorderFillMode.Default"/>, ie. render and scale the center area, respecting its transparency.</summary>
     /// <param name="fill">Fill mode of the center region.</param>
     virtual public void SetBorderCenterFill(Efl.Gfx.BorderFillMode fill) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fill);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_border_center_fill_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fill);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    virtual public void GetStretchRegion(out Eina.Iterator<Efl.Gfx.ImageStretchRegion> horizontal, out Eina.Iterator<Efl.Gfx.ImageStretchRegion> vertical) {
+                         System.IntPtr _out_horizontal = System.IntPtr.Zero;
+        System.IntPtr _out_vertical = System.IntPtr.Zero;
+                        Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_horizontal, out _out_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+        horizontal = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(_out_horizontal, false);
+        vertical = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(_out_vertical, false);
+                         }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <param name="horizontal">Representation of area that are stretchable in the image horizontal space.</param>
+    /// <param name="vertical">Representation of area that are stretchable in the image vertical space.</param>
+    /// <returns>return an error code if the stretch_region provided are incorrect.</returns>
+    virtual public Eina.Error SetStretchRegion(Eina.Iterator<Efl.Gfx.ImageStretchRegion> horizontal, Eina.Iterator<Efl.Gfx.ImageStretchRegion> vertical) {
+         var _in_horizontal = horizontal.Handle;
+        var _in_vertical = vertical.Handle;
+                                        var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_stretch_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_horizontal, _in_vertical);
+        Eina.Error.RaiseIfUnhandledException();
+                                        return _ret_var;
+ }
     /// <summary>This represents the size of the original image in pixels.
     /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
     /// 
     /// This is a read-only property, and may return 0x0.</summary>
     /// <returns>The size in pixels.</returns>
     virtual public Eina.Size2D GetImageSize() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1615,7 +1702,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This returns #EVAS_IMAGE_CONTENT_HINT_NONE on error.</summary>
     /// <returns>Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></returns>
     virtual public Efl.Gfx.ImageContentHint GetContentHint() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1623,14 +1710,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This function sets the content hint value of the given image of the canvas. For example, if you&apos;re on the GL engine and your driver implementation supports it, setting this hint to #EVAS_IMAGE_CONTENT_HINT_DYNAMIC will make it need zero copies at texture upload time, which is an &quot;expensive&quot; operation.</summary>
     /// <param name="hint">Dynamic or static content hint, see <see cref="Efl.Gfx.ImageContentHint"/></param>
     virtual public void SetContentHint(Efl.Gfx.ImageContentHint hint) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hint);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_content_hint_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the scale hint of a given image of the canvas.
     /// This function returns the scale hint value of the given image object of the canvas.</summary>
     /// <returns>Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></returns>
     virtual public Efl.Gfx.ImageScaleHint GetScaleHint() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1638,20 +1725,20 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This function sets the scale hint value of the given image object in the canvas, which will affect how Evas is to cache scaled versions of its original source image.</summary>
     /// <param name="hint">Scalable or static size hint, see <see cref="Efl.Gfx.ImageScaleHint"/></param>
     virtual public void SetScaleHint(Efl.Gfx.ImageScaleHint hint) {
-                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hint);
+                                 Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_scale_hint_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
     /// <returns>The load error code.</returns>
     virtual public Eina.Error GetImageLoadError() {
-         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_load_error_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageConcrete.NativeMethods.efl_gfx_image_load_error_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Returns the requested load size.</summary>
     /// <returns>The image load size.</returns>
     virtual public Eina.Size2D GetLoadSize() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1660,14 +1747,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="size">The image load size.</param>
     virtual public void SetLoadSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the DPI resolution of a loaded image object in the canvas.
     /// This function returns the DPI resolution of the given canvas image.</summary>
     /// <returns>The DPI resolution.</returns>
     virtual public double GetLoadDpi() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1675,20 +1762,20 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// This function sets the DPI resolution of a given loaded canvas image. Most useful for the SVG image loader.</summary>
     /// <param name="dpi">The DPI resolution.</param>
     virtual public void SetLoadDpi(double dpi) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dpi);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dpi);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
     /// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise</returns>
     virtual public bool GetLoadRegionSupport() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
     /// <returns>A region of the image.</returns>
     virtual public Eina.Rect GetLoadRegion() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1699,14 +1786,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="region">A region of the image.</param>
     virtual public void SetLoadRegion(Eina.Rect region) {
          Eina.Rect.NativeStruct _in_region = region;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_region);
+                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_region);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines whether the orientation information in the image file should be honored.
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <returns><c>true</c> means that it should honor the orientation information.</returns>
     virtual public bool GetLoadOrientation() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1714,7 +1801,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <param name="enable"><c>true</c> means that it should honor the orientation information.</param>
     virtual public void SetLoadOrientation(bool enable) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),enable);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The scale down factor is a divider on the original image size.
@@ -1725,55 +1812,55 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
     /// <returns>The scale down dividing factor.</returns>
     virtual public int GetLoadScaleDown() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Requests the image loader to scale down by <c>div</c> times. Call this before starting the actual image load.</summary>
     /// <param name="div">The scale down dividing factor.</param>
     virtual public void SetLoadScaleDown(int div) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),div);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),div);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Initial load should skip header check and leave it all to data load
     /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
     /// <returns>Will be true if header is to be skipped.</returns>
     virtual public bool GetLoadSkipHeader() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set the skip header state for susbsequent loads of a file.</summary>
     /// <param name="skip">Will be true if header is to be skipped.</param>
     virtual public void SetLoadSkipHeader(bool skip) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),skip);
+                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),skip);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Begin preloading an image object&apos;s image data in the background.
     /// Once the background task is complete the event <c>load</c>,done will be emitted.</summary>
     virtual public void LoadAsyncStart() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Cancel preloading an image object&apos;s image data in the background.
     /// The object should be left in a state where it has no image data. If cancel is called too late, the image will be kept in memory.</summary>
     virtual public void LoadAsyncCancel() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <returns>The final orientation of the object.</returns>
-    virtual public Efl.Gfx.ImageOrientation GetOrientation() {
-         var _ret_var = Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+    virtual public Efl.Gfx.ImageOrientation GetImageOrientation() {
+         var _ret_var = Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <param name="dir">The final orientation of the object.</param>
-    virtual public void SetOrientation(Efl.Gfx.ImageOrientation dir) {
-                                 Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dir);
+    virtual public void SetImageOrientation(Efl.Gfx.ImageOrientation dir) {
+                                 Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The dimensions of this object&apos;s viewport.
@@ -1788,7 +1875,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// Refer to each implementing class specific documentation for more details.</summary>
     /// <returns>Size of the view.</returns>
     virtual public Eina.Size2D GetViewSize() {
-         var _ret_var = Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1805,14 +1892,46 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="size">Size of the view.</param>
     virtual public void SetViewSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IViewConcrete.NativeMethods.efl_gfx_view_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    virtual public bool GetInteraction() {
+         var _ret_var = Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Change internal states that a button got pressed.
+    /// When the button is already pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Press(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Change internal states that a button got unpressed.
+    /// When the button is not pressed, this is silently ignored.</summary>
+    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
+    virtual public void Unpress(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This aborts the internal state after a press call.
+    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
+    virtual public void ResetButtonState(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>This aborts ongoing longpress event.
+    /// That is, this will stop the timer for longpress.</summary>
+    virtual public void LongpressAbort(uint button) {
+                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object updates its size hints automatically.
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     virtual public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1820,7 +1939,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
     virtual public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),update);
+                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -1834,7 +1953,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <returns>The minimum required size.</returns>
     virtual public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_restricted);
+                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1845,7 +1964,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     virtual public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1856,7 +1975,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     virtual public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1869,7 +1988,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     virtual public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1879,7 +1998,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -1893,7 +2012,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1908,7 +2027,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1924,7 +2043,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
     virtual public System.String GetGroupData(System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1933,7 +2052,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
     virtual public bool GetPartExist(System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1947,7 +2066,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
     virtual public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id, msg);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -1957,7 +2076,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// 
     /// Though there are those common uses for the two strings, one is free to use them however they like.
     /// 
-    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[&quot; set of <c>fnmatch</c>() operators can be used, both for emission and source.
+    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
     /// 
     /// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
     /// 
@@ -1973,7 +2092,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1988,7 +2107,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -2002,7 +2121,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     virtual public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -2012,34 +2131,14 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
     virtual public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recurse);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Change internal states that a button got pressed.
-    /// When the button is already pressed, this is silently ignored.</summary>
-    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Press(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_press_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Change internal states that a button got unpressed.
-    /// When the button is not pressed, this is silently ignored.</summary>
-    /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Unpress(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_unpress_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>This aborts the internal state after a press call.
-    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
-    virtual public void ResetButtonState(uint button) {
-                                 Efl.Ui.IClickableConcrete.NativeMethods.efl_ui_clickable_button_state_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control whether the object&apos;s content is changed by drag and drop.
     /// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
     /// <returns>Turn on or off drop_target. Default is <c>false</c>.</returns>
     virtual public bool GetDragTarget() {
-         var _ret_var = Efl.Ui.IDraggableConcrete.NativeMethods.efl_ui_draggable_drag_target_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IDraggableConcrete.NativeMethods.efl_ui_draggable_drag_target_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -2047,7 +2146,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// If <c>drag_target</c> is true the object can be the target of a dragging object. The content of this object can then be changed into dragging content. For example, if an object deals with image and <c>drag_target</c> is true, the user can drag the new image and drop it into said object. This object&apos;s image can then be changed into a new image.</summary>
     /// <param name="set">Turn on or off drop_target. Default is <c>false</c>.</param>
     virtual public void SetDragTarget(bool set) {
-                                 Efl.Ui.IDraggableConcrete.NativeMethods.efl_ui_draggable_drag_target_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),set);
+                                 Efl.Ui.IDraggableConcrete.NativeMethods.efl_ui_draggable_drag_target_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),set);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the icon name of image set by icon standard names.
@@ -2142,6 +2241,29 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public bool Seekable {
         get { return GetSeekable(); }
     }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    public (double, double) ContentAlign {
+        get {
+            double _out_align_horiz = default(double);
+            double _out_align_vert = default(double);
+            GetContentAlign(out _out_align_horiz,out _out_align_vert);
+            return (_out_align_horiz,_out_align_vert);
+        }
+        set { SetContentAlign( value.Item1,  value.Item2); }
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    public (double, double, bool) ContentPadding {
+        get {
+            double _out_pad_horiz = default(double);
+            double _out_pad_vert = default(double);
+            bool _out_scalable = default(bool);
+            GetContentPadding(out _out_pad_horiz,out _out_pad_vert,out _out_scalable);
+            return (_out_pad_horiz,_out_pad_vert,_out_scalable);
+        }
+        set { SetContentPadding( value.Item1,  value.Item2,  value.Item3); }
+    }
     /// <summary>Whether to use high-quality image scaling algorithm for this image.
     /// When enabled, a higher quality image scaling algorithm is used when scaling images to sizes other than the source image&apos;s original one. This gives better results but is more computationally expensive.
     /// 
@@ -2157,10 +2279,52 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         get { return GetScaleType(); }
         set { SetScaleType(value); }
     }
+    /// <summary>If <c>true</c>, the image may be scaled to a larger size. If <c>false</c>, the image will never be resized larger than its native size. This is set to <c>true</c> by default.</summary>
+    /// <value>Allow image upscaling</value>
+    public bool CanUpscale {
+        get { return GetCanUpscale(); }
+        set { SetCanUpscale(value); }
+    }
+    /// <summary>If <c>true</c>, the image may be scaled to a smaller size. If <c>false</c>, the image will never be resized smaller than its native size. This is set to <c>true</c> by default.</summary>
+    /// <value>Allow image downscaling</value>
+    public bool CanDownscale {
+        get { return GetCanDownscale(); }
+        set { SetCanDownscale(value); }
+    }
     /// <summary>The native width/height ratio of the image.</summary>
     /// <value>The image&apos;s ratio.</value>
     public double Ratio {
         get { return GetRatio(); }
+    }
+    /// <summary>Return the relative area enclosed inside the image where content is expected.
+    /// We do expect content to be inside the limit defined by the border or inside the stretch region. If a stretch region is provided, the content region will encompass the non strechable area that are surrounded by stretchable area. If no border and no stretch region is set, they are assumed to be zero and the full object geometry is where content can be layout on top. The area size change with the object size.
+    /// 
+    /// The geometry of the area is expressed relative to the geometry of the object.</summary>
+    /// <value>A rectangle inside the object boundary that where content is expected.</value>
+    public Eina.Rect ContentRegion {
+        get { return GetContentRegion(); }
+    }
+    /// <summary>Dimensions of this image&apos;s border, a region that does not scale with the center area.
+    /// When EFL renders an image, its source may be scaled to fit the size of the object. This function sets an area from the borders of the image inwards which is not to be scaled. This function is useful for making frames and for widget theming, where, for example, buttons may be of varying sizes, but their border size must remain constant.
+    /// 
+    /// The units used for <c>l</c>, <c>r</c>, <c>t</c> and <c>b</c> are canvas units (pixels).
+    /// 
+    /// Note: The border region itself may be scaled by the <see cref="Efl.Gfx.IImage.SetBorderScale"/> function.
+    /// 
+    /// Note: By default, image objects have no borders set, i.e. <c>l</c>, <c>r</c>, <c>t</c> and <c>b</c> start as 0.
+    /// 
+    /// Note: Similar to the concepts of 9-patch images or cap insets.</summary>
+    /// <value>The border&apos;s left width.</value>
+    public (int, int, int, int) Border {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetBorder(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+        set { SetBorder( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Scaling factor applied to the image borders.
     /// This value multiplies the size of the <see cref="Efl.Gfx.IImage.GetBorder"/> when scaling an object.
@@ -2179,6 +2343,18 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public Efl.Gfx.BorderFillMode BorderCenterFill {
         get { return GetBorderCenterFill(); }
         set { SetBorderCenterFill(value); }
+    }
+    /// <summary>This property defines the stretchable pixels region of an image.
+    /// When the regions are set by the user, the method will walk the iterators once and then destroy them. When the regions are retrieved by the user, it is his responsibility to destroy the iterators.. It will remember the information for the lifetime of the object. It will ignore all value of <see cref="Efl.Gfx.IImage.GetBorder"/>, <see cref="Efl.Gfx.IImage.BorderScale"/> and <see cref="Efl.Gfx.IImage.BorderCenterFill"/> . To reset the object you can just pass <c>null</c> to both horizontal and vertical at the same time.</summary>
+    /// <value>Representation of area that are stretchable in the image horizontal space.</value>
+    public (Eina.Iterator<Efl.Gfx.ImageStretchRegion>, Eina.Iterator<Efl.Gfx.ImageStretchRegion>) StretchRegion {
+        get {
+            Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+            Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+            GetStretchRegion(out _out_horizontal,out _out_vertical);
+            return (_out_horizontal,_out_vertical);
+        }
+        set { SetStretchRegion( value.Item1,  value.Item2); }
     }
     /// <summary>This represents the size of the original image in pixels.
     /// This may be different from the actual geometry on screen or even the size of the loaded pixel buffer. This is the size of the image as stored in the original file.
@@ -2262,9 +2438,9 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <value>The final orientation of the object.</value>
-    public Efl.Gfx.ImageOrientation Orientation {
-        get { return GetOrientation(); }
-        set { SetOrientation(value); }
+    public Efl.Gfx.ImageOrientation ImageOrientation {
+        get { return GetImageOrientation(); }
+        set { SetImageOrientation(value); }
     }
     /// <summary>The dimensions of this object&apos;s viewport.
     /// This property represents the size of an image (file on disk, vector graphics, GL or 3D scene, ...) view: this is the logical size of a view, not the number of pixels in the buffer, nor its visible size on the window.
@@ -2280,6 +2456,10 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
     public Eina.Size2D ViewSize {
         get { return GetViewSize(); }
         set { SetViewSize(value); }
+    }
+    /// <summary>This returns true if the given object is currently in event emission</summary>
+    public bool Interaction {
+        get { return GetInteraction(); }
     }
     /// <summary>Whether this object updates its size hints automatically.
     /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
@@ -2339,46 +2519,6 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_ui_image_scalable_get_static_delegate == null)
-            {
-                efl_ui_image_scalable_get_static_delegate = new efl_ui_image_scalable_get_delegate(scalable_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetScalable") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_image_scalable_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_image_scalable_get_static_delegate) });
-            }
-
-            if (efl_ui_image_scalable_set_static_delegate == null)
-            {
-                efl_ui_image_scalable_set_static_delegate = new efl_ui_image_scalable_set_delegate(scalable_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetScalable") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_image_scalable_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_image_scalable_set_static_delegate) });
-            }
-
-            if (efl_ui_image_align_get_static_delegate == null)
-            {
-                efl_ui_image_align_get_static_delegate = new efl_ui_image_align_get_delegate(align_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_image_align_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_image_align_get_static_delegate) });
-            }
-
-            if (efl_ui_image_align_set_static_delegate == null)
-            {
-                efl_ui_image_align_set_static_delegate = new efl_ui_image_align_set_delegate(align_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_image_align_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_image_align_set_static_delegate) });
-            }
 
             if (efl_ui_image_icon_get_static_delegate == null)
             {
@@ -2650,6 +2790,46 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_player_stop"), func = Marshal.GetFunctionPointerForDelegate(efl_player_stop_static_delegate) });
             }
 
+            if (efl_gfx_arrangement_content_align_get_static_delegate == null)
+            {
+                efl_gfx_arrangement_content_align_get_static_delegate = new efl_gfx_arrangement_content_align_get_delegate(content_align_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContentAlign") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_align_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_align_get_static_delegate) });
+            }
+
+            if (efl_gfx_arrangement_content_align_set_static_delegate == null)
+            {
+                efl_gfx_arrangement_content_align_set_static_delegate = new efl_gfx_arrangement_content_align_set_delegate(content_align_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetContentAlign") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_align_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_align_set_static_delegate) });
+            }
+
+            if (efl_gfx_arrangement_content_padding_get_static_delegate == null)
+            {
+                efl_gfx_arrangement_content_padding_get_static_delegate = new efl_gfx_arrangement_content_padding_get_delegate(content_padding_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContentPadding") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_padding_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_padding_get_static_delegate) });
+            }
+
+            if (efl_gfx_arrangement_content_padding_set_static_delegate == null)
+            {
+                efl_gfx_arrangement_content_padding_set_static_delegate = new efl_gfx_arrangement_content_padding_set_delegate(content_padding_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetContentPadding") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_padding_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_padding_set_static_delegate) });
+            }
+
             if (efl_gfx_image_smooth_scale_get_static_delegate == null)
             {
                 efl_gfx_image_smooth_scale_get_static_delegate = new efl_gfx_image_smooth_scale_get_delegate(smooth_scale_get);
@@ -2690,6 +2870,46 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_scale_type_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_scale_type_set_static_delegate) });
             }
 
+            if (efl_gfx_image_can_upscale_get_static_delegate == null)
+            {
+                efl_gfx_image_can_upscale_get_static_delegate = new efl_gfx_image_can_upscale_get_delegate(can_upscale_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanUpscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_upscale_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_upscale_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_upscale_set_static_delegate == null)
+            {
+                efl_gfx_image_can_upscale_set_static_delegate = new efl_gfx_image_can_upscale_set_delegate(can_upscale_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanUpscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_upscale_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_upscale_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_downscale_get_static_delegate == null)
+            {
+                efl_gfx_image_can_downscale_get_static_delegate = new efl_gfx_image_can_downscale_get_delegate(can_downscale_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanDownscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_downscale_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_downscale_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_can_downscale_set_static_delegate == null)
+            {
+                efl_gfx_image_can_downscale_set_static_delegate = new efl_gfx_image_can_downscale_set_delegate(can_downscale_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanDownscale") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_can_downscale_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_can_downscale_set_static_delegate) });
+            }
+
             if (efl_gfx_image_ratio_get_static_delegate == null)
             {
                 efl_gfx_image_ratio_get_static_delegate = new efl_gfx_image_ratio_get_delegate(ratio_get);
@@ -2698,6 +2918,16 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             if (methods.FirstOrDefault(m => m.Name == "GetRatio") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_ratio_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_ratio_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_content_region_get_static_delegate == null)
+            {
+                efl_gfx_image_content_region_get_static_delegate = new efl_gfx_image_content_region_get_delegate(content_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetContentRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_content_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_content_region_get_static_delegate) });
             }
 
             if (efl_gfx_image_border_get_static_delegate == null)
@@ -2758,6 +2988,26 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             if (methods.FirstOrDefault(m => m.Name == "SetBorderCenterFill") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_border_center_fill_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_border_center_fill_set_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_get_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_get_static_delegate = new efl_gfx_image_stretch_region_get_delegate(stretch_region_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_get_static_delegate) });
+            }
+
+            if (efl_gfx_image_stretch_region_set_static_delegate == null)
+            {
+                efl_gfx_image_stretch_region_set_static_delegate = new efl_gfx_image_stretch_region_set_delegate(stretch_region_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetStretchRegion") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_stretch_region_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_stretch_region_set_static_delegate) });
             }
 
             if (efl_gfx_image_size_get_static_delegate == null)
@@ -2972,20 +3222,20 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
             if (efl_gfx_image_orientation_get_static_delegate == null)
             {
-                efl_gfx_image_orientation_get_static_delegate = new efl_gfx_image_orientation_get_delegate(orientation_get);
+                efl_gfx_image_orientation_get_static_delegate = new efl_gfx_image_orientation_get_delegate(image_orientation_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetImageOrientation") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_orientation_get_static_delegate) });
             }
 
             if (efl_gfx_image_orientation_set_static_delegate == null)
             {
-                efl_gfx_image_orientation_set_static_delegate = new efl_gfx_image_orientation_set_delegate(orientation_set);
+                efl_gfx_image_orientation_set_static_delegate = new efl_gfx_image_orientation_set_delegate(image_orientation_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetImageOrientation") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_orientation_set_static_delegate) });
             }
@@ -3008,6 +3258,56 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             if (methods.FirstOrDefault(m => m.Name == "SetViewSize") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_view_size_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_view_size_set_static_delegate) });
+            }
+
+            if (efl_input_clickable_interaction_get_static_delegate == null)
+            {
+                efl_input_clickable_interaction_get_static_delegate = new efl_input_clickable_interaction_get_delegate(interaction_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetInteraction") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_interaction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_interaction_get_static_delegate) });
+            }
+
+            if (efl_input_clickable_press_static_delegate == null)
+            {
+                efl_input_clickable_press_static_delegate = new efl_input_clickable_press_delegate(press);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_press_static_delegate) });
+            }
+
+            if (efl_input_clickable_unpress_static_delegate == null)
+            {
+                efl_input_clickable_unpress_static_delegate = new efl_input_clickable_unpress_delegate(unpress);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_unpress_static_delegate) });
+            }
+
+            if (efl_input_clickable_button_state_reset_static_delegate == null)
+            {
+                efl_input_clickable_button_state_reset_static_delegate = new efl_input_clickable_button_state_reset_delegate(button_state_reset);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_button_state_reset_static_delegate) });
+            }
+
+            if (efl_input_clickable_longpress_abort_static_delegate == null)
+            {
+                efl_input_clickable_longpress_abort_static_delegate = new efl_input_clickable_longpress_abort_delegate(longpress_abort);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "LongpressAbort") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_longpress_abort"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_longpress_abort_static_delegate) });
             }
 
             if (efl_layout_calc_auto_update_hints_get_static_delegate == null)
@@ -3170,36 +3470,6 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
             }
 
-            if (efl_ui_clickable_press_static_delegate == null)
-            {
-                efl_ui_clickable_press_static_delegate = new efl_ui_clickable_press_delegate(press);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_press_static_delegate) });
-            }
-
-            if (efl_ui_clickable_unpress_static_delegate == null)
-            {
-                efl_ui_clickable_unpress_static_delegate = new efl_ui_clickable_unpress_delegate(unpress);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_unpress_static_delegate) });
-            }
-
-            if (efl_ui_clickable_button_state_reset_static_delegate == null)
-            {
-                efl_ui_clickable_button_state_reset_static_delegate = new efl_ui_clickable_button_state_reset_delegate(button_state_reset);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clickable_button_state_reset_static_delegate) });
-            }
-
             if (efl_ui_draggable_drag_target_get_static_delegate == null)
             {
                 efl_ui_draggable_drag_target_get_static_delegate = new efl_ui_draggable_drag_target_get_delegate(drag_target_get);
@@ -3231,146 +3501,6 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
-
-        
-        private delegate void efl_ui_image_scalable_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] out bool scale_up, [MarshalAs(UnmanagedType.U1)] out bool scale_down);
-
-        
-        public delegate void efl_ui_image_scalable_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] out bool scale_up, [MarshalAs(UnmanagedType.U1)] out bool scale_down);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_image_scalable_get_api_delegate> efl_ui_image_scalable_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_image_scalable_get_api_delegate>(Module, "efl_ui_image_scalable_get");
-
-        private static void scalable_get(System.IntPtr obj, System.IntPtr pd, out bool scale_up, out bool scale_down)
-        {
-            Eina.Log.Debug("function efl_ui_image_scalable_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                        scale_up = default(bool);        scale_down = default(bool);                            
-                try
-                {
-                    ((Image)ws.Target).GetScalable(out scale_up, out scale_down);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_image_scalable_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out scale_up, out scale_down);
-            }
-        }
-
-        private static efl_ui_image_scalable_get_delegate efl_ui_image_scalable_get_static_delegate;
-
-        
-        private delegate void efl_ui_image_scalable_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool scale_up, [MarshalAs(UnmanagedType.U1)] bool scale_down);
-
-        
-        public delegate void efl_ui_image_scalable_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool scale_up, [MarshalAs(UnmanagedType.U1)] bool scale_down);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_image_scalable_set_api_delegate> efl_ui_image_scalable_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_image_scalable_set_api_delegate>(Module, "efl_ui_image_scalable_set");
-
-        private static void scalable_set(System.IntPtr obj, System.IntPtr pd, bool scale_up, bool scale_down)
-        {
-            Eina.Log.Debug("function efl_ui_image_scalable_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Image)ws.Target).SetScalable(scale_up, scale_down);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_image_scalable_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), scale_up, scale_down);
-            }
-        }
-
-        private static efl_ui_image_scalable_set_delegate efl_ui_image_scalable_set_static_delegate;
-
-        
-        private delegate void efl_ui_image_align_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double align_x,  out double align_y);
-
-        
-        public delegate void efl_ui_image_align_get_api_delegate(System.IntPtr obj,  out double align_x,  out double align_y);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_image_align_get_api_delegate> efl_ui_image_align_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_image_align_get_api_delegate>(Module, "efl_ui_image_align_get");
-
-        private static void align_get(System.IntPtr obj, System.IntPtr pd, out double align_x, out double align_y)
-        {
-            Eina.Log.Debug("function efl_ui_image_align_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                        align_x = default(double);        align_y = default(double);                            
-                try
-                {
-                    ((Image)ws.Target).GetAlign(out align_x, out align_y);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_image_align_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out align_x, out align_y);
-            }
-        }
-
-        private static efl_ui_image_align_get_delegate efl_ui_image_align_get_static_delegate;
-
-        
-        private delegate void efl_ui_image_align_set_delegate(System.IntPtr obj, System.IntPtr pd,  double align_x,  double align_y);
-
-        
-        public delegate void efl_ui_image_align_set_api_delegate(System.IntPtr obj,  double align_x,  double align_y);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_image_align_set_api_delegate> efl_ui_image_align_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_image_align_set_api_delegate>(Module, "efl_ui_image_align_set");
-
-        private static void align_set(System.IntPtr obj, System.IntPtr pd, double align_x, double align_y)
-        {
-            Eina.Log.Debug("function efl_ui_image_align_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Image)ws.Target).SetAlign(align_x, align_y);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_image_align_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), align_x, align_y);
-            }
-        }
-
-        private static efl_ui_image_align_set_delegate efl_ui_image_align_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_ui_image_icon_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -4335,6 +4465,146 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         private static efl_player_stop_delegate efl_player_stop_static_delegate;
 
+        
+        private delegate void efl_gfx_arrangement_content_align_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double align_horiz,  out double align_vert);
+
+        
+        public delegate void efl_gfx_arrangement_content_align_get_api_delegate(System.IntPtr obj,  out double align_horiz,  out double align_vert);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_get_api_delegate> efl_gfx_arrangement_content_align_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_get_api_delegate>(Module, "efl_gfx_arrangement_content_align_get");
+
+        private static void content_align_get(System.IntPtr obj, System.IntPtr pd, out double align_horiz, out double align_vert)
+        {
+            Eina.Log.Debug("function efl_gfx_arrangement_content_align_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        align_horiz = default(double);        align_vert = default(double);                            
+                try
+                {
+                    ((Image)ws.Target).GetContentAlign(out align_horiz, out align_vert);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_gfx_arrangement_content_align_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out align_horiz, out align_vert);
+            }
+        }
+
+        private static efl_gfx_arrangement_content_align_get_delegate efl_gfx_arrangement_content_align_get_static_delegate;
+
+        
+        private delegate void efl_gfx_arrangement_content_align_set_delegate(System.IntPtr obj, System.IntPtr pd,  double align_horiz,  double align_vert);
+
+        
+        public delegate void efl_gfx_arrangement_content_align_set_api_delegate(System.IntPtr obj,  double align_horiz,  double align_vert);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_set_api_delegate> efl_gfx_arrangement_content_align_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_set_api_delegate>(Module, "efl_gfx_arrangement_content_align_set");
+
+        private static void content_align_set(System.IntPtr obj, System.IntPtr pd, double align_horiz, double align_vert)
+        {
+            Eina.Log.Debug("function efl_gfx_arrangement_content_align_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                            
+                try
+                {
+                    ((Image)ws.Target).SetContentAlign(align_horiz, align_vert);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        
+            }
+            else
+            {
+                efl_gfx_arrangement_content_align_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), align_horiz, align_vert);
+            }
+        }
+
+        private static efl_gfx_arrangement_content_align_set_delegate efl_gfx_arrangement_content_align_set_static_delegate;
+
+        
+        private delegate void efl_gfx_arrangement_content_padding_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
+
+        
+        public delegate void efl_gfx_arrangement_content_padding_get_api_delegate(System.IntPtr obj,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_get_api_delegate> efl_gfx_arrangement_content_padding_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_get_api_delegate>(Module, "efl_gfx_arrangement_content_padding_get");
+
+        private static void content_padding_get(System.IntPtr obj, System.IntPtr pd, out double pad_horiz, out double pad_vert, out bool scalable)
+        {
+            Eina.Log.Debug("function efl_gfx_arrangement_content_padding_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                pad_horiz = default(double);        pad_vert = default(double);        scalable = default(bool);                                    
+                try
+                {
+                    ((Image)ws.Target).GetContentPadding(out pad_horiz, out pad_vert, out scalable);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        
+            }
+            else
+            {
+                efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out pad_horiz, out pad_vert, out scalable);
+            }
+        }
+
+        private static efl_gfx_arrangement_content_padding_get_delegate efl_gfx_arrangement_content_padding_get_static_delegate;
+
+        
+        private delegate void efl_gfx_arrangement_content_padding_set_delegate(System.IntPtr obj, System.IntPtr pd,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
+
+        
+        public delegate void efl_gfx_arrangement_content_padding_set_api_delegate(System.IntPtr obj,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_set_api_delegate> efl_gfx_arrangement_content_padding_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_set_api_delegate>(Module, "efl_gfx_arrangement_content_padding_set");
+
+        private static void content_padding_set(System.IntPtr obj, System.IntPtr pd, double pad_horiz, double pad_vert, bool scalable)
+        {
+            Eina.Log.Debug("function efl_gfx_arrangement_content_padding_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                                                                    
+                try
+                {
+                    ((Image)ws.Target).SetContentPadding(pad_horiz, pad_vert, scalable);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                                        
+            }
+            else
+            {
+                efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), pad_horiz, pad_vert, scalable);
+            }
+        }
+
+        private static efl_gfx_arrangement_content_padding_set_delegate efl_gfx_arrangement_content_padding_set_static_delegate;
+
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_gfx_image_smooth_scale_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -4477,6 +4747,148 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         private static efl_gfx_image_scale_type_set_delegate efl_gfx_image_scale_type_set_static_delegate;
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_gfx_image_can_upscale_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_gfx_image_can_upscale_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_get_api_delegate> efl_gfx_image_can_upscale_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_get_api_delegate>(Module, "efl_gfx_image_can_upscale_get");
+
+        private static bool can_upscale_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_upscale_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Image)ws.Target).GetCanUpscale();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_can_upscale_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_can_upscale_get_delegate efl_gfx_image_can_upscale_get_static_delegate;
+
+        
+        private delegate void efl_gfx_image_can_upscale_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool upscale);
+
+        
+        public delegate void efl_gfx_image_can_upscale_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool upscale);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_set_api_delegate> efl_gfx_image_can_upscale_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_upscale_set_api_delegate>(Module, "efl_gfx_image_can_upscale_set");
+
+        private static void can_upscale_set(System.IntPtr obj, System.IntPtr pd, bool upscale)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_upscale_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).SetCanUpscale(upscale);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_image_can_upscale_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), upscale);
+            }
+        }
+
+        private static efl_gfx_image_can_upscale_set_delegate efl_gfx_image_can_upscale_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_gfx_image_can_downscale_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_gfx_image_can_downscale_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_get_api_delegate> efl_gfx_image_can_downscale_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_get_api_delegate>(Module, "efl_gfx_image_can_downscale_get");
+
+        private static bool can_downscale_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_downscale_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Image)ws.Target).GetCanDownscale();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_can_downscale_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_can_downscale_get_delegate efl_gfx_image_can_downscale_get_static_delegate;
+
+        
+        private delegate void efl_gfx_image_can_downscale_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool downscale);
+
+        
+        public delegate void efl_gfx_image_can_downscale_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool downscale);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_set_api_delegate> efl_gfx_image_can_downscale_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_can_downscale_set_api_delegate>(Module, "efl_gfx_image_can_downscale_set");
+
+        private static void can_downscale_set(System.IntPtr obj, System.IntPtr pd, bool downscale)
+        {
+            Eina.Log.Debug("function efl_gfx_image_can_downscale_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).SetCanDownscale(downscale);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_image_can_downscale_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), downscale);
+            }
+        }
+
+        private static efl_gfx_image_can_downscale_set_delegate efl_gfx_image_can_downscale_set_static_delegate;
+
         
         private delegate double efl_gfx_image_ratio_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -4512,6 +4924,42 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         }
 
         private static efl_gfx_image_ratio_get_delegate efl_gfx_image_ratio_get_static_delegate;
+
+        
+        private delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate Eina.Rect.NativeStruct efl_gfx_image_content_region_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate> efl_gfx_image_content_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_content_region_get_api_delegate>(Module, "efl_gfx_image_content_region_get");
+
+        private static Eina.Rect.NativeStruct content_region_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_image_content_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            Eina.Rect _ret_var = default(Eina.Rect);
+                try
+                {
+                    _ret_var = ((Image)ws.Target).GetContentRegion();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_content_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_image_content_region_get_delegate efl_gfx_image_content_region_get_static_delegate;
 
         
         private delegate void efl_gfx_image_border_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int l,  out int r,  out int t,  out int b);
@@ -4724,6 +5172,83 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         }
 
         private static efl_gfx_image_border_center_fill_set_delegate efl_gfx_image_border_center_fill_set_static_delegate;
+
+        
+        private delegate void efl_gfx_image_stretch_region_get_delegate(System.IntPtr obj, System.IntPtr pd,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        
+        public delegate void efl_gfx_image_stretch_region_get_api_delegate(System.IntPtr obj,  out System.IntPtr horizontal,  out System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate> efl_gfx_image_stretch_region_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_get_api_delegate>(Module, "efl_gfx_image_stretch_region_get");
+
+        private static void stretch_region_get(System.IntPtr obj, System.IntPtr pd, out System.IntPtr horizontal, out System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                        Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_horizontal = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+        Eina.Iterator<Efl.Gfx.ImageStretchRegion> _out_vertical = default(Eina.Iterator<Efl.Gfx.ImageStretchRegion>);
+                            
+                try
+                {
+                    ((Image)ws.Target).GetStretchRegion(out _out_horizontal, out _out_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        horizontal = _out_horizontal.Handle;
+        vertical = _out_vertical.Handle;
+                        
+            }
+            else
+            {
+                efl_gfx_image_stretch_region_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out horizontal, out vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_get_delegate efl_gfx_image_stretch_region_get_static_delegate;
+
+        
+        private delegate Eina.Error efl_gfx_image_stretch_region_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        
+        public delegate Eina.Error efl_gfx_image_stretch_region_set_api_delegate(System.IntPtr obj,  System.IntPtr horizontal,  System.IntPtr vertical);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate> efl_gfx_image_stretch_region_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_stretch_region_set_api_delegate>(Module, "efl_gfx_image_stretch_region_set");
+
+        private static Eina.Error stretch_region_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr horizontal, System.IntPtr vertical)
+        {
+            Eina.Log.Debug("function efl_gfx_image_stretch_region_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+        var _in_horizontal = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(horizontal, false);
+        var _in_vertical = new Eina.Iterator<Efl.Gfx.ImageStretchRegion>(vertical, false);
+                                            Eina.Error _ret_var = default(Eina.Error);
+                try
+                {
+                    _ret_var = ((Image)ws.Target).SetStretchRegion(_in_horizontal, _in_vertical);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                                        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_image_stretch_region_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), horizontal, vertical);
+            }
+        }
+
+        private static efl_gfx_image_stretch_region_set_delegate efl_gfx_image_stretch_region_set_static_delegate;
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_image_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -5481,7 +6006,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         public static Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_get_api_delegate> efl_gfx_image_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_get_api_delegate>(Module, "efl_gfx_image_orientation_get");
 
-        private static Efl.Gfx.ImageOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
+        private static Efl.Gfx.ImageOrientation image_orientation_get(System.IntPtr obj, System.IntPtr pd)
         {
             Eina.Log.Debug("function efl_gfx_image_orientation_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -5490,7 +6015,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
             Efl.Gfx.ImageOrientation _ret_var = default(Efl.Gfx.ImageOrientation);
                 try
                 {
-                    _ret_var = ((Image)ws.Target).GetOrientation();
+                    _ret_var = ((Image)ws.Target).GetImageOrientation();
                 }
                 catch (Exception e)
                 {
@@ -5517,7 +6042,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         public static Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_set_api_delegate> efl_gfx_image_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_image_orientation_set_api_delegate>(Module, "efl_gfx_image_orientation_set");
 
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageOrientation dir)
+        private static void image_orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.ImageOrientation dir)
         {
             Eina.Log.Debug("function efl_gfx_image_orientation_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -5526,7 +6051,7 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
                                     
                 try
                 {
-                    ((Image)ws.Target).SetOrientation(dir);
+                    ((Image)ws.Target).SetImageOrientation(dir);
                 }
                 catch (Exception e)
                 {
@@ -5615,6 +6140,182 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
         }
 
         private static efl_gfx_view_size_set_delegate efl_gfx_view_size_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_input_clickable_interaction_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_input_clickable_interaction_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate> efl_input_clickable_interaction_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate>(Module, "efl_input_clickable_interaction_get");
+
+        private static bool interaction_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_input_clickable_interaction_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Image)ws.Target).GetInteraction();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_input_clickable_interaction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_input_clickable_interaction_get_delegate efl_input_clickable_interaction_get_static_delegate;
+
+        
+        private delegate void efl_input_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_press_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate> efl_input_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate>(Module, "efl_input_clickable_press");
+
+        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_press was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).Press(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_press_delegate efl_input_clickable_press_static_delegate;
+
+        
+        private delegate void efl_input_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate> efl_input_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate>(Module, "efl_input_clickable_unpress");
+
+        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_unpress was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).Unpress(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_unpress_delegate efl_input_clickable_unpress_static_delegate;
+
+        
+        private delegate void efl_input_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate> efl_input_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate>(Module, "efl_input_clickable_button_state_reset");
+
+        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_button_state_reset was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).ResetButtonState(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_button_state_reset_delegate efl_input_clickable_button_state_reset_static_delegate;
+
+        
+        private delegate void efl_input_clickable_longpress_abort_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
+
+        
+        public delegate void efl_input_clickable_longpress_abort_api_delegate(System.IntPtr obj,  uint button);
+
+        public static Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate> efl_input_clickable_longpress_abort_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate>(Module, "efl_input_clickable_longpress_abort");
+
+        private static void longpress_abort(System.IntPtr obj, System.IntPtr pd, uint button)
+        {
+            Eina.Log.Debug("function efl_input_clickable_longpress_abort was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Image)ws.Target).LongpressAbort(button);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_input_clickable_longpress_abort_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
+            }
+        }
+
+        private static efl_input_clickable_longpress_abort_delegate efl_input_clickable_longpress_abort_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_layout_calc_auto_update_hints_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -6190,111 +6891,6 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
         private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
-        
-        private delegate void efl_ui_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_press_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate> efl_ui_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_press_api_delegate>(Module, "efl_ui_clickable_press");
-
-        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_press was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Image)ws.Target).Press(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_press_delegate efl_ui_clickable_press_static_delegate;
-
-        
-        private delegate void efl_ui_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate> efl_ui_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_unpress_api_delegate>(Module, "efl_ui_clickable_unpress");
-
-        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_unpress was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Image)ws.Target).Unpress(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_unpress_delegate efl_ui_clickable_unpress_static_delegate;
-
-        
-        private delegate void efl_ui_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
-
-        
-        public delegate void efl_ui_clickable_button_state_reset_api_delegate(System.IntPtr obj,  uint button);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate> efl_ui_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_ui_clickable_button_state_reset_api_delegate>(Module, "efl_ui_clickable_button_state_reset");
-
-        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_ui_clickable_button_state_reset was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Image)ws.Target).ResetButtonState(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_ui_clickable_button_state_reset_delegate efl_ui_clickable_button_state_reset_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_draggable_drag_target_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -6374,19 +6970,155 @@ public class Image : Efl.Ui.Widget, Efl.IFile, Efl.IPlayer, Efl.Gfx.IImage, Efl.
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiImage_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Icon<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<System.String>("icon", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> SmoothScale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("smooth_scale", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.ImageScaleType> ScaleType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Efl.Gfx.ImageScaleType>("scale_type", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanUpscale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("can_upscale", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CanDownscale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("can_downscale", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<double> BorderScale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<double>("border_scale", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.BorderFillMode> BorderCenterFill<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Efl.Gfx.BorderFillMode>("border_center_fill", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Gfx.ImageContentHint> ContentHint<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Efl.Gfx.ImageContentHint>("content_hint", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.ImageScaleHint> ScaleHint<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Efl.Gfx.ImageScaleHint>("scale_hint", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Size2D> LoadSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Eina.Size2D>("load_size", fac);
+    }
+
+    public static Efl.BindableProperty<double> LoadDpi<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<double>("load_dpi", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Rect> LoadRegion<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Eina.Rect>("load_region", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("load_orientation", fac);
+    }
+
+    public static Efl.BindableProperty<int> LoadScaleDown<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<int>("load_scale_down", fac);
+    }
+
+    public static Efl.BindableProperty<bool> LoadSkipHeader<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("load_skip_header", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.ImageOrientation> ImageOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Efl.Gfx.ImageOrientation>("image_orientation", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> ViewSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<Eina.Size2D>("view_size", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> DragTarget<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Image, T>magic = null) where T : Efl.Ui.Image {
+        return new Efl.BindableProperty<bool>("drag_target", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
 
 /// <summary>Structure associated with smart callback &apos;download,progress&apos;.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ImageProgress
 {
     /// <summary>Current percentage</summary>
     public double Now;
     /// <summary>Total percentage</summary>
     public double Total;
-    ///<summary>Constructor for ImageProgress.</summary>
+    /// <summary>Constructor for ImageProgress.</summary>
+    /// <param name="Now">Current percentage</param>;
+    /// <param name="Total">Total percentage</param>;
     public ImageProgress(
         double Now = default(double),
         double Total = default(double)    )
@@ -6395,8 +7127,8 @@ public struct ImageProgress
         this.Total = Total;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ImageProgress(IntPtr ptr)
     {
         var tmp = (ImageProgress.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ImageProgress.NativeStruct));
@@ -6405,7 +7137,7 @@ public struct ImageProgress
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ImageProgress.</summary>
+    /// <summary>Internal wrapper for struct ImageProgress.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -6413,7 +7145,7 @@ public struct ImageProgress
         public double Now;
         
         public double Total;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ImageProgress.NativeStruct(ImageProgress _external_struct)
         {
             var _internal_struct = new ImageProgress.NativeStruct();
@@ -6422,7 +7154,7 @@ public struct ImageProgress
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ImageProgress(ImageProgress.NativeStruct _internal_struct)
         {
             var _external_struct = new ImageProgress();
@@ -6447,13 +7179,16 @@ namespace Ui {
 
 /// <summary>Structure associated with smart callback &apos;download,progress&apos;.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ImageError
 {
     /// <summary>Error status of the download</summary>
     public int Status;
     /// <summary><c>true</c> if the error happened when opening the file, <c>false</c> otherwise</summary>
     public bool Open_error;
-    ///<summary>Constructor for ImageError.</summary>
+    /// <summary>Constructor for ImageError.</summary>
+    /// <param name="Status">Error status of the download</param>;
+    /// <param name="Open_error"><c>true</c> if the error happened when opening the file, <c>false</c> otherwise</param>;
     public ImageError(
         int Status = default(int),
         bool Open_error = default(bool)    )
@@ -6462,8 +7197,8 @@ public struct ImageError
         this.Open_error = Open_error;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ImageError(IntPtr ptr)
     {
         var tmp = (ImageError.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ImageError.NativeStruct));
@@ -6472,15 +7207,15 @@ public struct ImageError
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ImageError.</summary>
+    /// <summary>Internal wrapper for struct ImageError.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public int Status;
-        ///<summary>Internal wrapper for field Open_error</summary>
+        /// <summary>Internal wrapper for field Open_error</summary>
         public System.Byte Open_error;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ImageError.NativeStruct(ImageError _external_struct)
         {
             var _internal_struct = new ImageError.NativeStruct();
@@ -6489,7 +7224,7 @@ public struct ImageError
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ImageError(ImageError.NativeStruct _internal_struct)
         {
             var _external_struct = new ImageError();

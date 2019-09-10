@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,7 +14,9 @@ namespace Gfx {
 /// Filters are programmable effects that run whenever the object is rendered on its canvas. The program language is Lua and a complete reference can be found under &quot;EFL Graphics Filters&quot;.
 /// 
 /// This was a beta feature since 1.15.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IFilterConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFilter : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -82,17 +85,38 @@ void GetFilterData(System.String name, out System.String value, out bool execute
 /// <param name="value">String value to use as data</param>
 /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
 void SetFilterData(System.String name, System.String value, bool execute);
-                                    }
+                                        /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <value>The Lua program source code.</value>
+    (System.String, System.String) FilterProgram {
+        get;
+        set;
+    }
+    /// <summary>Set the current state of the filter.
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <value>Current state of the filter</value>
+    (System.String, double, System.String, double, double) FilterState {
+        get;
+        set;
+    }
+    /// <summary>Required padding to apply this filter without cropping.
+    /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
+    (int, int, int, int) FilterPadding {
+        get;
+    }
+}
 /// <summary>Graphical filters can be applied to any object implementing this interface.
 /// Filters are programmable effects that run whenever the object is rendered on its canvas. The program language is Lua and a complete reference can be found under &quot;EFL Graphics Filters&quot;.
 /// 
 /// This was a beta feature since 1.15.</summary>
-sealed public class IFilterConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IFilterConcrete :
     Efl.Eo.EoWrapper
     , IFilter
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -108,11 +132,19 @@ sealed public class IFilterConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFilterConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_filter_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFilter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFilterConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -209,13 +241,53 @@ sealed public class IFilterConcrete :
                                                                                  Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate(this.NativeHandle,name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <value>The Lua program source code.</value>
+    public (System.String, System.String) FilterProgram {
+        get {
+            System.String _out_code = default(System.String);
+            System.String _out_name = default(System.String);
+            GetFilterProgram(out _out_code,out _out_name);
+            return (_out_code,_out_name);
+        }
+        set { SetFilterProgram( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set the current state of the filter.
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <value>Current state of the filter</value>
+    public (System.String, double, System.String, double, double) FilterState {
+        get {
+            System.String _out_cur_state = default(System.String);
+            double _out_cur_val = default(double);
+            System.String _out_next_state = default(System.String);
+            double _out_next_val = default(double);
+            double _out_pos = default(double);
+            GetFilterState(out _out_cur_state,out _out_cur_val,out _out_next_state,out _out_next_val,out _out_pos);
+            return (_out_cur_state,_out_cur_val,_out_next_state,_out_next_val,_out_pos);
+        }
+        set { SetFilterState( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Required padding to apply this filter without cropping.
+    /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
+    public (int, int, int, int) FilterPadding {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetFilterPadding(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -660,3 +732,14 @@ sealed public class IFilterConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIFilterConcrete_ExtensionMethods {
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

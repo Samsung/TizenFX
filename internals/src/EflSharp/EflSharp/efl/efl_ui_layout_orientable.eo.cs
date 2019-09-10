@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Ui {
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
 [Efl.Ui.ILayoutOrientableConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ILayoutOrientable : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -33,18 +35,18 @@ void SetOrientation(Efl.Ui.LayoutOrientation dir);
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <value>Direction of the widget.</value>
     Efl.Ui.LayoutOrientation Orientation {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
-sealed public class ILayoutOrientableConcrete :
+sealed public  class ILayoutOrientableConcrete :
     Efl.Eo.EoWrapper
     , ILayoutOrientable
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -60,11 +62,19 @@ sealed public class ILayoutOrientableConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ILayoutOrientableConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_layout_orientable_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ILayoutOrientable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ILayoutOrientableConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ILayoutOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -102,7 +112,7 @@ sealed public class ILayoutOrientableConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -222,6 +232,16 @@ sealed public class ILayoutOrientableConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiILayoutOrientableConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ILayoutOrientable, T>magic = null) where T : Efl.Ui.ILayoutOrientable {
+        return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Ui {
@@ -232,6 +252,7 @@ namespace Ui {
 /// Not to be confused with <see cref="Efl.Gfx.ImageOrientation"/> which is for images and canvases. This enum is used to define how widgets should expand and orient themselves, not to rotate images.
 /// 
 /// See also <see cref="Efl.Ui.ILayoutOrientable"/>.</summary>
+[Efl.Eo.BindingEntity]
 public enum LayoutOrientation
 {
 /// <summary>Default direction. Each widget may have a different default.</summary>

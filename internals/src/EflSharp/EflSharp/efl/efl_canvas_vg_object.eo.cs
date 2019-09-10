@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,10 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Object.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFrameController
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -36,44 +39,50 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <summary>Initializes a new instance of the <see cref="Object"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Object(Efl.Object parent= null
-            ) : base(efl_canvas_vg_object_class_get(), typeof(Object), parent)
+            ) : base(efl_canvas_vg_object_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Object(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Object"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Object(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Object(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Object"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Object(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Object(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Control how the viewbox is mapped to the vg canvas&apos;s viewport.</summary>
     /// <returns>Fill mode type</returns>
     virtual public Efl.Canvas.Vg.FillMode GetFillMode() {
-         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_fill_mode_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_fill_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control how the viewbox is mapped to the vg canvas&apos;s viewport.</summary>
     /// <param name="fill_mode">Fill mode type</param>
     virtual public void SetFillMode(Efl.Canvas.Vg.FillMode fill_mode) {
-                                 Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_fill_mode_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),fill_mode);
+                                 Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_fill_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fill_mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the current viewbox from the  evas_object_vg</summary>
     /// <returns>viewbox for the vg canvas</returns>
     virtual public Eina.Rect GetViewbox() {
-         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -81,27 +90,27 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <param name="viewbox">viewbox for the vg canvas</param>
     virtual public void SetViewbox(Eina.Rect viewbox) {
          Eina.Rect.NativeStruct _in_viewbox = viewbox;
-                        Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_viewbox);
+                        Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewbox);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control how the viewbox is positioned inside the viewport.</summary>
     /// <param name="align_x">Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</param>
     /// <param name="align_y">Alignment in the vertical axis (0 &lt;= align_y &lt;= 1).</param>
     virtual public void GetViewboxAlign(out double align_x, out double align_y) {
-                                                         Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_align_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out align_x, out align_y);
+                                                         Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_x, out align_y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Control how the viewbox is positioned inside the viewport.</summary>
     /// <param name="align_x">Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</param>
     /// <param name="align_y">Alignment in the vertical axis (0 &lt;= align_y &lt;= 1).</param>
     virtual public void SetViewboxAlign(double align_x, double align_y) {
-                                                         Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_align_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),align_x, align_y);
+                                                         Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_viewbox_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_x, align_y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the root node of the evas_object_vg.</summary>
     /// <returns>Root node of the VG canvas.</returns>
     virtual public Efl.Canvas.Vg.Node GetRootNode() {
-         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_root_node_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_root_node_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -111,13 +120,13 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// It takes the ownership of the root node.</summary>
     /// <param name="root">Root node of the VG canvas.</param>
     virtual public void SetRootNode(Efl.Canvas.Vg.Node root) {
-                                 Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_root_node_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),root);
+                                 Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_root_node_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the default vector size that specified from vector resource.
     /// (Since EFL 1.22)</summary>
     virtual public Eina.Size2D GetDefaultSize() {
-         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_default_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Object.NativeMethods.efl_canvas_vg_object_default_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -125,7 +134,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -135,7 +144,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -144,7 +153,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -154,7 +163,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -165,7 +174,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -174,14 +183,14 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -192,7 +201,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -202,7 +211,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Save the given image object&apos;s contents to an (image) file.
@@ -216,7 +225,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info) {
                          Efl.FileSaveInfo.NativeStruct _in_info = info;
-                                                        var _ret_var = Efl.IFileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file, key, ref _in_info);
+                                                        var _ret_var = Efl.IFileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file, key, ref _in_info);
         Eina.Error.RaiseIfUnhandledException();
                                                 info = _in_info;
         return _ret_var;
@@ -225,7 +234,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// This will be <c>true</c> for animated object for instance but <c>false</c> for a single frame object.</summary>
     /// <returns><c>true</c> if the object is animated</returns>
     virtual public bool GetAnimated() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_animated_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_animated_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -233,7 +242,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// Ranges from 1 to <see cref="Efl.Gfx.IFrameController.GetFrameCount"/>. Valid only if <see cref="Efl.Gfx.IFrameController.GetAnimated"/>.</summary>
     /// <returns>The index of current frame.</returns>
     virtual public int GetFrame() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -241,7 +250,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <param name="frame_index">The index of current frame.</param>
     /// <returns>Returns <c>true</c> if the frame index is valid.</returns>
     virtual public bool SetFrame(int frame_index) {
-                                 var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),frame_index);
+                                 var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),frame_index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -249,7 +258,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// Returns -1 if not animated.</summary>
     /// <returns>The number of frames in the animated object.</returns>
     virtual public int GetFrameCount() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -263,7 +272,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// The default type is <see cref="Efl.Gfx.FrameControllerLoopHint.Loop"/>.</summary>
     /// <returns>Loop type of the animated object.</returns>
     virtual public Efl.Gfx.FrameControllerLoopHint GetLoopType() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_type_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -273,7 +282,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// If 0 is returned, then looping should happen indefinitely (no limit to the number of times it loops).</summary>
     /// <returns>The number of loop of an animated object.</returns>
     virtual public int GetLoopCount() {
-         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_count_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_loop_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -285,7 +294,7 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     /// <param name="frame_num">Number of frames in the sequence, starts from 0.</param>
     /// <returns>Duration in seconds</returns>
     virtual public double GetFrameDuration(int start_frame, int frame_num) {
-                                                         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_duration_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),start_frame, frame_num);
+                                                         var _ret_var = Efl.Gfx.IFrameControllerConcrete.NativeMethods.efl_gfx_frame_controller_frame_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),start_frame, frame_num);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -300,6 +309,17 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
     public Eina.Rect Viewbox {
         get { return GetViewbox(); }
         set { SetViewbox(value); }
+    }
+    /// <summary>Control how the viewbox is positioned inside the viewport.</summary>
+    /// <value>Alignment in the horizontal axis (0 &lt;= align_x &lt;= 1).</value>
+    public (double, double) ViewboxAlign {
+        get {
+            double _out_align_x = default(double);
+            double _out_align_y = default(double);
+            GetViewboxAlign(out _out_align_x,out _out_align_y);
+            return (_out_align_x,_out_align_y);
+        }
+        set { SetViewboxAlign( value.Item1,  value.Item2); }
     }
     /// <summary>Get the root node of the evas_object_vg.</summary>
     /// <value>Root node of the VG canvas.</value>
@@ -1612,6 +1632,48 @@ public class Object : Efl.Canvas.Object, Efl.IFile, Efl.IFileSave, Efl.Gfx.IFram
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgObject_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Canvas.Vg.FillMode> FillMode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Efl.Canvas.Vg.FillMode>("fill_mode", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Viewbox<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Eina.Rect>("viewbox", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Canvas.Vg.Node> RootNode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Efl.Canvas.Vg.Node>("root_node", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<int> Frame<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Object, T>magic = null) where T : Efl.Canvas.Vg.Object {
+        return new Efl.BindableProperty<int>("frame", fac);
+    }
+
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Canvas {
@@ -1619,6 +1681,7 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Enumeration that defines how viewbox will be filled int the vg canvs&apos;s viewport. default Fill_Mode is <c>none</c></summary>
+[Efl.Eo.BindingEntity]
 public enum FillMode
 {
 /// <summary>Don&apos;t scale the viewbox. Placed it inside viewport taking align property into account</summary>

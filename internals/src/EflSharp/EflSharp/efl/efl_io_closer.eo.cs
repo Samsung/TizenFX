@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,6 +16,7 @@ namespace Io {
 /// Calls to <see cref="Efl.Io.ICloser.Close"/> may or may not block, that&apos;s not up to this interface to specify.
 /// (Since EFL 1.22)</summary>
 [Efl.Io.ICloserConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ICloser : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -56,23 +58,23 @@ Eina.Error Close();
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     bool Closed {
-        get ;
+        get;
     }
     /// <summary>If true will automatically close resources on exec() calls.
     /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     bool CloseOnExec {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>If true will automatically close() on object invalidate.
     /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     bool CloseOnInvalidate {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Generic interface for objects that can close themselves.
@@ -80,12 +82,12 @@ Eina.Error Close();
 /// 
 /// Calls to <see cref="Efl.Io.ICloser.Close"/> may or may not block, that&apos;s not up to this interface to specify.
 /// (Since EFL 1.22)</summary>
-sealed public class ICloserConcrete :
+sealed public  class ICloserConcrete :
     Efl.Eo.EoWrapper
     , ICloser
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -101,11 +103,19 @@ sealed public class ICloserConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ICloserConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_closer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ICloser"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ICloserConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ICloserConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -115,7 +125,7 @@ sealed public class ICloserConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -142,14 +152,14 @@ sealed public class ICloserConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_IO_CLOSER_EVENT_CLOSED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ClosedEvt.</summary>
+    /// <summary>Method to raise event ClosedEvt.</summary>
     public void OnClosedEvt(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
@@ -244,7 +254,7 @@ sealed public class ICloserConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -548,3 +558,18 @@ sealed public class ICloserConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_IoICloserConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.ICloser, T>magic = null) where T : Efl.Io.ICloser {
+        return new Efl.BindableProperty<bool>("close_on_exec", fac);
+    }
+
+    public static Efl.BindableProperty<bool> CloseOnInvalidate<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.ICloser, T>magic = null) where T : Efl.Io.ICloser {
+        return new Efl.BindableProperty<bool>("close_on_invalidate", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

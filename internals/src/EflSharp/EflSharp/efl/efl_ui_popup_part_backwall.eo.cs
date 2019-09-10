@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Efl UI Popup internal part backwall class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.PopupPartBackwall.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,31 +37,37 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// <summary>Initializes a new instance of the <see cref="PopupPartBackwall"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public PopupPartBackwall(Efl.Object parent= null
-            ) : base(efl_ui_popup_part_backwall_class_get(), typeof(PopupPartBackwall), parent)
+            ) : base(efl_ui_popup_part_backwall_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected PopupPartBackwall(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="PopupPartBackwall"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected PopupPartBackwall(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected PopupPartBackwall(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="PopupPartBackwall"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected PopupPartBackwall(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected PopupPartBackwall(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Determine whether backwall is set to repeat events.</summary>
     /// <returns>Whether <c>obj</c> is to repeat events (<c>true</c>) or not (<c>false</c>).</returns>
     virtual public bool GetRepeatEvents() {
-         var _ret_var = Efl.Ui.PopupPartBackwall.NativeMethods.efl_ui_popup_part_backwall_repeat_events_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.PopupPartBackwall.NativeMethods.efl_ui_popup_part_backwall_repeat_events_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -68,14 +77,14 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// If <c>repeat</c> is <c>false</c>, events occurring on <c>obj</c> will be processed only on it.</summary>
     /// <param name="repeat">Whether <c>obj</c> is to repeat events (<c>true</c>) or not (<c>false</c>).</param>
     virtual public void SetRepeatEvents(bool repeat) {
-                                 Efl.Ui.PopupPartBackwall.NativeMethods.efl_ui_popup_part_backwall_repeat_events_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),repeat);
+                                 Efl.Ui.PopupPartBackwall.NativeMethods.efl_ui_popup_part_backwall_repeat_events_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),repeat);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the mmaped file from where an object will fetch the real data (it must be an <see cref="Eina.File"/>).
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -85,7 +94,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -94,7 +103,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -104,7 +113,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -115,7 +124,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -124,14 +133,14 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -142,7 +151,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -152,7 +161,7 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Determine whether backwall is set to repeat events.</summary>
@@ -731,3 +740,38 @@ public class PopupPartBackwall : Efl.Ui.LayoutPart, Efl.IFile
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiPopupPartBackwall_ExtensionMethods {
+    public static Efl.BindableProperty<bool> RepeatEvents<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<bool>("repeat_events", fac);
+    }
+public static Efl.BindableProperty<bool> RepeatEvents<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<bool>(part.PartName, "repeat_events", part.Binder);
+    }
+
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<Eina.File>(part.PartName, "mmap", part.Binder);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+public static Efl.BindableProperty<System.String> File<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>(part.PartName, "file", part.Binder);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+public static Efl.BindableProperty<System.String> Key<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.PopupPartBackwall, T>magic = null) where T : Efl.Ui.PopupPartBackwall {
+        return new Efl.BindableProperty<System.String>(part.PartName, "key", part.Binder);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

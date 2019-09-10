@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,10 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics gradient radial class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.GradientRadial.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -36,24 +39,30 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
     /// <summary>Initializes a new instance of the <see cref="GradientRadial"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GradientRadial(Efl.Object parent= null
-            ) : base(efl_canvas_vg_gradient_radial_class_get(), typeof(GradientRadial), parent)
+            ) : base(efl_canvas_vg_gradient_radial_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GradientRadial(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GradientRadial"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GradientRadial(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GradientRadial(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GradientRadial"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GradientRadial(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GradientRadial(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,48 +70,70 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
     /// <param name="x">X co-ordinate of center point</param>
     /// <param name="y">Y co-ordinate of center point</param>
     virtual public void GetCenter(out double x, out double y) {
-                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_center_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_center_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets the center of this radial gradient.</summary>
     /// <param name="x">X co-ordinate of center point</param>
     /// <param name="y">Y co-ordinate of center point</param>
     virtual public void SetCenter(double x, double y) {
-                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_center_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_center_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Gets the center radius of this radial gradient.</summary>
     /// <returns>Center radius</returns>
     virtual public double GetRadius() {
-         var _ret_var = Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_radius_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_radius_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets the center radius of this radial gradient.</summary>
     /// <param name="r">Center radius</param>
     virtual public void SetRadius(double r) {
-                                 Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_radius_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r);
+                                 Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_radius_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the focal point of this radial gradient.</summary>
     /// <param name="x">X co-ordinate of focal point</param>
     /// <param name="y">Y co-ordinate of focal point</param>
     virtual public void GetFocal(out double x, out double y) {
-                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_focal_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_focal_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets the focal point of this radial gradient.</summary>
     /// <param name="x">X co-ordinate of focal point</param>
     /// <param name="y">Y co-ordinate of focal point</param>
     virtual public void SetFocal(double x, double y) {
-                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_focal_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IGradientRadialConcrete.NativeMethods.efl_gfx_gradient_radial_focal_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
+    /// <summary>Gets the center of this radial gradient.</summary>
+    /// <value>X co-ordinate of center point</value>
+    public (double, double) Center {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCenter(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetCenter( value.Item1,  value.Item2); }
+    }
     /// <summary>Gets the center radius of this radial gradient.</summary>
     /// <value>Center radius</value>
     public double Radius {
         get { return GetRadius(); }
         set { SetRadius(value); }
+    }
+    /// <summary>Gets the focal point of this radial gradient.</summary>
+    /// <value>X co-ordinate of focal point</value>
+    public (double, double) Focal {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetFocal(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetFocal( value.Item1,  value.Item2); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -413,3 +444,15 @@ public class GradientRadial : Efl.Canvas.Vg.Gradient, Efl.Gfx.IGradientRadial
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgGradientRadial_ExtensionMethods {
+    
+    public static Efl.BindableProperty<double> Radius<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.GradientRadial, T>magic = null) where T : Efl.Canvas.Vg.GradientRadial {
+        return new Efl.BindableProperty<double>("radius", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

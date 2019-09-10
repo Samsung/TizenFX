@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,7 +12,9 @@ namespace Ui {
 
 /// <summary>Interface for manually handling a group of <see cref="Efl.Ui.Radio"/> buttons.
 /// See the documentation of <see cref="Efl.Ui.Radio"/> for an explanation of radio button grouping.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IRadioGroupConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IRadioGroup : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -44,35 +47,39 @@ void Register(Efl.Ui.Radio radio);
 /// <param name="radio">The radio button to remove from the group.</param>
 void Unregister(Efl.Ui.Radio radio);
                             /// <summary>Emitted each time the <c>selected_value</c> changes. The event information contains the <see cref="Efl.Ui.Radio.StateValue"/> of the newly selected button or -1 if no button is now selected.</summary>
+    /// <value><see cref="Efl.Ui.IRadioGroupValueChangedEvt_Args"/></value>
     event EventHandler<Efl.Ui.IRadioGroupValueChangedEvt_Args> ValueChangedEvt;
     /// <summary>Currently selected button in a radio button group, or <c>NULL</c> if no button is selected.
     /// See also <see cref="Efl.Ui.IRadioGroup.SelectedValue"/>.</summary>
     /// <value>The currently selected radio button in the group, or <c>NULL</c>.</value>
     Efl.Ui.Radio SelectedObject {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The value associated with the currently selected button in the group. Give each radio button in the group a different value using <see cref="Efl.Ui.Radio.StateValue"/>.
     /// A value of -1 means that no button is selected. Only values associated with the buttons in the group (and -1) can be used.</summary>
     /// <value>The value of the currently selected radio button, or -1.</value>
     int SelectedValue {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IRadioGroupValueChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted each time the <c>selected_value</c> changes. The event information contains the <see cref="Efl.Ui.Radio.StateValue"/> of the newly selected button or -1 if no button is now selected.</value>
     public int arg { get; set; }
 }
 /// <summary>Interface for manually handling a group of <see cref="Efl.Ui.Radio"/> buttons.
 /// See the documentation of <see cref="Efl.Ui.Radio"/> for an explanation of radio button grouping.</summary>
-sealed public class IRadioGroupConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IRadioGroupConcrete :
     Efl.Eo.EoWrapper
     , IRadioGroup
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -88,20 +95,29 @@ sealed public class IRadioGroupConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IRadioGroupConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_radio_group_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IRadioGroup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IRadioGroupConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IRadioGroupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Emitted each time the <c>selected_value</c> changes. The event information contains the <see cref="Efl.Ui.Radio.StateValue"/> of the newly selected button or -1 if no button is now selected.</summary>
+    /// <value><see cref="Efl.Ui.IRadioGroupValueChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IRadioGroupValueChangedEvt_Args> ValueChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -129,14 +145,14 @@ sealed public class IRadioGroupConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ValueChangedEvt.</summary>
+    /// <summary>Method to raise event ValueChangedEvt.</summary>
     public void OnValueChangedEvt(Efl.Ui.IRadioGroupValueChangedEvt_Args e)
     {
         var key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
@@ -225,7 +241,7 @@ sealed public class IRadioGroupConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -526,3 +542,17 @@ sealed public class IRadioGroupConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIRadioGroupConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Radio> SelectedObject<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IRadioGroup, T>magic = null) where T : Efl.Ui.IRadioGroup {
+        return new Efl.BindableProperty<Efl.Ui.Radio>("selected_object", fac);
+    }
+
+    public static Efl.BindableProperty<int> SelectedValue<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IRadioGroup, T>magic = null) where T : Efl.Ui.IRadioGroup {
+        return new Efl.BindableProperty<int>("selected_value", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

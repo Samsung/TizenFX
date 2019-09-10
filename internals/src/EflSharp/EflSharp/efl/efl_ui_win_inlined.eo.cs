@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Ui {
 
 /// <summary>An inlined window.
 /// The window is rendered onto an image buffer. No actual window is created, instead the window and all of its contents will be rendered to an image buffer. This allows child windows inside a parent just like any other object.  You can also do other things like apply map effects. This window must have a valid <see cref="Efl.Canvas.Object"/> parent.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WinInlined.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class WinInlined : Efl.Ui.Win
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,12 +37,12 @@ public class WinInlined : Efl.Ui.Win
         efl_ui_win_inlined_class_get();
     /// <summary>Initializes a new instance of the <see cref="WinInlined"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
-    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName"/></param>
-    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType"/></param>
-    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
+    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
+    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
     public WinInlined(Efl.Object parent
-            , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_inlined_class_get(), typeof(WinInlined), parent)
+            , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_inlined_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -64,26 +67,32 @@ public class WinInlined : Efl.Ui.Win
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected WinInlined(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="WinInlined"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected WinInlined(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected WinInlined(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="WinInlined"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected WinInlined(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected WinInlined(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>This property holds the parent object in the parent canvas.</summary>
     /// <returns>An object in the parent canvas.</returns>
     virtual public Efl.Canvas.Object GetInlinedParent() {
-         var _ret_var = Efl.Ui.WinInlined.NativeMethods.efl_ui_win_inlined_parent_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.WinInlined.NativeMethods.efl_ui_win_inlined_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -174,3 +183,10 @@ public class WinInlined : Efl.Ui.Win
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWinInlined_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

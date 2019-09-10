@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -15,10 +16,12 @@ namespace Ui {
 /// Creating objects is costly and time consuming, keeping a few on hand for when you next will need them helps a lot. This is what this factory caching infrastructure provides. It will create the object from the class defined on it and set the parent and the model as needed for all created items. The View has to release the Item using the release function of the Factory interface for all of this to work properly.
 /// 
 /// The cache might decide to flush itself when the application event pause is triggered.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.CachingFactory.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class CachingFactory : Efl.Ui.WidgetFactory
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -38,9 +41,9 @@ public class CachingFactory : Efl.Ui.WidgetFactory
         efl_ui_caching_factory_class_get();
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass"/></param>
+    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public CachingFactory(Efl.Object parent
-            , Type itemClass = null) : base(efl_ui_caching_factory_class_get(), typeof(CachingFactory), parent)
+            , Type itemClass = null) : base(efl_ui_caching_factory_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(itemClass))
         {
@@ -50,46 +53,52 @@ public class CachingFactory : Efl.Ui.WidgetFactory
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected CachingFactory(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected CachingFactory(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected CachingFactory(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected CachingFactory(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected CachingFactory(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <returns>When set to zero, there is no limit on the amount of memory the cache will use.</returns>
     virtual public uint GetMemoryLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <param name="limit">When set to zero, there is no limit on the amount of memory the cache will use.</param>
     virtual public void SetMemoryLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),limit);
+                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <returns>When set to zero, there is no limit to the amount of items stored in the cache.</returns>
     virtual public uint GetItemsLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <param name="limit">When set to zero, there is no limit to the amount of items stored in the cache.</param>
     virtual public void SetItemsLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),limit);
+                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
@@ -322,3 +331,17 @@ public class CachingFactory : Efl.Ui.WidgetFactory
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiCachingFactory_ExtensionMethods {
+    public static Efl.BindableProperty<uint> MemoryLimit<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CachingFactory, T>magic = null) where T : Efl.Ui.CachingFactory {
+        return new Efl.BindableProperty<uint>("memory_limit", fac);
+    }
+
+    public static Efl.BindableProperty<uint> ItemsLimit<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.CachingFactory, T>magic = null) where T : Efl.Ui.CachingFactory {
+        return new Efl.BindableProperty<uint>("items_limit", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

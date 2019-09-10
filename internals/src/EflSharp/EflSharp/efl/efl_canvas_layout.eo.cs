@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,16 +10,20 @@ namespace Efl {
 
 namespace Canvas {
 
-///<summary>Event argument wrapper for event <see cref="Efl.Canvas.Layout.PartInvalidEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Layout.PartInvalidEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LayoutPartInvalidEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Emitted when trying to use an invalid part. The value passed is the part name.</value>
     public System.String arg { get; set; }
 }
 /// <summary>Edje object class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Layout.NativeMethods]
-public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver, Efl.IPart, Efl.IPlayer, Efl.Gfx.IColorClass, Efl.Gfx.ISizeClass, Efl.Gfx.ITextClass, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal
+[Efl.Eo.BindingEntity]
+public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver, Efl.IPart, Efl.IPlayer, Efl.Gfx.IColorClass, Efl.Gfx.ISizeClass, Efl.Gfx.ITextClass, Efl.Layout.ICalc, Efl.Layout.IGroup, Efl.Layout.ISignal, Efl.Ui.II18n
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -39,33 +44,40 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Layout(Efl.Object parent= null
-            ) : base(efl_canvas_layout_class_get(), typeof(Layout), parent)
+            ) : base(efl_canvas_layout_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Layout(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Layout(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Layout(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Layout"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Layout(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Layout(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Emitted when trying to use an invalid part. The value passed is the part name.</summary>
+    /// <value><see cref="Efl.Canvas.LayoutPartInvalidEvt_Args"/></value>
     public event EventHandler<Efl.Canvas.LayoutPartInvalidEvt_Args> PartInvalidEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -93,14 +105,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_PART_INVALID";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PartInvalidEvt.</summary>
+    /// <summary>Method to raise event PartInvalidEvt.</summary>
     public void OnPartInvalidEvt(Efl.Canvas.LayoutPartInvalidEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_PART_INVALID";
@@ -123,11 +135,12 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -155,14 +168,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -178,11 +191,12 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -210,14 +224,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -237,7 +251,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -264,14 +278,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_RECALC";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
-    ///<summary>Method to raise event RecalcEvt.</summary>
+    /// <summary>Method to raise event RecalcEvt.</summary>
     public void OnRecalcEvt(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
@@ -286,11 +300,12 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
     public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -318,14 +333,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
                 RemoveNativeEventHandler(efl.Libs.Edje, key, value);
             }
         }
     }
-    ///<summary>Method to raise event CircularDependencyEvt.</summary>
+    /// <summary>Method to raise event CircularDependencyEvt.</summary>
     public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
@@ -342,14 +357,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <summary>Get the current state of animation, <c>true</c> by default.</summary>
     /// <returns>The animation state, <c>true</c> by default.</returns>
     virtual public bool GetAnimation() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start or stop animating this object.</summary>
     /// <param name="on">The animation state, <c>true</c> by default.</param>
     virtual public void SetAnimation(bool on) {
-                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),on);
+                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_animation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),on);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the seat device given its Edje&apos;s name.
@@ -357,7 +372,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="name">The name&apos;s character string.</param>
     /// <returns>The seat device or <c>null</c> if not found.</returns>
     virtual public Efl.Input.Device GetSeat(System.String name) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -366,212 +381,212 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="device">The seat device</param>
     /// <returns>The name&apos;s character string or <c>null</c> if not found.</returns>
     virtual public System.String GetSeatName(Efl.Input.Device device) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_name_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),device);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_seat_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),device);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Gets the (last) file loading error for a given object.</summary>
     /// <returns>The load error code.</returns>
     virtual public Eina.Error GetLayoutLoadError() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_load_error_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_load_error_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets the object text min calculation policy.
     /// Do not use this API without understanding whats going on. It is made for internal usage.
     /// 
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="state_name">The state name</param>
     /// <param name="min_x">The min width policy</param>
     /// <param name="min_y">The min height policy</param>
     /// <returns><c>true</c> on success, or <c>false</c> on error</returns>
     virtual public bool GetPartTextMinPolicy(System.String part, System.String state_name, out bool min_x, out bool min_y) {
-                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, state_name, out min_x, out min_y);
+                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, state_name, out min_x, out min_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
     /// <summary>Sets the object text min calculation policy.
     /// Do not use this API without understanding whats going on. It is made for internal usage.
     /// 
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="state_name">The state name</param>
     /// <param name="min_x">The min width policy</param>
     /// <param name="min_y">The min height policy</param>
     /// <returns><c>true</c> on success, or <c>false</c> on error</returns>
     virtual public bool SetPartTextMinPolicy(System.String part, System.String state_name, bool min_x, bool min_y) {
-                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, state_name, min_x, min_y);
+                                                                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_min_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, state_name, min_x, min_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                         return _ret_var;
  }
     /// <summary>Gets the valign for text.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartTextValign(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the valign for text.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextValign(System.String part, double valign) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, valign);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_valign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, valign);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the duration for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The duration. 0.0 for respect EDC&apos;s duration value.</returns>
     virtual public double GetPartTextMarqueeDuration(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the duration for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="duration">The duration. 0.0 for respect EDC&apos;s duration value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeDuration(System.String part, double duration) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, duration);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_duration_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, duration);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the speed for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The speed. 0.0 for respect EDC&apos;s speed value.</returns>
     virtual public double GetPartTextMarqueeSpeed(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the speed for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="speed">The speed. 0.0 for respect EDC&apos;s speed value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeSpeed(System.String part, double speed) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, speed);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, speed);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the always mode for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The always mode</returns>
     virtual public bool GetPartTextMarqueeAlways(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the always mode for text&apos;s marquee.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="always">The always mode</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartTextMarqueeAlways(System.String part, bool always) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, always);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_marquee_always_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, always);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the valign for a common description.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <returns>The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</returns>
     virtual public double GetPartValign(System.String part) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the valign for a common description.
-    /// Do not use this API without understanding whats going on. It is made for internal usage. @internal</summary>
+    /// Do not use this API without understanding whats going on. It is made for internal usage. internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="valign">The valign 0.0~1.0. -1.0 for respect EDC&apos;s align value.</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetPartValign(System.String part, double valign) {
-                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, valign);
+                                                         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_valign_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, valign);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Iterates over all accessibility-enabled part names.</summary>
     /// <returns>Part name iterator</returns>
     virtual public Eina.Iterator<System.String> AccessPartIterate() {
-         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_access_part_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_access_part_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<System.String>(_ret_var, true, false);
+        return new Eina.Iterator<System.String>(_ret_var, true);
  }
     /// <summary>Unswallow an object from this Edje.</summary>
     /// <param name="content">To be removed content.</param>
     /// <returns><c>false</c> if <c>content</c> was not a child or can not be removed.</returns>
     virtual public bool ContentRemove(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_content_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),content);
+                                 var _ret_var = Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_content_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Sets the parent object for color class.
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     /// <param name="parent">The parent object for color class</param>
     virtual public void SetColorClassParent(Efl.Object parent) {
-                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),parent);
+                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Unsets the parent object for color class.
-    /// @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif @internal</summary>
+    /// if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif internal</summary>
     virtual public void UnsetColorClassParent() {
-         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_unset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_color_class_parent_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get a position of the given cursor
-    /// @internal</summary>
+    /// internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="cur">cursor type</param>
     /// <param name="x">w</param>
     /// <param name="y">h</param>
     virtual public void GetPartTextCursorCoord(System.String part, Edje.Cursor cur, out int x, out int y) {
-                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_coord_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, cur, out x, out y);
+                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_coord_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, cur, out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get a size of the given cursor
-    /// @internal</summary>
+    /// internal</summary>
     /// <param name="part">The part name</param>
     /// <param name="cur">cursor type</param>
     /// <param name="w">w</param>
     /// <param name="h">h</param>
     virtual public void GetPartTextCursorSize(System.String part, Edje.Cursor cur, out int w, out int h) {
-                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, cur, out w, out h);
+                                                                                                         Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, cur, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Returns the cursor geometry of the part relative to the edje object. The cursor geometry is kept in mouse down and move.
-    /// @internal @if MOBILE @since_tizen 3.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+    /// internal if MOBILE since_tizen 3.0 elseif WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="part">The part name</param>
     /// <param name="x">Cursor X position</param>
     /// <param name="y">Cursor Y position</param>
     /// <param name="w">Cursor width</param>
     /// <param name="h">Cursor height</param>
     virtual public void GetPartTextCursorOnMouseGeometry(System.String part, out int x, out int y, out int w, out int h) {
-                                                                                                                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_on_mouse_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part, out x, out y, out w, out h);
+                                                                                                                                 Efl.Canvas.Layout.NativeMethods.efl_canvas_layout_part_text_cursor_on_mouse_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part, out x, out y, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -579,7 +594,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The handle to the <see cref="Eina.File"/> that will be used</returns>
     virtual public Eina.File GetMmap() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -589,7 +604,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="f">The handle to the <see cref="Eina.File"/> that will be used</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetMmap(Eina.File f) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),f);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_mmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),f);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -598,7 +613,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The file path.</returns>
     virtual public System.String GetFile() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -608,7 +623,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="file">The file path.</param>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error SetFile(System.String file) {
-                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),file);
+                                 var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),file);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -619,7 +634,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</returns>
     virtual public System.String GetKey() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_key_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -628,14 +643,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <param name="key">The group that the data belongs to. See the class documentation for particular implementations of this interface to see how this property is used.</param>
     virtual public void SetKey(System.String key) {
-                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 Efl.IFileConcrete.NativeMethods.efl_file_key_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the load state of the object.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is loaded, <c>false</c> otherwise.</returns>
     virtual public bool GetLoaded() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_loaded_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -646,7 +661,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on success, error code otherwise</returns>
     virtual public Eina.Error Load() {
-         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IFileConcrete.NativeMethods.efl_file_load_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -656,7 +671,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// Calling <see cref="Efl.IFile.Unload"/> on an object which is not currently loaded will have no effect.
     /// (Since EFL 1.22)</summary>
     virtual public void Unload() {
-         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IFileConcrete.NativeMethods.efl_file_unload_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Update observer according to the changes of observable object.</summary>
@@ -664,7 +679,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update the observer, usually passed by observable object</param>
     virtual public void Update(Efl.Object obs, System.String key, System.IntPtr data) {
-                                                                                 Efl.IObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),obs, key, data);
+                                                                                 Efl.IObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),obs, key, data);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Get a proxy object referring to a part of an object.
@@ -672,21 +687,21 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="name">The part name.</param>
     /// <returns>A (proxy) object, valid for a single call.</returns>
     virtual public Efl.Object GetPart(System.String name) {
-                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Whether or not the playable can be played.</summary>
     /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
     virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get play/pause state of the media file.</summary>
     /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
     virtual public bool GetPlay() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -694,14 +709,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
     virtual public void SetPlay(bool play) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),play);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),play);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the position in the media file.
     /// The position is returned as the number of seconds since the beginning of the media file.</summary>
     /// <returns>The position (in seconds).</returns>
     virtual public double GetPos() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -709,14 +724,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <param name="sec">The position (in seconds).</param>
     virtual public void SetPos(double sec) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),sec);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get how much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <returns>The progress within the [0, 1] range.</returns>
     virtual public double GetProgress() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -724,7 +739,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <returns>The play speed in the [0, infinity) range.</returns>
     virtual public double GetPlaySpeed() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -732,14 +747,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <param name="speed">The play speed in the [0, infinity) range.</param>
     virtual public void SetPlaySpeed(double speed) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),speed);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),speed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <returns>The volume level</returns>
     virtual public double GetVolume() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -747,44 +762,44 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <param name="volume">The volume level</param>
     virtual public void SetVolume(double volume) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),volume);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),volume);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property controls the audio mute state.</summary>
     /// <returns>The mute state. <c>true</c> or <c>false</c>.</returns>
     virtual public bool GetMute() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property controls the audio mute state.</summary>
     /// <param name="mute">The mute state. <c>true</c> or <c>false</c>.</param>
     virtual public void SetMute(bool mute) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mute);
+                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mute);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     virtual public double GetLength() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start a playing playable object.</summary>
     virtual public void Start() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stop playable object.</summary>
     virtual public void Stop() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get the color of color class.
@@ -801,7 +816,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if getting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool GetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, out r, out g, out b, out a);
+                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                         return _ret_var;
  }
@@ -821,7 +836,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool SetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, r, g, b, a);
+                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                         return _ret_var;
  }
@@ -837,7 +852,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="layer">The layer to set the color</param>
     /// <returns>the hex color code.</returns>
     virtual public System.String GetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer) {
-                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer);
+                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -854,7 +869,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="colorcode">the hex color code.</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     virtual public bool SetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode) {
-                                                                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class, layer, colorcode);
+                                                                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class, layer, colorcode);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -863,7 +878,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="color_class">The name of color class</param>
     /// <returns>The description of the target color class or <c>null</c> if not found</returns>
     virtual public System.String GetColorClassDescription(System.String color_class) {
-                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class);
+                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -875,13 +890,13 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// Deleting the color class will emit the signal &quot;color_class,del&quot; for the given Edje object.</summary>
     /// <param name="color_class">The name of color_class</param>
     virtual public void DelColorClass(System.String color_class) {
-                                 Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),color_class);
+                                 Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),color_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delete all color classes defined in object level.
     /// This function deletes any color classes defined in object level. Clearing color classes will revert the color of all edje parts to the values defined in global level or theme file.</summary>
     virtual public void ClearColorClass() {
-         Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Get width and height of size class.
@@ -893,7 +908,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="maxh">maximum height</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool GetSizeClass(System.String size_class, out int minw, out int minh, out int maxw, out int maxh) {
-                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class, out minw, out minh, out maxw, out maxh);
+                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class, out minw, out minh, out maxw, out maxh);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -906,7 +921,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="maxh">maximum height</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetSizeClass(System.String size_class, int minw, int minh, int maxw, int maxh) {
-                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class, minw, minh, maxw, maxh);
+                                                                                                                                 var _ret_var = Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class, minw, minh, maxw, maxh);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -916,7 +931,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// Deleting the size class will revert it to the values defined by <see cref="Efl.Gfx.ISizeClass.GetSizeClass"/> or the size class defined in the theme file.</summary>
     /// <param name="size_class">The size class to be deleted.</param>
     virtual public void DelSizeClass(System.String size_class) {
-                                 Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),size_class);
+                                 Efl.Gfx.ISizeClassConcrete.NativeMethods.efl_gfx_size_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get font and font size from edje text class.
@@ -926,7 +941,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="size">Font Size</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool GetTextClass(System.String text_class, out System.String font, out Efl.Font.Size size) {
-                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class, out font, out size);
+                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class, out font, out size);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -937,7 +952,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="size">Font Size</param>
     /// <returns><c>true</c>, on success or <c>false</c>, on error</returns>
     virtual public bool SetTextClass(System.String text_class, System.String font, Efl.Font.Size size) {
-                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class, font, size);
+                                                                                 var _ret_var = Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class, font, size);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -947,14 +962,14 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// Deleting the text class will revert it to the values defined by <see cref="Efl.Gfx.ITextClass.GetTextClass"/> or the text class defined in the theme file.</summary>
     /// <param name="text_class">The text class to be deleted.</param>
     virtual public void DelTextClass(System.String text_class) {
-                                 Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text_class);
+                                 Efl.Gfx.ITextClassConcrete.NativeMethods.efl_gfx_text_class_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text_class);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object updates its size hints automatically.
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     virtual public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -962,7 +977,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
     virtual public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),update);
+                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -976,7 +991,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <returns>The minimum required size.</returns>
     virtual public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_restricted);
+                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -987,7 +1002,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     virtual public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -998,7 +1013,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     virtual public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1011,7 +1026,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     virtual public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1021,7 +1036,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
     virtual public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
@@ -1035,7 +1050,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1050,7 +1065,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     virtual public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -1066,7 +1081,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
     virtual public System.String GetGroupData(System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1075,7 +1090,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
     virtual public bool GetPartExist(System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),part);
+                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -1089,7 +1104,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
     virtual public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id, msg);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -1099,7 +1114,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// 
     /// Though there are those common uses for the two strings, one is free to use them however they like.
     /// 
-    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[&quot; set of <c>fnmatch</c>() operators can be used, both for emission and source.
+    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
     /// 
     /// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
     /// 
@@ -1115,7 +1130,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1130,7 +1145,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     virtual public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -1144,7 +1159,7 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     virtual public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),emission, source);
+                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -1154,7 +1169,54 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
     virtual public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),recurse);
+                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),recurse);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
+    virtual public bool GetMirrored() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
+    virtual public void SetMirrored(bool rtl) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rtl);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <returns>Whether the widget uses automatic mirroring</returns>
+    virtual public bool GetMirroredAutomatic() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <param name="automatic">Whether the widget uses automatic mirroring</param>
+    virtual public void SetMirroredAutomatic(bool automatic) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>Gets the language for this object.</summary>
+    /// <returns>The current language.</returns>
+    virtual public System.String GetLanguage() {
+         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Sets the language for this object.</summary>
+    /// <param name="language">The current language.</param>
+    virtual public void SetLanguage(System.String language) {
+                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),language);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether this object is animating or not.
@@ -1291,6 +1353,28 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
     /// <value>The maximum size as set in EDC.</value>
     public Eina.Size2D GroupSizeMax {
         get { return GetGroupSizeMax(); }
+    }
+    /// <summary>Whether this object should be mirrored.
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
+    public bool Mirrored {
+        get { return GetMirrored(); }
+        set { SetMirrored(value); }
+    }
+    /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <value>Whether the widget uses automatic mirroring</value>
+    public bool MirroredAutomatic {
+        get { return GetMirroredAutomatic(); }
+        set { SetMirroredAutomatic(value); }
+    }
+    /// <summary>The (human) language for this object.</summary>
+    /// <value>The current language.</value>
+    public System.String Language {
+        get { return GetLanguage(); }
+        set { SetLanguage(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -2126,6 +2210,66 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
             if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_get_static_delegate == null)
+            {
+                efl_ui_mirrored_get_static_delegate = new efl_ui_mirrored_get_delegate(mirrored_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetMirrored") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_get_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_set_static_delegate == null)
+            {
+                efl_ui_mirrored_set_static_delegate = new efl_ui_mirrored_set_delegate(mirrored_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetMirrored") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_set_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_automatic_get_static_delegate == null)
+            {
+                efl_ui_mirrored_automatic_get_static_delegate = new efl_ui_mirrored_automatic_get_delegate(mirrored_automatic_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetMirroredAutomatic") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_get_static_delegate) });
+            }
+
+            if (efl_ui_mirrored_automatic_set_static_delegate == null)
+            {
+                efl_ui_mirrored_automatic_set_static_delegate = new efl_ui_mirrored_automatic_set_delegate(mirrored_automatic_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetMirroredAutomatic") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_set_static_delegate) });
+            }
+
+            if (efl_ui_language_get_static_delegate == null)
+            {
+                efl_ui_language_get_static_delegate = new efl_ui_language_get_delegate(language_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetLanguage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_get_static_delegate) });
+            }
+
+            if (efl_ui_language_set_static_delegate == null)
+            {
+                efl_ui_language_set_static_delegate = new efl_ui_language_set_delegate(language_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetLanguage") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_set_static_delegate) });
             }
 
             descs.AddRange(base.GetEoOps(type));
@@ -5072,6 +5216,219 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
         private static efl_layout_signal_process_delegate efl_layout_signal_process_static_delegate;
 
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_mirrored_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_mirrored_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate> efl_ui_mirrored_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate>(Module, "efl_ui_mirrored_get");
+
+        private static bool mirrored_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetMirrored();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_mirrored_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_mirrored_get_delegate efl_ui_mirrored_get_static_delegate;
+
+        
+        private delegate void efl_ui_mirrored_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool rtl);
+
+        
+        public delegate void efl_ui_mirrored_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool rtl);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate> efl_ui_mirrored_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate>(Module, "efl_ui_mirrored_set");
+
+        private static void mirrored_set(System.IntPtr obj, System.IntPtr pd, bool rtl)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetMirrored(rtl);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_mirrored_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), rtl);
+            }
+        }
+
+        private static efl_ui_mirrored_set_delegate efl_ui_mirrored_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_ui_mirrored_automatic_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_ui_mirrored_automatic_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate> efl_ui_mirrored_automatic_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate>(Module, "efl_ui_mirrored_automatic_get");
+
+        private static bool mirrored_automatic_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_automatic_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetMirroredAutomatic();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_mirrored_automatic_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_mirrored_automatic_get_delegate efl_ui_mirrored_automatic_get_static_delegate;
+
+        
+        private delegate void efl_ui_mirrored_automatic_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool automatic);
+
+        
+        public delegate void efl_ui_mirrored_automatic_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool automatic);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate> efl_ui_mirrored_automatic_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate>(Module, "efl_ui_mirrored_automatic_set");
+
+        private static void mirrored_automatic_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
+        {
+            Eina.Log.Debug("function efl_ui_mirrored_automatic_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetMirroredAutomatic(automatic);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_mirrored_automatic_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), automatic);
+            }
+        }
+
+        private static efl_ui_mirrored_automatic_set_delegate efl_ui_mirrored_automatic_set_static_delegate;
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        private delegate System.String efl_ui_language_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+        public delegate System.String efl_ui_language_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate> efl_ui_language_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate>(Module, "efl_ui_language_get");
+
+        private static System.String language_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_ui_language_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            System.String _ret_var = default(System.String);
+                try
+                {
+                    _ret_var = ((Layout)ws.Target).GetLanguage();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_ui_language_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_ui_language_get_delegate efl_ui_language_get_static_delegate;
+
+        
+        private delegate void efl_ui_language_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
+
+        
+        public delegate void efl_ui_language_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate> efl_ui_language_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate>(Module, "efl_ui_language_set");
+
+        private static void language_set(System.IntPtr obj, System.IntPtr pd, System.String language)
+        {
+            Eina.Log.Debug("function efl_ui_language_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((Layout)ws.Target).SetLanguage(language);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_ui_language_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), language);
+            }
+        }
+
+        private static efl_ui_language_set_delegate efl_ui_language_set_static_delegate;
+
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -5080,3 +5437,84 @@ public class Layout : Efl.Canvas.Group, Efl.IContainer, Efl.IFile, Efl.IObserver
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasLayout_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Animation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("animation", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.File> Mmap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<Eina.File>("mmap", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> File<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("file", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Key<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("key", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("play", fac);
+    }
+
+    public static Efl.BindableProperty<double> Pos<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("pos", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> PlaySpeed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("play_speed", fac);
+    }
+
+    public static Efl.BindableProperty<double> Volume<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<double>("volume", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Mute<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mute", fac);
+    }
+
+    
+    
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<bool> Mirrored<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mirrored", fac);
+    }
+
+    public static Efl.BindableProperty<bool> MirroredAutomatic<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<bool>("mirrored_automatic", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Language<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Layout, T>magic = null) where T : Efl.Canvas.Layout {
+        return new Efl.BindableProperty<System.String>("language", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

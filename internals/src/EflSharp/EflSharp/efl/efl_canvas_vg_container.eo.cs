@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,10 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics container class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Container.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Container : Efl.Canvas.Vg.Node
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -36,24 +39,30 @@ public class Container : Efl.Canvas.Vg.Node
     /// <summary>Initializes a new instance of the <see cref="Container"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Container(Efl.Object parent= null
-            ) : base(efl_canvas_vg_container_class_get(), typeof(Container), parent)
+            ) : base(efl_canvas_vg_container_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Container(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Container"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Container(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Container(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Container"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Container(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Container(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -61,16 +70,16 @@ public class Container : Efl.Canvas.Vg.Node
     /// <param name="name">Child node name</param>
     /// <returns>Child object</returns>
     virtual public Efl.Canvas.Vg.Node GetChild(System.String name) {
-                                 var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_child_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_child_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get all children of container</summary>
     /// <returns>Iterator to children</returns>
     virtual public Eina.Iterator<Efl.Canvas.Vg.Node> GetChildren() {
-         var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_children_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Canvas.Vg.Node>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Canvas.Vg.Node>(_ret_var, true);
  }
     private static IntPtr GetEflClassStatic()
     {
@@ -202,3 +211,9 @@ public class Container : Efl.Canvas.Vg.Node
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgContainer_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

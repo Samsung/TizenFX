@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,7 +9,9 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>This is an interface interactive text inputs should implement</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ITextInteractiveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextInteractive : 
     Efl.IText ,
     Efl.ITextFont ,
@@ -44,24 +47,32 @@ void SelectNone();
     /// <summary>Whether or not selection is allowed on this object</summary>
     /// <value><c>true</c> if enabled, <c>false</c> otherwise</value>
     bool SelectionAllowed {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>The cursors used for selection handling.
+    /// If the cursors are equal there&apos;s no selection.
+    /// 
+    /// You are allowed to retain and modify them. Modifying them modifies the selection of the object.</summary>
+    (Efl.TextCursorCursor, Efl.TextCursorCursor) SelectionCursors {
+        get;
     }
     /// <summary>Whether the entry is editable.
     /// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
     /// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
     bool Editable {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>This is an interface interactive text inputs should implement</summary>
-sealed public class ITextInteractiveConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextInteractiveConcrete :
     Efl.Eo.EoWrapper
     , ITextInteractive
     , Efl.IText, Efl.ITextFont, Efl.ITextFormat, Efl.ITextStyle
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -77,11 +88,19 @@ sealed public class ITextInteractiveConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextInteractiveConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_text_interactive_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextInteractive"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextInteractiveConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextInteractiveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -90,7 +109,7 @@ sealed public class ITextInteractiveConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -117,14 +136,14 @@ sealed public class ITextInteractiveConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_TEXT_INTERACTIVE_EVENT_TEXT_SELECTION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event TextSelectionChangedEvt.</summary>
+    /// <summary>Method to raise event TextSelectionChangedEvt.</summary>
     public void OnTextSelectionChangedEvt(EventArgs e)
     {
         var key = "_EFL_TEXT_INTERACTIVE_EVENT_TEXT_SELECTION_CHANGED";
@@ -211,6 +230,8 @@ sealed public class ITextInteractiveConcrete :
                                          }
     /// <summary>Set the font family, filename and size for a given text object.
     /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// 
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
     /// 
     /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
     /// <param name="font">The font family name or filename.</param>
@@ -780,12 +801,38 @@ sealed public class ITextInteractiveConcrete :
         get { return GetSelectionAllowed(); }
         set { SetSelectionAllowed(value); }
     }
+    /// <summary>The cursors used for selection handling.
+    /// If the cursors are equal there&apos;s no selection.
+    /// 
+    /// You are allowed to retain and modify them. Modifying them modifies the selection of the object.</summary>
+    public (Efl.TextCursorCursor, Efl.TextCursorCursor) SelectionCursors {
+        get {
+            Efl.TextCursorCursor _out_start = default(Efl.TextCursorCursor);
+            Efl.TextCursorCursor _out_end = default(Efl.TextCursorCursor);
+            GetSelectionCursors(out _out_start,out _out_end);
+            return (_out_start,_out_end);
+        }
+    }
     /// <summary>Whether the entry is editable.
     /// By default text interactives are editable. However setting this property to <c>false</c> will make it so that key input will be disregarded.</summary>
     /// <value>If <c>true</c>, user input will be inserted in the entry, if not, the entry is read-only and no user input is allowed.</value>
     public bool Editable {
         get { return GetEditable(); }
         set { SetEditable(value); }
+    }
+    /// <summary>Retrieve the font family and size in use on a given text object.
+    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// <value>The font family name or filename.</value>
+    public (System.String, Efl.Font.Size) Font {
+        get {
+            System.String _out_font = default(System.String);
+            Efl.Font.Size _out_size = default(Efl.Font.Size);
+            GetFont(out _out_font,out _out_size);
+            return (_out_font,_out_size);
+        }
+        set { SetFont( value.Item1,  value.Item2); }
     }
     /// <summary>Get the font file&apos;s path which is being used on a given text object.
     /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
@@ -905,11 +952,37 @@ sealed public class ITextInteractiveConcrete :
         get { return GetReplacementChar(); }
         set { SetReplacementChar(value); }
     }
+    /// <summary>Color of text, excluding style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) NormalColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetNormalColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetNormalColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Enable or disable backing type</summary>
     /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
+    }
+    /// <summary>Backing color</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) BackingColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetBackingColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetBackingColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Sets an underline style on the text</summary>
     /// <value>Underline type</value>
@@ -917,11 +990,37 @@ sealed public class ITextInteractiveConcrete :
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
+    /// <summary>Color of normal underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Height of underline style</summary>
     /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
+    }
+    /// <summary>Color of dashed underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineDashedColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineDashedColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineDashedColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Width of dashed underline style</summary>
     /// <value>Width</value>
@@ -935,11 +1034,37 @@ sealed public class ITextInteractiveConcrete :
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
+    /// <summary>Color of underline2 style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Underline2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderline2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderline2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Type of strikethrough style</summary>
     /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
+    }
+    /// <summary>Color of strikethrough_style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) StrikethroughColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetStrikethroughColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetStrikethroughColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <value>Effect type</value>
@@ -947,11 +1072,63 @@ sealed public class ITextInteractiveConcrete :
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
+    /// <summary>Color of outline effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) OutlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetOutlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetOutlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Direction of shadow effect</summary>
     /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
+    }
+    /// <summary>Color of shadow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) ShadowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetShadowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetShadowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Color of glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) GlowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Second color of the glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Glow2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlow2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlow2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
@@ -966,7 +1143,7 @@ sealed public class ITextInteractiveConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -4805,3 +4982,138 @@ sealed public class ITextInteractiveConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextInteractiveConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> SelectionAllowed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<bool>("selection_allowed", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> Editable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<bool>("editable", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<System.String> FontSource<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<System.String>("font_source", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontFallbacks<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<System.String>("font_fallbacks", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWeight> FontWeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFontWeight>("font_weight", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontSlant> FontSlant<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFontSlant>("font_slant", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontWidth> FontWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFontWidth>("font_width", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> FontLang<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<System.String>("font_lang", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFontBitmapScalable> FontBitmapScalable<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFontBitmapScalable>("font_bitmap_scalable", fac);
+    }
+
+    public static Efl.BindableProperty<double> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("ellipsis", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatWrap> Wrap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFormatWrap>("wrap", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Multiline<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<bool>("multiline", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType> HalignAutoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextFormatHorizontalAlignmentAutoType>("halign_auto_type", fac);
+    }
+
+    public static Efl.BindableProperty<double> Halign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("halign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Valign<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("valign", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linegap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("linegap", fac);
+    }
+
+    public static Efl.BindableProperty<double> Linerelgap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("linerelgap", fac);
+    }
+
+    public static Efl.BindableProperty<int> Tabstops<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<int>("tabstops", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Password<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<bool>("password", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> ReplacementChar<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<System.String>("replacement_char", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleBackingType> BackingType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextStyleBackingType>("backing_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleUnderlineType> UnderlineType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextStyleUnderlineType>("underline_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> UnderlineHeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<double>("underline_height", fac);
+    }
+
+    
+    public static Efl.BindableProperty<int> UnderlineDashedWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<int>("underline_dashed_width", fac);
+    }
+
+    public static Efl.BindableProperty<int> UnderlineDashedGap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<int>("underline_dashed_gap", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleStrikethroughType> StrikethroughType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextStyleStrikethroughType>("strikethrough_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleEffectType> EffectType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextStyleEffectType>("effect_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleShadowDirection> ShadowDirection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<Efl.TextStyleShadowDirection>("shadow_direction", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> GfxFilter<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextInteractive, T>magic = null) where T : Efl.ITextInteractive {
+        return new Efl.BindableProperty<System.String>("gfx_filter", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

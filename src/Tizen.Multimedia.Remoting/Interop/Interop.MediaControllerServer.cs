@@ -224,13 +224,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playback_ability")]
         internal static extern MediaControllerError SaveAndNotifyPlaybackCapabilityUpdated(IntPtr serverHandle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_shuffle_ability")]
-        internal static extern MediaControllerError SetShuffleModeCapability(IntPtr serverHandle,
-            MediaControlCapabilitySupport support);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_repeat_ability")]
-        internal static extern MediaControllerError SetRepeatModeCapability(IntPtr serverHandle,
-            MediaControlCapabilitySupport support);
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_ability_support")]
+        internal static extern MediaControllerError SetSimpleCapability(IntPtr serverHandle,
+            MediaControlCapabilityCategory category, MediaControlCapabilitySupport support);
         #endregion Capability
 
         #region Search

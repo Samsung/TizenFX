@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Efl {
 /// Intended to be used in scenarios where the user needs a manually defined data model, like in tests.
 /// 
 /// It does not model anything in particular and does not affect anything else in the system.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.GenericModel.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class GenericModel : Efl.LoopModel
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -35,24 +38,30 @@ public class GenericModel : Efl.LoopModel
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GenericModel(Efl.Object parent= null
-            ) : base(efl_generic_model_class_get(), typeof(GenericModel), parent)
+            ) : base(efl_generic_model_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected GenericModel(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected GenericModel(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected GenericModel(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected GenericModel(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected GenericModel(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -87,3 +96,9 @@ public class GenericModel : Efl.LoopModel
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflGenericModel_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

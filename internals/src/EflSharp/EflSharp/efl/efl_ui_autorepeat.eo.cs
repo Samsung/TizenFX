@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Ui {
 /// <summary>Interface for autorepeating clicks.
 /// This interface abstracts functions for enabling / disabling this feature. When enabled, keeping a button pressed will continuously emit the <c>repeated</c> event until the button is released. The time it takes until it starts emitting the event is given by <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
 [Efl.Ui.IAutorepeatConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IAutorepeat : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -55,8 +57,8 @@ void SetAutorepeatEnabled(bool on);
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatEnabled"/> and <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
     /// <value>Timeout in seconds.</value>
     double AutorepeatInitialTimeout {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The interval between each generated autorepeat event.
     /// After the first <c>repeated</c> event is fired, all subsequent ones will follow after a delay of <c>t</c> seconds for each.
@@ -64,25 +66,25 @@ void SetAutorepeatEnabled(bool on);
     /// See also <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>.</summary>
     /// <value>Time interval in seconds.</value>
     double AutorepeatGapTimeout {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Turn on/off the autorepeat event generated when a button is kept pressed.
     /// When off, no autorepeat is performed and buttons emit a normal <c>clicked</c> event when they are clicked.</summary>
     /// <value>A bool to turn on/off the repeat event generation.</value>
     bool AutorepeatEnabled {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Interface for autorepeating clicks.
 /// This interface abstracts functions for enabling / disabling this feature. When enabled, keeping a button pressed will continuously emit the <c>repeated</c> event until the button is released. The time it takes until it starts emitting the event is given by <see cref="Efl.Ui.IAutorepeat.AutorepeatInitialTimeout"/>, and the time between each new emission by <see cref="Efl.Ui.IAutorepeat.AutorepeatGapTimeout"/>.</summary>
-sealed public class IAutorepeatConcrete :
+sealed public  class IAutorepeatConcrete :
     Efl.Eo.EoWrapper
     , IAutorepeat
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -98,11 +100,19 @@ sealed public class IAutorepeatConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IAutorepeatConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_autorepeat_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IAutorepeat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IAutorepeatConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IAutorepeatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -111,7 +121,7 @@ sealed public class IAutorepeatConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -138,14 +148,14 @@ sealed public class IAutorepeatConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event RepeatedEvt.</summary>
+    /// <summary>Method to raise event RepeatedEvt.</summary>
     public void OnRepeatedEvt(EventArgs e)
     {
         var key = "_EFL_UI_AUTOREPEAT_EVENT_REPEATED";
@@ -242,7 +252,7 @@ sealed public class IAutorepeatConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -544,3 +554,21 @@ sealed public class IAutorepeatConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIAutorepeatConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<double> AutorepeatInitialTimeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IAutorepeat, T>magic = null) where T : Efl.Ui.IAutorepeat {
+        return new Efl.BindableProperty<double>("autorepeat_initial_timeout", fac);
+    }
+
+    public static Efl.BindableProperty<double> AutorepeatGapTimeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IAutorepeat, T>magic = null) where T : Efl.Ui.IAutorepeat {
+        return new Efl.BindableProperty<double>("autorepeat_gap_timeout", fac);
+    }
+
+    public static Efl.BindableProperty<bool> AutorepeatEnabled<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IAutorepeat, T>magic = null) where T : Efl.Ui.IAutorepeat {
+        return new Efl.BindableProperty<bool>("autorepeat_enabled", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

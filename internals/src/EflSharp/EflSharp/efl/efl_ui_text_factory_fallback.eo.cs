@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -13,10 +14,12 @@ namespace TextFactory {
 
 /// <summary>Internal factory for fallback cases.
 /// This wraps some internal functionality: - Contains 2 factories: image and emoticon - Strips off &quot;file://&quot; prefix for image items, to be used with the image factory.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TextFactory.Fallback.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Fallback : Efl.Object, Efl.Canvas.ITextFactory
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,24 +40,30 @@ public class Fallback : Efl.Object, Efl.Canvas.ITextFactory
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Fallback(Efl.Object parent= null
-            ) : base(efl_ui_text_factory_fallback_class_get(), typeof(Fallback), parent)
+            ) : base(efl_ui_text_factory_fallback_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Fallback(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Fallback(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Fallback(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Fallback"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Fallback(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Fallback(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +71,7 @@ public class Fallback : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="kw_object">The parent of the created object</param>
     /// <param name="key">Key that is associated to an item object</param>
     virtual public Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
-                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_object, key);
+                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -150,3 +159,9 @@ public class Fallback : Efl.Object, Efl.Canvas.ITextFactory
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Ui_Text_FactoryFallback_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

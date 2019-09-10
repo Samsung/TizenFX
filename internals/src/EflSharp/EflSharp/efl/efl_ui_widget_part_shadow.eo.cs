@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -17,10 +18,12 @@ namespace Ui {
 /// As another example, here&apos;s a black drop-shadow: obj.shadow().color_set(0, 0, 0, 255); obj.shadow().grow_set(1); obj.shadow().radius_set(5, 5); obj.shadow().offset_set(5, 5);
 /// 
 /// It is also possible to manually specify which <see cref="Efl.Gfx.IFilter"/> program to use.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WidgetPartShadow.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor, Efl.Gfx.IFilter
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -41,24 +44,30 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <summary>Initializes a new instance of the <see cref="WidgetPartShadow"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public WidgetPartShadow(Efl.Object parent= null
-            ) : base(efl_ui_widget_part_shadow_class_get(), typeof(WidgetPartShadow), parent)
+            ) : base(efl_ui_widget_part_shadow_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected WidgetPartShadow(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="WidgetPartShadow"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected WidgetPartShadow(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected WidgetPartShadow(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="WidgetPartShadow"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected WidgetPartShadow(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected WidgetPartShadow(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -66,14 +75,14 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="rx">The horizontal blur radius.</param>
     /// <param name="ry">The vertical blur radius.</param>
     virtual public void GetRadius(out double rx, out double ry) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out rx, out ry);
+                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out rx, out ry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The blur radius in pixels.</summary>
     /// <param name="rx">The horizontal blur radius.</param>
     /// <param name="ry">The vertical blur radius.</param>
     virtual public void SetRadius(double rx, double ry) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),rx, ry);
+                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rx, ry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>An offset relative to the original pixels.
@@ -81,7 +90,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="ox">Horizontal offset in pixels.</param>
     /// <param name="oy">Vertical offset in pixels.</param>
     virtual public void GetOffset(out double ox, out double oy) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out ox, out oy);
+                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out ox, out oy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>An offset relative to the original pixels.
@@ -89,7 +98,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="ox">Horizontal offset in pixels.</param>
     /// <param name="oy">Vertical offset in pixels.</param>
     virtual public void SetOffset(double ox, double oy) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ox, oy);
+                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ox, oy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
@@ -98,7 +107,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// This is can be used efficiently to create glow effects.</summary>
     /// <returns>How much to grow the original pixel data.</returns>
     virtual public double GetGrow() {
-         var _ret_var = Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -108,7 +117,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// This is can be used efficiently to create glow effects.</summary>
     /// <param name="radius">How much to grow the original pixel data.</param>
     virtual public void SetGrow(double radius) {
-                                 Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),radius);
+                                 Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),radius);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the general/main color of the given Evas object.
@@ -121,7 +130,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
     /// (Since EFL 1.22)</summary>
     virtual public void GetColor(out int r, out int g, out int b, out int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Sets the general/main color of the given Evas object to the given one.
@@ -130,14 +139,14 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// These color values are expected to be premultiplied by alpha.
     /// (Since EFL 1.22)</summary>
     virtual public void SetColor(int r, int g, int b, int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <returns>the hex color code.</returns>
     virtual public System.String GetColorCode() {
-         var _ret_var = Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -145,14 +154,14 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// (Since EFL 1.22)</summary>
     /// <param name="colorcode">the hex color code.</param>
     virtual public void SetColorCode(System.String colorcode) {
-                                 Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),colorcode);
+                                 Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),colorcode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     virtual public void GetFilterProgram(out System.String code, out System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out code, out name);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out code, out name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set a graphical filter program on this object.
@@ -164,7 +173,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     virtual public void SetFilterProgram(System.String code, System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),code, name);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),code, name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the current state of the filter.
@@ -177,7 +186,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     virtual public void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out cur_state, out cur_val, out next_state, out next_val, out pos);
+                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cur_state, out cur_val, out next_state, out next_val, out pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Set the current state of the filter.
@@ -190,7 +199,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     virtual public void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cur_state, cur_val, next_state, next_val, pos);
+                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cur_state, cur_val, next_state, next_val, pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Gets the padding required to apply this filter.</summary>
@@ -199,7 +208,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="t">Padding on the top</param>
     /// <param name="b">Padding on the bottom</param>
     virtual public void GetFilterPadding(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Bind an object to use as a mask or texture in a filter program.
@@ -207,7 +216,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="name">Buffer name as used in the program.</param>
     /// <returns>Object to use as a source of pixels.</returns>
     virtual public Efl.Gfx.IEntity GetFilterSource(System.String name) {
-                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -216,7 +225,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="name">Buffer name as used in the program.</param>
     /// <param name="source">Object to use as a source of pixels.</param>
     virtual public void SetFilterSource(System.String name, Efl.Gfx.IEntity source) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, source);
+                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Extra data used by the filter program.
@@ -227,7 +236,7 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     virtual public void GetFilterData(System.String name, out System.String value, out bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, out value, out execute);
+                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, out value, out execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Extra data used by the filter program.
@@ -238,9 +247,32 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     virtual public void SetFilterData(System.String name, System.String value, bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, value, execute);
+                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>The blur radius in pixels.</summary>
+    /// <value>The horizontal blur radius.</value>
+    public (double, double) Radius {
+        get {
+            double _out_rx = default(double);
+            double _out_ry = default(double);
+            GetRadius(out _out_rx,out _out_ry);
+            return (_out_rx,_out_ry);
+        }
+        set { SetRadius( value.Item1,  value.Item2); }
+    }
+    /// <summary>An offset relative to the original pixels.
+    /// This property allows for drop shadow effects.</summary>
+    /// <value>Horizontal offset in pixels.</value>
+    public (double, double) Offset {
+        get {
+            double _out_ox = default(double);
+            double _out_oy = default(double);
+            GetOffset(out _out_ox,out _out_oy);
+            return (_out_ox,_out_oy);
+        }
+        set { SetOffset( value.Item1,  value.Item2); }
+    }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
     /// Growing is a combination of blur &amp; color levels adjustment. If the value of grow is positive, the pixels will appear more &quot;fat&quot; or &quot;bold&quot; than the original. If the value is negative, a shrink effect happens instead.
     /// 
@@ -250,12 +282,72 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
         get { return GetGrow(); }
         set { SetGrow(value); }
     }
+    /// <summary>Retrieves the general/main color of the given Evas object.
+    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
+    /// (Since EFL 1.22)</summary>
+    public (int, int, int, int) Color {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
+    }
+    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <value>The Lua program source code.</value>
+    public (System.String, System.String) FilterProgram {
+        get {
+            System.String _out_code = default(System.String);
+            System.String _out_name = default(System.String);
+            GetFilterProgram(out _out_code,out _out_name);
+            return (_out_code,_out_name);
+        }
+        set { SetFilterProgram( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set the current state of the filter.
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <value>Current state of the filter</value>
+    public (System.String, double, System.String, double, double) FilterState {
+        get {
+            System.String _out_cur_state = default(System.String);
+            double _out_cur_val = default(double);
+            System.String _out_next_state = default(System.String);
+            double _out_next_val = default(double);
+            double _out_pos = default(double);
+            GetFilterState(out _out_cur_state,out _out_cur_val,out _out_next_state,out _out_next_val,out _out_pos);
+            return (_out_cur_state,_out_cur_val,_out_next_state,_out_next_val,_out_pos);
+        }
+        set { SetFilterState( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Required padding to apply this filter without cropping.
+    /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
+    public (int, int, int, int) FilterPadding {
+        get {
+            int _out_l = default(int);
+            int _out_r = default(int);
+            int _out_t = default(int);
+            int _out_b = default(int);
+            GetFilterPadding(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -1161,3 +1253,25 @@ public class WidgetPartShadow : Efl.Ui.WidgetPart, Efl.Gfx.IBlur, Efl.Gfx.IColor
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWidgetPartShadow_ExtensionMethods {
+    
+    
+    public static Efl.BindableProperty<double> Grow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.WidgetPartShadow, T>magic = null) where T : Efl.Ui.WidgetPartShadow {
+        return new Efl.BindableProperty<double>("grow", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.WidgetPartShadow, T>magic = null) where T : Efl.Ui.WidgetPartShadow {
+        return new Efl.BindableProperty<System.String>("color_code", fac);
+    }
+
+    
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

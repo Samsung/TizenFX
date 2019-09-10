@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>A common Internationalization interface for UI objects.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.II18nConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface II18n : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -44,8 +47,8 @@ void SetLanguage(System.String language);
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
     bool Mirrored {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
@@ -53,23 +56,24 @@ void SetLanguage(System.String language);
     /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
     /// <value>Whether the widget uses automatic mirroring</value>
     bool MirroredAutomatic {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The (human) language for this object.</summary>
     /// <value>The current language.</value>
     System.String Language {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>A common Internationalization interface for UI objects.</summary>
-sealed public class II18nConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class II18nConcrete :
     Efl.Eo.EoWrapper
     , II18n
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -85,11 +89,19 @@ sealed public class II18nConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private II18nConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_i18n_interface_get();
     /// <summary>Initializes a new instance of the <see cref="II18n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private II18nConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private II18nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -168,7 +180,7 @@ sealed public class II18nConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -470,3 +482,21 @@ sealed public class II18nConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiII18nConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<bool> Mirrored<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.II18n, T>magic = null) where T : Efl.Ui.II18n {
+        return new Efl.BindableProperty<bool>("mirrored", fac);
+    }
+
+    public static Efl.BindableProperty<bool> MirroredAutomatic<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.II18n, T>magic = null) where T : Efl.Ui.II18n {
+        return new Efl.BindableProperty<bool>("mirrored_automatic", fac);
+    }
+
+    public static Efl.BindableProperty<System.String> Language<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.II18n, T>magic = null) where T : Efl.Ui.II18n {
+        return new Efl.BindableProperty<System.String>("language", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

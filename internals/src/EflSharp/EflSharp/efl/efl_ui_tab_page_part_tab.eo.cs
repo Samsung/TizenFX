@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Tab_Page internal part class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TabPagePartTab.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,34 +37,40 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
     /// <summary>Initializes a new instance of the <see cref="TabPagePartTab"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public TabPagePartTab(Efl.Object parent= null
-            ) : base(efl_ui_tab_page_part_tab_class_get(), typeof(TabPagePartTab), parent)
+            ) : base(efl_ui_tab_page_part_tab_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TabPagePartTab(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TabPagePartTab"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TabPagePartTab(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TabPagePartTab(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TabPagePartTab"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TabPagePartTab(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TabPagePartTab(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     virtual public System.String GetIcon() {
-         var _ret_var = Efl.Ui.TabPagePartTab.NativeMethods.efl_ui_tab_page_part_tab_icon_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabPagePartTab.NativeMethods.efl_ui_tab_page_part_tab_icon_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void SetIcon(System.String path) {
-                                 Efl.Ui.TabPagePartTab.NativeMethods.efl_ui_tab_page_part_tab_icon_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),path);
+                                 Efl.Ui.TabPagePartTab.NativeMethods.efl_ui_tab_page_part_tab_icon_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),path);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the text string currently being displayed by the given text object.
@@ -71,7 +80,7 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -80,7 +89,7 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     public System.String Icon {
@@ -305,3 +314,17 @@ public class TabPagePartTab : Efl.Ui.LayoutPart, Efl.IText
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTabPagePartTab_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Icon<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.TabPagePartTab, T>magic = null) where T : Efl.Ui.TabPagePartTab {
+        return new Efl.BindableProperty<System.String>("icon", fac);
+    }
+public static Efl.BindableProperty<System.String> Icon<T>(this Efl.BindablePart<T> part, Efl.Csharp.ExtensionTag<Efl.Ui.TabPagePartTab, T>magic = null) where T : Efl.Ui.TabPagePartTab {
+        return new Efl.BindableProperty<System.String>(part.PartName, "icon", part.Binder);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

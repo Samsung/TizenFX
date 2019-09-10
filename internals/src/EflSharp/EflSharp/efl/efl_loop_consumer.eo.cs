@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,9 +11,10 @@ namespace Efl {
 /// <summary>An <see cref="Efl.LoopConsumer"/> is a class which requires one of the parents to provide an <see cref="Efl.Loop"/> interface when performing <see cref="Efl.Object.FindProvider"/>. It will enforce this by only allowing parents which provide such an interface or <c>NULL</c>.
 /// (Since EFL 1.22)</summary>
 [Efl.LoopConsumer.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class LoopConsumer : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -33,31 +35,37 @@ public abstract class LoopConsumer : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopConsumer(Efl.Object parent= null
-            ) : base(efl_loop_consumer_class_get(), typeof(LoopConsumer), parent)
+            ) : base(efl_loop_consumer_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopConsumer(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopConsumer(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopConsumer(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class LoopConsumerRealized : LoopConsumer
     {
-        private LoopConsumerRealized(IntPtr ptr) : base(ptr)
+        private LoopConsumerRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="LoopConsumer"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopConsumer(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopConsumer(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -65,7 +73,7 @@ public abstract class LoopConsumer : Efl.Object
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl loop</returns>
     virtual public Efl.Loop GetLoop() {
-         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -75,23 +83,23 @@ public abstract class LoopConsumer : Efl.Object
     /// This is a helper that behaves the same as eina_future_resolved.
     /// (Since EFL 1.22)</summary>
     /// <param name="result">The value to be delivered.
-    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using @ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
+    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
     virtual public  Eina.Future FutureResolved(Eina.Value result) {
          var _in_result = result.GetNative();
-                        var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_resolved_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_result);
+                        var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_resolved_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_result);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Creates a new future that is already rejected to a specified error using the <see cref="Efl.LoopConsumer.GetLoop"/>.
     /// This function creates a new future with an already known error, that will be resolved and dispatched by the loop scheduler as usual.
     /// 
-    /// This is a helper that behaves the same as @ref eina_future_rejected.
+    /// This is a helper that behaves the same as ref eina_future_rejected.
     /// (Since EFL 1.22)</summary>
     /// <param name="error">An Eina_Error value</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
     virtual public  Eina.Future FutureRejected(Eina.Error error) {
-                                 var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_rejected_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),error);
+                                 var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_rejected_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),error);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -100,13 +108,13 @@ public abstract class LoopConsumer : Efl.Object
     /// (Since EFL 1.22)</summary>
     /// <returns>The new promise.</returns>
     virtual public Eina.Promise NewPromise() {
-         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_promise_new_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_promise_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Async wrapper for <see cref="FutureResolved" />.</summary>
     /// <param name="result">The value to be delivered.
-    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using @ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
+    /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
     /// <param name="token">Token to notify the async operation of external request to cancel.</param>
     /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> FutureResolvedAsync(Eina.Value result, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
@@ -350,3 +358,10 @@ public abstract class LoopConsumer : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopConsumer_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

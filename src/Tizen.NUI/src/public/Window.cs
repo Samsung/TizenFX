@@ -71,12 +71,11 @@ namespace Tizen.NUI
         /// This creates an extra window in addition to the default main window<br />
         /// </summary>
         /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="isTransparent">Whether Window is transparent.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, bool isTransparent) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTransparent), true)
+        public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -85,43 +84,13 @@ namespace Tizen.NUI
         /// Creates a new Window.<br />
         /// This creates an extra window in addition to the default main window<br />
         /// </summary>
+        /// <param name="name">The name for extra window. </param>
         /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name) : this(Interop.Window.Window_New__SWIG_1(Rectangle.getCPtr(windowPosition), name), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="className">The Window class name.</param>
-        /// <param name="isTransparent">Whether Window is transparent.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, string className, bool isTransparent) : this(Interop.Window.Window_New__SWIG_2(Rectangle.getCPtr(windowPosition), name, className, isTransparent), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="name">The Window title.</param>
-        /// <param name="className">The Window class name.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window(Rectangle windowPosition, string name, string className) : this(Interop.Window.Window_New__SWIG_3(Rectangle.getCPtr(windowPosition), name, className), true)
+        public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1043,6 +1012,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Destroy the window immediately.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Destroy()
+        {
+            this.Dispose();
+        }
+
+        /// <summary>
         /// Keep rendering for at least the given amount of time.
         /// </summary>
         /// <param name="durationSeconds">Time to keep rendering, 0 means render at least one more frame.</param>
@@ -1257,13 +1235,6 @@ namespace Tizen.NUI
         internal Window.WindowOrientation GetPreferredOrientation()
         {
             Window.WindowOrientation ret = (Window.WindowOrientation)Interop.WindowInternal.Window_GetPreferredOrientation(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal DragAndDropDetector GetDragAndDropDetector()
-        {
-            DragAndDropDetector ret = new DragAndDropDetector(Interop.WindowInternal.Window_GetDragAndDropDetector(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1503,6 +1474,46 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets parent window of the window.
+        /// After setting that, these windows do together when raise-up, lower and iconified/deiconified.
+        /// Initially, the window is located on top of the parent. The window can go below parent by calling Lower().
+        /// If parent's window stack is changed by calling Raise() or Lower(), child windows are located on top of the parent again.
+        /// </summary>
+        /// <param name="parent">The parent window.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetParent(Window parent) {
+            Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Unsets parent window of the window.
+        /// After unsetting, the window is disconnected his parent window.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Unparent() {
+            Interop.Window.Unparent(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets parent window of the window.
+        /// </summary>
+        /// <returns>The parent window of the window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window GetParent() {
+            Window ret = new Window(Interop.Window.GetParent(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Dispose for Window
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1519,6 +1530,14 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
+                _rootLayer.Dispose();
+                localController.Dispose();
+
+                foreach(var layer in _childLayers)
+                {
+                    layer.Dispose();
+                }
+                _childLayers.Clear();
             }
 
             this.DisconnectNativeSignals();

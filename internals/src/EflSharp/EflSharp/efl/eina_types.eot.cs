@@ -37,6 +37,7 @@ namespace Eina {
 namespace Xattr {
 
 /// <summary>Eina file extended attributes flags</summary>
+[Efl.Eo.BindingEntity]
 public enum Flags
 {
 /// <summary>This is the default behaviour, it will either create or replace the extended attribute</summary>
@@ -55,6 +56,7 @@ namespace Eina {
 
 /// <summary>A rectangle in pixel dimensions.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Rect
 {
     /// <summary>X coordinate of the rectangle, from the top-left corner.</summary>
@@ -65,7 +67,11 @@ public struct Rect
     public int W;
     /// <summary>Height of the rectangle in pixels.</summary>
     public int H;
-    ///<summary>Constructor for Rect.</summary>
+    /// <summary>Constructor for Rect.</summary>
+    /// <param name="X">X coordinate of the rectangle, from the top-left corner.</param>;
+    /// <param name="Y">Y coordinate of the rectangle, from the top-left corner.</param>;
+    /// <param name="W">Width of the rectangle in pixels.</param>;
+    /// <param name="H">Height of the rectangle in pixels.</param>;
     public Rect(
         int X = default(int),
         int Y = default(int),
@@ -78,8 +84,8 @@ public struct Rect
         this.H = H;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Rect(IntPtr ptr)
     {
         var tmp = (Rect.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Rect.NativeStruct));
@@ -88,7 +94,7 @@ public struct Rect
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Rect.</summary>
+    /// <summary>Internal wrapper for struct Rect.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -100,7 +106,7 @@ public struct Rect
         public int W;
         
         public int H;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Rect.NativeStruct(Rect _external_struct)
         {
             var _internal_struct = new Rect.NativeStruct();
@@ -111,7 +117,7 @@ public struct Rect
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Rect(Rect.NativeStruct _internal_struct)
         {
             var _external_struct = new Rect();
@@ -134,13 +140,16 @@ namespace Eina {
 
 /// <summary>A 2D location in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Position2D
 {
     /// <summary>X position in pixels, from the top-left corner.</summary>
     public int X;
     /// <summary>Y position in pixels, from the top-left corner.</summary>
     public int Y;
-    ///<summary>Constructor for Position2D.</summary>
+    /// <summary>Constructor for Position2D.</summary>
+    /// <param name="X">X position in pixels, from the top-left corner.</param>;
+    /// <param name="Y">Y position in pixels, from the top-left corner.</param>;
     public Position2D(
         int X = default(int),
         int Y = default(int)    )
@@ -149,8 +158,8 @@ public struct Position2D
         this.Y = Y;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Position2D(IntPtr ptr)
     {
         var tmp = (Position2D.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Position2D.NativeStruct));
@@ -159,7 +168,7 @@ public struct Position2D
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Position2D.</summary>
+    /// <summary>Internal wrapper for struct Position2D.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -167,7 +176,7 @@ public struct Position2D
         public int X;
         
         public int Y;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Position2D.NativeStruct(Position2D _external_struct)
         {
             var _internal_struct = new Position2D.NativeStruct();
@@ -176,7 +185,7 @@ public struct Position2D
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Position2D(Position2D.NativeStruct _internal_struct)
         {
             var _external_struct = new Position2D();
@@ -197,13 +206,16 @@ namespace Eina {
 
 /// <summary>A 2D size in pixels.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Size2D
 {
     /// <summary>X position in pixels, from the top-left corner.</summary>
     public int W;
     /// <summary>Y position in pixels, from the top-left corner.</summary>
     public int H;
-    ///<summary>Constructor for Size2D.</summary>
+    /// <summary>Constructor for Size2D.</summary>
+    /// <param name="W">X position in pixels, from the top-left corner.</param>;
+    /// <param name="H">Y position in pixels, from the top-left corner.</param>;
     public Size2D(
         int W = default(int),
         int H = default(int)    )
@@ -212,8 +224,8 @@ public struct Size2D
         this.H = H;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Size2D(IntPtr ptr)
     {
         var tmp = (Size2D.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Size2D.NativeStruct));
@@ -222,7 +234,7 @@ public struct Size2D
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Size2D.</summary>
+    /// <summary>Internal wrapper for struct Size2D.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -230,7 +242,7 @@ public struct Size2D
         public int W;
         
         public int H;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Size2D.NativeStruct(Size2D _external_struct)
         {
             var _internal_struct = new Size2D.NativeStruct();
@@ -239,7 +251,7 @@ public struct Size2D
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Size2D(Size2D.NativeStruct _internal_struct)
         {
             var _external_struct = new Size2D();
@@ -260,12 +272,13 @@ namespace Eina {
 
 /// <summary>Eina file data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct File
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator File(IntPtr ptr)
     {
         var tmp = (File.NativeStruct)Marshal.PtrToStructure(ptr, typeof(File.NativeStruct));
@@ -274,19 +287,19 @@ public struct File
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct File.</summary>
+    /// <summary>Internal wrapper for struct File.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator File.NativeStruct(File _external_struct)
         {
             var _internal_struct = new File.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator File(File.NativeStruct _internal_struct)
         {
             var _external_struct = new File();
@@ -305,13 +318,16 @@ namespace Eina {
 
 /// <summary>A simple 2D vector type using floating point values.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Vector2
 {
     /// <summary>X coordinate.</summary>
     public double X;
     /// <summary>Y coordinate.</summary>
     public double Y;
-    ///<summary>Constructor for Vector2.</summary>
+    /// <summary>Constructor for Vector2.</summary>
+    /// <param name="X">X coordinate.</param>;
+    /// <param name="Y">Y coordinate.</param>;
     public Vector2(
         double X = default(double),
         double Y = default(double)    )
@@ -320,8 +336,8 @@ public struct Vector2
         this.Y = Y;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Vector2(IntPtr ptr)
     {
         var tmp = (Vector2.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Vector2.NativeStruct));
@@ -330,7 +346,7 @@ public struct Vector2
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Vector2.</summary>
+    /// <summary>Internal wrapper for struct Vector2.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -338,7 +354,7 @@ public struct Vector2
         public double X;
         
         public double Y;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Vector2.NativeStruct(Vector2 _external_struct)
         {
             var _internal_struct = new Vector2.NativeStruct();
@@ -347,7 +363,7 @@ public struct Vector2
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Vector2(Vector2.NativeStruct _internal_struct)
         {
             var _external_struct = new Vector2();
@@ -368,6 +384,7 @@ namespace Eina {
 
 /// <summary>Eina 3x3 Matrix</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Matrix3
 {
     /// <summary>XX matrix value</summary>
@@ -388,7 +405,16 @@ public struct Matrix3
     public double Zy;
     /// <summary>ZZ matrix value</summary>
     public double Zz;
-    ///<summary>Constructor for Matrix3.</summary>
+    /// <summary>Constructor for Matrix3.</summary>
+    /// <param name="Xx">XX matrix value</param>;
+    /// <param name="Xy">XY matrix value</param>;
+    /// <param name="Xz">XZ matrix value</param>;
+    /// <param name="Yx">YX matrix value</param>;
+    /// <param name="Yy">YY matrix value</param>;
+    /// <param name="Yz">YZ matrix value</param>;
+    /// <param name="Zx">ZX matrix value</param>;
+    /// <param name="Zy">ZY matrix value</param>;
+    /// <param name="Zz">ZZ matrix value</param>;
     public Matrix3(
         double Xx = default(double),
         double Xy = default(double),
@@ -411,8 +437,8 @@ public struct Matrix3
         this.Zz = Zz;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Matrix3(IntPtr ptr)
     {
         var tmp = (Matrix3.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Matrix3.NativeStruct));
@@ -421,7 +447,7 @@ public struct Matrix3
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Matrix3.</summary>
+    /// <summary>Internal wrapper for struct Matrix3.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -443,7 +469,7 @@ public struct Matrix3
         public double Zy;
         
         public double Zz;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Matrix3.NativeStruct(Matrix3 _external_struct)
         {
             var _internal_struct = new Matrix3.NativeStruct();
@@ -459,7 +485,7 @@ public struct Matrix3
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Matrix3(Matrix3.NativeStruct _internal_struct)
         {
             var _external_struct = new Matrix3();
@@ -487,12 +513,13 @@ namespace Eina {
 
 /// <summary>Eina file direct information data structure</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct FileDirectInfo
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator FileDirectInfo(IntPtr ptr)
     {
         var tmp = (FileDirectInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(FileDirectInfo.NativeStruct));
@@ -501,19 +528,19 @@ public struct FileDirectInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct FileDirectInfo.</summary>
+    /// <summary>Internal wrapper for struct FileDirectInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator FileDirectInfo.NativeStruct(FileDirectInfo _external_struct)
         {
             var _internal_struct = new FileDirectInfo.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator FileDirectInfo(FileDirectInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new FileDirectInfo();
@@ -532,6 +559,7 @@ namespace Eina {
 
 /// <summary>The structure to store some file statistics.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Stat
 {
     /// <summary>The device where this file is located</summary>
@@ -566,7 +594,23 @@ public struct Stat
     public uint Ctime;
     /// <summary>The nano version of the timestmap when the file was created</summary>
     public uint Ctimensec;
-    ///<summary>Constructor for Stat.</summary>
+    /// <summary>Constructor for Stat.</summary>
+    /// <param name="Dev">The device where this file is located</param>;
+    /// <param name="Ino">The inode</param>;
+    /// <param name="Mode">The mode</param>;
+    /// <param name="Nlink">The link number</param>;
+    /// <param name="Uid">The owner user id</param>;
+    /// <param name="Gid">The owner group id</param>;
+    /// <param name="Rdev">The remote device</param>;
+    /// <param name="Size">The file size in bytes</param>;
+    /// <param name="Blksize">The block size in bytes</param>;
+    /// <param name="Blocks">The number of blocks allocated</param>;
+    /// <param name="Atime">The tilestamp when the file was last accessed</param>;
+    /// <param name="Atimensec">The nano version of the timestmap when the file was last accessed</param>;
+    /// <param name="Mtime">The tilestamp when the file was modified</param>;
+    /// <param name="Mtimensec">The nano version of the timestmap when the file was modified</param>;
+    /// <param name="Ctime">The tilestamp when the file was created</param>;
+    /// <param name="Ctimensec">The nano version of the timestmap when the file was created</param>;
     public Stat(
         uint Dev = default(uint),
         uint Ino = default(uint),
@@ -603,8 +647,8 @@ public struct Stat
         this.Ctimensec = Ctimensec;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Stat(IntPtr ptr)
     {
         var tmp = (Stat.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Stat.NativeStruct));
@@ -613,7 +657,7 @@ public struct Stat
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Stat.</summary>
+    /// <summary>Internal wrapper for struct Stat.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -649,7 +693,7 @@ public struct Stat
         public uint Ctime;
         
         public uint Ctimensec;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Stat.NativeStruct(Stat _external_struct)
         {
             var _internal_struct = new Stat.NativeStruct();
@@ -672,7 +716,7 @@ public struct Stat
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Stat(Stat.NativeStruct _internal_struct)
         {
             var _external_struct = new Stat();

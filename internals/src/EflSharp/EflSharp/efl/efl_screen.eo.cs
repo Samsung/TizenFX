@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 /// <summary>Efl screen interface
 /// (Since EFL 1.22)</summary>
 [Efl.IScreenConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IScreen : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -40,7 +42,7 @@ void GetScreenDpi(out int xdpi, out int ydpi);
     /// (Since EFL 1.22)</summary>
     /// <value>The screen size in pixels.</value>
     Eina.Size2D ScreenSizeInPixels {
-        get ;
+        get;
     }
     /// <summary>Get screen scaling factor.
     /// This is the factor by which window contents will be scaled on the screen.
@@ -49,24 +51,29 @@ void GetScreenDpi(out int xdpi, out int ydpi);
     /// (Since EFL 1.22)</summary>
     /// <value>The screen scaling factor.</value>
     float ScreenScaleFactor {
-        get ;
+        get;
     }
     /// <summary>Get the rotation of the screen.
     /// Most engines only return multiples of 90.
     /// (Since EFL 1.22)</summary>
     /// <value>Screen rotation in degrees.</value>
     int ScreenRotation {
-        get ;
+        get;
+    }
+    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
+    /// (Since EFL 1.22)</summary>
+    (int, int) ScreenDpi {
+        get;
     }
 }
 /// <summary>Efl screen interface
 /// (Since EFL 1.22)</summary>
-sealed public class IScreenConcrete :
+sealed public  class IScreenConcrete :
     Efl.Eo.EoWrapper
     , IScreen
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -82,11 +89,19 @@ sealed public class IScreenConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IScreenConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_screen_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IScreen"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IScreenConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IScreenConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -150,13 +165,23 @@ sealed public class IScreenConcrete :
     public int ScreenRotation {
         get { return GetScreenRotation(); }
     }
+    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
+    /// (Since EFL 1.22)</summary>
+    public (int, int) ScreenDpi {
+        get {
+            int _out_xdpi = default(int);
+            int _out_ydpi = default(int);
+            GetScreenDpi(out _out_xdpi,out _out_ydpi);
+            return (_out_xdpi,_out_ydpi);
+        }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.IScreenConcrete.efl_screen_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -366,3 +391,13 @@ sealed public class IScreenConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIScreenConcrete_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

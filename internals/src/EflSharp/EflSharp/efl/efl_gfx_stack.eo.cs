@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -38,6 +39,7 @@ namespace Gfx {
 /// <summary>Efl graphics stack interface
 /// (Since EFL 1.22)</summary>
 [Efl.Gfx.IStackConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IStack : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -117,8 +119,8 @@ void LowerToBottom();
     /// (Since EFL 1.22)</summary>
     /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     short Layer {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Get the Evas object stacked right below <c>obj</c>
     /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
@@ -127,7 +129,7 @@ void LowerToBottom();
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Below {
-        get ;
+        get;
     }
     /// <summary>Get the Evas object stacked right above <c>obj</c>
     /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
@@ -136,17 +138,17 @@ void LowerToBottom();
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Above {
-        get ;
+        get;
     }
 }
 /// <summary>Efl graphics stack interface
 /// (Since EFL 1.22)</summary>
-sealed public class IStackConcrete :
+sealed public  class IStackConcrete :
     Efl.Eo.EoWrapper
     , IStack
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -162,11 +164,19 @@ sealed public class IStackConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IStackConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_stack_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IStack"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IStackConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IStackConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -176,7 +186,7 @@ sealed public class IStackConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -203,14 +213,14 @@ sealed public class IStackConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    ///<summary>Method to raise event StackingChangedEvt.</summary>
+    /// <summary>Method to raise event StackingChangedEvt.</summary>
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
@@ -350,7 +360,7 @@ sealed public class IStackConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -742,3 +752,15 @@ sealed public class IStackConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIStackConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IStack, T>magic = null) where T : Efl.Gfx.IStack {
+        return new Efl.BindableProperty<short>("layer", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

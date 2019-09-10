@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,12 +8,13 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>EFL&apos;s abstraction for a task (process).
 /// (Since EFL 1.22)</summary>
 [Efl.Task.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class Task : Efl.LoopConsumer
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -33,80 +35,90 @@ public abstract class Task : Efl.LoopConsumer
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Task(Efl.Object parent= null
-            ) : base(efl_task_class_get(), typeof(Task), parent)
+            ) : base(efl_task_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Task(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Task(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Task(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class TaskRealized : Task
     {
-        private TaskRealized(IntPtr ptr) : base(ptr)
+        private TaskRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Task"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Task(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Task(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>The priority of this task.
     /// (Since EFL 1.22)</summary>
-    /// <returns>No description supplied.</returns>
+    /// <returns>Desired priority.</returns>
     virtual public Efl.TaskPriority GetPriority() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_priority_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_priority_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The priority of this task.
     /// (Since EFL 1.22)</summary>
-    /// <param name="priority">No description supplied.</param>
+    /// <param name="priority">Desired priority.</param>
     virtual public void SetPriority(Efl.TaskPriority priority) {
-                                 Efl.Task.NativeMethods.efl_task_priority_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),priority);
+                                 Efl.Task.NativeMethods.efl_task_priority_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),priority);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>The final exit code of this task.
+    /// <summary>The final exit code of this task. This is the code that will be produced upon task completion.
     /// (Since EFL 1.22)</summary>
-    /// <returns>No description supplied.</returns>
+    /// <returns>The exit code.</returns>
     virtual public int GetExitCode() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_exit_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_exit_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <returns>No description supplied.</returns>
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
+    /// (Since EFL 1.22)</summary>
+    /// <returns>Desired task flags.</returns>
     virtual public Efl.TaskFlags GetFlags() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_flags_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_flags_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <param name="flags">No description supplied.</param>
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
+    /// (Since EFL 1.22)</summary>
+    /// <param name="flags">Desired task flags.</param>
     virtual public void SetFlags(Efl.TaskFlags flags) {
-                                 Efl.Task.NativeMethods.efl_task_flags_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.Task.NativeMethods.efl_task_flags_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Actually run the task
+    /// <summary>Actually run the task.
     /// (Since EFL 1.22)</summary>
-    /// <returns>A future triggered when task exits and is passed int exit code</returns>
+    /// <returns>A future triggered when task exits and is passed int exit code.</returns>
     virtual public  Eina.Future Run() {
-         var _ret_var = Efl.Task.NativeMethods.efl_task_run_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Task.NativeMethods.efl_task_run_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Request the task end (may send a signal or interrupt signal resulting in a terminate event being tiggered in the target task loop)
+    /// <summary>Request the task end (may send a signal or interrupt signal resulting in a terminate event being tiggered in the target task loop).
     /// (Since EFL 1.22)</summary>
     virtual public void End() {
-         Efl.Task.NativeMethods.efl_task_end_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Task.NativeMethods.efl_task_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Async wrapper for <see cref="Run" />.</summary>
@@ -120,18 +132,20 @@ public abstract class Task : Efl.LoopConsumer
 
     /// <summary>The priority of this task.
     /// (Since EFL 1.22)</summary>
-    /// <value>No description supplied.</value>
+    /// <value>Desired priority.</value>
     public Efl.TaskPriority Priority {
         get { return GetPriority(); }
         set { SetPriority(value); }
     }
-    /// <summary>The final exit code of this task.
+    /// <summary>The final exit code of this task. This is the code that will be produced upon task completion.
     /// (Since EFL 1.22)</summary>
-    /// <value>No description supplied.</value>
+    /// <value>The exit code.</value>
     public int ExitCode {
         get { return GetExitCode(); }
     }
-    /// <value>No description supplied.</value>
+    /// <summary>Flags to further customize task&apos;s behavior. The default value: exit_with_parent
+    /// (Since EFL 1.22)</summary>
+    /// <value>Desired task flags.</value>
     public Efl.TaskFlags Flags {
         get { return GetFlags(); }
         set { SetFlags(value); }
@@ -489,16 +503,37 @@ public abstract class Task : Efl.LoopConsumer
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflTask_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.TaskPriority> Priority<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Task, T>magic = null) where T : Efl.Task {
+        return new Efl.BindableProperty<Efl.TaskPriority>("priority", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TaskFlags> Flags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Task, T>magic = null) where T : Efl.Task {
+        return new Efl.BindableProperty<Efl.TaskFlags>("flags", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>How much processor time will this task get compared to other tasks running on the same processor.
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum TaskPriority
 {
+/// <summary>Neither above nor below average priority. This is the default.</summary>
 Normal = 0,
+/// <summary>Far below average priority.</summary>
 Background = 1,
+/// <summary>Below average priority.</summary>
 Low = 2,
+/// <summary>Above average priority.</summary>
 High = 3,
+/// <summary>Far above average priority.</summary>
 Ultra = 4,
 }
 
@@ -506,14 +541,21 @@ Ultra = 4,
 
 namespace Efl {
 
-/// <summary>No description supplied.
+/// <summary>Flags to further customize task&apos;s behavior.
 /// (Since EFL 1.22)</summary>
+[Efl.Eo.BindingEntity]
 public enum TaskFlags
 {
+/// <summary>No special flags.</summary>
 None = 0,
+/// <summary>Task will require console input.</summary>
 UseStdin = 1,
+/// <summary>Task will require console output.</summary>
 UseStdout = 2,
+/// <summary>Task will not produce an exit code upon termination.</summary>
 NoExitCodeError = 4,
+/// <summary>Exit when parent exits.</summary>
+ExitWithParent = 8,
 }
 
 }

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,16 +8,20 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandlerMessageFutureEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>No description supplied.</value>
     public Efl.LoopMessageFuture arg { get; set; }
 }
 /// <summary>Internal use for future on an efl loop - replacing legacy ecore events</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageFutureHandler.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,33 +42,40 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFutureHandler(Efl.Object parent= null
-            ) : base(efl_loop_message_future_handler_class_get(), typeof(LoopMessageFutureHandler), parent)
+            ) : base(efl_loop_message_future_handler_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessageFutureHandler(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessageFutureHandler(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessageFutureHandler(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessageFutureHandler(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessageFutureHandler(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>No description supplied.</summary>
+    /// <value><see cref="Efl.LoopMessageFutureHandlerMessageFutureEvt_Args"/></value>
     public event EventHandler<Efl.LoopMessageFutureHandlerMessageFutureEvt_Args> MessageFutureEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -91,14 +103,14 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event MessageFutureEvt.</summary>
+    /// <summary>Method to raise event MessageFutureEvt.</summary>
     public void OnMessageFutureEvt(Efl.LoopMessageFutureHandlerMessageFutureEvt_Args e)
     {
         var key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
@@ -115,7 +127,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
     virtual public Efl.LoopMessageFuture AddMessageType() {
-         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -199,3 +211,9 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessageFutureHandler_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

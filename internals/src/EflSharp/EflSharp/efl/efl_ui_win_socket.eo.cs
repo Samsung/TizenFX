@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Ui {
 
 /// <summary>An off-screen window to be displayed in a remote process.
 /// The window is rendered onto an image buffer to be displayed in another process&apos; plug image object. No actual window is created for this type. The window contents can then be sent over a socket so that another process displays it inside a plug image.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.WinSocket.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class WinSocket : Efl.Ui.Win
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,12 +37,12 @@ public class WinSocket : Efl.Ui.Win
         efl_ui_win_socket_class_get();
     /// <summary>Initializes a new instance of the <see cref="WinSocket"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
-    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName"/></param>
-    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType"/></param>
-    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
+    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
+    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
     public WinSocket(Efl.Object parent
-            , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_socket_class_get(), typeof(WinSocket), parent)
+            , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_socket_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -64,19 +67,25 @@ public class WinSocket : Efl.Ui.Win
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected WinSocket(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="WinSocket"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected WinSocket(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected WinSocket(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="WinSocket"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected WinSocket(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected WinSocket(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -86,7 +95,7 @@ public class WinSocket : Efl.Ui.Win
     /// <param name="svcsys">A boolean which when true specifies the creation of a system-wide service to which all users can connect, otherwise the service is private to the user id that created it.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool SocketListen(System.String svcname, int svcnum, bool svcsys) {
-                                                                                 var _ret_var = Efl.Ui.WinSocket.NativeMethods.efl_ui_win_socket_listen_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),svcname, svcnum, svcsys);
+                                                                                 var _ret_var = Efl.Ui.WinSocket.NativeMethods.efl_ui_win_socket_listen_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svcname, svcnum, svcsys);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -172,3 +181,9 @@ public class WinSocket : Efl.Ui.Win
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiWinSocket_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

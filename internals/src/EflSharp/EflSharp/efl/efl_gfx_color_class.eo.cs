@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl Gfx Color Class mixin class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IColorClassConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IColorClass : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -87,12 +90,13 @@ void DelColorClass(System.String color_class);
 void ClearColorClass();
                             }
 /// <summary>Efl Gfx Color Class mixin class</summary>
-sealed public class IColorClassConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IColorClassConcrete :
     Efl.Eo.EoWrapper
     , IColorClass
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -108,11 +112,19 @@ sealed public class IColorClassConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IColorClassConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_class_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IColorClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IColorClassConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IColorClassConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -219,7 +231,7 @@ sealed public class IColorClassConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -568,3 +580,12 @@ sealed public class IColorClassConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIColorClassConcrete_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

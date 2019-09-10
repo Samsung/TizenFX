@@ -10,6 +10,7 @@ namespace Efl {
 namespace Ui {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct ListViewLayoutItem
 {
     public Efl.Ui.Layout Layout;
@@ -17,10 +18,21 @@ public struct ListViewLayoutItem
     public Efl.IModel Children;
     public int Index_offset;
     public System.IntPtr Tree_node;
+    /// <value>A 2D size in pixels.</value>
     public Eina.Size2D Min;
+    /// <value>A 2D size in pixels.</value>
     public Eina.Size2D Size;
+    /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
-    ///<summary>Constructor for ListViewLayoutItem.</summary>
+    /// <summary>Constructor for ListViewLayoutItem.</summary>
+    /// <param name="Layout"></param>;
+    /// <param name="Layout_request"></param>;
+    /// <param name="Children"></param>;
+    /// <param name="Index_offset"></param>;
+    /// <param name="Tree_node"></param>;
+    /// <param name="Min"></param>;
+    /// <param name="Size"></param>;
+    /// <param name="Pos"></param>;
     public ListViewLayoutItem(
         Efl.Ui.Layout Layout = default(Efl.Ui.Layout),
          Eina.Future Layout_request = default( Eina.Future),
@@ -41,8 +53,8 @@ public struct ListViewLayoutItem
         this.Pos = Pos;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator ListViewLayoutItem(IntPtr ptr)
     {
         var tmp = (ListViewLayoutItem.NativeStruct)Marshal.PtrToStructure(ptr, typeof(ListViewLayoutItem.NativeStruct));
@@ -51,15 +63,15 @@ public struct ListViewLayoutItem
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct ListViewLayoutItem.</summary>
+    /// <summary>Internal wrapper for struct ListViewLayoutItem.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Layout</summary>
+        /// <summary>Internal wrapper for field Layout</summary>
         public System.IntPtr Layout;
         [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
         public  Eina.Future Layout_request;
-        ///<summary>Internal wrapper for field Children</summary>
+        /// <summary>Internal wrapper for field Children</summary>
         public System.IntPtr Children;
         
         public int Index_offset;
@@ -71,7 +83,7 @@ public struct ListViewLayoutItem
         public Eina.Size2D.NativeStruct Size;
         
         public Eina.Position2D.NativeStruct Pos;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator ListViewLayoutItem.NativeStruct(ListViewLayoutItem _external_struct)
         {
             var _internal_struct = new ListViewLayoutItem.NativeStruct();
@@ -86,7 +98,7 @@ public struct ListViewLayoutItem
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator ListViewLayoutItem(ListViewLayoutItem.NativeStruct _internal_struct)
         {
             var _external_struct = new ListViewLayoutItem();
@@ -113,13 +125,15 @@ public struct ListViewLayoutItem
 
 }
 
+/// <summary>TBD</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct EflUiListViewSegArray
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator EflUiListViewSegArray(IntPtr ptr)
     {
         var tmp = (EflUiListViewSegArray.NativeStruct)Marshal.PtrToStructure(ptr, typeof(EflUiListViewSegArray.NativeStruct));
@@ -128,19 +142,19 @@ public struct EflUiListViewSegArray
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct EflUiListViewSegArray.</summary>
+    /// <summary>Internal wrapper for struct EflUiListViewSegArray.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator EflUiListViewSegArray.NativeStruct(EflUiListViewSegArray _external_struct)
         {
             var _internal_struct = new EflUiListViewSegArray.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator EflUiListViewSegArray(EflUiListViewSegArray.NativeStruct _internal_struct)
         {
             var _external_struct = new EflUiListViewSegArray();

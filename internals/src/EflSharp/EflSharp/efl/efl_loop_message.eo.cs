@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -7,16 +8,20 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-///<summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class LoopMessageMessageEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>The message payload data</value>
     public Efl.LoopMessage arg { get; set; }
 }
 /// <summary>Base message payload object class. Inherit this and extend for specific message types.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessage.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class LoopMessage : Efl.Object
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -37,33 +42,40 @@ public class LoopMessage : Efl.Object
     /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessage(Efl.Object parent= null
-            ) : base(efl_loop_message_class_get(), typeof(LoopMessage), parent)
+            ) : base(efl_loop_message_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected LoopMessage(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected LoopMessage(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected LoopMessage(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="LoopMessage"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected LoopMessage(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected LoopMessage(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>The message payload data</summary>
+    /// <value><see cref="Efl.LoopMessageMessageEvt_Args"/></value>
     public event EventHandler<Efl.LoopMessageMessageEvt_Args> MessageEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -91,14 +103,14 @@ public class LoopMessage : Efl.Object
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
                 RemoveNativeEventHandler(efl.Libs.Ecore, key, value);
             }
         }
     }
-    ///<summary>Method to raise event MessageEvt.</summary>
+    /// <summary>Method to raise event MessageEvt.</summary>
     public void OnMessageEvt(Efl.LoopMessageMessageEvt_Args e)
     {
         var key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
@@ -143,3 +155,9 @@ public class LoopMessage : Efl.Object
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflLoopMessage_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

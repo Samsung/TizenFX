@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,66 +10,90 @@ namespace Efl {
 
 namespace Gesture {
 
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gesture.IEventsConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IEvents : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Event for tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTapEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureTapEvt_Args> GestureTapEvt;
     /// <summary>Event for double tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureDoubleTapEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureDoubleTapEvt_Args> GestureDoubleTapEvt;
     /// <summary>Event for triple tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTripleTapEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureTripleTapEvt_Args> GestureTripleTapEvt;
     /// <summary>Event for long tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureLongTapEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureLongTapEvt_Args> GestureLongTapEvt;
     /// <summary>Event for momentum gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureMomentumEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureMomentumEvt_Args> GestureMomentumEvt;
     /// <summary>Event for flick gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureFlickEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureFlickEvt_Args> GestureFlickEvt;
     /// <summary>Event for zoom gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureZoomEvt_Args"/></value>
     event EventHandler<Efl.Gesture.IEventsGestureZoomEvt_Args> GestureZoomEvt;
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureTapEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureTapEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureTapEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for tap gesture</value>
     public Efl.Canvas.GestureTap arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureDoubleTapEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureDoubleTapEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureDoubleTapEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for double tap gesture</value>
     public Efl.Canvas.GestureDoubleTap arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureTripleTapEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureTripleTapEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureTripleTapEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for triple tap gesture</value>
     public Efl.Canvas.GestureTripleTap arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureLongTapEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureLongTapEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureLongTapEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for long tap gesture</value>
     public Efl.Canvas.GestureLongTap arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureMomentumEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureMomentumEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureMomentumEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for momentum gesture</value>
     public Efl.Canvas.GestureMomentum arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureFlickEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureFlickEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureFlickEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for flick gesture</value>
     public Efl.Canvas.GestureFlick arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureZoomEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gesture.IEvents.GestureZoomEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IEventsGestureZoomEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Event for zoom gesture</value>
     public Efl.Canvas.GestureZoom arg { get; set; }
 }
-sealed public class IEventsConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IEventsConcrete :
     Efl.Eo.EoWrapper
     , IEvents
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -84,20 +109,29 @@ sealed public class IEventsConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IEventsConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_gesture_events_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IEvents"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IEventsConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IEventsConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Event for tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureTapEvt_Args> GestureTapEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -125,14 +159,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_TAP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureTapEvt.</summary>
+    /// <summary>Method to raise event GestureTapEvt.</summary>
     public void OnGestureTapEvt(Efl.Gesture.IEventsGestureTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_TAP";
@@ -147,11 +181,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for double tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureDoubleTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureDoubleTapEvt_Args> GestureDoubleTapEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -179,14 +214,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_DOUBLE_TAP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureDoubleTapEvt.</summary>
+    /// <summary>Method to raise event GestureDoubleTapEvt.</summary>
     public void OnGestureDoubleTapEvt(Efl.Gesture.IEventsGestureDoubleTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_DOUBLE_TAP";
@@ -201,11 +236,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for triple tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureTripleTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureTripleTapEvt_Args> GestureTripleTapEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -233,14 +269,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_TRIPLE_TAP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureTripleTapEvt.</summary>
+    /// <summary>Method to raise event GestureTripleTapEvt.</summary>
     public void OnGestureTripleTapEvt(Efl.Gesture.IEventsGestureTripleTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_TRIPLE_TAP";
@@ -255,11 +291,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for long tap gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureLongTapEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureLongTapEvt_Args> GestureLongTapEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -287,14 +324,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_LONG_TAP";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureLongTapEvt.</summary>
+    /// <summary>Method to raise event GestureLongTapEvt.</summary>
     public void OnGestureLongTapEvt(Efl.Gesture.IEventsGestureLongTapEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_LONG_TAP";
@@ -309,11 +346,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for momentum gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureMomentumEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureMomentumEvt_Args> GestureMomentumEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -341,14 +379,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_MOMENTUM";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureMomentumEvt.</summary>
+    /// <summary>Method to raise event GestureMomentumEvt.</summary>
     public void OnGestureMomentumEvt(Efl.Gesture.IEventsGestureMomentumEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_MOMENTUM";
@@ -363,11 +401,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for flick gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureFlickEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureFlickEvt_Args> GestureFlickEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -395,14 +434,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_FLICK";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureFlickEvt.</summary>
+    /// <summary>Method to raise event GestureFlickEvt.</summary>
     public void OnGestureFlickEvt(Efl.Gesture.IEventsGestureFlickEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_FLICK";
@@ -417,11 +456,12 @@ sealed public class IEventsConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Event for zoom gesture</summary>
+    /// <value><see cref="Efl.Gesture.IEventsGestureZoomEvt_Args"/></value>
     public event EventHandler<Efl.Gesture.IEventsGestureZoomEvt_Args> GestureZoomEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -449,14 +489,14 @@ sealed public class IEventsConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_EVENT_GESTURE_ZOOM";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event GestureZoomEvt.</summary>
+    /// <summary>Method to raise event GestureZoomEvt.</summary>
     public void OnGestureZoomEvt(Efl.Gesture.IEventsGestureZoomEvt_Args e)
     {
         var key = "_EFL_EVENT_GESTURE_ZOOM";
@@ -476,7 +516,7 @@ sealed public class IEventsConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
@@ -502,3 +542,9 @@ sealed public class IEventsConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GestureIEventsConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

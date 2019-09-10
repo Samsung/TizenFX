@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Tab Bar class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.TabBar.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TabBar : Efl.Ui.LayoutBase
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -33,9 +36,9 @@ public class TabBar : Efl.Ui.LayoutBase
         efl_ui_tab_bar_class_get();
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public TabBar(Efl.Object parent
-            , System.String style = null) : base(efl_ui_tab_bar_class_get(), typeof(TabBar), parent)
+            , System.String style = null) : base(efl_ui_tab_bar_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -45,50 +48,56 @@ public class TabBar : Efl.Ui.LayoutBase
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TabBar(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TabBar(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TabBar(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TabBar"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TabBar(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TabBar(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     virtual public int GetCurrentTab() {
-         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void SetCurrentTab(int index) {
-                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_current_tab_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                          }
     virtual public uint TabCount() {
-         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     virtual public void AddTab(int index, System.String label, System.String icon) {
-                                                                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, label, icon);
+                                                                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, label, icon);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     virtual public void TabRemove(int index) {
-                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_remove_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index);
+                                 Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                          }
     virtual public void SetTabLabel(int index, System.String label) {
-                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_label_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, label);
+                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_label_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, label);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     virtual public void SetTabIcon(int index, System.String icon) {
-                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_icon_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),index, icon);
+                                                         Efl.Ui.TabBar.NativeMethods.efl_ui_tab_bar_tab_icon_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index, icon);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     public int CurrentTab {
@@ -448,3 +457,13 @@ public class TabBar : Efl.Ui.LayoutBase
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiTabBar_ExtensionMethods {
+    public static Efl.BindableProperty<int> CurrentTab<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.TabBar, T>magic = null) where T : Efl.Ui.TabBar {
+        return new Efl.BindableProperty<int>("current_tab", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

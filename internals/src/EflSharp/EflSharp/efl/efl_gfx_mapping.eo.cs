@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -19,6 +20,7 @@ namespace Gfx {
 /// At the moment of writing, maps can only have 4 points (no more, no less).
 /// (Since EFL 1.22)</summary>
 [Efl.Gfx.IMappingConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IMapping : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -296,23 +298,23 @@ void Perspective3dAbsolute(double px, double py, double z0, double foc);
     /// (Since EFL 1.22)</summary>
     /// <value>The number of points of map</value>
     int MappingPointCount {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Clockwise state of a map (read-only).
     /// This determines if the output points (X and Y. Z is not used) are clockwise or counter-clockwise. This can be used for &quot;back-face culling&quot;. This is where you hide objects that &quot;face away&quot; from you. In this case objects that are not clockwise.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if clockwise, <c>false</c> if counter clockwise</value>
     bool MappingClockwise {
-        get ;
+        get;
     }
     /// <summary>Smoothing state for map rendering.
     /// This sets smoothing for map rendering. If the object is a type that has its own smoothing settings, then both the smooth settings for this object and the map must be turned off. By default smooth maps are enabled.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> by default.</value>
     bool MappingSmooth {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Alpha flag for map rendering.
     /// This sets alpha flag for map rendering. If the object is a type that has its own alpha settings, then this will take precedence. Only image objects support this currently (<see cref="Efl.Canvas.Image"/> and its friends). Setting this to off stops alpha blending of the map area, and is useful if you know the object and/or all sub-objects is 100% solid.
@@ -321,8 +323,8 @@ void Perspective3dAbsolute(double px, double py, double z0, double foc);
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> by default.</value>
     bool MappingAlpha {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Texture UV mapping for all objects (rotation, perspective, 3d, ...).
@@ -334,12 +336,12 @@ void Perspective3dAbsolute(double px, double py, double z0, double foc);
 /// 
 /// At the moment of writing, maps can only have 4 points (no more, no less).
 /// (Since EFL 1.22)</summary>
-sealed public class IMappingConcrete :
+sealed public  class IMappingConcrete :
     Efl.Eo.EoWrapper
     , IMapping
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -355,11 +357,19 @@ sealed public class IMappingConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IMappingConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_gfx_mapping_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IMapping"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IMappingConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IMappingConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -760,7 +770,7 @@ sealed public class IMappingConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -2054,3 +2064,25 @@ sealed public class IMappingConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIMappingConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<int> MappingPointCount<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IMapping, T>magic = null) where T : Efl.Gfx.IMapping {
+        return new Efl.BindableProperty<int>("mapping_point_count", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> MappingSmooth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IMapping, T>magic = null) where T : Efl.Gfx.IMapping {
+        return new Efl.BindableProperty<bool>("mapping_smooth", fac);
+    }
+
+    public static Efl.BindableProperty<bool> MappingAlpha<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IMapping, T>magic = null) where T : Efl.Gfx.IMapping {
+        return new Efl.BindableProperty<bool>("mapping_alpha", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

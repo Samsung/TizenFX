@@ -10,6 +10,7 @@ namespace Efl {
 /// <summary>This type is a alias for struct tm. It is intended to be a standard way to reference it in .eo files.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Time
 {
     /// <summary>Seconds.	[0-60] (1 leap second)</summary>
@@ -30,7 +31,16 @@ public struct Time
     public int Tm_yday;
     /// <summary>DST. [-1/0/1]</summary>
     public int Tm_isdst;
-    ///<summary>Constructor for Time.</summary>
+    /// <summary>Constructor for Time.</summary>
+    /// <param name="Tm_sec">Seconds.	[0-60] (1 leap second)</param>;
+    /// <param name="Tm_min">Minutes.	[0-59]</param>;
+    /// <param name="Tm_hour">Hours.	[0-23]</param>;
+    /// <param name="Tm_mday">Day.		[1-31]</param>;
+    /// <param name="Tm_mon">Month.	[0-11]</param>;
+    /// <param name="Tm_year">Year	- 1900.</param>;
+    /// <param name="Tm_wday">Day of week.	[0-6]</param>;
+    /// <param name="Tm_yday">Days in year.[0-365]</param>;
+    /// <param name="Tm_isdst">DST. [-1/0/1]</param>;
     public Time(
         int Tm_sec = default(int),
         int Tm_min = default(int),
@@ -53,8 +63,8 @@ public struct Time
         this.Tm_isdst = Tm_isdst;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Time(IntPtr ptr)
     {
         var tmp = (Time.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Time.NativeStruct));
@@ -63,7 +73,7 @@ public struct Time
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Time.</summary>
+    /// <summary>Internal wrapper for struct Time.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -85,7 +95,7 @@ public struct Time
         public int Tm_yday;
         
         public int Tm_isdst;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Time.NativeStruct(Time _external_struct)
         {
             var _internal_struct = new Time.NativeStruct();
@@ -101,7 +111,7 @@ public struct Time
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Time(Time.NativeStruct _internal_struct)
         {
             var _external_struct = new Time();
@@ -131,6 +141,7 @@ namespace Efl {
 /// This may be used to query the current running version of EFL. Or it can be passed by applications at startup time to inform EFL of the version a certain application was built for.
 /// (Since EFL 1.18)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Version
 {
     /// <summary>Major component of the version (&gt;= 1).</summary>
@@ -145,7 +156,13 @@ public struct Version
     public System.String Flavor;
     /// <summary>Contains <c>EFL_BUILD_ID</c>.</summary>
     public System.String Build_id;
-    ///<summary>Constructor for Version.</summary>
+    /// <summary>Constructor for Version.</summary>
+    /// <param name="Major">Major component of the version (&gt;= 1).</param>;
+    /// <param name="Minor">Minor component of the version (&gt;= 0).</param>;
+    /// <param name="Micro">Micro component of the version (&gt;= 0).</param>;
+    /// <param name="Revision">Revision component of the version (&gt;= 0).</param>;
+    /// <param name="Flavor">Special version string for this build of EFL, <c>null</c> for vanilla (upstream) EFL. Contains <c>EFL_VERSION_FLAVOR</c>.</param>;
+    /// <param name="Build_id">Contains <c>EFL_BUILD_ID</c>.</param>;
     public Version(
         int Major = default(int),
         int Minor = default(int),
@@ -162,8 +179,8 @@ public struct Version
         this.Build_id = Build_id;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Version(IntPtr ptr)
     {
         var tmp = (Version.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Version.NativeStruct));
@@ -172,7 +189,7 @@ public struct Version
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Version.</summary>
+    /// <summary>Internal wrapper for struct Version.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -184,11 +201,11 @@ public struct Version
         public int Micro;
         
         public int Revision;
-        ///<summary>Internal wrapper for field Flavor</summary>
+        /// <summary>Internal wrapper for field Flavor</summary>
         public System.IntPtr Flavor;
-        ///<summary>Internal wrapper for field Build_id</summary>
+        /// <summary>Internal wrapper for field Build_id</summary>
         public System.IntPtr Build_id;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Version.NativeStruct(Version _external_struct)
         {
             var _internal_struct = new Version.NativeStruct();
@@ -201,7 +218,7 @@ public struct Version
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Version(Version.NativeStruct _internal_struct)
         {
             var _external_struct = new Version();

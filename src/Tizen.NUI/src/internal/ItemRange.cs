@@ -15,12 +15,19 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
-    internal class ItemRange : global::System.IDisposable
+    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ItemRange : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        /// <summary>swigCMemOwn.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         protected bool swigCMemOwn;
 
         internal ItemRange(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -34,12 +41,15 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        /// <summary>A Flag to check who called Dispose(). (By User or DisposeQueue)</summary>
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+
+        /// <summary>A Flag to check if it is already disposed.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         protected bool disposed = false;
 
-
+        /// <summary>Destructor.</summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         ~ItemRange()
         {
             if (!isDisposeQueued)
@@ -49,6 +59,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -68,6 +80,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -101,16 +115,22 @@ namespace Tizen.NUI
         }
 
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange(uint beginItem, uint endItem) : this(Interop.ItemRange.new_ItemRange__SWIG_0(beginItem, endItem), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange(ItemRange copy) : this(Interop.ItemRange.new_ItemRange__SWIG_1(ItemRange.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Assign(ItemRange range)
         {
             ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Assign(swigCPtr, ItemRange.getCPtr(range)), false);
@@ -118,6 +138,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Within(uint itemId)
         {
             bool ret = Interop.ItemRange.ItemRange_Within(swigCPtr, itemId);
@@ -125,6 +147,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ItemRange Intersection(ItemRange second)
         {
             ItemRange ret = new ItemRange(Interop.ItemRange.ItemRange_Intersection(swigCPtr, ItemRange.getCPtr(second)), true);
@@ -132,6 +156,8 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint begin
         {
             set
@@ -147,6 +173,8 @@ namespace Tizen.NUI
             }
         }
 
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint end
         {
             set

@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Canvas {
 
 /// <summary>Efl rotate animation class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.AnimationRotate.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class AnimationRotate : Efl.Canvas.Animation
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,24 +37,30 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <summary>Initializes a new instance of the <see cref="AnimationRotate"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationRotate(Efl.Object parent= null
-            ) : base(efl_canvas_animation_rotate_class_get(), typeof(AnimationRotate), parent)
+            ) : base(efl_canvas_animation_rotate_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected AnimationRotate(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="AnimationRotate"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected AnimationRotate(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected AnimationRotate(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="AnimationRotate"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected AnimationRotate(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected AnimationRotate(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -62,7 +71,7 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
     virtual public void GetRotate(out double from_degree, out double to_degree, out Efl.Canvas.Object pivot, out double cx, out double cy) {
-                                                                                                                                 Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_degree, out to_degree, out pivot, out cx, out cy);
+                                                                                                                                 Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_degree, out to_degree, out pivot, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Rotate property</summary>
@@ -72,7 +81,7 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
     virtual public void SetRotate(double from_degree, double to_degree, Efl.Canvas.Object pivot, double cx, double cy) {
-                                                                                                                                 Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_degree, to_degree, pivot, cx, cy);
+                                                                                                                                 Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_degree, to_degree, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Rotate absolute property</summary>
@@ -81,7 +90,7 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
     virtual public void GetRotateAbsolute(out double from_degree, out double to_degree, out int cx, out int cy) {
-                                                                                                         Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out from_degree, out to_degree, out cx, out cy);
+                                                                                                         Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_degree, out to_degree, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Rotate absolute property</summary>
@@ -90,9 +99,36 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
     virtual public void SetRotateAbsolute(double from_degree, double to_degree, int cx, int cy) {
-                                                                                                         Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from_degree, to_degree, cx, cy);
+                                                                                                         Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_degree, to_degree, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
+    /// <summary>Rotate property</summary>
+    /// <value>Rotation degree when animation starts</value>
+    public (double, double, Efl.Canvas.Object, double, double) Rotate {
+        get {
+            double _out_from_degree = default(double);
+            double _out_to_degree = default(double);
+            Efl.Canvas.Object _out_pivot = default(Efl.Canvas.Object);
+            double _out_cx = default(double);
+            double _out_cy = default(double);
+            GetRotate(out _out_from_degree,out _out_to_degree,out _out_pivot,out _out_cx,out _out_cy);
+            return (_out_from_degree,_out_to_degree,_out_pivot,_out_cx,_out_cy);
+        }
+        set { SetRotate( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
+    }
+    /// <summary>Rotate absolute property</summary>
+    /// <value>Rotation degree when animation starts</value>
+    public (double, double, int, int) RotateAbsolute {
+        get {
+            double _out_from_degree = default(double);
+            double _out_to_degree = default(double);
+            int _out_cx = default(int);
+            int _out_cy = default(int);
+            GetRotateAbsolute(out _out_from_degree,out _out_to_degree,out _out_cx,out _out_cy);
+            return (_out_from_degree,_out_to_degree,_out_cx,_out_cy);
+        }
+        set { SetRotateAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationRotate.efl_canvas_animation_rotate_class_get();
@@ -309,3 +345,11 @@ public class AnimationRotate : Efl.Canvas.Animation
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_CanvasAnimationRotate_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

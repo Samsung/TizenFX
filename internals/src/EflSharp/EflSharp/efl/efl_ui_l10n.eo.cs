@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,7 +12,9 @@ namespace Ui {
 
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.IL10nConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IL10n : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -34,12 +37,13 @@ void UpdateTranslation();
             }
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
-sealed public class IL10nConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IL10nConcrete :
     Efl.Eo.EoWrapper
     , IL10n
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,11 +59,19 @@ sealed public class IL10nConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IL10nConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_l10n_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IL10n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IL10nConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IL10nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -95,7 +107,7 @@ sealed public class IL10nConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -262,3 +274,10 @@ sealed public class IL10nConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIL10nConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

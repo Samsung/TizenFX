@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,10 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>This class is a singleton representing the global configuration for the running application.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ConfigGlobal.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class ConfigGlobal : Efl.Object, Efl.IConfig
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -32,24 +35,30 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <summary>Initializes a new instance of the <see cref="ConfigGlobal"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ConfigGlobal(Efl.Object parent= null
-            ) : base(efl_config_global_class_get(), typeof(ConfigGlobal), parent)
+            ) : base(efl_config_global_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected ConfigGlobal(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="ConfigGlobal"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected ConfigGlobal(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected ConfigGlobal(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="ConfigGlobal"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected ConfigGlobal(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected ConfigGlobal(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -59,7 +68,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// This gets or sets the global profile that is applied to all Elementary applications.</summary>
     /// <returns>Profile name</returns>
     virtual public System.String GetProfile() {
-         var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -69,7 +78,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// This gets or sets the global profile that is applied to all Elementary applications.</summary>
     /// <param name="profile">Profile name</param>
     virtual public void SetProfile(System.String profile) {
-                                 Efl.ConfigGlobal.NativeMethods.efl_config_profile_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
+                                 Efl.ConfigGlobal.NativeMethods.efl_config_profile_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Saves Elementary configuration to disk.
@@ -81,7 +90,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <param name="profile">The profile name.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual protected bool Save(System.String profile) {
-                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_save_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
+                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_save_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -89,15 +98,15 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <param name="hidden">If <c>true</c>, gets the full list of profiles, including those stored in hidden files.</param>
     /// <returns>Iterator to profiles</returns>
     virtual public Eina.Iterator<System.String> ProfileIterate(bool hidden) {
-                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),hidden);
+                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),hidden);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<System.String>(_ret_var, true, false);
+                        return new Eina.Iterator<System.String>(_ret_var, true);
  }
     /// <summary>Returns whether a profile exists or not.</summary>
     /// <param name="profile">Profile name</param>
     /// <returns><c>true</c> if profile exists, <c>false</c> otherwise</returns>
     virtual public bool ProfileExists(System.String profile) {
-                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_exists_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
+                                 var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_exists_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -106,7 +115,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <param name="is_user"><c>true</c> to lookup for a user profile or <c>false</c> for a system one.</param>
     /// <returns>Directory of the profile, free after use.</returns>
     virtual public System.String GetProfileDir(System.String profile, bool is_user) {
-                                                         var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_dir_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile, is_user);
+                                                         var _ret_var = Efl.ConfigGlobal.NativeMethods.efl_config_profile_dir_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile, is_user);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -117,7 +126,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <param name="profile">The new profile&apos;s name.</param>
     /// <param name="options">Derive options detailing how to modify.</param>
     virtual protected void AddProfileDerived(System.String profile, System.String options) {
-                                                         Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_add_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile, options);
+                                                         Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile, options);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Deletes a profile that is derived from the current one.
@@ -126,14 +135,14 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// At this point it is not expected that anyone would generally use this API except if you are a desktop environment and so the user base of this API will be enlightenment itself.</summary>
     /// <param name="profile">The name of the profile that is to be deleted.</param>
     virtual protected void DelProfileDerived(System.String profile) {
-                                 Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_del_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),profile);
+                                 Efl.ConfigGlobal.NativeMethods.efl_config_profile_derived_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),profile);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>A generic configuration value, referred to by name.</summary>
     /// <param name="name">Configuration option name.</param>
     /// <returns>The value. It will be empty if it doesn&apos;t exist. The caller must free it after use (using <c>eina_value_free</c>() in C).</returns>
     virtual public Eina.Value GetConfig(System.String name) {
-                                 var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name);
+                                 var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -142,7 +151,7 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
     /// <param name="value">Configuration option value. May be <c>null</c> if not found.</param>
     /// <returns><c>false</c> in case of error: value type was invalid, the config can&apos;t be changed, config does not exist...</returns>
     virtual public bool SetConfig(System.String name, Eina.Value value) {
-                                                         var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),name, value);
+                                                         var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, value);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -646,3 +655,14 @@ public class ConfigGlobal : Efl.Object, Efl.IConfig
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflConfigGlobal_ExtensionMethods {
+    public static Efl.BindableProperty<System.String> Profile<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ConfigGlobal, T>magic = null) where T : Efl.ConfigGlobal {
+        return new Efl.BindableProperty<System.String>("profile", fac);
+    }
+
+    
+}
+#pragma warning restore CS1591
+#endif

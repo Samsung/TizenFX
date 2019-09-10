@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Bidirectionaltext type</summary>
+[Efl.Eo.BindingEntity]
 public enum TextBidirectionalType
 {
 /// <summary>Natural text type, same as neutral</summary>
@@ -20,7 +21,7 @@ Ltr = 1,
 Rtl = 2,
 /// <summary>Inherit text type</summary>
 Inherit = 3,
-/// <summary>@internal EVAS_BIDI_DIRECTION_ANY_RTL is not made for public. It should be opened to public when it is accepted to EFL upstream.</summary>
+/// <summary>internal EVAS_BIDI_DIRECTION_ANY_RTL is not made for public. It should be opened to public when it is accepted to EFL upstream.</summary>
 AnyRtl = 4,
 }
 
@@ -33,6 +34,7 @@ namespace Ui {
 /// <summary>This structure includes all the information about content changes.
 /// It&apos;s meant to be used to implement undo/redo.</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct TextChangeInfo
 {
     /// <summary>The content added/removed</summary>
@@ -45,7 +47,12 @@ public struct TextChangeInfo
     public bool Insert;
     /// <summary><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</summary>
     public bool Merge;
-    ///<summary>Constructor for TextChangeInfo.</summary>
+    /// <summary>Constructor for TextChangeInfo.</summary>
+    /// <param name="Content">The content added/removed</param>;
+    /// <param name="Position">The position where it was added/removed</param>;
+    /// <param name="Length">The length of content in characters (not bytes, actual unicode characters)</param>;
+    /// <param name="Insert"><c>true</c> if the content was inserted, <c>false</c> if removei</param>;
+    /// <param name="Merge"><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</param>;
     public TextChangeInfo(
         System.String Content = default(System.String),
         uint Position = default(uint),
@@ -60,8 +67,8 @@ public struct TextChangeInfo
         this.Merge = Merge;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator TextChangeInfo(IntPtr ptr)
     {
         var tmp = (TextChangeInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(TextChangeInfo.NativeStruct));
@@ -70,21 +77,21 @@ public struct TextChangeInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct TextChangeInfo.</summary>
+    /// <summary>Internal wrapper for struct TextChangeInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Content</summary>
+        /// <summary>Internal wrapper for field Content</summary>
         public System.IntPtr Content;
         
         public uint Position;
         
         public uint Length;
-        ///<summary>Internal wrapper for field Insert</summary>
+        /// <summary>Internal wrapper for field Insert</summary>
         public System.Byte Insert;
-        ///<summary>Internal wrapper for field Merge</summary>
+        /// <summary>Internal wrapper for field Merge</summary>
         public System.Byte Merge;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator TextChangeInfo.NativeStruct(TextChangeInfo _external_struct)
         {
             var _internal_struct = new TextChangeInfo.NativeStruct();
@@ -96,7 +103,7 @@ public struct TextChangeInfo
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator TextChangeInfo(TextChangeInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new TextChangeInfo();

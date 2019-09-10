@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Elementary Access value interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.IValueConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IValue : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -31,19 +34,30 @@ void GetRange(out double lower_limit, out double upper_limit, out System.String 
     /// <summary>Gets an minimal incrementation value</summary>
 /// <returns>Minimal incrementation value</returns>
 double GetIncrement();
-                    /// <summary>Gets an minimal incrementation value</summary>
+                    /// <summary>Value and text property</summary>
+    /// <value>Value of widget casted to floating point number.</value>
+    (double, System.String) ValueAndText {
+        get;
+        set;
+    }
+    /// <summary>Gets a range of all possible values and its description</summary>
+    (double, double, System.String) Range {
+        get;
+    }
+    /// <summary>Gets an minimal incrementation value</summary>
     /// <value>Minimal incrementation value</value>
     double Increment {
-        get ;
+        get;
     }
 }
 /// <summary>Elementary Access value interface</summary>
-sealed public class IValueConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IValueConcrete :
     Efl.Eo.EoWrapper
     , IValue
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -59,11 +73,19 @@ sealed public class IValueConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IValueConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_value_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IValue"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IValueConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IValueConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -98,6 +120,27 @@ sealed public class IValueConcrete :
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Value and text property</summary>
+    /// <value>Value of widget casted to floating point number.</value>
+    public (double, System.String) ValueAndText {
+        get {
+            double _out_value = default(double);
+            System.String _out_text = default(System.String);
+            GetValueAndText(out _out_value,out _out_text);
+            return (_out_value,_out_text);
+        }
+        set { SetValueAndText( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets a range of all possible values and its description</summary>
+    public (double, double, System.String) Range {
+        get {
+            double _out_lower_limit = default(double);
+            double _out_upper_limit = default(double);
+            System.String _out_description = default(System.String);
+            GetRange(out _out_lower_limit,out _out_upper_limit,out _out_description);
+            return (_out_lower_limit,_out_upper_limit,_out_description);
+        }
+    }
     /// <summary>Gets an minimal incrementation value</summary>
     /// <value>Minimal incrementation value</value>
     public double Increment {
@@ -109,7 +152,7 @@ sealed public class IValueConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -324,3 +367,12 @@ sealed public class IValueConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessIValueConcrete_ExtensionMethods {
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

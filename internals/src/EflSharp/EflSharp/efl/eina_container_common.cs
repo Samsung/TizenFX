@@ -19,6 +19,7 @@ public enum ElementType
 {
     NumericType,
     StringType,
+    StringshareType,
     ObjectType
 };
 
@@ -182,6 +183,145 @@ public class StringElementTraits : IBaseElementTraits<string>
     public IntPtr EinaHashNew()
     {
         return eina_hash_string_superfast_new(IntPtr.Zero);
+    }
+
+    public IntPtr EinaInarrayNew(uint step)
+    {
+        return eina_inarray_new((uint)Marshal.SizeOf<IntPtr>(), step);
+    }
+
+    public IntPtr EinaHashIteratorKeyNew(IntPtr hash)
+    {
+        return eina_hash_iterator_key_new(hash);
+    }
+}
+
+public class StringshareElementTraits : IBaseElementTraits<Eina.Stringshare>
+{
+    public StringshareElementTraits()
+    {
+    }
+
+    public IntPtr ManagedToNativeAlloc(Eina.Stringshare man)
+    {
+        var strShare = MemoryNative.AddStringshare(man);
+        return strShare;
+    }
+
+    public IntPtr ManagedToNativeAllocInlistNode(Eina.Stringshare man)
+    {
+        var node = new InlistNode<IntPtr>();
+        node.Val = ManagedToNativeAlloc(man);
+        GCHandle pinnedData = GCHandle.Alloc(node, GCHandleType.Pinned);
+        IntPtr ptr = pinnedData.AddrOfPinnedObject();
+        IntPtr nat = MemoryNative.AllocCopy
+            (ptr, Marshal.SizeOf<InlistMem>() + Marshal.SizeOf<IntPtr>());
+        pinnedData.Free();
+        return nat;
+    }
+
+    public void ManagedToNativeCopyTo(Eina.Stringshare man, IntPtr mem)
+    {
+        IntPtr stringptr = ManagedToNativeAlloc(man);
+        Marshal.WriteIntPtr(mem, stringptr);
+    }
+
+    public void NativeFree(IntPtr nat)
+    {
+        if (nat != IntPtr.Zero)
+        {
+            MemoryNative.DelStringshare(nat);
+        }
+    }
+
+    public void NativeFreeInlistNodeElement(IntPtr nat)
+    {
+        if (nat == IntPtr.Zero)
+        {
+            return;
+        }
+
+        var val = Marshal.PtrToStructure<IntPtr>
+            (nat + Marshal.SizeOf<InlistMem>());
+        NativeFree(val);
+    }
+
+    public void NativeFreeInlistNode(IntPtr nat, bool freeElement)
+    {
+        if (nat == IntPtr.Zero)
+        {
+            return;
+        }
+
+        if (freeElement)
+        {
+            NativeFreeInlistNodeElement(nat);
+        }
+
+        MemoryNative.Free(nat);
+    }
+
+    public void NativeFreeInplace(IntPtr nat)
+    {
+        MemoryNative.DelStringshareRef(nat);
+    }
+
+    public void ResidueFreeInplace(IntPtr nat)
+    {
+    }
+
+    public Eina.Stringshare NativeToManaged(IntPtr nat)
+    {
+        if (nat == IntPtr.Zero)
+        {
+            return default(Eina.Stringshare);
+        }
+
+        return StringConversion.NativeUtf8ToManagedString(nat);
+    }
+
+    public Eina.Stringshare NativeToManagedInlistNode(IntPtr nat)
+    {
+        if (nat == IntPtr.Zero)
+        {
+            Eina.Log.Error("Null pointer for Inlist node.");
+            return default(Eina.Stringshare);
+        }
+
+        IntPtr ptr_location = nat + Marshal.SizeOf<InlistMem>();
+        return NativeToManaged(Marshal.ReadIntPtr(ptr_location));
+    }
+
+    // Strings inplaced are always a pointer, because they are variable-sized
+    public Eina.Stringshare NativeToManagedInplace(IntPtr nat)
+    {
+        if (nat == IntPtr.Zero)
+        {
+            return default(Eina.Stringshare);
+        }
+
+        nat = Marshal.ReadIntPtr(nat);
+        if (nat == IntPtr.Zero)
+        {
+            return default(Eina.Stringshare);
+        }
+
+        return NativeToManaged(nat);
+    }
+
+    public IntPtr EinaCompareCb()
+    {
+        return MemoryNative.StrCompareFuncPtrGet();
+    }
+
+    public IntPtr EinaFreeCb()
+    {
+        return MemoryNative.StringshareDelFuncPtrGet();
+    }
+
+    public IntPtr EinaHashNew()
+    {
+        return eina_hash_stringshared_new(MemoryNative.StringshareDelFuncPtrGet());
     }
 
     public IntPtr EinaInarrayNew(uint step)
@@ -709,6 +849,11 @@ public static class TraitFunctions
         return type == typeof(string);
     }
 
+    public static bool IsStringshare(System.Type type)
+    {
+        return type == typeof(Eina.Stringshare);
+    }
+
     public static Eina.ElementType GetElementTypeCode(System.Type type)
     {
         if (IsEflObject(type))
@@ -718,6 +863,10 @@ public static class TraitFunctions
         else if (IsString(type))
         {
             return ElementType.StringType;
+        }
+        else if (IsStringshare(type))
+        {
+            return ElementType.StringshareType;
         }
         else
         {
@@ -763,6 +912,10 @@ public static class TraitFunctions
         else if (IsString(type))
         {
             traits = new StringElementTraits();
+        }
+        else if (IsStringshare(type))
+        {
+            traits = new StringshareElementTraits();
         }
         else if (type.IsValueType)
         {

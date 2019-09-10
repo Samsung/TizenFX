@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,6 +13,7 @@ namespace Ui {
 /// <summary>No description supplied.
 /// (Since EFL 1.22)</summary>
 [Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IWidgetFocusManager : 
     Efl.Ui.Focus.IManager ,
     Efl.Eo.IWrapper, IDisposable
@@ -25,12 +27,12 @@ Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root);
     }
 /// <summary>No description supplied.
 /// (Since EFL 1.22)</summary>
-sealed public class IWidgetFocusManagerConcrete :
+sealed public  class IWidgetFocusManagerConcrete :
     Efl.Eo.EoWrapper
     , IWidgetFocusManager
     , Efl.Ui.Focus.IManager
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -46,21 +48,30 @@ sealed public class IWidgetFocusManagerConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IWidgetFocusManagerConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_widget_focus_manager_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IWidgetFocusManager"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IWidgetFocusManagerConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IWidgetFocusManagerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Redirect object has changed, the old manager is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -88,14 +99,14 @@ sealed public class IWidgetFocusManagerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event RedirectChangedEvt.</summary>
+    /// <summary>Method to raise event RedirectChangedEvt.</summary>
     public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
@@ -115,7 +126,7 @@ sealed public class IWidgetFocusManagerConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -142,14 +153,14 @@ sealed public class IWidgetFocusManagerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event FlushPreEvt.</summary>
+    /// <summary>Method to raise event FlushPreEvt.</summary>
     public void OnFlushPreEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
@@ -168,7 +179,7 @@ sealed public class IWidgetFocusManagerConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -195,14 +206,14 @@ sealed public class IWidgetFocusManagerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event CoordsDirtyEvt.</summary>
+    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
     public void OnCoordsDirtyEvt(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
@@ -217,11 +228,12 @@ sealed public class IWidgetFocusManagerConcrete :
     }
     /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -249,14 +261,14 @@ sealed public class IWidgetFocusManagerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ManagerFocusChangedEvt.</summary>
+    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
     public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
@@ -272,11 +284,12 @@ sealed public class IWidgetFocusManagerConcrete :
     }
     /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -304,14 +317,14 @@ sealed public class IWidgetFocusManagerConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
     public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
@@ -383,7 +396,7 @@ sealed public class IWidgetFocusManagerConcrete :
     public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
          var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Get all elements that are at the border of the viewport
     /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
@@ -394,7 +407,7 @@ sealed public class IWidgetFocusManagerConcrete :
          Eina.Rect.NativeStruct _in_viewport = viewport;
                         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false, false);
+                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
  }
     /// <summary>Root node for all logical subtrees.
     /// This property can only be set once.
@@ -448,7 +461,9 @@ sealed public class IWidgetFocusManagerConcrete :
  }
     /// <summary>This will fetch the data from a registered node.
     /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
@@ -541,7 +556,7 @@ sealed public class IWidgetFocusManagerConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1438,3 +1453,23 @@ sealed public class IWidgetFocusManagerConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiIWidgetFocusManagerConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IWidgetFocusManager, T>magic = null) where T : Efl.Ui.IWidgetFocusManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Ui.Focus.IManager> Redirect<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IWidgetFocusManager, T>magic = null) where T : Efl.Ui.IWidgetFocusManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IWidgetFocusManager, T>magic = null) where T : Efl.Ui.IWidgetFocusManager {
+        return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

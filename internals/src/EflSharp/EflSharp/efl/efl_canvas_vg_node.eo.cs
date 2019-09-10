@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -12,10 +13,12 @@ namespace Canvas {
 namespace Vg {
 
 /// <summary>Efl vector graphics abstract class</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.Vg.Node.NativeMethods]
+[Efl.Eo.BindingEntity]
 public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx.IEntity, Efl.Gfx.IPath, Efl.Gfx.IStack
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -36,41 +39,48 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <summary>Initializes a new instance of the <see cref="Node"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Node(Efl.Object parent= null
-            ) : base(efl_canvas_vg_node_class_get(), typeof(Node), parent)
+            ) : base(efl_canvas_vg_node_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Node(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Node"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Node(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Node(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     [Efl.Eo.PrivateNativeClass]
     private class NodeRealized : Node
     {
-        private NodeRealized(IntPtr ptr) : base(ptr)
+        private NodeRealized(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
         {
         }
     }
     /// <summary>Initializes a new instance of the <see cref="Node"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Node(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Node(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -98,14 +108,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -128,11 +138,12 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -160,14 +171,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -191,11 +202,12 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -223,14 +235,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -258,7 +270,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -285,14 +297,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Evas, key, value);
             }
         }
     }
-    ///<summary>Method to raise event StackingChangedEvt.</summary>
+    /// <summary>Method to raise event StackingChangedEvt.</summary>
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
@@ -308,7 +320,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <summary>Gets the transformation matrix used for this node object.</summary>
     /// <returns>Transformation matrix.</returns>
     virtual public Eina.Matrix3 GetTransformation() {
-         var _ret_var = Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_transformation_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_transformation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Eina.Matrix3>(_ret_var);
         
@@ -319,7 +331,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="m">Transformation matrix.</param>
     virtual public void SetTransformation(ref Eina.Matrix3 m) {
          Eina.Matrix3.NativeStruct _in_m = m;
-                        Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_transformation_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ref _in_m);
+                        Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_transformation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref _in_m);
         Eina.Error.RaiseIfUnhandledException();
                 m = _in_m;
          }
@@ -327,7 +339,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x"><c>origin</c> x position.</param>
     /// <param name="y"><c>origin</c> y position.</param>
     virtual public void GetOrigin(out double x, out double y) {
-                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_origin_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_origin_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Sets the origin position of the node object.
@@ -335,21 +347,21 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x"><c>origin</c> x position.</param>
     /// <param name="y"><c>origin</c> y position.</param>
     virtual public void SetOrigin(double x, double y) {
-                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_origin_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_origin_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set Mask Node to this renderer</summary>
     /// <param name="mask">Mask object</param>
     /// <param name="op">Masking Option. Reserved</param>
     virtual public void SetMask(Efl.Canvas.Vg.Node mask, int op) {
-                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_mask_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mask, op);
+                                                         Efl.Canvas.Vg.Node.NativeMethods.efl_canvas_vg_node_mask_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mask, op);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
     virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -363,7 +375,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
     /// (Since EFL 1.22)</summary>
     virtual public void GetColor(out int r, out int g, out int b, out int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out r, out g, out b, out a);
+                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Sets the general/main color of the given Evas object to the given one.
@@ -372,14 +384,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// These color values are expected to be premultiplied by alpha.
     /// (Since EFL 1.22)</summary>
     virtual public void SetColor(int r, int g, int b, int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),r, g, b, a);
+                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
     /// <returns>the hex color code.</returns>
     virtual public System.String GetColorCode() {
-         var _ret_var = Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -387,14 +399,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="colorcode">the hex color code.</param>
     virtual public void SetColorCode(System.String colorcode) {
-                                 Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),colorcode);
+                                 Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),colorcode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the position of the given canvas object.
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D coordinate in pixel units.</returns>
     virtual public Eina.Position2D GetPosition() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -403,14 +415,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="pos">A 2D coordinate in pixel units.</param>
     virtual public void SetPosition(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the (rectangular) size of the given Evas object.
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D size in pixel units.</returns>
     virtual public Eina.Size2D GetSize() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -420,14 +432,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="size">A 2D size in pixel units.</param>
     virtual public void SetSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_size);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Rectangular geometry that combines both position and size.
     /// (Since EFL 1.22)</summary>
     /// <returns>The X,Y position and W,H size, in pixels.</returns>
     virtual public Eina.Rect GetGeometry() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -436,14 +448,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="rect">The X,Y position and W,H size, in pixels.</param>
     virtual public void SetGeometry(Eina.Rect rect) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_rect);
+                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_rect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves whether or not the given canvas object is visible.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if to make the object visible, <c>false</c> otherwise</returns>
     virtual public bool GetVisible() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -451,14 +463,14 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="v"><c>true</c> if to make the object visible, <c>false</c> otherwise</param>
     virtual public void SetVisible(bool v) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),v);
+                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets an object&apos;s scaling factor.
     /// (Since EFL 1.22)</summary>
     /// <returns>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</returns>
     virtual public double GetScale() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -466,7 +478,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="scale">The scaling factor (the default value is 0.0, meaning individual scaling is not set)</param>
     virtual public void SetScale(double scale) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),scale);
+                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
@@ -475,7 +487,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     virtual public void GetPath(out Efl.Gfx.PathCommandType op, out double points) {
                          System.IntPtr _out_op = System.IntPtr.Zero;
         System.IntPtr _out_points = System.IntPtr.Zero;
-                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_op, out _out_points);
+                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_op, out _out_points);
         Eina.Error.RaiseIfUnhandledException();
         op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(_out_op);
         points = Eina.PrimitiveConversion.PointerToManaged<double>(_out_points);
@@ -486,47 +498,47 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     virtual public void SetPath(Efl.Gfx.PathCommandType op, double points) {
          var _in_op = Eina.PrimitiveConversion.ManagedToPointerAlloc(op);
         var _in_points = Eina.PrimitiveConversion.ManagedToPointerAlloc(points);
-                                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_op, _in_points);
+                                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_op, _in_points);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Path length property</summary>
     /// <param name="commands">Commands</param>
     /// <param name="points">Points</param>
     virtual public void GetLength(out uint commands, out uint points) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out commands, out points);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out commands, out points);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Current point coordinates</summary>
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     virtual public void GetCurrent(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Current control point coordinates</summary>
     /// <param name="x">X co-ordinate of control point.</param>
     /// <param name="y">Y co-ordinate of control point.</param>
     virtual public void GetCurrentCtrl(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out x, out y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Copy the path data from the object specified.</summary>
     /// <param name="dup_from">Shape object from where data will be copied.</param>
     virtual public void CopyFrom(Efl.Object dup_from) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dup_from);
+                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dup_from);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Compute and return the bounding box of the currently set path</summary>
     /// <param name="r">Contain the bounding box of the currently set path</param>
     virtual public void GetBounds(out Eina.Rect r) {
                  var _out_r = new Eina.Rect.NativeStruct();
-                Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),out _out_r);
+                Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out _out_r);
         Eina.Error.RaiseIfUnhandledException();
         r = _out_r;
                  }
     /// <summary>Reset the path data of the path object.</summary>
     virtual public void Reset() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Moves the current point to the given point,  implicitly starting a new subpath and closing the previous one.
@@ -534,7 +546,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     virtual public void AppendMoveTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a straight line from the current position to the given end point. After the line is drawn, the current position is updated to be at the end point of the line.
@@ -544,7 +556,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendLineTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a quadratic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x, ctrl_y). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
@@ -553,7 +565,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="ctrl_x">X co-ordinate of control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of control point.</param>
     virtual public void AppendQuadraticTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, ctrl_x, ctrl_y);
+                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Same as efl_gfx_path_append_quadratic_to() api only difference is that it uses the current control point to draw the bezier.
@@ -561,7 +573,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendSquadraticTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a cubic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x0, ctrl_y0), and (ctrl_x1, ctrl_y1). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
@@ -572,7 +584,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     virtual public void AppendCubicTo(double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Same as efl_gfx_path_append_cubic_to() api only difference is that it uses the current control point to draw the bezier.
@@ -582,7 +594,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="ctrl_x">X co-ordinate of 2nd control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of 2nd control point.</param>
     virtual public void AppendScubicTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, ctrl_x, ctrl_y);
+                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Append an arc that connects from the current point int the point list to the given point (x,y). The arc is defined by the given radius in  x-direction (rx) and radius in y direction (ry).
@@ -595,7 +607,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="large_arc">Defines whether to draw the larger arc or smaller arc joining two point.</param>
     /// <param name="sweep">Defines whether the arc will be drawn counter-clockwise or clockwise from current point to the end point taking into account the large_arc property.</param>
     virtual public void AppendArcTo(double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep) {
-                                                                                                                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, rx, ry, angle, large_arc, sweep);
+                                                                                                                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, rx, ry, angle, large_arc, sweep);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Append an arc that enclosed in the given rectangle (x, y, w, h). The angle is defined in counter clock wise , use -ve angle for clockwise arc.</summary>
@@ -606,13 +618,13 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="start_angle">Angle at which the arc will start</param>
     /// <param name="sweep_length">@ Length of the arc.</param>
     virtual public void AppendArc(double x, double y, double w, double h, double start_angle, double sweep_length) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h, start_angle, sweep_length);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h, start_angle, sweep_length);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Closes the current subpath by drawing a line to the beginning of the subpath, automatically starting a new path. The current point of the new path is (0, 0).
     /// If the subpath does not contain any points, this function does nothing.</summary>
     virtual public void CloseAppend() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Append a circle with given center and radius.</summary>
@@ -620,7 +632,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="y">Y co-ordinate of the center of the circle.</param>
     /// <param name="radius">Radius of the circle.</param>
     virtual public void AppendCircle(double x, double y, double radius) {
-                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, radius);
+                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, radius);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Append the given rectangle with rounded corner to the path.
@@ -636,13 +648,13 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="rx">The x radius of the rounded corner and should be in range [ 0 to w/2 ]</param>
     /// <param name="ry">The y radius of the rounded corner and should be in range [ 0 to h/2 ]</param>
     virtual public void AppendRect(double x, double y, double w, double h, double rx, double ry) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),x, y, w, h, rx, ry);
+                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y, w, h, rx, ry);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Append SVG path data</summary>
     /// <param name="svg_path_data">SVG path data to append</param>
     virtual public void AppendSvgPath(System.String svg_path_data) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),svg_path_data);
+                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svg_path_data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Creates intermediary path part-way between two paths
@@ -654,7 +666,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="pos_map">Position map in range 0.0 to 1.0</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     virtual public bool Interpolate(Efl.Object from, Efl.Object to, double pos_map) {
-                                                                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),from, to, pos_map);
+                                                                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from, to, pos_map);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -662,7 +674,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="with">Object</param>
     /// <returns>True on success, <c>false</c> otherwise</returns>
     virtual public bool EqualCommands(Efl.Object with) {
-                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),with);
+                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),with);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -670,13 +682,13 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// <param name="cmd_count">Commands count to reserve</param>
     /// <param name="pts_count">Pointers count to reserve</param>
     virtual public void Reserve(uint cmd_count, uint pts_count) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),cmd_count, pts_count);
+                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cmd_count, pts_count);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Request to update the path object.
     /// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
     virtual public void Commit() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
@@ -684,7 +696,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <returns>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</returns>
     virtual public short GetLayer() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -699,7 +711,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="l">The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</param>
     virtual public void SetLayer(short l) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),l);
+                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),l);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the Evas object stacked right below <c>obj</c>
@@ -709,7 +721,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
     virtual public Efl.Gfx.IStack GetBelow() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -720,7 +732,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
     virtual public Efl.Gfx.IStack GetAbove() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -737,7 +749,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="below">The object below which to stack</param>
     virtual public void StackBelow(Efl.Gfx.IStack below) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),below);
+                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),below);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Raise <c>obj</c> to the top of its layer.
@@ -746,7 +758,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// See also <see cref="Efl.Gfx.IStack.StackAbove"/>, <see cref="Efl.Gfx.IStack.StackBelow"/> and <see cref="Efl.Gfx.IStack.LowerToBottom"/>
     /// (Since EFL 1.22)</summary>
     virtual public void RaiseToTop() {
-         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_raise_to_top_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_raise_to_top_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stack <c>obj</c> immediately <c>above</c>
@@ -762,7 +774,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// (Since EFL 1.22)</summary>
     /// <param name="above">The object above which to stack</param>
     virtual public void StackAbove(Efl.Gfx.IStack above) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),above);
+                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),above);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Lower <c>obj</c> to the bottom of its layer.
@@ -771,7 +783,7 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     /// See also <see cref="Efl.Gfx.IStack.StackAbove"/>, <see cref="Efl.Gfx.IStack.StackBelow"/> and <see cref="Efl.Gfx.IStack.RaiseToTop"/>
     /// (Since EFL 1.22)</summary>
     virtual public void LowerToBottom() {
-         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_lower_to_bottom_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_lower_to_bottom_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Gets the transformation matrix used for this node object.</summary>
@@ -779,6 +791,42 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public Eina.Matrix3 Transformation {
         get { return GetTransformation(); }
         set { SetTransformation(ref value); }
+    }
+    /// <summary>Gets the origin position of the node object.</summary>
+    /// <value><c>origin</c> x position.</value>
+    public (double, double) Origin {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetOrigin(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetOrigin( value.Item1,  value.Item2); }
+    }
+    /// <summary>Set Mask Node to this renderer</summary>
+    /// <value>Mask object</value>
+    public (Efl.Canvas.Vg.Node, int) Mask {
+        set { SetMask( value.Item1,  value.Item2); }
+    }
+    /// <summary>Retrieves the general/main color of the given Evas object.
+    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
+    /// (Since EFL 1.22)</summary>
+    public (int, int, int, int) Color {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
     /// (Since EFL 1.22)</summary>
@@ -828,6 +876,44 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
     public double Scale {
         get { return GetScale(); }
         set { SetScale(value); }
+    }
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    public (Efl.Gfx.PathCommandType, double) Path {
+        get {
+            Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+            double _out_points = default(double);
+            GetPath(out _out_op,out _out_points);
+            return (_out_op,_out_points);
+        }
+        set { SetPath( value.Item1,  value.Item2); }
+    }
+    /// <summary>Path length property</summary>
+    public (uint, uint) Length {
+        get {
+            uint _out_commands = default(uint);
+            uint _out_points = default(uint);
+            GetLength(out _out_commands,out _out_points);
+            return (_out_commands,_out_points);
+        }
+    }
+    /// <summary>Current point coordinates</summary>
+    public (double, double) Current {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrent(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
+    /// <summary>Current control point coordinates</summary>
+    public (double, double) CurrentCtrl {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrentCtrl(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
     }
     /// <summary>Retrieves the layer of its canvas that the given object is part of.
     /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
@@ -3259,3 +3345,50 @@ public abstract class Node : Efl.Object, Efl.IDuplicate, Efl.Gfx.IColor, Efl.Gfx
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_Canvas_VgNode_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Matrix3> Transformation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Matrix3>("transformation", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<System.String>("color_code", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+    
+    
+    
+    
+    public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Canvas.Vg.Node, T>magic = null) where T : Efl.Canvas.Vg.Node {
+        return new Efl.BindableProperty<short>("layer", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

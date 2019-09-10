@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IBufferConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IBuffer : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -104,8 +107,8 @@ Eina.Slice GetBufferManaged(int plane);
                                                         /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
     /// <value>Size of the buffer in pixels.</value>
     Eina.Size2D BufferSize {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The colorspace defines how pixels are encoded in the image in memory.
     /// By default, images are encoded in 32-bit BGRA, ie. each pixel takes 4 bytes in memory, with each channel B,G,R,A encoding the color with values from 0 to 255.
@@ -113,14 +116,14 @@ Eina.Slice GetBufferManaged(int plane);
     /// All images used in EFL use alpha-premultipied BGRA values, which means that for each pixel, B &lt;= A, G &lt;= A and R &lt;= A.</summary>
     /// <value>Colorspace</value>
     Efl.Gfx.Colorspace Colorspace {
-        get ;
+        get;
     }
     /// <summary>Indicates whether the alpha channel should be used.
     /// This does not indicate whether the image source file contains an alpha channel, only whether to respect it or discard it.</summary>
     /// <value>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</value>
     bool Alpha {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Length in bytes of one row of pixels in memory.
     /// Usually this will be equal to width * 4, with a plain BGRA image. This may return 0 if the stride is not applicable.
@@ -128,16 +131,22 @@ Eina.Slice GetBufferManaged(int plane);
     /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
     /// <value>Stride</value>
     int Stride {
-        get ;
+        get;
+    }
+    /// <summary>Duplicated pixel borders inside this buffer.
+    /// Internally, EFL may require an image to have its border pixels duplicated, in particular for GL textures. This property exposes the internal duplicated borders to allow calling <see cref="Efl.Gfx.IBuffer.BufferMap"/> with the entire pixel data, including those edge pixels.</summary>
+    (uint, uint, uint, uint) BufferBorders {
+        get;
     }
 }
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
-sealed public class IBufferConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IBufferConcrete :
     Efl.Eo.EoWrapper
     , IBuffer
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -153,11 +162,19 @@ sealed public class IBufferConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IBufferConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_buffer_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IBuffer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IBufferConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IBufferConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -334,13 +351,25 @@ sealed public class IBufferConcrete :
     public int Stride {
         get { return GetStride(); }
     }
+    /// <summary>Duplicated pixel borders inside this buffer.
+    /// Internally, EFL may require an image to have its border pixels duplicated, in particular for GL textures. This property exposes the internal duplicated borders to allow calling <see cref="Efl.Gfx.IBuffer.BufferMap"/> with the entire pixel data, including those edge pixels.</summary>
+    public (uint, uint, uint, uint) BufferBorders {
+        get {
+            uint _out_l = default(uint);
+            uint _out_r = default(uint);
+            uint _out_t = default(uint);
+            uint _out_b = default(uint);
+            GetBufferBorders(out _out_l,out _out_r,out _out_t,out _out_b);
+            return (_out_l,_out_r,_out_t,_out_b);
+        }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Gfx.IBufferConcrete.efl_gfx_buffer_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -972,11 +1001,29 @@ sealed public class IBufferConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIBufferConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<Eina.Size2D> BufferSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IBuffer, T>magic = null) where T : Efl.Gfx.IBuffer {
+        return new Efl.BindableProperty<Eina.Size2D>("buffer_size", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> Alpha<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IBuffer, T>magic = null) where T : Efl.Gfx.IBuffer {
+        return new Efl.BindableProperty<bool>("alpha", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Gfx {
 
 /// <summary>Graphics buffer access mode</summary>
+[Efl.Eo.BindingEntity]
 public enum BufferAccessMode
 {
 /// <summary>No buffer access</summary>

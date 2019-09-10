@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
 [Efl.IFileSaveConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IFileSave : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -26,12 +28,12 @@ bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info);
     }
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
-sealed public class IFileSaveConcrete :
+sealed public  class IFileSaveConcrete :
     Efl.Eo.EoWrapper
     , IFileSave
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -47,11 +49,19 @@ sealed public class IFileSaveConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IFileSaveConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_file_save_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IFileSave"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IFileSaveConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IFileSaveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -77,7 +87,7 @@ sealed public class IFileSaveConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -152,11 +162,18 @@ sealed public class IFileSaveConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflIFileSaveConcrete_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>Info used to determine various attributes when saving a file.
 /// (Since EFL 1.22)</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct FileSaveInfo
 {
     /// <summary>The quality level (0-100) to save the file with; commonly used when saving image files.</summary>
@@ -165,7 +182,10 @@ public struct FileSaveInfo
     public uint Compression;
     /// <summary>The encoding to use when saving the file.</summary>
     public System.String Encoding;
-    ///<summary>Constructor for FileSaveInfo.</summary>
+    /// <summary>Constructor for FileSaveInfo.</summary>
+    /// <param name="Quality">The quality level (0-100) to save the file with; commonly used when saving image files.</param>;
+    /// <param name="Compression">The compression level (0-100) to save the file with.</param>;
+    /// <param name="Encoding">The encoding to use when saving the file.</param>;
     public FileSaveInfo(
         uint Quality = default(uint),
         uint Compression = default(uint),
@@ -176,8 +196,8 @@ public struct FileSaveInfo
         this.Encoding = Encoding;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator FileSaveInfo(IntPtr ptr)
     {
         var tmp = (FileSaveInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(FileSaveInfo.NativeStruct));
@@ -186,7 +206,7 @@ public struct FileSaveInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct FileSaveInfo.</summary>
+    /// <summary>Internal wrapper for struct FileSaveInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -194,9 +214,9 @@ public struct FileSaveInfo
         public uint Quality;
         
         public uint Compression;
-        ///<summary>Internal wrapper for field Encoding</summary>
+        /// <summary>Internal wrapper for field Encoding</summary>
         public System.IntPtr Encoding;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator FileSaveInfo.NativeStruct(FileSaveInfo _external_struct)
         {
             var _internal_struct = new FileSaveInfo.NativeStruct();
@@ -206,7 +226,7 @@ public struct FileSaveInfo
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator FileSaveInfo(FileSaveInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new FileSaveInfo();

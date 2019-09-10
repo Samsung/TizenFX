@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Ui {
 
 /// <summary>The relative layout class.
 /// A relative layout calculates the size and position of all the children based on their relationship to each other.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.RelativeLayout.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,9 +37,9 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
         efl_ui_relative_layout_class_get();
     /// <summary>Initializes a new instance of the <see cref="RelativeLayout"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public RelativeLayout(Efl.Object parent
-            , System.String style = null) : base(efl_ui_relative_layout_class_get(), typeof(RelativeLayout), parent)
+            , System.String style = null) : base(efl_ui_relative_layout_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,29 +49,36 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected RelativeLayout(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="RelativeLayout"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected RelativeLayout(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected RelativeLayout(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="RelativeLayout"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected RelativeLayout(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected RelativeLayout(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -96,14 +106,14 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ContentAddedEvt.</summary>
+    /// <summary>Method to raise event ContentAddedEvt.</summary>
     public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
@@ -119,11 +129,12 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
     public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -151,14 +162,14 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ContentRemovedEvt.</summary>
+    /// <summary>Method to raise event ContentRemovedEvt.</summary>
     public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
@@ -177,7 +188,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -204,14 +215,14 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event LayoutUpdatedEvt.</summary>
+    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
     public void OnLayoutUpdatedEvt(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
@@ -229,7 +240,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between left and right of the target, ranging from 0.0 to 1.0.</param>
     virtual public void GetRelationLeft(Efl.Object child, out Efl.Object target, out double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_left_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, out target, out relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_left_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, out target, out relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the left side edge of the child relative to the target. By default, target is parent and relative is 0.0.</summary>
@@ -237,7 +248,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between left and right of the target, ranging from 0.0 to 1.0.</param>
     virtual public void SetRelationLeft(Efl.Object child, Efl.Object target, double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_left_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, target, relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_left_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, target, relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the right side edge of the child relative to the target. By default, target is parent and relative is 1.0.</summary>
@@ -245,7 +256,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between left and right of the target, ranging from 0.0 to 1.0.</param>
     virtual public void GetRelationRight(Efl.Object child, out Efl.Object target, out double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_right_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, out target, out relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_right_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, out target, out relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the right side edge of the child relative to the target. By default, target is parent and relative is 1.0.</summary>
@@ -253,7 +264,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between left and right of the target, ranging from 0.0 to 1.0.</param>
     virtual public void SetRelationRight(Efl.Object child, Efl.Object target, double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_right_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, target, relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_right_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, target, relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the top side edge of the child relative to the target. By default, target is parent and relative is 0.0.</summary>
@@ -261,7 +272,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between top and bottom of the target, ranging from 0.0 to 1.0.</param>
     virtual public void GetRelationTop(Efl.Object child, out Efl.Object target, out double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_top_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, out target, out relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_top_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, out target, out relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the top side edge of the child relative to the target. By default, target is parent and relative is 0.0.</summary>
@@ -269,7 +280,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between top and bottom of the target, ranging from 0.0 to 1.0.</param>
     virtual public void SetRelationTop(Efl.Object child, Efl.Object target, double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_top_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, target, relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_top_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, target, relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the bottom side edge of the child relative to the target. By default, target is parent and relative is 1.0.</summary>
@@ -277,7 +288,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between top and bottom of the target, ranging from 0.0 to 1.0.</param>
     virtual public void GetRelationBottom(Efl.Object child, out Efl.Object target, out double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_bottom_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, out target, out relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_bottom_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, out target, out relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Specifies the bottom side edge of the child relative to the target. By default, target is parent and relative is 1.0.</summary>
@@ -285,29 +296,29 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="target">The relative target.</param>
     /// <param name="relative">The ratio between top and bottom of the target, ranging from 0.0 to 1.0.</param>
     virtual public void SetRelationBottom(Efl.Object child, Efl.Object target, double relative) {
-                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_bottom_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),child, target, relative);
+                                                                                 Efl.Ui.RelativeLayout.NativeMethods.efl_ui_relative_layout_relation_bottom_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, target, relative);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
     virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true, false);
+        return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
     virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -315,7 +326,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -323,7 +334,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
     virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -334,14 +345,14 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
     virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),subobj);
+                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
     /// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
     virtual public void LayoutRequest() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Implementation of this container&apos;s layout algorithm.
@@ -349,7 +360,7 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
     /// 
     /// This can be overriden to implement custom layout behaviors.</summary>
     virtual public void UpdateLayout() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     private static IntPtr GetEflClassStatic()
@@ -1114,3 +1125,13 @@ public class RelativeLayout : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPac
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiRelativeLayout_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

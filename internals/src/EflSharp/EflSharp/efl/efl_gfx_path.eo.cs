@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>EFL graphics path object interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IPathConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IPath : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -142,14 +145,33 @@ void Reserve(uint cmd_count, uint pts_count);
     /// <summary>Request to update the path object.
 /// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
 void Commit();
-                                                                                                }
+                                                                                                    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    (Efl.Gfx.PathCommandType, double) Path {
+        get;
+        set;
+    }
+    /// <summary>Path length property</summary>
+    (uint, uint) Length {
+        get;
+    }
+    /// <summary>Current point coordinates</summary>
+    (double, double) Current {
+        get;
+    }
+    /// <summary>Current control point coordinates</summary>
+    (double, double) CurrentCtrl {
+        get;
+    }
+}
 /// <summary>EFL graphics path object interface</summary>
-sealed public class IPathConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IPathConcrete :
     Efl.Eo.EoWrapper
     , IPath
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -165,11 +187,19 @@ sealed public class IPathConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IPathConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_path_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IPath"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IPathConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IPathConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -383,13 +413,51 @@ sealed public class IPathConcrete :
          Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    public (Efl.Gfx.PathCommandType, double) Path {
+        get {
+            Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+            double _out_points = default(double);
+            GetPath(out _out_op,out _out_points);
+            return (_out_op,_out_points);
+        }
+        set { SetPath( value.Item1,  value.Item2); }
+    }
+    /// <summary>Path length property</summary>
+    public (uint, uint) Length {
+        get {
+            uint _out_commands = default(uint);
+            uint _out_points = default(uint);
+            GetLength(out _out_commands,out _out_points);
+            return (_out_commands,_out_points);
+        }
+    }
+    /// <summary>Current point coordinates</summary>
+    public (double, double) Current {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrent(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
+    /// <summary>Current control point coordinates</summary>
+    public (double, double) CurrentCtrl {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrentCtrl(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Gfx.IPathConcrete.efl_gfx_path_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1508,3 +1576,13 @@ sealed public class IPathConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIPathConcrete_ExtensionMethods {
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

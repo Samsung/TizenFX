@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,6 +11,7 @@ namespace Efl {
 /// <summary>Efl text interface
 /// (Since EFL 1.22)</summary>
 [Efl.ITextConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IText : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -28,12 +30,12 @@ void SetText(System.String text);
         }
 /// <summary>Efl text interface
 /// (Since EFL 1.22)</summary>
-sealed public class ITextConcrete :
+sealed public  class ITextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -49,11 +51,19 @@ sealed public class ITextConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IText"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -82,7 +92,7 @@ sealed public class ITextConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -200,3 +210,10 @@ sealed public class ITextConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextConcrete_ExtensionMethods {
+    
+}
+#pragma warning restore CS1591
+#endif

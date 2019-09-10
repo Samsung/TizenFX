@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+using System;
+using System.Diagnostics;
+using System.Runtime.InteropServices;
+
 namespace Tizen.Multimedia.Util
 {
     /// <summary>
@@ -22,9 +26,14 @@ namespace Tizen.Multimedia.Util
     /// <since_tizen> 4 </since_tizen>
     public class ThumbnailExtractionResult
     {
-        internal ThumbnailExtractionResult(byte[] thumbnailData, int width, int height)
+        internal ThumbnailExtractionResult(IntPtr nativeBuffer, int width, int height, int size)
         {
-            RawData = thumbnailData;
+            Debug.Assert(nativeBuffer != IntPtr.Zero);
+
+            byte[] buf = new byte[size];
+            Marshal.Copy(nativeBuffer, buf, 0, size);
+
+            RawData = buf;
             Size = new Size(width, height);
         }
 

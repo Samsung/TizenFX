@@ -239,7 +239,7 @@ namespace Tizen.Applications.CoreBackend
         }
 
         /// <summary>
-        /// Default implementation for the suspended state changed event.
+        /// Default implementation for the device orientation changed event.
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
@@ -257,6 +257,28 @@ namespace Tizen.Applications.CoreBackend
             {
                 var handler = Handlers[EventType.DeviceOrientationChanged] as Action<DeviceOrientationEventArgs>;
                 handler?.Invoke(new DeviceOrientationEventArgs(orientation));
+            }
+        }
+
+        /// <summary>
+        /// Default implementation for the device orientation changed event.
+        /// </summary>
+        /// <param name="infoHandle"></param>
+        /// <param name="data"></param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnSuspendedStateChangedNative(IntPtr infoHandle, IntPtr data)
+        {
+            SuspendedState state;
+            ErrorCode err = Interop.AppCommon.AppEventGetSuspendedState(infoHandle, out state);
+            if (err != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to get deivce orientation. Err = " + err);
+            }
+            if (Handlers.ContainsKey(EventType.SuspendedStateChanged))
+            {
+                var handler = Handlers[EventType.SuspendedStateChanged] as Action<SuspendedStateEventArgs>;
+                handler?.Invoke(new SuspendedStateEventArgs(state));
             }
         }
     }

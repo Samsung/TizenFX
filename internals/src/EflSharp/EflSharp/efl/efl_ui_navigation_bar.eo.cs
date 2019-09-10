@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,10 +12,12 @@ namespace Ui {
 
 /// <summary>Navigation_Bar widget.
 /// Navigation_Bar widget provides a bar form useful for navigation. Navigation_Bar has a back button which is used to navigate to the previous content in the stack.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.NavigationBar.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,9 +37,9 @@ public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
         efl_ui_navigation_bar_class_get();
     /// <summary>Initializes a new instance of the <see cref="NavigationBar"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle"/></param>
+    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public NavigationBar(Efl.Object parent
-            , System.String style = null) : base(efl_ui_navigation_bar_class_get(), typeof(NavigationBar), parent)
+            , System.String style = null) : base(efl_ui_navigation_bar_class_get(), parent)
     {
         if (Efl.Eo.Globals.ParamHelperCheck(style))
         {
@@ -46,19 +49,25 @@ public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected NavigationBar(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="NavigationBar"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected NavigationBar(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected NavigationBar(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="NavigationBar"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected NavigationBar(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected NavigationBar(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -80,7 +89,7 @@ public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     virtual public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -89,7 +98,7 @@ public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     virtual public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),text);
+                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
                          }
     private static IntPtr GetEflClassStatic()
@@ -219,3 +228,15 @@ public class NavigationBar : Efl.Ui.LayoutBase, Efl.IText
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiNavigationBar_ExtensionMethods {
+    
+        public static Efl.BindableFactoryPart<Efl.Ui.NavigationBarPartBackButton> BackButtonPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.NavigationBar, T> x=null) where T : Efl.Ui.NavigationBar
+    {
+        return new Efl.BindableFactoryPart<Efl.Ui.NavigationBarPartBackButton>("back_button" ,fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

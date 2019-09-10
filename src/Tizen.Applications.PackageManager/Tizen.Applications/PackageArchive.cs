@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
@@ -37,6 +38,7 @@ namespace Tizen.Applications
         private string _author = string.Empty;
         private IntPtr _icon = IntPtr.Zero;
         private int _iconSize = 0;
+        private List<PackageDependencyInformation> _dependency_to;
 
         private PackageArchive(string archivePath)
         {
@@ -99,6 +101,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Packages that this package is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public List<PackageDependencyInformation> DependencyTo { get { return _dependency_to; } }
+
         // This method assumes that given arguments are already validated and have valid values.
         internal static PackageArchive CreatePackageArchive(IntPtr handle, string archivePath)
         {
@@ -145,6 +153,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, "Failed to get package author from " + archivePath);
             }
+            packageArchive._dependency_to = GetPackageArchiveDependencyInformation(handle);
 
             return packageArchive;
         }
@@ -166,6 +175,23 @@ namespace Tizen.Applications
                 Log.Warn(LogTag, string.Format("Failed to destroy native handle for package archive info of {0}. err = {1}", archivePath, err));
             }
             return packageArchive;
+        }
+
+        private static List<PackageDependencyInformation> GetPackageArchiveDependencyInformation(IntPtr handle)
+        {
+            List<PackageDependencyInformation> dependencies = new List<PackageDependencyInformation>();
+            Interop.Package.PackageInfoDependencyInfoCallback dependencyInfoCb = (from, to, type, requiredVersion, userData) =>
+            {
+                dependencies.Add(PackageDependencyInformation.GetPackageDependencyInformation(from, to, type, requiredVersion));
+                return true;
+            };
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageArchive.PackageArchiveInfoForeachDirectDependency(handle, dependencyInfoCb, IntPtr.Zero);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+            }
+            return dependencies;
         }
     }
 }

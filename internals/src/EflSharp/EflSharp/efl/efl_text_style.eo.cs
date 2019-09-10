@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -9,7 +10,9 @@ namespace Efl {
 
 /// <summary>Style to apply to the text
 /// A style can be coloring, effects, underline, strikethrough etc.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.ITextStyleConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface ITextStyle : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -189,70 +192,131 @@ System.String GetGfxFilter();
 /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
 /// <param name="code">Filter code</param>
 void SetGfxFilter(System.String code);
-                                                                                                                                                            /// <summary>Enable or disable backing type</summary>
+                                                                                                                                                            /// <summary>Color of text, excluding style</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) NormalColor {
+        get;
+        set;
+    }
+    /// <summary>Enable or disable backing type</summary>
     /// <value>Backing type</value>
     Efl.TextStyleBackingType BackingType {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Backing color</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) BackingColor {
+        get;
+        set;
     }
     /// <summary>Sets an underline style on the text</summary>
     /// <value>Underline type</value>
     Efl.TextStyleUnderlineType UnderlineType {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of normal underline style</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) UnderlineColor {
+        get;
+        set;
     }
     /// <summary>Height of underline style</summary>
     /// <value>Height</value>
     double UnderlineHeight {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of dashed underline style</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) UnderlineDashedColor {
+        get;
+        set;
     }
     /// <summary>Width of dashed underline style</summary>
     /// <value>Width</value>
     int UnderlineDashedWidth {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Gap of dashed underline style</summary>
     /// <value>Gap</value>
     int UnderlineDashedGap {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of underline2 style</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) Underline2Color {
+        get;
+        set;
     }
     /// <summary>Type of strikethrough style</summary>
     /// <value>Strikethrough type</value>
     Efl.TextStyleStrikethroughType StrikethroughType {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of strikethrough_style</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) StrikethroughColor {
+        get;
+        set;
     }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <value>Effect type</value>
     Efl.TextStyleEffectType EffectType {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of outline effect</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) OutlineColor {
+        get;
+        set;
     }
     /// <summary>Direction of shadow effect</summary>
     /// <value>Shadow direction</value>
     Efl.TextStyleShadowDirection ShadowDirection {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Color of shadow effect</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) ShadowColor {
+        get;
+        set;
+    }
+    /// <summary>Color of glow effect</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) GlowColor {
+        get;
+        set;
+    }
+    /// <summary>Second color of the glow effect</summary>
+    /// <value>Red component</value>
+    (byte, byte, byte, byte) Glow2Color {
+        get;
+        set;
     }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
     /// <value>Filter code</value>
     System.String GfxFilter {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>Style to apply to the text
 /// A style can be coloring, effects, underline, strikethrough etc.</summary>
-sealed public class ITextStyleConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class ITextStyleConcrete :
     Efl.Eo.EoWrapper
     , ITextStyle
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -268,11 +332,19 @@ sealed public class ITextStyleConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private ITextStyleConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_style_interface_get();
     /// <summary>Initializes a new instance of the <see cref="ITextStyle"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private ITextStyleConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private ITextStyleConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -575,11 +647,37 @@ sealed public class ITextStyleConcrete :
                                  Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_set_ptr.Value.Delegate(this.NativeHandle,code);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Color of text, excluding style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) NormalColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetNormalColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetNormalColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Enable or disable backing type</summary>
     /// <value>Backing type</value>
     public Efl.TextStyleBackingType BackingType {
         get { return GetBackingType(); }
         set { SetBackingType(value); }
+    }
+    /// <summary>Backing color</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) BackingColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetBackingColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetBackingColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Sets an underline style on the text</summary>
     /// <value>Underline type</value>
@@ -587,11 +685,37 @@ sealed public class ITextStyleConcrete :
         get { return GetUnderlineType(); }
         set { SetUnderlineType(value); }
     }
+    /// <summary>Color of normal underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Height of underline style</summary>
     /// <value>Height</value>
     public double UnderlineHeight {
         get { return GetUnderlineHeight(); }
         set { SetUnderlineHeight(value); }
+    }
+    /// <summary>Color of dashed underline style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) UnderlineDashedColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderlineDashedColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderlineDashedColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Width of dashed underline style</summary>
     /// <value>Width</value>
@@ -605,11 +729,37 @@ sealed public class ITextStyleConcrete :
         get { return GetUnderlineDashedGap(); }
         set { SetUnderlineDashedGap(value); }
     }
+    /// <summary>Color of underline2 style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Underline2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetUnderline2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetUnderline2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Type of strikethrough style</summary>
     /// <value>Strikethrough type</value>
     public Efl.TextStyleStrikethroughType StrikethroughType {
         get { return GetStrikethroughType(); }
         set { SetStrikethroughType(value); }
+    }
+    /// <summary>Color of strikethrough_style</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) StrikethroughColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetStrikethroughColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetStrikethroughColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <value>Effect type</value>
@@ -617,11 +767,63 @@ sealed public class ITextStyleConcrete :
         get { return GetEffectType(); }
         set { SetEffectType(value); }
     }
+    /// <summary>Color of outline effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) OutlineColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetOutlineColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetOutlineColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>Direction of shadow effect</summary>
     /// <value>Shadow direction</value>
     public Efl.TextStyleShadowDirection ShadowDirection {
         get { return GetShadowDirection(); }
         set { SetShadowDirection(value); }
+    }
+    /// <summary>Color of shadow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) ShadowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetShadowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetShadowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Color of glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) GlowColor {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlowColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlowColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
+    /// <summary>Second color of the glow effect</summary>
+    /// <value>Red component</value>
+    public (byte, byte, byte, byte) Glow2Color {
+        get {
+            byte _out_r = default(byte);
+            byte _out_g = default(byte);
+            byte _out_b = default(byte);
+            byte _out_a = default(byte);
+            GetGlow2Color(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetGlow2Color( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
@@ -636,7 +838,7 @@ sealed public class ITextStyleConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -2382,9 +2584,62 @@ sealed public class ITextStyleConcrete :
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflITextStyleConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<Efl.TextStyleBackingType> BackingType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<Efl.TextStyleBackingType>("backing_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleUnderlineType> UnderlineType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<Efl.TextStyleUnderlineType>("underline_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> UnderlineHeight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<double>("underline_height", fac);
+    }
+
+    
+    public static Efl.BindableProperty<int> UnderlineDashedWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<int>("underline_dashed_width", fac);
+    }
+
+    public static Efl.BindableProperty<int> UnderlineDashedGap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<int>("underline_dashed_gap", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleStrikethroughType> StrikethroughType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<Efl.TextStyleStrikethroughType>("strikethrough_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleEffectType> EffectType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<Efl.TextStyleEffectType>("effect_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.TextStyleShadowDirection> ShadowDirection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<Efl.TextStyleShadowDirection>("shadow_direction", fac);
+    }
+
+    
+    
+    
+    public static Efl.BindableProperty<System.String> GfxFilter<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
+        return new Efl.BindableProperty<System.String>("gfx_filter", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 /// <summary>Whether to apply backing style to the displayed text or not</summary>
+[Efl.Eo.BindingEntity]
 public enum TextStyleBackingType
 {
 /// <summary>Do not use backing</summary>
@@ -2398,6 +2653,7 @@ Enabled = 1,
 namespace Efl {
 
 /// <summary>Whether to apply strikethrough style to the displayed text or not</summary>
+[Efl.Eo.BindingEntity]
 public enum TextStyleStrikethroughType
 {
 /// <summary>Do not use strikethrough</summary>
@@ -2411,6 +2667,7 @@ Enabled = 1,
 namespace Efl {
 
 /// <summary>Effect to apply to the displayed text</summary>
+[Efl.Eo.BindingEntity]
 public enum TextStyleEffectType
 {
 /// <summary>No effect</summary>
@@ -2440,6 +2697,7 @@ OutlineSoftShadow = 9,
 namespace Efl {
 
 /// <summary>Direction of the shadow style, if used</summary>
+[Efl.Eo.BindingEntity]
 public enum TextStyleShadowDirection
 {
 /// <summary>Shadow towards bottom right</summary>
@@ -2465,6 +2723,7 @@ Right = 7,
 namespace Efl {
 
 /// <summary>Underline type of the displayed text</summary>
+[Efl.Eo.BindingEntity]
 public enum TextStyleUnderlineType
 {
 /// <summary>Text without underline</summary>

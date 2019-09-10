@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>API common to all UI container objects.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IArrangementConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IArrangement : 
     Efl.Eo.IWrapper, IDisposable
 {
@@ -32,14 +35,27 @@ void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scala
 /// <param name="pad_vert">Vertical padding</param>
 /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
 void SetContentPadding(double pad_horiz, double pad_vert, bool scalable);
-                }
+                    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    (double, double) ContentAlign {
+        get;
+        set;
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    (double, double, bool) ContentPadding {
+        get;
+        set;
+    }
+}
 /// <summary>API common to all UI container objects.</summary>
-sealed public class IArrangementConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IArrangementConcrete :
     Efl.Eo.EoWrapper
     , IArrangement
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -55,11 +71,19 @@ sealed public class IArrangementConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IArrangementConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_arrangement_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IArrangement"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IArrangementConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IArrangementConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -93,13 +117,36 @@ sealed public class IArrangementConcrete :
                                                                                  Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate(this.NativeHandle,pad_horiz, pad_vert, scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+    /// <summary>Alignment of the container within its bounds</summary>
+    /// <value>Horizontal alignment</value>
+    public (double, double) ContentAlign {
+        get {
+            double _out_align_horiz = default(double);
+            double _out_align_vert = default(double);
+            GetContentAlign(out _out_align_horiz,out _out_align_vert);
+            return (_out_align_horiz,_out_align_vert);
+        }
+        set { SetContentAlign( value.Item1,  value.Item2); }
+    }
+    /// <summary>Padding between items contained in this object.</summary>
+    /// <value>Horizontal padding</value>
+    public (double, double, bool) ContentPadding {
+        get {
+            double _out_pad_horiz = default(double);
+            double _out_pad_vert = default(double);
+            bool _out_scalable = default(bool);
+            GetContentPadding(out _out_pad_horiz,out _out_pad_vert,out _out_scalable);
+            return (_out_pad_horiz,_out_pad_vert,_out_scalable);
+        }
+        set { SetContentPadding( value.Item1,  value.Item2,  value.Item3); }
+    }
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Gfx.IArrangementConcrete.efl_gfx_arrangement_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -308,3 +355,11 @@ sealed public class IArrangementConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIArrangementConcrete_ExtensionMethods {
+    
+    
+}
+#pragma warning restore CS1591
+#endif

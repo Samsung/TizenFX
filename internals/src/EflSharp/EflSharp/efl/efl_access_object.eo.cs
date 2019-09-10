@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -73,29 +74,44 @@ namespace Access {
 
 /// <summary>Accessibility accessible mixin</summary>
 [Efl.Access.IObjectConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets an localized string describing accessible object role name.</summary>
+    /// <summary>Gets an localized string describing accessible object role name.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Localized accessible object role name</returns>
 System.String GetLocalizedRoleName();
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible name</returns>
 System.String GetI18nName();
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="i18n_name">Accessible name</param>
 void SetI18nName(System.String i18n_name);
     /// <summary>Sets name information callback about widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="name_cb">reading information callback</param>
 void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data);
-    /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
+    /// <summary>Gets an all relations between accessible object and other accessible objects.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible relation set</returns>
 Efl.Access.RelationSet GetRelationSet();
-    /// <summary>The role of the object in accessibility domain.</summary>
+    /// <summary>The role of the object in accessibility domain.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible role</returns>
 Efl.Access.Role GetRole();
-    /// <summary>Sets the role of the object in accessibility domain.</summary>
+    /// <summary>Sets the role of the object in accessibility domain.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="role">Accessible role</param>
 void SetRole(Efl.Access.Role role);
     /// <summary>Gets object&apos;s accessible parent.</summary>
@@ -105,58 +121,70 @@ Efl.Access.IObject GetAccessParent();
 /// <param name="parent">Accessible parent</param>
 void SetAccessParent(Efl.Access.IObject parent);
     /// <summary>Sets contextual information callback about widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="description_cb">The function called to provide the accessible description.</param>
-/// <param name="data">The data passed to @c description_cb.</param>
+/// <param name="data">The data passed to c description_cb.</param>
 void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data);
     /// <summary>Sets gesture callback to give widget.
 /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
 /// 
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data);
-    /// <summary>Gets object&apos;s accessible children.</summary>
+    /// <summary>Gets object&apos;s accessible children.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>List of widget&apos;s children</returns>
 Eina.List<Efl.Access.IObject> GetAccessChildren();
-    /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
+    /// <summary>Gets human-readable string indentifying object accessibility role.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible role name</returns>
 System.String GetRoleName();
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
+    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>List of object attributes, Must be freed by the user</returns>
 Eina.List<Efl.Access.Attribute> GetAttributes();
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif</summary>
 /// <returns>Reading information types</returns>
 Efl.Access.ReadingInfoTypeMask GetReadingInfoType();
     /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif</summary>
 /// <param name="reading_info">Reading information types</param>
 void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info);
-    /// <summary>Gets index of the child in parent&apos;s children list.</summary>
+    /// <summary>Gets index of the child in parent&apos;s children list.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Index in children list</returns>
 int GetIndexInParent();
-    /// <summary>Gets contextual information about object.</summary>
+    /// <summary>Gets contextual information about object.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible contextual information</returns>
 System.String GetDescription();
-    /// <summary>Sets widget contextual information.</summary>
+    /// <summary>Sets widget contextual information.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="description">Accessible contextual information</param>
 void SetDescription(System.String description);
-    /// <summary>Gets set describing object accessible states.</summary>
+    /// <summary>Gets set describing object accessible states.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Accessible state set</returns>
 Efl.Access.StateSet GetStateSet();
-    /// <summary>Gets highlightable of given widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <returns>If @c true, the object is highlightable.</returns>
-bool GetCanHighlight();
-    /// <summary>Sets highlightable to given widget.
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
-/// <param name="can_highlight">If @c true, the object is highlightable.</param>
-void SetCanHighlight(bool can_highlight);
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
 /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
 /// 
 /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
 /// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <returns>Translation domain</returns>
 System.String GetTranslationDomain();
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
@@ -164,13 +192,23 @@ System.String GetTranslationDomain();
 /// 
 /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
 /// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="domain">Translation domain</param>
 void SetTranslationDomain(System.String domain);
-        /// <summary>Handles gesture on given widget.</summary>
+        /// <summary>Gets highlightable of given widget.
+/// if WEARABLE since_tizen 3.0 endif</summary>
+/// <returns>If c true, the object is highlightable.</returns>
+bool GetCanHighlight();
+    /// <summary>Sets highlightable to given widget.
+/// if WEARABLE since_tizen 3.0 endif</summary>
+/// <param name="can_highlight">If c true, the object is highlightable.</param>
+void SetCanHighlight(bool can_highlight);
+    /// <summary>Handles gesture on given widget.</summary>
 bool GestureDo(Efl.Access.GestureInfo gesture_info);
     /// <summary>Add key-value pair identifying object extra attribute
-/// @if WEARABLE @since_tizen 3.0 @endif</summary>
+/// if WEARABLE since_tizen 3.0 endif</summary>
 /// <param name="key">The string key to give extra information</param>
 /// <param name="value">The string value to give extra information</param>
 void AppendAttribute(System.String key, System.String value);
@@ -184,17 +222,23 @@ void ClearAttributes();
 /// 
 /// Relationships can be queried by Assistive Technology clients to provide customized feedback, improving overall user experience.
 /// 
-/// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.</summary>
+/// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="type">Relation type</param>
 /// <param name="relation_object">Object to relate to</param>
 /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
 bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
     /// <summary>Removes the relationship between two accessible objects.
-/// If relation_object is NULL function removes all relations of the given type.</summary>
+/// If relation_object is NULL function removes all relations of the given type.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="type">Relation type</param>
 /// <param name="relation_object">Object to remove relation from</param>
 void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
-    /// <summary>Removes all relationships in accessible object.</summary>
+    /// <summary>Removes all relationships in accessible object.
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 void ClearRelationships();
     /// <summary>Notifies accessibility clients about current state of the accessible object.
 /// Function limits information broadcast to clients to types specified by state_types_mask parameter.
@@ -202,139 +246,201 @@ void ClearRelationships();
 /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
 void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
                                                                                                                                                     /// <summary>Called when property has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectPropertyChangedEvt_Args"/></value>
     event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt;
     /// <summary>Called when children have changed</summary>
+    /// <value><see cref="Efl.Access.IObjectChildrenChangedEvt_Args"/></value>
     event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt;
     /// <summary>Called when state has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectStateChangedEvt_Args"/></value>
     event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt;
     /// <summary>Called when boundaries have changed</summary>
+    /// <value><see cref="Efl.Access.IObjectBoundsChangedEvt_Args"/></value>
     event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt;
     /// <summary>Called when visibility has changed</summary>
     event EventHandler VisibleDataChangedEvt;
     /// <summary>Called when active state of descendant has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectActiveDescendantChangedEvt_Args"/></value>
     event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt;
     /// <summary>Called when item is added</summary>
     event EventHandler AddedEvt;
     /// <summary>Called when item is removed</summary>
     event EventHandler RemovedEvt;
     event EventHandler MoveOutedEvt;
-    /// <summary>Gets an localized string describing accessible object role name.</summary>
+    /// <summary>Gets an localized string describing accessible object role name.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Localized accessible object role name</value>
     System.String LocalizedRoleName {
-        get ;
+        get;
     }
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible name</value>
     System.String I18nName {
-        get ;
-        set ;
+        get;
+        set;
     }
-    /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
+    /// <summary>Sets name information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <value>reading information callback</value>
+    (Efl.Access.ReadingInfoCb, System.IntPtr) NameCb {
+        set;
+    }
+    /// <summary>Gets an all relations between accessible object and other accessible objects.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible relation set</value>
     Efl.Access.RelationSet RelationSet {
-        get ;
+        get;
     }
-    /// <summary>The role of the object in accessibility domain.</summary>
+    /// <summary>The role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role</value>
     Efl.Access.Role Role {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <value>Accessible parent</value>
     Efl.Access.IObject AccessParent {
-        get ;
-        set ;
+        get;
+        set;
     }
-    /// <summary>Gets object&apos;s accessible children.</summary>
+    /// <summary>Sets contextual information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <value>The function called to provide the accessible description.</value>
+    (Efl.Access.ReadingInfoCb, System.IntPtr) DescriptionCb {
+        set;
+    }
+    /// <summary>Sets gesture callback to give widget.
+    /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
+    /// 
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    (Efl.Access.GestureCb, System.IntPtr) GestureCb {
+        set;
+    }
+    /// <summary>Gets object&apos;s accessible children.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of widget&apos;s children</value>
     Eina.List<Efl.Access.IObject> AccessChildren {
-        get ;
+        get;
     }
-    /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
+    /// <summary>Gets human-readable string indentifying object accessibility role.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role name</value>
     System.String RoleName {
-        get ;
+        get;
     }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
+    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of object attributes, Must be freed by the user</value>
     Eina.List<Efl.Access.Attribute> Attributes {
-        get ;
+        get;
     }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>Reading information types</value>
     Efl.Access.ReadingInfoTypeMask ReadingInfoType {
-        get ;
-        set ;
+        get;
+        set;
     }
-    /// <summary>Gets index of the child in parent&apos;s children list.</summary>
+    /// <summary>Gets index of the child in parent&apos;s children list.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Index in children list</value>
     int IndexInParent {
-        get ;
+        get;
     }
-    /// <summary>Gets contextual information about object.</summary>
+    /// <summary>Gets contextual information about object.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible contextual information</value>
     System.String Description {
-        get ;
-        set ;
+        get;
+        set;
     }
-    /// <summary>Gets set describing object accessible states.</summary>
+    /// <summary>Gets set describing object accessible states.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible state set</value>
     Efl.Access.StateSet StateSet {
-        get ;
-    }
-    /// <summary>Gets highlightable of given widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-    /// <value>If @c true, the object is highlightable.</value>
-    bool CanHighlight {
-        get ;
-        set ;
+        get;
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
     /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
     /// 
-    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Translation domain</value>
     System.String TranslationDomain {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Gets highlightable of given widget.
+    /// if WEARABLE since_tizen 3.0 endif</summary>
+    /// <value>If c true, the object is highlightable.</value>
+    bool CanHighlight {
+        get;
+        set;
     }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.PropertyChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.PropertyChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectPropertyChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when property has changed</value>
     public System.String arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ChildrenChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ChildrenChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectChildrenChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when children have changed</value>
     public Efl.Access.Event.ChildrenChanged.Data arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.StateChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.StateChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectStateChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when state has changed</value>
     public Efl.Access.Event.StateChanged.Data arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.BoundsChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.BoundsChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectBoundsChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when boundaries have changed</value>
     public Efl.Access.Event.GeometryChanged.Data arg { get; set; }
 }
-///<summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ActiveDescendantChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ActiveDescendantChangedEvt"/>.</summary>
+[Efl.Eo.BindingEntity]
 public class IObjectActiveDescendantChangedEvt_Args : EventArgs {
-    ///<summary>Actual event payload.</summary>
+    /// <summary>Actual event payload.</summary>
+    /// <value>Called when active state of descendant has changed</value>
     public Efl.Object arg { get; set; }
 }
 /// <summary>Accessibility accessible mixin</summary>
-sealed public class IObjectConcrete :
+sealed public  class IObjectConcrete :
     Efl.Eo.EoWrapper
     , IObject
     
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -350,20 +456,29 @@ sealed public class IObjectConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IObjectConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_object_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IObjectConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when property has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectPropertyChangedEvt_Args"/></value>
     public event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -391,14 +506,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PropertyChangedEvt.</summary>
+    /// <summary>Method to raise event PropertyChangedEvt.</summary>
     public void OnPropertyChangedEvt(Efl.Access.IObjectPropertyChangedEvt_Args e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
@@ -420,11 +535,12 @@ sealed public class IObjectConcrete :
         }
     }
     /// <summary>Called when children have changed</summary>
+    /// <value><see cref="Efl.Access.IObjectChildrenChangedEvt_Args"/></value>
     public event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -452,14 +568,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ChildrenChangedEvt.</summary>
+    /// <summary>Method to raise event ChildrenChangedEvt.</summary>
     public void OnChildrenChangedEvt(Efl.Access.IObjectChildrenChangedEvt_Args e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
@@ -482,11 +598,12 @@ sealed public class IObjectConcrete :
         }
     }
     /// <summary>Called when state has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectStateChangedEvt_Args"/></value>
     public event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -514,14 +631,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event StateChangedEvt.</summary>
+    /// <summary>Method to raise event StateChangedEvt.</summary>
     public void OnStateChangedEvt(Efl.Access.IObjectStateChangedEvt_Args e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
@@ -544,11 +661,12 @@ sealed public class IObjectConcrete :
         }
     }
     /// <summary>Called when boundaries have changed</summary>
+    /// <value><see cref="Efl.Access.IObjectBoundsChangedEvt_Args"/></value>
     public event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -576,14 +694,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event BoundsChangedEvt.</summary>
+    /// <summary>Method to raise event BoundsChangedEvt.</summary>
     public void OnBoundsChangedEvt(Efl.Access.IObjectBoundsChangedEvt_Args e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
@@ -610,7 +728,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -637,14 +755,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event VisibleDataChangedEvt.</summary>
+    /// <summary>Method to raise event VisibleDataChangedEvt.</summary>
     public void OnVisibleDataChangedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
@@ -658,11 +776,12 @@ sealed public class IObjectConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when active state of descendant has changed</summary>
+    /// <value><see cref="Efl.Access.IObjectActiveDescendantChangedEvt_Args"/></value>
     public event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -690,14 +809,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ActiveDescendantChangedEvt.</summary>
+    /// <summary>Method to raise event ActiveDescendantChangedEvt.</summary>
     public void OnActiveDescendantChangedEvt(Efl.Access.IObjectActiveDescendantChangedEvt_Args e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
@@ -716,7 +835,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -743,14 +862,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event AddedEvt.</summary>
+    /// <summary>Method to raise event AddedEvt.</summary>
     public void OnAddedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
@@ -768,7 +887,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -795,14 +914,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event RemovedEvt.</summary>
+    /// <summary>Method to raise event RemovedEvt.</summary>
     public void OnRemovedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
@@ -819,7 +938,7 @@ sealed public class IObjectConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -846,14 +965,14 @@ sealed public class IObjectConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event MoveOutedEvt.</summary>
+    /// <summary>Method to raise event MoveOutedEvt.</summary>
     public void OnMoveOutedEvt(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
@@ -866,48 +985,62 @@ sealed public class IObjectConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Gets an localized string describing accessible object role name.</summary>
+    /// <summary>Gets an localized string describing accessible object role name.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Localized accessible object role name</returns>
     public System.String GetLocalizedRoleName() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible name</returns>
     public System.String GetI18nName() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="i18n_name">Accessible name</param>
     public void SetI18nName(System.String i18n_name) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate(this.NativeHandle,i18n_name);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets name information callback about widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="name_cb">reading information callback</param>
     public void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
                                                          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate(this.NativeHandle,name_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
+    /// <summary>Gets an all relations between accessible object and other accessible objects.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible relation set</returns>
     public Efl.Access.RelationSet GetRelationSet() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>The role of the object in accessibility domain.</summary>
+    /// <summary>The role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role</returns>
     public Efl.Access.Role GetRole() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Sets the role of the object in accessibility domain.</summary>
+    /// <summary>Sets the role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="role">Accessible role</param>
     public void SetRole(Efl.Access.Role role) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate(this.NativeHandle,role);
@@ -927,9 +1060,11 @@ sealed public class IObjectConcrete :
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Sets contextual information callback about widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="description_cb">The function called to provide the accessible description.</param>
-    /// <param name="data">The data passed to @c description_cb.</param>
+    /// <param name="data">The data passed to c description_cb.</param>
     public void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
                                                          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate(this.NativeHandle,description_cb, data);
         Eina.Error.RaiseIfUnhandledException();
@@ -937,26 +1072,34 @@ sealed public class IObjectConcrete :
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     public void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
                                                          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate(this.NativeHandle,gesture_cb, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Gets object&apos;s accessible children.</summary>
+    /// <summary>Gets object&apos;s accessible children.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>List of widget&apos;s children</returns>
     public Eina.List<Efl.Access.IObject> GetAccessChildren() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.IObject>(_ret_var, true, false);
  }
-    /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
+    /// <summary>Gets human-readable string indentifying object accessibility role.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role name</returns>
     public System.String GetRoleName() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
+    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>List of object attributes, Must be freed by the user</returns>
     public Eina.List<Efl.Access.Attribute> GetAttributes() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate(this.NativeHandle);
@@ -964,7 +1107,7 @@ sealed public class IObjectConcrete :
         return new Eina.List<Efl.Access.Attribute>(_ret_var, true, true);
  }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <returns>Reading information types</returns>
     public Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate(this.NativeHandle);
@@ -972,60 +1115,55 @@ sealed public class IObjectConcrete :
         return _ret_var;
  }
     /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="reading_info">Reading information types</param>
     public void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate(this.NativeHandle,reading_info);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Gets index of the child in parent&apos;s children list.</summary>
+    /// <summary>Gets index of the child in parent&apos;s children list.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Index in children list</returns>
     public int GetIndexInParent() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Gets contextual information about object.</summary>
+    /// <summary>Gets contextual information about object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible contextual information</returns>
     public System.String GetDescription() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Sets widget contextual information.</summary>
+    /// <summary>Sets widget contextual information.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="description">Accessible contextual information</param>
     public void SetDescription(System.String description) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate(this.NativeHandle,description);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Gets set describing object accessible states.</summary>
+    /// <summary>Gets set describing object accessible states.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible state set</returns>
     public Efl.Access.StateSet GetStateSet() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Gets highlightable of given widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-    /// <returns>If @c true, the object is highlightable.</returns>
-    public bool GetCanHighlight() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Sets highlightable to given widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-    /// <param name="can_highlight">If @c true, the object is highlightable.</param>
-    public void SetCanHighlight(bool can_highlight) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle,can_highlight);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
     /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
     /// 
-    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Translation domain</returns>
     public System.String GetTranslationDomain() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate(this.NativeHandle);
@@ -1037,19 +1175,38 @@ sealed public class IObjectConcrete :
     /// 
     /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
     /// 
-    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="domain">Translation domain</param>
     public void SetTranslationDomain(System.String domain) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate(this.NativeHandle,domain);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get root object of accessible object hierarchy</summary>
+    /// <summary>Get root object of accessible object hierarchy
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Root object</returns>
     public static Efl.Object GetAccessRoot() {
          var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_root_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
+    /// <summary>Gets highlightable of given widget.
+    /// if WEARABLE since_tizen 3.0 endif</summary>
+    /// <returns>If c true, the object is highlightable.</returns>
+    public bool GetCanHighlight() {
+         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Sets highlightable to given widget.
+    /// if WEARABLE since_tizen 3.0 endif</summary>
+    /// <param name="can_highlight">If c true, the object is highlightable.</param>
+    public void SetCanHighlight(bool can_highlight) {
+                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle,can_highlight);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
     /// <summary>Handles gesture on given widget.</summary>
     public bool GestureDo(Efl.Access.GestureInfo gesture_info) {
          Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
@@ -1058,7 +1215,7 @@ sealed public class IObjectConcrete :
                         return _ret_var;
  }
     /// <summary>Add key-value pair identifying object extra attribute
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="key">The string key to give extra information</param>
     /// <param name="value">The string value to give extra information</param>
     public void AppendAttribute(System.String key, System.String value) {
@@ -1076,7 +1233,9 @@ sealed public class IObjectConcrete :
          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
-    /// <summary>Register accessibility event listener</summary>
+    /// <summary>Register accessibility event listener
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="cb">Callback</param>
     /// <param name="data">Data</param>
     /// <returns>Event handler</returns>
@@ -1085,13 +1244,17 @@ sealed public class IObjectConcrete :
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Deregister accessibility event listener</summary>
+    /// <summary>Deregister accessibility event listener
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="handler">Event handler</param>
     public static void DelEventHandler(Efl.Access.Event.Handler handler) {
                                  Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Emit event</summary>
+    /// <summary>Emit event
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="accessible">Accessibility object.</param>
     /// <param name="kw_event">Accessibility event type.</param>
     /// <param name="event_info">Accessibility event details.</param>
@@ -1105,7 +1268,9 @@ sealed public class IObjectConcrete :
     /// 
     /// Relationships can be queried by Assistive Technology clients to provide customized feedback, improving overall user experience.
     /// 
-    /// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.</summary>
+    /// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to relate to</param>
     /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
@@ -1115,14 +1280,18 @@ sealed public class IObjectConcrete :
                                         return _ret_var;
  }
     /// <summary>Removes the relationship between two accessible objects.
-    /// If relation_object is NULL function removes all relations of the given type.</summary>
+    /// If relation_object is NULL function removes all relations of the given type.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to remove relation from</param>
     public void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
                                                          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Removes all relationships in accessible object.</summary>
+    /// <summary>Removes all relationships in accessible object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     public void ClearRelationships() {
          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
@@ -1135,23 +1304,39 @@ sealed public class IObjectConcrete :
                                                          Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate(this.NativeHandle,state_types_mask, recursive);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Gets an localized string describing accessible object role name.</summary>
+    /// <summary>Gets an localized string describing accessible object role name.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Localized accessible object role name</value>
     public System.String LocalizedRoleName {
         get { return GetLocalizedRoleName(); }
     }
-    /// <summary>Accessible name of the object.</summary>
+    /// <summary>Accessible name of the object.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible name</value>
     public System.String I18nName {
         get { return GetI18nName(); }
         set { SetI18nName(value); }
     }
-    /// <summary>Gets an all relations between accessible object and other accessible objects.</summary>
+    /// <summary>Sets name information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <value>reading information callback</value>
+    public (Efl.Access.ReadingInfoCb, System.IntPtr) NameCb {
+        set { SetNameCb( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets an all relations between accessible object and other accessible objects.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible relation set</value>
     public Efl.Access.RelationSet RelationSet {
         get { return GetRelationSet(); }
     }
-    /// <summary>The role of the object in accessibility domain.</summary>
+    /// <summary>The role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role</value>
     public Efl.Access.Role Role {
         get { return GetRole(); }
@@ -1163,66 +1348,99 @@ sealed public class IObjectConcrete :
         get { return GetAccessParent(); }
         set { SetAccessParent(value); }
     }
-    /// <summary>Gets object&apos;s accessible children.</summary>
+    /// <summary>Sets contextual information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <value>The function called to provide the accessible description.</value>
+    public (Efl.Access.ReadingInfoCb, System.IntPtr) DescriptionCb {
+        set { SetDescriptionCb( value.Item1,  value.Item2); }
+    }
+    /// <summary>Sets gesture callback to give widget.
+    /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
+    /// 
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    public (Efl.Access.GestureCb, System.IntPtr) GestureCb {
+        set { SetGestureCb( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets object&apos;s accessible children.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of widget&apos;s children</value>
     public Eina.List<Efl.Access.IObject> AccessChildren {
         get { return GetAccessChildren(); }
     }
-    /// <summary>Gets human-readable string indentifying object accessibility role.</summary>
+    /// <summary>Gets human-readable string indentifying object accessibility role.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role name</value>
     public System.String RoleName {
         get { return GetRoleName(); }
     }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.</summary>
+    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of object attributes, Must be freed by the user</value>
     public Eina.List<Efl.Access.Attribute> Attributes {
         get { return GetAttributes(); }
     }
     /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>Reading information types</value>
     public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
         set { SetReadingInfoType(value); }
     }
-    /// <summary>Gets index of the child in parent&apos;s children list.</summary>
+    /// <summary>Gets index of the child in parent&apos;s children list.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Index in children list</value>
     public int IndexInParent {
         get { return GetIndexInParent(); }
     }
-    /// <summary>Gets contextual information about object.</summary>
+    /// <summary>Gets contextual information about object.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible contextual information</value>
     public System.String Description {
         get { return GetDescription(); }
         set { SetDescription(value); }
     }
-    /// <summary>Gets set describing object accessible states.</summary>
+    /// <summary>Gets set describing object accessible states.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible state set</value>
     public Efl.Access.StateSet StateSet {
         get { return GetStateSet(); }
-    }
-    /// <summary>Gets highlightable of given widget.
-    /// @if WEARABLE @since_tizen 3.0 @endif</summary>
-    /// <value>If @c true, the object is highlightable.</value>
-    public bool CanHighlight {
-        get { return GetCanHighlight(); }
-        set { SetCanHighlight(value); }
     }
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
     /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
     /// 
-    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.</summary>
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Translation domain</value>
     public System.String TranslationDomain {
         get { return GetTranslationDomain(); }
         set { SetTranslationDomain(value); }
     }
-    /// <summary>Get root object of accessible object hierarchy</summary>
+    /// <summary>Get root object of accessible object hierarchy
+    /// 
+    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Root object</value>
     public static Efl.Object AccessRoot {
         get { return GetAccessRoot(); }
+    }
+    /// <summary>Gets highlightable of given widget.
+    /// if WEARABLE since_tizen 3.0 endif</summary>
+    /// <value>If c true, the object is highlightable.</value>
+    public bool CanHighlight {
+        get { return GetCanHighlight(); }
+        set { SetCanHighlight(value); }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -1230,7 +1448,7 @@ sealed public class IObjectConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -1440,26 +1658,6 @@ sealed public class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_set_get_static_delegate) });
             }
 
-            if (efl_access_object_can_highlight_get_static_delegate == null)
-            {
-                efl_access_object_can_highlight_get_static_delegate = new efl_access_object_can_highlight_get_delegate(can_highlight_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCanHighlight") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_get_static_delegate) });
-            }
-
-            if (efl_access_object_can_highlight_set_static_delegate == null)
-            {
-                efl_access_object_can_highlight_set_static_delegate = new efl_access_object_can_highlight_set_delegate(can_highlight_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCanHighlight") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_set_static_delegate) });
-            }
-
             if (efl_access_object_translation_domain_get_static_delegate == null)
             {
                 efl_access_object_translation_domain_get_static_delegate = new efl_access_object_translation_domain_get_delegate(translation_domain_get);
@@ -1478,6 +1676,26 @@ sealed public class IObjectConcrete :
             if (methods.FirstOrDefault(m => m.Name == "SetTranslationDomain") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_set_static_delegate) });
+            }
+
+            if (efl_access_object_can_highlight_get_static_delegate == null)
+            {
+                efl_access_object_can_highlight_get_static_delegate = new efl_access_object_can_highlight_get_delegate(can_highlight_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetCanHighlight") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_get_static_delegate) });
+            }
+
+            if (efl_access_object_can_highlight_set_static_delegate == null)
+            {
+                efl_access_object_can_highlight_set_static_delegate = new efl_access_object_can_highlight_set_delegate(can_highlight_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetCanHighlight") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_set_static_delegate) });
             }
 
             if (efl_access_object_gesture_do_static_delegate == null)
@@ -2283,77 +2501,6 @@ sealed public class IObjectConcrete :
 
         private static efl_access_object_state_set_get_delegate efl_access_object_state_set_get_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_access_object_can_highlight_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_access_object_can_highlight_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate> efl_access_object_can_highlight_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate>(Module, "efl_access_object_can_highlight_get");
-
-        private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetCanHighlight();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_can_highlight_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_can_highlight_get_delegate efl_access_object_can_highlight_get_static_delegate;
-
-        
-        private delegate void efl_access_object_can_highlight_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
-
-        
-        public delegate void efl_access_object_can_highlight_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate> efl_access_object_can_highlight_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate>(Module, "efl_access_object_can_highlight_set");
-
-        private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
-        {
-            Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IObject)ws.Target).SetCanHighlight(can_highlight);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_can_highlight_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_highlight);
-            }
-        }
-
-        private static efl_access_object_can_highlight_set_delegate efl_access_object_can_highlight_set_static_delegate;
-
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_translation_domain_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2458,6 +2605,77 @@ sealed public class IObjectConcrete :
                 return efl_access_object_access_root_get_ptr.Value.Delegate();
             }
         }
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        private delegate bool efl_access_object_can_highlight_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        [return: MarshalAs(UnmanagedType.U1)]
+        public delegate bool efl_access_object_can_highlight_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate> efl_access_object_can_highlight_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate>(Module, "efl_access_object_can_highlight_get");
+
+        private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            bool _ret_var = default(bool);
+                try
+                {
+                    _ret_var = ((IObject)ws.Target).GetCanHighlight();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_access_object_can_highlight_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_access_object_can_highlight_get_delegate efl_access_object_can_highlight_get_static_delegate;
+
+        
+        private delegate void efl_access_object_can_highlight_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
+
+        
+        public delegate void efl_access_object_can_highlight_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
+
+        public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate> efl_access_object_can_highlight_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate>(Module, "efl_access_object_can_highlight_set");
+
+        private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
+        {
+            Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((IObject)ws.Target).SetCanHighlight(can_highlight);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_access_object_can_highlight_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_highlight);
+            }
+        }
+
+        private static efl_access_object_can_highlight_set_delegate efl_access_object_can_highlight_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_object_gesture_do_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureInfo.NativeStruct gesture_info);
@@ -2851,11 +3069,57 @@ sealed public class IObjectConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessIObjectConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<System.String> I18nName<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<System.String>("i18n_name", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Access.Role> Role<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<Efl.Access.Role>("role", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Access.IObject> AccessParent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<Efl.Access.IObject>("access_parent", fac);
+    }
+
+    
+    
+    
+    
+    
+    public static Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask> ReadingInfoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask>("reading_info_type", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> Description<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<System.String>("description", fac);
+    }
+
+    
+    public static Efl.BindableProperty<System.String> TranslationDomain<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<System.String>("translation_domain", fac);
+    }
+
+    
+    public static Efl.BindableProperty<bool> CanHighlight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
+        return new Efl.BindableProperty<bool>("can_highlight", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif
 namespace Efl {
 
 namespace Access {
 
 /// <summary>Type of accessibility object</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>default accessible object</summary>
@@ -2875,6 +3139,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the role of an object visible to Accessibility Clients.</summary>
+[Efl.Eo.BindingEntity]
 public enum Role
 {
 /// <summary>Role: invalid</summary>
@@ -3096,6 +3361,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the possible states for an object visible to accessibility clients.</summary>
+[Efl.Eo.BindingEntity]
 public enum StateType
 {
 /// <summary>State: invalid</summary>
@@ -3203,6 +3469,7 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Describes the relationship between two objects.</summary>
+[Efl.Eo.BindingEntity]
 public enum RelationType
 {
 /// <summary>No relation</summary>
@@ -3260,6 +3527,7 @@ namespace Reading {
 namespace Info {
 
 /// <summary>The accessible Reading information type that can be read.</summary>
+[Efl.Eo.BindingEntity]
 public enum Type
 {
 /// <summary>Name should be read</summary>
@@ -3284,6 +3552,7 @@ namespace Efl {
 
 namespace Access {
 
+[Efl.Eo.BindingEntity]
 public enum Gesture
 {
 OneFingerHover = 0,
@@ -3332,6 +3601,7 @@ namespace Efl {
 
 namespace Access {
 
+[Efl.Eo.BindingEntity]
 public enum GestureState
 {
 Start = 0,
@@ -3352,12 +3622,13 @@ namespace Event {
 
 /// <summary>Accessibility event listener</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Handler
 {
-    ///<summary>Placeholder field</summary>
+    /// <summary>Placeholder field</summary>
     public IntPtr field;
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Handler(IntPtr ptr)
     {
         var tmp = (Handler.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Handler.NativeStruct));
@@ -3366,19 +3637,19 @@ public struct Handler
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Handler.</summary>
+    /// <summary>Internal wrapper for struct Handler.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         internal IntPtr field;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Handler.NativeStruct(Handler _external_struct)
         {
             var _internal_struct = new Handler.NativeStruct();
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Handler(Handler.NativeStruct _internal_struct)
         {
             var _external_struct = new Handler();
@@ -3407,13 +3678,17 @@ namespace StateChanged {
 
 /// <summary>Accessibility state changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>Type of the state changed event</summary>
+    /// <value>Describes the possible states for an object visible to accessibility clients.</value>
     public Efl.Access.StateType Type;
     /// <summary>New value</summary>
     public bool New_value;
-    ///<summary>Constructor for Data.</summary>
+    /// <summary>Constructor for Data.</summary>
+    /// <param name="Type">Type of the state changed event</param>;
+    /// <param name="New_value">New value</param>;
     public Data(
         Efl.Access.StateType Type = default(Efl.Access.StateType),
         bool New_value = default(bool)    )
@@ -3422,8 +3697,8 @@ public struct Data
         this.New_value = New_value;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
@@ -3432,15 +3707,15 @@ public struct Data
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Data.</summary>
+    /// <summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
         
         public Efl.Access.StateType Type;
-        ///<summary>Internal wrapper for field New_value</summary>
+        /// <summary>Internal wrapper for field New_value</summary>
         public System.Byte New_value;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Data.NativeStruct(Data _external_struct)
         {
             var _internal_struct = new Data.NativeStruct();
@@ -3449,7 +3724,7 @@ public struct Data
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Data(Data.NativeStruct _internal_struct)
         {
             var _external_struct = new Data();
@@ -3482,6 +3757,7 @@ namespace GeometryChanged {
 
 /// <summary>Accessibility geometry changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>X coordinate</summary>
@@ -3492,7 +3768,11 @@ public struct Data
     public int Width;
     /// <summary>Height</summary>
     public int Height;
-    ///<summary>Constructor for Data.</summary>
+    /// <summary>Constructor for Data.</summary>
+    /// <param name="X">X coordinate</param>;
+    /// <param name="Y">Y coordinate</param>;
+    /// <param name="Width">Width</param>;
+    /// <param name="Height">Height</param>;
     public Data(
         int X = default(int),
         int Y = default(int),
@@ -3505,8 +3785,8 @@ public struct Data
         this.Height = Height;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
@@ -3515,7 +3795,7 @@ public struct Data
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Data.</summary>
+    /// <summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -3527,7 +3807,7 @@ public struct Data
         public int Width;
         
         public int Height;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Data.NativeStruct(Data _external_struct)
         {
             var _internal_struct = new Data.NativeStruct();
@@ -3538,7 +3818,7 @@ public struct Data
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Data(Data.NativeStruct _internal_struct)
         {
             var _external_struct = new Data();
@@ -3573,13 +3853,16 @@ namespace ChildrenChanged {
 
 /// <summary>Accessibility children changed event data</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Data
 {
     /// <summary>Child is added or not</summary>
     public bool Is_added;
     /// <summary>Child object</summary>
     public Efl.Object Child;
-    ///<summary>Constructor for Data.</summary>
+    /// <summary>Constructor for Data.</summary>
+    /// <param name="Is_added">Child is added or not</param>;
+    /// <param name="Child">Child object</param>;
     public Data(
         bool Is_added = default(bool),
         Efl.Object Child = default(Efl.Object)    )
@@ -3588,8 +3871,8 @@ public struct Data
         this.Child = Child;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Data(IntPtr ptr)
     {
         var tmp = (Data.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Data.NativeStruct));
@@ -3598,15 +3881,15 @@ public struct Data
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Data.</summary>
+    /// <summary>Internal wrapper for struct Data.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Is_added</summary>
+        /// <summary>Internal wrapper for field Is_added</summary>
         public System.Byte Is_added;
-        ///<summary>Internal wrapper for field Child</summary>
+        /// <summary>Internal wrapper for field Child</summary>
         public System.IntPtr Child;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Data.NativeStruct(Data _external_struct)
         {
             var _internal_struct = new Data.NativeStruct();
@@ -3615,7 +3898,7 @@ public struct Data
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Data(Data.NativeStruct _internal_struct)
         {
             var _external_struct = new Data();
@@ -3645,13 +3928,16 @@ namespace Access {
 
 /// <summary>Accessibility Attribute</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Attribute
 {
     /// <summary>Attribute key</summary>
     public System.String Key;
     /// <summary>Attribute value</summary>
     public System.String Value;
-    ///<summary>Constructor for Attribute.</summary>
+    /// <summary>Constructor for Attribute.</summary>
+    /// <param name="Key">Attribute key</param>;
+    /// <param name="Value">Attribute value</param>;
     public Attribute(
         System.String Key = default(System.String),
         System.String Value = default(System.String)    )
@@ -3660,8 +3946,8 @@ public struct Attribute
         this.Value = Value;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Attribute(IntPtr ptr)
     {
         var tmp = (Attribute.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Attribute.NativeStruct));
@@ -3670,15 +3956,15 @@ public struct Attribute
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Attribute.</summary>
+    /// <summary>Internal wrapper for struct Attribute.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
-        ///<summary>Internal wrapper for field Key</summary>
+        /// <summary>Internal wrapper for field Key</summary>
         public System.IntPtr Key;
-        ///<summary>Internal wrapper for field Value</summary>
+        /// <summary>Internal wrapper for field Value</summary>
         public System.IntPtr Value;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Attribute.NativeStruct(Attribute _external_struct)
         {
             var _internal_struct = new Attribute.NativeStruct();
@@ -3687,7 +3973,7 @@ public struct Attribute
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Attribute(Attribute.NativeStruct _internal_struct)
         {
             var _external_struct = new Attribute();
@@ -3712,13 +3998,17 @@ namespace Access {
 
 /// <summary>Accessibility Relation</summary>
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct Relation
 {
     /// <summary>Relation type</summary>
+    /// <value>Describes the relationship between two objects.</value>
     public Efl.Access.RelationType Type;
     /// <summary>List with relation objects</summary>
     public Eina.List<Efl.Object> Objects;
-    ///<summary>Constructor for Relation.</summary>
+    /// <summary>Constructor for Relation.</summary>
+    /// <param name="Type">Relation type</param>;
+    /// <param name="Objects">List with relation objects</param>;
     public Relation(
         Efl.Access.RelationType Type = default(Efl.Access.RelationType),
         Eina.List<Efl.Object> Objects = default(Eina.List<Efl.Object>)    )
@@ -3727,8 +4017,8 @@ public struct Relation
         this.Objects = Objects;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator Relation(IntPtr ptr)
     {
         var tmp = (Relation.NativeStruct)Marshal.PtrToStructure(ptr, typeof(Relation.NativeStruct));
@@ -3737,7 +4027,7 @@ public struct Relation
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct Relation.</summary>
+    /// <summary>Internal wrapper for struct Relation.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -3745,7 +4035,7 @@ public struct Relation
         public Efl.Access.RelationType Type;
         
         public System.IntPtr Objects;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator Relation.NativeStruct(Relation _external_struct)
         {
             var _internal_struct = new Relation.NativeStruct();
@@ -3754,7 +4044,7 @@ public struct Relation
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator Relation(Relation.NativeStruct _internal_struct)
         {
             var _external_struct = new Relation();
@@ -3778,6 +4068,7 @@ namespace Efl {
 namespace Access {
 
 [StructLayout(LayoutKind.Sequential)]
+[Efl.Eo.BindingEntity]
 public struct GestureInfo
 {
     /// <summary>Gesture type</summary>
@@ -3794,7 +4085,14 @@ public struct GestureInfo
     public Efl.Access.GestureState State;
     /// <summary>gesture occurance time</summary>
     public uint Event_time;
-    ///<summary>Constructor for GestureInfo.</summary>
+    /// <summary>Constructor for GestureInfo.</summary>
+    /// <param name="Type">Gesture type</param>;
+    /// <param name="X_beg">start gesture x co-ordinate</param>;
+    /// <param name="Y_beg">start gesture y co-ordinate</param>;
+    /// <param name="X_end">end gesture x co-ordinate</param>;
+    /// <param name="Y_end">end gesture y co-ordinate</param>;
+    /// <param name="State">state of gesture</param>;
+    /// <param name="Event_time">gesture occurance time</param>;
     public GestureInfo(
         Efl.Access.Gesture Type = default(Efl.Access.Gesture),
         int X_beg = default(int),
@@ -3813,8 +4111,8 @@ public struct GestureInfo
         this.Event_time = Event_time;
     }
 
-    ///<summary>Implicit conversion to the managed representation from a native pointer.</summary>
-    ///<param name="ptr">Native pointer to be converted.</param>
+    /// <summary>Implicit conversion to the managed representation from a native pointer.</summary>
+    /// <param name="ptr">Native pointer to be converted.</param>
     public static implicit operator GestureInfo(IntPtr ptr)
     {
         var tmp = (GestureInfo.NativeStruct)Marshal.PtrToStructure(ptr, typeof(GestureInfo.NativeStruct));
@@ -3823,7 +4121,7 @@ public struct GestureInfo
 
     #pragma warning disable CS1591
 
-    ///<summary>Internal wrapper for struct GestureInfo.</summary>
+    /// <summary>Internal wrapper for struct GestureInfo.</summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct NativeStruct
     {
@@ -3841,7 +4139,7 @@ public struct GestureInfo
         public Efl.Access.GestureState State;
         
         public uint Event_time;
-        ///<summary>Implicit conversion to the internal/marshalling representation.</summary>
+        /// <summary>Implicit conversion to the internal/marshalling representation.</summary>
         public static implicit operator GestureInfo.NativeStruct(GestureInfo _external_struct)
         {
             var _internal_struct = new GestureInfo.NativeStruct();
@@ -3855,7 +4153,7 @@ public struct GestureInfo
             return _internal_struct;
         }
 
-        ///<summary>Implicit conversion to the managed representation.</summary>
+        /// <summary>Implicit conversion to the managed representation.</summary>
         public static implicit operator GestureInfo(GestureInfo.NativeStruct _internal_struct)
         {
             var _external_struct = new GestureInfo();

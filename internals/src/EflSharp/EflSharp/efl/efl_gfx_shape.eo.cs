@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>EFL graphics shape object interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IShapeConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IShape : 
     Efl.Gfx.IPath ,
     Efl.Eo.IWrapper, IDisposable
@@ -71,58 +74,84 @@ Efl.Gfx.Join GetStrokeJoin();
 /// See also <see cref="Efl.Gfx.Join"/>.</summary>
 /// <param name="j">Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></param>
 void SetStrokeJoin(Efl.Gfx.Join j);
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+/// <returns>Limit value on the ratio of the miter.</returns>
+double GetStrokeMiterlimit();
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+/// <param name="miterlimit">Limit value on the ratio of the miter.</param>
+void SetStrokeMiterlimit(double miterlimit);
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
 /// <returns>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></returns>
 Efl.Gfx.FillRule GetFillRule();
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
 /// <param name="fill_rule">The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></param>
 void SetFillRule(Efl.Gfx.FillRule fill_rule);
-                                                                    /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
+                                                                            /// <summary>The stroke scale to be used for stroking the path. Will be used along with stroke width property.</summary>
     /// <value>Stroke scale value</value>
     double StrokeScale {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>The color to be used for stroking the path.</summary>
+    /// <value>The red component of the given color.</value>
+    (int, int, int, int) StrokeColor {
+        get;
+        set;
     }
     /// <summary>The stroke width to be used for stroking the path.</summary>
     /// <value>Stroke width to be used</value>
     double StrokeWidth {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>Not implemented</summary>
     /// <value>Centered stroke location</value>
     double StrokeLocation {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Set stroke dash pattern. A dash pattern is specified by dashes, an array of <see cref="Efl.Gfx.Dash"/>. <see cref="Efl.Gfx.Dash"/> values(length, gap) must be positive.
+    /// See also <see cref="Efl.Gfx.Dash"/></summary>
+    /// <value>Stroke dash</value>
+    (Efl.Gfx.Dash, uint) StrokeDash {
+        get;
+        set;
     }
     /// <summary>The cap style to be used for stroking the path. The cap will be used for capping the end point of a open subpath.
     /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
     /// <value>Cap style to use, default is <see cref="Efl.Gfx.Cap.Butt"/></value>
     Efl.Gfx.Cap StrokeCap {
-        get ;
-        set ;
+        get;
+        set;
     }
     /// <summary>The join style to be used for stroking the path. The join style will be used for joining the two line segment while stroking the path.
     /// See also <see cref="Efl.Gfx.Join"/>.</summary>
     /// <value>Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></value>
     Efl.Gfx.Join StrokeJoin {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+    /// <value>Limit value on the ratio of the miter.</value>
+    double StrokeMiterlimit {
+        get;
+        set;
     }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
     /// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
     Efl.Gfx.FillRule FillRule {
-        get ;
-        set ;
+        get;
+        set;
     }
 }
 /// <summary>EFL graphics shape object interface</summary>
-sealed public class IShapeConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IShapeConcrete :
     Efl.Eo.EoWrapper
     , IShape
     , Efl.Gfx.IPath
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -138,11 +167,19 @@ sealed public class IShapeConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IShapeConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_shape_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IShape"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IShapeConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IShapeConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -251,6 +288,19 @@ sealed public class IShapeConcrete :
     /// <param name="j">Join style to use, default is <see cref="Efl.Gfx.Join.Miter"/></param>
     public void SetStrokeJoin(Efl.Gfx.Join j) {
                                  Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_join_set_ptr.Value.Delegate(this.NativeHandle,j);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+    /// <returns>Limit value on the ratio of the miter.</returns>
+    public double GetStrokeMiterlimit() {
+         var _ret_var = Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_miterlimit_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+    /// <param name="miterlimit">Limit value on the ratio of the miter.</param>
+    public void SetStrokeMiterlimit(double miterlimit) {
+                                 Efl.Gfx.IShapeConcrete.NativeMethods.efl_gfx_shape_stroke_miterlimit_set_ptr.Value.Delegate(this.NativeHandle,miterlimit);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
@@ -482,6 +532,19 @@ sealed public class IShapeConcrete :
         get { return GetStrokeScale(); }
         set { SetStrokeScale(value); }
     }
+    /// <summary>The color to be used for stroking the path.</summary>
+    /// <value>The red component of the given color.</value>
+    public (int, int, int, int) StrokeColor {
+        get {
+            int _out_r = default(int);
+            int _out_g = default(int);
+            int _out_b = default(int);
+            int _out_a = default(int);
+            GetStrokeColor(out _out_r,out _out_g,out _out_b,out _out_a);
+            return (_out_r,_out_g,_out_b,_out_a);
+        }
+        set { SetStrokeColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
+    }
     /// <summary>The stroke width to be used for stroking the path.</summary>
     /// <value>Stroke width to be used</value>
     public double StrokeWidth {
@@ -493,6 +556,18 @@ sealed public class IShapeConcrete :
     public double StrokeLocation {
         get { return GetStrokeLocation(); }
         set { SetStrokeLocation(value); }
+    }
+    /// <summary>Set stroke dash pattern. A dash pattern is specified by dashes, an array of <see cref="Efl.Gfx.Dash"/>. <see cref="Efl.Gfx.Dash"/> values(length, gap) must be positive.
+    /// See also <see cref="Efl.Gfx.Dash"/></summary>
+    /// <value>Stroke dash</value>
+    public (Efl.Gfx.Dash, uint) StrokeDash {
+        get {
+            Efl.Gfx.Dash _out_dash = default(Efl.Gfx.Dash);
+            uint _out_length = default(uint);
+            GetStrokeDash(out _out_dash,out _out_length);
+            return (_out_dash,_out_length);
+        }
+        set { SetStrokeDash(ref  value.Item1,  value.Item2); }
     }
     /// <summary>The cap style to be used for stroking the path. The cap will be used for capping the end point of a open subpath.
     /// See also <see cref="Efl.Gfx.Cap"/>.</summary>
@@ -508,11 +583,55 @@ sealed public class IShapeConcrete :
         get { return GetStrokeJoin(); }
         set { SetStrokeJoin(value); }
     }
+    /// <summary>The stroke_miterlimit is a presentation defining a limit on the ratio of the miter length to the stroke-width used to draw a miter join.</summary>
+    /// <value>Limit value on the ratio of the miter.</value>
+    public double StrokeMiterlimit {
+        get { return GetStrokeMiterlimit(); }
+        set { SetStrokeMiterlimit(value); }
+    }
     /// <summary>The fill rule of the given shape object. <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/>.</summary>
     /// <value>The current fill rule of the shape object. One of <see cref="Efl.Gfx.FillRule.Winding"/> or <see cref="Efl.Gfx.FillRule.OddEven"/></value>
     public Efl.Gfx.FillRule FillRule {
         get { return GetFillRule(); }
         set { SetFillRule(value); }
+    }
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <value>Command list</value>
+    public (Efl.Gfx.PathCommandType, double) Path {
+        get {
+            Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+            double _out_points = default(double);
+            GetPath(out _out_op,out _out_points);
+            return (_out_op,_out_points);
+        }
+        set { SetPath( value.Item1,  value.Item2); }
+    }
+    /// <summary>Path length property</summary>
+    public (uint, uint) Length {
+        get {
+            uint _out_commands = default(uint);
+            uint _out_points = default(uint);
+            GetLength(out _out_commands,out _out_points);
+            return (_out_commands,_out_points);
+        }
+    }
+    /// <summary>Current point coordinates</summary>
+    public (double, double) Current {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrent(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+    }
+    /// <summary>Current control point coordinates</summary>
+    public (double, double) CurrentCtrl {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCurrentCtrl(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
     }
     private static IntPtr GetEflClassStatic()
     {
@@ -520,7 +639,7 @@ sealed public class IShapeConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -668,6 +787,26 @@ sealed public class IShapeConcrete :
             if (methods.FirstOrDefault(m => m.Name == "SetStrokeJoin") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_shape_stroke_join_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_shape_stroke_join_set_static_delegate) });
+            }
+
+            if (efl_gfx_shape_stroke_miterlimit_get_static_delegate == null)
+            {
+                efl_gfx_shape_stroke_miterlimit_get_static_delegate = new efl_gfx_shape_stroke_miterlimit_get_delegate(stroke_miterlimit_get);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "GetStrokeMiterlimit") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_shape_stroke_miterlimit_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_shape_stroke_miterlimit_get_static_delegate) });
+            }
+
+            if (efl_gfx_shape_stroke_miterlimit_set_static_delegate == null)
+            {
+                efl_gfx_shape_stroke_miterlimit_set_static_delegate = new efl_gfx_shape_stroke_miterlimit_set_delegate(stroke_miterlimit_set);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "SetStrokeMiterlimit") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_shape_stroke_miterlimit_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_shape_stroke_miterlimit_set_static_delegate) });
             }
 
             if (efl_gfx_shape_fill_rule_get_static_delegate == null)
@@ -1439,6 +1578,77 @@ sealed public class IShapeConcrete :
         }
 
         private static efl_gfx_shape_stroke_join_set_delegate efl_gfx_shape_stroke_join_set_static_delegate;
+
+        
+        private delegate double efl_gfx_shape_stroke_miterlimit_get_delegate(System.IntPtr obj, System.IntPtr pd);
+
+        
+        public delegate double efl_gfx_shape_stroke_miterlimit_get_api_delegate(System.IntPtr obj);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_shape_stroke_miterlimit_get_api_delegate> efl_gfx_shape_stroke_miterlimit_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_shape_stroke_miterlimit_get_api_delegate>(Module, "efl_gfx_shape_stroke_miterlimit_get");
+
+        private static double stroke_miterlimit_get(System.IntPtr obj, System.IntPtr pd)
+        {
+            Eina.Log.Debug("function efl_gfx_shape_stroke_miterlimit_get was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+            double _ret_var = default(double);
+                try
+                {
+                    _ret_var = ((IShape)ws.Target).GetStrokeMiterlimit();
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+        return _ret_var;
+
+            }
+            else
+            {
+                return efl_gfx_shape_stroke_miterlimit_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+            }
+        }
+
+        private static efl_gfx_shape_stroke_miterlimit_get_delegate efl_gfx_shape_stroke_miterlimit_get_static_delegate;
+
+        
+        private delegate void efl_gfx_shape_stroke_miterlimit_set_delegate(System.IntPtr obj, System.IntPtr pd,  double miterlimit);
+
+        
+        public delegate void efl_gfx_shape_stroke_miterlimit_set_api_delegate(System.IntPtr obj,  double miterlimit);
+
+        public static Efl.Eo.FunctionWrapper<efl_gfx_shape_stroke_miterlimit_set_api_delegate> efl_gfx_shape_stroke_miterlimit_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_shape_stroke_miterlimit_set_api_delegate>(Module, "efl_gfx_shape_stroke_miterlimit_set");
+
+        private static void stroke_miterlimit_set(System.IntPtr obj, System.IntPtr pd, double miterlimit)
+        {
+            Eina.Log.Debug("function efl_gfx_shape_stroke_miterlimit_set was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                                    
+                try
+                {
+                    ((IShape)ws.Target).SetStrokeMiterlimit(miterlimit);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                        
+            }
+            else
+            {
+                efl_gfx_shape_stroke_miterlimit_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), miterlimit);
+            }
+        }
+
+        private static efl_gfx_shape_stroke_miterlimit_set_delegate efl_gfx_shape_stroke_miterlimit_set_static_delegate;
 
         
         private delegate Efl.Gfx.FillRule efl_gfx_shape_fill_rule_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2369,3 +2579,43 @@ sealed public class IShapeConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIShapeConcrete_ExtensionMethods {
+    public static Efl.BindableProperty<double> StrokeScale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<double>("stroke_scale", fac);
+    }
+
+    
+    public static Efl.BindableProperty<double> StrokeWidth<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<double>("stroke_width", fac);
+    }
+
+    public static Efl.BindableProperty<double> StrokeLocation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<double>("stroke_location", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Efl.Gfx.Cap> StrokeCap<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<Efl.Gfx.Cap>("stroke_cap", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.Join> StrokeJoin<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<Efl.Gfx.Join>("stroke_join", fac);
+    }
+
+    public static Efl.BindableProperty<double> StrokeMiterlimit<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<double>("stroke_miterlimit", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Gfx.FillRule> FillRule<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IShape, T>magic = null) where T : Efl.Gfx.IShape {
+        return new Efl.BindableProperty<Efl.Gfx.FillRule>("fill_rule", fac);
+    }
+
+    
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif

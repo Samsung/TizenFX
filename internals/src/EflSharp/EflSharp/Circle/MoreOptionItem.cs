@@ -21,6 +21,7 @@ namespace Efl
                 string _mainText;
                 string _subText;
                 Image _icon;
+                Image _preIcon;
 
                 public IntPtr _handle;
                 public IntPtr NativeHandle
@@ -97,10 +98,14 @@ namespace Efl
                 {
                     set
                     {
+                        if (_icon != null) _preIcon = _icon;
                         if (_icon == value) return;
                         _icon = value;
+
                         if (NativeHandle != IntPtr.Zero)
                         {
+                            if (_preIcon != null)
+                                _preIcon.SetVisible(false);
                             Interop.Eext.eext_more_option_item_part_content_set(NativeHandle, IconPartName, _icon.NativeHandle);
                         }
                     }

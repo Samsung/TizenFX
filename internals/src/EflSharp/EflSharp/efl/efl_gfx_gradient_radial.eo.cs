@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Efl graphics gradient radial interface</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Gfx.IGradientRadialConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IGradientRadial : 
     Efl.Gfx.IGradient ,
     Efl.Eo.IWrapper, IDisposable
@@ -37,20 +40,33 @@ void GetFocal(out double x, out double y);
 /// <param name="x">X co-ordinate of focal point</param>
 /// <param name="y">Y co-ordinate of focal point</param>
 void SetFocal(double x, double y);
-                            /// <summary>Gets the center radius of this radial gradient.</summary>
+                            /// <summary>Gets the center of this radial gradient.</summary>
+    /// <value>X co-ordinate of center point</value>
+    (double, double) Center {
+        get;
+        set;
+    }
+    /// <summary>Gets the center radius of this radial gradient.</summary>
     /// <value>Center radius</value>
     double Radius {
-        get ;
-        set ;
+        get;
+        set;
+    }
+    /// <summary>Gets the focal point of this radial gradient.</summary>
+    /// <value>X co-ordinate of focal point</value>
+    (double, double) Focal {
+        get;
+        set;
     }
 }
 /// <summary>Efl graphics gradient radial interface</summary>
-sealed public class IGradientRadialConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IGradientRadialConcrete :
     Efl.Eo.EoWrapper
     , IGradientRadial
     , Efl.Gfx.IGradient
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -66,11 +82,19 @@ sealed public class IGradientRadialConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IGradientRadialConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_gradient_radial_interface_get();
     /// <summary>Initializes a new instance of the <see cref="IGradientRadial"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IGradientRadialConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IGradientRadialConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
@@ -146,11 +170,44 @@ sealed public class IGradientRadialConcrete :
                                  Efl.Gfx.IGradientConcrete.NativeMethods.efl_gfx_gradient_spread_set_ptr.Value.Delegate(this.NativeHandle,s);
         Eina.Error.RaiseIfUnhandledException();
                          }
+    /// <summary>Gets the center of this radial gradient.</summary>
+    /// <value>X co-ordinate of center point</value>
+    public (double, double) Center {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetCenter(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetCenter( value.Item1,  value.Item2); }
+    }
     /// <summary>Gets the center radius of this radial gradient.</summary>
     /// <value>Center radius</value>
     public double Radius {
         get { return GetRadius(); }
         set { SetRadius(value); }
+    }
+    /// <summary>Gets the focal point of this radial gradient.</summary>
+    /// <value>X co-ordinate of focal point</value>
+    public (double, double) Focal {
+        get {
+            double _out_x = default(double);
+            double _out_y = default(double);
+            GetFocal(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetFocal( value.Item1,  value.Item2); }
+    }
+    /// <summary>Get the list of color stops.</summary>
+    /// <value>Color stops list</value>
+    public (Efl.Gfx.GradientStop, uint) Stop {
+        get {
+            Efl.Gfx.GradientStop _out_colors = default(Efl.Gfx.GradientStop);
+            uint _out_length = default(uint);
+            GetStop(out _out_colors,out _out_length);
+            return (_out_colors,_out_length);
+        }
+        set { SetStop(ref  value.Item1,  value.Item2); }
     }
     /// <summary>Returns the spread method use by this gradient. The default is EFL_GFX_GRADIENT_SPREAD_PAD.</summary>
     /// <value>Spread type to be used</value>
@@ -164,7 +221,7 @@ sealed public class IGradientRadialConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -649,3 +706,20 @@ sealed public class IGradientRadialConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_GfxIGradientRadialConcrete_ExtensionMethods {
+    
+    public static Efl.BindableProperty<double> Radius<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IGradientRadial, T>magic = null) where T : Efl.Gfx.IGradientRadial {
+        return new Efl.BindableProperty<double>("radius", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<Efl.Gfx.GradientSpread> Spread<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IGradientRadial, T>magic = null) where T : Efl.Gfx.IGradientRadial {
+        return new Efl.BindableProperty<Efl.Gfx.GradientSpread>("spread", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

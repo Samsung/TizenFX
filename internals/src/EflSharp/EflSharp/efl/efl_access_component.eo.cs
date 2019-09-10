@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,7 +11,9 @@ namespace Efl {
 namespace Access {
 
 /// <summary>AT-SPI component mixin</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Access.IComponentConcrete.NativeMethods]
+[Efl.Eo.BindingEntity]
 public interface IComponent : 
     Efl.Gfx.IEntity ,
     Efl.Gfx.IStack ,
@@ -57,24 +60,36 @@ bool GrabFocus();
 /// <returns>Top component object at given coordinate</returns>
 Efl.Object GetAccessibleAtPoint(bool screen_coords, int x, int y);
     /// <summary>Highlights accessible widget. returns true if highlight grab has successed, false otherwise.
-/// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+/// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
 bool GrabHighlight();
     /// <summary>Clears highlight of accessible widget. returns true if clear has successed, false otherwise.
-/// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+/// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
 bool ClearHighlight();
                                                     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
     /// <value>Z order of component</value>
     int ZOrder {
-        get ;
+        get;
+    }
+    /// <summary>Position of accessible widget.</summary>
+    /// <value>X coordinate</value>
+    (int, int) ScreenPosition {
+        get;
+        set;
+    }
+    /// <summary>Gets position of socket offset.</summary>
+    (int, int) SocketOffset {
+        get;
+        set;
     }
 }
 /// <summary>AT-SPI component mixin</summary>
-sealed public class IComponentConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+sealed public  class IComponentConcrete :
     Efl.Eo.EoWrapper
     , IComponent
     , Efl.Gfx.IEntity, Efl.Gfx.IStack
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -90,21 +105,30 @@ sealed public class IComponentConcrete :
         }
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private IComponentConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_component_mixin_get();
     /// <summary>Initializes a new instance of the <see cref="IComponent"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    private IComponentConcrete(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private IComponentConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -132,14 +156,14 @@ sealed public class IComponentConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event VisibilityChangedEvt.</summary>
+    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
     public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
@@ -162,11 +186,12 @@ sealed public class IComponentConcrete :
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -194,14 +219,14 @@ sealed public class IComponentConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event PositionChangedEvt.</summary>
+    /// <summary>Method to raise event PositionChangedEvt.</summary>
     public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
@@ -225,11 +250,12 @@ sealed public class IComponentConcrete :
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
+    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
     public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -257,14 +283,14 @@ sealed public class IComponentConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event SizeChangedEvt.</summary>
+    /// <summary>Method to raise event SizeChangedEvt.</summary>
     public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
@@ -292,7 +318,7 @@ sealed public class IComponentConcrete :
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -319,14 +345,14 @@ sealed public class IComponentConcrete :
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event StackingChangedEvt.</summary>
+    /// <summary>Method to raise event StackingChangedEvt.</summary>
     public void OnStackingChangedEvt(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
@@ -418,14 +444,14 @@ sealed public class IComponentConcrete :
                                                         return _ret_var;
  }
     /// <summary>Highlights accessible widget. returns true if highlight grab has successed, false otherwise.
-    /// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
     public bool GrabHighlight() {
          var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_grab_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Clears highlight of accessible widget. returns true if clear has successed, false otherwise.
-    /// @if MOBILE @since_tizen 4.0 @elseif WEARABLE @since_tizen 3.0 @endif</summary>
+    /// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
     public bool ClearHighlight() {
          var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
@@ -610,6 +636,27 @@ sealed public class IComponentConcrete :
     public int ZOrder {
         get { return GetZOrder(); }
     }
+    /// <summary>Position of accessible widget.</summary>
+    /// <value>X coordinate</value>
+    public (int, int) ScreenPosition {
+        get {
+            int _out_x = default(int);
+            int _out_y = default(int);
+            GetScreenPosition(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetScreenPosition( value.Item1,  value.Item2); }
+    }
+    /// <summary>Gets position of socket offset.</summary>
+    public (int, int) SocketOffset {
+        get {
+            int _out_x = default(int);
+            int _out_y = default(int);
+            GetSocketOffset(out _out_x,out _out_y);
+            return (_out_x,_out_y);
+        }
+        set { SetSocketOffset( value.Item1,  value.Item2); }
+    }
     /// <summary>The 2D position of a canvas object.
     /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
     /// (Since EFL 1.22)</summary>
@@ -684,7 +731,7 @@ sealed public class IComponentConcrete :
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -2084,3 +2131,39 @@ sealed public class IComponentConcrete :
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_AccessIComponentConcrete_ExtensionMethods {
+    
+    
+    
+    
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Size2D> Size<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<Eina.Size2D>("size", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Rect> Geometry<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<Eina.Rect>("geometry", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Visible<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<bool>("visible", fac);
+    }
+
+    public static Efl.BindableProperty<double> Scale<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<double>("scale", fac);
+    }
+
+    public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IComponent, T>magic = null) where T : Efl.Access.IComponent {
+        return new Efl.BindableProperty<short>("layer", fac);
+    }
+
+    
+    
+}
+#pragma warning restore CS1591
+#endif

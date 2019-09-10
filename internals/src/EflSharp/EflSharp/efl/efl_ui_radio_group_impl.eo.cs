@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -10,10 +11,12 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Object with the default implementation for <see cref="Efl.Ui.IRadioGroup"/>.</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.RadioGroupImpl.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,33 +37,40 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// <summary>Initializes a new instance of the <see cref="RadioGroupImpl"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public RadioGroupImpl(Efl.Object parent= null
-            ) : base(efl_ui_radio_group_impl_class_get(), typeof(RadioGroupImpl), parent)
+            ) : base(efl_ui_radio_group_impl_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected RadioGroupImpl(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="RadioGroupImpl"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected RadioGroupImpl(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected RadioGroupImpl(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="RadioGroupImpl"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected RadioGroupImpl(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected RadioGroupImpl(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>Emitted each time the <c>selected_value</c> changes. The event information contains the <see cref="Efl.Ui.Radio.StateValue"/> of the newly selected button or -1 if no button is now selected.</summary>
+    /// <value><see cref="Efl.Ui.IRadioGroupValueChangedEvt_Args"/></value>
     public event EventHandler<Efl.Ui.IRadioGroupValueChangedEvt_Args> ValueChangedEvt
     {
         add
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 Efl.EventCb callerCb = (IntPtr data, ref Efl.Event.NativeStruct evt) =>
                 {
@@ -88,14 +98,14 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
 
         remove
         {
-            lock (eventLock)
+            lock (eflBindingEventLock)
             {
                 string key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    ///<summary>Method to raise event ValueChangedEvt.</summary>
+    /// <summary>Method to raise event ValueChangedEvt.</summary>
     public void OnValueChangedEvt(Efl.Ui.IRadioGroupValueChangedEvt_Args e)
     {
         var key = "_EFL_UI_RADIO_GROUP_EVENT_VALUE_CHANGED";
@@ -120,7 +130,7 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// See also <see cref="Efl.Ui.IRadioGroup.SelectedValue"/>.</summary>
     /// <returns>The currently selected radio button in the group, or <c>NULL</c>.</returns>
     virtual public Efl.Ui.Radio GetSelectedObject() {
-         var _ret_var = Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_object_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -128,14 +138,14 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// See also <see cref="Efl.Ui.IRadioGroup.SelectedValue"/>.</summary>
     /// <param name="selected_object">The currently selected radio button in the group, or <c>NULL</c>.</param>
     virtual public void SetSelectedObject(Efl.Ui.Radio selected_object) {
-                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_object_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),selected_object);
+                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),selected_object);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The value associated with the currently selected button in the group. Give each radio button in the group a different value using <see cref="Efl.Ui.Radio.StateValue"/>.
     /// A value of -1 means that no button is selected. Only values associated with the buttons in the group (and -1) can be used.</summary>
     /// <returns>The value of the currently selected radio button, or -1.</returns>
     virtual public int GetSelectedValue() {
-         var _ret_var = Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -143,7 +153,7 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// A value of -1 means that no button is selected. Only values associated with the buttons in the group (and -1) can be used.</summary>
     /// <param name="selected_value">The value of the currently selected radio button, or -1.</param>
     virtual public void SetSelectedValue(int selected_value) {
-                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),selected_value);
+                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_selected_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),selected_value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Register a new <see cref="Efl.Ui.Radio"/> button to this group. Keep in mind that registering to a group will only handle button grouping, you still need to add the button to a layout for it to be rendered.
@@ -152,7 +162,7 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// See also <see cref="Efl.Ui.IRadioGroup.Unregister"/>.</summary>
     /// <param name="radio">The radio button to add to the group.</param>
     virtual public void Register(Efl.Ui.Radio radio) {
-                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_register_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),radio);
+                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),radio);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Unregister an <see cref="Efl.Ui.Radio"/> button from this group. This will unlink the behavior of this button from the other buttons in the group, but if it still belongs to a layout, it will still be rendered.
@@ -161,7 +171,7 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
     /// See also <see cref="Efl.Ui.IRadioGroup.Register"/>.</summary>
     /// <param name="radio">The radio button to remove from the group.</param>
     virtual public void Unregister(Efl.Ui.Radio radio) {
-                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_unregister_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),radio);
+                                 Efl.Ui.IRadioGroupConcrete.NativeMethods.efl_ui_radio_group_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),radio);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Currently selected button in a radio button group, or <c>NULL</c> if no button is selected.
@@ -486,3 +496,17 @@ public class RadioGroupImpl : Efl.Object, Efl.Ui.IRadioGroup
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_UiRadioGroupImpl_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Ui.Radio> SelectedObject<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.RadioGroupImpl, T>magic = null) where T : Efl.Ui.RadioGroupImpl {
+        return new Efl.BindableProperty<Efl.Ui.Radio>("selected_object", fac);
+    }
+
+    public static Efl.BindableProperty<int> SelectedValue<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.RadioGroupImpl, T>magic = null) where T : Efl.Ui.RadioGroupImpl {
+        return new Efl.BindableProperty<int>("selected_value", fac);
+    }
+
+}
+#pragma warning restore CS1591
+#endif

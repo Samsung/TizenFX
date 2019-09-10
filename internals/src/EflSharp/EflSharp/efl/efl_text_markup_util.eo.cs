@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -8,10 +9,12 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Utility class for markup, such as conversions</summary>
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.TextMarkupUtil.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class TextMarkupUtil : Efl.Eo.EoWrapper
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -32,24 +35,30 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
     /// <summary>Initializes a new instance of the <see cref="TextMarkupUtil"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public TextMarkupUtil(Efl.Object parent= null
-            ) : base(efl_text_markup_util_class_get(), typeof(TextMarkupUtil), parent)
+            ) : base(efl_text_markup_util_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected TextMarkupUtil(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="TextMarkupUtil"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected TextMarkupUtil(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected TextMarkupUtil(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="TextMarkupUtil"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected TextMarkupUtil(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected TextMarkupUtil(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
@@ -75,7 +84,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
-    public class NativeMethods  : Efl.Eo.NativeClass
+    public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
@@ -83,6 +92,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
         public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            descs.AddRange(base.GetEoOps(type));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -168,3 +178,9 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
 }
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class EflTextMarkupUtil_ExtensionMethods {
+}
+#pragma warning restore CS1591
+#endif

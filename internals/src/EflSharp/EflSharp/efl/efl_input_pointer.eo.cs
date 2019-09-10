@@ -1,3 +1,4 @@
+#define EFL_BETA
 #pragma warning disable CS1591
 using System;
 using System.Runtime.InteropServices;
@@ -11,9 +12,10 @@ namespace Input {
 
 /// <summary>Event data carried over with any pointer event (mouse, touch, pen, ...)</summary>
 [Efl.Input.Pointer.NativeMethods]
+[Efl.Eo.BindingEntity]
 public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.IState
 {
-    ///<summary>Pointer to the native class description.</summary>
+    /// <summary>Pointer to the native class description.</summary>
     public override System.IntPtr NativeClass
     {
         get
@@ -34,68 +36,80 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <summary>Initializes a new instance of the <see cref="Pointer"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Pointer(Efl.Object parent= null
-            ) : base(efl_input_pointer_class_get(), typeof(Pointer), parent)
+            ) : base(efl_input_pointer_class_get(), parent)
     {
         FinishInstantiation();
     }
 
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    protected Pointer(ConstructingHandle ch) : base(ch)
+    {
+    }
+
     /// <summary>Initializes a new instance of the <see cref="Pointer"/> class.
     /// Internal usage: Constructs an instance from a native pointer. This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="raw">The native pointer to be wrapped.</param>
-    protected Pointer(System.IntPtr raw) : base(raw)
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    protected Pointer(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Initializes a new instance of the <see cref="Pointer"/> class.
     /// Internal usage: Constructor to forward the wrapper initialization to the root class that interfaces with native code. Should not be used directly.</summary>
     /// <param name="baseKlass">The pointer to the base native Eo class.</param>
-    /// <param name="managedType">The managed type of the public constructor that originated this call.</param>
     /// <param name="parent">The Efl.Object parent of this instance.</param>
-    protected Pointer(IntPtr baseKlass, System.Type managedType, Efl.Object parent) : base(baseKlass, managedType, parent)
+    protected Pointer(IntPtr baseKlass, Efl.Object parent) : base(baseKlass, parent)
     {
     }
 
     /// <summary>The action represented by this event.</summary>
     /// <returns>Event action</returns>
     virtual public Efl.Pointer.Action GetAction() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_action_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_action_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The action represented by this event.</summary>
     /// <param name="act">Event action</param>
     virtual public void SetAction(Efl.Pointer.Action act) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_action_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),act);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_action_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),act);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary><c>true</c> if this event carries a valid value for the specified <c>key</c>.</summary>
+    /// <summary><c>true</c> if this event carries a valid value for the specified <c>key</c>.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key">Pressed <c>key</c></param>
     /// <returns><c>true</c> if input value is valid, <c>false</c> otherwise</returns>
     virtual public bool GetValueHas(Efl.Input.Value key) {
-                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_has_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_has_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Represents a generic value for this event.
     /// Refer to the documentation of <see cref="Efl.Input.Value"/> for each value&apos;s meaning, type and range. Call <see cref="Efl.Input.Pointer.GetValueHas"/> to determine whether the returned value is valid or not for this event.
     /// 
-    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.</summary>
+    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key"><c>key</c></param>
     /// <returns><c>key</c> value</returns>
     virtual public double GetValue(Efl.Input.Value key) {
-                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key);
+                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Represents a generic value for this event.
     /// Refer to the documentation of <see cref="Efl.Input.Value"/> for each value&apos;s meaning, type and range. Call <see cref="Efl.Input.Pointer.GetValueHas"/> to determine whether the returned value is valid or not for this event.
     /// 
-    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.</summary>
+    /// Most values are precise floating point values, usually in pixels, radians, or in a range of [-1, 1] or [0, 1]. Some values are discrete values (integers) and thus should preferably be queried with the other methods of this class.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="key"><c>key</c></param>
     /// <param name="val"><c>key</c> value</param>
     /// <returns><c>false</c> if the value could not be set (eg. delta).</returns>
     virtual public bool SetValue(Efl.Input.Value key, double val) {
-                                                         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),key, val);
+                                                         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, val);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -103,7 +117,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// Valid if and only if <see cref="Efl.Input.Pointer.GetValueHas"/>(<c>button</c>) is <c>true</c>.</summary>
     /// <returns>1 to 32, 0 if not a button event.</returns>
     virtual public int GetButton() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -111,7 +125,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// Valid if and only if <see cref="Efl.Input.Pointer.GetValueHas"/>(<c>button</c>) is <c>true</c>.</summary>
     /// <param name="but">1 to 32, 0 if not a button event.</param>
     virtual public void SetButton(int but) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),but);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),but);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether a mouse button is pressed at the moment of the event.
@@ -119,7 +133,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <param name="button">1 to 32, 0 if not a button event.</param>
     /// <returns><c>true</c> when the button was pressed, <c>false</c> otherwise</returns>
     virtual public bool GetButtonPressed(int button) {
-                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_pressed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button);
+                                 var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_pressed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -128,14 +142,14 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <param name="button">1 to 32, 0 if not a button event.</param>
     /// <param name="pressed"><c>true</c> when the button was pressed, <c>false</c> otherwise</param>
     virtual public void SetButtonPressed(int button, bool pressed) {
-                                                         Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_pressed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),button, pressed);
+                                                         Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_pressed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button, pressed);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Position where the event happened, relative to the window.
     /// See <see cref="Efl.Input.Pointer.PrecisePosition"/> for floating point precision (subpixel location).</summary>
     /// <returns>The position of the event, in pixels.</returns>
     virtual public Eina.Position2D GetPosition() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -144,7 +158,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <param name="pos">The position of the event, in pixels.</param>
     virtual public void SetPosition(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Position where the event happened, relative to the window.
@@ -153,7 +167,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// See also <see cref="Efl.Input.Pointer.Position"/>.</summary>
     /// <returns>The position of the event, in pixels.</returns>
     virtual public Eina.Vector2 GetPrecisePosition() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_precise_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_precise_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -164,7 +178,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <param name="pos">The position of the event, in pixels.</param>
     virtual public void SetPrecisePosition(Eina.Vector2 pos) {
          Eina.Vector2.NativeStruct _in_pos = pos;
-                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_precise_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_precise_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Position of the previous event, valid for move events.
@@ -173,7 +187,7 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// This position, in integers, is an approximation of <see cref="Efl.Input.Pointer.GetValue"/>(<c>previous_x</c>), <see cref="Efl.Input.Pointer.GetValue"/>(<c>previous_y</c>). Use <see cref="Efl.Input.Pointer.PreviousPosition"/> if you need simple pixel positions, but prefer the generic interface if you need precise coordinates.</summary>
     /// <returns>The position of the event, in pixels.</returns>
     virtual public Eina.Position2D GetPreviousPosition() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_previous_position_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_previous_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -184,14 +198,14 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// <param name="pos">The position of the event, in pixels.</param>
     virtual public void SetPreviousPosition(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_previous_position_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),_in_pos);
+                        Efl.Input.Pointer.NativeMethods.efl_input_pointer_previous_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>TThe ID associated with this pointer.
     /// In case there are multiple pointers (for example when multiple fingers are touching the screen) this number uniquely identifies each pointer, for as long as it is present. This is, when a finger is lifted its ID can be later reused by another finger touching the screen.</summary>
     /// <returns>An ID uniquely identifying this pointer among the currently present pointers.</returns>
     virtual public int GetTouchId() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -199,40 +213,40 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// In case there are multiple pointers (for example when multiple fingers are touching the screen) this number uniquely identifies each pointer, for as long as it is present. This is, when a finger is lifted its ID can be later reused by another finger touching the screen.</summary>
     /// <param name="id">An ID uniquely identifying this pointer among the currently present pointers.</param>
     virtual public void SetTouchId(int id) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),id);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_touch_id_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The object where this event first originated, in case of propagation or repetition of the event.</summary>
     /// <returns>Source object: <see cref="Efl.Gfx.IEntity"/></returns>
     virtual public Efl.Object GetSource() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_source_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The object where this event first originated, in case of propagation or repetition of the event.</summary>
     /// <param name="src">Source object: <see cref="Efl.Gfx.IEntity"/></param>
     virtual public void SetSource(Efl.Object src) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_source_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),src);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),src);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Double or triple click information.</summary>
     /// <returns>Button information flags</returns>
     virtual public Efl.Pointer.Flags GetButtonFlags() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_flags_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_flags_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Double or triple click information.</summary>
     /// <param name="flags">Button information flags</param>
     virtual public void SetButtonFlags(Efl.Pointer.Flags flags) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_flags_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_button_flags_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.Pointer.ButtonFlags"/> indicates a double click (2nd press).
     /// This is just a helper function around <see cref="Efl.Input.Pointer.ButtonFlags"/>.</summary>
     /// <returns><c>true</c> if the button press was a double click, <c>false</c> otherwise</returns>
     virtual public bool GetDoubleClick() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_double_click_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_double_click_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -240,14 +254,14 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// This is just a helper function around <see cref="Efl.Input.Pointer.ButtonFlags"/>.</summary>
     /// <param name="val"><c>true</c> if the button press was a double click, <c>false</c> otherwise</param>
     virtual public void SetDoubleClick(bool val) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_double_click_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_double_click_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.Pointer.ButtonFlags"/> indicates a triple click (3rd press).
     /// This is just a helper function around <see cref="Efl.Input.Pointer.ButtonFlags"/>.</summary>
     /// <returns><c>true</c> if the button press was a triple click, <c>false</c> otherwise</returns>
     virtual public bool GetTripleClick() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_triple_click_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_triple_click_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -255,40 +269,40 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// This is just a helper function around <see cref="Efl.Input.Pointer.ButtonFlags"/>.</summary>
     /// <param name="val"><c>true</c> if the button press was a triple click, <c>false</c> otherwise</param>
     virtual public void SetTripleClick(bool val) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_triple_click_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_triple_click_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Direction of the wheel, usually vertical.</summary>
     /// <returns>If <c>true</c> this was a horizontal wheel.</returns>
     virtual public bool GetWheelHorizontal() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_horizontal_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_horizontal_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Direction of the wheel, usually vertical.</summary>
     /// <param name="horizontal">If <c>true</c> this was a horizontal wheel.</param>
     virtual public void SetWheelHorizontal(bool horizontal) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_horizontal_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),horizontal);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_horizontal_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),horizontal);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Delta movement of the wheel in discrete steps.</summary>
     /// <returns>Wheel movement delta</returns>
     virtual public int GetWheelDelta() {
-         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_delta_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_delta_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Delta movement of the wheel in discrete steps.</summary>
     /// <param name="dist">Wheel movement delta</param>
     virtual public void SetWheelDelta(int dist) {
-                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_delta_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dist);
+                                 Efl.Input.Pointer.NativeMethods.efl_input_pointer_wheel_delta_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dist);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
     virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -296,97 +310,101 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
     /// If the event is generated by a server (eg. X.org or Wayland), then the time may be set by the server. Usually this time will be based on the monotonic clock, if available, but this class can not guarantee it.</summary>
     /// <returns>Time in milliseconds when the event happened.</returns>
     virtual public double GetTimestamp() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Call this when generating events manually.</summary>
     /// <param name="ms">Time in milliseconds when the event happened.</param>
     virtual public void SetTimestamp(double ms) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),ms);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_timestamp_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ms);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Input device that originated this event.</summary>
     /// <returns>Input device origin</returns>
     virtual public Efl.Input.Device GetDevice() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_device_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_device_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Input device that originated this event.</summary>
     /// <param name="dev">Input device origin</param>
     virtual public void SetDevice(Efl.Input.Device dev) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_device_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),dev);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_device_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dev);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
     /// <returns>Input event flags</returns>
     virtual public Efl.Input.Flags GetEventFlags() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Extra flags for this event, may be changed by the user.</summary>
     /// <param name="flags">Input event flags</param>
     virtual public void SetEventFlags(Efl.Input.Flags flags) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),flags);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_event_flags_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),flags);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
     /// <returns><c>true</c> if the event is on hold, <c>false</c> otherwise</returns>
     virtual public bool GetProcessed() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event is on hold.</summary>
     /// <param name="val"><c>true</c> if the event is on hold, <c>false</c> otherwise</param>
     virtual public void SetProcessed(bool val) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_processed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
     /// <returns><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</returns>
     virtual public bool GetScrolling() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary><c>true</c> if <see cref="Efl.Input.IEvent.EventFlags"/> indicates the event happened while scrolling.</summary>
     /// <param name="val"><c>true</c> if the event happened while scrolling, <c>false</c> otherwise</param>
     virtual public void SetScrolling(bool val) {
-                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_set_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),val);
+                                 Efl.Input.IEventConcrete.NativeMethods.efl_input_scrolling_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),val);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary><c>true</c> if the event was fake, not triggered by real hardware.</summary>
     /// <returns><c>true</c> if the event was not from real hardware, <c>false</c> otherwise</returns>
     virtual public bool GetFake() {
-         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_fake_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         var _ret_var = Efl.Input.IEventConcrete.NativeMethods.efl_input_fake_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Resets the internal data to 0 or default values.</summary>
     virtual public void Reset() {
-         Efl.Input.IEventConcrete.NativeMethods.efl_input_reset_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle));
+         Efl.Input.IEventConcrete.NativeMethods.efl_input_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Indicates whether a key modifier is on, such as Ctrl, Shift, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="mod">The modifier key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key modifier is pressed.</returns>
     virtual public bool GetModifierEnabled(Efl.Input.Modifier mod, Efl.Input.Device seat) {
-                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_modifier_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),mod, seat);
+                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_modifier_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mod, seat);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Indicates whether a key lock is on, such as NumLock, CapsLock, ...
-    /// (Since EFL 1.22)</summary>
+    /// (Since EFL 1.22)
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="kw_lock">The lock key to test.</param>
     /// <param name="seat">The seat device, may be <c>null</c></param>
     /// <returns><c>true</c> if the key lock is on.</returns>
     virtual public bool GetLockEnabled(Efl.Input.Lock kw_lock, Efl.Input.Device seat) {
-                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_lock_enabled_get_ptr.Value.Delegate((inherited ? Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass) : this.NativeHandle),kw_lock, seat);
+                                                         var _ret_var = Efl.Input.IStateConcrete.NativeMethods.efl_input_lock_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_lock, seat);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -2553,3 +2571,83 @@ public class Pointer : Efl.Object, Efl.IDuplicate, Efl.Input.IEvent, Efl.Input.I
 
 }
 
+#if EFL_BETA
+#pragma warning disable CS1591
+public static class Efl_InputPointer_ExtensionMethods {
+    public static Efl.BindableProperty<Efl.Pointer.Action> Action<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Pointer.Action>("action", fac);
+    }
+
+    
+    
+    public static Efl.BindableProperty<int> Button<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("button", fac);
+    }
+
+    
+    public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Position2D>("position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Vector2> PrecisePosition<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Vector2>("precise_position", fac);
+    }
+
+    public static Efl.BindableProperty<Eina.Position2D> PreviousPosition<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Eina.Position2D>("previous_position", fac);
+    }
+
+    public static Efl.BindableProperty<int> TouchId<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("touch_id", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Object> Source<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Object>("source", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Pointer.Flags> ButtonFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Pointer.Flags>("button_flags", fac);
+    }
+
+    public static Efl.BindableProperty<bool> DoubleClick<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("double_click", fac);
+    }
+
+    public static Efl.BindableProperty<bool> TripleClick<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("triple_click", fac);
+    }
+
+    public static Efl.BindableProperty<bool> WheelHorizontal<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("wheel_horizontal", fac);
+    }
+
+    public static Efl.BindableProperty<int> WheelDelta<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<int>("wheel_delta", fac);
+    }
+
+    public static Efl.BindableProperty<double> Timestamp<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<double>("timestamp", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Device> Device<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Input.Device>("device", fac);
+    }
+
+    public static Efl.BindableProperty<Efl.Input.Flags> EventFlags<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<Efl.Input.Flags>("event_flags", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Processed<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("processed", fac);
+    }
+
+    public static Efl.BindableProperty<bool> Scrolling<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Input.Pointer, T>magic = null) where T : Efl.Input.Pointer {
+        return new Efl.BindableProperty<bool>("scrolling", fac);
+    }
+
+    
+    
+    
+}
+#pragma warning restore CS1591
+#endif
