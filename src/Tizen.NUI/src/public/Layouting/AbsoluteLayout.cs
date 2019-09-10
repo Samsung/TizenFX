@@ -22,7 +22,7 @@ namespace Tizen.NUI
     /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
     ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
     /// </summary>
-    internal class AbsoluteLayout : LayoutGroup
+    public class AbsoluteLayout : LayoutGroup
     {
         /// <summary>
         /// Struct to store Measured states of height and width.
@@ -42,10 +42,17 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
         {
         }
 
+        /// <summary>
+        /// Measure the layout and its content to determine the measured width and the measured height.<br />
+        /// </summary>
+        /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
+        /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             float totalHeight = 0.0f;
@@ -60,7 +67,7 @@ namespace Tizen.NUI
             float maxPositionY = 0.0f;
 
             // measure children
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if (childLayout != null)
                 {
@@ -113,11 +120,20 @@ namespace Tizen.NUI
                                    ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childState.heightState ) );
         }
 
+        /// <summary>
+        /// Assign a size and position to each of its children.<br />
+        /// </summary>
+        /// <param name="changed">This is a new size or position for this layout.</param>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top"> Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             // Absolute layout positions it's children at their Actor positions.
             // Children could overlap or spill outside the parent, as is the nature of absolute positions.
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if( childLayout != null )
                 {

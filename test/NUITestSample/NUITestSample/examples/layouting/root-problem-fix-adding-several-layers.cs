@@ -72,7 +72,7 @@ namespace RootProblemFixAddingSeveralLayers
             var center = childIncrement / 2;
 
             // Check layout direction
-            var view = GetOwner();
+            var view = Owner;
             ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
 
             for (uint i = 0; i < count; i++)

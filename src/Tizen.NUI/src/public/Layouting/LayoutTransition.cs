@@ -17,56 +17,94 @@
 
 using System.Collections.Generic;
 using System;
-using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// Define a List of LayoutTransitions
     /// </summary>
-    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 6 </since_tizen>
     public class TransitionList : List<LayoutTransition> {}
+
+    /// <summary>
+    /// The conditions for transitions.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [FlagsAttribute] public enum TransitionCondition
+    {
+        /// <summary>
+        /// Default when a condition has not been set.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Unspecified = 0,
+        /// <summary>
+        /// Animate changing layout to another layout.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        LayoutChanged = 1,
+        /// <summary>
+        /// Animate adding item.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        Add = 2,
+        /// <summary>
+        /// Animate removing item.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        Remove = 4,
+        /// <summary>
+        /// Animation when an item changes due to a  being added.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        ChangeOnAdd = 8,
+        /// <summary>
+        /// Animation when an item changes due to a  being removed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        ChangeOnRemove = 16
+    }
 
     /// <summary>
     /// The properties that can be animated.
     /// </summary>
-    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 6 </since_tizen>
     public enum AnimatableProperties
     {
         /// <summary>
         /// Position property.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         Position,
         /// <summary>
         /// Size property.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         Size,
         /// <summary>
         /// Opacity property.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         Opacity
     }
 
     /// <summary>
     /// Parts of the transition that can be configured to provide a custom effect.
     /// </summary>
-    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 6 </since_tizen>
     public class TransitionComponents
     {
         /// <summary>
         /// TransitionComponents default constructor.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public TransitionComponents()
         {
             Delay = 0;
@@ -78,10 +116,10 @@ namespace Tizen.NUI
         /// TransitionComponents constructor. Stores delay, duration and AlphaFunction.
         /// </summary>
         /// <param name="delay">The delay before the animator starts.</param>
-        /// <param name="duration">the duration fo the animator.</param>
+        /// <param name="duration">the duration of the animator.</param>
         /// <param name="alphaFunction">alpha function to use .</param>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public TransitionComponents(int delay, int duration, AlphaFunction alphaFunction)
         {
             Delay = delay;
@@ -92,35 +130,30 @@ namespace Tizen.NUI
         /// <summary>
         /// Time the transition should execute. Milliseconds.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public int Duration;
         /// <summary>
         /// Delay before the transition executes. Milliseconds.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public int Delay;
         /// <summary>
         /// Function to alter the transition path over time.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public AlphaFunction AlphaFunction;
     }
 
     /// <summary>
-    /// LayoutTransition stores the aninmation setting for a transition conidition.
+    /// LayoutTransition stores the animation setting for a transition conidition.
     /// </summary>
-    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutTransition
     {
         /// <summary>
         /// LayoutTransition default constructor.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public LayoutTransition()
         {
           Condition = TransitionCondition.Unspecified;
@@ -135,8 +168,7 @@ namespace Tizen.NUI
         /// <param name="animatableProperty">the property to animate.</param>
         /// <param name="targetValue">target value of the property.</param>
         /// <param name="animator">Components to define the animator.</param>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public LayoutTransition( TransitionCondition condition,
                                  AnimatableProperties animatableProperty,
                                  object targetValue,
@@ -151,26 +183,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Condition for this Transition
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public TransitionCondition Condition{get; set;}
         /// <summary>
         /// Property to animate.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public AnimatableProperties AnimatableProperty{get; set;}
         /// <summary>
         /// Components of the Animator.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public TransitionComponents Animator{get; set;}
         /// <summary>
         /// Target value to animate to.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
+
         public object TargetValue{get; set;}
     }
 
