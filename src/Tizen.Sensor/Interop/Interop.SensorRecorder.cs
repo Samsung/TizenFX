@@ -45,7 +45,7 @@ internal static partial class Interop
         internal static extern int DestroyQuery(IntPtr query);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_is_supported")]
-        internal static extern int IsSupported(SensorType type, out bool isSupported);
+        internal static extern int IsSupported(int type, out bool isSupported);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_option_set_int")]
         internal static extern int OptionSetInt(IntPtr option, RecorderOption attribute, int value);
@@ -57,15 +57,15 @@ internal static partial class Interop
         internal static extern int QuerySetTime(IntPtr query, RecorderQuery attribute, int time);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read")]
-        internal static extern int ReadAsync(SensorType type, IntPtr query, SensorRecorderDataCb cb, IntPtr user_data);
+        internal static extern int ReadAsync(int type, IntPtr query, SensorRecorderDataCb cb, IntPtr user_data);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read_sync")]
-        internal static extern int Read(SensorType type, IntPtr query, SensorRecorderDataCb cb, IntPtr user_data);
+        internal static extern int Read(int type, IntPtr query, SensorRecorderDataCb cb, IntPtr user_data);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_start")]
-        internal static extern int Start(SensorType type, IntPtr option);
+        internal static extern int Start(int type, IntPtr option);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_stop")]
-        internal static extern int Stop(SensorType type);
+        internal static extern int Stop(int type);
     }
 }

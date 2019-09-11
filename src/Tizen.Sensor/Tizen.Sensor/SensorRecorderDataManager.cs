@@ -109,76 +109,78 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// The SensorRecorderDataManager class is used for retrieving the pre-recorded from database. 
+    /// An interface for building recorder query
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public abstract class SensorRecorderDataManager : SensorRecorderManager
+    public interface IQueryBuilder
     {
-        private bool _disposed = false;
-        internal IntPtr _queryHandle;
-        internal IntPtr _dataHandle;
-        private Interop.SensorRecoder.SensorRecorderDataCb _sensorRecorderDataCallBack = null;
+        /// <summary>
+        ///  Sets a start time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        void SetStartTime(int time);
 
-        internal SensorRecorderDataManager() {
-            _queryHandle = IntPtr.Zero;
-            _dataHandle = IntPtr.Zero;
+        /// <summary>
+        ///  Sets end time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        void SetEndTime(int time);
+
+        /// <summary>
+        ///  Sets anchor time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        void SetAnchorTime(int time);
+
+        /// <summary>
+        ///  Sets an interval query parameter.
+        /// </summary>
+        /// <param name="value">
+        /// Value.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        void SetInterval(int value);
+
+        /// <summary>
+        /// gets the QueryHandle object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Query getQuery();
+    }
+
+    /// <summary>
+    /// This class is used to set query parameters
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class QueryBuilder : IQueryBuilder
+    {
+
+        private Query query;
+
+        /// <summary>
+        /// Initializes a new instance of the QueryBuilder class.
+        /// </summary>
+        public QueryBuilder()
+        {
+            query = new Query();
+            CreateQuery();
         }
 
-        internal IntPtr QueryHandle
+        /// <summary>
+        /// Destroy the QueryBuilder object.
+        /// </summary>
+        ~QueryBuilder()
         {
-            get
-            {
-                return _queryHandle;
-            }
-
-            set
-            {
-                _queryHandle = value;
-            }
-        }
-
-        internal IntPtr DataHandle
-        {
-            get
-            {
-                return _dataHandle;
-            }
-
-            set
-            {
-                _dataHandle = value;
-            }
-        }
-
-
-        private bool CheckQuery()
-        {
-            bool result = false;
-            if (QueryHandle != IntPtr.Zero)
-            {
-                result = true;
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Sensor Recorder Query is null");
-                throw new ArgumentException("Invalid Parameter: Sensor Recorder Query is null");
-            }
-            return result;
-        }
-
-        private bool CheckDataHandle()
-        {
-            bool result = false;
-            if (DataHandle != IntPtr.Zero)
-            {
-                result = true;
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Sensor Recorder Data is null");
-                throw new ArgumentException("Invalid Parameter: Sensor Recorder Data is null");
-            }
-            return result;
+            DestroyQuery();
         }
 
         /// <summary>
@@ -192,10 +194,224 @@ namespace Tizen.Sensor
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error creating the sensor recorder query");
-                throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.CreateQuery Failed");
+                throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.CreateQuery Failed");
             }
 
-            QueryHandle = handle;
+            query.queryHandle = handle;
+        }
+
+        /// <summary>
+        /// Destroys a recorder query handle.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        private void DestroyQuery()
+        {
+            if (query != null)
+            {
+                int error = Interop.SensorRecoder.DestroyQuery(query.queryHandle);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error deleting the sensor recorder query");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.DestroyQuery Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
+        }
+
+        /// <summary>
+        ///  Sets start time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetStartTime(int time)
+        {
+            if (query != null)
+            {
+                int error = Interop.SensorRecoder.QuerySetTime(query.queryHandle, RecorderQuery.StartTime, time);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.SetStartTime Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
+        }
+
+        /// <summary>
+        ///  Sets end time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetEndTime(int time)
+        {
+            if (query != null)
+            {
+                int error = Interop.SensorRecoder.QuerySetTime(query.queryHandle, RecorderQuery.EndTime, time);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.SetEndTime Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
+        }
+
+        /// <summary>
+        ///  Sets anchor time query parameter.
+        /// </summary>
+        /// <param name="time">
+        /// Time.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetAnchorTime(int time)
+        {
+            if (query != null)
+            {
+                int error = Interop.SensorRecoder.QuerySetTime(query.queryHandle, RecorderQuery.AnchorTime, time);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.SetAnchorTime Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
+        }
+
+        /// <summary>
+        ///  Sets an interval query parameter.
+        /// </summary>
+        /// <param name="value">
+        /// Value.
+        /// </param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetInterval(int value)
+        {
+            if (query != null)
+            {
+                int error = Interop.SensorRecoder.QuerySetInt(query.queryHandle, RecorderQuery.TimeInterval, value);
+                if (error != (int)SensorError.None)
+                {
+                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set int");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "QueryBuilder.SetInterval Failed");
+                }
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Recorder query is not created");
+            }
+        }
+
+        /// <summary>
+        /// gets the QueryHandle object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public Query getQuery()
+        {
+            return query;
+        }
+    }
+
+    /// <summary>
+    /// This class provides the query handle.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class Query
+    {
+        /// <summary>
+        /// Property: Gets the queryHandle.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value> The query handle </value>
+        public IntPtr queryHandle { set; get; }
+    }
+
+
+    /// <summary>
+    /// The SensorRecorderDataManager class is used for retrieving the pre-recorded from database. 
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class SensorRecorderDataManager : IDisposable
+    {
+        private bool _disposed = false;
+        private int sensorType;
+        private IntPtr dataHandle;
+        private Interop.SensorRecoder.SensorRecorderDataCb _sensorRecorderDataCallBack = null;
+
+        /// <summary>
+        /// signal to notify user about updated dataHandle
+        /// </summary>
+        public event EventHandler<RecorderDataEventArgs> DataReceived;
+
+        /// <summary>
+        /// Initializes a new instance of the SensorRecorderDataManager class.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name='type'>
+        /// type refers to sensor type
+        /// </param>
+        public SensorRecorderDataManager(int type)
+        {
+
+            sensorType = type;
+
+            if (IsSupported())
+            {
+                throw new NotSupportedException(" recorder is not supported.");
+            }
+
+            dataHandle = IntPtr.Zero;
+        }
+
+        /// <summary>
+        /// SensorRecorderDataManager deconstructor.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        ~SensorRecorderDataManager()
+        {
+            Dispose(false);
+        }
+
+        private bool CheckDataHandle()
+        {
+            bool result = false;
+            if (dataHandle != IntPtr.Zero)
+            {
+                result = true;
+            }
+            else
+            {
+                Log.Error(Globals.LogTag, "Sensor Recorder Data handle is null");
+                throw new ArgumentException("Invalid Parameter: Sensor Recorder Data handle is null");
+            }
+            return result;
+        }
+
+        private bool IsSupported()
+        {
+            bool isSupported;
+            int error = Interop.SensorRecoder.IsSupported(sensorType, out isSupported);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking if sensor recorder is supported");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorderDataManager.IsSupported Failed");
+            }
+            return isSupported;
         }
 
         /// <summary>
@@ -213,11 +429,11 @@ namespace Tizen.Sensor
             double value = -1;
             if (CheckDataHandle())
             {
-                int error = Interop.SensorRecoder.DataGetDouble(DataHandle, key, out value);
+                int error = Interop.SensorRecoder.DataGetDouble(dataHandle, key, out value);
                 if (error != (int)SensorError.None)
                 {
                     Log.Error(Globals.LogTag, "Error getting the sensor recorder double data");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.DataGetDouble Failed");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorderDataManager.DataGetDouble Failed");
                 }
             }
             else
@@ -238,12 +454,13 @@ namespace Tizen.Sensor
         public RecordTimePeriod DataGetTime()
         {
             long startTime = -1, endTime = -1;
-            if (CheckDataHandle()) {
-                int error = Interop.SensorRecoder.DataGetTime(DataHandle, out startTime, out endTime);
+            if (CheckDataHandle())
+            {
+                int error = Interop.SensorRecoder.DataGetTime(dataHandle, out startTime, out endTime);
                 if (error != (int)SensorError.None)
                 {
                     Log.Error(Globals.LogTag, "Error getting the sensor recorder time");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.DataGetTime Failed");
+                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorderDataManager.DataGetTime Failed");
                 }
             }
             else
@@ -255,174 +472,85 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        ///  Sets an integer-type query parameter.
+        ///  Queries the recorded data synchronously and updates the data handle
         /// </summary>
-        /// <param name="recorderQuery">
-        /// Query parameter.
-        /// </param>
-        /// <param name="value">
-        /// Value.
-        /// </param>
         /// <since_tizen> 6 </since_tizen>
-        public void QuerySetInt(RecorderQuery recorderQuery, int value)
+        public void Update(Query query)
         {
-            if (CheckQuery())
+            _sensorRecorderDataCallBack = (SensorType _type, IntPtr _dataHandle, int remains, int _error, Int64 _userData) =>
             {
-                int error = Interop.SensorRecoder.QuerySetInt(QueryHandle, recorderQuery, value);
-                if (error != (int)SensorError.None)
+                if (_error != (int)SensorError.None)
                 {
-                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set int");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.QuerySetInt Failed");
+                    Log.Error(Globals.LogTag, "Error in Update synchronously CallBack");
                 }
-            }
-            else
+                else
+                {
+                    dataHandle = _dataHandle;
+                }
+
+                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                return true;
+            };
+
+            int error = Interop.SensorRecoder.Read(sensorType, query.queryHandle, _sensorRecorderDataCallBack, IntPtr.Zero);
+
+            if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Recorder query is not created");
+                Log.Error(Globals.LogTag, "Error in synchronously updating data handle");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorderDataManager.update Failed");
             }
         }
 
-        /// <summary>
-        ///  Sets a time-type query parameter.
-        /// </summary>
-        /// <param name="recorderQuery">
-        /// Query parameter.
-        /// </param>
-        /// <param name="time">
-        /// Time.
-        /// </param>
-        /// <since_tizen> 6 </since_tizen>
-        public void QuerySetTime(RecorderQuery recorderQuery, int time)
-        {
-            if (CheckQuery())
-            {
-                int error = Interop.SensorRecoder.QuerySetTime(QueryHandle, recorderQuery, time);
-                if (error != (int)SensorError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.QuerySetTime Failed");
-                }
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Recorder query is not created");
-            }
-        }
-
-        /// <summary>
-        ///  Queries the recorded data synchronously.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public void Read()
-        {
-            if (CheckQuery())
-            {
-                _sensorRecorderDataCallBack = (SensorType _type, IntPtr dataHandle, int remains, int _error, Int64 _userData) =>
-                {
-                    if (_error != (int)SensorError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error in Sensor Recorder Read synchronously CallBack");
-                    }
-                    else
-                    {
-                        DataHandle = dataHandle;
-                    }
-
-                    Log.Debug(Globals.LogTag, "Recorder data callback recieved");
-                    return true;
-                };
-
-                int error = Interop.SensorRecoder.Read(sensorType, QueryHandle, _sensorRecorderDataCallBack, IntPtr.Zero);
-
-                if (error != (int)SensorError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error in synchronously reading recorder");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.Read Failed");
-                }
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Recorder query is not created");
-            }
-        }
-
-        private void AsyncReader(IntPtr QueryHandle, Interop.SensorRecoder.SensorRecorderDataCb Cb, IntPtr _userData)
+        private void AsyncUpdater(IntPtr QueryHandle, Interop.SensorRecoder.SensorRecorderDataCb Cb, IntPtr _userData)
         {
             int error = Interop.SensorRecoder.ReadAsync(sensorType, QueryHandle, Cb, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error in asynchronously reading recorder");
-                throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.ReadAsync Failed");
+                Log.Error(Globals.LogTag, "Error in asynchronously updating data handle");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorderDataManager.AsyncUpdater Failed");
             }
         }
 
         /// <summary>
-        /// Queries the recorded data asynchronously.
+        /// Queries the recorded data asynchronously and updates the data handle
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public async Task ReadAsync()
+        public async Task UpdateAsync(Query query)
         {
-            if (CheckQuery())
-            {
-                TaskCompletionSource<IntPtr> tcs = new TaskCompletionSource<IntPtr>();
+            TaskCompletionSource<IntPtr> tcs = new TaskCompletionSource<IntPtr>();
 
-                _sensorRecorderDataCallBack = (SensorType _type, IntPtr dataHandle, int remains, int _error, Int64 _userData) =>
+            _sensorRecorderDataCallBack = (SensorType _type, IntPtr _dataHandle, int remains, int _error, Int64 _userData) =>
+            {
+                RecorderDataEventArgs e = new RecorderDataEventArgs();
+                if (_error != (int)SensorError.None)
                 {
-                    if (_error != (int)SensorError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Error in Sensor Recorder Data CallBack");
-                        tcs.SetException(new Exception("Error in Sensor Recorder Data CallBack"));
-                    }
-                    else
-                    {
-                        tcs.SetResult(dataHandle);
-                    }
-
-                    Log.Debug(Globals.LogTag, "Recorder data callback recieved");
-                    return true;
-                };
-          
-                await Task.Run(() => AsyncReader(QueryHandle, _sensorRecorderDataCallBack, IntPtr.Zero)).ConfigureAwait(false);
-                DataHandle = await tcs.Task.ConfigureAwait(false);
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Recorder query is not created");
-            }
-        }
-
-        /// <summary>
-        /// Destroys a recorder query handle.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        private void DestroyQuery()
-        {
-            if (CheckQuery())
-            {
-                int error = Interop.SensorRecoder.DestroyQuery(QueryHandle);
-                if (error != (int)SensorError.None)
-                {
-                    Log.Error(Globals.LogTag, "Error deleting the sensor recorder query");
-                    throw SensorErrorFactory.CheckAndThrowException(error, "SensorRecorder.DestroyQuery Failed");
+                    Log.Error(Globals.LogTag, "Error in Update synchronously CallBack");
+                    tcs.SetException(new Exception("Error in Update synchronously CallBack"));
                 }
-            }
-            else
-            {
-                Log.Error(Globals.LogTag, "Recorder query is not created");
-            }
+                else
+                {
+                    tcs.SetResult(_dataHandle);
+                }
+
+                DataReceived?.Invoke(null, e);
+                Log.Debug(Globals.LogTag, "Recorder data callback recieved");
+                return true;
+            };
+
+            await Task.Run(() => AsyncUpdater(query.queryHandle, _sensorRecorderDataCallBack, IntPtr.Zero)).ConfigureAwait(false);
+            dataHandle = await tcs.Task.ConfigureAwait(false);
         }
 
-        private void DestroyHandles()
+        /// <summary>
+        /// Destroy the current object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
         {
-            if (_queryHandle != IntPtr.Zero)
-            {
-                DestroyQuery();
-                _queryHandle = IntPtr.Zero;
-            }
-
-            if (_dataHandle != IntPtr.Zero)
-            {
-                _dataHandle = IntPtr.Zero;
-            }
+            // Dispose of unmanaged resources.
+            Dispose(true);
+            // Suppress finalization
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -433,13 +561,15 @@ namespace Tizen.Sensor
         /// otherwise, false.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
-        protected override void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
                 return;
 
-            DestroyHandles();
-            base.Dispose(disposing);
+            if (dataHandle != IntPtr.Zero)
+            {
+                dataHandle = IntPtr.Zero;
+            }
             _disposed = true;
         }
     }

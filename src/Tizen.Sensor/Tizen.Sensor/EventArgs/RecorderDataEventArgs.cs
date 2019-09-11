@@ -28,15 +28,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Recorder Data callback.
         /// </summary>
-        internal RecorderDataEventArgs(int type, int data, int remains, int error, Int64 userData)
+        internal RecorderDataEventArgs()
         {
-            Data = data;
+            Log.Info(Globals.LogTag, "data handle updated");
         }
-
-        /// <summary>
-        /// Gets Data.
-        /// </summary>
-        public int Data { get; private set; }
-
     }
 }
