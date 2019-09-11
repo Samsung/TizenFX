@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections;
+using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using InteropInference = Interop.MediaVision.Inference;
@@ -62,12 +63,32 @@ namespace Tizen.Multimedia.Vision
             }
 
             var tcs = new TaskCompletionSource<Point[]>();
-            var roi = config.Roi.Value.ToMarshalable();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
-                InteropInference.DetectFacialLandmark(source.Handle, config.GetHandle(), ref roi , cb.Target).
-                    Validate("Failed to detect facial landmark.");
+                IntPtr roiUnmanaged = IntPtr.Zero;
+
+                try
+                {
+                    if (config.Roi.HasValue)
+                    {
+                        var roi = config.Roi.Value.ToMarshalable();
+
+                        roiUnmanaged = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(global::Interop.MediaVision.Rectangle)));
+                        Marshal.WriteIntPtr(roiUnmanaged, IntPtr.Zero);
+                        Marshal.StructureToPtr(roi, roiUnmanaged, false);
+                    }
+
+                    InteropInference.DetectFacialLandmark(source.Handle, config.GetHandle(), roiUnmanaged, cb.Target).
+                        Validate("Failed to detect facial landmark.");
+                }
+                finally
+                {
+                    if (roiUnmanaged != IntPtr.Zero)
+                    {
+                        Marshal.FreeHGlobal(roiUnmanaged);
+                    }
+                }
 
                 return await tcs.Task;
             }

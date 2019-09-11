@@ -60,7 +60,7 @@ namespace Tizen.Multimedia.Vision
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
                 InteropInference.DetectObject(source.Handle, config.GetHandle(), cb.Target).
-                    Validate("Failed to detect face.");
+                    Validate("Failed to detect object.");
 
                 return await tcs.Task;
             }

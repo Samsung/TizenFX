@@ -82,7 +82,7 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_image_classify")]
             internal static extern MediaVisionError ClassifyImage(IntPtr source, IntPtr inference,
-                ref Rectangle roi, ImageClassifedCallback callback, IntPtr userData = default(IntPtr));
+                IntPtr roi, ImageClassifedCallback callback, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_object_detect")]
             internal static extern MediaVisionError DetectObject(IntPtr source, IntPtr inference,
@@ -94,7 +94,7 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_inference_facial_landmark_detect")]
             internal static extern MediaVisionError DetectFacialLandmark(IntPtr source, IntPtr inference,
-                ref Rectangle roi, FacialLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr));
+                IntPtr roi, FacialLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr));
         }
     }
 }

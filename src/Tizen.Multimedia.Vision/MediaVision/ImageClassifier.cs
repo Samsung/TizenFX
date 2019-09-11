@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InteropInference = Interop.MediaVision.Inference;
 
@@ -56,12 +57,32 @@ namespace Tizen.Multimedia.Vision
             }
 
             var tcs = new TaskCompletionSource<ImageClassificationResult>();
-            var roi = config.Roi.Value.ToMarshalable();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
-                InteropInference.ClassifyImage(source.Handle, config.GetHandle(), ref roi, cb.Target).
-                    Validate("Failed to detect face.");
+                IntPtr roiUnmanaged = IntPtr.Zero;
+
+                try
+                {
+                    if (config.Roi.HasValue)
+                    {
+                        var roi = config.Roi.Value.ToMarshalable();
+
+                        roiUnmanaged = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(global::Interop.MediaVision.Rectangle)));
+                        Marshal.WriteIntPtr(roiUnmanaged, IntPtr.Zero);
+                        Marshal.StructureToPtr(roi, roiUnmanaged, false);
+                    }
+
+                    InteropInference.ClassifyImage(source.Handle, config.GetHandle(), roiUnmanaged, cb.Target).
+                        Validate("Failed to classify image.");
+                }
+                finally
+                {
+                    if (roiUnmanaged != IntPtr.Zero)
+                    {
+                        Marshal.FreeHGlobal(roiUnmanaged);
+                    }
+                }
 
                 return await tcs.Task;
             }
