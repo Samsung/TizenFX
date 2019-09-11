@@ -168,6 +168,11 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <since_tizen> 6 </since_tizen>
         public Task<AppControlResult> SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)
         {
+            if (control == null)
+            {
+                throw new ArgumentNullException(nameof(control));
+            }
+
             int ret = Interop.AppControl.SetCallerInstanceId(control.SafeAppControlHandle, Id);
             if (ret != 0)
                 throw new InvalidOperationException("Failed to set id");
