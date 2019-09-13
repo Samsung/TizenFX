@@ -31,11 +31,13 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] List of child layouts in this container.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected List<LayoutItem> LayoutChildren{ get;} // Children of this LayoutGroup
 
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutGroup()
         {
             LayoutChildren = new List<LayoutItem>();
@@ -45,6 +47,7 @@ namespace Tizen.NUI
         /// [Draft] Constructor setting the owner of this LayoutGroup.
         /// </summary>
         /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutGroup(View owner) : base(owner)
         {
             LayoutChildren = new List<LayoutItem>();
@@ -53,6 +56,7 @@ namespace Tizen.NUI
         /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void Add(LayoutItem childLayout)
         {
             LayoutChildren.Add(childLayout);
@@ -68,6 +72,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove all layout children.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void RemoveAll()
         {
             foreach( LayoutItem childLayout in LayoutChildren )
@@ -83,6 +88,7 @@ namespace Tizen.NUI
         /// <summary>
         /// From ILayoutParent
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void Remove(LayoutItem layoutItem)
         {
             bool childRemoved = false;
@@ -327,6 +333,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             LayoutLength measuredWidth = new LayoutLength(0.0f);
@@ -367,6 +374,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             foreach( LayoutItem childLayout in LayoutChildren )
@@ -398,6 +406,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
             // Do nothing
@@ -406,6 +415,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overridden method called when the layout is attached to an owner.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnAttachedToOwner()
         {
             // Layout takes ownership of it's owner's children.
@@ -427,6 +437,7 @@ namespace Tizen.NUI
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnChildAdd(LayoutItem child)
         {
         }
@@ -435,6 +446,7 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnChildRemove(LayoutItem child)
         {
         }
@@ -446,6 +458,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">The width requirements for this view.</param>
         /// <param name="heightMeasureSpec">The height requirements for this view.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             foreach( LayoutItem childLayout in LayoutChildren )
@@ -462,6 +475,7 @@ namespace Tizen.NUI
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChild(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
             View childOwner = child.Owner;
@@ -490,6 +504,7 @@ namespace Tizen.NUI
         /// <param name="widthUsed">Extra space that has been used up by the parent horizontally (possibly by other children of the parent).</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
         /// <param name="heightUsed">Extra space that has been used up by the parent vertically (possibly by other children of the parent).</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildWithMargins(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, LayoutLength widthUsed, MeasureSpecification parentHeightMeasureSpec, LayoutLength heightUsed)
         {
             View childOwner = child.Owner;

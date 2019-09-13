@@ -71,6 +71,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
             // Throw exception if Dispose() is called in separate thread.
@@ -93,6 +94,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -126,6 +128,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Creates a FlexLayout object.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -217,6 +220,7 @@ namespace Tizen.NUI
         /// [Draft] Get/Set the flex direction in the layout.
         /// The direction of the main-axis which determines the direction that flex items are laid out.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexDirection Direction
         {
             get
@@ -232,6 +236,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the justification in the layout.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
         {
             get
@@ -247,6 +252,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the wrap in the layout.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
         {
             get
@@ -262,6 +268,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the alignment of the layout content.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
         {
             get
@@ -277,6 +284,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the alignment of the layout items.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
         {
             get
@@ -293,6 +301,7 @@ namespace Tizen.NUI
         /// [Draft] Enumeration for the direction of the main axis in the flex container.
         /// This determines the direction that flex items are laid out in the flex container.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexDirection
         {
             /// <summary>
@@ -316,6 +325,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the alignment of the flex items when the items do not use all available space on the main-axis.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexJustification
         {
             /// <summary>
@@ -343,6 +353,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the wrap type of the flex container when there is no enough room for all the items on one flex line.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexWrapType
         {
             /// <summary>
@@ -358,6 +369,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the alignment of the flex items or lines when the items or lines do not use all the available space on the cross-axis.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum AlignmentType
         {
             /// <summary>
@@ -404,6 +416,7 @@ namespace Tizen.NUI
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnChildAdd(LayoutItem child)
         {
             InsertChild(child);
@@ -413,6 +426,7 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
@@ -425,6 +439,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
@@ -461,6 +476,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
 

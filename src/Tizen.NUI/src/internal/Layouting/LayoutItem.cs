@@ -54,21 +54,25 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public TransitionCondition ConditionForAnimation{get; set;}
 
         /// <summary>
         /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public View Owner{get; set;}  // Should not keep a View alive.
 
         /// <summary>
         /// [Draft] Is this Layout set to animate its content.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public bool Animate{get; set;}
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public Extents Margin
         {
             get
@@ -85,6 +89,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Padding for this LayoutItem
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public Extents Padding
         {
             get
@@ -101,6 +106,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutItem()
         {
             Initialize();
@@ -110,6 +116,7 @@ namespace Tizen.NUI
         /// [Draft] Constructor setting the owner of this LayoutItem.
         /// </summary>
         /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutItem(View owner)
         {
             Owner = owner;
@@ -120,6 +127,7 @@ namespace Tizen.NUI
         /// [Draft] Set parent to this layout.
         /// </summary>
         /// <param name="parent">Parent to set on this Layout.</param>
+        /// <since_tizen> 6 </since_tizen>
         public void SetParent( ILayoutParent parent)
         {
             Parent = parent as LayoutGroup;
@@ -128,6 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Unparent this layout from it's owner, and remove any layout children in derived types. <br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void Unparent()
         {
             // Enable directly derived types to first remove children
@@ -224,6 +233,7 @@ namespace Tizen.NUI
         /// <param name="top">Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             bool changed = SetFrame(left.AsRoundedValue(),
@@ -248,6 +258,7 @@ namespace Tizen.NUI
         /// <param name="size"> Default size for this layout.</param>
         /// <param name="measureSpecification"> Constraints imposed by the parent.</param>
         /// <returns>The size this layout should be.</returns>
+        /// <since_tizen> 6 </since_tizen>
         public static LayoutLength GetDefaultSize(LayoutLength size, MeasureSpecification measureSpecification)
         {
             LayoutLength result = size;
@@ -291,6 +302,7 @@ namespace Tizen.NUI
         /// Get the Layouts parent
         /// </summary>
         /// <returns>Layout parent with an LayoutParent interface</returns>
+        /// <since_tizen> 6 </since_tizen>
         public ILayoutParent GetParent()
         {
             return Parent;
@@ -300,6 +312,7 @@ namespace Tizen.NUI
         /// Request that this layout is re-laid out.<br />
         /// This will make this layout and all it's parent layouts dirty.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void RequestLayout()
         {
             Flags = Flags | LayoutFlags.ForceLayout;
@@ -309,6 +322,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Predicate to determine if this layout has been requested to re-layout.<br />
         /// </summary>
+
         internal bool LayoutRequested
         {
             get
@@ -321,18 +335,21 @@ namespace Tizen.NUI
         /// Get the measured width (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public MeasuredSize MeasuredWidth{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Get the measured height (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public MeasuredSize MeasuredHeight{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
         /// Get the measured width and state.<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public MeasuredSize MeasuredWidthAndState
         {
             get
@@ -346,6 +363,7 @@ namespace Tizen.NUI
         /// Get the measured height and state.<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public MeasuredSize MeasuredHeightAndState
         {
             get
@@ -358,6 +376,7 @@ namespace Tizen.NUI
         /// Returns the suggested minimum width that the layout should use.<br />
         /// This returns the maximum of the layout's minimum width and the owner's natural width.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutLength SuggestedMinimumWidth
         {
             get
@@ -371,6 +390,7 @@ namespace Tizen.NUI
         /// Returns the suggested minimum height that the layout should use.<br />
         /// This returns the maximum of the layout's minimum height and the owner's natural height.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutLength SuggestedMinimumHeight
         {
             get
@@ -388,6 +408,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
         /// 3. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutLength MinimumWidth {get; set;}
 
         /// <summary>
@@ -398,6 +419,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
         /// 3. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutLength MinimumHeight {get; set;}
 
         ///<summary>
@@ -407,6 +429,7 @@ namespace Tizen.NUI
         /// <param name="measureSpecification"> Constraints imposed by the parent.</param>
         /// <param name="childMeasuredState"> Size information bit mask for the layout's children.</param>
         /// <returns> A measured size, which may indicate that it is too small. </returns>
+        /// <since_tizen> 6 </since_tizen>
         protected MeasuredSize ResolveSizeAndState( LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState )
         {
             var specMode = measureSpecification.Mode;
@@ -444,6 +467,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="measuredWidth">The measured width of this layout.</param>
         /// <param name="measuredHeight">The measured height of this layout.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected void SetMeasuredDimensions( MeasuredSize measuredWidth, MeasuredSize measuredHeight )
         {
             MeasuredWidth = measuredWidth;
@@ -462,6 +486,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             // GetDefaultSize will limit the MeasureSpec to the suggested minimumWidth and minimumHeight
@@ -478,6 +503,7 @@ namespace Tizen.NUI
         /// <param name="top">Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
         }
@@ -487,6 +513,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
         }
@@ -495,6 +522,7 @@ namespace Tizen.NUI
         /// Virtual method to allow derived classes to remove any children before it is removed from
         /// its parent.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void OnUnparent()
         {
         }
@@ -503,6 +531,7 @@ namespace Tizen.NUI
         /// Virtual method called when this Layout is attached to it's owner.
         /// Allows derived layouts to take ownership of child Views and connect to any Owner signals required.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnAttachedToOwner()
         {
         }

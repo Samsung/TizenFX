@@ -39,6 +39,7 @@ namespace Tizen.NUI
         /// [draft] GridLayout Constructor/>
         /// </summary>
         /// <returns> New Grid object.</returns>
+        /// <since_tizen> 6 </since_tizen>
         public GridLayout()
         {
             _locations = new GridLocations();
@@ -47,6 +48,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the number of columns in the grid
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public int Columns
         {
             get
@@ -101,6 +103,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
             var gridWidthMode = widthMeasureSpec.Mode;
@@ -212,6 +215,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
             List<GridLocations.Cell> locations = _locations.GetLocations();
