@@ -24,45 +24,43 @@ namespace Tizen.NUI
     /// <summary>
     /// The conditions for transitions.
     /// </summary>
-    /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 5.5 </since_tizen>
     [FlagsAttribute] public enum TransitionCondition
     {
         /// <summary>
         /// Default when a condition has not been set.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
         Unspecified = 0,
         /// <summary>
         /// Animate changing layout to another layout.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
+
         LayoutChanged = 1,
         /// <summary>
         /// Animate adding item.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
+
         Add = 2,
         /// <summary>
         /// Animate removing item.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
+
         Remove = 4,
         /// <summary>
         /// Animation when an item changes due to a sibbling being added.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
+
         ChangeOnAdd = 8,
         /// <summary>
         /// Animation when an item changes due to a sibbling being removed.
         /// </summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5.5 </since_tizen>
+
         ChangeOnRemove = 16
     }
 
