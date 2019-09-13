@@ -22,31 +22,31 @@ namespace Tizen.NUI
     /// <summary>
     /// Define a List of LayoutTransitions
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class TransitionList : List<LayoutTransition> {}
 
     /// <summary>
     /// The properties that can be animated.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public enum AnimatableProperties
     {
         /// <summary>
         /// Position property.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         Position,
         /// <summary>
         /// Size property.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         Size,
         /// <summary>
         /// Opacity property.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         Opacity
     }
@@ -54,13 +54,13 @@ namespace Tizen.NUI
     /// <summary>
     /// Parts of the transition that can be configured to provide a custom effect.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class TransitionComponents
     {
         /// <summary>
         /// TransitionComponents default constructor.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public TransitionComponents()
         {
             Delay = 0;
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         /// <param name="delay">The delay before the animator starts.</param>
         /// <param name="duration">the duration fo the animator.</param>
         /// <param name="alphaFunction">alpha function to use .</param>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public TransitionComponents(int delay, int duration, AlphaFunction alphaFunction)
         {
@@ -86,17 +86,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Time the transition should execute. Milliseconds.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int Duration;
         /// <summary>
         /// Delay before the transition executes. Milliseconds.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int Delay;
         /// <summary>
         /// Function to alter the transition path over time.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public AlphaFunction AlphaFunction;
     }
@@ -109,7 +109,7 @@ namespace Tizen.NUI
         /// <summary>
         /// LayoutTransition default constructor.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutTransition()
         {
           Condition = TransitionCondition.Unspecified;
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         /// <param name="animatableProperty">the property to animate.</param>
         /// <param name="targetValue">target value of the property.</param>
         /// <param name="animator">Components to define the animator.</param>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutTransition( TransitionCondition condition,
                                  AnimatableProperties animatableProperty,
                                  object targetValue,
@@ -139,25 +139,25 @@ namespace Tizen.NUI
         /// <summary>
         /// Condition for this Transition
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public TransitionCondition Condition{get; set;}
         /// <summary>
         /// Property to animate.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public AnimatableProperties AnimatableProperty{get; set;}
         /// <summary>
         /// Components of the Animator.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public TransitionComponents Animator{get; set;}
         /// <summary>
         /// Target value to animate to.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public object TargetValue{get; set;}
     }

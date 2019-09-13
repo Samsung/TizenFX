@@ -30,6 +30,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="width">Int to initialize with.</param>
         /// <param name="height">Int to initialize with.</param>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutSize(int width, int height)
         {
             Width = width;
@@ -40,6 +41,7 @@ namespace Tizen.NUI
         /// Computes a hash code for this LayoutSize for use in hash based collections.
         /// </summary>
         /// <returns>A non unique hash code .</returns>
+        /// <since_tizen> 6 </since_tizen>
         public override int GetHashCode()
         {
             return Width ^ Height;
@@ -50,6 +52,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="obj">Object to be compared against.</param>
         /// <returns>true if obj is equal to this LayoutSize.</returns>
+        /// <since_tizen> 6 </since_tizen>
         public override bool Equals(object obj)
         {
             if (obj is LayoutSize)
@@ -66,11 +69,11 @@ namespace Tizen.NUI
         /// <param name="lhs">A LayoutSize instance.</param>
         /// <param name="rhs">A LayoutSize instance.</param>
         /// <returns>true if the two LayoutSize instances have equal values.</returns>
+        /// <since_tizen> 6 </since_tizen>
         public static bool operator ==(LayoutSize lhs, LayoutSize rhs)
         {
             return ((lhs.Width == rhs.Width) && (lhs.Height == rhs.Height));
         }
-
 
         /// <summary>
         /// Compares whether the two LayoutSize instances are same or not.
@@ -78,6 +81,7 @@ namespace Tizen.NUI
         /// <param name="lhs">A LayoutSize instance.</param>
         /// <param name="rhs">A LayoutSize instance.</param>
         /// <returns>true if the two LayoutSize instances have do not have equal values.</returns>
+        /// <since_tizen> 6 </since_tizen>
         public static bool operator !=(LayoutSize lhs, LayoutSize rhs)
         {
             return ((lhs.Width != rhs.Width) || (lhs.Height != rhs.Height));
@@ -86,11 +90,13 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get the width value of this layout
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public int Width{ get; private set; }
 
         /// <summary>
         /// [Draft] Get the height value of this layout
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public int Height{ get; private set; }
 
     }

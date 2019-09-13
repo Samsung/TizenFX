@@ -27,12 +27,14 @@ namespace Tizen.NUI
         /// Add this child to the parent.
         /// </summary>
         /// <param name="layoutItem">The layout child to add.</param>
+        /// <since_tizen> 6 </since_tizen>
         void Add(LayoutItem layoutItem);
 
         /// <summary>
         /// Remove this child from the parent
         /// </summary>
         /// <param name="layoutItem">The layout child to add.</param>
+        /// <since_tizen> 6 </since_tizen>
         void Remove(LayoutItem layoutItem);
     }
 }

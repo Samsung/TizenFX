@@ -42,6 +42,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
         {
         }
@@ -51,6 +52,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             float totalHeight = 0.0f;
@@ -126,6 +128,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             // Absolute layout positions it's children at their Actor positions.

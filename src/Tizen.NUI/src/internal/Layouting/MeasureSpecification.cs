@@ -29,11 +29,13 @@ namespace Tizen.NUI
         /// <summary>
         /// MeasureSpecification Size value.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutLength Size;
 
         /// <summary>
         /// MeasureSpecification Mode.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public MeasureSpecification.ModeType Mode;
 
         /// <summary>
@@ -41,6 +43,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="size">size value.</param>
         /// <param name="mode">mode vaue.</param>
+        /// <since_tizen> 6 </since_tizen>
         public MeasureSpecification(LayoutLength size, MeasureSpecification.ModeType mode)
         {
             Size = size;
@@ -50,6 +53,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Size mode for this MeasureSpecification
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum ModeType
         {
             /// <summary>
