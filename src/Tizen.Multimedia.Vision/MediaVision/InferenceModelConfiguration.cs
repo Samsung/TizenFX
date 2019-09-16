@@ -233,7 +233,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the inference model's mean value.
         /// </summary>
-        /// <remarks>It should be greater than 0.</remarks>
+        /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public double MeanValue
@@ -244,10 +244,10 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), value,
-                        $"Value should be greater than 0");
+                        $"Value should be greater than or equal to 0");
                 }
 
                 Set(_keyModelMeanValue, value);
@@ -257,7 +257,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the inference model's STD(Standard deviation) value.
         /// </summary>
-        /// <remarks>It should be greater than 0.</remarks>
+        /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public double StdValue
@@ -268,10 +268,10 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                if (value <= 0)
+                if (value < 0)
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), value,
-                        $"Value can not be equal or less than 0");
+                        $"Value should be greater than or equal to 0");
                 }
 
                 Set(_keyModelStdValue, value);
