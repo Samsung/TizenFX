@@ -153,8 +153,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Get the View owning this LayoutItem
         /// </summary>
-        // <returns>View owning this Layout</returns>
-        public View GetOwner()
+        /// <returns>View owning this Layout</returns>
+        internal View GetOwner()
         {
             return Owner;
         }

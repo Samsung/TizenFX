@@ -3454,11 +3454,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        /// <remarks>
-        /// Previously named LayoutWidthSpecification
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public int WidthSpecification
         {
             get
@@ -3480,10 +3476,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        /// <remarks>
-        /// Previously named LayoutHeightSpecification
-        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
@@ -3506,8 +3499,7 @@ namespace Tizen.NUI.BaseComponents
         ///<summary>
         /// Gets the List of transitions for this View.
         ///</summary>
-        /// Hidden-API which is usually used as Inhouse-API. If required to be opened as Public-API, ACR process is needed.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 6 </since_tizen>
         public Dictionary<TransitionCondition, TransitionList> LayoutTransitions
         {
             get
@@ -3520,7 +3512,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal LayoutTransition LayoutTransition
+        ///<summary>
+        /// Set a layout transitions for this View.
+        ///</summary>
+        /// <remarks>
+        /// Use LayoutTransitions to receive a collection of LayoutTransitions set on the View.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public LayoutTransition LayoutTransition
         {
             set
             {
@@ -3588,117 +3587,12 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// The color mode of View.
-        /// This specifies whether the View uses its own color, or inherits its parent color.
-        /// The default is ColorMode.UseOwnMultiplyParentColor.
-        /// </summary>
-        internal ColorMode ColorMode
-        {
-            set
-            {
-                SetColorMode(value);
-            }
-            get
-            {
-                return GetColorMode();
-            }
-        }
-
-        internal float Weight
-        {
-            get
-            {
-                return _weight;
-            }
-            set
-            {
-                _weight = value;
-                _layout?.RequestLayout();
-            }
-        }
-
-        /// <summary>
-        ///  Whether to load the BackgroundImage synchronously.
-        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
-        ///  Note: For Normal Quad images only.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool BackgroundImageSynchronosLoading
-        {
-            get
-            {
-                return _backgroundImageSynchronosLoading;
-            }
-            set
-            {
-                if (value != _backgroundImageSynchronosLoading)
-                {
-                    string bgUrl = "";
-                    PropertyMap bgMap = this.Background;
-                    int visualType = 0;
-                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
-                    if (visualType == (int)Visual.Type.Image)
-                    {
-                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                    }
-                    if (bgUrl.Length != 0)
-                    {
-                        _backgroundImageSynchronosLoading = value;
-                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
-                        this.Background = bgMap;
-                    }
-                }
-            }
-        }
-
-        internal float WorldPositionX
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_X).Get(out temp);
-                return temp;
-            }
-        }
-
-        internal float WorldPositionY
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Y).Get(out temp);
-                return temp;
-            }
-        }
-
-        internal float WorldPositionZ
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.WORLD_POSITION_Z).Get(out temp);
-                return temp;
-            }
-        }
-
-        internal bool FocusState
-        {
-            get
-            {
-                return IsKeyboardFocusable();
-            }
-            set
-            {
-                SetKeyboardFocusable(value);
-            }
-        }
 
         /// <summary>
         /// Set the layout on this View. Replaces any existing Layout.
         /// </summary>
-        internal LayoutItem Layout
+        /// <since_tizen> 6 </since_tizen>
+        public LayoutItem Layout
         {
             get
             {
@@ -3778,6 +3672,117 @@ namespace Tizen.NUI.BaseComponents
 
                 // Set layout to this view
                 SetLayout(value);
+            }
+        }
+
+        /// <summary>
+        /// The weight of the View, used to share avaiable space in a layout with siblings.
+        /// </summary>
+        public float Weight
+        {
+            get
+            {
+                return _weight;
+            }
+            set
+            {
+                _weight = value;
+                _layout?.RequestLayout();
+            }
+        }
+
+
+        /// <summary>
+        /// The color mode of View.
+        /// This specifies whether the View uses its own color, or inherits its parent color.
+        /// The default is ColorMode.UseOwnMultiplyParentColor.
+        /// </summary>
+        internal ColorMode ColorMode
+        {
+            set
+            {
+                SetColorMode(value);
+            }
+            get
+            {
+                return GetColorMode();
+            }
+        }
+
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronosLoading
+        {
+            get
+            {
+                return _backgroundImageSynchronosLoading;
+            }
+            set
+            {
+                if (value != _backgroundImageSynchronosLoading)
+                {
+                    string bgUrl = "";
+                    PropertyMap bgMap = this.Background;
+                    int visualType = 0;
+                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
+                    if (visualType == (int)Visual.Type.Image)
+                    {
+                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+                    }
+                    if (bgUrl.Length != 0)
+                    {
+                        _backgroundImageSynchronosLoading = value;
+                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                        this.Background = bgMap;
+                    }
+                }
+            }
+        }
+
+        internal float WorldPositionX
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_X).Get(out temp);
+                return temp;
+            }
+        }
+
+        internal float WorldPositionY
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_Y).Get(out temp);
+                return temp;
+            }
+        }
+
+        internal float WorldPositionZ
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.WORLD_POSITION_Z).Get(out temp);
+                return temp;
+            }
+        }
+
+        internal bool FocusState
+        {
+            get
+            {
+                return IsKeyboardFocusable();
+            }
+            set
+            {
+                SetKeyboardFocusable(value);
             }
         }
 
