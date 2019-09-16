@@ -29,9 +29,46 @@ namespace Tizen.Multimedia
         /// Mono.
         /// </summary>
         Mono = 0x80,
+
         /// <summary>
         /// Stereo.
         /// </summary>
-        Stereo
+        Stereo,
+
+        /// <summary>
+        /// 3 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel3,
+
+        /// <summary>
+        /// 4 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel4,
+
+        /// <summary>
+        /// 5 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel5,
+
+        /// <summary>
+        /// 6 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel6,
+
+        /// <summary>
+        /// 7 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel7,
+
+        /// <summary>
+        /// 8 audio channels
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        MultiChannel8
     }
 }
