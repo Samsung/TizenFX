@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+using System;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -82,7 +83,7 @@ namespace Tizen.Multimedia.Remoting
         Resolution
     }
 
-    internal enum MediaControlCapabilityCategory
+    internal enum MediaControlNativeCapabilityCategory
     {
         Shuffle,
         Repeat,
@@ -92,5 +93,25 @@ namespace Tizen.Multimedia.Remoting
         Search,
         Subtitle,
         Mode360
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayMode
+    {
+        LetterBox = 1,
+        OriginSize = 2,
+        FullScreen = 4,
+        CroppedFull = 8,
+        All = LetterBox | OriginSize | FullScreen | CroppedFull
+    }
+
+    [Flags]
+    internal enum MediaControlNativeDisplayRotation
+    {
+        Rotate0 = 1,
+        Rotate90 = 2,
+        Rotate180 = 4,
+        Rotate270 = 8,
+        All = Rotate0 | Rotate90 | Rotate180 | Rotate270
     }
 }
