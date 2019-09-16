@@ -1214,27 +1214,55 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void AddAvailableOrientation(Window.WindowOrientation orientation)
+        /// <summary>
+        /// Adds an orientation to the list of available orientations.
+        /// </summary>
+        /// <param name="orientation">The available orientation to add</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.WindowInternal.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RemoveAvailableOrientation(Window.WindowOrientation orientation)
+        /// <summary>
+        /// Removes an orientation from the list of available orientations.
+        /// </summary>
+        /// <param name="orientation">The available orientation to remove.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAvailableOrientation(Window.WindowOrientation orientation)
         {
-            Interop.WindowInternal.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
+            Interop.Window.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetPreferredOrientation(Window.WindowOrientation orientation)
+        /// <summary>
+        /// Sets a preferred orientation.
+        /// </summary>
+        /// <param name="orientation">The preferred orientation.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPreferredOrientation(Window.WindowOrientation orientation)
         {
-            Interop.WindowInternal.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
+            Interop.Window.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Window.WindowOrientation GetPreferredOrientation()
+        /// <summary>
+        /// Gets the preferred orientation.
+        /// </summary>
+        /// <param name="parent">The parent window.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>The preferred orientation if previously set, or none.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.WindowOrientation GetPreferredOrientation()
         {
-            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.WindowInternal.Window_GetPreferredOrientation(swigCPtr);
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetPreferredOrientation(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
