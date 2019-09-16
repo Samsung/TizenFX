@@ -19,6 +19,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using Tizen.Internals.Errors;
+using Native = Tizen.Multimedia.Interop.MediaPacket;
 
 namespace Tizen.Multimedia
 {
@@ -136,14 +137,14 @@ namespace Tizen.Multimedia
 
             private void SetExtra(IntPtr ptr)
             {
-                int ret = Interop.MediaPacket.SetExtra(_packet._handle, ptr);
+                int ret = Native.SetExtra(_packet._handle, ptr);
 
                 MultimediaDebug.AssertNoError(ret);
             }
 
             private static IntPtr GetExtra(IntPtr handle)
             {
-                int ret = Interop.MediaPacket.GetExtra(handle, out var value);
+                int ret = Native.GetExtra(handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
