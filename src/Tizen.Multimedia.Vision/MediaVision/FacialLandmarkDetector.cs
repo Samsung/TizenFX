@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// If user want to set region-of-interest area in source image, Please set <see cref="InferenceModelConfiguration.Roi"/>.
         /// If not, full image area will be used to detect facail landmark.
         /// </remarks>
-        /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
         /// <returns>

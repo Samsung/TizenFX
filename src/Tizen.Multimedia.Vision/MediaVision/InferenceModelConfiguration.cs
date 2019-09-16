@@ -30,7 +30,8 @@ namespace Tizen.Multimedia.Vision
     /// If user want to use tizen default inference model and its related value,
     /// Please refer Tizen guide page(https://developer.tizen.org/development/guides/.net-application).
     /// </remarks>
-    /// <feature>http://tizen.org/feature/vision.inference</feature>
+    /// <feature>http://tizen.org/feature/vision.inference.face</feature>
+    /// <feature>http://tizen.org/feature/vision.inference.image</feature>
     /// <since_tizen> 6 </since_tizen>
     public class InferenceModelConfiguration : EngineConfiguration
     {
@@ -58,7 +59,8 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
         /// </summary>
-        /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.face</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.image</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public InferenceModelConfiguration() : base("inference")
@@ -75,7 +77,8 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <feature>http://tizen.org/feature/vision.inference</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.face</feature>
+        /// <feature>http://tizen.org/feature/vision.inference.image</feature>
         /// <exception cref="FileNotFoundException">
         /// <see cref="ConfigurationFilePath"/>, <see cref="WeightFilePath"/> or <see cref="CategoryFilePath"/> have invalid path.
         /// </exception>
