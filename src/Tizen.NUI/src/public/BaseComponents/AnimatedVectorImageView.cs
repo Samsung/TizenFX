@@ -266,6 +266,7 @@ namespace Tizen.NUI.BaseComponents
                             {
                                 tlog.Fatal(tag, $" [ERROR][{GetId()}](AnimatedVectorImageView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
                             }
+                            currentStates.loopMode = (LoopingModeType)ret;
                             return (LoopingModeType)ret;
                         }
                     }
@@ -308,6 +309,7 @@ namespace Tizen.NUI.BaseComponents
                             {
                                 tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}");
                             }
+                            currentStates.loopCount = ret;
                             return currentStates.loopCount;
                         }
                     }
@@ -351,6 +353,7 @@ namespace Tizen.NUI.BaseComponents
                             {
                                 tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}");
                             }
+                            currentStates.stopEndAction = (StopBehaviorType)ret;
                             return (StopBehaviorType)ret;
                         }
                     }
