@@ -145,7 +145,7 @@ UpgradeLog*.htm
 *.txt~
 *.swp
 *.swo
- 
+
 # svn
 .svn
 
@@ -210,3 +210,6 @@ CompilationErrors-*.txt
 # exceptional allowed binaries
 !tools/bin/
 !packaging/*.nupkg
+
+# external libraries
+externals/libs/

@@ -6,13 +6,20 @@
   <PropertyGroup>
     <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
     <BuildWithAnalyzer Condition="'$(BuildWithAnalyzer)' == ''">False</BuildWithAnalyzer>
+    <BuildDesignAssembly Condition="'$(BuildDesignAssembly)' == ''">False</BuildDesignAssembly>
   </PropertyGroup>
 
   <!-- Projects to build -->
   <ItemGroup>
-    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
+    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj"
+                    Condition="'$(Project)' != '' And Exists('$(ProjectSrcDir)\$(Project)\$(Project).csproj') " />
+    <ProjectToBuild Include="$(InternalProjectSrcDir)\$(Project)\$(Project).csproj"
+                    Condition="'$(Project)' != ''  And Exists('$(InternalProjectSrcDir)\$(Project)\$(Project).csproj')  " />
     <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
-    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == '' " />
+    <DesignProject Include="$(ProjectSrcDir)**\*.Design.csproj" />
+    <DesignProject Include="$(InternalProjectSrcDir)**\*.Design.csproj" />
+    <ProjectToBuild Remove="@(DesignProject)" Condition="'$(BuildDesignAssembly)' != 'True' " />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
