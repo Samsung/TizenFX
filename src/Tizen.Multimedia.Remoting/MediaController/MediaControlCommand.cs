@@ -365,7 +365,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="SubtitleModeCommand"/> class.
         /// </summary>
-        /// <param name="isEnabled">A value indicating whether subtitle mode is enabled or not.</param>
+        /// <param name="isEnabled">A value indicating whether subtitle mode is enabled.</param>
         /// <since_tizen> 6 </since_tizen>
         public SubtitleModeCommand(bool isEnabled)
         {
@@ -428,7 +428,7 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="DisplayModeCommand"/> class.
         /// </summary>
         /// <param name="mode">The <see cref="MediaControlDisplayMode"/>.</param>
-        /// <exception cref="ArgumentException"><paramref name="mode"/> is not vailid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public DisplayModeCommand(MediaControlDisplayMode mode)
         {
@@ -462,7 +462,7 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="DisplayRotationCommand"/> class.
         /// </summary>
         /// <param name="rotation">The <see cref="Rotation"/>.</param>
-        /// <exception cref="ArgumentException"><paramref name="rotation"/> is not vailid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="rotation"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
         public DisplayRotationCommand(Rotation rotation)
         {
