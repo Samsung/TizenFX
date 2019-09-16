@@ -401,7 +401,7 @@ namespace Tizen.Multimedia
         public int BitRate { get; }
 
         /// <summary>
-        /// Gets the bit depth value of the current foramt.
+        /// Gets the bit depth value of the current format.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int BitDepth { get; }
