@@ -23,6 +23,12 @@ internal static partial class Interop
 {
     internal static partial class MediaControllerServer
     {
+        #region Callback delegate
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool ActivatedClientCallback(string clientName, IntPtr userData);
+
+
+        // Received callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaybackStateCommandReceivedCallback(string clientName,
             MediaControllerNativePlaybackAction nativeAction, IntPtr userData);
@@ -42,22 +48,30 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ShuffleModeCommandReceivedCallback(string clientName,
-            string requestId, MediaControllerNativeShuffleMode shuffleMode, IntPtr userData);
+            string requestId, MediaControllerNativeShuffleMode mode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void RepeatModeCommandReceivedCallback(string clientName,
-            string requestId, MediaControllerNativeRepeatMode repeatMode, IntPtr userData);
+            string requestId, MediaControllerNativeRepeatMode mode, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DisplayModeCommandReceivedCallback(string clientName,
+            string requestId, MediaControlNativeDisplayMode mode, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void DisplayRotationCommandReceivedCallback(string clientName,
+            string requestId, MediaControlNativeDisplayRotation rotation, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SimpleCommandReceivedCallback(string clientName,
+            string requestId, bool isEnabled, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CustomCommandReceivedCallback(string clientName,
             string requestId, string customCommand, IntPtr bundleHandle, IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool PlaylistCallback(IntPtr handle, IntPtr userData);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool ActivatedClientCallback(string clientName, IntPtr userData);
-
+        // Command callbacks
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CommandCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
             IntPtr userData = default(IntPtr));
@@ -66,9 +80,12 @@ internal static partial class Interop
         internal delegate void SearchCommandReceivedCallback(string clientName, string requestId, IntPtr searchHandle,
             IntPtr userData = default(IntPtr));
 
+
+        // Search callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SearchItemCallback(MediaControlContentType type, MediaControlSearchCategory category,
             string keyword, IntPtr bundleHandle, IntPtr userData = default(IntPtr));
+        #endregion Callback delegate
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
@@ -77,6 +94,12 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_destroy")]
         internal static extern MediaControllerError Destroy(IntPtr handle);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_client")]
+        internal static extern MediaControllerError ForeachActivatedClient(IntPtr handle, ActivatedClientCallback callback,
+            IntPtr userData = default(IntPtr));
+
+
+        #region Set information
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state")]
         internal static extern MediaControllerError SetPlaybackState(IntPtr handle,
             MediaControllerNativePlaybackState state);
@@ -101,6 +124,24 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_repeat_mode")]
         internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, MediaControllerNativeRepeatMode mode);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_content_age_rating")]
+        internal static extern MediaControllerError SetAgeRating(IntPtr handle, int rating);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_subtitle_enabled")]
+        internal static extern MediaControllerError UpdateSubtitleMode(IntPtr handle, bool isEnabled);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_360_mode_enabled")]
+        internal static extern MediaControllerError UpdateMode360(IntPtr handle, bool isEnabled);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_display_mode")]
+        internal static extern MediaControllerError UpdateDisplayMode(IntPtr handle, MediaControlNativeDisplayMode mode);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_display_rotation")]
+        internal static extern MediaControllerError UpdateDisplayRotaton(IntPtr handle, MediaControlNativeDisplayRotation rotation);
+        #endregion Set information
+
+
+        #region Received callback
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_action_cmd_received_cb")]
         internal static extern MediaControllerError SetPlaybackActionCommandReceivedCb(IntPtr handle,
             PlaybackActionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
@@ -136,6 +177,22 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_repeat_mode_cmd_received_cb")]
         internal static extern MediaControllerError UnsetRepeatModeCommandReceivedCb(IntPtr handle);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_subtitle_cmd_received_cb")]
+        internal static extern MediaControllerError SetSubtitleModeCommandReceivedCb(IntPtr handle,
+            SimpleCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_360_mode_cmd_received_cb")]
+        internal static extern MediaControllerError SetMode360CommandReceivedCb(IntPtr handle,
+            SimpleCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_display_mode_cmd_received_cb")]
+        internal static extern MediaControllerError SetDisplayModeCommandReceivedCb(IntPtr handle,
+            DisplayModeCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_display_rotation_cmd_received_cb")]
+        internal static extern MediaControllerError SetDisplayRotationCommandReceivedCb(IntPtr handle,
+            DisplayRotationCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_custom_cmd_received_cb")]
         internal static extern MediaControllerError SetCustomCommandReceivedCb(IntPtr handle,
             CustomCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
@@ -149,15 +206,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_search_cmd_received_cb")]
         internal static extern MediaControllerError UnsetSearchCommandReceivedCb(IntPtr handle);
+        #endregion Received callback
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
-        internal static extern MediaControllerError SendCommandReplyBundle(IntPtr handle,
-            string appId, string requestID, int result, SafeBundleHandle bundleHandle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
-        internal static extern MediaControllerError SendCommandReply(IntPtr handle,
-            string appId, string requestID, int result, IntPtr bundleHandle);
-
+        #region Database
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_connect")]
         internal static extern MediaControllerError ConnectDb(out IntPtr dbHandle);
 
@@ -166,7 +218,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_check_server_table_exist")]
         internal static extern MediaControllerError CheckServerExist(IntPtr dbHandle, string appId, out bool value);
+        #endregion Database
 
+
+        #region Playlist
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create_playlist")]
         internal static extern MediaControllerError CreatePlaylist(IntPtr handle, string name, out IntPtr playlist);
 
@@ -185,28 +240,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playlist_done")]
         internal static extern MediaControllerError SavePlaylist(IntPtr handle, IntPtr playlist);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_client")]
-        internal static extern MediaControllerError ForeachActivatedClient(IntPtr handle, ActivatedClientCallback callback,
-            IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
-        internal static extern MediaControllerError SendCustomEvent(IntPtr handle, string appId, string customEvent,
-            IntPtr bundle, out string requestId);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
-        internal static extern MediaControllerError SendCustomEventBundle(IntPtr handle, string appId, string customEvent,
-            SafeBundleHandle bundle, out string requestId);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_event_reply_received_cb")]
-        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, CommandCompletedCallback callback,
-            IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_event_reply_received_cb")]
-        internal static extern MediaControllerError UnsetEventReceivedCb(IntPtr handle);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_content_age_rating")]
-        internal static extern MediaControllerError SetAgeRating(IntPtr handle, int rating);
+        #endregion Playlist
 
 
         #region Capability
@@ -224,10 +258,19 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playback_ability")]
         internal static extern MediaControllerError SaveAndNotifyPlaybackCapabilityUpdated(IntPtr serverHandle);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_display_mode_ability")]
+        internal static extern MediaControllerError SetDisplayModeCapability(IntPtr serverHandle,
+            uint modes, MediaControlCapabilitySupport support);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_display_rotation_ability")]
+        internal static extern MediaControllerError SetDisplayRotationCapability(IntPtr serverHandle,
+            uint rotations, MediaControlCapabilitySupport support);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_ability_support")]
         internal static extern MediaControllerError SetSimpleCapability(IntPtr serverHandle,
-            MediaControlCapabilityCategory category, MediaControlCapabilitySupport support);
+            MediaControlNativeCapabilityCategory category, MediaControlCapabilitySupport support);
         #endregion Capability
+
 
         #region Search
         [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach_condition")]
@@ -241,5 +284,34 @@ internal static partial class Interop
         internal static extern MediaControllerError DestroySearchHandle(IntPtr searchHandle);
 
         #endregion Search
+
+
+        #region Command
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
+        internal static extern MediaControllerError SendCommandReplyBundle(IntPtr handle,
+            string appId, string requestID, int result, SafeBundleHandle bundleHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
+        internal static extern MediaControllerError SendCommandReply(IntPtr handle,
+            string appId, string requestID, int result, IntPtr bundleHandle);
+        #endregion Command
+
+
+        #region Event
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEvent(IntPtr handle, string appId, string customEvent,
+            IntPtr bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEventBundle(IntPtr handle, string appId, string customEvent,
+            SafeBundleHandle bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_event_reply_received_cb")]
+        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, CommandCompletedCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_event_reply_received_cb")]
+        internal static extern MediaControllerError UnsetEventReceivedCb(IntPtr handle);
+        #endregion Event
     }
 }

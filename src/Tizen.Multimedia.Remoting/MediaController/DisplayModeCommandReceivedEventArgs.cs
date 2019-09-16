@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -19,26 +19,26 @@ using System;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaControlServer.ShuffleModeCommandReceived"/> event.
+    /// Provides data for the <see cref="MediaControlServer.DisplayModeCommandReceived"/> event.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public class ShuffleModeCommandReceivedEventArgs : EventArgs
+    /// <since_tizen> 6 </since_tizen>
+    public class DisplayModeCommandReceivedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShuffleModeCommandReceivedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="DisplayModeCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="command">The shuffle mode command.</param>
+        /// <param name="command">The display mode command.</param>
         /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommandReceivedEventArgs(ShuffleModeCommand command)
+        /// <since_tizen> 6 </since_tizen>
+        internal DisplayModeCommandReceivedEventArgs(DisplayModeCommand command)
         {
             Command = command ?? throw new ArgumentNullException(nameof(command));
         }
 
         /// <summary>
-        /// Gets the <see cref="ShuffleModeCommand"/>.
+        /// Gets the <see cref="DisplayModeCommand"/>.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommand Command { get; }
+        /// <since_tizen> 6 </since_tizen>
+        public DisplayModeCommand Command { get; }
     }
 }
