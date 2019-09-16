@@ -455,7 +455,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Delete playlist.
         /// </summary>
-        /// <remarks>Currtely, only server can remove the playlist.</remarks>
+        /// <remarks>Currently, only server can remove the playlist.</remarks>
         /// <param name="playlist">The name of playlist.</param>
         /// <exception cref="ArgumentNullException"><paramref name="playlist"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
