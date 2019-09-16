@@ -48,6 +48,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// gets the option object.
         /// </summary>
+        /// <returns> A RecordOption instance is created with the set param values.</returns>
         /// <since_tizen> 6 </since_tizen>
         RecordOption getOption();
     }
@@ -166,6 +167,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// gets the OptionHandle object.
         /// </summary>
+        /// <returns> A RecordOption instance is created with the set param values.</returns>
         /// <since_tizen> 6 </since_tizen>
         public RecordOption getOption()
         {
@@ -237,6 +239,7 @@ namespace Tizen.Sensor
         /// <summary>
         ///  Starts to record a given sensor type.
         /// </summary>
+        /// <param name="option">A RecordOption object with the set param values.</param>
         /// <since_tizen> 6 </since_tizen>
         public void Start(RecordOption option)
         {

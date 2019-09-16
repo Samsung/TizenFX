@@ -324,7 +324,7 @@ namespace Tizen.Sensor
     /// Enumeration for option parameters for sensor recording.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public enum RecorderOption
+    internal enum RecorderOption
     {
         /// <summary>
         /// Desired retention period for the recorded sensor data.
@@ -343,7 +343,7 @@ namespace Tizen.Sensor
     /// Enumeration for filtering and aggregation parameters for querying sensor records.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public enum RecorderQuery
+    internal enum RecorderQuery
     {
         /// <summary>
         /// Start time of the data to be queried.

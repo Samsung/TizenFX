@@ -153,6 +153,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// gets the QueryHandle object.
         /// </summary>
+        /// <returns> A query instance is created with the set param values.</returns>
         /// <since_tizen> 6 </since_tizen>
         Query getQuery();
     }
@@ -320,6 +321,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// gets the QueryHandle object.
         /// </summary>
+        /// <returns> A query instance is created with the set param values.</returns>
         /// <since_tizen> 6 </since_tizen>
         public Query getQuery()
         {
@@ -474,6 +476,7 @@ namespace Tizen.Sensor
         /// <summary>
         ///  Queries the recorded data synchronously and updates the data handle
         /// </summary>
+        /// <param name="query"> A query object with the set param values</param>
         /// <since_tizen> 6 </since_tizen>
         public void Update(Query query)
         {
@@ -514,8 +517,9 @@ namespace Tizen.Sensor
         /// <summary>
         /// Queries the recorded data asynchronously and updates the data handle
         /// </summary>
+        /// <param name="query"> A query object with the set param values</param>
         /// <since_tizen> 6 </since_tizen>
-        public async Task UpdateAsync(Query query)
+        public async void UpdateAsync(Query query)
         {
             TaskCompletionSource<IntPtr> tcs = new TaskCompletionSource<IntPtr>();
 
