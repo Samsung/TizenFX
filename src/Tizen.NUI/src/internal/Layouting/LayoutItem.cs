@@ -196,7 +196,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec"> Horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">Vertical space requirements as imposed by the parent.</param>
-        internal void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        /// <since_tizen> 6 </since_tizen>
+        public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             // Check if relayouting is required.
             bool specChanged = (widthMeasureSpec.Size != OldWidthMeasureSpec.Size) ||
