@@ -15,9 +15,6 @@
  *
  */
 
-#if (NUI_DEBUG_ON)
-
-
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -35,6 +32,3 @@ namespace Tizen.NUI
         }
     }
 }
-
-
-#endif
