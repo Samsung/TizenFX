@@ -15,9 +15,6 @@
  *
  */
 
-#if (NUI_DEBUG_ON)
-
-
 using global::System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -86,7 +83,7 @@ namespace Tizen.NUI
             IntPtr callbackIntPtr = IntPtr.Zero;
             if (_sayFinishedEventHandler != null)
             {
-                _sayFinishedEventCallbackType callback = _sayFinishedEventCallback;
+                callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
             bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
@@ -192,7 +189,7 @@ namespace Tizen.NUI
             IntPtr callbackIntPtr = IntPtr.Zero;
             if (_sayFinishedEventHandler != null)
             {
-                _sayFinishedEventCallbackType callback = _sayFinishedEventCallback;
+                callback = _sayFinishedEventCallback;
                 callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
             }
             bool ret = Interop.Accessibility.accessibility_say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
@@ -210,6 +207,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void _sayFinishedEventCallbackType(int result);
 
+        private _sayFinishedEventCallbackType callback = null;
+
         private void _sayFinishedEventCallback(int result)
         {
             tlog.Fatal(tag, $"_sayFinishedEventCallback(res={result}) called!");
@@ -222,6 +221,3 @@ namespace Tizen.NUI
         #endregion Private
     }
 }
-
-
-#endif

@@ -289,8 +289,12 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                //SetPlayRange(0, TotalFrameNumber - 1);
+                SetPlayRange(0, TotalFrameNumber - 1);
             }
+
+            //temporal fix
+            Extents tmp = base.Margin;
+            base.Margin = tmp;
 
             base.Play();
             AnimationState = AnimationStates.Playing;
