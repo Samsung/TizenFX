@@ -16,6 +16,7 @@
  */
 
 using System.Collections.Generic;
+using System;
 
 namespace Tizen.NUI
 {
@@ -24,6 +25,49 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class TransitionList : List<LayoutTransition> {}
+
+    /// <summary>
+    /// The conditions for transitions.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [FlagsAttribute] public enum TransitionCondition
+    {
+        /// <summary>
+        /// Default when a condition has not been set.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        Unspecified = 0,
+        /// <summary>
+        /// Animate changing layout to another layout.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        LayoutChanged = 1,
+        /// <summary>
+        /// Animate adding item.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        Add = 2,
+        /// <summary>
+        /// Animate removing item.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        Remove = 4,
+        /// <summary>
+        /// Animation when an item changes due to a sibbling being added.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        ChangeOnAdd = 8,
+        /// <summary>
+        /// Animation when an item changes due to a sibbling being removed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+
+        ChangeOnRemove = 16
+    }
 
     /// <summary>
     /// The properties that can be animated.

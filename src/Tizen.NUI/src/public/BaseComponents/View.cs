@@ -3614,7 +3614,6 @@ namespace Tizen.NUI.BaseComponents
                 // First check if the layout to be set already has a owner.
                 if (value?.Owner != null)
                 {
-                    Log.Info("NUI", "Set layout already in use by another View: " + value.Owner.Name + "will get a LayoutGroup\n");
                     // Previous owner of the layout gets a default layout as a replacement.
                     value.Owner.Layout = new LayoutGroup();
 
@@ -4076,7 +4075,6 @@ namespace Tizen.NUI.BaseComponents
         public override void Add(View child)
         {
             bool hasLayout = (_layout != null);
-            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + " which has layout[" + hasLayout + "] + \n");
 
             if (null == child)
             {
