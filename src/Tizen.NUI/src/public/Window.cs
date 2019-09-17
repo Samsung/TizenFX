@@ -74,7 +74,6 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -89,7 +88,6 @@ namespace Tizen.NUI
         /// <param name="isTranslucent">Whether Window is translucent.</param>
         /// <returns>A new Window.</returns>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1219,8 +1217,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="orientation">The available orientation to add</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddAvailableOrientation(Window.WindowOrientation orientation)
         {
             Interop.Window.Window_AddAvailableOrientation(swigCPtr, (int)orientation);
@@ -1232,8 +1228,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="orientation">The available orientation to remove.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAvailableOrientation(Window.WindowOrientation orientation)
         {
             Interop.Window.Window_RemoveAvailableOrientation(swigCPtr, (int)orientation);
@@ -1245,8 +1239,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="orientation">The preferred orientation.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPreferredOrientation(Window.WindowOrientation orientation)
         {
             Interop.Window.Window_SetPreferredOrientation(swigCPtr, (int)orientation);
@@ -1259,7 +1251,6 @@ namespace Tizen.NUI
         /// <param name="parent">The parent window.</param>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>The preferred orientation if previously set, or none.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Window.WindowOrientation GetPreferredOrientation()
         {
             Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetPreferredOrientation(swigCPtr);
@@ -1509,8 +1500,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="parent">The parent window.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetParent(Window parent) {
             Interop.Window.SetParent(swigCPtr, Window.getCPtr(parent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1521,8 +1510,6 @@ namespace Tizen.NUI
         /// After unsetting, the window is disconnected his parent window.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Unparent() {
             Interop.Window.Unparent(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1533,8 +1520,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The parent window of the window.</returns>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Window GetParent() {
             Window ret = new Window(Interop.Window.GetParent(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
