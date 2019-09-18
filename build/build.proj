@@ -11,15 +11,21 @@
 
   <!-- Projects to build -->
   <ItemGroup>
-    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj"
-                    Condition="'$(Project)' != '' And Exists('$(ProjectSrcDir)\$(Project)\$(Project).csproj') " />
-    <ProjectToBuild Include="$(InternalProjectSrcDir)\$(Project)\$(Project).csproj"
-                    Condition="'$(Project)' != ''  And Exists('$(InternalProjectSrcDir)\$(Project)\$(Project).csproj')  " />
-    <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
-    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == '' " />
     <DesignProject Include="$(ProjectSrcDir)**\*.Design.csproj" />
     <DesignProject Include="$(InternalProjectSrcDir)**\*.Design.csproj" />
-    <ProjectToBuild Remove="@(DesignProject)" Condition="'$(BuildDesignAssembly)' != 'True' " />
+
+    <PublicProject Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+    <PublicProject Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj"
+                   Condition="'$(Project)' != '' And Exists('$(ProjectSrcDir)\$(Project)\$(Project).csproj') " />
+    <PublicProject Remove="@(DesignProject)" />
+
+    <InternalProject Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == '' " />
+    <InternalProject Include="$(InternalProjectSrcDir)\$(Project)\$(Project).csproj"
+                     Condition="'$(Project)' != ''  And Exists('$(InternalProjectSrcDir)\$(Project)\$(Project).csproj')  " />
+    <InternalProject Remove="@(DesignProject)" />
+
+    <ProjectToBuild Include="@(DesignProject)" Condition="'$(BuildDesignAssembly)' == 'True' " />
+    <ProjectToBuild Include="@(PublicProject);@(InternalProject)" Condition="'$(BuildDesignAssembly)' != 'True' " />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
