@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WebViewPageLoadSignal : global::System.IDisposable
+    internal class WebViewPageLoadSignal : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -26,46 +26,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued;
-        //A Flat to check if it is already disposed.
-        protected bool disposed;
-
-        ~WebViewPageLoadSignal()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        public void Dispose()
-        {
-            if (isDisposeQueued)
-            {
-                Dispose(false);
-            }
-            else
-            {
-                Dispose(true);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (disposing)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -78,7 +43,7 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            base.Dispose(type);
         }
 
         public void Connect(System.Delegate func)
@@ -109,7 +74,5 @@ namespace Tizen.NUI
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-
     }
-
 }

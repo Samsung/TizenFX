@@ -169,7 +169,5 @@ namespace Tizen.NUI
                 Tizen.Log.Fatal("NUI", $"Error! current thread({currentId}) which is NOT main thread({mainThreadId}) utilizes NUI object!");
             }
         }
-
-
     }
 }

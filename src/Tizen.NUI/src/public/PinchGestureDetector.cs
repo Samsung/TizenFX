@@ -33,7 +33,6 @@ namespace Tizen.NUI
         private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
         private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
 
-
         /// <summary>
         /// Creates an initialized PinchGestureDetector.
         /// </summary>
@@ -147,18 +146,9 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //Because the execution order of Finalizes is non-deterministic.
-
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -186,7 +176,6 @@ namespace Tizen.NUI
                 //Here we send all data to user event handlers.
                 _pinchGestureEventHandler(this, e);
             }
-
         }
 
         /// <summary>
@@ -236,7 +225,5 @@ namespace Tizen.NUI
                 }
             }
         }
-
     }
-
 }

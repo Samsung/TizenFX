@@ -41,14 +41,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -66,10 +58,8 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
-
         /// <since_tizen> 3 </since_tizen>
-        public new class Padding : global::System.IDisposable
+        public new class Padding : Disposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             /// <since_tizen> 3 </since_tizen>
@@ -85,56 +75,13 @@ namespace Tizen.NUI
             {
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
             }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            //A Flat to check if it is already disposed.
+ 
             /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-            ~Padding()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
+            protected override void Dispose(DisposeTypes type)
             {
                 if (disposed)
                 {
                     return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
                 }
 
                 //Release your own unmanaged resources here.
@@ -151,7 +98,7 @@ namespace Tizen.NUI
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
 
-                disposed = true;
+                base.Dispose(type);
             }
 
             /// <since_tizen> 3 </since_tizen>
@@ -229,7 +176,6 @@ namespace Tizen.NUI
                     return ret;
                 }
             }
-
         }
 
         public Alignment(Alignment.Type horizontal, Alignment.Type vertical) : this(Interop.Alignment.Alignment_New__SWIG_0((int)horizontal, (int)vertical), true)
@@ -326,7 +272,5 @@ namespace Tizen.NUI
             ShrinkToFit,
             ShrinkToFitKeepAspect
         }
-
     }
-
 }
