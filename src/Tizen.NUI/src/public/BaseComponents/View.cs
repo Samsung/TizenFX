@@ -127,6 +127,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue((string)newValue));
+                view.BackgroundImageSynchronosLoading = view._backgroundImageSynchronosLoading;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -3635,23 +3636,22 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (value != _backgroundImageSynchronosLoading)
+                _backgroundImageSynchronosLoading = value;
+                string bgUrl = "";
+                int visualType = 0;
+                Background.Find(Visual.Property.Type)?.Get(out visualType);
+                if (visualType == (int)Visual.Type.Image)
                 {
-                    string bgUrl = "";
-                    PropertyMap bgMap = this.Background;
-                    int visualType = 0;
-                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
-                    if (visualType == (int)Visual.Type.Image)
-                    {
-                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                    }
-                    if (bgUrl.Length != 0)
-                    {
-                        _backgroundImageSynchronosLoading = value;
-                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
-                        this.Background = bgMap;
-                    }
+                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
                 }
+
+                if (bgUrl.Length != 0)
+                {
+                    PropertyMap bgMap = this.Background;
+                    bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                    Background = bgMap;
+                }
+
             }
         }
 
