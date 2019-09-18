@@ -113,7 +113,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the band level range of the bands in the dB.
+        /// Gets the range of band level in dB.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
