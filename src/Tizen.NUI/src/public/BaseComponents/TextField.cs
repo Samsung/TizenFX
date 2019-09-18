@@ -1975,7 +1975,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Enable selection property.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandle
@@ -1994,7 +1994,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Enable selection property.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandlePopup
@@ -2144,7 +2144,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Select the whole text.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be released at Tizen.NET API Level 5.5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectWholeText()
