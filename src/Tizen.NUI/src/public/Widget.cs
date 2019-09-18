@@ -166,13 +166,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)

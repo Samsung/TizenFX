@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     internal enum PropertyRanges
     {
         DEFAULT_OBJECT_PROPERTY_START_INDEX = 0,
@@ -39,5 +38,4 @@ namespace Tizen.NUI
         PROPERTY_CUSTOM_MAX_INDEX = 59999999,
         CORE_PROPERTY_MAX_INDEX = PROPERTY_CUSTOM_MAX_INDEX
     }
-
 }
