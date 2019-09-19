@@ -1267,7 +1267,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get(), new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1275,7 +1275,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 			
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get()).Get(temp);
             return temp;
         });
 
@@ -6112,7 +6112,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LAYOUT_DIRECTION = Interop.ActorProperty.Actor_Property_LAYOUT_DIRECTION_get();
             internal static readonly int MARGIN = Interop.ViewProperty.View_Property_MARGIN_get();
             internal static readonly int PADDING = Interop.ViewProperty.View_Property_PADDING_get();
-            internal static readonly int UPDATE_SIZE_HINT = Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get();
         }
     }
 }
