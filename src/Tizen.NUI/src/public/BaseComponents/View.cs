@@ -127,6 +127,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue((string)newValue));
+                view.BackgroundImageSynchronosLoading = view._backgroundImageSynchronosLoading;
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1266,7 +1267,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get(), new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1274,7 +1275,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
 			
             Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.UPDATE_SIZE_HINT).Get(temp);
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get()).Get(temp);
             return temp;
         });
 
@@ -3633,23 +3634,22 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if (value != _backgroundImageSynchronosLoading)
+                _backgroundImageSynchronosLoading = value;
+                string bgUrl = "";
+                int visualType = 0;
+                Background.Find(Visual.Property.Type)?.Get(out visualType);
+                if (visualType == (int)Visual.Type.Image)
                 {
-                    string bgUrl = "";
-                    PropertyMap bgMap = this.Background;
-                    int visualType = 0;
-                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
-                    if (visualType == (int)Visual.Type.Image)
-                    {
-                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
-                    }
-                    if (bgUrl.Length != 0)
-                    {
-                        _backgroundImageSynchronosLoading = value;
-                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
-                        this.Background = bgMap;
-                    }
+                    Background.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
                 }
+
+                if (bgUrl.Length != 0)
+                {
+                    PropertyMap bgMap = this.Background;
+                    bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                    Background = bgMap;
+                }
+
             }
         }
 
@@ -4873,21 +4873,27 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RotateBy(Degree angle, Vector3 axis)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RotateBy(Degree angle, Vector3 axis)
         {
             Interop.ActorInternal.Actor_RotateBy__SWIG_0(swigCPtr, Degree.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RotateBy(Radian angle, Vector3 axis)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RotateBy(Radian angle, Vector3 axis)
         {
             Interop.ActorInternal.Actor_RotateBy__SWIG_1(swigCPtr, Radian.getCPtr(angle), Vector3.getCPtr(axis));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void RotateBy(Rotation relativeRotation)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RotateBy(Rotation relativeRotation)
         {
             Interop.ActorInternal.Actor_RotateBy__SWIG_2(swigCPtr, Rotation.getCPtr(relativeRotation));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -6111,7 +6117,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int LAYOUT_DIRECTION = Interop.ActorProperty.Actor_Property_LAYOUT_DIRECTION_get();
             internal static readonly int MARGIN = Interop.ViewProperty.View_Property_MARGIN_get();
             internal static readonly int PADDING = Interop.ViewProperty.View_Property_PADDING_get();
-            internal static readonly int UPDATE_SIZE_HINT = Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get();
         }
     }
 }

@@ -234,7 +234,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Degree GetAngle(uint point)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Degree GetAngle(uint point)
         {
             Degree ret = new Degree(Interop.Touch.Touch_GetAngle(swigCPtr, point), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
