@@ -42,6 +42,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="measuredSize">LayoutLength to create </param>
         /// <since_tizen> 6 </since_tizen>
+        /// <returns> Returns a MeasuredSize object</returns>
         public static implicit operator MeasuredSize(LayoutLength measuredSize)
         {
             return new MeasuredSize(measuredSize, StateType.MeasuredSizeOK);

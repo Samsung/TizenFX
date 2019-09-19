@@ -56,13 +56,13 @@ namespace Tizen.NUI
 
         Remove = 4,
         /// <summary>
-        /// Animation when an item changes due to a sibbling being added.
+        /// Animation when an item changes due to a  being added.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
         ChangeOnAdd = 8,
         /// <summary>
-        /// Animation when an item changes due to a sibbling being removed.
+        /// Animation when an item changes due to a  being removed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
 
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         /// TransitionComponents constructor. Stores delay, duration and AlphaFunction.
         /// </summary>
         /// <param name="delay">The delay before the animator starts.</param>
-        /// <param name="duration">the duration fo the animator.</param>
+        /// <param name="duration">the duration of the animator.</param>
         /// <param name="alphaFunction">alpha function to use .</param>
         /// <since_tizen> 6 </since_tizen>
 
@@ -146,7 +146,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// LayoutTransition stores the aninmation setting for a transition conidition.
+    /// LayoutTransition stores the animation setting for a transition conidition.
     /// </summary>
     public class LayoutTransition
     {

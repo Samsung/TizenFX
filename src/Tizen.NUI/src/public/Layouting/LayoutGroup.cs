@@ -57,6 +57,7 @@ namespace Tizen.NUI
         /// From ILayoutParent.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="childLayout">LayoutItem to add to the layout group.</param>
         public virtual void Add(LayoutItem childLayout)
         {
             LayoutChildren.Add(childLayout);
@@ -88,6 +89,7 @@ namespace Tizen.NUI
         /// <summary>
         /// From ILayoutParent
         /// </summary>
+        /// <param name="layoutItem">LayoutItem to remove from the layout group.</param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void Remove(LayoutItem layoutItem)
         {

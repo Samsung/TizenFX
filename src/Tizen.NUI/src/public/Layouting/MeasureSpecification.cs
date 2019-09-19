@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// Constructor taking size and mode type.
         /// </summary>
         /// <param name="size">size value.</param>
-        /// <param name="mode">mode vaue.</param>
+        /// <param name="mode">mode value.</param>
         /// <since_tizen> 6 </since_tizen>
         public MeasureSpecification(LayoutLength size, MeasureSpecification.ModeType mode)
         {
