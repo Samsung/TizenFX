@@ -26,9 +26,11 @@ namespace Tizen.NUI.UIComponents
     /// The ProgressBar is a control to give the user an indication of the progress of an operation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ProgressBar : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create("ProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -45,7 +47,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VALUE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create("SecondaryProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,7 +64,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VALUE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create("Indeterminate", typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -79,7 +81,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -96,7 +98,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.TRACK_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -113,7 +115,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create("SecondaryProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -130,7 +132,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create("IndeterminateVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -147,7 +149,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create("IndeterminateVisualAnimation", typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -164,7 +166,7 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create("LabelVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -190,6 +192,8 @@ namespace Tizen.NUI.UIComponents
         /// Creates the ProgressBar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ProgressBar() : this(Interop.ProgressBar.ProgressBar_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -208,6 +212,8 @@ namespace Tizen.NUI.UIComponents
         /// The event is sent when the ProgressBar value changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ValueChangedEventArgs> ValueChanged
         {
             add
@@ -236,6 +242,8 @@ namespace Tizen.NUI.UIComponents
         /// Any value outside the range is ignored.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float ProgressValue
         {
             get
@@ -256,6 +264,8 @@ namespace Tizen.NUI.UIComponents
         /// Any value outside of the range is ignored.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SecondaryProgressValue
         {
             get
@@ -272,6 +282,8 @@ namespace Tizen.NUI.UIComponents
         /// Sets the progress bar as \e indeterminate state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Indeterminate
         {
             get
@@ -289,6 +301,8 @@ namespace Tizen.NUI.UIComponents
         /// Optional. If not supplied, the default track visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap TrackVisual
         {
             get
@@ -306,6 +320,8 @@ namespace Tizen.NUI.UIComponents
         /// Optional. If not supplied, then the default progress visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap ProgressVisual
         {
             get
@@ -323,6 +339,8 @@ namespace Tizen.NUI.UIComponents
         /// Optional. If not supplied, then the secondary progress visual will not be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
             get
@@ -340,6 +358,8 @@ namespace Tizen.NUI.UIComponents
         /// Optional. If not supplied, then the default indeterminate visual will be shown.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
             get
@@ -357,6 +377,8 @@ namespace Tizen.NUI.UIComponents
         /// Optional. If not supplied, then the default animation will be played.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {
             get
@@ -373,6 +395,8 @@ namespace Tizen.NUI.UIComponents
         /// The label visual of the progress bar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap LabelVisual
         {
             get
@@ -401,6 +425,8 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the ProgressBar instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -450,6 +476,8 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the ValueChangedEventArgs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ValueChangedEventArgs : EventArgs
         {
             private ProgressBar _progressBar;
@@ -460,6 +488,8 @@ namespace Tizen.NUI.UIComponents
             /// ProgressBar
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public ProgressBar ProgressBar
             {
                 get
@@ -476,6 +506,8 @@ namespace Tizen.NUI.UIComponents
             /// The progress value of the progress bar, the progress runs from 0 to 1.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public float ProgressValue
             {
                 get
@@ -492,6 +524,8 @@ namespace Tizen.NUI.UIComponents
             /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public float SecondaryProgressValue
             {
                 get

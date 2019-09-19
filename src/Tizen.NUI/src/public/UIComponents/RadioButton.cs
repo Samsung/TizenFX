@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI.UIComponents
 {
     /// <summary>
@@ -31,6 +33,8 @@ namespace Tizen.NUI.UIComponents
     /// The StateChanged event is emitted when the RadioButton change its state to \e selected or \e unselected.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RadioButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -39,6 +43,8 @@ namespace Tizen.NUI.UIComponents
         /// Creates an uninitialized RadioButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton() : this(Interop.RadioButton.RadioButton_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -49,6 +55,8 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="label">The label text.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton(string label) : this(Interop.RadioButton.RadioButton_New__SWIG_1(label), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -68,6 +76,8 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the RadioButton instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
