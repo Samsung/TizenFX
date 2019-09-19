@@ -126,7 +126,7 @@ internal static partial class Interop
         internal static extern MediaControllerError GetServerIcon(MediaControllerClientHandle clientHandle,
             string serverName, out string uri);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_subtitle_enabled")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_subtitles_enabled")]
         internal static extern MediaControllerError IsSubtitleEnabled(MediaControllerClientHandle clientHandle,
             string serverName, out bool isEnabled);
 
@@ -173,7 +173,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_mode_updated_cb")]
         internal static extern MediaControllerError UnsetRepeatModeUpdatedCb(MediaControllerClientHandle handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_subtitle_updated_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_subtitles_updated_cb")]
         internal static extern MediaControllerError SetSubtitleUpdatedCb(MediaControllerClientHandle handle,
             BoolAttributeUpdatedCallback callback, IntPtr userData = default(IntPtr));
 
@@ -291,7 +291,7 @@ internal static partial class Interop
         internal static extern MediaControllerError SendSearchCommand(MediaControllerClientHandle handle,
             string serverName, IntPtr searchHandle, out string requestId);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_subtitle_cmd")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_subtitles_cmd")]
         internal static extern MediaControllerError SendSubtitleModeCommand(MediaControllerClientHandle handle,
             string serverName, bool isEnabled, out string requestId);
 

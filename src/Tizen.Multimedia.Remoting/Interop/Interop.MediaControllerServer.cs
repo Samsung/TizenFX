@@ -127,7 +127,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_content_age_rating")]
         internal static extern MediaControllerError SetAgeRating(IntPtr handle, int rating);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_subtitle_enabled")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_subtitles_enabled")]
         internal static extern MediaControllerError UpdateSubtitleMode(IntPtr handle, bool isEnabled);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_360_mode_enabled")]
@@ -177,7 +177,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_repeat_mode_cmd_received_cb")]
         internal static extern MediaControllerError UnsetRepeatModeCommandReceivedCb(IntPtr handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_subtitle_cmd_received_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_subtitles_cmd_received_cb")]
         internal static extern MediaControllerError SetSubtitleModeCommandReceivedCb(IntPtr handle,
             SimpleCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
 
