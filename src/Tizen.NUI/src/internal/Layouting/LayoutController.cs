@@ -349,8 +349,8 @@ namespace Tizen.NUI
         /// </summary>
         private void PlayAnimation()
         {
+            Debug.WriteLineIf( LayoutDebugController, "LayoutController Playing, Core Duration:" + _coreAnimation.Duration);
             _coreAnimation.Play();
-            Debug.WriteLineIf( LayoutDebugController, "LayoutController Core Duration:" + _coreAnimation.Duration);
         }
 
         private void AnimationFinished(object sender, EventArgs e)
@@ -383,6 +383,8 @@ namespace Tizen.NUI
                 // of the other stack.  Then the main removal stack iterated when AnimationFinished
                 // occurs again.
             }
+            Debug.WriteLineIf( LayoutDebugController, "LayoutController AnimationFinished");
+            _coreAnimation?.Clear();
         }
 
         /// <summary>
@@ -394,9 +396,15 @@ namespace Tizen.NUI
             // Initialize animation for this layout run.
             bool animationPending = false;
 
+            Debug.WriteLineIf( LayoutDebugController,
+                               "LayoutController SetupCoreAnimation for:" + _layoutTransitionDataQueue.Count);
+
             if (_layoutTransitionDataQueue.Count > 0 ) // Something to animate
             {
-                _coreAnimation = new Animation();
+                if (!_coreAnimation)
+                {
+                    _coreAnimation = new Animation();
+                }
                 _coreAnimation.EndAction = Animation.EndActions.StopFinal;
                 _coreAnimation.Finished += AnimationFinished;
 
