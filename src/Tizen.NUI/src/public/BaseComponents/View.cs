@@ -4071,7 +4071,6 @@ namespace Tizen.NUI.BaseComponents
         public override void Add(View child)
         {
             bool hasLayout = (_layout != null);
-            Log.Info("NUI", "Add:" + child.Name + " to View:" + Name + " which has layout[" + hasLayout + "] + \n");
 
             if (null == child)
             {
@@ -4118,7 +4117,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
 
             bool hasLayout = (_layout != null);
-            Log.Info("NUI","Removing View:" + child.Name + " layout[" + hasLayout.ToString() +"]\n");
 
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
