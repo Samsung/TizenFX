@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -37,6 +38,9 @@ namespace Tizen.NUI
         internal delegate void Callback(int id);
 
         event Callback _instance;
+
+        // A Flag to check if it is already disposed.
+        private bool disposed = false;
 
         private Window _window;
 
@@ -87,6 +91,40 @@ namespace Tizen.NUI
                     layoutGroup.RequestLayout();
                  }
             }
+        }
+
+        /// <summary>
+        /// Get the Layouting animation object that transitions layouts and content.
+        /// Use OverrideCoreAnimation to explicitly control Playback.
+        /// </summary>
+        /// <returns> The layouting core Animation. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation GetCoreAnimation()
+        {
+            return _coreAnimation;
+        }
+
+        /// <summary>
+        /// Set or Get Layouting core animation override property.
+        /// Gives explicit control over the Layouting animation playback if set to True.
+        /// Reset to False if explicit control no longer required.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OverrideCoreAnimation {get;set;} = false;
+
+        /// <summary>
+        /// Destructor which adds LayoutController to the Dispose queue.
+        /// </summary>
+        ~LayoutController()
+        {
+        }
+
+        /// <summary>
+        /// Explict Dispose.
+        /// </summary>
+        public void Dispose()
+        {
+           Dispose(DisposeTypes.Explicit);
         }
 
         /// <summary>
@@ -252,7 +290,7 @@ namespace Tizen.NUI
 
                 bool readyToPlay = SetupCoreAnimation();
 
-                if (readyToPlay)
+                if (readyToPlay && OverrideCoreAnimation==false)
                 {
                     PlayAnimation();
                 }
