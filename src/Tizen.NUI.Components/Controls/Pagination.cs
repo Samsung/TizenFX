@@ -78,7 +78,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D IndicatorSize
+        public Size IndicatorSize
         {
             get
             {
@@ -335,12 +335,12 @@ namespace Tizen.NUI.Components
             {
                 ImageVisual indicator = indicatorList[i];
                 indicator.URL = paginationAttributes.IndicatorBackgroundURL;
-                indicator.Size = paginationAttributes.IndicatorSize;
+                indicator.Size = new Size2D((int)paginationAttributes.IndicatorSize.Width, (int)paginationAttributes.IndicatorSize.Height);
                 indicator.Position = new Position2D((int)(paginationAttributes.IndicatorSize.Width + paginationAttributes.IndicatorSpacing) * i, 0);
             }
 
             selectIndicator.URL = paginationAttributes.IndicatorSelectURL;
-            selectIndicator.Size = paginationAttributes.IndicatorSize;
+            selectIndicator.Size = new Size2D((int)paginationAttributes.IndicatorSize.Width, (int)paginationAttributes.IndicatorSize.Height);
 
             //UpdateContainer();
         }
@@ -379,7 +379,7 @@ namespace Tizen.NUI.Components
             ImageVisual indicator = new ImageVisual
             {
                 URL = paginationAttributes.IndicatorBackgroundURL,
-                Size = paginationAttributes.IndicatorSize
+                Size = new Size2D((int)paginationAttributes.IndicatorSize.Width, (int)paginationAttributes.IndicatorSize.Height)
             };
             indicator.Position = new Position2D((int)(paginationAttributes.IndicatorSize.Width + paginationAttributes.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);

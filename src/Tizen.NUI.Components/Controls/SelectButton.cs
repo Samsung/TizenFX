@@ -208,16 +208,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D CheckImageSize2D
+        public Size CheckImageSize
         {
             get
             {
-                return selectButtonAttributes?.CheckImageAttributes?.Size2D ?? new Size2D(0, 0);
+                return selectButtonAttributes?.CheckImageAttributes?.Size ?? new Size(0, 0, 0);
             }
             set
             {
                 CreateCheckImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.Size2D = value;
+                selectButtonAttributes.CheckImageAttributes.Size = value;
                 RelayoutRequest();
             }
         }
@@ -740,19 +740,19 @@ namespace Tizen.NUI.Components
                 selectButtonAttributes.TextAttributes.WidthResizePolicy = ResizePolicyType.Fixed;
                 selectButtonAttributes.TextAttributes.HeightResizePolicy = ResizePolicyType.Fixed;
 
-                int iconWidth = CheckImageSize2D.Width;
+                int iconWidth = (int)CheckImageSize.Width;
 
                 int textPaddingLeft = selectButtonAttributes.TextAttributes.PaddingLeft;
                 int textPaddingRight = selectButtonAttributes.TextAttributes.PaddingRight;
 
-                if(selectButtonAttributes.TextAttributes.Size2D == null)
+                if(selectButtonAttributes.TextAttributes.Size == null)
                 {
-                    selectButtonAttributes.TextAttributes.Size2D = new Size2D(Size2D.Width - iconWidth - CheckImagePaddingLeft - CheckImagePaddingRight - textPaddingLeft - textPaddingRight, Size2D.Height);
+                    selectButtonAttributes.TextAttributes.Size = new Size(Size2D.Width - iconWidth - CheckImagePaddingLeft - CheckImagePaddingRight - textPaddingLeft - textPaddingRight, Size2D.Height);
                 }
                 
-                if(selectButtonAttributes.TextAttributes.Position2D == null)
+                if(selectButtonAttributes.TextAttributes.Position == null)
                 {
-                    selectButtonAttributes.TextAttributes.Position2D = new Position2D(CheckImagePaddingLeft + iconWidth + CheckImagePaddingRight + textPaddingLeft, 0);
+                    selectButtonAttributes.TextAttributes.Position = new Position(CheckImagePaddingLeft + iconWidth + CheckImagePaddingRight + textPaddingLeft, 0);
                 }
                 
                 selectButtonAttributes.TextAttributes.VerticalAlignment = VerticalAlignment.Center;
@@ -768,7 +768,7 @@ namespace Tizen.NUI.Components
 
             UpdateTextAttributes();
 
-            int iconWidth = CheckImageSize2D.Width;
+            int iconWidth = (int)CheckImageSize.Width;
 
             int textPaddingLeft = selectButtonAttributes.TextAttributes.PaddingLeft;
             int textPaddingRight = selectButtonAttributes.TextAttributes.PaddingRight;
@@ -776,15 +776,15 @@ namespace Tizen.NUI.Components
             if (LayoutDirection == ViewLayoutDirectionType.RTL)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.End;
-                selectButtonAttributes.TextAttributes.Position2D.X = textPaddingRight;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = selectButtonAttributes.TextAttributes.Size2D.Width + textPaddingLeft + textPaddingRight + IconPaddingRight;
+                selectButtonAttributes.TextAttributes.Position.X = textPaddingRight;
+                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight + IconPadding.End;
 
             }
             else if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.Begin;
-                selectButtonAttributes.TextAttributes.Position2D.X = IconPaddingLeft + iconWidth + IconPaddingRight + textPaddingLeft;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPaddingLeft;
+                selectButtonAttributes.TextAttributes.Position.X = IconPadding.Start + iconWidth + IconPadding.End + textPaddingLeft;
+                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPadding.Start;
             }
 
         }

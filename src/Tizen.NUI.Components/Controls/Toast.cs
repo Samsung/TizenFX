@@ -26,8 +26,6 @@ namespace Tizen.NUI.Components
     /// A toast will automatically disappear after a certain time.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Toast : Control
     {
         /// <summary>
@@ -53,8 +51,6 @@ namespace Tizen.NUI.Components
         /// Construct Toast with null.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast() : base()
         {
             Initialize();
@@ -88,8 +84,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] TextArray
         {
             get
@@ -111,8 +105,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text point size in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PointSize
         {
             get
@@ -135,8 +127,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text font family in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string FontFamily
         {
             get
@@ -155,8 +145,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text color in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TextColor
         {
             get
@@ -179,8 +167,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text horizontal alignment in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment TextAlignment
         {
             get
@@ -257,82 +243,33 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets text left padding in toast.
+        /// Gets or sets text padding in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingLeft
+        public Extents TextPadding
         {
             get
             {
-                return toastAttributes.TextAttributes?.PaddingLeft ?? textPaddingLeft;
+                if (null != toastAttributes?.TextAttributes)
+                {
+                    return new Extents((ushort)toastAttributes.TextAttributes.PaddingLeft, (ushort)toastAttributes.TextAttributes.PaddingRight, (ushort)toastAttributes.TextAttributes.PaddingTop, (ushort)toastAttributes.TextAttributes.PaddingBottom);
+                }
+                else
+                {
+                    return null;
+                }
             }
             set
             {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingLeft = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets text right padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingRight
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingRight ?? textPaddingRight;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingRight = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets text top padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingTop
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingTop ?? textPaddingTop;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingTop = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets text bottom padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingBottom
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingBottom ?? textPaddingBottom;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingBottom = value;
-                RelayoutRequest();
+                if (null != value)
+                {
+                    CreateTextAttributes();
+                    toastAttributes.TextAttributes.PaddingLeft = value.Start;
+                    toastAttributes.TextAttributes.PaddingRight = value.End;
+                    toastAttributes.TextAttributes.PaddingTop = value.Top;
+                    toastAttributes.TextAttributes.PaddingBottom = value.Bottom;
+                    RelayoutRequest();
+                }
             }
         }
 
@@ -340,8 +277,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text line height in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint TextLineHeight
         {
             get
@@ -359,8 +294,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text line space in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint TextLineSpace
         {
             get
@@ -378,8 +311,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets duration of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Duration
         {
             get
@@ -398,8 +329,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

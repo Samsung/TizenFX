@@ -35,8 +35,8 @@ namespace Tizen.NUI.Components
         public TabAttributes() : base()
         {
             Space = new Vector4(0, 0, 0, 0);
-            IsNatureTextWidth = false;
-            ItemGap = 0;
+            UseTextNaturalSize = false;
+            ItemSpace = 0;
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace Tizen.NUI.Components
             {
                 Space = new Vector4(0, 0, 0, 0);
             }
-            ItemGap = attributes.ItemGap;
-            IsNatureTextWidth = attributes.IsNatureTextWidth;
+            ItemSpace = attributes.ItemSpace;
+            UseTextNaturalSize = attributes.UseTextNaturalSize;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsNatureTextWidth
+        public bool UseTextNaturalSize
         {
             get;
             set;
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ItemGap
+        public int ItemSpace
         {
             get;
             set;

@@ -60,6 +60,17 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <param name="x">The x component.</param>
+        /// <param name="y">The y component.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public Position(float x, float y) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, 0), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
         /// <param name="position2d">Position2D to create this vector from.</param>
         /// <since_tizen> 3 </since_tizen>
         public Position(Position2D position2d) : this(Interop.Vector3.new_Vector3__SWIG_3(Position2D.getCPtr(position2d)), true)
