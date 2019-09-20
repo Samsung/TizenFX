@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,7 +24,7 @@ namespace Tizen.Multimedia
         internal static partial class AudioDucking
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void DuckingStateChangedCallback(AudioDuckingHandle ducking, bool isDucked, IntPtr userData);
+            internal delegate void DuckingStateChangedCallback(IntPtr ducking, bool isDucked, IntPtr userData);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_create_stream_ducking")]
             internal static extern AudioManagerError Create(AudioStreamType targetType,
