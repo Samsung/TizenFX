@@ -12,7 +12,7 @@ namespace Ui {
 
 /// <summary>Efl UI Property interface. view object can have <see cref="Efl.IModel"/> and need to set cotent with those model stored data. the interface can help binding the factory to create object with model property data. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IFactoryBindConcrete.NativeMethods]
+[Efl.Ui.FactoryBindConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFactoryBind : 
     Efl.Eo.IWrapper, IDisposable
@@ -24,7 +24,7 @@ void FactoryBind(System.String key, Efl.Ui.IFactory factory);
     }
 /// <summary>Efl UI Property interface. view object can have <see cref="Efl.IModel"/> and need to set cotent with those model stored data. the interface can help binding the factory to create object with model property data. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFactoryBindConcrete :
+public sealed class FactoryBindConcrete :
     Efl.Eo.EoWrapper
     , IFactoryBind
     
@@ -34,7 +34,7 @@ sealed public  class IFactoryBindConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFactoryBindConcrete))
+            if (((object)this).GetType() == typeof(FactoryBindConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -48,7 +48,7 @@ sealed public  class IFactoryBindConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFactoryBindConcrete(ConstructingHandle ch) : base(ch)
+    private FactoryBindConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -57,20 +57,22 @@ sealed public  class IFactoryBindConcrete :
     /// <summary>Initializes a new instance of the <see cref="IFactoryBind"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFactoryBindConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FactoryBindConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>bind the factory with the given key string. when the data is ready or changed, factory create the object and bind the data to the key action and process promised work. Note: the input <see cref="Efl.Ui.IFactory"/> need to be <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> at least once.</summary>
     /// <param name="key">Key string for bind model property data</param>
     /// <param name="factory"><see cref="Efl.Ui.IFactory"/> for create and bind model property data</param>
     public void FactoryBind(System.String key, Efl.Ui.IFactory factory) {
-                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate(this.NativeHandle,key, factory);
+                                                         Efl.Ui.FactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate(this.NativeHandle,key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IFactoryBindConcrete.efl_ui_factory_bind_interface_get();
+        return Efl.Ui.FactoryBindConcrete.efl_ui_factory_bind_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -79,7 +81,7 @@ sealed public  class IFactoryBindConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -94,13 +96,23 @@ sealed public  class IFactoryBindConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_factory_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_bind_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IFactoryBindConcrete.efl_ui_factory_bind_interface_get();
+            return Efl.Ui.FactoryBindConcrete.efl_ui_factory_bind_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -150,7 +162,7 @@ sealed public  class IFactoryBindConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIFactoryBindConcrete_ExtensionMethods {
+public static class Efl_UiFactoryBindConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

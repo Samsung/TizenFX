@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>A custom layout engine for <see cref="Efl.Ui.Box"/>.</summary>
+/// <summary>A Flow Box is a customized type of <see cref="Efl.Ui.Box"/>. It will fill along the axis selected with <see cref="Efl.Ui.ILayoutOrientable.Orientation"/> (which defaults to Horizontal), until items will no longer fit in the available space, at which point it will begin filling items in a new row/column after the current one. This is useful if an application wants to e.g., present a group of items and wrap them onto subsequent lines when the number of items grows too large to fit on the screen. Adding or removing items in the middle re-arrange the rest of the items as expected.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.BoxFlow.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -80,10 +80,20 @@ public class BoxFlow : Efl.Ui.Box
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

@@ -10,7 +10,14 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Simple grid widget with Pack interface.</summary>
+/// <summary>A scrollable grid of <see cref="Efl.Ui.Item"/> objects, typically <see cref="Efl.Ui.GridDefaultItem"/> objects.
+/// Items are added using the <see cref="Efl.IPackLinear"/> interface.
+/// 
+/// The orientation (vertical or horizontal) of the grid can be set with <see cref="Efl.Ui.ILayoutOrientable.Orientation"/>.
+/// 
+/// Items inside this widget can be selected according to the <see cref="Efl.Ui.IMultiSelectable.SelectMode"/> policy, and the selection can be retrieved with <see cref="Efl.Ui.IMultiSelectable.GetSelectedItems"/>.
+/// 
+/// <see cref="Efl.Ui.Grid"/> supports grouping by using <see cref="Efl.Ui.GroupItem"/> objects. Group headers are displayed at the top of the viewport if items belonging to the group are visible in the viewport.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Grid.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -80,10 +87,20 @@ public class Grid : Efl.Ui.Collection
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

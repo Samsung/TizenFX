@@ -10,42 +10,42 @@ namespace Efl {
 
 /// <summary>Efl model interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IModelConcrete.NativeMethods]
+[Efl.ModelConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IModel : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Get properties from model.
-/// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+/// Properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> will be raised to notify listeners of any modifications in the properties.
 /// 
-/// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+/// See also <see cref="Efl.IModel.PropertiesChangedEvent"/>.</summary>
 /// <returns>Array of current properties</returns>
 Eina.Iterator<System.String> GetProperties();
     /// <summary>Retrieve the value of a given property name.
-/// At this point the caller is free to get values from properties. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> may be raised to notify listeners of the property/value.
+/// At this point the caller is free to get values from properties. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> may be raised to notify listeners of the property/value.
 /// 
-/// See <see cref="Efl.IModel.GetProperties"/>, <see cref="Efl.IModel.PropertiesChangedEvt"/></summary>
+/// See <see cref="Efl.IModel.GetProperties"/>, <see cref="Efl.IModel.PropertiesChangedEvent"/></summary>
 /// <param name="property">Property name</param>
 /// <returns>Property value</returns>
 Eina.Value GetProperty(System.String property);
     /// <summary>Set a property value of a given property name.
-/// The caller must ensure to call at least efl_model_prop_list before being able to see/set properties. This function sets a new property value into given property name. Once the operation is completed the concrete implementation should raise <see cref="Efl.IModel.PropertiesChangedEvt"/> event in order to notify listeners of the new value of the property.
+/// The caller must ensure to call at least efl_model_prop_list before being able to see/set properties. This function sets a new property value into given property name. Once the operation is completed the concrete implementation should raise <see cref="Efl.IModel.PropertiesChangedEvent"/> event in order to notify listeners of the new value of the property.
 /// 
 /// If the model doesn&apos;t have the property then there are two possibilities, either raise an error or create the new property in model
 /// 
-/// See <see cref="Efl.IModel.GetProperty"/>, <see cref="Efl.IModel.PropertiesChangedEvt"/></summary>
+/// See <see cref="Efl.IModel.GetProperty"/>, <see cref="Efl.IModel.PropertiesChangedEvent"/></summary>
 /// <param name="property">Property name</param>
 /// <param name="value">Property value</param>
-/// <returns>Return an error in case the property could not be set, the value that was set otherwise.</returns>
+/// <returns>Return an error in case the property could not be set, or the value that was set otherwise.</returns>
  Eina.Future SetProperty(System.String property, Eina.Value value);
-    /// <summary>Get children count.
-/// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// <summary>Number of children.
+/// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvent"/> is emitted when count is finished.
 /// 
 /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
 /// <returns>Current known children count</returns>
 uint GetChildrenCount();
     /// <summary>Get a future value when it changes to something that is not error:EAGAIN
-/// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disapears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
+/// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disappears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
 /// 
 /// The future can also be canceled if the model itself gets destroyed.</summary>
 /// <param name="property">Property name.</param>
@@ -68,11 +68,11 @@ uint GetChildrenCount();
 /// <returns>Array of children</returns>
  Eina.Future GetChildrenSlice(uint start, uint count);
     /// <summary>Add a new child.
-/// Add a new child, possibly dummy, depending on the implementation, of a internal keeping. When the child is effectively added the event <see cref="Efl.IModel.ChildAddedEvt"/> is then raised and the new child is kept along with other children.</summary>
+/// Add a new child, possibly dummy, depending on the implementation, of a internal keeping. When the child is effectively added the event <see cref="Efl.IModel.ChildAddedEvent"/> is then raised and the new child is kept along with other children.</summary>
 /// <returns>Child object</returns>
 Efl.Object AddChild();
     /// <summary>Remove a child.
-/// Remove a child of a internal keeping. When the child is effectively removed the event <see cref="Efl.IModel.ChildRemovedEvt"/> is then raised to give a chance for listeners to perform any cleanup and/or update references.</summary>
+/// Remove a child of a internal keeping. When the child is effectively removed the event <see cref="Efl.IModel.ChildRemovedEvent"/> is then raised to give a chance for listeners to perform any cleanup and/or update references.</summary>
 /// <param name="child">Child to be removed</param>
 void DelChild(Efl.Object child);
                 /// <summary>Async wrapper for <see cref="SetProperty" />.</summary>
@@ -96,26 +96,26 @@ void DelChild(Efl.Object child);
     System.Threading.Tasks.Task<Eina.Value> GetChildrenSliceAsync(uint start,uint count, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
 
             /// <summary>Event dispatched when properties list is available.</summary>
-    /// <value><see cref="Efl.IModelPropertiesChangedEvt_Args"/></value>
-    event EventHandler<Efl.IModelPropertiesChangedEvt_Args> PropertiesChangedEvt;
+    /// <value><see cref="Efl.ModelPropertiesChangedEventArgs"/></value>
+    event EventHandler<Efl.ModelPropertiesChangedEventArgs> PropertiesChangedEvent;
     /// <summary>Event dispatched when new child is added.</summary>
-    /// <value><see cref="Efl.IModelChildAddedEvt_Args"/></value>
-    event EventHandler<Efl.IModelChildAddedEvt_Args> ChildAddedEvt;
+    /// <value><see cref="Efl.ModelChildAddedEventArgs"/></value>
+    event EventHandler<Efl.ModelChildAddedEventArgs> ChildAddedEvent;
     /// <summary>Event dispatched when child is removed.</summary>
-    /// <value><see cref="Efl.IModelChildRemovedEvt_Args"/></value>
-    event EventHandler<Efl.IModelChildRemovedEvt_Args> ChildRemovedEvt;
+    /// <value><see cref="Efl.ModelChildRemovedEventArgs"/></value>
+    event EventHandler<Efl.ModelChildRemovedEventArgs> ChildRemovedEvent;
     /// <summary>Event dispatched when children count is finished.</summary>
-    event EventHandler ChildrenCountChangedEvt;
+    event EventHandler ChildrenCountChangedEvent;
     /// <summary>Get properties from model.
-    /// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+    /// Properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> will be raised to notify listeners of any modifications in the properties.
     /// 
-    /// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+    /// See also <see cref="Efl.IModel.PropertiesChangedEvent"/>.</summary>
     /// <value>Array of current properties</value>
     Eina.Iterator<System.String> Properties {
         get;
     }
-    /// <summary>Get children count.
-    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// <summary>Number of children.
+    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvent"/> is emitted when count is finished.
     /// 
     /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
     /// <value>Current known children count</value>
@@ -123,30 +123,30 @@ void DelChild(Efl.Object child);
         get;
     }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IModel.PropertiesChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IModelPropertiesChangedEvt_Args : EventArgs {
+public class ModelPropertiesChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Event dispatched when properties list is available.</value>
     public Efl.ModelPropertyEvent arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IModel.ChildAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IModel.ChildAddedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IModelChildAddedEvt_Args : EventArgs {
+public class ModelChildAddedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Event dispatched when new child is added.</value>
     public Efl.ModelChildrenEvent arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IModel.ChildRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.IModel.ChildRemovedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IModelChildRemovedEvt_Args : EventArgs {
+public class ModelChildRemovedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Event dispatched when child is removed.</value>
     public Efl.ModelChildrenEvent arg { get; set; }
 }
 /// <summary>Efl model interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IModelConcrete :
+public sealed class ModelConcrete :
     Efl.Eo.EoWrapper
     , IModel
     
@@ -156,7 +156,7 @@ sealed public  class IModelConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IModelConcrete))
+            if (((object)this).GetType() == typeof(ModelConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -170,7 +170,7 @@ sealed public  class IModelConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IModelConcrete(ConstructingHandle ch) : base(ch)
+    private ModelConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -179,13 +179,13 @@ sealed public  class IModelConcrete :
     /// <summary>Initializes a new instance of the <see cref="IModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Event dispatched when properties list is available.</summary>
-    /// <value><see cref="Efl.IModelPropertiesChangedEvt_Args"/></value>
-    public event EventHandler<Efl.IModelPropertiesChangedEvt_Args> PropertiesChangedEvt
+    /// <value><see cref="Efl.ModelPropertiesChangedEventArgs"/></value>
+    public event EventHandler<Efl.ModelPropertiesChangedEventArgs> PropertiesChangedEvent
     {
         add
         {
@@ -196,7 +196,7 @@ sealed public  class IModelConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IModelPropertiesChangedEvt_Args args = new Efl.IModelPropertiesChangedEvt_Args();
+                        Efl.ModelPropertiesChangedEventArgs args = new Efl.ModelPropertiesChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -224,8 +224,9 @@ sealed public  class IModelConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
-    public void OnPropertiesChangedEvt(Efl.IModelPropertiesChangedEvt_Args e)
+    /// <summary>Method to raise event PropertiesChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertiesChangedEvent(Efl.ModelPropertiesChangedEventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_PROPERTIES_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -247,8 +248,8 @@ sealed public  class IModelConcrete :
         }
     }
     /// <summary>Event dispatched when new child is added.</summary>
-    /// <value><see cref="Efl.IModelChildAddedEvt_Args"/></value>
-    public event EventHandler<Efl.IModelChildAddedEvt_Args> ChildAddedEvt
+    /// <value><see cref="Efl.ModelChildAddedEventArgs"/></value>
+    public event EventHandler<Efl.ModelChildAddedEventArgs> ChildAddedEvent
     {
         add
         {
@@ -259,7 +260,7 @@ sealed public  class IModelConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IModelChildAddedEvt_Args args = new Efl.IModelChildAddedEvt_Args();
+                        Efl.ModelChildAddedEventArgs args = new Efl.ModelChildAddedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -287,8 +288,9 @@ sealed public  class IModelConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChildAddedEvt.</summary>
-    public void OnChildAddedEvt(Efl.IModelChildAddedEvt_Args e)
+    /// <summary>Method to raise event ChildAddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildAddedEvent(Efl.ModelChildAddedEventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -310,8 +312,8 @@ sealed public  class IModelConcrete :
         }
     }
     /// <summary>Event dispatched when child is removed.</summary>
-    /// <value><see cref="Efl.IModelChildRemovedEvt_Args"/></value>
-    public event EventHandler<Efl.IModelChildRemovedEvt_Args> ChildRemovedEvt
+    /// <value><see cref="Efl.ModelChildRemovedEventArgs"/></value>
+    public event EventHandler<Efl.ModelChildRemovedEventArgs> ChildRemovedEvent
     {
         add
         {
@@ -322,7 +324,7 @@ sealed public  class IModelConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IModelChildRemovedEvt_Args args = new Efl.IModelChildRemovedEvt_Args();
+                        Efl.ModelChildRemovedEventArgs args = new Efl.ModelChildRemovedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -350,8 +352,9 @@ sealed public  class IModelConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChildRemovedEvt.</summary>
-    public void OnChildRemovedEvt(Efl.IModelChildRemovedEvt_Args e)
+    /// <summary>Method to raise event ChildRemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildRemovedEvent(Efl.ModelChildRemovedEventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_CHILD_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -373,7 +376,7 @@ sealed public  class IModelConcrete :
         }
     }
     /// <summary>Event dispatched when children count is finished.</summary>
-    public event EventHandler ChildrenCountChangedEvt
+    public event EventHandler ChildrenCountChangedEvent
     {
         add
         {
@@ -411,8 +414,9 @@ sealed public  class IModelConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChildrenCountChangedEvt.</summary>
-    public void OnChildrenCountChangedEvt(EventArgs e)
+    /// <summary>Method to raise event ChildrenCountChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildrenCountChangedEvent(EventArgs e)
     {
         var key = "_EFL_MODEL_EVENT_CHILDREN_COUNT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -424,59 +428,60 @@ sealed public  class IModelConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
     /// <summary>Get properties from model.
-    /// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+    /// Properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> will be raised to notify listeners of any modifications in the properties.
     /// 
-    /// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+    /// See also <see cref="Efl.IModel.PropertiesChangedEvent"/>.</summary>
     /// <returns>Array of current properties</returns>
     public Eina.Iterator<System.String> GetProperties() {
-         var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_properties_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_properties_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<System.String>(_ret_var, true);
  }
     /// <summary>Retrieve the value of a given property name.
-    /// At this point the caller is free to get values from properties. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> may be raised to notify listeners of the property/value.
+    /// At this point the caller is free to get values from properties. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> may be raised to notify listeners of the property/value.
     /// 
-    /// See <see cref="Efl.IModel.GetProperties"/>, <see cref="Efl.IModel.PropertiesChangedEvt"/></summary>
+    /// See <see cref="Efl.IModel.GetProperties"/>, <see cref="Efl.IModel.PropertiesChangedEvent"/></summary>
     /// <param name="property">Property name</param>
     /// <returns>Property value</returns>
     public Eina.Value GetProperty(System.String property) {
-                                 var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_property_get_ptr.Value.Delegate(this.NativeHandle,property);
+                                 var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_property_get_ptr.Value.Delegate(this.NativeHandle,property);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Set a property value of a given property name.
-    /// The caller must ensure to call at least efl_model_prop_list before being able to see/set properties. This function sets a new property value into given property name. Once the operation is completed the concrete implementation should raise <see cref="Efl.IModel.PropertiesChangedEvt"/> event in order to notify listeners of the new value of the property.
+    /// The caller must ensure to call at least efl_model_prop_list before being able to see/set properties. This function sets a new property value into given property name. Once the operation is completed the concrete implementation should raise <see cref="Efl.IModel.PropertiesChangedEvent"/> event in order to notify listeners of the new value of the property.
     /// 
     /// If the model doesn&apos;t have the property then there are two possibilities, either raise an error or create the new property in model
     /// 
-    /// See <see cref="Efl.IModel.GetProperty"/>, <see cref="Efl.IModel.PropertiesChangedEvt"/></summary>
+    /// See <see cref="Efl.IModel.GetProperty"/>, <see cref="Efl.IModel.PropertiesChangedEvent"/></summary>
     /// <param name="property">Property name</param>
     /// <param name="value">Property value</param>
-    /// <returns>Return an error in case the property could not be set, the value that was set otherwise.</returns>
+    /// <returns>Return an error in case the property could not be set, or the value that was set otherwise.</returns>
     public  Eina.Future SetProperty(System.String property, Eina.Value value) {
-                                                         var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_property_set_ptr.Value.Delegate(this.NativeHandle,property, value);
+                                                         var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_property_set_ptr.Value.Delegate(this.NativeHandle,property, value);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Get children count.
-    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// <summary>Number of children.
+    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvent"/> is emitted when count is finished.
     /// 
     /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
     /// <returns>Current known children count</returns>
     public uint GetChildrenCount() {
-         var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_children_count_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_children_count_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get a future value when it changes to something that is not error:EAGAIN
-    /// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disapears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
+    /// <see cref="Efl.IModel.GetProperty"/> can return an error with code EAGAIN when it doesn&apos;t have any meaningful value. To make life easier, this future will resolve when the error:EAGAIN disappears. Either into a failed future in case the error code changed to something else or a success with the value of the property whenever the property finally changes.
     /// 
     /// The future can also be canceled if the model itself gets destroyed.</summary>
     /// <param name="property">Property name.</param>
     /// <returns>Future to be resolved when the property changes to anything other than error:EAGAIN</returns>
     public  Eina.Future GetPropertyReady(System.String property) {
-                                 var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_property_ready_get_ptr.Value.Delegate(this.NativeHandle,property);
+                                 var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_property_ready_get_ptr.Value.Delegate(this.NativeHandle,property);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -496,23 +501,23 @@ sealed public  class IModelConcrete :
     /// <param name="count">Range size. If count is 0, start is ignored.</param>
     /// <returns>Array of children</returns>
     public  Eina.Future GetChildrenSlice(uint start, uint count) {
-                                                         var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_children_slice_get_ptr.Value.Delegate(this.NativeHandle,start, count);
+                                                         var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_children_slice_get_ptr.Value.Delegate(this.NativeHandle,start, count);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Add a new child.
-    /// Add a new child, possibly dummy, depending on the implementation, of a internal keeping. When the child is effectively added the event <see cref="Efl.IModel.ChildAddedEvt"/> is then raised and the new child is kept along with other children.</summary>
+    /// Add a new child, possibly dummy, depending on the implementation, of a internal keeping. When the child is effectively added the event <see cref="Efl.IModel.ChildAddedEvent"/> is then raised and the new child is kept along with other children.</summary>
     /// <returns>Child object</returns>
     public Efl.Object AddChild() {
-         var _ret_var = Efl.IModelConcrete.NativeMethods.efl_model_child_add_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ModelConcrete.NativeMethods.efl_model_child_add_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Remove a child.
-    /// Remove a child of a internal keeping. When the child is effectively removed the event <see cref="Efl.IModel.ChildRemovedEvt"/> is then raised to give a chance for listeners to perform any cleanup and/or update references.</summary>
+    /// Remove a child of a internal keeping. When the child is effectively removed the event <see cref="Efl.IModel.ChildRemovedEvent"/> is then raised to give a chance for listeners to perform any cleanup and/or update references.</summary>
     /// <param name="child">Child to be removed</param>
     public void DelChild(Efl.Object child) {
-                                 Efl.IModelConcrete.NativeMethods.efl_model_child_del_ptr.Value.Delegate(this.NativeHandle,child);
+                                 Efl.ModelConcrete.NativeMethods.efl_model_child_del_ptr.Value.Delegate(this.NativeHandle,child);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Async wrapper for <see cref="SetProperty" />.</summary>
@@ -548,24 +553,25 @@ sealed public  class IModelConcrete :
     }
 
     /// <summary>Get properties from model.
-    /// properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvt"/> will be raised to notify listeners of any modifications in the properties.
+    /// Properties_get is due to provide callers a way the fetch the current properties implemented/used by the model. The event <see cref="Efl.IModel.PropertiesChangedEvent"/> will be raised to notify listeners of any modifications in the properties.
     /// 
-    /// See also <see cref="Efl.IModel.PropertiesChangedEvt"/>.</summary>
+    /// See also <see cref="Efl.IModel.PropertiesChangedEvent"/>.</summary>
     /// <value>Array of current properties</value>
     public Eina.Iterator<System.String> Properties {
         get { return GetProperties(); }
     }
-    /// <summary>Get children count.
-    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvt"/> is emitted when count is finished.
+    /// <summary>Number of children.
+    /// When efl_model_load is completed <see cref="Efl.IModel.GetChildrenCount"/> can be used to get the number of children. <see cref="Efl.IModel.GetChildrenCount"/> can also be used before calling <see cref="Efl.IModel.GetChildrenSlice"/> so a valid range is known. Event <see cref="Efl.IModel.ChildrenCountChangedEvent"/> is emitted when count is finished.
     /// 
     /// See also <see cref="Efl.IModel.GetChildrenSlice"/>.</summary>
     /// <value>Current known children count</value>
     public uint ChildrenCount {
         get { return GetChildrenCount(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IModelConcrete.efl_model_interface_get();
+        return Efl.ModelConcrete.efl_model_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -574,7 +580,7 @@ sealed public  class IModelConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -659,13 +665,23 @@ sealed public  class IModelConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_model_child_del"), func = Marshal.GetFunctionPointerForDelegate(efl_model_child_del_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IModelConcrete.efl_model_interface_get();
+            return Efl.ModelConcrete.efl_model_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -965,7 +981,7 @@ sealed public  class IModelConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIModelConcrete_ExtensionMethods {
+public static class EflModelConcrete_ExtensionMethods {
     
     
     
@@ -984,8 +1000,8 @@ public struct ModelPropertyEvent
     /// <summary>Removed properties identified by name</summary>
     public Eina.Array<Eina.Stringshare> Invalidated_properties;
     /// <summary>Constructor for ModelPropertyEvent.</summary>
-    /// <param name="Changed_properties">List of changed properties</param>;
-    /// <param name="Invalidated_properties">Removed properties identified by name</param>;
+    /// <param name="Changed_properties">List of changed properties</param>
+    /// <param name="Invalidated_properties">Removed properties identified by name</param>
     public ModelPropertyEvent(
         Eina.Array<Eina.Stringshare> Changed_properties = default(Eina.Array<Eina.Stringshare>),
         Eina.Array<Eina.Stringshare> Invalidated_properties = default(Eina.Array<Eina.Stringshare>)    )
@@ -1040,7 +1056,7 @@ public struct ModelPropertyEvent
 
 namespace Efl {
 
-/// <summary>Every time a child is added the event <see cref="Efl.IModel.ChildAddedEvt"/> is dispatched passing along this structure.</summary>
+/// <summary>Every time a child is added the event <see cref="Efl.IModel.ChildAddedEvent"/> is dispatched passing along this structure.</summary>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct ModelChildrenEvent
@@ -1050,8 +1066,8 @@ public struct ModelChildrenEvent
     /// <summary>If an object has been built for this index and it is currently tracked by the parent, it will be available here.</summary>
     public Efl.Object Child;
     /// <summary>Constructor for ModelChildrenEvent.</summary>
-    /// <param name="Index">index is a hint and is intended to provide a way for applications to control/know children relative positions through listings.</param>;
-    /// <param name="Child">If an object has been built for this index and it is currently tracked by the parent, it will be available here.</param>;
+    /// <param name="Index">index is a hint and is intended to provide a way for applications to control/know children relative positions through listings.</param>
+    /// <param name="Child">If an object has been built for this index and it is currently tracked by the parent, it will be available here.</param>
     public ModelChildrenEvent(
         uint Index = default(uint),
         Efl.Object Child = default(Efl.Object)    )

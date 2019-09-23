@@ -66,7 +66,7 @@ public class Observable : Efl.Object
     /// Note: Observers that observe this observable are grouped by the <c>key</c> and an observer can belong to multiple groups at the same time.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
-    virtual public void AddObserver(System.String key, Efl.IObserver obs) {
+    public virtual void AddObserver(System.String key, Efl.IObserver obs) {
                                                          Efl.Observable.NativeMethods.efl_observable_observer_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
@@ -74,20 +74,20 @@ public class Observable : Efl.Object
     /// See also <see cref="Efl.Observable.AddObserver"/>.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="obs">An observer object</param>
-    virtual public void DelObserver(System.String key, Efl.IObserver obs) {
+    public virtual void DelObserver(System.String key, Efl.IObserver obs) {
                                                          Efl.Observable.NativeMethods.efl_observable_observer_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, obs);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Clear an observer from all groups of observers.</summary>
     /// <param name="obs">An observer object</param>
-    virtual public void ObserverClean(Efl.IObserver obs) {
+    public virtual void ObserverClean(Efl.IObserver obs) {
                                  Efl.Observable.NativeMethods.efl_observable_observer_clean_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),obs);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Return a new iterator associated with a group of observers.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <returns>Iterator for observers group</returns>
-    virtual public Eina.Iterator<Efl.IObserver> NewObserversIterator(System.String key) {
+    public virtual Eina.Iterator<Efl.IObserver> NewObserversIterator(System.String key) {
                                  var _ret_var = Efl.Observable.NativeMethods.efl_observable_observers_iterator_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return new Eina.Iterator<Efl.IObserver>(_ret_var, true);
@@ -95,13 +95,13 @@ public class Observable : Efl.Object
     /// <summary>Update all observers in a group by calling their update() method.</summary>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update observer</param>
-    virtual public void UpdateObservers(System.String key, System.IntPtr data) {
+    public virtual void UpdateObservers(System.String key, System.IntPtr data) {
                                                          Efl.Observable.NativeMethods.efl_observable_observers_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, data);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Return a new iterator associated to this observable.</summary>
     /// <returns>Iterator for observer</returns>
-    virtual public Eina.Iterator<Efl.ObservableTuple> NewIteratorTuple() {
+    public virtual Eina.Iterator<Efl.ObservableTuple> NewIteratorTuple() {
          var _ret_var = Efl.Observable.NativeMethods.efl_observable_iterator_tuple_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.ObservableTuple>(_ret_var, true);
@@ -117,7 +117,7 @@ public class Observable : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -182,7 +182,17 @@ public class Observable : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observable_iterator_tuple_new"), func = Marshal.GetFunctionPointerForDelegate(efl_observable_iterator_tuple_new_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -430,8 +440,8 @@ public struct ObservableTuple
     /// <summary>Touple data</summary>
     public Eina.Iterator<Efl.IObserver> Data;
     /// <summary>Constructor for ObservableTuple.</summary>
-    /// <param name="Key">Touple key</param>;
-    /// <param name="Data">Touple data</param>;
+    /// <param name="Key">Touple key</param>
+    /// <param name="Data">Touple data</param>
     public ObservableTuple(
         System.String Key = default(System.String),
         Eina.Iterator<Efl.IObserver> Data = default(Eina.Iterator<Efl.IObserver>)    )

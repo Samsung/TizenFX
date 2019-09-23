@@ -8,6 +8,7 @@ using System.Threading;
 using System.ComponentModel;
 /// <param name="parent">This object can be used to know when to cancel the future.</param>
 /// <param name="child">You must reference this object for the duration of your use of it as the caller will not do that for you.</param>
+/// <returns><c>true</c> if the model should be kept.</returns>
 [Efl.Eo.BindingEntity]
 public delegate  Eina.Future EflFilterModel(Efl.FilterModel parent, Efl.IModel child);
 [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]public delegate  Eina.Future EflFilterModelInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.FilterModel parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel child);
@@ -153,7 +154,7 @@ public class FilterModel : Efl.CompositeModel
 
     /// <summary>Set a filter function that will catch children from the composited model.</summary>
     /// <param name="filter">Filter callback</param>
-    virtual public void SetFilter(EflFilterModel filter) {
+    public virtual void SetFilter(EflFilterModel filter) {
                          GCHandle filter_handle = GCHandle.Alloc(filter);
         Efl.FilterModel.NativeMethods.efl_filter_model_filter_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(filter_handle), EflFilterModelWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
@@ -169,7 +170,7 @@ public class FilterModel : Efl.CompositeModel
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -184,7 +185,17 @@ public class FilterModel : Efl.CompositeModel
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_filter_model_filter_set"), func = Marshal.GetFunctionPointerForDelegate(efl_filter_model_filter_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

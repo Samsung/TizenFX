@@ -68,7 +68,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
     /// <summary>Blocking of scrolling
     /// This function will block scrolling movement (by input of a user). You can disable scrolling movement. The default value is <c>false</c>, where the scrolling movement is allowed.</summary>
     /// <returns><c>true</c> if block scrolling movement, <c>false</c> otherwise</returns>
-    virtual public bool GetScrollBlock() {
+    public virtual bool GetScrollBlock() {
          var _ret_var = Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -76,7 +76,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
     /// <summary>Blocking of scrolling
     /// This function will block scrolling movement (by input of a user). You can disable scrolling movement. The default value is <c>false</c>, where the scrolling movement is allowed.</summary>
     /// <param name="scroll_block"><c>true</c> if block scrolling movement, <c>false</c> otherwise</param>
-    virtual public void SetScrollBlock(bool scroll_block) {
+    public virtual void SetScrollBlock(bool scroll_block) {
                                  Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_block);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -98,7 +98,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -123,7 +123,17 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_manager_scroll_block_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_manager_scroll_block_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

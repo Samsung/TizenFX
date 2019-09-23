@@ -188,11 +188,11 @@ public struct SelectionData
     /// <summary>Item under the drag position. It is only available for container</summary>
     public Efl.Object Item;
     /// <summary>Constructor for SelectionData.</summary>
-    /// <param name="Pos">Coordinates of the drop (DND operations only)</param>;
-    /// <param name="Format">Format of the selection</param>;
-    /// <param name="Content">Selection data</param>;
-    /// <param name="Action">Action to perform with the data</param>;
-    /// <param name="Item">Item under the drag position. It is only available for container</param>;
+    /// <param name="Pos">Coordinates of the drop (DND operations only)</param>
+    /// <param name="Format">Format of the selection</param>
+    /// <param name="Content">Selection data</param>
+    /// <param name="Action">Action to perform with the data</param>
+    /// <param name="Item">Item under the drag position. It is only available for container</param>
     public SelectionData(
         Eina.Position2D Pos = default(Eina.Position2D),
         Efl.Ui.SelectionFormat Format = default(Efl.Ui.SelectionFormat),
@@ -289,10 +289,10 @@ public struct SelectionChanged
     /// <summary>EINA_TRUE if the selection has an owner</summary>
     public bool Exist;
     /// <summary>Constructor for SelectionChanged.</summary>
-    /// <param name="Type">Selection type</param>;
-    /// <param name="Seat">The seat on which the selection changed, or NULL for &quot;default&quot;</param>;
-    /// <param name="Display">The display connection object, NULL under X11</param>;
-    /// <param name="Exist">EINA_TRUE if the selection has an owner</param>;
+    /// <param name="Type">Selection type</param>
+    /// <param name="Seat">The seat on which the selection changed, or NULL for &quot;default&quot;</param>
+    /// <param name="Display">The display connection object, NULL under X11</param>
+    /// <param name="Exist">EINA_TRUE if the selection has an owner</param>
     public SelectionChanged(
         Efl.Ui.SelectionType Type = default(Efl.Ui.SelectionType),
         int Seat = default(int),

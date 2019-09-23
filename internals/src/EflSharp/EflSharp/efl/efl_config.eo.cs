@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>A generic configuration interface, that holds key-value pairs.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IConfigConcrete.NativeMethods]
+[Efl.ConfigConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IConfig : 
     Efl.Eo.IWrapper, IDisposable
@@ -27,7 +27,7 @@ bool SetConfig(System.String name, Eina.Value value);
         }
 /// <summary>A generic configuration interface, that holds key-value pairs.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IConfigConcrete :
+public sealed class ConfigConcrete :
     Efl.Eo.EoWrapper
     , IConfig
     
@@ -37,7 +37,7 @@ sealed public  class IConfigConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IConfigConcrete))
+            if (((object)this).GetType() == typeof(ConfigConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -51,7 +51,7 @@ sealed public  class IConfigConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IConfigConcrete(ConstructingHandle ch) : base(ch)
+    private ConfigConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -60,15 +60,16 @@ sealed public  class IConfigConcrete :
     /// <summary>Initializes a new instance of the <see cref="IConfig"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IConfigConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ConfigConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>A generic configuration value, referred to by name.</summary>
     /// <param name="name">Configuration option name.</param>
     /// <returns>The value. It will be empty if it doesn&apos;t exist. The caller must free it after use (using <c>eina_value_free</c>() in C).</returns>
     public Eina.Value GetConfig(System.String name) {
-                                 var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate(this.NativeHandle,name);
+                                 var _ret_var = Efl.ConfigConcrete.NativeMethods.efl_config_get_ptr.Value.Delegate(this.NativeHandle,name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -77,13 +78,14 @@ sealed public  class IConfigConcrete :
     /// <param name="value">Configuration option value. May be <c>null</c> if not found.</param>
     /// <returns><c>false</c> in case of error: value type was invalid, the config can&apos;t be changed, config does not exist...</returns>
     public bool SetConfig(System.String name, Eina.Value value) {
-                                                         var _ret_var = Efl.IConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate(this.NativeHandle,name, value);
+                                                         var _ret_var = Efl.ConfigConcrete.NativeMethods.efl_config_set_ptr.Value.Delegate(this.NativeHandle,name, value);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IConfigConcrete.efl_config_interface_get();
+        return Efl.ConfigConcrete.efl_config_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -92,7 +94,7 @@ sealed public  class IConfigConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -117,13 +119,23 @@ sealed public  class IConfigConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_config_set"), func = Marshal.GetFunctionPointerForDelegate(efl_config_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IConfigConcrete.efl_config_interface_get();
+            return Efl.ConfigConcrete.efl_config_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -208,7 +220,7 @@ sealed public  class IConfigConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIConfigConcrete_ExtensionMethods {
+public static class EflConfigConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591

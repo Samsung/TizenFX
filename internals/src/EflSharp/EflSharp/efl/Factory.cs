@@ -17,7 +17,7 @@ namespace Efl { namespace Ui {
 /// </code>
 ///
 /// </summary>
-public class ItemFactory<T> : Efl.Ui.CachingFactory, IDisposable
+public class ItemFactory<T> : Efl.Ui.LayoutFactory, IDisposable
 {
     /// <summary>Creates a new factory.</summary>
     public ItemFactory(Efl.Object parent = null)

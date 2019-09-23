@@ -71,8 +71,8 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     {
     }
 
-    /// <summary>Called when the widget&apos;s value has changed and has remained unchanged for 0.2s. This allows filtering out unwanted &quot;noise&quot; from the widget if you are only interested in its final position. Use this event instead of <see cref="Efl.Ui.IRangeDisplay.ChangedEvt"/> if you are going to perform a costly operation on its handler.</summary>
-    public event EventHandler SteadyEvt
+    /// <summary>Called when the widget&apos;s value has changed and has remained unchanged for 0.2s. This allows filtering out unwanted &quot;noise&quot; from the widget if you are only interested in its final position. Use this event instead of <see cref="Efl.Ui.IRangeDisplay.ChangedEvent"/> if you are going to perform a costly operation on its handler.</summary>
+    public event EventHandler SteadyEvent
     {
         add
         {
@@ -110,8 +110,9 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
             }
         }
     }
-    /// <summary>Method to raise event SteadyEvt.</summary>
-    public void OnSteadyEvt(EventArgs e)
+    /// <summary>Method to raise event SteadyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSteadyEvent(EventArgs e)
     {
         var key = "_EFL_UI_RANGE_EVENT_STEADY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -126,13 +127,13 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// <summary>Control whether the spin should circulate value when it reaches its minimum or maximum value.
     /// Disabled by default. If disabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will be the maximum value. The same happens when the user tries to decrement it but the value less step is less than minimum value. In this case, the new displayed value will be the minimum value.
     /// 
-    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
+    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
     /// 
     /// E.g.: <c>min</c> = 10 <c>max</c> = 50 <c>step</c> = 20 <c>displayed</c> = 20
     /// 
     /// When the user decrements the value (using left or bottom arrow), it will display $50.</summary>
     /// <returns><c>true</c> to enable circulate or <c>false</c> to disable it.</returns>
-    virtual public bool GetWraparound() {
+    public virtual bool GetWraparound() {
          var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_wraparound_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -140,28 +141,28 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// <summary>Control whether the spin should circulate value when it reaches its minimum or maximum value.
     /// Disabled by default. If disabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will be the maximum value. The same happens when the user tries to decrement it but the value less step is less than minimum value. In this case, the new displayed value will be the minimum value.
     /// 
-    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
+    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
     /// 
     /// E.g.: <c>min</c> = 10 <c>max</c> = 50 <c>step</c> = 20 <c>displayed</c> = 20
     /// 
     /// When the user decrements the value (using left or bottom arrow), it will display $50.</summary>
     /// <param name="circulate"><c>true</c> to enable circulate or <c>false</c> to disable it.</param>
-    virtual public void SetWraparound(bool circulate) {
+    public virtual void SetWraparound(bool circulate) {
                                  Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_wraparound_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),circulate);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control whether the spin can be directly edited by the user.
     /// Spin objects can have editing disabled, in which case they can only be changed by using arrows. This is useful for situations where you don&apos;t want your users to write their own value. It&apos;s especially useful when using special values. The user can see the real values instead of special label when editing.</summary>
-    /// <returns><c>true</c> to allow users to edit it or <c>false</c> to don&apos;t allow users to edit it directly.</returns>
-    virtual public bool GetDirectTextInput() {
+    /// <returns><c>true</c> to allow users to directly edit the value.</returns>
+    public virtual bool GetDirectTextInput() {
          var _ret_var = Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_direct_text_input_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control whether the spin can be directly edited by the user.
     /// Spin objects can have editing disabled, in which case they can only be changed by using arrows. This is useful for situations where you don&apos;t want your users to write their own value. It&apos;s especially useful when using special values. The user can see the real values instead of special label when editing.</summary>
-    /// <param name="direct_text_input"><c>true</c> to allow users to edit it or <c>false</c> to don&apos;t allow users to edit it directly.</param>
-    virtual public void SetDirectTextInput(bool direct_text_input) {
+    /// <param name="direct_text_input"><c>true</c> to allow users to directly edit the value.</param>
+    public virtual void SetDirectTextInput(bool direct_text_input) {
                                  Efl.Ui.SpinButton.NativeMethods.efl_ui_spin_button_direct_text_input_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direct_text_input);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -170,8 +171,8 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -180,8 +181,8 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the step used to increment or decrement values for given widget.
@@ -191,8 +192,8 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// 
     /// Warning: The step value should be bigger than 0.</summary>
     /// <returns>The step value.</returns>
-    virtual public double GetRangeStep() {
-         var _ret_var = Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetRangeStep() {
+         var _ret_var = Efl.Ui.RangeInteractiveConcrete.NativeMethods.efl_ui_range_step_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -203,67 +204,67 @@ public class SpinButton : Efl.Ui.Spin, Efl.Ui.ILayoutOrientable, Efl.Ui.IRangeIn
     /// 
     /// Warning: The step value should be bigger than 0.</summary>
     /// <param name="step">The step value.</param>
-    virtual public void SetRangeStep(double step) {
-                                 Efl.Ui.IRangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),step);
+    public virtual void SetRangeStep(double step) {
+                                 Efl.Ui.RangeInteractiveConcrete.NativeMethods.efl_ui_range_step_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),step);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <returns>The order to use</returns>
-    virtual public Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
+         var _ret_var = Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Gfx.IEntity>(_ret_var, true, false);
  }
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <param name="logical_order">The order to use</param>
-    virtual public void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
+    protected virtual void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
          var _in_logical_order = logical_order.Handle;
 logical_order.Own = false;
-                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
+                        Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <returns><c>true</c> or <c>false</c></returns>
-    virtual public bool GetLogicalMode() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool GetLogicalMode() {
+         var _ret_var = Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <param name="logical_mode"><c>true</c> or <c>false</c></param>
-    virtual public void SetLogicalMode(bool logical_mode) {
-                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
+    protected virtual void SetLogicalMode(bool logical_mode) {
+                                 Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Mark this widget as dirty, the children can be considered to be changed after that call</summary>
-    virtual public void Dirty() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual void Dirty() {
+         Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>A call to prepare the children of this element, called if marked as dirty
     /// You can use this function to call composition_elements.</summary>
-    virtual public void Prepare() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual void Prepare() {
+         Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Control whether the spin should circulate value when it reaches its minimum or maximum value.
     /// Disabled by default. If disabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will be the maximum value. The same happens when the user tries to decrement it but the value less step is less than minimum value. In this case, the new displayed value will be the minimum value.
     /// 
-    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
+    /// If enabled, when the user tries to increment the value but displayed value plus step value is bigger than maximum value, the new value will become the minimum value. When the user tries to decrement it, if the value minus step is less than minimum value, the new displayed value will be the maximum value.
     /// 
     /// E.g.: <c>min</c> = 10 <c>max</c> = 50 <c>step</c> = 20 <c>displayed</c> = 20
     /// 
@@ -275,7 +276,7 @@ logical_order.Own = false;
     }
     /// <summary>Control whether the spin can be directly edited by the user.
     /// Spin objects can have editing disabled, in which case they can only be changed by using arrows. This is useful for situations where you don&apos;t want your users to write their own value. It&apos;s especially useful when using special values. The user can see the real values instead of special label when editing.</summary>
-    /// <value><c>true</c> to allow users to edit it or <c>false</c> to don&apos;t allow users to edit it directly.</value>
+    /// <value><c>true</c> to allow users to directly edit the value.</value>
     public bool DirectTextInput {
         get { return GetDirectTextInput(); }
         set { SetDirectTextInput(value); }
@@ -301,21 +302,21 @@ logical_order.Own = false;
         set { SetRangeStep(value); }
     }
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <value>The order to use</value>
-    public Eina.List<Efl.Gfx.IEntity> CompositionElements {
+    protected Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get { return GetCompositionElements(); }
         set { SetCompositionElements(value); }
     }
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <value><c>true</c> or <c>false</c></value>
-    public bool LogicalMode {
+    protected bool LogicalMode {
         get { return GetLogicalMode(); }
         set { SetLogicalMode(value); }
     }
@@ -330,7 +331,7 @@ logical_order.Own = false;
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -373,46 +374,6 @@ logical_order.Own = false;
             if (methods.FirstOrDefault(m => m.Name == "SetDirectTextInput") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spin_button_direct_text_input_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spin_button_direct_text_input_set_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_get_static_delegate == null)
-            {
-                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_set_static_delegate == null)
-            {
-                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
-            }
-
-            if (efl_ui_range_step_get_static_delegate == null)
-            {
-                efl_ui_range_step_get_static_delegate = new efl_ui_range_step_get_delegate(range_step_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRangeStep") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_step_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_step_get_static_delegate) });
-            }
-
-            if (efl_ui_range_step_set_static_delegate == null)
-            {
-                efl_ui_range_step_set_static_delegate = new efl_ui_range_step_set_delegate(range_step_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetRangeStep") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_step_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_step_set_static_delegate) });
             }
 
             if (efl_ui_focus_composition_elements_get_static_delegate == null)
@@ -475,7 +436,17 @@ logical_order.Own = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_composition_prepare"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_composition_prepare_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -628,148 +599,6 @@ logical_order.Own = false;
         }
 
         private static efl_ui_spin_button_direct_text_input_set_delegate efl_ui_spin_button_direct_text_input_set_static_delegate;
-
-        
-        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
-
-        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
-                try
-                {
-                    _ret_var = ((SpinButton)ws.Target).GetOrientation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
-
-        
-        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
-
-        
-        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
-
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((SpinButton)ws.Target).SetOrientation(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
-
-        
-        private delegate double efl_ui_range_step_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate double efl_ui_range_step_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_step_get_api_delegate> efl_ui_range_step_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_step_get_api_delegate>(Module, "efl_ui_range_step_get");
-
-        private static double range_step_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_range_step_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            double _ret_var = default(double);
-                try
-                {
-                    _ret_var = ((SpinButton)ws.Target).GetRangeStep();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_range_step_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_range_step_get_delegate efl_ui_range_step_get_static_delegate;
-
-        
-        private delegate void efl_ui_range_step_set_delegate(System.IntPtr obj, System.IntPtr pd,  double step);
-
-        
-        public delegate void efl_ui_range_step_set_api_delegate(System.IntPtr obj,  double step);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_range_step_set_api_delegate> efl_ui_range_step_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_range_step_set_api_delegate>(Module, "efl_ui_range_step_set");
-
-        private static void range_step_set(System.IntPtr obj, System.IntPtr pd, double step)
-        {
-            Eina.Log.Debug("function efl_ui_range_step_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((SpinButton)ws.Target).SetRangeStep(step);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_range_step_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), step);
-            }
-        }
-
-        private static efl_ui_range_step_set_delegate efl_ui_range_step_set_static_delegate;
 
         
         private delegate System.IntPtr efl_ui_focus_composition_elements_get_delegate(System.IntPtr obj, System.IntPtr pd);

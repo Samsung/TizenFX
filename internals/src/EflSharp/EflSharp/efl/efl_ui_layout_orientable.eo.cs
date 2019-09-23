@@ -12,7 +12,7 @@ namespace Ui {
 
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
-[Efl.Ui.ILayoutOrientableConcrete.NativeMethods]
+[Efl.Ui.LayoutOrientableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ILayoutOrientable : 
     Efl.Eo.IWrapper, IDisposable
@@ -41,7 +41,7 @@ void SetOrientation(Efl.Ui.LayoutOrientation dir);
 }
 /// <summary>Interface for UI objects which can have more than one orientation.
 /// For example, sliders, which can be horizontal or vertical, or container boxes, which can arrange their elements in a horizontal or vertical fashion.</summary>
-sealed public  class ILayoutOrientableConcrete :
+public sealed class LayoutOrientableConcrete :
     Efl.Eo.EoWrapper
     , ILayoutOrientable
     
@@ -51,7 +51,7 @@ sealed public  class ILayoutOrientableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ILayoutOrientableConcrete))
+            if (((object)this).GetType() == typeof(LayoutOrientableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -65,7 +65,7 @@ sealed public  class ILayoutOrientableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ILayoutOrientableConcrete(ConstructingHandle ch) : base(ch)
+    private LayoutOrientableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -74,17 +74,18 @@ sealed public  class ILayoutOrientableConcrete :
     /// <summary>Initializes a new instance of the <see cref="ILayoutOrientable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ILayoutOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private LayoutOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -94,7 +95,7 @@ sealed public  class ILayoutOrientableConcrete :
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
+                                 Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the direction of a given widget.
@@ -106,9 +107,10 @@ sealed public  class ILayoutOrientableConcrete :
         get { return GetOrientation(); }
         set { SetOrientation(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ILayoutOrientableConcrete.efl_ui_layout_orientable_interface_get();
+        return Efl.Ui.LayoutOrientableConcrete.efl_ui_layout_orientable_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -117,7 +119,7 @@ sealed public  class ILayoutOrientableConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -142,13 +144,23 @@ sealed public  class ILayoutOrientableConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ILayoutOrientableConcrete.efl_ui_layout_orientable_interface_get();
+            return Efl.Ui.LayoutOrientableConcrete.efl_ui_layout_orientable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -234,7 +246,7 @@ sealed public  class ILayoutOrientableConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiILayoutOrientableConcrete_ExtensionMethods {
+public static class Efl_UiLayoutOrientableConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ILayoutOrientable, T>magic = null) where T : Efl.Ui.ILayoutOrientable {
         return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
     }

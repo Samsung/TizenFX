@@ -13,7 +13,7 @@ namespace Gfx {
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IBlurConcrete.NativeMethods]
+[Efl.Gfx.BlurConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IBlur : 
     Efl.Eo.IWrapper, IDisposable
@@ -74,7 +74,7 @@ void SetGrow(double radius);
 /// <summary>A simple API to apply blur effects.
 /// Those API&apos;s might use <see cref="Efl.Gfx.IFilter"/> internally. It might be necessary to also specify the color of the blur with <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IBlurConcrete :
+public sealed class BlurConcrete :
     Efl.Eo.EoWrapper
     , IBlur
     
@@ -84,7 +84,7 @@ sealed public  class IBlurConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IBlurConcrete))
+            if (((object)this).GetType() == typeof(BlurConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -98,7 +98,7 @@ sealed public  class IBlurConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IBlurConcrete(ConstructingHandle ch) : base(ch)
+    private BlurConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -107,22 +107,23 @@ sealed public  class IBlurConcrete :
     /// <summary>Initializes a new instance of the <see cref="IBlur"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IBlurConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private BlurConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>The blur radius in pixels.</summary>
     /// <param name="rx">The horizontal blur radius.</param>
     /// <param name="ry">The vertical blur radius.</param>
     public void GetRadius(out double rx, out double ry) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_get_ptr.Value.Delegate(this.NativeHandle,out rx, out ry);
+                                                         Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_radius_get_ptr.Value.Delegate(this.NativeHandle,out rx, out ry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>The blur radius in pixels.</summary>
     /// <param name="rx">The horizontal blur radius.</param>
     /// <param name="ry">The vertical blur radius.</param>
     public void SetRadius(double rx, double ry) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_radius_set_ptr.Value.Delegate(this.NativeHandle,rx, ry);
+                                                         Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_radius_set_ptr.Value.Delegate(this.NativeHandle,rx, ry);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>An offset relative to the original pixels.
@@ -130,7 +131,7 @@ sealed public  class IBlurConcrete :
     /// <param name="ox">Horizontal offset in pixels.</param>
     /// <param name="oy">Vertical offset in pixels.</param>
     public void GetOffset(out double ox, out double oy) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_get_ptr.Value.Delegate(this.NativeHandle,out ox, out oy);
+                                                         Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_offset_get_ptr.Value.Delegate(this.NativeHandle,out ox, out oy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>An offset relative to the original pixels.
@@ -138,7 +139,7 @@ sealed public  class IBlurConcrete :
     /// <param name="ox">Horizontal offset in pixels.</param>
     /// <param name="oy">Vertical offset in pixels.</param>
     public void SetOffset(double ox, double oy) {
-                                                         Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_offset_set_ptr.Value.Delegate(this.NativeHandle,ox, oy);
+                                                         Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_offset_set_ptr.Value.Delegate(this.NativeHandle,ox, oy);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>How much the original image should be &quot;grown&quot; before blurring.
@@ -147,7 +148,7 @@ sealed public  class IBlurConcrete :
     /// This is can be used efficiently to create glow effects.</summary>
     /// <returns>How much to grow the original pixel data.</returns>
     public double GetGrow() {
-         var _ret_var = Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_grow_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -157,7 +158,7 @@ sealed public  class IBlurConcrete :
     /// This is can be used efficiently to create glow effects.</summary>
     /// <param name="radius">How much to grow the original pixel data.</param>
     public void SetGrow(double radius) {
-                                 Efl.Gfx.IBlurConcrete.NativeMethods.efl_gfx_blur_grow_set_ptr.Value.Delegate(this.NativeHandle,radius);
+                                 Efl.Gfx.BlurConcrete.NativeMethods.efl_gfx_blur_grow_set_ptr.Value.Delegate(this.NativeHandle,radius);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The blur radius in pixels.</summary>
@@ -192,9 +193,10 @@ sealed public  class IBlurConcrete :
         get { return GetGrow(); }
         set { SetGrow(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IBlurConcrete.efl_gfx_blur_interface_get();
+        return Efl.Gfx.BlurConcrete.efl_gfx_blur_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -203,7 +205,7 @@ sealed public  class IBlurConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -268,13 +270,23 @@ sealed public  class IBlurConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_blur_grow_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_blur_grow_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IBlurConcrete.efl_gfx_blur_interface_get();
+            return Efl.Gfx.BlurConcrete.efl_gfx_blur_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -500,7 +512,7 @@ sealed public  class IBlurConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIBlurConcrete_ExtensionMethods {
+public static class Efl_GfxBlurConcrete_ExtensionMethods {
     
     
     public static Efl.BindableProperty<double> Grow<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IBlur, T>magic = null) where T : Efl.Gfx.IBlur {

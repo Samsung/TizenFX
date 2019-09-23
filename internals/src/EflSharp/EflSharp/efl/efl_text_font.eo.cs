@@ -10,32 +10,36 @@ namespace Efl {
 
 /// <summary>Font settings of the text</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextFontConcrete.NativeMethods]
+[Efl.TextFontConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextFont : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Retrieve the font family and size in use on a given text object.
-/// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
-/// 
-/// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
-/// <param name="font">The font family name or filename.</param>
-/// <param name="size">The font size, in points.</param>
-void GetFont(out System.String font, out Efl.Font.Size size);
-    /// <summary>Set the font family, filename and size for a given text object.
-/// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// <summary>The font family, filename and size for a given text object.
+/// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
 /// 
 /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
 /// 
-/// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
+/// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
+/// <param name="font">The font family name or filename.</param>
+/// <param name="size">The font size, in points.</param>
+void GetFont(out System.String font, out Efl.Font.Size size);
+    /// <summary>The font family, filename and size for a given text object.
+/// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+/// 
+/// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
+/// 
+/// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
 /// <param name="font">The font family name or filename.</param>
 /// <param name="size">The font size, in points.</param>
 void SetFont(System.String font, Efl.Font.Size size);
-    /// <summary>Get the font file&apos;s path which is being used on a given text object.
-/// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <summary>The font (source) file to be used on a given text object.
+/// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
+/// 
+/// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
 /// <returns>The font file&apos;s path.</returns>
 System.String GetFontSource();
-    /// <summary>Set the font (source) file to be used on a given text object.
+    /// <summary>The font (source) file to be used on a given text object.
 /// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
 /// 
 /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
@@ -89,17 +93,21 @@ Efl.TextFontBitmapScalable GetFontBitmapScalable();
 /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
 /// <param name="scalable">Scalable</param>
 void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable);
-                                                                    /// <summary>Retrieve the font family and size in use on a given text object.
-    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+                                                                    /// <summary>The font family, filename and size for a given text object.
+    /// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
     /// 
-    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
+    /// 
+    /// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
     /// <value>The font family name or filename.</value>
     (System.String, Efl.Font.Size) Font {
         get;
         set;
     }
-    /// <summary>Get the font file&apos;s path which is being used on a given text object.
-    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <summary>The font (source) file to be used on a given text object.
+    /// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
     /// <value>The font file&apos;s path.</value>
     System.String FontSource {
         get;
@@ -150,7 +158,7 @@ void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable);
 }
 /// <summary>Font settings of the text</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextFontConcrete :
+public sealed class TextFontConcrete :
     Efl.Eo.EoWrapper
     , ITextFont
     
@@ -160,7 +168,7 @@ sealed public  class ITextFontConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextFontConcrete))
+            if (((object)this).GetType() == typeof(TextFontConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -174,7 +182,7 @@ sealed public  class ITextFontConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextFontConcrete(ConstructingHandle ch) : base(ch)
+    private TextFontConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -183,54 +191,59 @@ sealed public  class ITextFontConcrete :
     /// <summary>Initializes a new instance of the <see cref="ITextFont"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextFontConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextFontConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Retrieve the font family and size in use on a given text object.
-    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
-    /// 
-    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
-    /// <param name="font">The font family name or filename.</param>
-    /// <param name="size">The font size, in points.</param>
-    public void GetFont(out System.String font, out Efl.Font.Size size) {
-                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_get_ptr.Value.Delegate(this.NativeHandle,out font, out size);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Set the font family, filename and size for a given text object.
-    /// This function allows the font name and size of a text object to be set. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+#pragma warning disable CS0628
+    /// <summary>The font family, filename and size for a given text object.
+    /// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
     /// 
     /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
     /// 
-    /// See also <see cref="Efl.ITextFont.GetFont"/>, <see cref="Efl.ITextFont.GetFontSource"/>.</summary>
+    /// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
+    /// <param name="font">The font family name or filename.</param>
+    /// <param name="size">The font size, in points.</param>
+    public void GetFont(out System.String font, out Efl.Font.Size size) {
+                                                         Efl.TextFontConcrete.NativeMethods.efl_text_font_get_ptr.Value.Delegate(this.NativeHandle,out font, out size);
+        Eina.Error.RaiseIfUnhandledException();
+                                         }
+    /// <summary>The font family, filename and size for a given text object.
+    /// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
+    /// 
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
+    /// 
+    /// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
     /// <param name="font">The font family name or filename.</param>
     /// <param name="size">The font size, in points.</param>
     public void SetFont(System.String font, Efl.Font.Size size) {
-                                                         Efl.ITextFontConcrete.NativeMethods.efl_text_font_set_ptr.Value.Delegate(this.NativeHandle,font, size);
+                                                         Efl.TextFontConcrete.NativeMethods.efl_text_font_set_ptr.Value.Delegate(this.NativeHandle,font, size);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Get the font file&apos;s path which is being used on a given text object.
-    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <summary>The font (source) file to be used on a given text object.
+    /// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
     /// <returns>The font file&apos;s path.</returns>
     public System.String GetFontSource() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_source_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set the font (source) file to be used on a given text object.
+    /// <summary>The font (source) file to be used on a given text object.
     /// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
     /// 
     /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
     /// <param name="font_source">The font file&apos;s path.</param>
     public void SetFontSource(System.String font_source) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_source_set_ptr.Value.Delegate(this.NativeHandle,font_source);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_source_set_ptr.Value.Delegate(this.NativeHandle,font_source);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Comma-separated list of font fallbacks
     /// Will be used in case the primary font isn&apos;t available.</summary>
     /// <returns>Font name fallbacks</returns>
     public System.String GetFontFallbacks() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_fallbacks_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -238,14 +251,14 @@ sealed public  class ITextFontConcrete :
     /// Will be used in case the primary font isn&apos;t available.</summary>
     /// <param name="font_fallbacks">Font name fallbacks</param>
     public void SetFontFallbacks(System.String font_fallbacks) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_fallbacks_set_ptr.Value.Delegate(this.NativeHandle,font_fallbacks);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_fallbacks_set_ptr.Value.Delegate(this.NativeHandle,font_fallbacks);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of weight of the displayed font
     /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
     /// <returns>Font weight</returns>
     public Efl.TextFontWeight GetFontWeight() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_weight_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -253,14 +266,14 @@ sealed public  class ITextFontConcrete :
     /// Default is <see cref="Efl.TextFontWeight.Normal"/>.</summary>
     /// <param name="font_weight">Font weight</param>
     public void SetFontWeight(Efl.TextFontWeight font_weight) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_weight_set_ptr.Value.Delegate(this.NativeHandle,font_weight);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_weight_set_ptr.Value.Delegate(this.NativeHandle,font_weight);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of slant of the displayed font
     /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
     /// <returns>Font slant</returns>
     public Efl.TextFontSlant GetFontSlant() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_slant_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -268,14 +281,14 @@ sealed public  class ITextFontConcrete :
     /// Default is <see cref="Efl.TextFontSlant.Normal"/>.</summary>
     /// <param name="style">Font slant</param>
     public void SetFontSlant(Efl.TextFontSlant style) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_slant_set_ptr.Value.Delegate(this.NativeHandle,style);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_slant_set_ptr.Value.Delegate(this.NativeHandle,style);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Type of width of the displayed font
     /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
     /// <returns>Font width</returns>
     public Efl.TextFontWidth GetFontWidth() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_width_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -283,14 +296,14 @@ sealed public  class ITextFontConcrete :
     /// Default is <see cref="Efl.TextFontWidth.Normal"/>.</summary>
     /// <param name="width">Font width</param>
     public void SetFontWidth(Efl.TextFontWidth width) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_width_set_ptr.Value.Delegate(this.NativeHandle,width);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_width_set_ptr.Value.Delegate(this.NativeHandle,width);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specific language of the displayed font
     /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
     /// <returns>Language</returns>
     public System.String GetFontLang() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_lang_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -298,14 +311,14 @@ sealed public  class ITextFontConcrete :
     /// This is used to lookup fonts suitable to the specified language, as well as helping the font shaper backend. The language <c>lang</c> can be either a code e.g &quot;en_US&quot;, &quot;auto&quot; to use the system locale, or &quot;none&quot;.</summary>
     /// <param name="lang">Language</param>
     public void SetFontLang(System.String lang) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_lang_set_ptr.Value.Delegate(this.NativeHandle,lang);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_lang_set_ptr.Value.Delegate(this.NativeHandle,lang);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The bitmap fonts have fixed size glyphs for several available sizes. Basically, it is not scalable. But, it needs to be scalable for some use cases. (ex. colorful emoji fonts)
     /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
     /// <returns>Scalable</returns>
     public Efl.TextFontBitmapScalable GetFontBitmapScalable() {
-         var _ret_var = Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -313,13 +326,15 @@ sealed public  class ITextFontConcrete :
     /// Default is <see cref="Efl.TextFontBitmapScalable.None"/>.</summary>
     /// <param name="scalable">Scalable</param>
     public void SetFontBitmapScalable(Efl.TextFontBitmapScalable scalable) {
-                                 Efl.ITextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_set_ptr.Value.Delegate(this.NativeHandle,scalable);
+                                 Efl.TextFontConcrete.NativeMethods.efl_text_font_bitmap_scalable_set_ptr.Value.Delegate(this.NativeHandle,scalable);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Retrieve the font family and size in use on a given text object.
-    /// This function allows the font name and size of a text object to be queried. Remember that the font name string is still owned by Evas and should not have free() called on it by the caller of the function.
+    /// <summary>The font family, filename and size for a given text object.
+    /// This property controls the font name and size of a text object. The font string has to follow fontconfig&apos;s convention for naming fonts, as it&apos;s the underlying library used to query system fonts by Evas (see the fc-list command&apos;s output, on your system, to get an idea). Alternatively, youe can use the full path to a font file.
     /// 
-    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
+    /// To skip changing font family pass null as font family. To skip changing font size pass 0 as font size.
+    /// 
+    /// When reading it, the font name string is still owned by Evas and should not be freed. See also <see cref="Efl.ITextFont.FontSource"/>.</summary>
     /// <value>The font family name or filename.</value>
     public (System.String, Efl.Font.Size) Font {
         get {
@@ -330,8 +345,10 @@ sealed public  class ITextFontConcrete :
         }
         set { SetFont( value.Item1,  value.Item2); }
     }
-    /// <summary>Get the font file&apos;s path which is being used on a given text object.
-    /// See <see cref="Efl.ITextFont.GetFont"/> for more details.</summary>
+    /// <summary>The font (source) file to be used on a given text object.
+    /// This function allows the font file to be explicitly set for a given text object, overriding system lookup, which will first occur in the given file&apos;s contents.
+    /// 
+    /// See also <see cref="Efl.ITextFont.GetFont"/>.</summary>
     /// <value>The font file&apos;s path.</value>
     public System.String FontSource {
         get { return GetFontSource(); }
@@ -379,9 +396,10 @@ sealed public  class ITextFontConcrete :
         get { return GetFontBitmapScalable(); }
         set { SetFontBitmapScalable(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextFontConcrete.efl_text_font_interface_get();
+        return Efl.TextFontConcrete.efl_text_font_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -390,7 +408,7 @@ sealed public  class ITextFontConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -555,13 +573,23 @@ sealed public  class ITextFontConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_font_bitmap_scalable_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_font_bitmap_scalable_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextFontConcrete.efl_text_font_interface_get();
+            return Efl.TextFontConcrete.efl_text_font_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1143,7 +1171,7 @@ sealed public  class ITextFontConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextFontConcrete_ExtensionMethods {
+public static class EflTextFontConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<System.String> FontSource<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFont, T>magic = null) where T : Efl.ITextFont {
         return new Efl.BindableProperty<System.String>("font_source", fac);

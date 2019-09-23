@@ -64,7 +64,7 @@ public class LoopFd : Efl.LoopConsumer
     }
 
     /// <summary>Called when a read happened on the file descriptor</summary>
-    public event EventHandler ReadEvt
+    public event EventHandler ReadEvent
     {
         add
         {
@@ -102,8 +102,9 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    /// <summary>Method to raise event ReadEvt.</summary>
-    public void OnReadEvt(EventArgs e)
+    /// <summary>Method to raise event ReadEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnReadEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_READ";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -116,7 +117,7 @@ public class LoopFd : Efl.LoopConsumer
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when a write happened on the file descriptor</summary>
-    public event EventHandler WriteEvt
+    public event EventHandler WriteEvent
     {
         add
         {
@@ -154,8 +155,9 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    /// <summary>Method to raise event WriteEvt.</summary>
-    public void OnWriteEvt(EventArgs e)
+    /// <summary>Method to raise event WriteEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWriteEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_WRITE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -168,7 +170,7 @@ public class LoopFd : Efl.LoopConsumer
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when a error occurred on the file descriptor</summary>
-    public event EventHandler ErrorEvt
+    public event EventHandler ErrorEvent
     {
         add
         {
@@ -206,8 +208,9 @@ public class LoopFd : Efl.LoopConsumer
             }
         }
     }
-    /// <summary>Method to raise event ErrorEvt.</summary>
-    public void OnErrorEvt(EventArgs e)
+    /// <summary>Method to raise event ErrorEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnErrorEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_FD_EVENT_ERROR";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -221,27 +224,27 @@ public class LoopFd : Efl.LoopConsumer
     }
     /// <summary>Defines which file descriptor to watch. If it is a file, use file_fd variant.</summary>
     /// <returns>The file descriptor.</returns>
-    virtual public int GetFd() {
+    public virtual int GetFd() {
          var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Defines the fd to watch.</summary>
     /// <param name="fd">The file descriptor.</param>
-    virtual public void SetFd(int fd) {
+    public virtual void SetFd(int fd) {
                                  Efl.LoopFd.NativeMethods.efl_loop_fd_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines which file descriptor to watch when watching a file.</summary>
     /// <returns>The file descriptor.</returns>
-    virtual public int GetFdFile() {
+    public virtual int GetFdFile() {
          var _ret_var = Efl.LoopFd.NativeMethods.efl_loop_fd_file_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Defines the fd to watch on.</summary>
     /// <param name="fd">The file descriptor.</param>
-    virtual public void SetFdFile(int fd) {
+    public virtual void SetFdFile(int fd) {
                                  Efl.LoopFd.NativeMethods.efl_loop_fd_file_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fd);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -268,7 +271,7 @@ public class LoopFd : Efl.LoopConsumer
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -313,7 +316,17 @@ public class LoopFd : Efl.LoopConsumer
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_fd_file_set"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_fd_file_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

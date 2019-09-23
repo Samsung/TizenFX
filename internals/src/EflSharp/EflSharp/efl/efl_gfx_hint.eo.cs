@@ -90,7 +90,7 @@ namespace Gfx {
 
 /// <summary>Efl graphics hint interface
 /// (Since EFL 1.22)</summary>
-[Efl.Gfx.IHintConcrete.NativeMethods]
+[Efl.Gfx.HintConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IHint : 
     Efl.Eo.IWrapper, IDisposable
@@ -141,11 +141,7 @@ void SetHintSizeMax(Eina.Size2D sz);
 /// (Since EFL 1.22)</summary>
 /// <returns>Maximum size (hint) in pixels.</returns>
 Eina.Size2D GetHintSizeRestrictedMax();
-    /// <summary>This function is protected as it is meant for widgets to indicate their &quot;intrinsic&quot; maximum size.
-/// (Since EFL 1.22)</summary>
-/// <param name="sz">Maximum size (hint) in pixels.</param>
-void SetHintSizeRestrictedMax(Eina.Size2D sz);
-    /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
+        /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
 /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMax"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMax"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s maximum size.
 /// (Since EFL 1.22)</summary>
 /// <returns>Maximum size (hint) in pixels.</returns>
@@ -176,11 +172,7 @@ void SetHintSizeMin(Eina.Size2D sz);
 /// (Since EFL 1.22)</summary>
 /// <returns>Minimum size (hint) in pixels.</returns>
 Eina.Size2D GetHintSizeRestrictedMin();
-    /// <summary>This function is protected as it is meant for widgets to indicate their &quot;intrinsic&quot; minimum size.
-/// (Since EFL 1.22)</summary>
-/// <param name="sz">Minimum size (hint) in pixels.</param>
-void SetHintSizeRestrictedMin(Eina.Size2D sz);
-    /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
+        /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
 /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
 /// (Since EFL 1.22)</summary>
 /// <returns>Minimum size (hint) in pixels.</returns>
@@ -232,26 +224,30 @@ void SetHintWeight(double x, double y);
     /// <summary>Hints for an object&apos;s alignment.
 /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
 /// 
-/// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+/// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+/// 
+/// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
 /// 
 /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
 /// 
 /// Note: Default alignment hint values are 0.5, for both axes.
 /// (Since EFL 1.22)</summary>
-/// <param name="x">Double, ranging from 0.0 to 1.0.</param>
-/// <param name="y">Double, ranging from 0.0 to 1.0.</param>
+/// <param name="x">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</param>
+/// <param name="y">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end.</param>
 void GetHintAlign(out double x, out double y);
     /// <summary>Hints for an object&apos;s alignment.
 /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
 /// 
-/// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+/// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+/// 
+/// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
 /// 
 /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
 /// 
 /// Note: Default alignment hint values are 0.5, for both axes.
 /// (Since EFL 1.22)</summary>
-/// <param name="x">Double, ranging from 0.0 to 1.0.</param>
-/// <param name="y">Double, ranging from 0.0 to 1.0.</param>
+/// <param name="x">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</param>
+/// <param name="y">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end.</param>
 void SetHintAlign(double x, double y);
     /// <summary>Hints for an object&apos;s fill property that used to specify &quot;justify&quot; or &quot;fill&quot; by some users. <see cref="Efl.Gfx.IHint.GetHintFill"/> specify whether to fill the space inside the boundaries of a container/manager.
 /// Maximum hints should be enforced with higher priority, if they are set. Also, any <see cref="Efl.Gfx.IHint.GetHintMargin"/> set on objects should add up to the object space on the final scene composition.
@@ -279,7 +275,7 @@ void GetHintFill(out bool x, out bool y);
 void SetHintFill(bool x, bool y);
                                                                                     /// <summary>Object hints changed.
     /// (Since EFL 1.22)</summary>
-    event EventHandler HintsChangedEvt;
+    event EventHandler HintsChangedEvent;
     /// <summary>Defines the aspect ratio to respect when scaling this object.
     /// The aspect ratio is defined as the width / height ratio of the object. Depending on the object and its container, this hint may or may not be fully respected.
     /// 
@@ -318,7 +314,6 @@ void SetHintFill(bool x, bool y);
     /// <value>Maximum size (hint) in pixels.</value>
     Eina.Size2D HintSizeRestrictedMax {
         get;
-        set;
     }
     /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
     /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMax"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMax"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s maximum size.
@@ -353,7 +348,6 @@ void SetHintFill(bool x, bool y);
     /// <value>Minimum size (hint) in pixels.</value>
     Eina.Size2D HintSizeRestrictedMin {
         get;
-        set;
     }
     /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
     /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
@@ -389,13 +383,15 @@ void SetHintFill(bool x, bool y);
     /// <summary>Hints for an object&apos;s alignment.
     /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
     /// 
-    /// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+    /// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+    /// 
+    /// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
     /// 
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
     /// 
     /// Note: Default alignment hint values are 0.5, for both axes.
     /// (Since EFL 1.22)</summary>
-    /// <value>Double, ranging from 0.0 to 1.0.</value>
+    /// <value>Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</value>
     (double, double) HintAlign {
         get;
         set;
@@ -417,7 +413,7 @@ void SetHintFill(bool x, bool y);
 }
 /// <summary>Efl graphics hint interface
 /// (Since EFL 1.22)</summary>
-sealed public  class IHintConcrete :
+public sealed class HintConcrete :
     Efl.Eo.EoWrapper
     , IHint
     
@@ -427,7 +423,7 @@ sealed public  class IHintConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IHintConcrete))
+            if (((object)this).GetType() == typeof(HintConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -441,7 +437,7 @@ sealed public  class IHintConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IHintConcrete(ConstructingHandle ch) : base(ch)
+    private HintConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -450,13 +446,13 @@ sealed public  class IHintConcrete :
     /// <summary>Initializes a new instance of the <see cref="IHint"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IHintConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private HintConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Object hints changed.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler HintsChangedEvt
+    public event EventHandler HintsChangedEvent
     {
         add
         {
@@ -494,8 +490,9 @@ sealed public  class IHintConcrete :
             }
         }
     }
-    /// <summary>Method to raise event HintsChangedEvt.</summary>
-    public void OnHintsChangedEvt(EventArgs e)
+    /// <summary>Method to raise event HintsChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnHintsChangedEvent(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_HINTS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -507,6 +504,7 @@ sealed public  class IHintConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
     /// <summary>Defines the aspect ratio to respect when scaling this object.
     /// The aspect ratio is defined as the width / height ratio of the object. Depending on the object and its container, this hint may or may not be fully respected.
     /// 
@@ -516,7 +514,7 @@ sealed public  class IHintConcrete :
     /// <param name="sz">Base size to use for aspecting.</param>
     public void GetHintAspect(out Efl.Gfx.HintAspect mode, out Eina.Size2D sz) {
                                  var _out_sz = new Eina.Size2D.NativeStruct();
-                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_aspect_get_ptr.Value.Delegate(this.NativeHandle,out mode, out _out_sz);
+                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_aspect_get_ptr.Value.Delegate(this.NativeHandle,out mode, out _out_sz);
         Eina.Error.RaiseIfUnhandledException();
                 sz = _out_sz;
                          }
@@ -529,7 +527,7 @@ sealed public  class IHintConcrete :
     /// <param name="sz">Base size to use for aspecting.</param>
     public void SetHintAspect(Efl.Gfx.HintAspect mode, Eina.Size2D sz) {
                  Eina.Size2D.NativeStruct _in_sz = sz;
-                                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_aspect_set_ptr.Value.Delegate(this.NativeHandle,mode, _in_sz);
+                                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_aspect_set_ptr.Value.Delegate(this.NativeHandle,mode, _in_sz);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints on the object&apos;s maximum size.
@@ -545,7 +543,7 @@ sealed public  class IHintConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</returns>
     public Eina.Size2D GetHintSizeMax() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_max_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_max_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -563,23 +561,23 @@ sealed public  class IHintConcrete :
     /// <param name="sz">Maximum size (hint) in pixels, (-1, -1) by default for canvas objects).</param>
     public void SetHintSizeMax(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_max_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
+                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_max_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the &quot;intrinsic&quot; maximum size of this object.
     /// (Since EFL 1.22)</summary>
     /// <returns>Maximum size (hint) in pixels.</returns>
     public Eina.Size2D GetHintSizeRestrictedMax() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This function is protected as it is meant for widgets to indicate their &quot;intrinsic&quot; maximum size.
     /// (Since EFL 1.22)</summary>
     /// <param name="sz">Maximum size (hint) in pixels.</param>
-    public void SetHintSizeRestrictedMax(Eina.Size2D sz) {
+    protected void SetHintSizeRestrictedMax(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
+                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_restricted_max_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
@@ -587,7 +585,7 @@ sealed public  class IHintConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>Maximum size (hint) in pixels.</returns>
     public Eina.Size2D GetHintSizeCombinedMax() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_combined_max_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_combined_max_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -602,7 +600,7 @@ sealed public  class IHintConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>Minimum size (hint) in pixels.</returns>
     public Eina.Size2D GetHintSizeMin() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_min_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_min_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -618,23 +616,23 @@ sealed public  class IHintConcrete :
     /// <param name="sz">Minimum size (hint) in pixels.</param>
     public void SetHintSizeMin(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_min_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
+                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_min_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the &quot;intrinsic&quot; minimum size of this object.
     /// (Since EFL 1.22)</summary>
     /// <returns>Minimum size (hint) in pixels.</returns>
     public Eina.Size2D GetHintSizeRestrictedMin() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_min_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_restricted_min_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This function is protected as it is meant for widgets to indicate their &quot;intrinsic&quot; minimum size.
     /// (Since EFL 1.22)</summary>
     /// <param name="sz">Minimum size (hint) in pixels.</param>
-    public void SetHintSizeRestrictedMin(Eina.Size2D sz) {
+    protected void SetHintSizeRestrictedMin(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_restricted_min_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
+                        Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_restricted_min_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
@@ -642,7 +640,7 @@ sealed public  class IHintConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>Minimum size (hint) in pixels.</returns>
     public Eina.Size2D GetHintSizeCombinedMin() {
-         var _ret_var = Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_size_combined_min_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_size_combined_min_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -658,7 +656,7 @@ sealed public  class IHintConcrete :
     /// <param name="t">Integer to specify top padding.</param>
     /// <param name="b">Integer to specify bottom padding.</param>
     public void GetHintMargin(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_margin_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_margin_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Hints for an object&apos;s margin or padding space.
@@ -673,7 +671,7 @@ sealed public  class IHintConcrete :
     /// <param name="t">Integer to specify top padding.</param>
     /// <param name="b">Integer to specify bottom padding.</param>
     public void SetHintMargin(int l, int r, int t, int b) {
-                                                                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_margin_set_ptr.Value.Delegate(this.NativeHandle,l, r, t, b);
+                                                                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_margin_set_ptr.Value.Delegate(this.NativeHandle,l, r, t, b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Hints for an object&apos;s weight.
@@ -686,7 +684,7 @@ sealed public  class IHintConcrete :
     /// <param name="x">Non-negative double value to use as horizontal weight hint.</param>
     /// <param name="y">Non-negative double value to use as vertical weight hint.</param>
     public void GetHintWeight(out double x, out double y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_weight_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_weight_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints for an object&apos;s weight.
@@ -699,37 +697,41 @@ sealed public  class IHintConcrete :
     /// <param name="x">Non-negative double value to use as horizontal weight hint.</param>
     /// <param name="y">Non-negative double value to use as vertical weight hint.</param>
     public void SetHintWeight(double x, double y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_weight_set_ptr.Value.Delegate(this.NativeHandle,x, y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_weight_set_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints for an object&apos;s alignment.
     /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
     /// 
-    /// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+    /// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+    /// 
+    /// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
     /// 
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
     /// 
     /// Note: Default alignment hint values are 0.5, for both axes.
     /// (Since EFL 1.22)</summary>
-    /// <param name="x">Double, ranging from 0.0 to 1.0.</param>
-    /// <param name="y">Double, ranging from 0.0 to 1.0.</param>
+    /// <param name="x">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</param>
+    /// <param name="y">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end.</param>
     public void GetHintAlign(out double x, out double y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_align_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_align_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints for an object&apos;s alignment.
     /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
     /// 
-    /// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+    /// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+    /// 
+    /// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
     /// 
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
     /// 
     /// Note: Default alignment hint values are 0.5, for both axes.
     /// (Since EFL 1.22)</summary>
-    /// <param name="x">Double, ranging from 0.0 to 1.0.</param>
-    /// <param name="y">Double, ranging from 0.0 to 1.0.</param>
+    /// <param name="x">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</param>
+    /// <param name="y">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end.</param>
     public void SetHintAlign(double x, double y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_align_set_ptr.Value.Delegate(this.NativeHandle,x, y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_align_set_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints for an object&apos;s fill property that used to specify &quot;justify&quot; or &quot;fill&quot; by some users. <see cref="Efl.Gfx.IHint.GetHintFill"/> specify whether to fill the space inside the boundaries of a container/manager.
@@ -744,7 +746,7 @@ sealed public  class IHintConcrete :
     /// <param name="x"><c>true</c> if to fill the object space, <c>false</c> otherwise, to use as horizontal fill hint.</param>
     /// <param name="y"><c>true</c> if to fill the object space, <c>false</c> otherwise, to use as vertical fill hint.</param>
     public void GetHintFill(out bool x, out bool y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_fill_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_fill_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Hints for an object&apos;s fill property that used to specify &quot;justify&quot; or &quot;fill&quot; by some users. <see cref="Efl.Gfx.IHint.GetHintFill"/> specify whether to fill the space inside the boundaries of a container/manager.
@@ -759,7 +761,7 @@ sealed public  class IHintConcrete :
     /// <param name="x"><c>true</c> if to fill the object space, <c>false</c> otherwise, to use as horizontal fill hint.</param>
     /// <param name="y"><c>true</c> if to fill the object space, <c>false</c> otherwise, to use as vertical fill hint.</param>
     public void SetHintFill(bool x, bool y) {
-                                                         Efl.Gfx.IHintConcrete.NativeMethods.efl_gfx_hint_fill_set_ptr.Value.Delegate(this.NativeHandle,x, y);
+                                                         Efl.Gfx.HintConcrete.NativeMethods.efl_gfx_hint_fill_set_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Defines the aspect ratio to respect when scaling this object.
@@ -805,7 +807,7 @@ sealed public  class IHintConcrete :
     /// <value>Maximum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeRestrictedMax {
         get { return GetHintSizeRestrictedMax(); }
-        set { SetHintSizeRestrictedMax(value); }
+        protected set { SetHintSizeRestrictedMax(value); }
     }
     /// <summary>Read-only maximum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> and <see cref="Efl.Gfx.IHint.HintSizeMax"/> hints.
     /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMax"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMax"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMax"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s maximum size.
@@ -840,7 +842,7 @@ sealed public  class IHintConcrete :
     /// <value>Minimum size (hint) in pixels.</value>
     public Eina.Size2D HintSizeRestrictedMin {
         get { return GetHintSizeRestrictedMin(); }
-        set { SetHintSizeRestrictedMin(value); }
+        protected set { SetHintSizeRestrictedMin(value); }
     }
     /// <summary>Read-only minimum size combining both <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> and <see cref="Efl.Gfx.IHint.HintSizeMin"/> hints.
     /// <see cref="Efl.Gfx.IHint.HintSizeRestrictedMin"/> is intended for mostly internal usage and widget developers, and <see cref="Efl.Gfx.IHint.HintSizeMin"/> is intended to be set from application side. <see cref="Efl.Gfx.IHint.GetHintSizeCombinedMin"/> combines both values by taking their repective maximum (in both width and height), and is used internally to get an object&apos;s minimum size.
@@ -888,13 +890,15 @@ sealed public  class IHintConcrete :
     /// <summary>Hints for an object&apos;s alignment.
     /// These are hints on how to align an object inside the boundaries of a container/manager. Accepted values are in the 0.0 to 1.0 range.
     /// 
-    /// For the horizontal component, 0.0 means to the left, 1.0 means to the right. Analogously, for the vertical component, 0.0 to the top, 1.0 means to the bottom.
+    /// For the horizontal component, 0.0 means the start of the axis in the direction that the current language reads, 1.0 means the end of the axis.
+    /// 
+    /// For the vertical component, 0.0 to the top, 1.0 means to the bottom.
     /// 
     /// This is not a size enforcement in any way, it&apos;s just a hint that should be used whenever appropriate.
     /// 
     /// Note: Default alignment hint values are 0.5, for both axes.
     /// (Since EFL 1.22)</summary>
-    /// <value>Double, ranging from 0.0 to 1.0.</value>
+    /// <value>Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end.</value>
     public (double, double) HintAlign {
         get {
             double _out_x = default(double);
@@ -923,9 +927,10 @@ sealed public  class IHintConcrete :
         }
         set { SetHintFill( value.Item1,  value.Item2); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IHintConcrete.efl_gfx_hint_interface_get();
+        return Efl.Gfx.HintConcrete.efl_gfx_hint_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -934,7 +939,7 @@ sealed public  class IHintConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -989,16 +994,6 @@ sealed public  class IHintConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_max_get_static_delegate) });
             }
 
-            if (efl_gfx_hint_size_restricted_max_set_static_delegate == null)
-            {
-                efl_gfx_hint_size_restricted_max_set_static_delegate = new efl_gfx_hint_size_restricted_max_set_delegate(hint_size_restricted_max_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetHintSizeRestrictedMax") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_max_set_static_delegate) });
-            }
-
             if (efl_gfx_hint_size_combined_max_get_static_delegate == null)
             {
                 efl_gfx_hint_size_combined_max_get_static_delegate = new efl_gfx_hint_size_combined_max_get_delegate(hint_size_combined_max_get);
@@ -1037,16 +1032,6 @@ sealed public  class IHintConcrete :
             if (methods.FirstOrDefault(m => m.Name == "GetHintSizeRestrictedMin") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_min_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_min_get_static_delegate) });
-            }
-
-            if (efl_gfx_hint_size_restricted_min_set_static_delegate == null)
-            {
-                efl_gfx_hint_size_restricted_min_set_static_delegate = new efl_gfx_hint_size_restricted_min_set_delegate(hint_size_restricted_min_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetHintSizeRestrictedMin") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_size_restricted_min_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_size_restricted_min_set_static_delegate) });
             }
 
             if (efl_gfx_hint_size_combined_min_get_static_delegate == null)
@@ -1139,13 +1124,23 @@ sealed public  class IHintConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_hint_fill_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_hint_fill_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IHintConcrete.efl_gfx_hint_interface_get();
+            return Efl.Gfx.HintConcrete.efl_gfx_hint_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1339,34 +1334,6 @@ sealed public  class IHintConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_set_api_delegate> efl_gfx_hint_size_restricted_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_max_set_api_delegate>(Module, "efl_gfx_hint_size_restricted_max_set");
 
-        private static void hint_size_restricted_max_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
-        {
-            Eina.Log.Debug("function efl_gfx_hint_size_restricted_max_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        Eina.Size2D _in_sz = sz;
-                            
-                try
-                {
-                    ((IHint)ws.Target).SetHintSizeRestrictedMax(_in_sz);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_gfx_hint_size_restricted_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), sz);
-            }
-        }
-
-        private static efl_gfx_hint_size_restricted_max_set_delegate efl_gfx_hint_size_restricted_max_set_static_delegate;
-
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_combined_max_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1518,34 +1485,6 @@ sealed public  class IHintConcrete :
         public delegate void efl_gfx_hint_size_restricted_min_set_api_delegate(System.IntPtr obj,  Eina.Size2D.NativeStruct sz);
 
         public static Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_min_set_api_delegate> efl_gfx_hint_size_restricted_min_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_hint_size_restricted_min_set_api_delegate>(Module, "efl_gfx_hint_size_restricted_min_set");
-
-        private static void hint_size_restricted_min_set(System.IntPtr obj, System.IntPtr pd, Eina.Size2D.NativeStruct sz)
-        {
-            Eina.Log.Debug("function efl_gfx_hint_size_restricted_min_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        Eina.Size2D _in_sz = sz;
-                            
-                try
-                {
-                    ((IHint)ws.Target).SetHintSizeRestrictedMin(_in_sz);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_gfx_hint_size_restricted_min_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), sz);
-            }
-        }
-
-        private static efl_gfx_hint_size_restricted_min_set_delegate efl_gfx_hint_size_restricted_min_set_static_delegate;
 
         
         private delegate Eina.Size2D.NativeStruct efl_gfx_hint_size_combined_min_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1873,7 +1812,7 @@ sealed public  class IHintConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIHintConcrete_ExtensionMethods {
+public static class Efl_GfxHintConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<Eina.Size2D> HintSizeMax<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IHint, T>magic = null) where T : Efl.Gfx.IHint {
         return new Efl.BindableProperty<Eina.Size2D>("hint_size_max", fac);

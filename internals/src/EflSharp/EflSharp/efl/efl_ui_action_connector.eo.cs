@@ -68,7 +68,7 @@ public class ActionConnector : Efl.Eo.EoWrapper
     /// <summary>This will listen to the standard &quot;click&quot; events on a theme and emit the appropriate events through the <see cref="Efl.Input.IClickable"/> interface.
     /// Using these methods widgets do not need to listen to the theme signals. This class does it and calls the correct clickable functions.
     /// 
-    /// This handles theme signals &quot;efl,action,press&quot;, &quot;efl,action,unpress&quot; and &quot;efl,action,mouse_out&quot;, and the <see cref="Efl.Input.IInterface.PointerMoveEvt"/> event.</summary>
+    /// This handles theme signals &quot;efl,action,press&quot;, &quot;efl,action,unpress&quot; and &quot;efl,action,mouse_out&quot;, and the <see cref="Efl.Input.IInterface.PointerMoveEvent"/> event.</summary>
     /// <param name="kw_object">The object to listen on.</param>
     /// <param name="clickable">The object to call the clickable methods on.</param>
     public static void BindClickableToTheme(Efl.Canvas.Layout kw_object, Efl.Input.IClickable clickable) {
@@ -78,7 +78,7 @@ public class ActionConnector : Efl.Eo.EoWrapper
     /// <summary>This will listen to the standard &quot;click&quot; events on an object, and emit the appropriate events through the <see cref="Efl.Input.IClickable"/> interface.
     /// Using these methods widgets do not need to listen to the object events. This class does it and calls the correct clickable functions.
     /// 
-    /// The handled events are <see cref="Efl.Input.IInterface.PointerUpEvt"/> and <see cref="Efl.Input.IInterface.PointerDownEvt"/>.</summary>
+    /// The handled events are <see cref="Efl.Input.IInterface.PointerUpEvent"/> and <see cref="Efl.Input.IInterface.PointerDownEvent"/>.</summary>
     /// <param name="kw_object">The object to listen on.</param>
     /// <param name="clickable">The object to call the clickable methods on.</param>
     public static void BindClickableToObject(Efl.Input.IInterface kw_object, Efl.Input.IClickable clickable) {
@@ -96,10 +96,20 @@ public class ActionConnector : Efl.Eo.EoWrapper
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

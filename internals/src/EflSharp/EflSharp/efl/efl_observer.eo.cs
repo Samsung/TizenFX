@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Efl observer interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IObserverConcrete.NativeMethods]
+[Efl.ObserverConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IObserver : 
     Efl.Eo.IWrapper, IDisposable
@@ -23,7 +23,7 @@ void Update(Efl.Object obs, System.String key, System.IntPtr data);
     }
 /// <summary>Efl observer interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IObserverConcrete :
+public sealed class ObserverConcrete :
     Efl.Eo.EoWrapper
     , IObserver
     
@@ -33,7 +33,7 @@ sealed public  class IObserverConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IObserverConcrete))
+            if (((object)this).GetType() == typeof(ObserverConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -47,7 +47,7 @@ sealed public  class IObserverConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IObserverConcrete(ConstructingHandle ch) : base(ch)
+    private ObserverConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -56,21 +56,23 @@ sealed public  class IObserverConcrete :
     /// <summary>Initializes a new instance of the <see cref="IObserver"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IObserverConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ObserverConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Update observer according to the changes of observable object.</summary>
     /// <param name="obs">An observable object</param>
     /// <param name="key">A key to classify observer groups</param>
     /// <param name="data">Required data to update the observer, usually passed by observable object</param>
     public void Update(Efl.Object obs, System.String key, System.IntPtr data) {
-                                                                                 Efl.IObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate(this.NativeHandle,obs, key, data);
+                                                                                 Efl.ObserverConcrete.NativeMethods.efl_observer_update_ptr.Value.Delegate(this.NativeHandle,obs, key, data);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IObserverConcrete.efl_observer_interface_get();
+        return Efl.ObserverConcrete.efl_observer_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -79,7 +81,7 @@ sealed public  class IObserverConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -94,13 +96,23 @@ sealed public  class IObserverConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_observer_update"), func = Marshal.GetFunctionPointerForDelegate(efl_observer_update_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IObserverConcrete.efl_observer_interface_get();
+            return Efl.ObserverConcrete.efl_observer_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -148,7 +160,7 @@ sealed public  class IObserverConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIObserverConcrete_ExtensionMethods {
+public static class EflObserverConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

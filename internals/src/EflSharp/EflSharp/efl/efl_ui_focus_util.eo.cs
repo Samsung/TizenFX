@@ -12,7 +12,8 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>EFL UI Focus Util class</summary>
+/// <summary>EFL UI Focus Utility class.
+/// This class contains a series of static methods that simplify common focus management operations. There&apos;s no need to instantiate this class.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Focus.Util.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -66,18 +67,23 @@ public class Util : Efl.Object
     {
     }
 
-    /// <summary>Focus helper method</summary>
-    /// <param name="focus_elem">Focus element</param>
+    /// <summary>Sets the focus to the given object.</summary>
+    /// <param name="focus_elem">Object to receive focus.</param>
     public static void Focus(Efl.Ui.Focus.IObject focus_elem) {
                                  Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_focus_ptr.Value.Delegate(focus_elem);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the highest manager in the redirect property</summary>
+    /// <summary>Gets the highest manager in the redirect chain.</summary>
+    /// <param name="manager">Manager to start looking from.</param>
     public static Efl.Ui.Focus.IManager ActiveManager(Efl.Ui.Focus.IManager manager) {
                                  var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_active_manager_ptr.Value.Delegate(manager);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+    /// <summary>Returns the complementary (opposite) focus direction.
+    /// The defined opposites are Left-Right, Up-Down and Next-Previous.</summary>
+    /// <param name="dir">Direction to complement.</param>
+    /// <returns>The opposite direction.</returns>
     public static Efl.Ui.Focus.Direction DirectionComplement(Efl.Ui.Focus.Direction dir) {
                                  var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_direction_complement_ptr.Value.Delegate(dir);
         Eina.Error.RaiseIfUnhandledException();
@@ -94,10 +100,20 @@ public class Util : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

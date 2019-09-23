@@ -278,17 +278,31 @@ public class Hash<TKey, TValue> : IEnumerable<KeyValuePair<TKey, TValue>>, IDi
         IntPtr nk = GetNativePtr<TKey>(gchnk, ForceRefKey<TKey>());
         var r = eina_hash_del_by_key(Handle, nk);
         FreeNativeIndirection<TKey>(gchnk, ForceRefKey<TKey>());
-        // NativeFreeRef<TKey>(nk, OwnKey && r);
         return r;
     }
 
+    /// <summary>Searches this hash for <c>val</c> and deletes it from the hash, also deleting it.</summary>
+    /// <returns><c>true</c> if the value was found and deleted, false if it was <c>null</c> or not found.</returns>
     public bool DelByValue(TValue val)
     {
-        IntPtr gchnv = CopyNativeObject(val, false);
-        IntPtr nv = GetNativePtr<TValue>(gchnv, false);
-        var r = eina_hash_del_by_data(Handle, nv);
-        FreeNativeIndirection<TValue>(gchnv, false);
-        return r;
+        // We don't use the C version of `eina_hash_del_by_data` because it requires the exact pointer
+        // we passed to add(). As our hashes store the data by pointer, this makes it harder to pass the
+        // same value.
+        if (val == null)
+        {
+            return false;
+        }
+
+        foreach (var pair in this)
+        {
+            if (pair.Value != null && val.Equals(pair.Value))
+            {
+                return this.DelByKey(pair.Key);
+            }
+        }
+
+        return false;
+
     }
 
     public void Remove(TKey key)

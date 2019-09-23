@@ -12,7 +12,7 @@ namespace Gfx {
 
 /// <summary>Common APIs for all loadable 2D images.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IImageLoadControllerConcrete.NativeMethods]
+[Efl.Gfx.ImageLoadControllerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IImageLoadController : 
     Efl.Eo.IWrapper, IDisposable
@@ -24,24 +24,27 @@ Eina.Size2D GetLoadSize();
 /// EFL will try to load an image of the requested size but does not guarantee an exact match between the request and the loaded image dimensions.</summary>
 /// <param name="size">The image load size.</param>
 void SetLoadSize(Eina.Size2D size);
-    /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-/// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+/// Most useful for the SVG image loader.</summary>
 /// <returns>The DPI resolution.</returns>
 double GetLoadDpi();
-    /// <summary>Set the DPI resolution of an image object&apos;s source image.
-/// This function sets the DPI resolution of a given loaded canvas image. Most useful for the SVG image loader.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+/// Most useful for the SVG image loader.</summary>
 /// <param name="dpi">The DPI resolution.</param>
 void SetLoadDpi(double dpi);
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-/// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise</returns>
+/// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise.</returns>
 bool GetLoadRegionSupport();
-    /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
+    /// <summary>Inform a given image object to load a selective region of its source image.
+/// This property is useful when one is not showing all of an image&apos;s area on its image object.
+/// 
+/// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
 /// <returns>A region of the image.</returns>
 Eina.Rect GetLoadRegion();
     /// <summary>Inform a given image object to load a selective region of its source image.
-/// This function is useful when one is not showing all of an image&apos;s area on its image object.
+/// This property is useful when one is not showing all of an image&apos;s area on its image object.
 /// 
-/// Note: The image loader for the image format in question has to support selective region loading in order for this function to work.</summary>
+/// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
 /// <param name="region">A region of the image.</param>
 void SetLoadRegion(Eina.Rect region);
     /// <summary>Defines whether the orientation information in the image file should be honored.
@@ -57,52 +60,56 @@ void SetLoadOrientation(bool enable);
 /// 
 /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
 /// 
-/// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+/// Powers of two (2, 4, 8, ...) are best supported (especially with JPEG).</summary>
 /// <returns>The scale down dividing factor.</returns>
 int GetLoadScaleDown();
     /// <summary>Requests the image loader to scale down by <c>div</c> times. Call this before starting the actual image load.</summary>
 /// <param name="div">The scale down dividing factor.</param>
 void SetLoadScaleDown(int div);
-    /// <summary>Initial load should skip header check and leave it all to data load
-/// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-/// <returns>Will be true if header is to be skipped.</returns>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+/// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+/// <returns><c>true</c> if header is to be skipped.</returns>
 bool GetLoadSkipHeader();
-    /// <summary>Set the skip header state for susbsequent loads of a file.</summary>
-/// <param name="skip">Will be true if header is to be skipped.</param>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+/// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+/// <param name="skip"><c>true</c> if header is to be skipped.</param>
 void SetLoadSkipHeader(bool skip);
     /// <summary>Begin preloading an image object&apos;s image data in the background.
-/// Once the background task is complete the event <c>load</c>,done will be emitted.</summary>
+/// Once the background task is complete the event @[.load,done] will be emitted if loading succeeded, @[.load,error] otherwise.</summary>
 void LoadAsyncStart();
     /// <summary>Cancel preloading an image object&apos;s image data in the background.
 /// The object should be left in a state where it has no image data. If cancel is called too late, the image will be kept in memory.</summary>
 void LoadAsyncCancel();
-                                                                /// <summary>Called when he image was loaded</summary>
-    event EventHandler LoadDoneEvt;
-    /// <summary>Called when an error happened during image loading</summary>
-    /// <value><see cref="Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args"/></value>
-    event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt;
+                                                                /// <summary>Emitted after the image has been loaded.</summary>
+    event EventHandler LoadDoneEvent;
+    /// <summary>Emitted if an error happened during image loading.</summary>
+    /// <value><see cref="Efl.Gfx.ImageLoadControllerLoadErrorEventArgs"/></value>
+    event EventHandler<Efl.Gfx.ImageLoadControllerLoadErrorEventArgs> LoadErrorEvent;
     /// <summary>The load size of an image.
-    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
+    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like SVG.
     /// 
-    /// By default, the load size is not specified, so it is 0x0.</summary>
+    /// By default, the load size is not specified, so it is <c>0x0</c>.</summary>
     /// <value>The image load size.</value>
     Eina.Size2D LoadSize {
         get;
         set;
     }
-    /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+    /// Most useful for the SVG image loader.</summary>
     /// <value>The DPI resolution.</value>
     double LoadDpi {
         get;
         set;
     }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise.</value>
     bool LoadRegionSupport {
         get;
     }
-    /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
+    /// <summary>Inform a given image object to load a selective region of its source image.
+    /// This property is useful when one is not showing all of an image&apos;s area on its image object.
+    /// 
+    /// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
     /// <value>A region of the image.</value>
     Eina.Rect LoadRegion {
         get;
@@ -120,30 +127,30 @@ void LoadAsyncCancel();
     /// 
     /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
     /// 
-    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// Powers of two (2, 4, 8, ...) are best supported (especially with JPEG).</summary>
     /// <value>The scale down dividing factor.</value>
     int LoadScaleDown {
         get;
         set;
     }
-    /// <summary>Initial load should skip header check and leave it all to data load
-    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-    /// <value>Will be true if header is to be skipped.</value>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+    /// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <value><c>true</c> if header is to be skipped.</value>
     bool LoadSkipHeader {
         get;
         set;
     }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IImageLoadController.LoadErrorEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IImageLoadController.LoadErrorEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IImageLoadControllerLoadErrorEvt_Args : EventArgs {
+public class ImageLoadControllerLoadErrorEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Called when an error happened during image loading</value>
+    /// <value>Emitted if an error happened during image loading.</value>
     public Eina.Error arg { get; set; }
 }
 /// <summary>Common APIs for all loadable 2D images.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IImageLoadControllerConcrete :
+public sealed class ImageLoadControllerConcrete :
     Efl.Eo.EoWrapper
     , IImageLoadController
     
@@ -153,7 +160,7 @@ sealed public  class IImageLoadControllerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IImageLoadControllerConcrete))
+            if (((object)this).GetType() == typeof(ImageLoadControllerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -167,7 +174,7 @@ sealed public  class IImageLoadControllerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IImageLoadControllerConcrete(ConstructingHandle ch) : base(ch)
+    private ImageLoadControllerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -176,12 +183,12 @@ sealed public  class IImageLoadControllerConcrete :
     /// <summary>Initializes a new instance of the <see cref="IImageLoadController"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IImageLoadControllerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ImageLoadControllerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Called when he image was loaded</summary>
-    public event EventHandler LoadDoneEvt
+    /// <summary>Emitted after the image has been loaded.</summary>
+    public event EventHandler LoadDoneEvent
     {
         add
         {
@@ -219,8 +226,9 @@ sealed public  class IImageLoadControllerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event LoadDoneEvt.</summary>
-    public void OnLoadDoneEvt(EventArgs e)
+    /// <summary>Method to raise event LoadDoneEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLoadDoneEvent(EventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_DONE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -232,9 +240,9 @@ sealed public  class IImageLoadControllerConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when an error happened during image loading</summary>
-    /// <value><see cref="Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args"/></value>
-    public event EventHandler<Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args> LoadErrorEvt
+    /// <summary>Emitted if an error happened during image loading.</summary>
+    /// <value><see cref="Efl.Gfx.ImageLoadControllerLoadErrorEventArgs"/></value>
+    public event EventHandler<Efl.Gfx.ImageLoadControllerLoadErrorEventArgs> LoadErrorEvent
     {
         add
         {
@@ -245,7 +253,7 @@ sealed public  class IImageLoadControllerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args args = new Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args();
+                        Efl.Gfx.ImageLoadControllerLoadErrorEventArgs args = new Efl.Gfx.ImageLoadControllerLoadErrorEventArgs();
                         args.arg = (Eina.Error)Marshal.PtrToStructure(evt.Info, typeof(Eina.Error));
                         try
                         {
@@ -273,8 +281,9 @@ sealed public  class IImageLoadControllerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event LoadErrorEvt.</summary>
-    public void OnLoadErrorEvt(Efl.Gfx.IImageLoadControllerLoadErrorEvt_Args e)
+    /// <summary>Method to raise event LoadErrorEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLoadErrorEvent(Efl.Gfx.ImageLoadControllerLoadErrorEventArgs e)
     {
         var key = "_EFL_GFX_IMAGE_LOAD_CONTROLLER_EVENT_LOAD_ERROR";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -294,10 +303,11 @@ sealed public  class IImageLoadControllerConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+#pragma warning disable CS0628
     /// <summary>Returns the requested load size.</summary>
     /// <returns>The image load size.</returns>
     public Eina.Size2D GetLoadSize() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -306,53 +316,56 @@ sealed public  class IImageLoadControllerConcrete :
     /// <param name="size">The image load size.</param>
     public void SetLoadSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate(this.NativeHandle,_in_size);
+                        Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_size_set_ptr.Value.Delegate(this.NativeHandle,_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+    /// Most useful for the SVG image loader.</summary>
     /// <returns>The DPI resolution.</returns>
     public double GetLoadDpi() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set the DPI resolution of an image object&apos;s source image.
-    /// This function sets the DPI resolution of a given loaded canvas image. Most useful for the SVG image loader.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+    /// Most useful for the SVG image loader.</summary>
     /// <param name="dpi">The DPI resolution.</param>
     public void SetLoadDpi(double dpi) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate(this.NativeHandle,dpi);
+                                 Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_dpi_set_ptr.Value.Delegate(this.NativeHandle,dpi);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-    /// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise</returns>
+    /// <returns><c>true</c> if region load of the image is supported, <c>false</c> otherwise.</returns>
     public bool GetLoadRegionSupport() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate(this.NativeHandle);
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
-    /// <returns>A region of the image.</returns>
-    public Eina.Rect GetLoadRegion() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_support_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Inform a given image object to load a selective region of its source image.
-    /// This function is useful when one is not showing all of an image&apos;s area on its image object.
+    /// This property is useful when one is not showing all of an image&apos;s area on its image object.
     /// 
-    /// Note: The image loader for the image format in question has to support selective region loading in order for this function to work.</summary>
+    /// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
+    /// <returns>A region of the image.</returns>
+    public Eina.Rect GetLoadRegion() {
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Inform a given image object to load a selective region of its source image.
+    /// This property is useful when one is not showing all of an image&apos;s area on its image object.
+    /// 
+    /// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
     /// <param name="region">A region of the image.</param>
     public void SetLoadRegion(Eina.Rect region) {
          Eina.Rect.NativeStruct _in_region = region;
-                        Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate(this.NativeHandle,_in_region);
+                        Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_region_set_ptr.Value.Delegate(this.NativeHandle,_in_region);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Defines whether the orientation information in the image file should be honored.
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <returns><c>true</c> means that it should honor the orientation information.</returns>
     public bool GetLoadOrientation() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -360,7 +373,7 @@ sealed public  class IImageLoadControllerConcrete :
     /// The orientation can for instance be set in the EXIF tags of a JPEG image. If this flag is <c>false</c>, then the orientation will be ignored at load time, otherwise the image will be loaded with the proper orientation.</summary>
     /// <param name="enable"><c>true</c> means that it should honor the orientation information.</param>
     public void SetLoadOrientation(bool enable) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate(this.NativeHandle,enable);
+                                 Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_orientation_set_ptr.Value.Delegate(this.NativeHandle,enable);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The scale down factor is a divider on the original image size.
@@ -368,67 +381,71 @@ sealed public  class IImageLoadControllerConcrete :
     /// 
     /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
     /// 
-    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// Powers of two (2, 4, 8, ...) are best supported (especially with JPEG).</summary>
     /// <returns>The scale down dividing factor.</returns>
     public int GetLoadScaleDown() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Requests the image loader to scale down by <c>div</c> times. Call this before starting the actual image load.</summary>
     /// <param name="div">The scale down dividing factor.</param>
     public void SetLoadScaleDown(int div) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate(this.NativeHandle,div);
+                                 Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_scale_down_set_ptr.Value.Delegate(this.NativeHandle,div);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Initial load should skip header check and leave it all to data load
-    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-    /// <returns>Will be true if header is to be skipped.</returns>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+    /// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <returns><c>true</c> if header is to be skipped.</returns>
     public bool GetLoadSkipHeader() {
-         var _ret_var = Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set the skip header state for susbsequent loads of a file.</summary>
-    /// <param name="skip">Will be true if header is to be skipped.</param>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+    /// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <param name="skip"><c>true</c> if header is to be skipped.</param>
     public void SetLoadSkipHeader(bool skip) {
-                                 Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate(this.NativeHandle,skip);
+                                 Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_skip_header_set_ptr.Value.Delegate(this.NativeHandle,skip);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Begin preloading an image object&apos;s image data in the background.
-    /// Once the background task is complete the event <c>load</c>,done will be emitted.</summary>
+    /// Once the background task is complete the event @[.load,done] will be emitted if loading succeeded, @[.load,error] otherwise.</summary>
     public void LoadAsyncStart() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_start_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Cancel preloading an image object&apos;s image data in the background.
     /// The object should be left in a state where it has no image data. If cancel is called too late, the image will be kept in memory.</summary>
     public void LoadAsyncCancel() {
-         Efl.Gfx.IImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Gfx.ImageLoadControllerConcrete.NativeMethods.efl_gfx_image_load_controller_load_async_cancel_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>The load size of an image.
-    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like svg.
+    /// The image will be loaded into memory as if it was the specified size instead of its original size. This can save a lot of memory and is important for scalable types like SVG.
     /// 
-    /// By default, the load size is not specified, so it is 0x0.</summary>
+    /// By default, the load size is not specified, so it is <c>0x0</c>.</summary>
     /// <value>The image load size.</value>
     public Eina.Size2D LoadSize {
         get { return GetLoadSize(); }
         set { SetLoadSize(value); }
     }
-    /// <summary>Get the DPI resolution of a loaded image object in the canvas.
-    /// This function returns the DPI resolution of the given canvas image.</summary>
+    /// <summary>The DPI resolution of an image object&apos;s source image.
+    /// Most useful for the SVG image loader.</summary>
     /// <value>The DPI resolution.</value>
     public double LoadDpi {
         get { return GetLoadDpi(); }
         set { SetLoadDpi(value); }
     }
     /// <summary>Indicates whether the <see cref="Efl.Gfx.IImageLoadController.LoadRegion"/> property is supported for the current file.</summary>
-    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise</value>
+    /// <value><c>true</c> if region load of the image is supported, <c>false</c> otherwise.</value>
     public bool LoadRegionSupport {
         get { return GetLoadRegionSupport(); }
     }
-    /// <summary>Retrieve the coordinates of a given image object&apos;s selective (source image) load region.</summary>
+    /// <summary>Inform a given image object to load a selective region of its source image.
+    /// This property is useful when one is not showing all of an image&apos;s area on its image object.
+    /// 
+    /// Note: The image loader for the image format in question has to support selective region loading in order for this function to work (see <see cref="Efl.Gfx.IImageLoadController.GetLoadRegionSupport"/>).</summary>
     /// <value>A region of the image.</value>
     public Eina.Rect LoadRegion {
         get { return GetLoadRegion(); }
@@ -446,22 +463,23 @@ sealed public  class IImageLoadControllerConcrete :
     /// 
     /// This function sets the scale down factor of a given canvas image. Most useful for the SVG image loader but also applies to JPEG, PNG and BMP.
     /// 
-    /// Powers of two (2, 4, 8) are best supported (especially with JPEG)</summary>
+    /// Powers of two (2, 4, 8, ...) are best supported (especially with JPEG).</summary>
     /// <value>The scale down dividing factor.</value>
     public int LoadScaleDown {
         get { return GetLoadScaleDown(); }
         set { SetLoadScaleDown(value); }
     }
-    /// <summary>Initial load should skip header check and leave it all to data load
-    /// If this is true, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
-    /// <value>Will be true if header is to be skipped.</value>
+    /// <summary>Initial load should skip header check and leave it all to data load.
+    /// If this is <c>true</c>, then future loads of images will defer header loading to a preload stage and/or data load later on rather than at the start when the load begins (e.g. when file is set).</summary>
+    /// <value><c>true</c> if header is to be skipped.</value>
     public bool LoadSkipHeader {
         get { return GetLoadSkipHeader(); }
         set { SetLoadSkipHeader(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IImageLoadControllerConcrete.efl_gfx_image_load_controller_interface_get();
+        return Efl.Gfx.ImageLoadControllerConcrete.efl_gfx_image_load_controller_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -470,7 +488,7 @@ sealed public  class IImageLoadControllerConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -625,13 +643,23 @@ sealed public  class IImageLoadControllerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_load_controller_load_async_cancel"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_load_controller_load_async_cancel_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IImageLoadControllerConcrete.efl_gfx_image_load_controller_interface_get();
+            return Efl.Gfx.ImageLoadControllerConcrete.efl_gfx_image_load_controller_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1180,7 +1208,7 @@ sealed public  class IImageLoadControllerConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIImageLoadControllerConcrete_ExtensionMethods {
+public static class Efl_GfxImageLoadControllerConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Eina.Size2D> LoadSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IImageLoadController, T>magic = null) where T : Efl.Gfx.IImageLoadController {
         return new Efl.BindableProperty<Eina.Size2D>("load_size", fac);
     }

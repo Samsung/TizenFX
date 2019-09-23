@@ -158,7 +158,7 @@ namespace Efl
                         };
                         Interop.Eext.eext_rotary_object_event_callback_add(obj.NativeHandle, cb, IntPtr.Zero);
                         s_rotaryObjectEventMap[obj] = cb;
-                        obj.DelEvt += (s, e) => DisableRotaryEventHandler(obj, true);
+                        obj.DelEvent += (s, e) => DisableRotaryEventHandler(obj, true);
                     }
                 }
 

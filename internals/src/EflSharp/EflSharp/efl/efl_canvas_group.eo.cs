@@ -10,16 +10,16 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberAddedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class GroupMemberAddedEvt_Args : EventArgs {
+public class GroupMemberAddedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when a member is added to the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Canvas.Group.MemberRemovedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class GroupMemberRemovedEvt_Args : EventArgs {
+public class GroupMemberRemovedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when a member is removed from the group.</value>
     public Efl.Gfx.IEntity arg { get; set; }
@@ -81,8 +81,8 @@ public class Group : Efl.Canvas.Object
 
     /// <summary>Called when a member is added to the group.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Canvas.GroupMemberAddedEvt_Args"/></value>
-    public event EventHandler<Efl.Canvas.GroupMemberAddedEvt_Args> MemberAddedEvt
+    /// <value><see cref="Efl.Canvas.GroupMemberAddedEventArgs"/></value>
+    public event EventHandler<Efl.Canvas.GroupMemberAddedEventArgs> MemberAddedEvent
     {
         add
         {
@@ -93,8 +93,8 @@ public class Group : Efl.Canvas.Object
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.GroupMemberAddedEvt_Args args = new Efl.Canvas.GroupMemberAddedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.Canvas.GroupMemberAddedEventArgs args = new Efl.Canvas.GroupMemberAddedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -121,8 +121,9 @@ public class Group : Efl.Canvas.Object
             }
         }
     }
-    /// <summary>Method to raise event MemberAddedEvt.</summary>
-    public void OnMemberAddedEvt(Efl.Canvas.GroupMemberAddedEvt_Args e)
+    /// <summary>Method to raise event MemberAddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMemberAddedEvent(Efl.Canvas.GroupMemberAddedEventArgs e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -137,8 +138,8 @@ public class Group : Efl.Canvas.Object
     }
     /// <summary>Called when a member is removed from the group.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Canvas.GroupMemberRemovedEvt_Args"/></value>
-    public event EventHandler<Efl.Canvas.GroupMemberRemovedEvt_Args> MemberRemovedEvt
+    /// <value><see cref="Efl.Canvas.GroupMemberRemovedEventArgs"/></value>
+    public event EventHandler<Efl.Canvas.GroupMemberRemovedEventArgs> MemberRemovedEvent
     {
         add
         {
@@ -149,8 +150,8 @@ public class Group : Efl.Canvas.Object
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Canvas.GroupMemberRemovedEvt_Args args = new Efl.Canvas.GroupMemberRemovedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.Canvas.GroupMemberRemovedEventArgs args = new Efl.Canvas.GroupMemberRemovedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -177,8 +178,9 @@ public class Group : Efl.Canvas.Object
             }
         }
     }
-    /// <summary>Method to raise event MemberRemovedEvt.</summary>
-    public void OnMemberRemovedEvt(Efl.Canvas.GroupMemberRemovedEvt_Args e)
+    /// <summary>Method to raise event MemberRemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMemberRemovedEvent(Efl.Canvas.GroupMemberRemovedEventArgs e)
     {
         var key = "_EFL_CANVAS_GROUP_EVENT_MEMBER_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -199,7 +201,7 @@ public class Group : Efl.Canvas.Object
     /// See also <see cref="Efl.Canvas.Group.CalculateGroup"/>.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the group layout needs to be recalculated, <c>false</c> otherwise</returns>
-    virtual public bool GetGroupNeedRecalculate() {
+    public virtual bool GetGroupNeedRecalculate() {
          var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -212,14 +214,14 @@ public class Group : Efl.Canvas.Object
     /// See also <see cref="Efl.Canvas.Group.CalculateGroup"/>.
     /// (Since EFL 1.22)</summary>
     /// <param name="value"><c>true</c> if the group layout needs to be recalculated, <c>false</c> otherwise</param>
-    virtual public void SetGroupNeedRecalculate(bool value) {
+    public virtual void SetGroupNeedRecalculate(bool value) {
                                  Efl.Canvas.Group.NativeMethods.efl_canvas_group_need_recalculate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the internal clipper.
     /// (Since EFL 1.22)</summary>
     /// <returns>A clipper rectangle.</returns>
-    virtual protected Efl.Canvas.Object GetGroupClipper() {
+    protected virtual Efl.Canvas.Object GetGroupClipper() {
          var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_clipper_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -227,14 +229,14 @@ public class Group : Efl.Canvas.Object
     /// <summary>Marks the object as dirty.
     /// This also forcefully marks the given object as needing recalculation. As an effect, on the next rendering cycle its <see cref="Efl.Canvas.Group.CalculateGroup"/> method will be called.
     /// (Since EFL 1.22)</summary>
-    virtual public void GroupChange() {
+    public virtual void GroupChange() {
          Efl.Canvas.Group.NativeMethods.efl_canvas_group_change_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Triggers an immediate recalculation of this object&apos;s geometry.
     /// This will also reset the flag <see cref="Efl.Canvas.Group.GroupNeedRecalculate"/>.
     /// (Since EFL 1.22)</summary>
-    virtual public void CalculateGroup() {
+    public virtual void CalculateGroup() {
          Efl.Canvas.Group.NativeMethods.efl_canvas_group_calculate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
@@ -242,7 +244,7 @@ public class Group : Efl.Canvas.Object
     /// This returns the list of &quot;smart&quot; children. This might be different from both the <see cref="Efl.Object"/> children list as well as the <see cref="Efl.IContainer"/> content list.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator to object children</returns>
-    virtual public Eina.Iterator<Efl.Canvas.Object> GroupMembersIterate() {
+    public virtual Eina.Iterator<Efl.Canvas.Object> GroupMembersIterate() {
          var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_members_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Canvas.Object>(_ret_var, true);
@@ -255,7 +257,7 @@ public class Group : Efl.Canvas.Object
     /// See also <see cref="Efl.Canvas.Group.GroupMemberRemove"/>. See also <see cref="Efl.Canvas.Group.IsGroupMember"/>.
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">The member object.</param>
-    virtual public void AddGroupMember(Efl.Canvas.Object sub_obj) {
+    public virtual void AddGroupMember(Efl.Canvas.Object sub_obj) {
                                  Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -265,7 +267,7 @@ public class Group : Efl.Canvas.Object
     /// See also <see cref="Efl.Canvas.Group.AddGroupMember"/>. See also <see cref="Efl.Canvas.Group.IsGroupMember"/>.
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">The member object to remove.</param>
-    virtual public void GroupMemberRemove(Efl.Canvas.Object sub_obj) {
+    public virtual void GroupMemberRemove(Efl.Canvas.Object sub_obj) {
                                  Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -273,7 +275,7 @@ public class Group : Efl.Canvas.Object
     /// (Since EFL 1.22)</summary>
     /// <param name="sub_obj">A potential sub object.</param>
     /// <returns><c>true</c> if <c>sub_obj</c> is a member of this group.</returns>
-    virtual public bool IsGroupMember(Efl.Canvas.Object sub_obj) {
+    public virtual bool IsGroupMember(Efl.Canvas.Object sub_obj) {
                                  var _ret_var = Efl.Canvas.Group.NativeMethods.efl_canvas_group_member_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -308,7 +310,7 @@ public class Group : Efl.Canvas.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -403,7 +405,17 @@ public class Group : Efl.Canvas.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_group_member_is"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_group_member_is_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

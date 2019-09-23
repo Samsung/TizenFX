@@ -94,7 +94,7 @@ public class WinSocket : Efl.Ui.Win
     /// <param name="svcnum">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
     /// <param name="svcsys">A boolean which when true specifies the creation of a system-wide service to which all users can connect, otherwise the service is private to the user id that created it.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool SocketListen(System.String svcname, int svcnum, bool svcsys) {
+    public virtual bool SocketListen(System.String svcname, int svcnum, bool svcsys) {
                                                                                  var _ret_var = Efl.Ui.WinSocket.NativeMethods.efl_ui_win_socket_listen_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svcname, svcnum, svcsys);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
@@ -110,7 +110,7 @@ public class WinSocket : Efl.Ui.Win
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -125,7 +125,17 @@ public class WinSocket : Efl.Ui.Win
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_win_socket_listen"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_win_socket_listen_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

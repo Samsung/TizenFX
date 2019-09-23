@@ -72,7 +72,7 @@ public abstract class LoopConsumer : Efl.Object
     /// <summary>Gets a handle to the loop.
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl loop</returns>
-    virtual public Efl.Loop GetLoop() {
+    public virtual Efl.Loop GetLoop() {
          var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -85,7 +85,7 @@ public abstract class LoopConsumer : Efl.Object
     /// <param name="result">The value to be delivered.
     /// Note that the value contents must survive this function scope, that is, do not use stack allocated blobs, arrays, structures or types that keep references to memory you give. Values will be automatically cleaned up using ref eina_value_flush() once they are unused (no more future or futures returned a new value)</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
-    virtual public  Eina.Future FutureResolved(Eina.Value result) {
+    public virtual  Eina.Future FutureResolved(Eina.Value result) {
          var _in_result = result.GetNative();
                         var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_resolved_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_result);
         Eina.Error.RaiseIfUnhandledException();
@@ -98,7 +98,7 @@ public abstract class LoopConsumer : Efl.Object
     /// (Since EFL 1.22)</summary>
     /// <param name="error">An Eina_Error value</param>
     /// <returns>The future or <c>NULL</c> on error.</returns>
-    virtual public  Eina.Future FutureRejected(Eina.Error error) {
+    public virtual  Eina.Future FutureRejected(Eina.Error error) {
                                  var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_future_rejected_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),error);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -107,7 +107,7 @@ public abstract class LoopConsumer : Efl.Object
     /// Note: You should not use eina_promise_data_set as this function rely on controlling the promise data.
     /// (Since EFL 1.22)</summary>
     /// <returns>The new promise.</returns>
-    virtual public Eina.Promise NewPromise() {
+    public virtual Eina.Promise NewPromise() {
          var _ret_var = Efl.LoopConsumer.NativeMethods.efl_loop_promise_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -150,7 +150,7 @@ public abstract class LoopConsumer : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -195,7 +195,17 @@ public abstract class LoopConsumer : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_promise_new"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_promise_new_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

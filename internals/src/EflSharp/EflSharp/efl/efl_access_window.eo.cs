@@ -12,29 +12,29 @@ namespace Access {
 
 /// <summary>Elementary accessible window interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Access.IWindowConcrete.NativeMethods]
+[Efl.Access.WindowConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IWindow : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Called when new window has been created.</summary>
-    event EventHandler WindowCreatedEvt;
+    event EventHandler WindowCreatedEvent;
     /// <summary>Called when window has been destroyed.</summary>
-    event EventHandler WindowDestroyedEvt;
+    event EventHandler WindowDestroyedEvent;
     /// <summary>Called when window has been activated. (focused)</summary>
-    event EventHandler WindowActivatedEvt;
+    event EventHandler WindowActivatedEvent;
     /// <summary>Called when window has been deactivated (unfocused).</summary>
-    event EventHandler WindowDeactivatedEvt;
+    event EventHandler WindowDeactivatedEvent;
     /// <summary>Called when window has been maximized</summary>
-    event EventHandler WindowMaximizedEvt;
+    event EventHandler WindowMaximizedEvent;
     /// <summary>Called when window has been minimized</summary>
-    event EventHandler WindowMinimizedEvt;
+    event EventHandler WindowMinimizedEvent;
     /// <summary>Called when window has been restored</summary>
-    event EventHandler WindowRestoredEvt;
+    event EventHandler WindowRestoredEvent;
 }
 /// <summary>Elementary accessible window interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IWindowConcrete :
+public sealed class WindowConcrete :
     Efl.Eo.EoWrapper
     , IWindow
     
@@ -44,7 +44,7 @@ sealed public  class IWindowConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IWindowConcrete))
+            if (((object)this).GetType() == typeof(WindowConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -58,7 +58,7 @@ sealed public  class IWindowConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IWindowConcrete(ConstructingHandle ch) : base(ch)
+    private WindowConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -67,12 +67,12 @@ sealed public  class IWindowConcrete :
     /// <summary>Initializes a new instance of the <see cref="IWindow"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IWindowConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private WindowConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when new window has been created.</summary>
-    public event EventHandler WindowCreatedEvt
+    public event EventHandler WindowCreatedEvent
     {
         add
         {
@@ -110,8 +110,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowCreatedEvt.</summary>
-    public void OnWindowCreatedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowCreatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowCreatedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -124,7 +125,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been destroyed.</summary>
-    public event EventHandler WindowDestroyedEvt
+    public event EventHandler WindowDestroyedEvent
     {
         add
         {
@@ -162,8 +163,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowDestroyedEvt.</summary>
-    public void OnWindowDestroyedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowDestroyedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowDestroyedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -176,7 +178,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been activated. (focused)</summary>
-    public event EventHandler WindowActivatedEvt
+    public event EventHandler WindowActivatedEvent
     {
         add
         {
@@ -214,8 +216,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowActivatedEvt.</summary>
-    public void OnWindowActivatedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowActivatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowActivatedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -228,7 +231,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been deactivated (unfocused).</summary>
-    public event EventHandler WindowDeactivatedEvt
+    public event EventHandler WindowDeactivatedEvent
     {
         add
         {
@@ -266,8 +269,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowDeactivatedEvt.</summary>
-    public void OnWindowDeactivatedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowDeactivatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowDeactivatedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -280,7 +284,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been maximized</summary>
-    public event EventHandler WindowMaximizedEvt
+    public event EventHandler WindowMaximizedEvent
     {
         add
         {
@@ -318,8 +322,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowMaximizedEvt.</summary>
-    public void OnWindowMaximizedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowMaximizedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowMaximizedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -332,7 +337,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been minimized</summary>
-    public event EventHandler WindowMinimizedEvt
+    public event EventHandler WindowMinimizedEvent
     {
         add
         {
@@ -370,8 +375,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowMinimizedEvt.</summary>
-    public void OnWindowMinimizedEvt(EventArgs e)
+    /// <summary>Method to raise event WindowMinimizedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowMinimizedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -384,7 +390,7 @@ sealed public  class IWindowConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when window has been restored</summary>
-    public event EventHandler WindowRestoredEvt
+    public event EventHandler WindowRestoredEvent
     {
         add
         {
@@ -422,8 +428,9 @@ sealed public  class IWindowConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WindowRestoredEvt.</summary>
-    public void OnWindowRestoredEvt(EventArgs e)
+    /// <summary>Method to raise event WindowRestoredEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWindowRestoredEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -435,9 +442,11 @@ sealed public  class IWindowConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Access.IWindowConcrete.efl_access_window_interface_get();
+        return Efl.Access.WindowConcrete.efl_access_window_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -445,16 +454,26 @@ sealed public  class IWindowConcrete :
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Access.IWindowConcrete.efl_access_window_interface_get();
+            return Efl.Access.WindowConcrete.efl_access_window_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -469,7 +488,7 @@ sealed public  class IWindowConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_AccessIWindowConcrete_ExtensionMethods {
+public static class Efl_AccessWindowConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

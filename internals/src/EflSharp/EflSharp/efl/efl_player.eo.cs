@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Efl media player interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IPlayerConcrete.NativeMethods]
+[Efl.PlayerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPlayer : 
     Efl.Eo.IWrapper, IDisposable
@@ -18,22 +18,23 @@ public interface IPlayer :
     /// <summary>Whether or not the playable can be played.</summary>
 /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
 bool GetPlayable();
-    /// <summary>Get play/pause state of the media file.</summary>
+    /// <summary>Playback state of the media file.
+/// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
 /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
 bool GetPlay();
-    /// <summary>Set play/pause state of the media file.
-/// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
+    /// <summary>Playback state of the media file.
+/// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
 /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
 void SetPlay(bool play);
-    /// <summary>Get the position in the media file.
-/// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <summary>Position in the media file.
+/// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
 /// <returns>The position (in seconds).</returns>
 double GetPos();
-    /// <summary>Set the position in the media file.
-/// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
+    /// <summary>Position in the media file.
+/// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
 /// <param name="sec">The position (in seconds).</param>
 void SetPos(double sec);
-    /// <summary>Get how much of the file has been played.
+    /// <summary>How much of the file has been played.
 /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
 /// <returns>The progress within the [0, 1] range.</returns>
 double GetProgress();
@@ -74,20 +75,21 @@ void Stop();
     bool Playable {
         get;
     }
-    /// <summary>Get play/pause state of the media file.</summary>
+    /// <summary>Playback state of the media file.
+    /// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     bool Play {
         get;
         set;
     }
-    /// <summary>Get the position in the media file.
-    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <summary>Position in the media file.
+    /// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <value>The position (in seconds).</value>
     double Pos {
         get;
         set;
     }
-    /// <summary>Get how much of the file has been played.
+    /// <summary>How much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <value>The progress within the [0, 1] range.</value>
     double Progress {
@@ -126,7 +128,7 @@ void Stop();
 }
 /// <summary>Efl media player interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IPlayerConcrete :
+public sealed class PlayerConcrete :
     Efl.Eo.EoWrapper
     , IPlayer
     
@@ -136,7 +138,7 @@ sealed public  class IPlayerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPlayerConcrete))
+            if (((object)this).GetType() == typeof(PlayerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -150,7 +152,7 @@ sealed public  class IPlayerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPlayerConcrete(ConstructingHandle ch) : base(ch)
+    private PlayerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -159,51 +161,53 @@ sealed public  class IPlayerConcrete :
     /// <summary>Initializes a new instance of the <see cref="IPlayer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPlayerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PlayerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Whether or not the playable can be played.</summary>
     /// <returns><c>true</c> if the object have playable data, <c>false</c> otherwise</returns>
     public bool GetPlayable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_playable_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Get play/pause state of the media file.</summary>
+    /// <summary>Playback state of the media file.
+    /// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <returns><c>true</c> if playing, <c>false</c> otherwise.</returns>
     public bool GetPlay() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_play_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set play/pause state of the media file.
-    /// This functions sets the currently playing status of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
+    /// <summary>Playback state of the media file.
+    /// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <param name="play"><c>true</c> if playing, <c>false</c> otherwise.</param>
     public void SetPlay(bool play) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate(this.NativeHandle,play);
+                                 Efl.PlayerConcrete.NativeMethods.efl_player_play_set_ptr.Value.Delegate(this.NativeHandle,play);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get the position in the media file.
-    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <summary>Position in the media file.
+    /// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <returns>The position (in seconds).</returns>
     public double GetPos() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_pos_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Set the position in the media file.
-    /// This functions sets the current position of the media file to &quot;sec&quot;, this only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
+    /// <summary>Position in the media file.
+    /// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <param name="sec">The position (in seconds).</param>
     public void SetPos(double sec) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate(this.NativeHandle,sec);
+                                 Efl.PlayerConcrete.NativeMethods.efl_player_pos_set_ptr.Value.Delegate(this.NativeHandle,sec);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Get how much of the file has been played.
+    /// <summary>How much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <returns>The progress within the [0, 1] range.</returns>
     public double GetProgress() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_progress_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -211,7 +215,7 @@ sealed public  class IPlayerConcrete :
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <returns>The play speed in the [0, infinity) range.</returns>
     public double GetPlaySpeed() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_play_speed_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -219,14 +223,14 @@ sealed public  class IPlayerConcrete :
     /// This function control the speed with which the media file will be played. 1.0 represents the normal speed, 2 double speed, 0.5 half speed and so on.</summary>
     /// <param name="speed">The play speed in the [0, infinity) range.</param>
     public void SetPlaySpeed(double speed) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate(this.NativeHandle,speed);
+                                 Efl.PlayerConcrete.NativeMethods.efl_player_play_speed_set_ptr.Value.Delegate(this.NativeHandle,speed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the audio volume.
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <returns>The volume level</returns>
     public double GetVolume() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_volume_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -234,44 +238,44 @@ sealed public  class IPlayerConcrete :
     /// Controls the audio volume of the stream being played. This has nothing to do with the system volume. This volume will be multiplied by the system volume. e.g.: if the current volume level is 0.5, and the system volume is 50%, it will be 0.5 * 0.5 = 0.25.</summary>
     /// <param name="volume">The volume level</param>
     public void SetVolume(double volume) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate(this.NativeHandle,volume);
+                                 Efl.PlayerConcrete.NativeMethods.efl_player_volume_set_ptr.Value.Delegate(this.NativeHandle,volume);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This property controls the audio mute state.</summary>
     /// <returns>The mute state. <c>true</c> or <c>false</c>.</returns>
     public bool GetMute() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_mute_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property controls the audio mute state.</summary>
     /// <param name="mute">The mute state. <c>true</c> or <c>false</c>.</param>
     public void SetMute(bool mute) {
-                                 Efl.IPlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate(this.NativeHandle,mute);
+                                 Efl.PlayerConcrete.NativeMethods.efl_player_mute_set_ptr.Value.Delegate(this.NativeHandle,mute);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
     public double GetLength() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_length_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
     public bool GetSeekable() {
-         var _ret_var = Efl.IPlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.PlayerConcrete.NativeMethods.efl_player_seekable_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Start a playing playable object.</summary>
     public void Start() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate(this.NativeHandle);
+         Efl.PlayerConcrete.NativeMethods.efl_player_start_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stop playable object.</summary>
     public void Stop() {
-         Efl.IPlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate(this.NativeHandle);
+         Efl.PlayerConcrete.NativeMethods.efl_player_stop_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Whether or not the playable can be played.</summary>
@@ -279,20 +283,21 @@ sealed public  class IPlayerConcrete :
     public bool Playable {
         get { return GetPlayable(); }
     }
-    /// <summary>Get play/pause state of the media file.</summary>
+    /// <summary>Playback state of the media file.
+    /// This property sets the currently playback state of the video. Using this function to play or pause the video doesn&apos;t alter it&apos;s current position.</summary>
     /// <value><c>true</c> if playing, <c>false</c> otherwise.</value>
     public bool Play {
         get { return GetPlay(); }
         set { SetPlay(value); }
     }
-    /// <summary>Get the position in the media file.
-    /// The position is returned as the number of seconds since the beginning of the media file.</summary>
+    /// <summary>Position in the media file.
+    /// This property sets the current position of the media file to <c>sec</c> seconds since the beginning of the media file. This only works on seekable streams. Setting the position doesn&apos;t change the playing state of the media file.</summary>
     /// <value>The position (in seconds).</value>
     public double Pos {
         get { return GetPos(); }
         set { SetPos(value); }
     }
-    /// <summary>Get how much of the file has been played.
+    /// <summary>How much of the file has been played.
     /// This function gets the progress in playing the file, the return value is in the [0, 1] range.</summary>
     /// <value>The progress within the [0, 1] range.</value>
     public double Progress {
@@ -328,9 +333,10 @@ sealed public  class IPlayerConcrete :
     public bool Seekable {
         get { return GetSeekable(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IPlayerConcrete.efl_player_interface_get();
+        return Efl.PlayerConcrete.efl_player_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -339,7 +345,7 @@ sealed public  class IPlayerConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -504,13 +510,23 @@ sealed public  class IPlayerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_player_stop"), func = Marshal.GetFunctionPointerForDelegate(efl_player_stop_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IPlayerConcrete.efl_player_interface_get();
+            return Efl.PlayerConcrete.efl_player_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1092,7 +1108,7 @@ sealed public  class IPlayerConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIPlayerConcrete_ExtensionMethods {
+public static class EflPlayerConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<bool> Play<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IPlayer, T>magic = null) where T : Efl.IPlayer {
         return new Efl.BindableProperty<bool>("play", fac);

@@ -48,11 +48,11 @@ public struct TextChangeInfo
     /// <summary><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</summary>
     public bool Merge;
     /// <summary>Constructor for TextChangeInfo.</summary>
-    /// <param name="Content">The content added/removed</param>;
-    /// <param name="Position">The position where it was added/removed</param>;
-    /// <param name="Length">The length of content in characters (not bytes, actual unicode characters)</param>;
-    /// <param name="Insert"><c>true</c> if the content was inserted, <c>false</c> if removei</param>;
-    /// <param name="Merge"><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</param>;
+    /// <param name="Content">The content added/removed</param>
+    /// <param name="Position">The position where it was added/removed</param>
+    /// <param name="Length">The length of content in characters (not bytes, actual unicode characters)</param>
+    /// <param name="Insert"><c>true</c> if the content was inserted, <c>false</c> if removei</param>
+    /// <param name="Merge"><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</param>
     public TextChangeInfo(
         System.String Content = default(System.String),
         uint Position = default(uint),

@@ -66,35 +66,35 @@ public class GestureTouch : Efl.Object
 
     /// <summary>Returns the first touch point.</summary>
     /// <returns>The start position.</returns>
-    virtual public Eina.Position2D GetStartPoint() {
+    public virtual Eina.Position2D GetStartPoint() {
          var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_start_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Returns the current touch point.</summary>
     /// <returns>The current position.</returns>
-    virtual public Eina.Position2D GetCurPoint() {
+    public virtual Eina.Position2D GetCurPoint() {
          var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Returns the timestamp.</summary>
     /// <returns>The timestamp.</returns>
-    virtual public uint GetCurTimestamp() {
+    public virtual uint GetCurTimestamp() {
          var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property tells if the event is multi touch.</summary>
     /// <returns>returns <c>true</c> if its a multi touch</returns>
-    virtual public bool GetMultiTouch() {
+    public virtual bool GetMultiTouch() {
          var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_multi_touch_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This property holds the state of the touch event.</summary>
     /// <returns>touch event state</returns>
-    virtual public Efl.Canvas.GestureTouchState GetState() {
+    public virtual Efl.Canvas.GestureTouchState GetState() {
          var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -104,7 +104,7 @@ public class GestureTouch : Efl.Object
     /// <param name="pos">Position of the event</param>
     /// <param name="timestamp">The timestamp of the event</param>
     /// <param name="action">action of the event</param>
-    virtual public void PointRecord(int tool, Eina.Vector2 pos, uint timestamp, Efl.Pointer.Action action) {
+    public virtual void PointRecord(int tool, Eina.Vector2 pos, uint timestamp, Efl.Pointer.Action action) {
                  Eina.Vector2.NativeStruct _in_pos = pos;
                                                                                         Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_point_record_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool, _in_pos, timestamp, action);
         Eina.Error.RaiseIfUnhandledException();
@@ -112,7 +112,7 @@ public class GestureTouch : Efl.Object
     /// <summary>Compute the distance between the last two events</summary>
     /// <param name="tool">The finger id</param>
     /// <returns>The distance vector.</returns>
-    virtual public Eina.Vector2 Delta(int tool) {
+    public virtual Eina.Vector2 Delta(int tool) {
                                  var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_delta_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -120,7 +120,7 @@ public class GestureTouch : Efl.Object
     /// <summary>Compute the distance between the first touch and the last event.</summary>
     /// <param name="tool">The finger id</param>
     /// <returns>The distance vector.</returns>
-    virtual public Eina.Vector2 Distance(int tool) {
+    public virtual Eina.Vector2 Distance(int tool) {
                                  var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_distance_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -161,7 +161,7 @@ public class GestureTouch : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -246,7 +246,17 @@ public class GestureTouch : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_touch_distance"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_touch_distance_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

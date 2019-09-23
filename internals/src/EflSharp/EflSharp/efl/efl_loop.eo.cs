@@ -8,9 +8,9 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.Loop.ArgumentsEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Loop.ArgumentsEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class LoopArgumentsEvt_Args : EventArgs {
+public class LoopArgumentsEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Event happens when args are provided to the loop by args_add().</value>
     public Efl.LoopArguments arg { get; set; }
@@ -79,7 +79,7 @@ public abstract class Loop : Efl.Task
 
     /// <summary>Event occurs once the main loop enters the idle state.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler IdleEnterEvt
+    public event EventHandler IdleEnterEvent
     {
         add
         {
@@ -117,8 +117,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event IdleEnterEvt.</summary>
-    public void OnIdleEnterEvt(EventArgs e)
+    /// <summary>Method to raise event IdleEnterEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnIdleEnterEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE_ENTER";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -132,7 +133,7 @@ public abstract class Loop : Efl.Task
     }
     /// <summary>Event occurs once the main loop exits the idle state.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler IdleExitEvt
+    public event EventHandler IdleExitEvent
     {
         add
         {
@@ -170,8 +171,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event IdleExitEvt.</summary>
-    public void OnIdleExitEvt(EventArgs e)
+    /// <summary>Method to raise event IdleExitEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnIdleExitEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE_EXIT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -185,7 +187,7 @@ public abstract class Loop : Efl.Task
     }
     /// <summary>Event occurs once the main loop is idle. If you keep listening on this event it may increase the burden on your CPU.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler IdleEvt
+    public event EventHandler IdleEvent
     {
         add
         {
@@ -223,8 +225,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event IdleEvt.</summary>
-    public void OnIdleEvt(EventArgs e)
+    /// <summary>Method to raise event IdleEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnIdleEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_IDLE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -238,8 +241,8 @@ public abstract class Loop : Efl.Task
     }
     /// <summary>Event happens when args are provided to the loop by args_add().
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.LoopArgumentsEvt_Args"/></value>
-    public event EventHandler<Efl.LoopArgumentsEvt_Args> ArgumentsEvt
+    /// <value><see cref="Efl.LoopArgumentsEventArgs"/></value>
+    public event EventHandler<Efl.LoopArgumentsEventArgs> ArgumentsEvent
     {
         add
         {
@@ -250,7 +253,7 @@ public abstract class Loop : Efl.Task
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.LoopArgumentsEvt_Args args = new Efl.LoopArgumentsEvt_Args();
+                        Efl.LoopArgumentsEventArgs args = new Efl.LoopArgumentsEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -278,8 +281,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event ArgumentsEvt.</summary>
-    public void OnArgumentsEvt(Efl.LoopArgumentsEvt_Args e)
+    /// <summary>Method to raise event ArgumentsEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnArgumentsEvent(Efl.LoopArgumentsEventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_ARGUMENTS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -300,9 +304,9 @@ public abstract class Loop : Efl.Task
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event occurs multiple times per second. The exact tick is undefined and can be adjusted system wide.
+    /// <summary>Event occurs multiple times per second. The exact tick is undefined and can be adjusted system-wide.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler PollHighEvt
+    public event EventHandler PollHighEvent
     {
         add
         {
@@ -340,8 +344,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event PollHighEvt.</summary>
-    public void OnPollHighEvt(EventArgs e)
+    /// <summary>Method to raise event PollHighEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPollHighEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_HIGH";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -353,9 +358,9 @@ public abstract class Loop : Efl.Task
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Event occurs multiple times per minute. The exact tick is undefined and can be adjusted system wide.
+    /// <summary>Event occurs multiple times per minute. The exact tick is undefined and can be adjusted system-wide.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler PollMediumEvt
+    public event EventHandler PollMediumEvent
     {
         add
         {
@@ -393,8 +398,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event PollMediumEvt.</summary>
-    public void OnPollMediumEvt(EventArgs e)
+    /// <summary>Method to raise event PollMediumEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPollMediumEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_MEDIUM";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -406,9 +412,9 @@ public abstract class Loop : Efl.Task
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Event occurs multiple times every 15 minutes. The exact tick is undefined and can be adjusted system wide.
+    /// <summary>Event occurs multiple times every 15 minutes. The exact tick is undefined and can be adjusted system-wide.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler PollLowEvt
+    public event EventHandler PollLowEvent
     {
         add
         {
@@ -446,8 +452,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event PollLowEvt.</summary>
-    public void OnPollLowEvt(EventArgs e)
+    /// <summary>Method to raise event PollLowEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPollLowEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_POLL_LOW";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -461,7 +468,7 @@ public abstract class Loop : Efl.Task
     }
     /// <summary>Event occurs when the loop was requested to quit externally e.g. by a ctrl+c signal or a request from a parent loop/thread to have the child exit.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler QuitEvt
+    public event EventHandler QuitEvent
     {
         add
         {
@@ -499,8 +506,9 @@ public abstract class Loop : Efl.Task
             }
         }
     }
-    /// <summary>Method to raise event QuitEvt.</summary>
-    public void OnQuitEvt(EventArgs e)
+    /// <summary>Method to raise event QuitEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnQuitEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_EVENT_QUIT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -515,7 +523,7 @@ public abstract class Loop : Efl.Task
     /// <summary>Slow down the loop execution by forcing sleep for a small period of time every time the loop iterates/loops.
     /// (Since EFL 1.22)</summary>
     /// <returns>Time to sleep for each &quot;loop iteration&quot;</returns>
-    virtual public double GetThrottle() {
+    public virtual double GetThrottle() {
          var _ret_var = Efl.Loop.NativeMethods.efl_loop_throttle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -523,14 +531,14 @@ public abstract class Loop : Efl.Task
     /// <summary>Slow down the loop execution by forcing sleep for a small period of time every time the loop iterates/loops.
     /// (Since EFL 1.22)</summary>
     /// <param name="amount">Time to sleep for each &quot;loop iteration&quot;</param>
-    virtual public void SetThrottle(double amount) {
+    public virtual void SetThrottle(double amount) {
                                  Efl.Loop.NativeMethods.efl_loop_throttle_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),amount);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This gets the time that the main loop ceased waiting for timouts and/or events to come in or for signals or any other interrupt source. This should be considered a reference point for all time based activity that should calculate its timepoint from the return of ecore_loop_time_get(). Note that this time is meant to be used as relative to other times obtained on this run. If you need absolute time references, use a unix timestamp instead.
     /// (Since EFL 1.22)</summary>
     /// <returns>Time in seconds</returns>
-    virtual public double GetTime() {
+    public virtual double GetTime() {
          var _ret_var = Efl.Loop.NativeMethods.efl_loop_time_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -539,13 +547,13 @@ public abstract class Loop : Efl.Task
     /// Note: The time point must match whatever zero time you get from ecore_time_get() and <see cref="Efl.Loop.GetTime"/> (same 0 point). What this point is is undefined, so unless your source uses the same 0 time, then you may have to adjust and do some guessing.
     /// (Since EFL 1.22)</summary>
     /// <param name="timepoint">Time in seconds</param>
-    virtual protected void SetTime(double timepoint) {
+    protected virtual void SetTime(double timepoint) {
                                  Efl.Loop.NativeMethods.efl_loop_time_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),timepoint);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Runs a single iteration of the main loop to process everything on the queue.
     /// (Since EFL 1.22)</summary>
-    virtual public void Iterate() {
+    public virtual void Iterate() {
          Efl.Loop.NativeMethods.efl_loop_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
@@ -553,7 +561,7 @@ public abstract class Loop : Efl.Task
     /// (Since EFL 1.22)</summary>
     /// <param name="may_block">A flag if the main loop has a possibility of blocking.</param>
     /// <returns>Return from single iteration run</returns>
-    virtual public int IterateMayBlock(int may_block) {
+    public virtual int IterateMayBlock(int may_block) {
                                  var _ret_var = Efl.Loop.NativeMethods.efl_loop_iterate_may_block_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),may_block);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -561,7 +569,7 @@ public abstract class Loop : Efl.Task
     /// <summary>Runs the application main loop.
     /// (Since EFL 1.22)</summary>
     /// <returns>Value set by quit()</returns>
-    virtual public Eina.Value Begin() {
+    public virtual Eina.Value Begin() {
          var _ret_var = Efl.Loop.NativeMethods.efl_loop_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -569,7 +577,7 @@ public abstract class Loop : Efl.Task
     /// <summary>Quits the main loop once all the events currently on the queue have been processed.
     /// (Since EFL 1.22)</summary>
     /// <param name="exit_code">Returned value by begin()</param>
-    virtual public void Quit(Eina.Value exit_code) {
+    public virtual void Quit(Eina.Value exit_code) {
          var _in_exit_code = exit_code.GetNative();
                         Efl.Loop.NativeMethods.efl_loop_quit_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_exit_code);
         Eina.Error.RaiseIfUnhandledException();
@@ -578,7 +586,7 @@ public abstract class Loop : Efl.Task
     /// This has higher priority, for low priority use <see cref="Efl.Loop.Idle"/>
     /// (Since EFL 1.22)</summary>
     /// <returns>The future handle.</returns>
-    virtual public  Eina.Future Job() {
+    public virtual  Eina.Future Job() {
          var _ret_var = Efl.Loop.NativeMethods.efl_loop_job_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -587,7 +595,7 @@ public abstract class Loop : Efl.Task
     /// This is a low priority version of <see cref="Efl.Loop.Job"/>
     /// (Since EFL 1.22)</summary>
     /// <returns>The future handle.</returns>
-    virtual public  Eina.Future Idle() {
+    public virtual  Eina.Future Idle() {
          var _ret_var = Efl.Loop.NativeMethods.efl_loop_idle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -596,7 +604,7 @@ public abstract class Loop : Efl.Task
     /// (Since EFL 1.22)</summary>
     /// <param name="time">The time from now in second that the main loop will wait before triggering it.</param>
     /// <returns>The future handle.</returns>
-    virtual public  Eina.Future Timeout(double time) {
+    public virtual  Eina.Future Timeout(double time) {
                                  var _ret_var = Efl.Loop.NativeMethods.efl_loop_timeout_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -654,7 +662,7 @@ public abstract class Loop : Efl.Task
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -769,7 +777,17 @@ public abstract class Loop : Efl.Task
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_timeout"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_timeout_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -1204,11 +1222,11 @@ public struct LoopArguments
 {
     /// <summary>Array with loop arguments</summary>
     public Eina.Array<Eina.Stringshare> Argv;
-    /// <summary>Set to <c>true</c> when the program should initialize its internal state. This happen once per process instance.</summary>
+    /// <summary>Set to <c>true</c> when the program should initialize its internal state. This happens once per process instance.</summary>
     public bool Initialization;
     /// <summary>Constructor for LoopArguments.</summary>
-    /// <param name="Argv">Array with loop arguments</param>;
-    /// <param name="Initialization">Set to <c>true</c> when the program should initialize its internal state. This happen once per process instance.</param>;
+    /// <param name="Argv">Array with loop arguments</param>
+    /// <param name="Initialization">Set to <c>true</c> when the program should initialize its internal state. This happens once per process instance.</param>
     public LoopArguments(
         Eina.Array<Eina.Stringshare> Argv = default(Eina.Array<Eina.Stringshare>),
         bool Initialization = default(bool)    )

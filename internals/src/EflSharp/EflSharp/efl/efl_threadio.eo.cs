@@ -75,6 +75,7 @@ internal class EflThreadIOCallWrapper : IDisposable
 
 
 /// <param name="kw_event">No description supplied.</param>
+/// <returns>No description supplied.</returns>
 [Efl.Eo.BindingEntity]
 public delegate System.IntPtr EflThreadIOCallSync(Efl.Event kw_event);
 public delegate System.IntPtr EflThreadIOCallSyncInternal(IntPtr data,  Efl.Event.NativeStruct kw_event);
@@ -148,7 +149,7 @@ namespace Efl {
 
 /// <summary>No description supplied.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IThreadIOConcrete.NativeMethods]
+[Efl.ThreadIOConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IThreadIO : 
     Efl.Eo.IWrapper, IDisposable
@@ -179,7 +180,7 @@ System.IntPtr CallSync(EflThreadIOCallSync func);
 }
 /// <summary>No description supplied.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IThreadIOConcrete :
+public sealed class ThreadIOConcrete :
     Efl.Eo.EoWrapper
     , IThreadIO
     
@@ -189,7 +190,7 @@ sealed public  class IThreadIOConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IThreadIOConcrete))
+            if (((object)this).GetType() == typeof(ThreadIOConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -203,7 +204,7 @@ sealed public  class IThreadIOConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IThreadIOConcrete(ConstructingHandle ch) : base(ch)
+    private ThreadIOConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -212,43 +213,44 @@ sealed public  class IThreadIOConcrete :
     /// <summary>Initializes a new instance of the <see cref="IThreadIO"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IThreadIOConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ThreadIOConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <returns>No description supplied.</returns>
     public System.IntPtr GetIndata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <param name="data">No description supplied.</param>
     public void SetIndata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate(this.NativeHandle,data);
+                                 Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate(this.NativeHandle,data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <returns>No description supplied.</returns>
     public System.IntPtr GetOutdata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <param name="data">No description supplied.</param>
     public void SetOutdata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate(this.NativeHandle,data);
+                                 Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate(this.NativeHandle,data);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
     public void Call(EflThreadIOCall func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="func">No description supplied.</param>
     /// <returns>No description supplied.</returns>
     public System.IntPtr CallSync(EflThreadIOCallSync func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -262,9 +264,10 @@ sealed public  class IThreadIOConcrete :
         get { return GetOutdata(); }
         set { SetOutdata(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IThreadIOConcrete.efl_threadio_mixin_get();
+        return Efl.ThreadIOConcrete.efl_threadio_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -273,7 +276,7 @@ sealed public  class IThreadIOConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -338,13 +341,23 @@ sealed public  class IThreadIOConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_call_sync"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_call_sync_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IThreadIOConcrete.efl_threadio_mixin_get();
+            return Efl.ThreadIOConcrete.efl_threadio_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -572,7 +585,7 @@ sealed public  class IThreadIOConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIThreadIOConcrete_ExtensionMethods {
+public static class EflThreadIOConcrete_ExtensionMethods {
     public static Efl.BindableProperty<System.IntPtr> Indata<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IThreadIO, T>magic = null) where T : Efl.IThreadIO {
         return new Efl.BindableProperty<System.IntPtr>("indata", fac);
     }

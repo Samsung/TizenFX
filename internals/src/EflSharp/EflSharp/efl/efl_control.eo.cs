@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Efl control interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IControlConcrete.NativeMethods]
+[Efl.ControlConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IControl : 
     Efl.Eo.IWrapper, IDisposable
@@ -42,7 +42,7 @@ void SetSuspend(bool suspend);
 }
 /// <summary>Efl control interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IControlConcrete :
+public sealed class ControlConcrete :
     Efl.Eo.EoWrapper
     , IControl
     
@@ -52,7 +52,7 @@ sealed public  class IControlConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IControlConcrete))
+            if (((object)this).GetType() == typeof(ControlConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -66,7 +66,7 @@ sealed public  class IControlConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IControlConcrete(ConstructingHandle ch) : base(ch)
+    private ControlConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -75,34 +75,35 @@ sealed public  class IControlConcrete :
     /// <summary>Initializes a new instance of the <see cref="IControl"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IControlConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ControlConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Control the priority of the object.</summary>
     /// <returns>The priority of the object</returns>
     public int GetPriority() {
-         var _ret_var = Efl.IControlConcrete.NativeMethods.efl_control_priority_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ControlConcrete.NativeMethods.efl_control_priority_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Control the priority of the object.</summary>
     /// <param name="priority">The priority of the object</param>
     public void SetPriority(int priority) {
-                                 Efl.IControlConcrete.NativeMethods.efl_control_priority_set_ptr.Value.Delegate(this.NativeHandle,priority);
+                                 Efl.ControlConcrete.NativeMethods.efl_control_priority_set_ptr.Value.Delegate(this.NativeHandle,priority);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Controls whether the object is suspended or not.</summary>
     /// <returns>Controls whether the object is suspended or not.</returns>
     public bool GetSuspend() {
-         var _ret_var = Efl.IControlConcrete.NativeMethods.efl_control_suspend_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.ControlConcrete.NativeMethods.efl_control_suspend_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Controls whether the object is suspended or not.</summary>
     /// <param name="suspend">Controls whether the object is suspended or not.</param>
     public void SetSuspend(bool suspend) {
-                                 Efl.IControlConcrete.NativeMethods.efl_control_suspend_set_ptr.Value.Delegate(this.NativeHandle,suspend);
+                                 Efl.ControlConcrete.NativeMethods.efl_control_suspend_set_ptr.Value.Delegate(this.NativeHandle,suspend);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the priority of the object.</summary>
@@ -117,9 +118,10 @@ sealed public  class IControlConcrete :
         get { return GetSuspend(); }
         set { SetSuspend(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IControlConcrete.efl_control_interface_get();
+        return Efl.ControlConcrete.efl_control_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -128,7 +130,7 @@ sealed public  class IControlConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -173,13 +175,23 @@ sealed public  class IControlConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_control_suspend_set"), func = Marshal.GetFunctionPointerForDelegate(efl_control_suspend_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IControlConcrete.efl_control_interface_get();
+            return Efl.ControlConcrete.efl_control_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -334,7 +346,7 @@ sealed public  class IControlConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIControlConcrete_ExtensionMethods {
+public static class EflControlConcrete_ExtensionMethods {
     public static Efl.BindableProperty<int> Priority<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IControl, T>magic = null) where T : Efl.IControl {
         return new Efl.BindableProperty<int>("priority", fac);
     }

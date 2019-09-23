@@ -38,38 +38,40 @@ namespace Gfx {
 
 /// <summary>Efl graphics stack interface
 /// (Since EFL 1.22)</summary>
-[Efl.Gfx.IStackConcrete.NativeMethods]
+[Efl.Gfx.StackConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IStack : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Retrieves the layer of its canvas that the given object is part of.
-/// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
-/// (Since EFL 1.22)</summary>
-/// <returns>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</returns>
-short GetLayer();
-    /// <summary>Sets the layer of its canvas that the given object will be part of.
-/// If you don&apos;t use this function, you&apos;ll be dealing with an unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
+    /// <summary>The layer of its canvas that the given object will be part of.
+/// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
 /// 
 /// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
 /// 
 /// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
+/// (Since EFL 1.22)</summary>
+/// <returns>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</returns>
+short GetLayer();
+    /// <summary>The layer of its canvas that the given object will be part of.
+/// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
 /// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>
+/// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
+/// 
+/// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
 /// (Since EFL 1.22)</summary>
 /// <param name="l">The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</param>
 void SetLayer(short l);
-    /// <summary>Get the Evas object stacked right below <c>obj</c>
+    /// <summary>The Evas object stacked right below this object.
 /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
 /// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+/// See also <see cref="Efl.Gfx.IStack.Layer"/>.
 /// (Since EFL 1.22)</summary>
 /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
 Efl.Gfx.IStack GetBelow();
-    /// <summary>Get the Evas object stacked right above <c>obj</c>
+    /// <summary>Get the Evas object stacked right above this object.
 /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
 /// 
-/// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+/// See also <see cref="Efl.Gfx.IStack.Layer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
 /// (Since EFL 1.22)</summary>
 /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
 Efl.Gfx.IStack GetAbove();
@@ -113,28 +115,32 @@ void StackAbove(Efl.Gfx.IStack above);
 void LowerToBottom();
                                     /// <summary>Object stacking was changed.
     /// (Since EFL 1.22)</summary>
-    event EventHandler StackingChangedEvt;
-    /// <summary>Retrieves the layer of its canvas that the given object is part of.
-    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
+    event EventHandler StackingChangedEvent;
+    /// <summary>The layer of its canvas that the given object will be part of.
+    /// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
+    /// 
+    /// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
+    /// 
+    /// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
     /// (Since EFL 1.22)</summary>
     /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     short Layer {
         get;
         set;
     }
-    /// <summary>Get the Evas object stacked right below <c>obj</c>
+    /// <summary>The Evas object stacked right below this object.
     /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
     /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/>.
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Below {
         get;
     }
-    /// <summary>Get the Evas object stacked right above <c>obj</c>
+    /// <summary>Get the Evas object stacked right above this object.
     /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
     /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     Efl.Gfx.IStack Above {
@@ -143,7 +149,7 @@ void LowerToBottom();
 }
 /// <summary>Efl graphics stack interface
 /// (Since EFL 1.22)</summary>
-sealed public  class IStackConcrete :
+public sealed class StackConcrete :
     Efl.Eo.EoWrapper
     , IStack
     
@@ -153,7 +159,7 @@ sealed public  class IStackConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IStackConcrete))
+            if (((object)this).GetType() == typeof(StackConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -167,7 +173,7 @@ sealed public  class IStackConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IStackConcrete(ConstructingHandle ch) : base(ch)
+    private StackConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -176,13 +182,13 @@ sealed public  class IStackConcrete :
     /// <summary>Initializes a new instance of the <see cref="IStack"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IStackConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private StackConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Object stacking was changed.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler StackingChangedEvt
+    public event EventHandler StackingChangedEvent
     {
         add
         {
@@ -220,8 +226,9 @@ sealed public  class IStackConcrete :
             }
         }
     }
-    /// <summary>Method to raise event StackingChangedEvt.</summary>
-    public void OnStackingChangedEvt(EventArgs e)
+    /// <summary>Method to raise event StackingChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnStackingChangedEvent(EventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_STACKING_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -233,48 +240,51 @@ sealed public  class IStackConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Retrieves the layer of its canvas that the given object is part of.
-    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</returns>
-    public short GetLayer() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_get_ptr.Value.Delegate(this.NativeHandle);
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Sets the layer of its canvas that the given object will be part of.
-    /// If you don&apos;t use this function, you&apos;ll be dealing with an unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
+#pragma warning disable CS0628
+    /// <summary>The layer of its canvas that the given object will be part of.
+    /// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
     /// 
     /// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
     /// 
     /// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
-    /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>
     /// (Since EFL 1.22)</summary>
-    /// <param name="l">The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</param>
-    public void SetLayer(short l) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_layer_set_ptr.Value.Delegate(this.NativeHandle,l);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the Evas object stacked right below <c>obj</c>
-    /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
-    /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
-    public Efl.Gfx.IStack GetBelow() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_get_ptr.Value.Delegate(this.NativeHandle);
+    /// <returns>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</returns>
+    public short GetLayer() {
+         var _ret_var = Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_layer_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Get the Evas object stacked right above <c>obj</c>
+    /// <summary>The layer of its canvas that the given object will be part of.
+    /// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
+    /// 
+    /// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
+    /// 
+    /// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
+    /// (Since EFL 1.22)</summary>
+    /// <param name="l">The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</param>
+    public void SetLayer(short l) {
+                                 Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_layer_set_ptr.Value.Delegate(this.NativeHandle,l);
+        Eina.Error.RaiseIfUnhandledException();
+                         }
+    /// <summary>The Evas object stacked right below this object.
+    /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
+    /// 
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/>.
+    /// (Since EFL 1.22)</summary>
+    /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
+    public Efl.Gfx.IStack GetBelow() {
+         var _ret_var = Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_below_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+ }
+    /// <summary>Get the Evas object stacked right above this object.
     /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
     /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
     /// (Since EFL 1.22)</summary>
     /// <returns>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</returns>
     public Efl.Gfx.IStack GetAbove() {
-         var _ret_var = Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_above_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -291,7 +301,7 @@ sealed public  class IStackConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="below">The object below which to stack</param>
     public void StackBelow(Efl.Gfx.IStack below) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_below_ptr.Value.Delegate(this.NativeHandle,below);
+                                 Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_below_ptr.Value.Delegate(this.NativeHandle,below);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Raise <c>obj</c> to the top of its layer.
@@ -300,7 +310,7 @@ sealed public  class IStackConcrete :
     /// See also <see cref="Efl.Gfx.IStack.StackAbove"/>, <see cref="Efl.Gfx.IStack.StackBelow"/> and <see cref="Efl.Gfx.IStack.LowerToBottom"/>
     /// (Since EFL 1.22)</summary>
     public void RaiseToTop() {
-         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_raise_to_top_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_raise_to_top_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Stack <c>obj</c> immediately <c>above</c>
@@ -316,7 +326,7 @@ sealed public  class IStackConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="above">The object above which to stack</param>
     public void StackAbove(Efl.Gfx.IStack above) {
-                                 Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_above_ptr.Value.Delegate(this.NativeHandle,above);
+                                 Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_above_ptr.Value.Delegate(this.NativeHandle,above);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Lower <c>obj</c> to the bottom of its layer.
@@ -325,38 +335,43 @@ sealed public  class IStackConcrete :
     /// See also <see cref="Efl.Gfx.IStack.StackAbove"/>, <see cref="Efl.Gfx.IStack.StackBelow"/> and <see cref="Efl.Gfx.IStack.RaiseToTop"/>
     /// (Since EFL 1.22)</summary>
     public void LowerToBottom() {
-         Efl.Gfx.IStackConcrete.NativeMethods.efl_gfx_stack_lower_to_bottom_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Gfx.StackConcrete.NativeMethods.efl_gfx_stack_lower_to_bottom_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
-    /// <summary>Retrieves the layer of its canvas that the given object is part of.
-    /// See also <see cref="Efl.Gfx.IStack.SetLayer"/>
+    /// <summary>The layer of its canvas that the given object will be part of.
+    /// If you don&apos;t use this property, you&apos;ll be dealing with a unique layer of objects (the default one). Additional layers are handy when you don&apos;t want a set of objects to interfere with another set with regard to stacking. Two layers are completely disjoint in that matter.
+    /// 
+    /// This is a low-level function, which you&apos;d be using when something should be always on top, for example.
+    /// 
+    /// Warning: Don&apos;t change the layer of smart objects&apos; children. Smart objects have a layer of their own, which should contain all their child objects.
     /// (Since EFL 1.22)</summary>
     /// <value>The number of the layer to place the object on. Must be between <see cref="Efl.Gfx.Constants.StackLayerMin"/> and <see cref="Efl.Gfx.Constants.StackLayerMax"/>.</value>
     public short Layer {
         get { return GetLayer(); }
         set { SetLayer(value); }
     }
-    /// <summary>Get the Evas object stacked right below <c>obj</c>
+    /// <summary>The Evas object stacked right below this object.
     /// This function will traverse layers in its search, if there are objects on layers below the one <c>obj</c> is placed at.
     /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/>.
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Below {
         get { return GetBelow(); }
     }
-    /// <summary>Get the Evas object stacked right above <c>obj</c>
+    /// <summary>Get the Evas object stacked right above this object.
     /// This function will traverse layers in its search, if there are objects on layers above the one <c>obj</c> is placed at.
     /// 
-    /// See also <see cref="Efl.Gfx.IStack.GetLayer"/>, <see cref="Efl.Gfx.IStack.SetLayer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
+    /// See also <see cref="Efl.Gfx.IStack.Layer"/> and <see cref="Efl.Gfx.IStack.GetBelow"/>
     /// (Since EFL 1.22)</summary>
     /// <value>The <see cref="Efl.Gfx.IStack"/> object directly below <c>obj</c>, if any, or <c>null</c>, if none.</value>
     public Efl.Gfx.IStack Above {
         get { return GetAbove(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IStackConcrete.efl_gfx_stack_interface_get();
+        return Efl.Gfx.StackConcrete.efl_gfx_stack_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -365,7 +380,7 @@ sealed public  class IStackConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -450,13 +465,23 @@ sealed public  class IStackConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_stack_lower_to_bottom"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_stack_lower_to_bottom_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IStackConcrete.efl_gfx_stack_interface_get();
+            return Efl.Gfx.StackConcrete.efl_gfx_stack_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -754,7 +779,7 @@ sealed public  class IStackConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIStackConcrete_ExtensionMethods {
+public static class Efl_GfxStackConcrete_ExtensionMethods {
     public static Efl.BindableProperty<short> Layer<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IStack, T>magic = null) where T : Efl.Gfx.IStack {
         return new Efl.BindableProperty<short>("layer", fac);
     }

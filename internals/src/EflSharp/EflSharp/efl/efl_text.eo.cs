@@ -10,19 +10,21 @@ namespace Efl {
 
 /// <summary>Efl text interface
 /// (Since EFL 1.22)</summary>
-[Efl.ITextConcrete.NativeMethods]
+[Efl.TextConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IText : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Retrieves the text string currently being displayed by the given text object.
-/// Do not free() the return value.
+    /// <summary>The text string to be displayed by the given text object.
+/// Do not release (free) the returned value.
 /// 
 /// See also <see cref="Efl.IText.GetText"/>.
 /// (Since EFL 1.22)</summary>
 /// <returns>Text string to display on it.</returns>
 System.String GetText();
-    /// <summary>Sets the text string to be displayed by the given text object.
+    /// <summary>The text string to be displayed by the given text object.
+/// Do not release (free) the returned value.
+/// 
 /// See also <see cref="Efl.IText.GetText"/>.
 /// (Since EFL 1.22)</summary>
 /// <param name="text">Text string to display on it.</param>
@@ -30,7 +32,7 @@ void SetText(System.String text);
         }
 /// <summary>Efl text interface
 /// (Since EFL 1.22)</summary>
-sealed public  class ITextConcrete :
+public sealed class TextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
@@ -40,7 +42,7 @@ sealed public  class ITextConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextConcrete))
+            if (((object)this).GetType() == typeof(TextConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -54,7 +56,7 @@ sealed public  class ITextConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextConcrete(ConstructingHandle ch) : base(ch)
+    private TextConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -63,32 +65,36 @@ sealed public  class ITextConcrete :
     /// <summary>Initializes a new instance of the <see cref="IText"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Retrieves the text string currently being displayed by the given text object.
-    /// Do not free() the return value.
+#pragma warning disable CS0628
+    /// <summary>The text string to be displayed by the given text object.
+    /// Do not release (free) the returned value.
     /// 
     /// See also <see cref="Efl.IText.GetText"/>.
     /// (Since EFL 1.22)</summary>
     /// <returns>Text string to display on it.</returns>
     public System.String GetText() {
-         var _ret_var = Efl.ITextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextConcrete.NativeMethods.efl_text_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Sets the text string to be displayed by the given text object.
+    /// <summary>The text string to be displayed by the given text object.
+    /// Do not release (free) the returned value.
+    /// 
     /// See also <see cref="Efl.IText.GetText"/>.
     /// (Since EFL 1.22)</summary>
     /// <param name="text">Text string to display on it.</param>
     public void SetText(System.String text) {
-                                 Efl.ITextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate(this.NativeHandle,text);
+                                 Efl.TextConcrete.NativeMethods.efl_text_set_ptr.Value.Delegate(this.NativeHandle,text);
         Eina.Error.RaiseIfUnhandledException();
                          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextConcrete.efl_text_interface_get();
+        return Efl.TextConcrete.efl_text_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -97,7 +103,7 @@ sealed public  class ITextConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -122,13 +128,23 @@ sealed public  class ITextConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextConcrete.efl_text_interface_get();
+            return Efl.TextConcrete.efl_text_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -212,7 +228,7 @@ sealed public  class ITextConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextConcrete_ExtensionMethods {
+public static class EflTextConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591

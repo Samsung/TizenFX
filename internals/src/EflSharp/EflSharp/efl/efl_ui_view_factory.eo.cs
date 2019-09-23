@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>This class provide a utility function that class that wish to use <see cref="Efl.Ui.IFactory.Create"/> should use.</summary>
+/// <summary>This class provide a utility function that class that wish to use Efl.Ui.Factory.create should use.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.ViewFactory.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -64,7 +64,7 @@ public class ViewFactory : Efl.Eo.EoWrapper
     {
     }
 
-    /// <summary>Create a UI object from the necessary properties in the specified model and generate the created event on the factory when the object is done building. This function must be use by all <see cref="Efl.Ui.IView"/> that need to create object. They should not use <see cref="Efl.Ui.IFactory.Create"/> directly.</summary>
+    /// <summary>Create a UI object from the necessary properties in the specified model and generate the created event on the factory when the object is done building. This function must be use by all <see cref="Efl.Ui.IView"/> that need to create object. They should not use Efl.Ui.Factory.create directly.</summary>
     /// <param name="factory">The factory to use for requesting the new object from and generating the created event onto.</param>
     /// <param name="models">Efl iterator providing the model to be associated to the new item. It should remain valid until the end of the function call.</param>
     /// <param name="parent">Efl canvas</param>
@@ -86,10 +86,20 @@ public class ViewFactory : Efl.Eo.EoWrapper
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

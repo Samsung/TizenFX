@@ -10,8 +10,12 @@ namespace Efl {
 
 namespace Ui {
 
+/// <summary>
+/// 
+/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
 /// <param name="str">Output formatted string. Its contents will be overwritten by this method.</param>
 /// <param name="value">The <see cref="Eina.Value"/> to convert to text.</param>
+/// <returns>Whether the conversion succeeded or not.</returns>
 [Efl.Eo.BindingEntity]
 public delegate bool FormatFunc(Eina.Strbuf str, Eina.Value value);
 [return: MarshalAs(UnmanagedType.U1)]public delegate bool FormatFuncInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StrbufKeepOwnershipMarshaler))] Eina.Strbuf str,  Eina.ValueNative value);
@@ -94,7 +98,7 @@ namespace Ui {
 /// 
 /// Widgets including this mixin offer their users different properties to control how <see cref="Eina.Value"/>&apos;s are converted to text.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IFormatConcrete.NativeMethods]
+[Efl.Ui.FormatConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFormat : 
     Efl.Eo.IWrapper, IDisposable
@@ -120,7 +124,7 @@ void SetFormatValues(Eina.Accessor<Efl.Ui.FormatValue> values);
 /// 
 /// Pass <c>NULL</c> to disable this mechanism.</summary>
 /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-/// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+/// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.</param>
 void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType type);
     /// <summary>A user-provided, string used to format the numerical value.
 /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
@@ -131,21 +135,9 @@ void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType ty
 /// 
 /// Pass <c>NULL</c> to disable this mechanism.</summary>
 /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-/// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+/// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.</param>
 void SetFormatString(System.String kw_string, Efl.Ui.FormatStringType type);
-    /// <summary>Internal method to be used by widgets including this mixin to perform the conversion from the internal numerical value into the text representation (Users of these widgets do not need to call this method).
-/// <see cref="Efl.Ui.IFormat.GetFormattedValue"/> uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
-/// <param name="str">Output formatted string. Its contents will be overwritten by this method.</param>
-/// <param name="value">The <see cref="Eina.Value"/> to convert to text.</param>
-void GetFormattedValue(Eina.Strbuf str, Eina.Value value);
-    /// <summary>Internal method to be used by widgets including this mixin. It can only be used when a <see cref="Efl.Ui.IFormat.GetFormatString"/> has been supplied, and it returns the number of decimal places that the format string will produce for floating point values.
-/// For example, &quot;%.2f&quot; returns 2, and &quot;%d&quot; returns 0;</summary>
-/// <returns>Number of decimal places, or 0 for non-floating point types.</returns>
-int GetDecimalPlaces();
-    /// <summary>Internal method to be implemented by widgets including this mixin.
-/// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call <see cref="Efl.Ui.IFormat.GetFormattedValue"/> and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
-void ApplyFormattedValue();
-                                        /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
+                                                    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
     /// <value>User-provided formatting function.</value>
     Efl.Ui.FormatFunc FormatFunc {
         get;
@@ -178,7 +170,7 @@ void ApplyFormattedValue();
 /// 
 /// Widgets including this mixin offer their users different properties to control how <see cref="Eina.Value"/>&apos;s are converted to text.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFormatConcrete :
+public sealed class FormatConcrete :
     Efl.Eo.EoWrapper
     , IFormat
     
@@ -188,7 +180,7 @@ sealed public  class IFormatConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFormatConcrete))
+            if (((object)this).GetType() == typeof(FormatConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -202,7 +194,7 @@ sealed public  class IFormatConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFormatConcrete(ConstructingHandle ch) : base(ch)
+    private FormatConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -211,14 +203,15 @@ sealed public  class IFormatConcrete :
     /// <summary>Initializes a new instance of the <see cref="IFormat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFormatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FormatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
     /// <returns>User-provided formatting function.</returns>
     public Efl.Ui.FormatFunc GetFormatFunc() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_func_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -226,13 +219,13 @@ sealed public  class IFormatConcrete :
     /// <param name="func">User-provided formatting function.</param>
     public void SetFormatFunc(Efl.Ui.FormatFunc func) {
                          GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_set_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_func_set_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
     /// <returns>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</returns>
     public Eina.Accessor<Efl.Ui.FormatValue> GetFormatValues() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_values_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Accessor<Efl.Ui.FormatValue>(_ret_var, false);
  }
@@ -240,7 +233,7 @@ sealed public  class IFormatConcrete :
     /// <param name="values">Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</param>
     public void SetFormatValues(Eina.Accessor<Efl.Ui.FormatValue> values) {
          var _in_values = values.Handle;
-                        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_set_ptr.Value.Delegate(this.NativeHandle,_in_values);
+                        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_values_set_ptr.Value.Delegate(this.NativeHandle,_in_values);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>A user-provided, string used to format the numerical value.
@@ -252,9 +245,9 @@ sealed public  class IFormatConcrete :
     /// 
     /// Pass <c>NULL</c> to disable this mechanism.</summary>
     /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.</param>
     public void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType type) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate(this.NativeHandle,out kw_string, out type);
+                                                         Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate(this.NativeHandle,out kw_string, out type);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>A user-provided, string used to format the numerical value.
@@ -266,31 +259,31 @@ sealed public  class IFormatConcrete :
     /// 
     /// Pass <c>NULL</c> to disable this mechanism.</summary>
     /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.</param>
     public void SetFormatString(System.String kw_string, Efl.Ui.FormatStringType type) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate(this.NativeHandle,kw_string, type);
+                                                         Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate(this.NativeHandle,kw_string, type);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Internal method to be used by widgets including this mixin to perform the conversion from the internal numerical value into the text representation (Users of these widgets do not need to call this method).
-    /// <see cref="Efl.Ui.IFormat.GetFormattedValue"/> uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
+    /// Efl.Ui.Format.formatted_value_get uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
     /// <param name="str">Output formatted string. Its contents will be overwritten by this method.</param>
     /// <param name="value">The <see cref="Eina.Value"/> to convert to text.</param>
-    public void GetFormattedValue(Eina.Strbuf str, Eina.Value value) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_formatted_value_get_ptr.Value.Delegate(this.NativeHandle,str, value);
+    protected void GetFormattedValue(Eina.Strbuf str, Eina.Value value) {
+                                                         Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_formatted_value_get_ptr.Value.Delegate(this.NativeHandle,str, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Internal method to be used by widgets including this mixin. It can only be used when a <see cref="Efl.Ui.IFormat.GetFormatString"/> has been supplied, and it returns the number of decimal places that the format string will produce for floating point values.
     /// For example, &quot;%.2f&quot; returns 2, and &quot;%d&quot; returns 0;</summary>
     /// <returns>Number of decimal places, or 0 for non-floating point types.</returns>
-    public int GetDecimalPlaces() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_decimal_places_get_ptr.Value.Delegate(this.NativeHandle);
+    protected int GetDecimalPlaces() {
+         var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_decimal_places_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Internal method to be implemented by widgets including this mixin.
-    /// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call <see cref="Efl.Ui.IFormat.GetFormattedValue"/> and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
-    public void ApplyFormattedValue() {
-         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_apply_formatted_value_ptr.Value.Delegate(this.NativeHandle);
+    /// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call Efl.Ui.Format.formatted_value_get and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
+    protected void ApplyFormattedValue() {
+         Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_apply_formatted_value_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
@@ -323,9 +316,10 @@ sealed public  class IFormatConcrete :
         }
         set { SetFormatString( value.Item1,  value.Item2); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IFormatConcrete.efl_ui_format_mixin_get();
+        return Efl.Ui.FormatConcrete.efl_ui_format_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -334,7 +328,7 @@ sealed public  class IFormatConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -399,43 +393,23 @@ sealed public  class IFormatConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_string_set_static_delegate) });
             }
 
-            if (efl_ui_format_formatted_value_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_format_formatted_value_get_static_delegate = new efl_ui_format_formatted_value_get_delegate(formatted_value_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFormattedValue") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_formatted_value_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_formatted_value_get_static_delegate) });
-            }
-
-            if (efl_ui_format_decimal_places_get_static_delegate == null)
-            {
-                efl_ui_format_decimal_places_get_static_delegate = new efl_ui_format_decimal_places_get_delegate(decimal_places_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetDecimalPlaces") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_decimal_places_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_decimal_places_get_static_delegate) });
-            }
-
-            if (efl_ui_format_apply_formatted_value_static_delegate == null)
-            {
-                efl_ui_format_apply_formatted_value_static_delegate = new efl_ui_format_apply_formatted_value_delegate(apply_formatted_value);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ApplyFormattedValue") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_apply_formatted_value"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_apply_formatted_value_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IFormatConcrete.efl_ui_format_mixin_get();
+            return Efl.Ui.FormatConcrete.efl_ui_format_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -664,33 +638,6 @@ sealed public  class IFormatConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_format_formatted_value_get_api_delegate> efl_ui_format_formatted_value_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_formatted_value_get_api_delegate>(Module, "efl_ui_format_formatted_value_get");
 
-        private static void formatted_value_get(System.IntPtr obj, System.IntPtr pd, Eina.Strbuf str, Eina.ValueNative value)
-        {
-            Eina.Log.Debug("function efl_ui_format_formatted_value_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((IFormat)ws.Target).GetFormattedValue(str, value);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_format_formatted_value_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), str, value);
-            }
-        }
-
-        private static efl_ui_format_formatted_value_get_delegate efl_ui_format_formatted_value_get_static_delegate;
-
         
         private delegate int efl_ui_format_decimal_places_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -699,34 +646,6 @@ sealed public  class IFormatConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_format_decimal_places_get_api_delegate> efl_ui_format_decimal_places_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_decimal_places_get_api_delegate>(Module, "efl_ui_format_decimal_places_get");
 
-        private static int decimal_places_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_format_decimal_places_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IFormat)ws.Target).GetDecimalPlaces();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_format_decimal_places_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_format_decimal_places_get_delegate efl_ui_format_decimal_places_get_static_delegate;
-
         
         private delegate void efl_ui_format_apply_formatted_value_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -734,33 +653,6 @@ sealed public  class IFormatConcrete :
         public delegate void efl_ui_format_apply_formatted_value_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_ui_format_apply_formatted_value_api_delegate> efl_ui_format_apply_formatted_value_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_apply_formatted_value_api_delegate>(Module, "efl_ui_format_apply_formatted_value");
-
-        private static void apply_formatted_value(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_format_apply_formatted_value was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((IFormat)ws.Target).ApplyFormattedValue();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_format_apply_formatted_value_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_format_apply_formatted_value_delegate efl_ui_format_apply_formatted_value_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
@@ -772,7 +664,7 @@ sealed public  class IFormatConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIFormatConcrete_ExtensionMethods {
+public static class Efl_UiFormatConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Efl.Ui.FormatFunc> FormatFunc<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IFormat, T>magic = null) where T : Efl.Ui.IFormat {
         return new Efl.BindableProperty<Efl.Ui.FormatFunc>("format_func", fac);
     }
@@ -817,8 +709,8 @@ public struct FormatValue
     /// <summary>Text string to replace it.</summary>
     public System.String Text;
     /// <summary>Constructor for FormatValue.</summary>
-    /// <param name="Value">Input value.</param>;
-    /// <param name="Text">Text string to replace it.</param>;
+    /// <param name="Value">Input value.</param>
+    /// <param name="Text">Text string to replace it.</param>
     public FormatValue(
         int Value = default(int),
         System.String Text = default(System.String)    )

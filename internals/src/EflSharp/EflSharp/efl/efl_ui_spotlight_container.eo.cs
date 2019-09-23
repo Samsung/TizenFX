@@ -12,22 +12,22 @@ namespace Ui {
 
 namespace Spotlight {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionStartEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionStartEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ContainerTransitionStartEvt_Args : EventArgs {
+public class ContainerTransitionStartEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A transition animation has started.</value>
     public Efl.Ui.Spotlight.TransitionEvent arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionEndEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Spotlight.Container.TransitionEndEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ContainerTransitionEndEvt_Args : EventArgs {
+public class ContainerTransitionEndEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A transition animation has ended.</value>
     public Efl.Ui.Spotlight.TransitionEvent arg { get; set; }
 }
 /// <summary>The Spotlight widget is a container for other sub-widgets, where only one sub-widget is active at any given time.
-/// Sub-widgets are added using the <see cref="Efl.IPackLinear"/> interface and the active one (the one in the &quot;spotlight&quot;) is selected using <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/>.
+/// Sub-widgets are added using the <see cref="Efl.IPackLinear"/> interface and the active one (the one in the &quot;spotlight&quot;) is selected using <see cref="Efl.Ui.Spotlight.Container.ActiveElement"/>.
 /// 
 /// The way the different sub-widgets are rendered can be customized through the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/> object. For example, only the active sub-widget might be shown, or it might be shown in a central position whereas the other sub-widgets are displayed on the sides, or grayed-out. All sub-widgets are displayed with the same size, selected with <see cref="Efl.Ui.Spotlight.Container.SpotlightSize"/>.
 /// 
@@ -96,8 +96,8 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     }
 
     /// <summary>A transition animation has started.</summary>
-    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args> TransitionStartEvt
+    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionStartEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionStartEventArgs> TransitionStartEvent
     {
         add
         {
@@ -108,7 +108,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args args = new Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args();
+                        Efl.Ui.Spotlight.ContainerTransitionStartEventArgs args = new Efl.Ui.Spotlight.ContainerTransitionStartEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -136,8 +136,9 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
         }
     }
-    /// <summary>Method to raise event TransitionStartEvt.</summary>
-    public void OnTransitionStartEvt(Efl.Ui.Spotlight.ContainerTransitionStartEvt_Args e)
+    /// <summary>Method to raise event TransitionStartEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnTransitionStartEvent(Efl.Ui.Spotlight.ContainerTransitionStartEventArgs e)
     {
         var key = "_EFL_UI_SPOTLIGHT_EVENT_TRANSITION_START";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -159,8 +160,8 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         }
     }
     /// <summary>A transition animation has ended.</summary>
-    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args> TransitionEndEvt
+    /// <value><see cref="Efl.Ui.Spotlight.ContainerTransitionEndEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Spotlight.ContainerTransitionEndEventArgs> TransitionEndEvent
     {
         add
         {
@@ -171,7 +172,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args args = new Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args();
+                        Efl.Ui.Spotlight.ContainerTransitionEndEventArgs args = new Efl.Ui.Spotlight.ContainerTransitionEndEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -199,8 +200,9 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
         }
     }
-    /// <summary>Method to raise event TransitionEndEvt.</summary>
-    public void OnTransitionEndEvt(Efl.Ui.Spotlight.ContainerTransitionEndEvt_Args e)
+    /// <summary>Method to raise event TransitionEndEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnTransitionEndEvent(Efl.Ui.Spotlight.ContainerTransitionEndEventArgs e)
     {
         var key = "_EFL_UI_SPOTLIGHT_EVENT_TRANSITION_END";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -223,101 +225,101 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     }
     /// <summary>This object defines how sub-widgets are rendered and animated. If it is not set, only the active sub-widget is shown and transitions are instantaneous (not animated).</summary>
     /// <returns>The Spotlight Manager object or <c>NULL</c>.</returns>
-    virtual public Efl.Ui.Spotlight.Manager GetSpotlightManager() {
+    public virtual Efl.Ui.Spotlight.Manager GetSpotlightManager() {
          var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>This object defines how sub-widgets are rendered and animated. If it is not set, only the active sub-widget is shown and transitions are instantaneous (not animated).</summary>
     /// <param name="spotlight_manager">The Spotlight Manager object or <c>NULL</c>.</param>
-    virtual public void SetSpotlightManager(Efl.Ui.Spotlight.Manager spotlight_manager) {
+    public virtual void SetSpotlightManager(Efl.Ui.Spotlight.Manager spotlight_manager) {
                                  Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_manager_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),spotlight_manager);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>An indicator object to use, which will display the current state of the spotlight (number of sub-widgets and active one). When this object is set, it is immediately updated to reflect the current state of the widget. Its location inside the container is controlled by the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/>.</summary>
     /// <returns>The Indicator object or <c>NULL</c>.</returns>
-    virtual public Efl.Ui.Spotlight.Indicator GetIndicator() {
+    public virtual Efl.Ui.Spotlight.Indicator GetIndicator() {
          var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_indicator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>An indicator object to use, which will display the current state of the spotlight (number of sub-widgets and active one). When this object is set, it is immediately updated to reflect the current state of the widget. Its location inside the container is controlled by the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/>.</summary>
     /// <param name="indicator">The Indicator object or <c>NULL</c>.</param>
-    virtual public void SetIndicator(Efl.Ui.Spotlight.Indicator indicator) {
+    public virtual void SetIndicator(Efl.Ui.Spotlight.Indicator indicator) {
                                  Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_indicator_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),indicator);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Currently active sub-widget (the one with the spotlight) among all the sub-widgets added to this widget
     /// Changing this value might trigger an animation.</summary>
-    /// <returns>Index of the sub-widget that has the spotlight, from 0 to the number of sub-widgets - 1 (<see cref="Efl.IContainer.ContentCount"/> - 1).</returns>
-    virtual public int GetActiveIndex() {
-         var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_active_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>Sub-widget that has the spotlight. The element has to be added prior to this call via the <see cref="Efl.IPackLinear"/> interface.</returns>
+    public virtual Efl.Ui.Widget GetActiveElement() {
+         var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_active_element_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Currently active sub-widget (the one with the spotlight) among all the sub-widgets added to this widget
     /// Changing this value might trigger an animation.</summary>
-    /// <param name="index">Index of the sub-widget that has the spotlight, from 0 to the number of sub-widgets - 1 (<see cref="Efl.IContainer.ContentCount"/> - 1).</param>
-    virtual public void SetActiveIndex(int index) {
-                                 Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_active_index_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
+    /// <param name="element">Sub-widget that has the spotlight. The element has to be added prior to this call via the <see cref="Efl.IPackLinear"/> interface.</param>
+    public virtual void SetActiveElement(Efl.Ui.Widget element) {
+                                 Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_active_element_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),element);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The size to use when displaying the Sub-Widget which has the spotlight. This is used by the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/> to perform the rendering. Sub-Widgets other than the Active one may or may not use this size.</summary>
-    /// <returns>Render size for the spotlight. (-1, -1) means that all available space inside the container is used.</returns>
-    virtual public Eina.Size2D GetSpotlightSize() {
+    /// <returns>Render size for the spotlight. (-1, -1) means that all available space inside the container can be used.</returns>
+    public virtual Eina.Size2D GetSpotlightSize() {
          var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The size to use when displaying the Sub-Widget which has the spotlight. This is used by the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/> to perform the rendering. Sub-Widgets other than the Active one may or may not use this size.</summary>
-    /// <param name="size">Render size for the spotlight. (-1, -1) means that all available space inside the container is used.</param>
-    virtual public void SetSpotlightSize(Eina.Size2D size) {
+    /// <param name="size">Render size for the spotlight. (-1, -1) means that all available space inside the container can be used.</param>
+    public virtual void SetSpotlightSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
                         Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>Packs a new sub-widget at the position indicated by <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/> (0 by default).
+    /// <summary>Packs a new sub-widget before <see cref="Efl.Ui.Spotlight.Container.ActiveElement"/>, and move the spotlight there.
     /// This is the same behavior as a push operation on a stack.
     /// 
     /// An animation might be triggered to give the new sub-widget the spotlight and come into position.</summary>
     /// <param name="widget">Sub-Widget to add and set to be the spotlight sub-widget.</param>
-    virtual public void Push(Efl.Gfx.IEntity widget) {
+    public virtual void Push(Efl.Gfx.IEntity widget) {
                                  Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),widget);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Removes the sub-widget that has the spotlight from the widget.
-    /// The sub-widgets behind it naturally flow down so the next one gets the spotlight. This is the same behavior as a pop operation on a stack. When combined with <see cref="Efl.Ui.Spotlight.Container.Push"/> you don&apos;t have to worry about <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/> since only the first sub-widget is manipulated.
+    /// The sub-widgets behind it naturally flow down so the next one gets the spotlight. This is the same behavior as a pop operation on a stack. When combined with <see cref="Efl.Ui.Spotlight.Container.Push"/> you don&apos;t have to worry about <see cref="Efl.Ui.Spotlight.Container.ActiveElement"/> since only the first sub-widget is manipulated.
     /// 
     /// An animation might be triggered to give the new sub-widget the spotlight, come into position and the old one disappear.
     /// 
     /// The removed sub-widget can be returned to the caller or deleted (depending on <c>delete_on_transition_end</c>).</summary>
-    /// <param name="deletion_on_transition_end">if <c>true</c>, then the object will be deleted before resolving the future, and a NULL pointer is the value of the future. <c>false</c> if no operation should be applied to it</param>
+    /// <param name="deletion_on_transition_end">If <c>true</c>, then the object will be deleted before resolving the future, and a <c>NULL</c> pointer is the value of the future. <c>false</c> if no operation should be applied to it.</param>
     /// <returns>This Future gets resolved when any transition animation finishes and the popped sub-widget is ready for collection. If there is no animation, the Future resolves immediately. If <c>deletion_on_transition_end</c> is <c>true</c> then this widget will destroy the popped sub-widget and the Future will contain no Value. Otherwise, the caller becomes the owner of the sub-widget contained in the Future and must dispose of it appropriately.</returns>
-    virtual public  Eina.Future Pop(bool deletion_on_transition_end) {
+    public virtual  Eina.Future Pop(bool deletion_on_transition_end) {
                                  var _ret_var = Efl.Ui.Spotlight.Container.NativeMethods.efl_ui_spotlight_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),deletion_on_transition_end);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
-    virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool ClearPack() {
+         var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects without unreferencing them.
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
-    virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool UnpackAll() {
+         var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes an existing sub-object from the container without deleting it.</summary>
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
-    virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool Unpack(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -327,30 +329,30 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
-    virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool Pack(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Prepend an object at the beginning of this container.
-    /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, 0).
+    /// This is the same as <see cref="Efl.IPackLinear.PackAt"/> with a <c>0</c> index.
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
     /// <param name="subobj">Object to pack at the beginning.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
-    virtual public bool PackBegin(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool PackBegin(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_begin_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Append object at the end of this container.
-    /// This is the same as <see cref="Efl.IPackLinear.PackAt"/>(<c>subobj</c>, -1).
+    /// This is the same as <see cref="Efl.IPackLinear.PackAt"/> with a <c>-1</c> index.
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
     /// <param name="subobj">Object to pack at the end.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
-    virtual public bool PackEnd(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool PackEnd(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -359,8 +361,8 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">Object to pack before <c>existing</c>.</param>
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
-    virtual public bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
+    public virtual bool PackBefore(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
+                                                         var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_before_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -369,57 +371,57 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     /// <param name="subobj">Object to pack after <c>existing</c>.</param>
     /// <param name="existing">Existing reference sub-object.</param>
     /// <returns><c>false</c> if <c>existing</c> could not be found or <c>subobj</c> could not be packed.</returns>
-    virtual public bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
+    public virtual bool PackAfter(Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing) {
+                                                         var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_after_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, existing);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Inserts <c>subobj</c> BEFORE the sub-object at position <c>index</c>.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
+    /// <c>index</c> ranges from <c>-count</c> to <c>count-1</c>, where positive numbers go from first sub-object (<c>0</c>) to last (<c>count-1</c>), and negative numbers go from last sub-object (<c>-1</c>) to first (<c>-count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
-    /// If <c>index</c> is less than -<c>count</c>, it will trigger <see cref="Efl.IPackLinear.PackBegin"/>(<c>subobj</c>) whereas <c>index</c> greater than <c>count</c>-1 will trigger <see cref="Efl.IPackLinear.PackEnd"/>(<c>subobj</c>).
+    /// If <c>index</c> is less than <c>-count</c>, it will trigger <see cref="Efl.IPackLinear.PackBegin"/> whereas <c>index</c> greater than <c>count-1</c> will trigger <see cref="Efl.IPackLinear.PackEnd"/>.
     /// 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
     /// <param name="subobj">Object to pack.</param>
-    /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// <param name="index">Index of existing sub-object to insert BEFORE. Valid range is <c>-count</c> to <c>count-1</c>).</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
-    virtual public bool PackAt(Efl.Gfx.IEntity subobj, int index) {
-                                                         var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
+    public virtual bool PackAt(Efl.Gfx.IEntity subobj, int index) {
+                                                         var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Sub-object at a given <c>index</c> in this container.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
+    /// <c>index</c> ranges from <c>-count</c> to <c>count-1</c>, where positive numbers go from first sub-object (<c>0</c>) to last (<c>count-1</c>), and negative numbers go from last sub-object (<c>-1</c>) to first (<c>-count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
-    /// If <c>index</c> is less than -<c>count</c>, it will return the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will return the last sub-object.</summary>
-    /// <param name="index">Index of the existing sub-object to retrieve. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// If <c>index</c> is less than <c>-count</c>, it will return the first sub-object whereas <c>index</c> greater than <c>count-1</c> will return the last sub-object.</summary>
+    /// <param name="index">Index of the existing sub-object to retrieve. Valid range is <c>-count</c> to <c>count-1</c>.</param>
     /// <returns>The sub-object contained at the given <c>index</c>.</returns>
-    virtual public Efl.Gfx.IEntity GetPackContent(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
+    public virtual Efl.Gfx.IEntity GetPackContent(int index) {
+                                 var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get the index of a sub-object in this container.</summary>
     /// <param name="subobj">An existing sub-object in this container.</param>
-    /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range 0 to (<c>count</c>-1).</returns>
-    virtual public int GetPackIndex(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    /// <returns>-1 in case <c>subobj</c> is not found, or the index of <c>subobj</c> in the range <c>0</c> to <c>count-1</c>.</returns>
+    public virtual int GetPackIndex(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Pop out (remove) the sub-object at the specified <c>index</c>.
-    /// <c>index</c> ranges from -<c>count</c> to <c>count</c>-1, where positive numbers go from first sub-object (0) to last (<c>count</c>-1), and negative numbers go from last sub-object (-1) to first (-<c>count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
+    /// <c>index</c> ranges from <c>-count</c> to <c>count-1</c>, where positive numbers go from first sub-object (<c>0</c>) to last (<c>count-1</c>), and negative numbers go from last sub-object (<c>-1</c>) to first (<c>-count</c>). <c>count</c> is the number of sub-objects currently in the container as returned by <see cref="Efl.IContainer.ContentCount"/>.
     /// 
     /// If <c>index</c> is less than -<c>count</c>, it will remove the first sub-object whereas <c>index</c> greater than <c>count</c>-1 will remove the last sub-object.</summary>
-    /// <param name="index">Index of the sub-object to remove. Valid range is -<c>count</c> to (<c>count</c>-1).</param>
+    /// <param name="index">Index of the sub-object to remove. Valid range is <c>-count</c> to <c>count-1</c>.</param>
     /// <returns>The sub-object if it could be removed.</returns>
-    virtual public Efl.Gfx.IEntity PackUnpackAt(int index) {
-                                 var _ret_var = Efl.IPackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
+    public virtual Efl.Gfx.IEntity PackUnpackAt(int index) {
+                                 var _ret_var = Efl.PackLinearConcrete.NativeMethods.efl_pack_unpack_at_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Async wrapper for <see cref="Pop" />.</summary>
-    /// <param name="deletion_on_transition_end">if <c>true</c>, then the object will be deleted before resolving the future, and a NULL pointer is the value of the future. <c>false</c> if no operation should be applied to it</param>
+    /// <param name="deletion_on_transition_end">If <c>true</c>, then the object will be deleted before resolving the future, and a <c>NULL</c> pointer is the value of the future. <c>false</c> if no operation should be applied to it.</param>
     /// <param name="token">Token to notify the async operation of external request to cancel.</param>
     /// <returns>An async task wrapping the result of the operation.</returns>
     public System.Threading.Tasks.Task<Eina.Value> PopAsync(bool deletion_on_transition_end, System.Threading.CancellationToken token = default(System.Threading.CancellationToken))
@@ -442,13 +444,13 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
     }
     /// <summary>Currently active sub-widget (the one with the spotlight) among all the sub-widgets added to this widget
     /// Changing this value might trigger an animation.</summary>
-    /// <value>Index of the sub-widget that has the spotlight, from 0 to the number of sub-widgets - 1 (<see cref="Efl.IContainer.ContentCount"/> - 1).</value>
-    public int ActiveIndex {
-        get { return GetActiveIndex(); }
-        set { SetActiveIndex(value); }
+    /// <value>Sub-widget that has the spotlight. The element has to be added prior to this call via the <see cref="Efl.IPackLinear"/> interface.</value>
+    public Efl.Ui.Widget ActiveElement {
+        get { return GetActiveElement(); }
+        set { SetActiveElement(value); }
     }
     /// <summary>The size to use when displaying the Sub-Widget which has the spotlight. This is used by the <see cref="Efl.Ui.Spotlight.Container.SpotlightManager"/> to perform the rendering. Sub-Widgets other than the Active one may or may not use this size.</summary>
-    /// <value>Render size for the spotlight. (-1, -1) means that all available space inside the container is used.</value>
+    /// <value>Render size for the spotlight. (-1, -1) means that all available space inside the container can be used.</value>
     public Eina.Size2D SpotlightSize {
         get { return GetSpotlightSize(); }
         set { SetSpotlightSize(value); }
@@ -464,7 +466,7 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -509,24 +511,24 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_indicator_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_indicator_set_static_delegate) });
             }
 
-            if (efl_ui_spotlight_active_index_get_static_delegate == null)
+            if (efl_ui_spotlight_active_element_get_static_delegate == null)
             {
-                efl_ui_spotlight_active_index_get_static_delegate = new efl_ui_spotlight_active_index_get_delegate(active_index_get);
+                efl_ui_spotlight_active_element_get_static_delegate = new efl_ui_spotlight_active_element_get_delegate(active_element_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetActiveIndex") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetActiveElement") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_active_index_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_active_index_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_active_element_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_active_element_get_static_delegate) });
             }
 
-            if (efl_ui_spotlight_active_index_set_static_delegate == null)
+            if (efl_ui_spotlight_active_element_set_static_delegate == null)
             {
-                efl_ui_spotlight_active_index_set_static_delegate = new efl_ui_spotlight_active_index_set_delegate(active_index_set);
+                efl_ui_spotlight_active_element_set_static_delegate = new efl_ui_spotlight_active_element_set_delegate(active_element_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetActiveIndex") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetActiveElement") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_active_index_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_active_index_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_active_element_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_active_element_set_static_delegate) });
             }
 
             if (efl_ui_spotlight_size_get_static_delegate == null)
@@ -569,127 +571,17 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_pop"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_pop_static_delegate) });
             }
 
-            if (efl_pack_clear_static_delegate == null)
+            if (includeInherited)
             {
-                efl_pack_clear_static_delegate = new efl_pack_clear_delegate(pack_clear);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "ClearPack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_clear_static_delegate) });
-            }
-
-            if (efl_pack_unpack_all_static_delegate == null)
-            {
-                efl_pack_unpack_all_static_delegate = new efl_pack_unpack_all_delegate(unpack_all);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "UnpackAll") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_unpack_all"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_unpack_all_static_delegate) });
-            }
-
-            if (efl_pack_unpack_static_delegate == null)
-            {
-                efl_pack_unpack_static_delegate = new efl_pack_unpack_delegate(unpack);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unpack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_unpack"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_unpack_static_delegate) });
-            }
-
-            if (efl_pack_static_delegate == null)
-            {
-                efl_pack_static_delegate = new efl_pack_delegate(pack);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Pack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_static_delegate) });
-            }
-
-            if (efl_pack_begin_static_delegate == null)
-            {
-                efl_pack_begin_static_delegate = new efl_pack_begin_delegate(pack_begin);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackBegin") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_begin"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_begin_static_delegate) });
-            }
-
-            if (efl_pack_end_static_delegate == null)
-            {
-                efl_pack_end_static_delegate = new efl_pack_end_delegate(pack_end);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackEnd") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_end"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_end_static_delegate) });
-            }
-
-            if (efl_pack_before_static_delegate == null)
-            {
-                efl_pack_before_static_delegate = new efl_pack_before_delegate(pack_before);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackBefore") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_before"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_before_static_delegate) });
-            }
-
-            if (efl_pack_after_static_delegate == null)
-            {
-                efl_pack_after_static_delegate = new efl_pack_after_delegate(pack_after);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackAfter") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_after"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_after_static_delegate) });
-            }
-
-            if (efl_pack_at_static_delegate == null)
-            {
-                efl_pack_at_static_delegate = new efl_pack_at_delegate(pack_at);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackAt") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_at"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_at_static_delegate) });
-            }
-
-            if (efl_pack_content_get_static_delegate == null)
-            {
-                efl_pack_content_get_static_delegate = new efl_pack_content_get_delegate(pack_content_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetPackContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_content_get_static_delegate) });
-            }
-
-            if (efl_pack_index_get_static_delegate == null)
-            {
-                efl_pack_index_get_static_delegate = new efl_pack_index_get_delegate(pack_index_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetPackIndex") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_index_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_index_get_static_delegate) });
-            }
-
-            if (efl_pack_unpack_at_static_delegate == null)
-            {
-                efl_pack_unpack_at_static_delegate = new efl_pack_unpack_at_delegate(pack_unpack_at);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackUnpackAt") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_unpack_at"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_unpack_at_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -843,24 +735,24 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
 
         private static efl_ui_spotlight_indicator_set_delegate efl_ui_spotlight_indicator_set_static_delegate;
 
-        
-        private delegate int efl_ui_spotlight_active_index_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        private delegate Efl.Ui.Widget efl_ui_spotlight_active_element_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
-        
-        public delegate int efl_ui_spotlight_active_index_get_api_delegate(System.IntPtr obj);
+        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
+        public delegate Efl.Ui.Widget efl_ui_spotlight_active_element_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_index_get_api_delegate> efl_ui_spotlight_active_index_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_index_get_api_delegate>(Module, "efl_ui_spotlight_active_index_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_element_get_api_delegate> efl_ui_spotlight_active_element_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_element_get_api_delegate>(Module, "efl_ui_spotlight_active_element_get");
 
-        private static int active_index_get(System.IntPtr obj, System.IntPtr pd)
+        private static Efl.Ui.Widget active_element_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_ui_spotlight_active_index_get was called");
+            Eina.Log.Debug("function efl_ui_spotlight_active_element_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+            Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
                 try
                 {
-                    _ret_var = ((Container)ws.Target).GetActiveIndex();
+                    _ret_var = ((Container)ws.Target).GetActiveElement();
                 }
                 catch (Exception e)
                 {
@@ -873,30 +765,30 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
             else
             {
-                return efl_ui_spotlight_active_index_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_ui_spotlight_active_element_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_ui_spotlight_active_index_get_delegate efl_ui_spotlight_active_index_get_static_delegate;
+        private static efl_ui_spotlight_active_element_get_delegate efl_ui_spotlight_active_element_get_static_delegate;
 
         
-        private delegate void efl_ui_spotlight_active_index_set_delegate(System.IntPtr obj, System.IntPtr pd,  int index);
+        private delegate void efl_ui_spotlight_active_element_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Widget element);
 
         
-        public delegate void efl_ui_spotlight_active_index_set_api_delegate(System.IntPtr obj,  int index);
+        public delegate void efl_ui_spotlight_active_element_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Widget element);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_index_set_api_delegate> efl_ui_spotlight_active_index_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_index_set_api_delegate>(Module, "efl_ui_spotlight_active_index_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_element_set_api_delegate> efl_ui_spotlight_active_element_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_spotlight_active_element_set_api_delegate>(Module, "efl_ui_spotlight_active_element_set");
 
-        private static void active_index_set(System.IntPtr obj, System.IntPtr pd, int index)
+        private static void active_element_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Widget element)
         {
-            Eina.Log.Debug("function efl_ui_spotlight_active_index_set was called");
+            Eina.Log.Debug("function efl_ui_spotlight_active_element_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                     
                 try
                 {
-                    ((Container)ws.Target).SetActiveIndex(index);
+                    ((Container)ws.Target).SetActiveElement(element);
                 }
                 catch (Exception e)
                 {
@@ -908,11 +800,11 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
             }
             else
             {
-                efl_ui_spotlight_active_index_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), index);
+                efl_ui_spotlight_active_element_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), element);
             }
         }
 
-        private static efl_ui_spotlight_active_index_set_delegate efl_ui_spotlight_active_index_set_static_delegate;
+        private static efl_ui_spotlight_active_element_set_delegate efl_ui_spotlight_active_element_set_static_delegate;
 
         
         private delegate Eina.Size2D.NativeStruct efl_ui_spotlight_size_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1057,438 +949,6 @@ public class Container : Efl.Ui.LayoutBase, Efl.IPack, Efl.IPackLinear
 
         private static efl_ui_spotlight_pop_delegate efl_ui_spotlight_pop_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_clear_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_clear_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_clear_api_delegate> efl_pack_clear_ptr = new Efl.Eo.FunctionWrapper<efl_pack_clear_api_delegate>(Module, "efl_pack_clear");
-
-        private static bool pack_clear(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_clear was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).ClearPack();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_clear_delegate efl_pack_clear_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_unpack_all_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_unpack_all_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_unpack_all_api_delegate> efl_pack_unpack_all_ptr = new Efl.Eo.FunctionWrapper<efl_pack_unpack_all_api_delegate>(Module, "efl_pack_unpack_all");
-
-        private static bool unpack_all(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_unpack_all was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).UnpackAll();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_unpack_all_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_unpack_all_delegate efl_pack_unpack_all_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_unpack_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_unpack_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_unpack_api_delegate> efl_pack_unpack_ptr = new Efl.Eo.FunctionWrapper<efl_pack_unpack_api_delegate>(Module, "efl_pack_unpack");
-
-        private static bool unpack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack_unpack was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).Unpack(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_unpack_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_unpack_delegate efl_pack_unpack_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_api_delegate> efl_pack_ptr = new Efl.Eo.FunctionWrapper<efl_pack_api_delegate>(Module, "efl_pack");
-
-        private static bool pack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).Pack(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_delegate efl_pack_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_begin_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_begin_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_begin_api_delegate> efl_pack_begin_ptr = new Efl.Eo.FunctionWrapper<efl_pack_begin_api_delegate>(Module, "efl_pack_begin");
-
-        private static bool pack_begin(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack_begin was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackBegin(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_begin_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_begin_delegate efl_pack_begin_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_end_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_end_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_end_api_delegate> efl_pack_end_ptr = new Efl.Eo.FunctionWrapper<efl_pack_end_api_delegate>(Module, "efl_pack_end");
-
-        private static bool pack_end(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack_end was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackEnd(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_end_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_end_delegate efl_pack_end_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_before_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity existing);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_before_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity existing);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_before_api_delegate> efl_pack_before_ptr = new Efl.Eo.FunctionWrapper<efl_pack_before_api_delegate>(Module, "efl_pack_before");
-
-        private static bool pack_before(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing)
-        {
-            Eina.Log.Debug("function efl_pack_before was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackBefore(subobj, existing);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_before_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, existing);
-            }
-        }
-
-        private static efl_pack_before_delegate efl_pack_before_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_after_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity existing);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_after_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity existing);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_after_api_delegate> efl_pack_after_ptr = new Efl.Eo.FunctionWrapper<efl_pack_after_api_delegate>(Module, "efl_pack_after");
-
-        private static bool pack_after(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, Efl.Gfx.IEntity existing)
-        {
-            Eina.Log.Debug("function efl_pack_after was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackAfter(subobj, existing);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_after_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, existing);
-            }
-        }
-
-        private static efl_pack_after_delegate efl_pack_after_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_at_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int index);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_at_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int index);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_at_api_delegate> efl_pack_at_ptr = new Efl.Eo.FunctionWrapper<efl_pack_at_api_delegate>(Module, "efl_pack_at");
-
-        private static bool pack_at(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int index)
-        {
-            Eina.Log.Debug("function efl_pack_at was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackAt(subobj, index);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_at_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, index);
-            }
-        }
-
-        private static efl_pack_at_delegate efl_pack_at_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Gfx.IEntity efl_pack_content_get_delegate(System.IntPtr obj, System.IntPtr pd,  int index);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Gfx.IEntity efl_pack_content_get_api_delegate(System.IntPtr obj,  int index);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_content_get_api_delegate> efl_pack_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_content_get_api_delegate>(Module, "efl_pack_content_get");
-
-        private static Efl.Gfx.IEntity pack_content_get(System.IntPtr obj, System.IntPtr pd, int index)
-        {
-            Eina.Log.Debug("function efl_pack_content_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).GetPackContent(index);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), index);
-            }
-        }
-
-        private static efl_pack_content_get_delegate efl_pack_content_get_static_delegate;
-
-        
-        private delegate int efl_pack_index_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        
-        public delegate int efl_pack_index_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_index_get_api_delegate> efl_pack_index_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_index_get_api_delegate>(Module, "efl_pack_index_get");
-
-        private static int pack_index_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack_index_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).GetPackIndex(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_index_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_index_get_delegate efl_pack_index_get_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Gfx.IEntity efl_pack_unpack_at_delegate(System.IntPtr obj, System.IntPtr pd,  int index);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Gfx.IEntity efl_pack_unpack_at_api_delegate(System.IntPtr obj,  int index);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_unpack_at_api_delegate> efl_pack_unpack_at_ptr = new Efl.Eo.FunctionWrapper<efl_pack_unpack_at_api_delegate>(Module, "efl_pack_unpack_at");
-
-        private static Efl.Gfx.IEntity pack_unpack_at(System.IntPtr obj, System.IntPtr pd, int index)
-        {
-            Eina.Log.Debug("function efl_pack_unpack_at was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-                try
-                {
-                    _ret_var = ((Container)ws.Target).PackUnpackAt(index);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_unpack_at_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), index);
-            }
-        }
-
-        private static efl_pack_unpack_at_delegate efl_pack_unpack_at_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -1510,8 +970,8 @@ public static class Efl_Ui_SpotlightContainer_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Ui.Spotlight.Indicator>("indicator", fac);
     }
 
-    public static Efl.BindableProperty<int> ActiveIndex<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
-        return new Efl.BindableProperty<int>("active_index", fac);
+    public static Efl.BindableProperty<Efl.Ui.Widget> ActiveElement<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
+        return new Efl.BindableProperty<Efl.Ui.Widget>("active_element", fac);
     }
 
     public static Efl.BindableProperty<Eina.Size2D> SpotlightSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Spotlight.Container, T>magic = null) where T : Efl.Ui.Spotlight.Container {
@@ -1537,8 +997,8 @@ public struct TransitionEvent
     /// <summary>The index to where the transition is headed, -1 if not known.</summary>
     public int To;
     /// <summary>Constructor for TransitionEvent.</summary>
-    /// <param name="From">The index from where the transition started, -1 if not known.</param>;
-    /// <param name="To">The index to where the transition is headed, -1 if not known.</param>;
+    /// <param name="From">The index from where the transition started, -1 if not known.</param>
+    /// <param name="To">The index to where the transition is headed, -1 if not known.</param>
     public TransitionEvent(
         int From = default(int),
         int To = default(int)    )

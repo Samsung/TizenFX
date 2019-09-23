@@ -12,6 +12,7 @@ namespace Dnd {
 /// <param name="win">The window to create the objects relative to</param>
 /// <param name="drag_obj">The drag object</param>
 /// <param name="off">Offset from the icon position to the cursor</param>
+/// <returns>The drag icon object</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Canvas.Object DragIconCreate(Efl.Canvas.Object win, Efl.Canvas.Object drag_obj, out Eina.Position2D off);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Canvas.Object DragIconCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object win, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object drag_obj,  out Eina.Position2D.NativeStruct off);
@@ -171,6 +172,7 @@ namespace Dnd {
 /// <param name="obj">The container object</param>
 /// <param name="pos">The coordinates to get item</param>
 /// <param name="posret">position relative to item (left (-1), middle (0), right (1)</param>
+/// <returns>Object under x,y coordinates or NULL if not found</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Object ItemGet(Efl.Canvas.Object obj, Eina.Position2D pos, out Eina.Position2D posret);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Object ItemGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Position2D.NativeStruct pos,  out Eina.Position2D.NativeStruct posret);
@@ -334,7 +336,7 @@ public struct DragAccept
 {
     public bool Accepted;
     /// <summary>Constructor for DragAccept.</summary>
-    /// <param name="Accepted"></param>;
+    /// <param name="Accepted"></param>
     public DragAccept(
         bool Accepted = default(bool)    )
     {
@@ -404,10 +406,10 @@ public struct DragPos
     /// <summary>The item object. It is only available for container object.</summary>
     public Efl.Canvas.Object Item;
     /// <summary>Constructor for DragPos.</summary>
-    /// <param name="Pos">Evas Coordinate</param>;
-    /// <param name="Action">The drag action</param>;
-    /// <param name="Format">The drag format</param>;
-    /// <param name="Item">The item object. It is only available for container object.</param>;
+    /// <param name="Pos">Evas Coordinate</param>
+    /// <param name="Action">The drag action</param>
+    /// <param name="Format">The drag format</param>
+    /// <param name="Item">The item object. It is only available for container object.</param>
     public DragPos(
         Eina.Position2D Pos = default(Eina.Position2D),
         Efl.Ui.SelectionAction Action = default(Efl.Ui.SelectionAction),
@@ -493,9 +495,9 @@ public struct DragItemContainerDrop
     /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
     /// <summary>Constructor for DragItemContainerDrop.</summary>
-    /// <param name="Item">The item object</param>;
-    /// <param name="Data">The selection data</param>;
-    /// <param name="Pos">Position relative to item (left (-1), middle (0), right (1)</param>;
+    /// <param name="Item">The item object</param>
+    /// <param name="Data">The selection data</param>
+    /// <param name="Pos">Position relative to item (left (-1), middle (0), right (1)</param>
     public DragItemContainerDrop(
         Efl.Canvas.Object Item = default(Efl.Canvas.Object),
         Efl.Ui.SelectionData Data = default(Efl.Ui.SelectionData),

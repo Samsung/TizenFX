@@ -8,29 +8,24 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Low-level APIs for object that can lay their children out.
-/// Used for containers (box, grid).</summary>
+/// <summary>Low-level APIs for objects that can lay their children out.
+/// Used for containers like <see cref="Efl.Ui.Box"/> and <see cref="Efl.Ui.Table"/>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IPackLayoutConcrete.NativeMethods]
+[Efl.PackLayoutConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPackLayout : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
-/// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
+    /// <summary>Requests EFL to recalculate the layout of this object.
+/// Internal layout methods might be called asynchronously.</summary>
 void LayoutRequest();
-    /// <summary>Implementation of this container&apos;s layout algorithm.
-/// EFL will call this function whenever the contents of this container need to be re-laid out on the canvas.
-/// 
-/// This can be overriden to implement custom layout behaviors.</summary>
-void UpdateLayout();
-            /// <summary>Sent after the layout was updated.</summary>
-    event EventHandler LayoutUpdatedEvt;
+                /// <summary>Sent after the layout was updated.</summary>
+    event EventHandler LayoutUpdatedEvent;
 }
-/// <summary>Low-level APIs for object that can lay their children out.
-/// Used for containers (box, grid).</summary>
+/// <summary>Low-level APIs for objects that can lay their children out.
+/// Used for containers like <see cref="Efl.Ui.Box"/> and <see cref="Efl.Ui.Table"/>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IPackLayoutConcrete :
+public sealed class PackLayoutConcrete :
     Efl.Eo.EoWrapper
     , IPackLayout
     
@@ -40,7 +35,7 @@ sealed public  class IPackLayoutConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPackLayoutConcrete))
+            if (((object)this).GetType() == typeof(PackLayoutConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -54,7 +49,7 @@ sealed public  class IPackLayoutConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPackLayoutConcrete(ConstructingHandle ch) : base(ch)
+    private PackLayoutConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -63,12 +58,12 @@ sealed public  class IPackLayoutConcrete :
     /// <summary>Initializes a new instance of the <see cref="IPackLayout"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPackLayoutConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PackLayoutConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Sent after the layout was updated.</summary>
-    public event EventHandler LayoutUpdatedEvt
+    public event EventHandler LayoutUpdatedEvent
     {
         add
         {
@@ -106,8 +101,9 @@ sealed public  class IPackLayoutConcrete :
             }
         }
     }
-    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
-    public void OnLayoutUpdatedEvt(EventArgs e)
+    /// <summary>Method to raise event LayoutUpdatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLayoutUpdatedEvent(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -119,23 +115,25 @@ sealed public  class IPackLayoutConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
-    /// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
+#pragma warning disable CS0628
+    /// <summary>Requests EFL to recalculate the layout of this object.
+    /// Internal layout methods might be called asynchronously.</summary>
     public void LayoutRequest() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate(this.NativeHandle);
+         Efl.PackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Implementation of this container&apos;s layout algorithm.
     /// EFL will call this function whenever the contents of this container need to be re-laid out on the canvas.
     /// 
-    /// This can be overriden to implement custom layout behaviors.</summary>
-    public void UpdateLayout() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate(this.NativeHandle);
+    /// This can be overridden to implement custom layout behaviors.</summary>
+    protected void UpdateLayout() {
+         Efl.PackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IPackLayoutConcrete.efl_pack_layout_interface_get();
+        return Efl.PackLayoutConcrete.efl_pack_layout_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -144,7 +142,7 @@ sealed public  class IPackLayoutConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -159,23 +157,23 @@ sealed public  class IPackLayoutConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_layout_request"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_layout_request_static_delegate) });
             }
 
-            if (efl_pack_layout_update_static_delegate == null)
+            if (includeInherited)
             {
-                efl_pack_layout_update_static_delegate = new efl_pack_layout_update_delegate(layout_update);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "UpdateLayout") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_layout_update"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_layout_update_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IPackLayoutConcrete.efl_pack_layout_interface_get();
+            return Efl.PackLayoutConcrete.efl_pack_layout_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -223,33 +221,6 @@ sealed public  class IPackLayoutConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_pack_layout_update_api_delegate> efl_pack_layout_update_ptr = new Efl.Eo.FunctionWrapper<efl_pack_layout_update_api_delegate>(Module, "efl_pack_layout_update");
 
-        private static void layout_update(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_layout_update was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((IPackLayout)ws.Target).UpdateLayout();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_pack_layout_update_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_layout_update_delegate efl_pack_layout_update_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -258,7 +229,7 @@ sealed public  class IPackLayoutConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIPackLayoutConcrete_ExtensionMethods {
+public static class EflPackLayoutConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

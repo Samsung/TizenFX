@@ -11,7 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IListViewModelConcrete.NativeMethods]
+[Efl.Ui.ListViewModelConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IListViewModel : 
     Efl.Eo.IWrapper, IDisposable
@@ -37,7 +37,7 @@ void SetMinSize(Eina.Size2D min);
     }
 }
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IListViewModelConcrete :
+public sealed class ListViewModelConcrete :
     Efl.Eo.EoWrapper
     , IListViewModel
     
@@ -47,7 +47,7 @@ sealed public  class IListViewModelConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IListViewModelConcrete))
+            if (((object)this).GetType() == typeof(ListViewModelConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -61,7 +61,7 @@ sealed public  class IListViewModelConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IListViewModelConcrete(ConstructingHandle ch) : base(ch)
+    private ListViewModelConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -70,34 +70,35 @@ sealed public  class IListViewModelConcrete :
     /// <summary>Initializes a new instance of the <see cref="IListViewModel"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IListViewModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ListViewModelConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     public void SetLoadRange(int first, int count) {
-                                                         Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_load_range_set_ptr.Value.Delegate(this.NativeHandle,first, count);
+                                                         Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_load_range_set_ptr.Value.Delegate(this.NativeHandle,first, count);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     public int GetModelSize() {
-         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Minimal content size.</summary>
     public Eina.Size2D GetMinSize() {
-         var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Minimal content size.</summary>
     public void SetMinSize(Eina.Size2D min) {
          Eina.Size2D.NativeStruct _in_min = min;
-                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_set_ptr.Value.Delegate(this.NativeHandle,_in_min);
+                        Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_min_size_set_ptr.Value.Delegate(this.NativeHandle,_in_min);
         Eina.Error.RaiseIfUnhandledException();
                          }
     public Efl.Ui.ListViewLayoutItem Realize(ref Efl.Ui.ListViewLayoutItem item) {
          Efl.Ui.ListViewLayoutItem.NativeStruct _in_item = item;
-                        var _ret_var = Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_realize_ptr.Value.Delegate(this.NativeHandle,ref _in_item);
+                        var _ret_var = Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_realize_ptr.Value.Delegate(this.NativeHandle,ref _in_item);
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.ListViewLayoutItem>(_ret_var);
@@ -106,7 +107,7 @@ sealed public  class IListViewModelConcrete :
  }
     public void Unrealize(ref Efl.Ui.ListViewLayoutItem item) {
          Efl.Ui.ListViewLayoutItem.NativeStruct _in_item = item;
-                        Efl.Ui.IListViewModelConcrete.NativeMethods.efl_ui_list_view_model_unrealize_ptr.Value.Delegate(this.NativeHandle,ref _in_item);
+                        Efl.Ui.ListViewModelConcrete.NativeMethods.efl_ui_list_view_model_unrealize_ptr.Value.Delegate(this.NativeHandle,ref _in_item);
         Eina.Error.RaiseIfUnhandledException();
                 item = _in_item;
          }
@@ -121,9 +122,10 @@ sealed public  class IListViewModelConcrete :
         get { return GetMinSize(); }
         set { SetMinSize(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IListViewModelConcrete.efl_ui_list_view_model_interface_get();
+        return Efl.Ui.ListViewModelConcrete.efl_ui_list_view_model_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -132,7 +134,7 @@ sealed public  class IListViewModelConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -197,13 +199,23 @@ sealed public  class IListViewModelConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_list_view_model_unrealize"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_list_view_model_unrealize_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IListViewModelConcrete.efl_ui_list_view_model_interface_get();
+            return Efl.Ui.ListViewModelConcrete.efl_ui_list_view_model_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -436,7 +448,7 @@ sealed public  class IListViewModelConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIListViewModelConcrete_ExtensionMethods {
+public static class Efl_UiListViewModelConcrete_ExtensionMethods {
     
     
     public static Efl.BindableProperty<Eina.Size2D> MinSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IListViewModel, T>magic = null) where T : Efl.Ui.IListViewModel {

@@ -32,8 +32,17 @@ static internal class StrbufNativeMethods
     [return: MarshalAsAttribute(UnmanagedType.U1)]
     internal static extern bool eina_strbuf_append_char(IntPtr buf, char c);
 
-    [DllImport(efl.Libs.Eina)]
+    [DllImport(efl.Libs.Eina, CharSet=CharSet.Ansi)]
+    [return:
+     MarshalAs(UnmanagedType.CustomMarshaler,
+	       MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))]
     internal static extern string eina_strbuf_string_steal(IntPtr buf);
+
+    [DllImport(efl.Libs.Eina, CharSet=CharSet.Ansi)]
+    [return:
+     MarshalAs(UnmanagedType.CustomMarshaler,
+	       MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
+    internal static extern string eina_strbuf_string_get(IntPtr buf);
 
     [DllImport(efl.Libs.Eina)]
     internal static extern IntPtr eina_strbuf_length_get(IntPtr buf); // Uses IntPtr as wrapper for size_t
@@ -176,8 +185,18 @@ public class Strbuf : IDisposable
             throw new ObjectDisposedException(base.GetType().Name);
         }
 
-        return eina_strbuf_string_steal(Handle);
+        return eina_strbuf_string_steal(this.Handle);
+    }
+
+    /// <summary>Copy the content of a buffer.</summary>
+    public override string ToString()
+    {
+        if (Disposed)
+        {
+            throw new ObjectDisposedException(base.GetType().Name);
+        }
+
+        return eina_strbuf_string_get(this.Handle);
     }
 }
-
 } // namespace eina

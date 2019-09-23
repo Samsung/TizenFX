@@ -12,7 +12,7 @@ namespace Ui {
 
 /// <summary>Efl UI Property_Bind interface. view object can have <see cref="Efl.IModel"/> to manage the data, the interface can help loading and tracking child data from the model property. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IPropertyBindConcrete.NativeMethods]
+[Efl.Ui.PropertyBindConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPropertyBind : 
     Efl.Eo.IWrapper, IDisposable
@@ -22,30 +22,30 @@ public interface IPropertyBind :
 /// <param name="property">Model property name</param>
 /// <returns>0 when it succeed, an error code otherwise.</returns>
 Eina.Error PropertyBind(System.String key, System.String property);
-        /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt;
-    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
-    event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt;
+        /// <summary>Event dispatched when a property on the object has changed due to a user interaction on the object that a model could be interested in.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertiesChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.PropertyBindPropertiesChangedEventArgs> PropertiesChangedEvent;
+    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to avoid generating too many events.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertyBoundEventArgs"/></value>
+    event EventHandler<Efl.Ui.PropertyBindPropertyBoundEventArgs> PropertyBoundEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertiesChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertiesChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IPropertyBindPropertiesChangedEvt_Args : EventArgs {
+public class PropertyBindPropertiesChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</value>
+    /// <value>Event dispatched when a property on the object has changed due to a user interaction on the object that a model could be interested in.</value>
     public Efl.Ui.PropertyEvent arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertyBoundEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IPropertyBind.PropertyBoundEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IPropertyBindPropertyBoundEvt_Args : EventArgs {
+public class PropertyBindPropertyBoundEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</value>
+    /// <value>Event dispatched when a property on the object is bound to a model. This is useful to avoid generating too many events.</value>
     public System.String arg { get; set; }
 }
 /// <summary>Efl UI Property_Bind interface. view object can have <see cref="Efl.IModel"/> to manage the data, the interface can help loading and tracking child data from the model property. see <see cref="Efl.IModel"/> see <see cref="Efl.Ui.IFactory"/></summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IPropertyBindConcrete :
+public sealed class PropertyBindConcrete :
     Efl.Eo.EoWrapper
     , IPropertyBind
     
@@ -55,7 +55,7 @@ sealed public  class IPropertyBindConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPropertyBindConcrete))
+            if (((object)this).GetType() == typeof(PropertyBindConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -69,7 +69,7 @@ sealed public  class IPropertyBindConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPropertyBindConcrete(ConstructingHandle ch) : base(ch)
+    private PropertyBindConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -78,13 +78,13 @@ sealed public  class IPropertyBindConcrete :
     /// <summary>Initializes a new instance of the <see cref="IPropertyBind"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPropertyBindConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PropertyBindConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt
+    /// <summary>Event dispatched when a property on the object has changed due to a user interaction on the object that a model could be interested in.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertiesChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertiesChangedEventArgs> PropertiesChangedEvent
     {
         add
         {
@@ -95,7 +95,7 @@ sealed public  class IPropertyBindConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
+                        Efl.Ui.PropertyBindPropertiesChangedEventArgs args = new Efl.Ui.PropertyBindPropertiesChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -123,8 +123,9 @@ sealed public  class IPropertyBindConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
-    public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
+    /// <summary>Method to raise event PropertiesChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertiesChangedEvent(Efl.Ui.PropertyBindPropertiesChangedEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -145,9 +146,9 @@ sealed public  class IPropertyBindConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt
+    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to avoid generating too many events.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertyBoundEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertyBoundEventArgs> PropertyBoundEvent
     {
         add
         {
@@ -158,7 +159,7 @@ sealed public  class IPropertyBindConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
+                        Efl.Ui.PropertyBindPropertyBoundEventArgs args = new Efl.Ui.PropertyBindPropertyBoundEventArgs();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -186,8 +187,9 @@ sealed public  class IPropertyBindConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertyBoundEvt.</summary>
-    public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
+    /// <summary>Method to raise event PropertyBoundEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertyBoundEvent(Efl.Ui.PropertyBindPropertyBoundEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -207,18 +209,20 @@ sealed public  class IPropertyBindConcrete :
             Eina.MemoryNative.Free(info);
         }
     }
+#pragma warning disable CS0628
     /// <summary>bind property data with the given key string. when the data is ready or changed, bind the data to the key action and process promised work.</summary>
     /// <param name="key">key string for bind model property data</param>
     /// <param name="property">Model property name</param>
     /// <returns>0 when it succeed, an error code otherwise.</returns>
     public Eina.Error PropertyBind(System.String key, System.String property) {
-                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate(this.NativeHandle,key, property);
+                                                         var _ret_var = Efl.Ui.PropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate(this.NativeHandle,key, property);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IPropertyBindConcrete.efl_ui_property_bind_interface_get();
+        return Efl.Ui.PropertyBindConcrete.efl_ui_property_bind_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -227,7 +231,7 @@ sealed public  class IPropertyBindConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -242,13 +246,23 @@ sealed public  class IPropertyBindConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_property_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_property_bind_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IPropertyBindConcrete.efl_ui_property_bind_interface_get();
+            return Efl.Ui.PropertyBindConcrete.efl_ui_property_bind_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -299,7 +313,7 @@ sealed public  class IPropertyBindConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIPropertyBindConcrete_ExtensionMethods {
+public static class Efl_UiPropertyBindConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif
@@ -315,7 +329,7 @@ public struct PropertyEvent
     /// <summary>List of changed properties</summary>
     public Eina.Array<Eina.Stringshare> Changed_properties;
     /// <summary>Constructor for PropertyEvent.</summary>
-    /// <param name="Changed_properties">List of changed properties</param>;
+    /// <param name="Changed_properties">List of changed properties</param>
     public PropertyEvent(
         Eina.Array<Eina.Stringshare> Changed_properties = default(Eina.Array<Eina.Stringshare>)    )
     {

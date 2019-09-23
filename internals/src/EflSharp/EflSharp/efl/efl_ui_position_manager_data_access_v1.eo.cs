@@ -13,7 +13,8 @@ namespace Ui {
 namespace PositionManager {
 
 /// <param name="range">The range of items to fill into @.memory. The length of memory must be bigger or equal to the requested items</param>
-/// <param name="memory">The slice to fill the information in, the full slice will be filled if there are enough items</param>
+/// <param name="memory">The slice to fill the information in, the full slice will be filled if there are enough items.</param>
+/// <returns>The returned stats of this function call.</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Ui.PositionManager.ObjectBatchResult ObjectBatchCallback(Efl.Ui.PositionManager.RequestRange range,  Eina.RwSlice memory);
 public delegate Efl.Ui.PositionManager.ObjectBatchResult.NativeStruct ObjectBatchCallbackInternal(IntPtr data,  Efl.Ui.PositionManager.RequestRange.NativeStruct range,   Eina.RwSlice memory);
@@ -95,8 +96,9 @@ namespace Ui {
 
 namespace PositionManager {
 
-/// <param name="conf">The configution for this call</param>
-/// <param name="memory">The slice to fill the information in, the full slice will be filled if there are enough items</param>
+/// <param name="conf">The configuration for this call.</param>
+/// <param name="memory">The slice to fill the information in, the full slice will be filled if there are enough items.</param>
+/// <returns>The returned stats of this function call</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Ui.PositionManager.SizeBatchResult SizeBatchCallback(Efl.Ui.PositionManager.SizeCallConfig conf,  Eina.RwSlice memory);
 public delegate Efl.Ui.PositionManager.SizeBatchResult.NativeStruct SizeBatchCallbackInternal(IntPtr data,  Efl.Ui.PositionManager.SizeCallConfig.NativeStruct conf,   Eina.RwSlice memory);
@@ -179,42 +181,42 @@ namespace Ui {
 namespace PositionManager {
 
 /// <summary>Interface for abstracting the data access of the position managers.
-/// The idea here is that a data-provider, calls <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> on the positon manager object and passes the functions that are defined here. At any pointer later in time, the position manager can call these function callbacks to get sizes or objects. A data-provider should always fill all requested items. If a item is not available <c>null</c> is inserted. If a size is not available, a as-close-as-possible approximation should be inserted. The Size callback is equipped with a parameter for if this is a caching request or not. This flag can be used to differentiate between two usecases. The size can be requested for building up a cache over all items. The size can also be requested for applying it to the object. The data-provider might needs to do heavy loading for getting the right size available, in case of a cache build up the as-close-as-possible aproximation is enough there. If it is real placement, the size should be correct. If a size changes after it was returned due to batching, this change still should be annonced with the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> function.
+/// The idea here is that a data-provider calls <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> on the position manager object and passes the functions that are defined here. Later, the position manager can call these function callbacks to get sizes or objects. A data-provider should always fill all requested items. If an item is not available <c>null</c> should be inserted. If a size is not available, an as-close-as-possible approximation should be inserted. The Size callback is equipped with a parameter to specify caching requests. This flag can be used to differentiate between two use cases: When the size is being requested to build up a cache over all items, and when the size is being requested to apply it to the object. Since the data-provider might need to do expensive operations to find the exact size, the as-close-as-possible approximation is usually enough when building caches. If real object placement is happening, then real sizes must be requested. If a size changes after it was returned due to batching, this change still should be announced with the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> function.
 /// 
-/// The depth of the items is used to express a hierachical structure on the items themselves. Any given depth might or might not have a <c>depth_leader</c>. A group is ended when there is either a lower depth, or another depth_leader.</summary>
+/// The depth of the items is used to express a hierarchical structure on the items themselves. Any given depth might or might not have a <c>depth_leader</c>. A group is ended when there is either a lower depth, or another <c>depth_leader</c>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.PositionManager.IDataAccessV1Concrete.NativeMethods]
+[Efl.Ui.PositionManager.DataAccessV1Concrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IDataAccessV1 : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>This gives access to items to be managed. The manager reads this information and modifies the retrieved items&apos; positions and sizes.
-/// <c>obj_access</c> gives access to the graphical entitites to manage. Some of them might be NULL, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
+/// <c>obj_access</c> gives access to the graphical entities to manage. Some of them might be <c>NULL</c>, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
 /// 
 /// <c>size_access</c> gives access to the 2D sizes for the items to manage. All sizes will always be valid, and might change over time (indicated through the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> method). The whole range might need to be traversed in order to calculate the position of all items in some arrangements.
 /// 
 /// You can access a batch of objects or sizes by calling the here passed function callbacks. Further details can be found at the function definitions.</summary>
-/// <param name="obj_access">Function callback for canvas objects, even if the start_id is valid, the returned objects may be NULL.</param>
+/// <param name="obj_access">Function callback for canvas objects, even if the start_id is valid, the returned objects may be <c>NULL</c>.</param>
 /// <param name="size_access">Function callback for the size, returned values are always valid, but might be changed later on.</param>
 /// <param name="size">valid size for start_id, 0 &lt;= i &lt; size</param>
 void SetDataAccess(Efl.Ui.PositionManager.ObjectBatchCallback obj_access, Efl.Ui.PositionManager.SizeBatchCallback size_access, int size);
         /// <summary>This gives access to items to be managed. The manager reads this information and modifies the retrieved items&apos; positions and sizes.
-    /// <c>obj_access</c> gives access to the graphical entitites to manage. Some of them might be NULL, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
+    /// <c>obj_access</c> gives access to the graphical entities to manage. Some of them might be <c>NULL</c>, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
     /// 
     /// <c>size_access</c> gives access to the 2D sizes for the items to manage. All sizes will always be valid, and might change over time (indicated through the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> method). The whole range might need to be traversed in order to calculate the position of all items in some arrangements.
     /// 
     /// You can access a batch of objects or sizes by calling the here passed function callbacks. Further details can be found at the function definitions.</summary>
-    /// <value>Function callback for canvas objects, even if the start_id is valid, the returned objects may be NULL.</value>
+    /// <value>Function callback for canvas objects, even if the start_id is valid, the returned objects may be <c>NULL</c>.</value>
     (Efl.Ui.PositionManager.ObjectBatchCallback, Efl.Ui.PositionManager.SizeBatchCallback, int) DataAccess {
         set;
     }
 }
 /// <summary>Interface for abstracting the data access of the position managers.
-/// The idea here is that a data-provider, calls <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> on the positon manager object and passes the functions that are defined here. At any pointer later in time, the position manager can call these function callbacks to get sizes or objects. A data-provider should always fill all requested items. If a item is not available <c>null</c> is inserted. If a size is not available, a as-close-as-possible approximation should be inserted. The Size callback is equipped with a parameter for if this is a caching request or not. This flag can be used to differentiate between two usecases. The size can be requested for building up a cache over all items. The size can also be requested for applying it to the object. The data-provider might needs to do heavy loading for getting the right size available, in case of a cache build up the as-close-as-possible aproximation is enough there. If it is real placement, the size should be correct. If a size changes after it was returned due to batching, this change still should be annonced with the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> function.
+/// The idea here is that a data-provider calls <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> on the position manager object and passes the functions that are defined here. Later, the position manager can call these function callbacks to get sizes or objects. A data-provider should always fill all requested items. If an item is not available <c>null</c> should be inserted. If a size is not available, an as-close-as-possible approximation should be inserted. The Size callback is equipped with a parameter to specify caching requests. This flag can be used to differentiate between two use cases: When the size is being requested to build up a cache over all items, and when the size is being requested to apply it to the object. Since the data-provider might need to do expensive operations to find the exact size, the as-close-as-possible approximation is usually enough when building caches. If real object placement is happening, then real sizes must be requested. If a size changes after it was returned due to batching, this change still should be announced with the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> function.
 /// 
-/// The depth of the items is used to express a hierachical structure on the items themselves. Any given depth might or might not have a <c>depth_leader</c>. A group is ended when there is either a lower depth, or another depth_leader.</summary>
+/// The depth of the items is used to express a hierarchical structure on the items themselves. Any given depth might or might not have a <c>depth_leader</c>. A group is ended when there is either a lower depth, or another <c>depth_leader</c>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IDataAccessV1Concrete :
+public sealed class DataAccessV1Concrete :
     Efl.Eo.EoWrapper
     , IDataAccessV1
     
@@ -224,7 +226,7 @@ sealed public  class IDataAccessV1Concrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IDataAccessV1Concrete))
+            if (((object)this).GetType() == typeof(DataAccessV1Concrete))
             {
                 return GetEflClassStatic();
             }
@@ -238,7 +240,7 @@ sealed public  class IDataAccessV1Concrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IDataAccessV1Concrete(ConstructingHandle ch) : base(ch)
+    private DataAccessV1Concrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -247,38 +249,40 @@ sealed public  class IDataAccessV1Concrete :
     /// <summary>Initializes a new instance of the <see cref="IDataAccessV1"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IDataAccessV1Concrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private DataAccessV1Concrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>This gives access to items to be managed. The manager reads this information and modifies the retrieved items&apos; positions and sizes.
-    /// <c>obj_access</c> gives access to the graphical entitites to manage. Some of them might be NULL, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
+    /// <c>obj_access</c> gives access to the graphical entities to manage. Some of them might be <c>NULL</c>, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
     /// 
     /// <c>size_access</c> gives access to the 2D sizes for the items to manage. All sizes will always be valid, and might change over time (indicated through the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> method). The whole range might need to be traversed in order to calculate the position of all items in some arrangements.
     /// 
     /// You can access a batch of objects or sizes by calling the here passed function callbacks. Further details can be found at the function definitions.</summary>
-    /// <param name="obj_access">Function callback for canvas objects, even if the start_id is valid, the returned objects may be NULL.</param>
+    /// <param name="obj_access">Function callback for canvas objects, even if the start_id is valid, the returned objects may be <c>NULL</c>.</param>
     /// <param name="size_access">Function callback for the size, returned values are always valid, but might be changed later on.</param>
     /// <param name="size">valid size for start_id, 0 &lt;= i &lt; size</param>
     public void SetDataAccess(Efl.Ui.PositionManager.ObjectBatchCallback obj_access, Efl.Ui.PositionManager.SizeBatchCallback size_access, int size) {
                                                          GCHandle obj_access_handle = GCHandle.Alloc(obj_access);
         GCHandle size_access_handle = GCHandle.Alloc(size_access);
-                Efl.Ui.PositionManager.IDataAccessV1Concrete.NativeMethods.efl_ui_position_manager_data_access_v1_data_access_set_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(obj_access_handle), Efl.Ui.PositionManager.ObjectBatchCallbackWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(size_access_handle), Efl.Ui.PositionManager.SizeBatchCallbackWrapper.Cb, Efl.Eo.Globals.free_gchandle, size);
+                Efl.Ui.PositionManager.DataAccessV1Concrete.NativeMethods.efl_ui_position_manager_data_access_v1_data_access_set_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(obj_access_handle), Efl.Ui.PositionManager.ObjectBatchCallbackWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(size_access_handle), Efl.Ui.PositionManager.SizeBatchCallbackWrapper.Cb, Efl.Eo.Globals.free_gchandle, size);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>This gives access to items to be managed. The manager reads this information and modifies the retrieved items&apos; positions and sizes.
-    /// <c>obj_access</c> gives access to the graphical entitites to manage. Some of them might be NULL, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
+    /// <c>obj_access</c> gives access to the graphical entities to manage. Some of them might be <c>NULL</c>, meaning they are not yet ready to be displayed. Their size in the <c>size_access</c> array will be correct, though, so other entities can still be positioned correctly. Typically, only entities inside the viewport will be retrieved.
     /// 
     /// <c>size_access</c> gives access to the 2D sizes for the items to manage. All sizes will always be valid, and might change over time (indicated through the <see cref="Efl.Ui.PositionManager.IEntity.ItemSizeChanged"/> method). The whole range might need to be traversed in order to calculate the position of all items in some arrangements.
     /// 
     /// You can access a batch of objects or sizes by calling the here passed function callbacks. Further details can be found at the function definitions.</summary>
-    /// <value>Function callback for canvas objects, even if the start_id is valid, the returned objects may be NULL.</value>
+    /// <value>Function callback for canvas objects, even if the start_id is valid, the returned objects may be <c>NULL</c>.</value>
     public (Efl.Ui.PositionManager.ObjectBatchCallback, Efl.Ui.PositionManager.SizeBatchCallback, int) DataAccess {
         set { SetDataAccess( value.Item1,  value.Item2,  value.Item3); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.PositionManager.IDataAccessV1Concrete.efl_ui_position_manager_data_access_v1_interface_get();
+        return Efl.Ui.PositionManager.DataAccessV1Concrete.efl_ui_position_manager_data_access_v1_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -287,7 +291,7 @@ sealed public  class IDataAccessV1Concrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -302,13 +306,23 @@ sealed public  class IDataAccessV1Concrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_position_manager_data_access_v1_data_access_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_position_manager_data_access_v1_data_access_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.PositionManager.IDataAccessV1Concrete.efl_ui_position_manager_data_access_v1_interface_get();
+            return Efl.Ui.PositionManager.DataAccessV1Concrete.efl_ui_position_manager_data_access_v1_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -362,7 +376,7 @@ sealed public  class IDataAccessV1Concrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_Ui_Position_ManagerIDataAccessV1Concrete_ExtensionMethods {
+public static class Efl_Ui_Position_ManagerDataAccessV1Concrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591
@@ -383,8 +397,8 @@ public struct RequestRange
     /// <summary>The last item that must be filled into the passed slice.</summary>
     public uint End_id;
     /// <summary>Constructor for RequestRange.</summary>
-    /// <param name="Start_id">The first item that must be filled into the passed slice.</param>;
-    /// <param name="End_id">The last item that must be filled into the passed slice.</param>;
+    /// <param name="Start_id">The first item that must be filled into the passed slice.</param>
+    /// <param name="End_id">The last item that must be filled into the passed slice.</param>
     public RequestRange(
         uint Start_id = default(uint),
         uint End_id = default(uint)    )
@@ -454,14 +468,14 @@ public struct ObjectBatchEntity
 {
     /// <summary>The canvas object.</summary>
     public Efl.Gfx.IEntity Entity;
-    /// <summary>The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hirachy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</summary>
+    /// <summary>The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hierarchy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</summary>
     public byte Element_depth;
     /// <summary><c>true</c> if this is the leader of a group</summary>
     public bool Depth_leader;
     /// <summary>Constructor for ObjectBatchEntity.</summary>
-    /// <param name="Entity">The canvas object.</param>;
-    /// <param name="Element_depth">The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hirachy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</param>;
-    /// <param name="Depth_leader"><c>true</c> if this is the leader of a group</param>;
+    /// <param name="Entity">The canvas object.</param>
+    /// <param name="Element_depth">The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hierarchy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</param>
+    /// <param name="Depth_leader"><c>true</c> if this is the leader of a group</param>
     public ObjectBatchEntity(
         Efl.Gfx.IEntity Entity = default(Efl.Gfx.IEntity),
         byte Element_depth = default(byte),
@@ -507,7 +521,7 @@ public struct ObjectBatchEntity
         {
             var _external_struct = new ObjectBatchEntity();
 
-            _external_struct.Entity = (Efl.Gfx.IEntityConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Entity);
+            _external_struct.Entity = (Efl.Gfx.EntityConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Entity);
             _external_struct.Element_depth = _internal_struct.Element_depth;
             _external_struct.Depth_leader = _internal_struct.Depth_leader != 0;
             return _external_struct;
@@ -539,14 +553,14 @@ public struct SizeBatchEntity
     /// <summary>The size of the element.</summary>
     /// <value>A 2D size in pixels.</value>
     public Eina.Size2D Size;
-    /// <summary>The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hirachy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</summary>
+    /// <summary>The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hierarchy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</summary>
     public byte Element_depth;
     /// <summary><c>true</c> if this is the leader of a group</summary>
     public bool Depth_leader;
     /// <summary>Constructor for SizeBatchEntity.</summary>
-    /// <param name="Size">The size of the element.</param>;
-    /// <param name="Element_depth">The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hirachy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</param>;
-    /// <param name="Depth_leader"><c>true</c> if this is the leader of a group</param>;
+    /// <param name="Size">The size of the element.</param>
+    /// <param name="Element_depth">The depth change in this returned entity. Every Element has a depth, if the parent is <c>null</c> the depth is 0. Every step deeper into the hierarchy is exactly one depth deeper. If this depth has been different to the previous item, then this element can be seen as the group leader. The following elements with the same depth are in the same group.</param>
+    /// <param name="Depth_leader"><c>true</c> if this is the leader of a group</param>
     public SizeBatchEntity(
         Eina.Size2D Size = default(Eina.Size2D),
         byte Element_depth = default(byte),
@@ -628,9 +642,9 @@ public struct SizeBatchResult
     /// <summary>The number of items that are filled into the slice.</summary>
     public uint Filled_items;
     /// <summary>Constructor for SizeBatchResult.</summary>
-    /// <param name="Parent_size">The group size of the group where the first item is part of.</param>;
-    /// <param name="Parent_depth">The depth of the parent</param>;
-    /// <param name="Filled_items">The number of items that are filled into the slice.</param>;
+    /// <param name="Parent_size">The group size of the group where the first item is part of.</param>
+    /// <param name="Parent_depth">The depth of the parent</param>
+    /// <param name="Filled_items">The number of items that are filled into the slice.</param>
     public SizeBatchResult(
         Eina.Size2D Parent_size = default(Eina.Size2D),
         byte Parent_depth = default(byte),
@@ -707,11 +721,11 @@ public struct SizeCallConfig
     /// <summary>The range of items to fill into @.memory. The length of memory must be bigger or equal to the requested items</summary>
     /// <value>Representing the range of a request.</value>
     public Efl.Ui.PositionManager.RequestRange Range;
-    /// <summary>Indicate if this request is made for caching or displaying. If its for caching, the data-provider will fill in approximations, instead of doing heavy lifting from some backend. If this is not a caching call, the exact size should be requested and delivered at some later point.</summary>
+    /// <summary>Indicate if this request is made for caching or displaying. If it&apos;s for caching, the data-provider will fill in approximations, instead of doing heavy lifting from some back-end. If this is not a caching call, the exact size should be requested and delivered at some later point.</summary>
     public bool Cache_request;
     /// <summary>Constructor for SizeCallConfig.</summary>
-    /// <param name="Range">The range of items to fill into @.memory. The length of memory must be bigger or equal to the requested items</param>;
-    /// <param name="Cache_request">Indicate if this request is made for caching or displaying. If its for caching, the data-provider will fill in approximations, instead of doing heavy lifting from some backend. If this is not a caching call, the exact size should be requested and delivered at some later point.</param>;
+    /// <param name="Range">The range of items to fill into @.memory. The length of memory must be bigger or equal to the requested items</param>
+    /// <param name="Cache_request">Indicate if this request is made for caching or displaying. If it&apos;s for caching, the data-provider will fill in approximations, instead of doing heavy lifting from some back-end. If this is not a caching call, the exact size should be requested and delivered at some later point.</param>
     public SizeCallConfig(
         Efl.Ui.PositionManager.RequestRange Range = default(Efl.Ui.PositionManager.RequestRange),
         bool Cache_request = default(bool)    )
@@ -786,9 +800,9 @@ public struct ObjectBatchResult
     /// <summary>The number of items that are filled into the slice</summary>
     public uint Filled_items;
     /// <summary>Constructor for ObjectBatchResult.</summary>
-    /// <param name="Group">The group where the first item is part of</param>;
-    /// <param name="Parent_depth">The depth of the parent</param>;
-    /// <param name="Filled_items">The number of items that are filled into the slice</param>;
+    /// <param name="Group">The group where the first item is part of</param>
+    /// <param name="Parent_depth">The depth of the parent</param>
+    /// <param name="Filled_items">The number of items that are filled into the slice</param>
     public ObjectBatchResult(
         Efl.Ui.Item Group = default(Efl.Ui.Item),
         byte Parent_depth = default(byte),

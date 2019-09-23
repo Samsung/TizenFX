@@ -12,15 +12,15 @@ namespace Cached {
 
 /// <summary>Efl Cached Item interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Cached.IItemConcrete.NativeMethods]
+[Efl.Cached.ItemConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IItem : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Get the memory size associated with an object.</summary>
+    /// <summary>The memory size associated with an object.</summary>
 /// <returns>Bytes of memory consumed by this object.</returns>
 uint GetMemorySize();
-        /// <summary>Get the memory size associated with an object.</summary>
+        /// <summary>The memory size associated with an object.</summary>
     /// <value>Bytes of memory consumed by this object.</value>
     uint MemorySize {
         get;
@@ -28,7 +28,7 @@ uint GetMemorySize();
 }
 /// <summary>Efl Cached Item interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IItemConcrete :
+public sealed class ItemConcrete :
     Efl.Eo.EoWrapper
     , IItem
     
@@ -38,7 +38,7 @@ sealed public  class IItemConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IItemConcrete))
+            if (((object)this).GetType() == typeof(ItemConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -52,7 +52,7 @@ sealed public  class IItemConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IItemConcrete(ConstructingHandle ch) : base(ch)
+    private ItemConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -61,25 +61,27 @@ sealed public  class IItemConcrete :
     /// <summary>Initializes a new instance of the <see cref="IItem"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IItemConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ItemConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Get the memory size associated with an object.</summary>
+#pragma warning disable CS0628
+    /// <summary>The memory size associated with an object.</summary>
     /// <returns>Bytes of memory consumed by this object.</returns>
     public uint GetMemorySize() {
-         var _ret_var = Efl.Cached.IItemConcrete.NativeMethods.efl_cached_item_memory_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Cached.ItemConcrete.NativeMethods.efl_cached_item_memory_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Get the memory size associated with an object.</summary>
+    /// <summary>The memory size associated with an object.</summary>
     /// <value>Bytes of memory consumed by this object.</value>
     public uint MemorySize {
         get { return GetMemorySize(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Cached.IItemConcrete.efl_cached_item_interface_get();
+        return Efl.Cached.ItemConcrete.efl_cached_item_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -88,7 +90,7 @@ sealed public  class IItemConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -103,13 +105,23 @@ sealed public  class IItemConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_cached_item_memory_size_get"), func = Marshal.GetFunctionPointerForDelegate(efl_cached_item_memory_size_get_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Cached.IItemConcrete.efl_cached_item_interface_get();
+            return Efl.Cached.ItemConcrete.efl_cached_item_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -160,7 +172,7 @@ sealed public  class IItemConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_CachedIItemConcrete_ExtensionMethods {
+public static class Efl_CachedItemConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591

@@ -67,20 +67,20 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <summary>Rotate property</summary>
     /// <param name="from_degree">Rotation degree when animation starts</param>
     /// <param name="to_degree">Rotation degree when animation ends</param>
-    /// <param name="pivot">Pivot object for the center point. If the pivot object is NULL, then the object is rotated on itself.</param>
+    /// <param name="pivot">Pivot object for the center point. If the pivot object is <c>NULL</c>, then the object is rotated on itself.</param>
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
-    virtual public void GetRotate(out double from_degree, out double to_degree, out Efl.Canvas.Object pivot, out double cx, out double cy) {
+    public virtual void GetRotate(out double from_degree, out double to_degree, out Efl.Canvas.Object pivot, out double cx, out double cy) {
                                                                                                                                  Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_degree, out to_degree, out pivot, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Rotate property</summary>
     /// <param name="from_degree">Rotation degree when animation starts</param>
     /// <param name="to_degree">Rotation degree when animation ends</param>
-    /// <param name="pivot">Pivot object for the center point. If the pivot object is NULL, then the object is rotated on itself.</param>
+    /// <param name="pivot">Pivot object for the center point. If the pivot object is <c>NULL</c>, then the object is rotated on itself.</param>
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
-    virtual public void SetRotate(double from_degree, double to_degree, Efl.Canvas.Object pivot, double cx, double cy) {
+    public virtual void SetRotate(double from_degree, double to_degree, Efl.Canvas.Object pivot, double cx, double cy) {
                                                                                                                                  Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_degree, to_degree, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
@@ -89,7 +89,7 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="to_degree">Rotation degree when animation ends</param>
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
-    virtual public void GetRotateAbsolute(out double from_degree, out double to_degree, out int cx, out int cy) {
+    public virtual void GetRotateAbsolute(out double from_degree, out double to_degree, out int cx, out int cy) {
                                                                                                          Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_degree, out to_degree, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
@@ -98,7 +98,7 @@ public class AnimationRotate : Efl.Canvas.Animation
     /// <param name="to_degree">Rotation degree when animation ends</param>
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
-    virtual public void SetRotateAbsolute(double from_degree, double to_degree, int cx, int cy) {
+    public virtual void SetRotateAbsolute(double from_degree, double to_degree, int cx, int cy) {
                                                                                                          Efl.Canvas.AnimationRotate.NativeMethods.efl_animation_rotate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_degree, to_degree, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
@@ -140,7 +140,7 @@ public class AnimationRotate : Efl.Canvas.Animation
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -185,7 +185,17 @@ public class AnimationRotate : Efl.Canvas.Animation
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_rotate_absolute_set"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_rotate_absolute_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

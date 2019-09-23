@@ -65,27 +65,27 @@ public class Device : Efl.Object
 
     /// <summary>Device type property</summary>
     /// <returns>Input device class</returns>
-    virtual public Efl.Input.DeviceType GetDeviceType() {
+    public virtual Efl.Input.DeviceType GetDeviceType() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Device type property</summary>
     /// <param name="klass">Input device class</param>
-    virtual public void SetDeviceType(Efl.Input.DeviceType klass) {
+    public virtual void SetDeviceType(Efl.Input.DeviceType klass) {
                                  Efl.Input.Device.NativeMethods.efl_input_device_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Device source property</summary>
     /// <returns>Input device</returns>
-    virtual public Efl.Input.Device GetSource() {
+    public virtual Efl.Input.Device GetSource() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Device source property</summary>
     /// <param name="src">Input device</param>
-    virtual public void SetSource(Efl.Input.Device src) {
+    public virtual void SetSource(Efl.Input.Device src) {
                                  Efl.Input.Device.NativeMethods.efl_input_device_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),src);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -96,35 +96,35 @@ public class Device : Efl.Object
     /// 
     /// In case no seat is found, <c>null</c> is returned.</summary>
     /// <returns>The seat this device belongs to.</returns>
-    virtual public Efl.Input.Device GetSeat() {
+    public virtual Efl.Input.Device GetSeat() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_seat_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Seat id number</summary>
     /// <returns>The id of the seat</returns>
-    virtual public uint GetSeatId() {
+    public virtual uint GetSeatId() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_seat_id_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Seat id number</summary>
     /// <param name="id">The id of the seat</param>
-    virtual public void SetSeatId(uint id) {
+    public virtual void SetSeatId(uint id) {
                                  Efl.Input.Device.NativeMethods.efl_input_device_seat_id_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The number of pointer devices in this seat.
     /// Pointer devices are the ones whose <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>. In case this device is not of the type <c>seat</c>, -1 is returned.</summary>
     /// <returns>The number of pointer devices.</returns>
-    virtual public int GetPointerDeviceCount() {
+    public virtual int GetPointerDeviceCount() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_pointer_device_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary><c>true</c> if <see cref="Efl.Input.Device.DeviceType"/> is <c>mouse</c>, <c>pen</c>, <c>touch</c> or <c>wand</c>.</summary>
     /// <returns><c>true</c> if the device has pointing capabilities.</returns>
-    virtual public bool GetIsPointerType() {
+    public virtual bool GetIsPointerType() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_is_pointer_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -132,7 +132,7 @@ public class Device : Efl.Object
     /// <summary>Lists the children attached to this device.
     /// This is only meaningful with seat devices, as they are groups of real input devices.</summary>
     /// <returns>List of device children</returns>
-    virtual public Eina.Iterator<Efl.Input.Device> ChildrenIterate() {
+    public virtual Eina.Iterator<Efl.Input.Device> ChildrenIterate() {
          var _ret_var = Efl.Input.Device.NativeMethods.efl_input_device_children_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Input.Device>(_ret_var, true);
@@ -187,7 +187,7 @@ public class Device : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -292,7 +292,17 @@ public class Device : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_device_children_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_input_device_children_iterate_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

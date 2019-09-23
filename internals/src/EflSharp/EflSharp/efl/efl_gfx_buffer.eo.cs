@@ -12,7 +12,7 @@ namespace Gfx {
 
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IBufferConcrete.NativeMethods]
+[Efl.Gfx.BufferConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IBuffer : 
     Efl.Eo.IWrapper, IDisposable
@@ -141,7 +141,7 @@ Eina.Slice GetBufferManaged(int plane);
 }
 /// <summary>Common APIs for all objects representing images and 2D pixel buffers.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IBufferConcrete :
+public sealed class BufferConcrete :
     Efl.Eo.EoWrapper
     , IBuffer
     
@@ -151,7 +151,7 @@ sealed public  class IBufferConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IBufferConcrete))
+            if (((object)this).GetType() == typeof(BufferConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -165,7 +165,7 @@ sealed public  class IBufferConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IBufferConcrete(ConstructingHandle ch) : base(ch)
+    private BufferConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -174,14 +174,15 @@ sealed public  class IBufferConcrete :
     /// <summary>Initializes a new instance of the <see cref="IBuffer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IBufferConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private BufferConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Rectangular size of the pixel buffer as allocated in memory.</summary>
     /// <returns>Size of the buffer in pixels.</returns>
     public Eina.Size2D GetBufferSize() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -189,21 +190,21 @@ sealed public  class IBufferConcrete :
     /// <param name="sz">Size of the buffer in pixels.</param>
     public void SetBufferSize(Eina.Size2D sz) {
          Eina.Size2D.NativeStruct _in_sz = sz;
-                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_size_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
+                        Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_size_set_ptr.Value.Delegate(this.NativeHandle,_in_sz);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Returns the current encoding of this buffer&apos;s pixels.
     /// See <see cref="Efl.Gfx.Colorspace"/> for more information on the supported formats.</summary>
     /// <returns>Colorspace</returns>
     public Efl.Gfx.Colorspace GetColorspace() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_colorspace_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_colorspace_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Retrieve whether alpha channel data is used on this object.</summary>
     /// <returns>Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</returns>
     public bool GetAlpha() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_alpha_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -211,7 +212,7 @@ sealed public  class IBufferConcrete :
     /// This function sets a flag on an image object indicating whether or not to use alpha channel data. A value of <c>true</c> makes it use alpha channel data, and <c>false</c> makes it ignore that data. Note that this has nothing to do with an object&apos;s color as manipulated by <see cref="Efl.Gfx.IColor.GetColor"/>.</summary>
     /// <param name="alpha">Whether to use alpha channel (<c>true</c>) data or not (<c>false</c>).</param>
     public void SetAlpha(bool alpha) {
-                                 Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_alpha_set_ptr.Value.Delegate(this.NativeHandle,alpha);
+                                 Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_alpha_set_ptr.Value.Delegate(this.NativeHandle,alpha);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Length in bytes of one row of pixels in memory.
@@ -220,7 +221,7 @@ sealed public  class IBufferConcrete :
     /// When applicable, this will include the <see cref="Efl.Gfx.IBuffer.GetBufferBorders"/> as well as potential extra padding.</summary>
     /// <returns>Stride</returns>
     public int GetStride() {
-         var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_stride_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_stride_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -231,7 +232,7 @@ sealed public  class IBufferConcrete :
     /// <param name="t">Top border pixels, usually 0 or 1</param>
     /// <param name="b">Bottom border pixels, usually 0 or 1</param>
     public void GetBufferBorders(out uint l, out uint r, out uint t, out uint b) {
-                                                                                                         Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_borders_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_borders_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Mark a sub-region of the given image object to be redrawn.
@@ -239,7 +240,7 @@ sealed public  class IBufferConcrete :
     /// <param name="region">The updated region.</param>
     public void AddBufferUpdate(ref Eina.Rect region) {
          Eina.Rect.NativeStruct _in_region = region;
-                        Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_update_add_ptr.Value.Delegate(this.NativeHandle,ref _in_region);
+                        Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_update_add_ptr.Value.Delegate(this.NativeHandle,ref _in_region);
         Eina.Error.RaiseIfUnhandledException();
                 region = _in_region;
          }
@@ -255,7 +256,7 @@ sealed public  class IBufferConcrete :
     /// <returns>The data slice. In case of failure, the memory pointer will be <c>null</c>.</returns>
     public Eina.RwSlice BufferMap(Efl.Gfx.BufferAccessMode mode, ref Eina.Rect region, Efl.Gfx.Colorspace cspace, int plane, out int stride) {
                  Eina.Rect.NativeStruct _in_region = region;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_map_ptr.Value.Delegate(this.NativeHandle,mode, ref _in_region, cspace, plane, out stride);
+                                                                                                                var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_map_ptr.Value.Delegate(this.NativeHandle,mode, ref _in_region, cspace, plane, out stride);
         Eina.Error.RaiseIfUnhandledException();
                                                         region = _in_region;
                                 return _ret_var;
@@ -267,7 +268,7 @@ sealed public  class IBufferConcrete :
     /// <param name="slice">Data slice returned by a previous call to map.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool BufferUnmap(Eina.RwSlice slice) {
-                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_unmap_ptr.Value.Delegate(this.NativeHandle,slice);
+                                 var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_unmap_ptr.Value.Delegate(this.NativeHandle,slice);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -288,7 +289,7 @@ sealed public  class IBufferConcrete :
     public bool SetBufferCopy(Eina.Slice slice, Eina.Size2D size, int stride, Efl.Gfx.Colorspace cspace, int plane) {
          var _in_slice = Eina.PrimitiveConversion.ManagedToPointerAlloc(slice);
         Eina.Size2D.NativeStruct _in_size = size;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_copy_set_ptr.Value.Delegate(this.NativeHandle,_in_slice, _in_size, stride, cspace, plane);
+                                                                                                                var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_copy_set_ptr.Value.Delegate(this.NativeHandle,_in_slice, _in_size, stride, cspace, plane);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -309,7 +310,7 @@ sealed public  class IBufferConcrete :
     public bool SetBufferManaged(Eina.Slice slice, Eina.Size2D size, int stride, Efl.Gfx.Colorspace cspace, int plane) {
          var _in_slice = Eina.PrimitiveConversion.ManagedToPointerAlloc(slice);
         Eina.Size2D.NativeStruct _in_size = size;
-                                                                                                                var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_set_ptr.Value.Delegate(this.NativeHandle,_in_slice, _in_size, stride, cspace, plane);
+                                                                                                                var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_managed_set_ptr.Value.Delegate(this.NativeHandle,_in_slice, _in_size, stride, cspace, plane);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -318,7 +319,7 @@ sealed public  class IBufferConcrete :
     /// <param name="plane">Plane ID. 0 by default. Useful for planar formats only.</param>
     /// <returns>The data slice. The memory pointer will be <c>null</c> in case of failure.</returns>
     public Eina.Slice GetBufferManaged(int plane) {
-                                 var _ret_var = Efl.Gfx.IBufferConcrete.NativeMethods.efl_gfx_buffer_managed_get_ptr.Value.Delegate(this.NativeHandle,plane);
+                                 var _ret_var = Efl.Gfx.BufferConcrete.NativeMethods.efl_gfx_buffer_managed_get_ptr.Value.Delegate(this.NativeHandle,plane);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -363,9 +364,10 @@ sealed public  class IBufferConcrete :
             return (_out_l,_out_r,_out_t,_out_b);
         }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IBufferConcrete.efl_gfx_buffer_interface_get();
+        return Efl.Gfx.BufferConcrete.efl_gfx_buffer_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -374,7 +376,7 @@ sealed public  class IBufferConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -509,13 +511,23 @@ sealed public  class IBufferConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_buffer_managed_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_buffer_managed_get_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IBufferConcrete.efl_gfx_buffer_interface_get();
+            return Efl.Gfx.BufferConcrete.efl_gfx_buffer_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1003,7 +1015,7 @@ sealed public  class IBufferConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIBufferConcrete_ExtensionMethods {
+public static class Efl_GfxBufferConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Eina.Size2D> BufferSize<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IBuffer, T>magic = null) where T : Efl.Gfx.IBuffer {
         return new Efl.BindableProperty<Eina.Size2D>("buffer_size", fac);
     }

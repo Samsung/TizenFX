@@ -70,7 +70,7 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <summary>Get the value of the <c>var</c>, or <c>null</c> if no such <c>var</c> exists in the object</summary>
     /// <param name="kw_var">The name of the variable</param>
     /// <returns>Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</returns>
-    virtual public System.String GetEnv(System.String kw_var) {
+    public virtual System.String GetEnv(System.String kw_var) {
                                  var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -78,33 +78,33 @@ public class Env : Efl.Object, Efl.IDuplicate
     /// <summary>Add a new pair to this object</summary>
     /// <param name="kw_var">The name of the variable</param>
     /// <param name="value">Set var to this value if not <c>NULL</c>, otherwise clear this env value if value is <c>NULL</c> or if it is an empty string</param>
-    virtual public void SetEnv(System.String kw_var, System.String value) {
+    public virtual void SetEnv(System.String kw_var, System.String value) {
                                                          Efl.Core.Env.NativeMethods.efl_core_env_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var, value);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Get the content of this object.
     /// This will return a iterator that contains all keys that are part of this object.</summary>
-    virtual public Eina.Iterator<System.String> GetContent() {
+    public virtual Eina.Iterator<System.String> GetContent() {
          var _ret_var = Efl.Core.Env.NativeMethods.efl_core_env_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<System.String>(_ret_var, false);
  }
     /// <summary>Remove the pair with the matching <c>var</c> from this object</summary>
     /// <param name="kw_var">The name of the variable</param>
-    virtual public void Unset(System.String kw_var) {
+    public virtual void Unset(System.String kw_var) {
                                  Efl.Core.Env.NativeMethods.efl_core_env_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_var);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Remove all pairs from this object</summary>
-    virtual public void Clear() {
+    public virtual void Clear() {
          Efl.Core.Env.NativeMethods.efl_core_env_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Creates a carbon copy of this object and returns it.
     /// The newly created object will have no event handlers or anything of the sort.</summary>
     /// <returns>Returned carbon copy</returns>
-    virtual public Efl.IDuplicate Duplicate() {
-         var _ret_var = Efl.IDuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.IDuplicate Duplicate() {
+         var _ret_var = Efl.DuplicateConcrete.NativeMethods.efl_duplicate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -124,7 +124,7 @@ public class Env : Efl.Object, Efl.IDuplicate
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -179,17 +179,17 @@ public class Env : Efl.Object, Efl.IDuplicate
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_env_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_core_env_clear_static_delegate) });
             }
 
-            if (efl_duplicate_static_delegate == null)
+            if (includeInherited)
             {
-                efl_duplicate_static_delegate = new efl_duplicate_delegate(duplicate);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "Duplicate") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_duplicate"), func = Marshal.GetFunctionPointerForDelegate(efl_duplicate_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -377,42 +377,6 @@ public class Env : Efl.Object, Efl.IDuplicate
         }
 
         private static efl_core_env_clear_delegate efl_core_env_clear_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
-        private delegate Efl.IDuplicate efl_duplicate_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
-        public delegate Efl.IDuplicate efl_duplicate_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_duplicate_api_delegate> efl_duplicate_ptr = new Efl.Eo.FunctionWrapper<efl_duplicate_api_delegate>(Module, "efl_duplicate");
-
-        private static Efl.IDuplicate duplicate(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_duplicate was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.IDuplicate _ret_var = default(Efl.IDuplicate);
-                try
-                {
-                    _ret_var = ((Env)ws.Target).Duplicate();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_duplicate_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_duplicate_delegate efl_duplicate_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

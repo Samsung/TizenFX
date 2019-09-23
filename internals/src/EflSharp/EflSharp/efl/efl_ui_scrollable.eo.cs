@@ -12,45 +12,45 @@ namespace Ui {
 
 /// <summary>Efl UI scrollable interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IScrollableConcrete.NativeMethods]
+[Efl.Ui.ScrollableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IScrollable : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Called when scroll operation starts</summary>
-    event EventHandler ScrollStartEvt;
+    event EventHandler ScrollStartedEvent;
     /// <summary>Called when scrolling</summary>
-    event EventHandler ScrollEvt;
-    /// <summary>Called when scroll operation stops</summary>
-    event EventHandler ScrollStopEvt;
+    event EventHandler ScrollChangedEvent;
+    /// <summary>Called when scroll operation finishes</summary>
+    event EventHandler ScrollFinishedEvent;
     /// <summary>Called when scrolling upwards</summary>
-    event EventHandler ScrollUpEvt;
+    event EventHandler ScrollUpEvent;
     /// <summary>Called when scrolling downwards</summary>
-    event EventHandler ScrollDownEvt;
+    event EventHandler ScrollDownEvent;
     /// <summary>Called when scrolling left</summary>
-    event EventHandler ScrollLeftEvt;
+    event EventHandler ScrollLeftEvent;
     /// <summary>Called when scrolling right</summary>
-    event EventHandler ScrollRightEvt;
+    event EventHandler ScrollRightEvent;
     /// <summary>Called when hitting the top edge</summary>
-    event EventHandler EdgeUpEvt;
+    event EventHandler EdgeUpEvent;
     /// <summary>Called when hitting the bottom edge</summary>
-    event EventHandler EdgeDownEvt;
+    event EventHandler EdgeDownEvent;
     /// <summary>Called when hitting the left edge</summary>
-    event EventHandler EdgeLeftEvt;
+    event EventHandler EdgeLeftEvent;
     /// <summary>Called when hitting the right edge</summary>
-    event EventHandler EdgeRightEvt;
+    event EventHandler EdgeRightEvent;
     /// <summary>Called when scroll animation starts</summary>
-    event EventHandler ScrollAnimStartEvt;
-    /// <summary>Called when scroll animation stopps</summary>
-    event EventHandler ScrollAnimStopEvt;
+    event EventHandler ScrollAnimStartedEvent;
+    /// <summary>Called when scroll animation finishes</summary>
+    event EventHandler ScrollAnimFinishedEvent;
     /// <summary>Called when scroll drag starts</summary>
-    event EventHandler ScrollDragStartEvt;
-    /// <summary>Called when scroll drag stops</summary>
-    event EventHandler ScrollDragStopEvt;
+    event EventHandler ScrollDragStartedEvent;
+    /// <summary>Called when scroll drag finishes</summary>
+    event EventHandler ScrollDragFinishedEvent;
 }
 /// <summary>Efl UI scrollable interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IScrollableConcrete :
+public sealed class ScrollableConcrete :
     Efl.Eo.EoWrapper
     , IScrollable
     
@@ -60,7 +60,7 @@ sealed public  class IScrollableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IScrollableConcrete))
+            if (((object)this).GetType() == typeof(ScrollableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -74,7 +74,7 @@ sealed public  class IScrollableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IScrollableConcrete(ConstructingHandle ch) : base(ch)
+    private ScrollableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -83,12 +83,12 @@ sealed public  class IScrollableConcrete :
     /// <summary>Initializes a new instance of the <see cref="IScrollable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IScrollableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ScrollableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when scroll operation starts</summary>
-    public event EventHandler ScrollStartEvt
+    public event EventHandler ScrollStartedEvent
     {
         add
         {
@@ -112,7 +112,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_START";
+                string key = "_EFL_UI_EVENT_SCROLL_STARTED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -121,15 +121,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_START";
+                string key = "_EFL_UI_EVENT_SCROLL_STARTED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollStartEvt.</summary>
-    public void OnScrollStartEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollStartedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollStartedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_START";
+        var key = "_EFL_UI_EVENT_SCROLL_STARTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -140,7 +141,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scrolling</summary>
-    public event EventHandler ScrollEvt
+    public event EventHandler ScrollChangedEvent
     {
         add
         {
@@ -164,7 +165,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL";
+                string key = "_EFL_UI_EVENT_SCROLL_CHANGED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -173,15 +174,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL";
+                string key = "_EFL_UI_EVENT_SCROLL_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollEvt.</summary>
-    public void OnScrollEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollChangedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL";
+        var key = "_EFL_UI_EVENT_SCROLL_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -191,8 +193,8 @@ sealed public  class IScrollableConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when scroll operation stops</summary>
-    public event EventHandler ScrollStopEvt
+    /// <summary>Called when scroll operation finishes</summary>
+    public event EventHandler ScrollFinishedEvent
     {
         add
         {
@@ -216,7 +218,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_FINISHED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -225,15 +227,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_FINISHED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollStopEvt.</summary>
-    public void OnScrollStopEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollFinishedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollFinishedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_STOP";
+        var key = "_EFL_UI_EVENT_SCROLL_FINISHED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -244,7 +247,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scrolling upwards</summary>
-    public event EventHandler ScrollUpEvt
+    public event EventHandler ScrollUpEvent
     {
         add
         {
@@ -282,8 +285,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ScrollUpEvt.</summary>
-    public void OnScrollUpEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollUpEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollUpEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_UP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -296,7 +300,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scrolling downwards</summary>
-    public event EventHandler ScrollDownEvt
+    public event EventHandler ScrollDownEvent
     {
         add
         {
@@ -334,8 +338,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ScrollDownEvt.</summary>
-    public void OnScrollDownEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollDownEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollDownEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_DOWN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -348,7 +353,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scrolling left</summary>
-    public event EventHandler ScrollLeftEvt
+    public event EventHandler ScrollLeftEvent
     {
         add
         {
@@ -386,8 +391,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ScrollLeftEvt.</summary>
-    public void OnScrollLeftEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollLeftEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollLeftEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_LEFT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -400,7 +406,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scrolling right</summary>
-    public event EventHandler ScrollRightEvt
+    public event EventHandler ScrollRightEvent
     {
         add
         {
@@ -438,8 +444,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ScrollRightEvt.</summary>
-    public void OnScrollRightEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollRightEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollRightEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_SCROLL_RIGHT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -452,7 +459,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when hitting the top edge</summary>
-    public event EventHandler EdgeUpEvt
+    public event EventHandler EdgeUpEvent
     {
         add
         {
@@ -490,8 +497,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event EdgeUpEvt.</summary>
-    public void OnEdgeUpEvt(EventArgs e)
+    /// <summary>Method to raise event EdgeUpEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEdgeUpEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_UP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -504,7 +512,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when hitting the bottom edge</summary>
-    public event EventHandler EdgeDownEvt
+    public event EventHandler EdgeDownEvent
     {
         add
         {
@@ -542,8 +550,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event EdgeDownEvt.</summary>
-    public void OnEdgeDownEvt(EventArgs e)
+    /// <summary>Method to raise event EdgeDownEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEdgeDownEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_DOWN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -556,7 +565,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when hitting the left edge</summary>
-    public event EventHandler EdgeLeftEvt
+    public event EventHandler EdgeLeftEvent
     {
         add
         {
@@ -594,8 +603,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event EdgeLeftEvt.</summary>
-    public void OnEdgeLeftEvt(EventArgs e)
+    /// <summary>Method to raise event EdgeLeftEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEdgeLeftEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_LEFT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -608,7 +618,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when hitting the right edge</summary>
-    public event EventHandler EdgeRightEvt
+    public event EventHandler EdgeRightEvent
     {
         add
         {
@@ -646,8 +656,9 @@ sealed public  class IScrollableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event EdgeRightEvt.</summary>
-    public void OnEdgeRightEvt(EventArgs e)
+    /// <summary>Method to raise event EdgeRightEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEdgeRightEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_EDGE_RIGHT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -660,7 +671,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scroll animation starts</summary>
-    public event EventHandler ScrollAnimStartEvt
+    public event EventHandler ScrollAnimStartedEvent
     {
         add
         {
@@ -684,7 +695,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
+                string key = "_EFL_UI_EVENT_SCROLL_ANIM_STARTED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -693,15 +704,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
+                string key = "_EFL_UI_EVENT_SCROLL_ANIM_STARTED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollAnimStartEvt.</summary>
-    public void OnScrollAnimStartEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollAnimStartedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollAnimStartedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_ANIM_START";
+        var key = "_EFL_UI_EVENT_SCROLL_ANIM_STARTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -711,8 +723,8 @@ sealed public  class IScrollableConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when scroll animation stopps</summary>
-    public event EventHandler ScrollAnimStopEvt
+    /// <summary>Called when scroll animation finishes</summary>
+    public event EventHandler ScrollAnimFinishedEvent
     {
         add
         {
@@ -736,7 +748,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_ANIM_FINISHED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -745,15 +757,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_ANIM_FINISHED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollAnimStopEvt.</summary>
-    public void OnScrollAnimStopEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollAnimFinishedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollAnimFinishedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_ANIM_STOP";
+        var key = "_EFL_UI_EVENT_SCROLL_ANIM_FINISHED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -764,7 +777,7 @@ sealed public  class IScrollableConcrete :
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when scroll drag starts</summary>
-    public event EventHandler ScrollDragStartEvt
+    public event EventHandler ScrollDragStartedEvent
     {
         add
         {
@@ -788,7 +801,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
+                string key = "_EFL_UI_EVENT_SCROLL_DRAG_STARTED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -797,15 +810,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
+                string key = "_EFL_UI_EVENT_SCROLL_DRAG_STARTED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollDragStartEvt.</summary>
-    public void OnScrollDragStartEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollDragStartedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollDragStartedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_DRAG_START";
+        var key = "_EFL_UI_EVENT_SCROLL_DRAG_STARTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -815,8 +829,8 @@ sealed public  class IScrollableConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when scroll drag stops</summary>
-    public event EventHandler ScrollDragStopEvt
+    /// <summary>Called when scroll drag finishes</summary>
+    public event EventHandler ScrollDragFinishedEvent
     {
         add
         {
@@ -840,7 +854,7 @@ sealed public  class IScrollableConcrete :
                     }
                 };
 
-                string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_DRAG_FINISHED";
                 AddNativeEventHandler(efl.Libs.Efl, key, callerCb, value);
             }
         }
@@ -849,15 +863,16 @@ sealed public  class IScrollableConcrete :
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
+                string key = "_EFL_UI_EVENT_SCROLL_DRAG_FINISHED";
                 RemoveNativeEventHandler(efl.Libs.Efl, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ScrollDragStopEvt.</summary>
-    public void OnScrollDragStopEvt(EventArgs e)
+    /// <summary>Method to raise event ScrollDragFinishedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnScrollDragFinishedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_EVENT_SCROLL_DRAG_STOP";
+        var key = "_EFL_UI_EVENT_SCROLL_DRAG_FINISHED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
         if (desc == IntPtr.Zero)
         {
@@ -867,9 +882,11 @@ sealed public  class IScrollableConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IScrollableConcrete.efl_ui_scrollable_interface_get();
+        return Efl.Ui.ScrollableConcrete.efl_ui_scrollable_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -877,16 +894,26 @@ sealed public  class IScrollableConcrete :
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IScrollableConcrete.efl_ui_scrollable_interface_get();
+            return Efl.Ui.ScrollableConcrete.efl_ui_scrollable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -901,28 +928,7 @@ sealed public  class IScrollableConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIScrollableConcrete_ExtensionMethods {
+public static class Efl_UiScrollableConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif
-namespace Efl {
-
-namespace Ui {
-
-/// <summary>Direction in which a scroller should be blocked.
-/// Note: These options may be effective only in case of thumbscroll (i.e. when scrolling by dragging).</summary>
-[Efl.Eo.BindingEntity]
-public enum ScrollBlock
-{
-/// <summary>Don&apos;t block any movement.</summary>
-None = 0,
-/// <summary>Block vertical movement.</summary>
-Vertical = 1,
-/// <summary>Block horizontal movement.</summary>
-Horizontal = 2,
-}
-
-}
-
-}
-

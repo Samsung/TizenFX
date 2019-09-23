@@ -13,7 +13,7 @@ namespace Ui {
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IL10nConcrete.NativeMethods]
+[Efl.Ui.L10nConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IL10n : 
     Efl.Eo.IWrapper, IDisposable
@@ -29,16 +29,11 @@ System.String GetL10nText(out System.String domain);
 /// <param name="label">A unique (untranslated) string.</param>
 /// <param name="domain">A translation domain. If <c>null</c> this uses the default domain (eg. set by <c>textdomain</c>()).</param>
 void SetL10nText(System.String label, System.String domain);
-    /// <summary>Requests this object to update its text strings for the current locale.
-/// Currently strings are translated with <c>dgettext</c>, so support for this function may depend on the platform. It is up to the application to provide its own translation data.
-/// 
-/// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to <see cref="Efl.Ui.IL10n.UpdateTranslation"/> to children objects.</summary>
-void UpdateTranslation();
-            }
+                }
 /// <summary>Interface for all translatable text APIs.
 /// This is intended for translation of human readable on-screen text strings but may also be used in text-to-speech situations.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IL10nConcrete :
+public sealed class L10nConcrete :
     Efl.Eo.EoWrapper
     , IL10n
     
@@ -48,7 +43,7 @@ sealed public  class IL10nConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IL10nConcrete))
+            if (((object)this).GetType() == typeof(L10nConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -62,7 +57,7 @@ sealed public  class IL10nConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IL10nConcrete(ConstructingHandle ch) : base(ch)
+    private L10nConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -71,10 +66,11 @@ sealed public  class IL10nConcrete :
     /// <summary>Initializes a new instance of the <see cref="IL10n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IL10nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private L10nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>A unique string to be translated.
     /// Often this will be a human-readable string (e.g. in English) but it can also be a unique string identifier that must then be translated to the current locale with <c>dgettext</c>() or any similar mechanism.
     /// 
@@ -82,7 +78,7 @@ sealed public  class IL10nConcrete :
     /// <param name="domain">A translation domain. If <c>null</c> this means the default domain is used.</param>
     /// <returns>This returns the untranslated value of <c>label</c>. The translated string can usually be retrieved with <see cref="Efl.IText.GetText"/>.</returns>
     public System.String GetL10nText(out System.String domain) {
-                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate(this.NativeHandle,out domain);
+                                 var _ret_var = Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate(this.NativeHandle,out domain);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -90,20 +86,21 @@ sealed public  class IL10nConcrete :
     /// <param name="label">A unique (untranslated) string.</param>
     /// <param name="domain">A translation domain. If <c>null</c> this uses the default domain (eg. set by <c>textdomain</c>()).</param>
     public void SetL10nText(System.String label, System.String domain) {
-                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate(this.NativeHandle,label, domain);
+                                                         Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate(this.NativeHandle,label, domain);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Requests this object to update its text strings for the current locale.
     /// Currently strings are translated with <c>dgettext</c>, so support for this function may depend on the platform. It is up to the application to provide its own translation data.
     /// 
-    /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to <see cref="Efl.Ui.IL10n.UpdateTranslation"/> to children objects.</summary>
-    public void UpdateTranslation() {
-         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate(this.NativeHandle);
+    /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to Efl.Ui.L10n.translation_update to children objects.</summary>
+    protected void UpdateTranslation() {
+         Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IL10nConcrete.efl_ui_l10n_interface_get();
+        return Efl.Ui.L10nConcrete.efl_ui_l10n_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -112,7 +109,7 @@ sealed public  class IL10nConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -137,23 +134,23 @@ sealed public  class IL10nConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_l10n_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_l10n_text_set_static_delegate) });
             }
 
-            if (efl_ui_l10n_translation_update_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_l10n_translation_update_static_delegate = new efl_ui_l10n_translation_update_delegate(translation_update);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "UpdateTranslation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_l10n_translation_update"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_l10n_translation_update_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IL10nConcrete.efl_ui_l10n_interface_get();
+            return Efl.Ui.L10nConcrete.efl_ui_l10n_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -239,33 +236,6 @@ sealed public  class IL10nConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_l10n_translation_update_api_delegate> efl_ui_l10n_translation_update_ptr = new Efl.Eo.FunctionWrapper<efl_ui_l10n_translation_update_api_delegate>(Module, "efl_ui_l10n_translation_update");
 
-        private static void translation_update(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_l10n_translation_update was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((IL10n)ws.Target).UpdateTranslation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_l10n_translation_update_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_l10n_translation_update_delegate efl_ui_l10n_translation_update_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -276,7 +246,7 @@ sealed public  class IL10nConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIL10nConcrete_ExtensionMethods {
+public static class Efl_UiL10nConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591

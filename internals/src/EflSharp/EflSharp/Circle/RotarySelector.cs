@@ -29,7 +29,7 @@ namespace Efl
                 public int OldIndex { get; internal set; }
             }
 
-
+            /// <summary>
             /// The event argument of Rotary Selector editing state.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>

@@ -11,7 +11,9 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>A custom layout engine for <see cref="Efl.Ui.Box"/> that stacks items.
-/// Items will be stacked on top of each other (in the Z direction).</summary>
+/// Items will be stacked on top of each other (in the Z direction) meaning that, in the absence of transparency, only the last item added through the <see cref="Efl.IPack"/> interface will actually be visible.
+/// 
+/// This can be useful to display transparent objects on top of each other, for example.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.BoxStack.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -81,10 +83,20 @@ public class BoxStack : Efl.Ui.Box
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

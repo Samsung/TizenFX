@@ -10,14 +10,15 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.AlertPopup.ButtonClickedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.AlertPopup.ButtonClickedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class AlertPopupButtonClickedEvt_Args : EventArgs {
+public class AlertPopupButtonClickedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Called when alert popup was clicked</value>
+    /// <value>Called when an Alert_Popup button was clicked.</value>
     public Efl.Ui.AlertPopupButtonClickedEvent arg { get; set; }
 }
-/// <summary>EFL UI Alert Popup class</summary>
+/// <summary>A variant of <see cref="Efl.Ui.Popup"/> which uses a layout containing a content object and a variable number of buttons (up to 3 total).
+/// An Alert_Popup is a popup which can be used when an application requires user interaction. It provides functionality for easily creating button objects on the popup and passing information about which button has been pressed to the button event callback.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.AlertPopup.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -77,9 +78,9 @@ public class AlertPopup : Efl.Ui.Popup
     {
     }
 
-    /// <summary>Called when alert popup was clicked</summary>
-    /// <value><see cref="Efl.Ui.AlertPopupButtonClickedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.AlertPopupButtonClickedEvt_Args> ButtonClickedEvt
+    /// <summary>Called when an Alert_Popup button was clicked.</summary>
+    /// <value><see cref="Efl.Ui.AlertPopupButtonClickedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.AlertPopupButtonClickedEventArgs> ButtonClickedEvent
     {
         add
         {
@@ -90,7 +91,7 @@ public class AlertPopup : Efl.Ui.Popup
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.AlertPopupButtonClickedEvt_Args args = new Efl.Ui.AlertPopupButtonClickedEvt_Args();
+                        Efl.Ui.AlertPopupButtonClickedEventArgs args = new Efl.Ui.AlertPopupButtonClickedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -118,8 +119,9 @@ public class AlertPopup : Efl.Ui.Popup
             }
         }
     }
-    /// <summary>Method to raise event ButtonClickedEvt.</summary>
-    public void OnButtonClickedEvt(Efl.Ui.AlertPopupButtonClickedEvt_Args e)
+    /// <summary>Method to raise event ButtonClickedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnButtonClickedEvent(Efl.Ui.AlertPopupButtonClickedEventArgs e)
     {
         var key = "_EFL_UI_ALERT_POPUP_EVENT_BUTTON_CLICKED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -140,17 +142,27 @@ public class AlertPopup : Efl.Ui.Popup
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Set popup buttons.</summary>
-    /// <param name="type">Alert popup button type</param>
-    /// <param name="text">Alert string on button</param>
-    /// <param name="icon">Alert icon on button</param>
-    virtual public void SetButton(Efl.Ui.AlertPopupButton type, System.String text, Efl.Object icon) {
+    /// <summary>This property changes the text and icon for the specified button object.
+    /// When set, the Alert_Popup will create a button for the specified type if it does not yet exist. The button&apos;s content and text will be set using the passed values.
+    /// 
+    /// Exactly one button may exist for each <see cref="Efl.Ui.AlertPopupButton"/> type. Repeated calls to set values for the same button type will overwrite previous values.
+    /// 
+    /// By default, no buttons are created. Once a button is added to the Popup using this property it cannot be removed.</summary>
+    /// <param name="type">Alert_Popup button type.</param>
+    /// <param name="text">Text of the specified button type.</param>
+    /// <param name="icon">Visual to use as an icon for the specified button type.</param>
+    public virtual void SetButton(Efl.Ui.AlertPopupButton type, System.String text, Efl.Canvas.Object icon) {
                                                                                  Efl.Ui.AlertPopup.NativeMethods.efl_ui_alert_popup_button_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, text, icon);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
-    /// <summary>Set popup buttons.</summary>
-    /// <value>Alert popup button type</value>
-    public (Efl.Ui.AlertPopupButton, System.String, Efl.Object) Button {
+    /// <summary>This property changes the text and icon for the specified button object.
+    /// When set, the Alert_Popup will create a button for the specified type if it does not yet exist. The button&apos;s content and text will be set using the passed values.
+    /// 
+    /// Exactly one button may exist for each <see cref="Efl.Ui.AlertPopupButton"/> type. Repeated calls to set values for the same button type will overwrite previous values.
+    /// 
+    /// By default, no buttons are created. Once a button is added to the Popup using this property it cannot be removed.</summary>
+    /// <value>Alert_Popup button type.</value>
+    public (Efl.Ui.AlertPopupButton, System.String, Efl.Canvas.Object) Button {
         set { SetButton( value.Item1,  value.Item2,  value.Item3); }
     }
     private static IntPtr GetEflClassStatic()
@@ -164,7 +176,7 @@ public class AlertPopup : Efl.Ui.Popup
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -179,7 +191,17 @@ public class AlertPopup : Efl.Ui.Popup
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_alert_popup_button_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_alert_popup_button_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -192,14 +214,14 @@ public class AlertPopup : Efl.Ui.Popup
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
-        private delegate void efl_ui_alert_popup_button_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.AlertPopupButton type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object icon);
+        private delegate void efl_ui_alert_popup_button_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.AlertPopupButton type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object icon);
 
         
-        public delegate void efl_ui_alert_popup_button_set_api_delegate(System.IntPtr obj,  Efl.Ui.AlertPopupButton type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object icon);
+        public delegate void efl_ui_alert_popup_button_set_api_delegate(System.IntPtr obj,  Efl.Ui.AlertPopupButton type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object icon);
 
         public static Efl.Eo.FunctionWrapper<efl_ui_alert_popup_button_set_api_delegate> efl_ui_alert_popup_button_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_alert_popup_button_set_api_delegate>(Module, "efl_ui_alert_popup_button_set");
 
-        private static void button_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.AlertPopupButton type, System.String text, Efl.Object icon)
+        private static void button_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.AlertPopupButton type, System.String text, Efl.Canvas.Object icon)
         {
             Eina.Log.Debug("function efl_ui_alert_popup_button_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
@@ -249,11 +271,11 @@ namespace Ui {
 [Efl.Eo.BindingEntity]
 public enum AlertPopupButton
 {
-/// <summary>Button having positive meaning. e.g. &quot;Yes&quot;</summary>
+/// <summary>Button having positive meaning. E.g. &quot;Yes&quot;.</summary>
 Positive = 0,
-/// <summary>Button having negative meaning. e.g. &quot;No&quot;</summary>
+/// <summary>Button having negative meaning. E.g. &quot;No&quot;.</summary>
 Negative = 1,
-/// <summary>Button having user-defined meaning. e.g. &quot;Cancel&quot;</summary>
+/// <summary>Button having user-defined meaning. E.g. &quot;More information&quot;.</summary>
 User = 2,
 }
 
@@ -265,16 +287,16 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Information of clicked event</summary>
+/// <summary>Information for <see cref="Efl.Ui.AlertPopup.ButtonClickedEvent"/> event.</summary>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct AlertPopupButtonClickedEvent
 {
-    /// <summary>Clicked button type</summary>
+    /// <summary>Clicked button type.</summary>
     /// <value>Defines the type of the alert button.</value>
     public Efl.Ui.AlertPopupButton Button_type;
     /// <summary>Constructor for AlertPopupButtonClickedEvent.</summary>
-    /// <param name="Button_type">Clicked button type</param>;
+    /// <param name="Button_type">Clicked button type.</param>
     public AlertPopupButtonClickedEvent(
         Efl.Ui.AlertPopupButton Button_type = default(Efl.Ui.AlertPopupButton)    )
     {

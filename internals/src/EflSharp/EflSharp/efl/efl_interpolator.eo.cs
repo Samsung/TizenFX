@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Efl interpolator interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IInterpolatorConcrete.NativeMethods]
+[Efl.InterpolatorConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IInterpolator : 
     Efl.Eo.IWrapper, IDisposable
@@ -22,7 +22,7 @@ double Interpolate(double progress);
     }
 /// <summary>Efl interpolator interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IInterpolatorConcrete :
+public sealed class InterpolatorConcrete :
     Efl.Eo.EoWrapper
     , IInterpolator
     
@@ -32,7 +32,7 @@ sealed public  class IInterpolatorConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IInterpolatorConcrete))
+            if (((object)this).GetType() == typeof(InterpolatorConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -46,7 +46,7 @@ sealed public  class IInterpolatorConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IInterpolatorConcrete(ConstructingHandle ch) : base(ch)
+    private InterpolatorConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -55,21 +55,23 @@ sealed public  class IInterpolatorConcrete :
     /// <summary>Initializes a new instance of the <see cref="IInterpolator"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IInterpolatorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private InterpolatorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Interpolate the given value.</summary>
     /// <param name="progress">Input value mapped from 0.0 to 1.0.</param>
     /// <returns>Output value calculated by interpolating the input value.</returns>
     public double Interpolate(double progress) {
-                                 var _ret_var = Efl.IInterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate(this.NativeHandle,progress);
+                                 var _ret_var = Efl.InterpolatorConcrete.NativeMethods.efl_interpolator_interpolate_ptr.Value.Delegate(this.NativeHandle,progress);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IInterpolatorConcrete.efl_interpolator_interface_get();
+        return Efl.InterpolatorConcrete.efl_interpolator_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -78,7 +80,7 @@ sealed public  class IInterpolatorConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -93,13 +95,23 @@ sealed public  class IInterpolatorConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_interpolator_interpolate"), func = Marshal.GetFunctionPointerForDelegate(efl_interpolator_interpolate_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IInterpolatorConcrete.efl_interpolator_interface_get();
+            return Efl.InterpolatorConcrete.efl_interpolator_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -148,7 +160,7 @@ sealed public  class IInterpolatorConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIInterpolatorConcrete_ExtensionMethods {
+public static class EflInterpolatorConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

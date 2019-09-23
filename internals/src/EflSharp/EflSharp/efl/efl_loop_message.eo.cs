@@ -8,9 +8,9 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessage.MessageEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class LoopMessageMessageEvt_Args : EventArgs {
+public class LoopMessageMessageEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>The message payload data</value>
     public Efl.LoopMessage arg { get; set; }
@@ -70,8 +70,8 @@ public class LoopMessage : Efl.Object
     }
 
     /// <summary>The message payload data</summary>
-    /// <value><see cref="Efl.LoopMessageMessageEvt_Args"/></value>
-    public event EventHandler<Efl.LoopMessageMessageEvt_Args> MessageEvt
+    /// <value><see cref="Efl.LoopMessageMessageEventArgs"/></value>
+    public event EventHandler<Efl.LoopMessageMessageEventArgs> MessageEvent
     {
         add
         {
@@ -82,7 +82,7 @@ public class LoopMessage : Efl.Object
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.LoopMessageMessageEvt_Args args = new Efl.LoopMessageMessageEvt_Args();
+                        Efl.LoopMessageMessageEventArgs args = new Efl.LoopMessageMessageEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessage);
                         try
                         {
@@ -110,8 +110,9 @@ public class LoopMessage : Efl.Object
             }
         }
     }
-    /// <summary>Method to raise event MessageEvt.</summary>
-    public void OnMessageEvt(Efl.LoopMessageMessageEvt_Args e)
+    /// <summary>Method to raise event MessageEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMessageEvent(Efl.LoopMessageMessageEventArgs e)
     {
         var key = "_EFL_LOOP_MESSAGE_EVENT_MESSAGE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -134,10 +135,20 @@ public class LoopMessage : Efl.Object
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

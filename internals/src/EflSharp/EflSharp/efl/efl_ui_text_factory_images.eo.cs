@@ -77,7 +77,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="path">the image or EET file path</param>
     /// <param name="key">the key to use (in cases of loading an EET file</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-    virtual public bool AddMatches(System.String name, System.String path, System.String key) {
+    public virtual bool AddMatches(System.String name, System.String path, System.String key) {
                                                                                  var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, path, key);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
@@ -86,7 +86,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// see <see cref="Efl.Ui.TextFactory.Images.AddMatches"/></summary>
     /// <param name="key">the entry&apos;s key to delete</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-    virtual public bool DelMatches(System.String key) {
+    public virtual bool DelMatches(System.String key) {
                                  var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -97,7 +97,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <param name="file">the image or EET file</param>
     /// <param name="key">the key to use (in cases of loading an EET file</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-    virtual public bool AddMatchesMmap(System.String name, Eina.File file, System.String key) {
+    public virtual bool AddMatchesMmap(System.String name, Eina.File file, System.String key) {
                                                                                  var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, file, key);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
@@ -106,7 +106,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// see <see cref="Efl.Ui.TextFactory.Images.AddMatchesMmap"/></summary>
     /// <param name="key">the entry&apos;s key to delete</param>
     /// <returns><c>true</c> if successful, <c>false</c> otherwise</returns>
-    virtual public bool DelMatchesMmap(System.String key) {
+    public virtual bool DelMatchesMmap(System.String key) {
                                  var _ret_var = Efl.Ui.TextFactory.Images.NativeMethods.efl_ui_text_factory_images_matches_mmap_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -114,8 +114,8 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
     /// <summary>Translates a given <c>key</c> to an item object, and returns the object. The returned object should be owned by the passed <c>object</c>.</summary>
     /// <param name="kw_object">The parent of the created object</param>
     /// <param name="key">Key that is associated to an item object</param>
-    virtual public Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
-                                                         var _ret_var = Efl.Canvas.ITextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
+    public virtual Efl.Canvas.Object Create(Efl.Canvas.Object kw_object, System.String key) {
+                                                         var _ret_var = Efl.Canvas.TextFactoryConcrete.NativeMethods.efl_canvas_text_factory_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_object, key);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -130,7 +130,7 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -175,17 +175,17 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_text_factory_images_matches_mmap_del"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_text_factory_images_matches_mmap_del_static_delegate) });
             }
 
-            if (efl_canvas_text_factory_create_static_delegate == null)
+            if (includeInherited)
             {
-                efl_canvas_text_factory_create_static_delegate = new efl_canvas_text_factory_create_delegate(create);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "Create") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_text_factory_create"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_text_factory_create_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -340,42 +340,6 @@ public class Images : Efl.Object, Efl.Canvas.ITextFactory
         }
 
         private static efl_ui_text_factory_images_matches_mmap_del_delegate efl_ui_text_factory_images_matches_mmap_del_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
-        private delegate Efl.Canvas.Object efl_canvas_text_factory_create_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.OwnTag>))]
-        public delegate Efl.Canvas.Object efl_canvas_text_factory_create_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
-
-        public static Efl.Eo.FunctionWrapper<efl_canvas_text_factory_create_api_delegate> efl_canvas_text_factory_create_ptr = new Efl.Eo.FunctionWrapper<efl_canvas_text_factory_create_api_delegate>(Module, "efl_canvas_text_factory_create");
-
-        private static Efl.Canvas.Object create(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object kw_object, System.String key)
-        {
-            Eina.Log.Debug("function efl_canvas_text_factory_create was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
-                try
-                {
-                    _ret_var = ((Images)ws.Target).Create(kw_object, key);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_canvas_text_factory_create_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_object, key);
-            }
-        }
-
-        private static efl_canvas_text_factory_create_delegate efl_canvas_text_factory_create_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

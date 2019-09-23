@@ -25,14 +25,14 @@ public struct ListViewLayoutItem
     /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
     /// <summary>Constructor for ListViewLayoutItem.</summary>
-    /// <param name="Layout"></param>;
-    /// <param name="Layout_request"></param>;
-    /// <param name="Children"></param>;
-    /// <param name="Index_offset"></param>;
-    /// <param name="Tree_node"></param>;
-    /// <param name="Min"></param>;
-    /// <param name="Size"></param>;
-    /// <param name="Pos"></param>;
+    /// <param name="Layout"></param>
+    /// <param name="Layout_request"></param>
+    /// <param name="Children"></param>
+    /// <param name="Index_offset"></param>
+    /// <param name="Tree_node"></param>
+    /// <param name="Min"></param>
+    /// <param name="Size"></param>
+    /// <param name="Pos"></param>
     public ListViewLayoutItem(
         Efl.Ui.Layout Layout = default(Efl.Ui.Layout),
          Eina.Future Layout_request = default( Eina.Future),
@@ -106,7 +106,7 @@ public struct ListViewLayoutItem
             _external_struct.Layout = (Efl.Ui.Layout) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Layout);
             _external_struct.Layout_request = _internal_struct.Layout_request;
 
-            _external_struct.Children = (Efl.IModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Children);
+            _external_struct.Children = (Efl.ModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Children);
             _external_struct.Index_offset = _internal_struct.Index_offset;
             _external_struct.Tree_node = _internal_struct.Tree_node;
             _external_struct.Min = _internal_struct.Min;

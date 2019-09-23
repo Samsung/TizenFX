@@ -13,6 +13,7 @@ static class UnsafeNativeMethods
 {
     private delegate void init_func_delegate();
     [DllImport(efl.Libs.Ecore)] public static extern void ecore_init();
+    [DllImport(efl.Libs.Ecore)] public static extern void ecore_init_ex(int argc, IntPtr argv);
     [DllImport(efl.Libs.Ecore)] public static extern void ecore_shutdown();
     // dotnet loads libraries from DllImport with RTLD_LOCAL. Due to the
     // way evas modules are built with meson, currently they do not link directly
@@ -54,6 +55,7 @@ public static class All
         Eina.Config.Init();
         Efl.Eo.Config.Init();
         ecore_init();
+        ecore_init_ex(0, IntPtr.Zero);
         evas_init();
         //eldbus.Config.Init();
 

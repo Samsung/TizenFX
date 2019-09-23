@@ -13,7 +13,7 @@ namespace Layout {
 /// <summary>This interface defines a common set of APIs used to trigger calculations with layout objects.
 /// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
 /// (Since EFL 1.22)</summary>
-[Efl.Layout.ICalcConcrete.NativeMethods]
+[Efl.Layout.CalcConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ICalc : 
     Efl.Eo.IWrapper, IDisposable
@@ -59,19 +59,13 @@ int FreezeCalc();
 /// (Since EFL 1.22)</summary>
 /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
 int ThawCalc();
-    /// <summary>Forces a Size/Geometry calculation.
-/// Forces the object to recalculate its layout regardless of freeze/thaw. This API should be used carefully.
-/// 
-/// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
-/// (Since EFL 1.22)</summary>
-void CalcForce();
-                                /// <summary>The layout was recalculated.
+                                    /// <summary>The layout was recalculated.
     /// (Since EFL 1.22)</summary>
-    event EventHandler RecalcEvt;
+    event EventHandler RecalcEvent;
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
-    event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt;
+    /// <value><see cref="Efl.Layout.CalcCircularDependencyEventArgs"/></value>
+    event EventHandler<Efl.Layout.CalcCircularDependencyEventArgs> CircularDependencyEvent;
     /// <summary>Whether this object updates its size hints automatically.
     /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
     /// 
@@ -83,9 +77,9 @@ void CalcForce();
         set;
     }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ICalcCircularDependencyEvt_Args : EventArgs {
+public class CalcCircularDependencyEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A circular dependency between parts of the object was found.</value>
     public Eina.Array<System.String> arg { get; set; }
@@ -93,7 +87,7 @@ public class ICalcCircularDependencyEvt_Args : EventArgs {
 /// <summary>This interface defines a common set of APIs used to trigger calculations with layout objects.
 /// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
 /// (Since EFL 1.22)</summary>
-sealed public  class ICalcConcrete :
+public sealed class CalcConcrete :
     Efl.Eo.EoWrapper
     , ICalc
     
@@ -103,7 +97,7 @@ sealed public  class ICalcConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ICalcConcrete))
+            if (((object)this).GetType() == typeof(CalcConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -117,7 +111,7 @@ sealed public  class ICalcConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ICalcConcrete(ConstructingHandle ch) : base(ch)
+    private CalcConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -126,13 +120,13 @@ sealed public  class ICalcConcrete :
     /// <summary>Initializes a new instance of the <see cref="ICalc"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ICalcConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private CalcConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>The layout was recalculated.
     /// (Since EFL 1.22)</summary>
-    public event EventHandler RecalcEvt
+    public event EventHandler RecalcEvent
     {
         add
         {
@@ -170,8 +164,9 @@ sealed public  class ICalcConcrete :
             }
         }
     }
-    /// <summary>Method to raise event RecalcEvt.</summary>
-    public void OnRecalcEvt(EventArgs e)
+    /// <summary>Method to raise event RecalcEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRecalcEvent(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
@@ -185,8 +180,8 @@ sealed public  class ICalcConcrete :
     }
     /// <summary>A circular dependency between parts of the object was found.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
-    public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
+    /// <value><see cref="Efl.Layout.CalcCircularDependencyEventArgs"/></value>
+    public event EventHandler<Efl.Layout.CalcCircularDependencyEventArgs> CircularDependencyEvent
     {
         add
         {
@@ -197,7 +192,7 @@ sealed public  class ICalcConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
+                        Efl.Layout.CalcCircularDependencyEventArgs args = new Efl.Layout.CalcCircularDependencyEventArgs();
                         args.arg = new Eina.Array<System.String>(evt.Info, false, false);
                         try
                         {
@@ -225,8 +220,9 @@ sealed public  class ICalcConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CircularDependencyEvt.</summary>
-    public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
+    /// <summary>Method to raise event CircularDependencyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCircularDependencyEvent(Efl.Layout.CalcCircularDependencyEventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
@@ -239,11 +235,12 @@ sealed public  class ICalcConcrete :
         IntPtr info = e.arg.Handle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+#pragma warning disable CS0628
     /// <summary>Whether this object updates its size hints automatically.
     /// (Since EFL 1.22)</summary>
     /// <returns>Whether or not update the size hints.</returns>
     public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -251,7 +248,7 @@ sealed public  class ICalcConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="update">Whether or not update the size hints.</param>
     public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(this.NativeHandle,update);
+                                 Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(this.NativeHandle,update);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Calculates the minimum required size for a given layout object.
@@ -265,7 +262,7 @@ sealed public  class ICalcConcrete :
     /// <returns>The minimum required size.</returns>
     public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
          Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate(this.NativeHandle,_in_restricted);
+                        var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate(this.NativeHandle,_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -276,7 +273,7 @@ sealed public  class ICalcConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>The calculated region.</returns>
     public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -287,7 +284,7 @@ sealed public  class ICalcConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 on error</returns>
     public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -300,7 +297,7 @@ sealed public  class ICalcConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -309,8 +306,8 @@ sealed public  class ICalcConcrete :
     /// 
     /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
     /// (Since EFL 1.22)</summary>
-    public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate(this.NativeHandle);
+    protected void CalcForce() {
+         Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Whether this object updates its size hints automatically.
@@ -323,9 +320,10 @@ sealed public  class ICalcConcrete :
         get { return GetCalcAutoUpdateHints(); }
         set { SetCalcAutoUpdateHints(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Layout.ICalcConcrete.efl_layout_calc_interface_get();
+        return Efl.Layout.CalcConcrete.efl_layout_calc_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -334,7 +332,7 @@ sealed public  class ICalcConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -399,23 +397,23 @@ sealed public  class ICalcConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_thaw"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_thaw_static_delegate) });
             }
 
-            if (efl_layout_calc_force_static_delegate == null)
+            if (includeInherited)
             {
-                efl_layout_calc_force_static_delegate = new efl_layout_calc_force_delegate(calc_force);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "CalcForce") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_force"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_force_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Layout.ICalcConcrete.efl_layout_calc_interface_get();
+            return Efl.Layout.CalcConcrete.efl_layout_calc_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -644,33 +642,6 @@ sealed public  class ICalcConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate> efl_layout_calc_force_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate>(Module, "efl_layout_calc_force");
 
-        private static void calc_force(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_layout_calc_force was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((ICalc)ws.Target).CalcForce();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_layout_calc_force_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_layout_calc_force_delegate efl_layout_calc_force_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -681,7 +652,7 @@ sealed public  class ICalcConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_LayoutICalcConcrete_ExtensionMethods {
+public static class Efl_LayoutCalcConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Layout.ICalc, T>magic = null) where T : Efl.Layout.ICalc {
         return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
     }

@@ -71,7 +71,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
 
     /// <summary>Called when the application is not going be displayed or otherwise used by a user for some time
     /// (Since EFL 1.22)</summary>
-    public event EventHandler PauseEvt
+    public event EventHandler PauseEvent
     {
         add
         {
@@ -109,8 +109,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event PauseEvt.</summary>
-    public void OnPauseEvt(EventArgs e)
+    /// <summary>Method to raise event PauseEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPauseEvent(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_PAUSE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -124,7 +125,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>Called before a window is rendered after a pause event
     /// (Since EFL 1.22)</summary>
-    public event EventHandler ResumeEvt
+    public event EventHandler ResumeEvent
     {
         add
         {
@@ -162,8 +163,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event ResumeEvt.</summary>
-    public void OnResumeEvt(EventArgs e)
+    /// <summary>Method to raise event ResumeEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnResumeEvent(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_RESUME";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -177,7 +179,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>Called when the application&apos;s windows are all destroyed
     /// (Since EFL 1.22)</summary>
-    public event EventHandler StandbyEvt
+    public event EventHandler StandbyEvent
     {
         add
         {
@@ -215,8 +217,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event StandbyEvt.</summary>
-    public void OnStandbyEvt(EventArgs e)
+    /// <summary>Method to raise event StandbyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnStandbyEvent(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_STANDBY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -230,7 +233,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>Called before starting the shutdown of the application
     /// (Since EFL 1.22)</summary>
-    public event EventHandler TerminateEvt
+    public event EventHandler TerminateEvent
     {
         add
         {
@@ -268,8 +271,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event TerminateEvt.</summary>
-    public void OnTerminateEvt(EventArgs e)
+    /// <summary>Method to raise event TerminateEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnTerminateEvent(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_TERMINATE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -283,7 +287,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>System specific, but on unix maps to SIGUSR1 signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
-    public event EventHandler SignalUsr1Evt
+    public event EventHandler SignalUsr1Event
     {
         add
         {
@@ -321,8 +325,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event SignalUsr1Evt.</summary>
-    public void OnSignalUsr1Evt(EventArgs e)
+    /// <summary>Method to raise event SignalUsr1Event.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSignalUsr1Event(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR1";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -336,7 +341,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>System specific, but on unix maps to SIGUSR2 signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
-    public event EventHandler SignalUsr2Evt
+    public event EventHandler SignalUsr2Event
     {
         add
         {
@@ -374,8 +379,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event SignalUsr2Evt.</summary>
-    public void OnSignalUsr2Evt(EventArgs e)
+    /// <summary>Method to raise event SignalUsr2Event.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSignalUsr2Event(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_USR2";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -389,7 +395,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     }
     /// <summary>System specific, but on unix maps to SIGHUP signal to the process - only called on main loop object
     /// (Since EFL 1.22)</summary>
-    public event EventHandler SignalHupEvt
+    public event EventHandler SignalHupEvent
     {
         add
         {
@@ -427,8 +433,9 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
             }
         }
     }
-    /// <summary>Method to raise event SignalHupEvt.</summary>
-    public void OnSignalHupEvt(EventArgs e)
+    /// <summary>Method to raise event SignalHupEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSignalHupEvent(EventArgs e)
     {
         var key = "_EFL_APP_EVENT_SIGNAL_HUP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -453,7 +460,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// This might differ from <see cref="Efl.App.GetEflVersion"/>.
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl build version</returns>
-    virtual public Efl.Version GetBuildEflVersion() {
+    public virtual Efl.Version GetBuildEflVersion() {
          var _ret_var = Efl.App.NativeMethods.efl_app_build_efl_version_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
@@ -464,7 +471,7 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// This might differ from <see cref="Efl.App.GetBuildEflVersion"/>.
     /// (Since EFL 1.22)</summary>
     /// <returns>Efl version</returns>
-    virtual public Efl.Version GetEflVersion() {
+    public virtual Efl.Version GetEflVersion() {
          var _ret_var = Efl.App.NativeMethods.efl_app_efl_version_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Version>(_ret_var);
@@ -479,8 +486,8 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
-    virtual public System.String GetCommand() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetCommand() {
+         var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -488,11 +495,11 @@ public abstract class App : Efl.Loop, Efl.Core.ICommandLine
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
+    public virtual bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
          var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
-                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
+                        var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -500,14 +507,14 @@ array.OwnContent = false;
     /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
     /// <param name="str">A command in form of a string</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandString(System.String str) {
-                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
+    public virtual bool SetCommandString(System.String str) {
+                                 var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    virtual public Eina.Accessor<Eina.Stringshare> CommandAccess() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Accessor<Eina.Stringshare> CommandAccess() {
+         var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Accessor<Eina.Stringshare>(_ret_var, false);
  }
@@ -566,7 +573,7 @@ array.OwnContent = false;
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -591,47 +598,17 @@ array.OwnContent = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_app_efl_version_get"), func = Marshal.GetFunctionPointerForDelegate(efl_app_efl_version_get_static_delegate) });
             }
 
-            if (efl_core_command_line_command_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_core_command_line_command_get_static_delegate = new efl_core_command_line_command_get_delegate(command_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCommand") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_get"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_get_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_array_set_static_delegate == null)
-            {
-                efl_core_command_line_command_array_set_static_delegate = new efl_core_command_line_command_array_set_delegate(command_array_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCommandArray") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_array_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_array_set_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_string_set_static_delegate == null)
-            {
-                efl_core_command_line_command_string_set_static_delegate = new efl_core_command_line_command_string_set_delegate(command_string_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCommandString") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_string_set_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_access_static_delegate == null)
-            {
-                efl_core_command_line_command_access_static_delegate = new efl_core_command_line_command_access_delegate(command_access);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "CommandAccess") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_access"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_access_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -748,151 +725,6 @@ array.OwnContent = false;
         }
 
         private static efl_app_efl_version_get_delegate efl_app_efl_version_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_core_command_line_command_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_core_command_line_command_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate> efl_core_command_line_command_get_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate>(Module, "efl_core_command_line_command_get");
-
-        private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((App)ws.Target).GetCommand();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_core_command_line_command_get_delegate efl_core_command_line_command_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_core_command_line_command_array_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr array);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_core_command_line_command_array_set_api_delegate(System.IntPtr obj,  System.IntPtr array);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate> efl_core_command_line_command_array_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate>(Module, "efl_core_command_line_command_array_set");
-
-        private static bool command_array_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr array)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        var _in_array = new Eina.Array<Eina.Stringshare>(array, true, true);
-                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((App)ws.Target).SetCommandArray(_in_array);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_array_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), array);
-            }
-        }
-
-        private static efl_core_command_line_command_array_set_delegate efl_core_command_line_command_array_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_core_command_line_command_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_core_command_line_command_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate> efl_core_command_line_command_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate>(Module, "efl_core_command_line_command_string_set");
-
-        private static bool command_string_set(System.IntPtr obj, System.IntPtr pd, System.String str)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((App)ws.Target).SetCommandString(str);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), str);
-            }
-        }
-
-        private static efl_core_command_line_command_string_set_delegate efl_core_command_line_command_string_set_static_delegate;
-
-        
-        private delegate System.IntPtr efl_core_command_line_command_access_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_core_command_line_command_access_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate> efl_core_command_line_command_access_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate>(Module, "efl_core_command_line_command_access");
-
-        private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_access was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Accessor<Eina.Stringshare> _ret_var = default(Eina.Accessor<Eina.Stringshare>);
-                try
-                {
-                    _ret_var = ((App)ws.Target).CommandAccess();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_access_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_core_command_line_command_access_delegate efl_core_command_line_command_access_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

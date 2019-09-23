@@ -15,16 +15,21 @@ namespace Gfx {
 /// 
 /// This was a beta feature since 1.15.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IFilterConcrete.NativeMethods]
+[Efl.Gfx.FilterConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFilter : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <summary>A graphical filter program on this object.
+/// Valid for Text and Image objects at the moment.
+/// 
+/// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+/// 
+/// Set to <c>null</c> to disable filtering.</summary>
 /// <param name="code">The Lua program source code.</param>
 /// <param name="name">An optional name for this filter.</param>
 void GetFilterProgram(out System.String code, out System.String name);
-    /// <summary>Set a graphical filter program on this object.
+    /// <summary>A graphical filter program on this object.
 /// Valid for Text and Image objects at the moment.
 /// 
 /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
@@ -85,7 +90,12 @@ void GetFilterData(System.String name, out System.String value, out bool execute
 /// <param name="value">String value to use as data</param>
 /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
 void SetFilterData(System.String name, System.String value, bool execute);
-                                        /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+                                        /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <value>The Lua program source code.</value>
     (System.String, System.String) FilterProgram {
         get;
@@ -111,7 +121,7 @@ void SetFilterData(System.String name, System.String value, bool execute);
 /// 
 /// This was a beta feature since 1.15.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFilterConcrete :
+public sealed class FilterConcrete :
     Efl.Eo.EoWrapper
     , IFilter
     
@@ -121,7 +131,7 @@ sealed public  class IFilterConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFilterConcrete))
+            if (((object)this).GetType() == typeof(FilterConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -135,7 +145,7 @@ sealed public  class IFilterConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFilterConcrete(ConstructingHandle ch) : base(ch)
+    private FilterConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -144,18 +154,24 @@ sealed public  class IFilterConcrete :
     /// <summary>Initializes a new instance of the <see cref="IFilter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+#pragma warning disable CS0628
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     public void GetFilterProgram(out System.String code, out System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate(this.NativeHandle,out code, out name);
+                                                         Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate(this.NativeHandle,out code, out name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Set a graphical filter program on this object.
+    /// <summary>A graphical filter program on this object.
     /// Valid for Text and Image objects at the moment.
     /// 
     /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
@@ -164,7 +180,7 @@ sealed public  class IFilterConcrete :
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     public void SetFilterProgram(System.String code, System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate(this.NativeHandle,code, name);
+                                                         Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate(this.NativeHandle,code, name);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Set the current state of the filter.
@@ -177,7 +193,7 @@ sealed public  class IFilterConcrete :
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     public void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate(this.NativeHandle,out cur_state, out cur_val, out next_state, out next_val, out pos);
+                                                                                                                                 Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate(this.NativeHandle,out cur_state, out cur_val, out next_state, out next_val, out pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Set the current state of the filter.
@@ -190,7 +206,7 @@ sealed public  class IFilterConcrete :
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     public void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate(this.NativeHandle,cur_state, cur_val, next_state, next_val, pos);
+                                                                                                                                 Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate(this.NativeHandle,cur_state, cur_val, next_state, next_val, pos);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Gets the padding required to apply this filter.</summary>
@@ -199,7 +215,7 @@ sealed public  class IFilterConcrete :
     /// <param name="t">Padding on the top</param>
     /// <param name="b">Padding on the bottom</param>
     public void GetFilterPadding(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
+                                                                                                         Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Bind an object to use as a mask or texture in a filter program.
@@ -207,7 +223,7 @@ sealed public  class IFilterConcrete :
     /// <param name="name">Buffer name as used in the program.</param>
     /// <returns>Object to use as a source of pixels.</returns>
     public Efl.Gfx.IEntity GetFilterSource(System.String name) {
-                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate(this.NativeHandle,name);
+                                 var _ret_var = Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate(this.NativeHandle,name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -216,7 +232,7 @@ sealed public  class IFilterConcrete :
     /// <param name="name">Buffer name as used in the program.</param>
     /// <param name="source">Object to use as a source of pixels.</param>
     public void SetFilterSource(System.String name, Efl.Gfx.IEntity source) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate(this.NativeHandle,name, source);
+                                                         Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate(this.NativeHandle,name, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Extra data used by the filter program.
@@ -227,7 +243,7 @@ sealed public  class IFilterConcrete :
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     public void GetFilterData(System.String name, out System.String value, out bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate(this.NativeHandle,name, out value, out execute);
+                                                                                 Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate(this.NativeHandle,name, out value, out execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Extra data used by the filter program.
@@ -238,10 +254,15 @@ sealed public  class IFilterConcrete :
     /// <param name="value">String value to use as data</param>
     /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
     public void SetFilterData(System.String name, System.String value, bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate(this.NativeHandle,name, value, execute);
+                                                                                 Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate(this.NativeHandle,name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <value>The Lua program source code.</value>
     public (System.String, System.String) FilterProgram {
         get {
@@ -281,9 +302,10 @@ sealed public  class IFilterConcrete :
             return (_out_l,_out_r,_out_t,_out_b);
         }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
+        return Efl.Gfx.FilterConcrete.efl_gfx_filter_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -292,7 +314,7 @@ sealed public  class IFilterConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -387,13 +409,23 @@ sealed public  class IFilterConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_filter_data_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_filter_data_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
+            return Efl.Gfx.FilterConcrete.efl_gfx_filter_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -734,7 +766,7 @@ sealed public  class IFilterConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIFilterConcrete_ExtensionMethods {
+public static class Efl_GfxFilterConcrete_ExtensionMethods {
     
     
     

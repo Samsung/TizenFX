@@ -12,7 +12,7 @@ namespace Gfx {
 
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
-[Efl.Gfx.IEntityConcrete.NativeMethods]
+[Efl.Gfx.EntityConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IEntity : 
     Efl.Eo.IWrapper, IDisposable
@@ -60,16 +60,16 @@ double GetScale();
 void SetScale(double scale);
                                             /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
-    event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt;
+    /// <value><see cref="Efl.Gfx.EntityVisibilityChangedEventArgs"/></value>
+    event EventHandler<Efl.Gfx.EntityVisibilityChangedEventArgs> VisibilityChangedEvent;
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
-    event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt;
+    /// <value><see cref="Efl.Gfx.EntityPositionChangedEventArgs"/></value>
+    event EventHandler<Efl.Gfx.EntityPositionChangedEventArgs> PositionChangedEvent;
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
-    event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt;
+    /// <value><see cref="Efl.Gfx.EntitySizeChangedEventArgs"/></value>
+    event EventHandler<Efl.Gfx.EntitySizeChangedEventArgs> SizeChangedEvent;
     /// <summary>The 2D position of a canvas object.
     /// The position is absolute, in pixels, relative to the top-left corner of the window, within its border decorations (application space).
     /// (Since EFL 1.22)</summary>
@@ -113,30 +113,30 @@ void SetScale(double scale);
         set;
     }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.VisibilityChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.VisibilityChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntityVisibilityChangedEvt_Args : EventArgs {
+public class EntityVisibilityChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Object&apos;s visibility state changed, the event value is the new state.</value>
     public bool arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.PositionChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.PositionChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntityPositionChangedEvt_Args : EventArgs {
+public class EntityPositionChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Object was moved, its position during the event is the new one.</value>
     public Eina.Position2D arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.SizeChangedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Gfx.IEntity.SizeChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntitySizeChangedEvt_Args : EventArgs {
+public class EntitySizeChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Object was resized, its size during the event is the new one.</value>
     public Eina.Size2D arg { get; set; }
 }
 /// <summary>Efl graphics interface
 /// (Since EFL 1.22)</summary>
-sealed public  class IEntityConcrete :
+public sealed class EntityConcrete :
     Efl.Eo.EoWrapper
     , IEntity
     
@@ -146,7 +146,7 @@ sealed public  class IEntityConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IEntityConcrete))
+            if (((object)this).GetType() == typeof(EntityConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -160,7 +160,7 @@ sealed public  class IEntityConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IEntityConcrete(ConstructingHandle ch) : base(ch)
+    private EntityConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -169,14 +169,14 @@ sealed public  class IEntityConcrete :
     /// <summary>Initializes a new instance of the <see cref="IEntity"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IEntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private EntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Object&apos;s visibility state changed, the event value is the new state.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntityVisibilityChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Gfx.IEntityVisibilityChangedEvt_Args> VisibilityChangedEvt
+    /// <value><see cref="Efl.Gfx.EntityVisibilityChangedEventArgs"/></value>
+    public event EventHandler<Efl.Gfx.EntityVisibilityChangedEventArgs> VisibilityChangedEvent
     {
         add
         {
@@ -187,7 +187,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Gfx.IEntityVisibilityChangedEvt_Args args = new Efl.Gfx.IEntityVisibilityChangedEvt_Args();
+                        Efl.Gfx.EntityVisibilityChangedEventArgs args = new Efl.Gfx.EntityVisibilityChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -215,8 +215,9 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event VisibilityChangedEvt.</summary>
-    public void OnVisibilityChangedEvt(Efl.Gfx.IEntityVisibilityChangedEvt_Args e)
+    /// <summary>Method to raise event VisibilityChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnVisibilityChangedEvent(Efl.Gfx.EntityVisibilityChangedEventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_VISIBILITY_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -238,8 +239,8 @@ sealed public  class IEntityConcrete :
     }
     /// <summary>Object was moved, its position during the event is the new one.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntityPositionChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Gfx.IEntityPositionChangedEvt_Args> PositionChangedEvt
+    /// <value><see cref="Efl.Gfx.EntityPositionChangedEventArgs"/></value>
+    public event EventHandler<Efl.Gfx.EntityPositionChangedEventArgs> PositionChangedEvent
     {
         add
         {
@@ -250,7 +251,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Gfx.IEntityPositionChangedEvt_Args args = new Efl.Gfx.IEntityPositionChangedEvt_Args();
+                        Efl.Gfx.EntityPositionChangedEventArgs args = new Efl.Gfx.EntityPositionChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -278,8 +279,9 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PositionChangedEvt.</summary>
-    public void OnPositionChangedEvt(Efl.Gfx.IEntityPositionChangedEvt_Args e)
+    /// <summary>Method to raise event PositionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPositionChangedEvent(Efl.Gfx.EntityPositionChangedEventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_POSITION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -302,8 +304,8 @@ sealed public  class IEntityConcrete :
     }
     /// <summary>Object was resized, its size during the event is the new one.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Gfx.IEntitySizeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Gfx.IEntitySizeChangedEvt_Args> SizeChangedEvt
+    /// <value><see cref="Efl.Gfx.EntitySizeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Gfx.EntitySizeChangedEventArgs> SizeChangedEvent
     {
         add
         {
@@ -314,7 +316,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Gfx.IEntitySizeChangedEvt_Args args = new Efl.Gfx.IEntitySizeChangedEvt_Args();
+                        Efl.Gfx.EntitySizeChangedEventArgs args = new Efl.Gfx.EntitySizeChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -342,8 +344,9 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event SizeChangedEvt.</summary>
-    public void OnSizeChangedEvt(Efl.Gfx.IEntitySizeChangedEvt_Args e)
+    /// <summary>Method to raise event SizeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSizeChangedEvent(Efl.Gfx.EntitySizeChangedEventArgs e)
     {
         var key = "_EFL_GFX_ENTITY_EVENT_SIZE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -364,11 +367,12 @@ sealed public  class IEntityConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+#pragma warning disable CS0628
     /// <summary>Retrieves the position of the given canvas object.
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D coordinate in pixel units.</returns>
     public Eina.Position2D GetPosition() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_position_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -377,14 +381,14 @@ sealed public  class IEntityConcrete :
     /// <param name="pos">A 2D coordinate in pixel units.</param>
     public void SetPosition(Eina.Position2D pos) {
          Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate(this.NativeHandle,_in_pos);
+                        Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_position_set_ptr.Value.Delegate(this.NativeHandle,_in_pos);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves the (rectangular) size of the given Evas object.
     /// (Since EFL 1.22)</summary>
     /// <returns>A 2D size in pixel units.</returns>
     public Eina.Size2D GetSize() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_size_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -394,14 +398,14 @@ sealed public  class IEntityConcrete :
     /// <param name="size">A 2D size in pixel units.</param>
     public void SetSize(Eina.Size2D size) {
          Eina.Size2D.NativeStruct _in_size = size;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate(this.NativeHandle,_in_size);
+                        Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_size_set_ptr.Value.Delegate(this.NativeHandle,_in_size);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Rectangular geometry that combines both position and size.
     /// (Since EFL 1.22)</summary>
     /// <returns>The X,Y position and W,H size, in pixels.</returns>
     public Eina.Rect GetGeometry() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_geometry_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -410,14 +414,14 @@ sealed public  class IEntityConcrete :
     /// <param name="rect">The X,Y position and W,H size, in pixels.</param>
     public void SetGeometry(Eina.Rect rect) {
          Eina.Rect.NativeStruct _in_rect = rect;
-                        Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate(this.NativeHandle,_in_rect);
+                        Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_geometry_set_ptr.Value.Delegate(this.NativeHandle,_in_rect);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Retrieves whether or not the given canvas object is visible.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if to make the object visible, <c>false</c> otherwise</returns>
     public bool GetVisible() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_visible_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -425,14 +429,14 @@ sealed public  class IEntityConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="v"><c>true</c> if to make the object visible, <c>false</c> otherwise</param>
     public void SetVisible(bool v) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate(this.NativeHandle,v);
+                                 Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_visible_set_ptr.Value.Delegate(this.NativeHandle,v);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gets an object&apos;s scaling factor.
     /// (Since EFL 1.22)</summary>
     /// <returns>The scaling factor (the default value is 0.0, meaning individual scaling is not set)</returns>
     public double GetScale() {
-         var _ret_var = Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_scale_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -440,7 +444,7 @@ sealed public  class IEntityConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="scale">The scaling factor (the default value is 0.0, meaning individual scaling is not set)</param>
     public void SetScale(double scale) {
-                                 Efl.Gfx.IEntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate(this.NativeHandle,scale);
+                                 Efl.Gfx.EntityConcrete.NativeMethods.efl_gfx_entity_scale_set_ptr.Value.Delegate(this.NativeHandle,scale);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The 2D position of a canvas object.
@@ -485,9 +489,10 @@ sealed public  class IEntityConcrete :
         get { return GetScale(); }
         set { SetScale(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IEntityConcrete.efl_gfx_entity_interface_get();
+        return Efl.Gfx.EntityConcrete.efl_gfx_entity_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -496,7 +501,7 @@ sealed public  class IEntityConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -601,13 +606,23 @@ sealed public  class IEntityConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_entity_scale_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_entity_scale_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IEntityConcrete.efl_gfx_entity_interface_get();
+            return Efl.Gfx.EntityConcrete.efl_gfx_entity_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -980,7 +995,7 @@ sealed public  class IEntityConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIEntityConcrete_ExtensionMethods {
+public static class Efl_GfxEntityConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Eina.Position2D> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IEntity, T>magic = null) where T : Efl.Gfx.IEntity {
         return new Efl.BindableProperty<Eina.Position2D>("position", fac);
     }

@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextMarkupConcrete.NativeMethods]
+[Efl.TextMarkupConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextMarkup : 
     Efl.Eo.IWrapper, IDisposable
@@ -30,7 +30,7 @@ void SetMarkup(System.String markup);
 }
 /// <summary>Markup data that populates the text object&apos;s style and format</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextMarkupConcrete :
+public sealed class TextMarkupConcrete :
     Efl.Eo.EoWrapper
     , ITextMarkup
     
@@ -40,7 +40,7 @@ sealed public  class ITextMarkupConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextMarkupConcrete))
+            if (((object)this).GetType() == typeof(TextMarkupConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -54,7 +54,7 @@ sealed public  class ITextMarkupConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextMarkupConcrete(ConstructingHandle ch) : base(ch)
+    private TextMarkupConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -63,21 +63,22 @@ sealed public  class ITextMarkupConcrete :
     /// <summary>Initializes a new instance of the <see cref="ITextMarkup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextMarkupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextMarkupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Markup property</summary>
     /// <returns>The markup-text representation set to this text.</returns>
     public System.String GetMarkup() {
-         var _ret_var = Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextMarkupConcrete.NativeMethods.efl_text_markup_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Markup property</summary>
     /// <param name="markup">The markup-text representation set to this text.</param>
     public void SetMarkup(System.String markup) {
-                                 Efl.ITextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate(this.NativeHandle,markup);
+                                 Efl.TextMarkupConcrete.NativeMethods.efl_text_markup_set_ptr.Value.Delegate(this.NativeHandle,markup);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Markup property</summary>
@@ -86,9 +87,10 @@ sealed public  class ITextMarkupConcrete :
         get { return GetMarkup(); }
         set { SetMarkup(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextMarkupConcrete.efl_text_markup_interface_get();
+        return Efl.TextMarkupConcrete.efl_text_markup_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -97,7 +99,7 @@ sealed public  class ITextMarkupConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -122,13 +124,23 @@ sealed public  class ITextMarkupConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_markup_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_markup_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextMarkupConcrete.efl_text_markup_interface_get();
+            return Efl.TextMarkupConcrete.efl_text_markup_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -212,7 +224,7 @@ sealed public  class ITextMarkupConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextMarkupConcrete_ExtensionMethods {
+public static class EflTextMarkupConcrete_ExtensionMethods {
     public static Efl.BindableProperty<System.String> Markup<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextMarkup, T>magic = null) where T : Efl.ITextMarkup {
         return new Efl.BindableProperty<System.String>("markup", fac);
     }

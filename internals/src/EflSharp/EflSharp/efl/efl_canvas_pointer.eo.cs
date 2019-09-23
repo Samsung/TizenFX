@@ -12,13 +12,13 @@ namespace Canvas {
 
 /// <summary>Efl Canvas Pointer interface
 /// (Since EFL 1.22)</summary>
-[Efl.Canvas.IPointerConcrete.NativeMethods]
+[Efl.Canvas.PointerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPointer : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Returns whether the mouse pointer is logically inside the canvas.
-/// When this function is called it will return a value of either <c>false</c> or <c>true</c>, depending on whether a pointer,in or pointer,out event has been called previously.
+    /// <summary>Whether the mouse pointer is logically inside the canvas.
+/// This value is <c>false</c> or <c>true</c>, depending on whether a pointer,in or pointer,out event has been previously received.
 /// 
 /// A return value of <c>true</c> indicates the mouse is logically inside the canvas, and <c>false</c> implies it is logically outside the canvas.
 /// 
@@ -32,7 +32,7 @@ bool GetPointerInside(Efl.Input.Device seat);
     }
 /// <summary>Efl Canvas Pointer interface
 /// (Since EFL 1.22)</summary>
-sealed public  class IPointerConcrete :
+public sealed class PointerConcrete :
     Efl.Eo.EoWrapper
     , IPointer
     
@@ -42,7 +42,7 @@ sealed public  class IPointerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPointerConcrete))
+            if (((object)this).GetType() == typeof(PointerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -56,7 +56,7 @@ sealed public  class IPointerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPointerConcrete(ConstructingHandle ch) : base(ch)
+    private PointerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -65,12 +65,13 @@ sealed public  class IPointerConcrete :
     /// <summary>Initializes a new instance of the <see cref="IPointer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPointerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PointerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Returns whether the mouse pointer is logically inside the canvas.
-    /// When this function is called it will return a value of either <c>false</c> or <c>true</c>, depending on whether a pointer,in or pointer,out event has been called previously.
+#pragma warning disable CS0628
+    /// <summary>Whether the mouse pointer is logically inside the canvas.
+    /// This value is <c>false</c> or <c>true</c>, depending on whether a pointer,in or pointer,out event has been previously received.
     /// 
     /// A return value of <c>true</c> indicates the mouse is logically inside the canvas, and <c>false</c> implies it is logically outside the canvas.
     /// 
@@ -81,13 +82,14 @@ sealed public  class IPointerConcrete :
     /// <param name="seat">The seat to consider, if <c>null</c> then the default seat will be used.</param>
     /// <returns><c>true</c> if the mouse pointer is inside the canvas, <c>false</c> otherwise</returns>
     public bool GetPointerInside(Efl.Input.Device seat) {
-                                 var _ret_var = Efl.Canvas.IPointerConcrete.NativeMethods.efl_canvas_pointer_inside_get_ptr.Value.Delegate(this.NativeHandle,seat);
+                                 var _ret_var = Efl.Canvas.PointerConcrete.NativeMethods.efl_canvas_pointer_inside_get_ptr.Value.Delegate(this.NativeHandle,seat);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Canvas.IPointerConcrete.efl_canvas_pointer_interface_get();
+        return Efl.Canvas.PointerConcrete.efl_canvas_pointer_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -96,7 +98,7 @@ sealed public  class IPointerConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -111,13 +113,23 @@ sealed public  class IPointerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_pointer_inside_get"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_pointer_inside_get_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Canvas.IPointerConcrete.efl_canvas_pointer_interface_get();
+            return Efl.Canvas.PointerConcrete.efl_canvas_pointer_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -168,7 +180,7 @@ sealed public  class IPointerConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_CanvasIPointerConcrete_ExtensionMethods {
+public static class Efl_CanvasPointerConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591

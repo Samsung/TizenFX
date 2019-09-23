@@ -82,7 +82,7 @@ namespace Layout {
 
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
-[Efl.Layout.ISignalConcrete.NativeMethods]
+[Efl.Layout.SignalConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISignal : 
     Efl.Eo.IWrapper, IDisposable
@@ -149,7 +149,7 @@ void SignalProcess(bool recurse);
                     }
 /// <summary>Layouts asynchronous messaging and signaling interface.
 /// (Since EFL 1.22)</summary>
-sealed public  class ISignalConcrete :
+public sealed class SignalConcrete :
     Efl.Eo.EoWrapper
     , ISignal
     
@@ -159,7 +159,7 @@ sealed public  class ISignalConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ISignalConcrete))
+            if (((object)this).GetType() == typeof(SignalConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -173,7 +173,7 @@ sealed public  class ISignalConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ISignalConcrete(ConstructingHandle ch) : base(ch)
+    private SignalConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -182,10 +182,11 @@ sealed public  class ISignalConcrete :
     /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ISignalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private SignalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Sends an (Edje) message to a given Edje object
     /// This function sends an Edje message to obj and to all of its child objects, if it has any (swallowed objects are one kind of child object). Only a few types are supported: - int, - float/double, - string/stringshare, - arrays of int, float, double or strings.
     /// 
@@ -196,7 +197,7 @@ sealed public  class ISignalConcrete :
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
     public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle,id, msg);
+                                                         Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle,id, msg);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
@@ -222,7 +223,7 @@ sealed public  class ISignalConcrete :
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -237,7 +238,7 @@ sealed public  class ISignalConcrete :
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
     public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
                                                                          GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        var _ret_var = Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -251,7 +252,7 @@ sealed public  class ISignalConcrete :
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle,emission, source);
+                                                         Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle,emission, source);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Processes an object&apos;s messages and signals queue.
@@ -261,12 +262,13 @@ sealed public  class ISignalConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="recurse">Whether to process messages on children objects.</param>
     public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle,recurse);
+                                 Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle,recurse);
         Eina.Error.RaiseIfUnhandledException();
                          }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
+        return Efl.Layout.SignalConcrete.efl_layout_signal_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -275,7 +277,7 @@ sealed public  class ISignalConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -330,13 +332,23 @@ sealed public  class ISignalConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
+            return Efl.Layout.SignalConcrete.efl_layout_signal_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -530,7 +542,7 @@ sealed public  class ISignalConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_LayoutISignalConcrete_ExtensionMethods {
+public static class Efl_LayoutSignalConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

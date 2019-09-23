@@ -71,7 +71,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     }
 
     /// <summary>Called when panes got pressed</summary>
-    public event EventHandler PressEvt
+    public event EventHandler PressEvent
     {
         add
         {
@@ -109,8 +109,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event PressEvt.</summary>
-    public void OnPressEvt(EventArgs e)
+    /// <summary>Method to raise event PressEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPressEvent(EventArgs e)
     {
         var key = "_ELM_PANES_EVENT_PRESS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -123,7 +124,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
     /// <summary>Called when panes are no longer pressed</summary>
-    public event EventHandler UnpressEvt
+    public event EventHandler UnpressEvent
     {
         add
         {
@@ -161,8 +162,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event UnpressEvt.</summary>
-    public void OnUnpressEvt(EventArgs e)
+    /// <summary>Method to raise event UnpressEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnUnpressEvent(EventArgs e)
     {
         var key = "_ELM_PANES_EVENT_UNPRESS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -174,9 +176,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt
+    /// <summary>Called when object is in sequence pressed and unpressed by the primary button</summary>
+    /// <value><see cref="Efl.Input.ClickableClickedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableClickedEventArgs> ClickedEvent
     {
         add
         {
@@ -187,7 +189,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableClickedEvt_Args args = new Efl.Input.IClickableClickedEvt_Args();
+                        Efl.Input.ClickableClickedEventArgs args = new Efl.Input.ClickableClickedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -215,8 +217,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(Efl.Input.IClickableClickedEvt_Args e)
+    /// <summary>Method to raise event ClickedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClickedEvent(Efl.Input.ClickableClickedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_CLICKED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -238,8 +241,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         }
     }
     /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt
+    /// <value><see cref="Efl.Input.ClickableClickedAnyEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableClickedAnyEventArgs> ClickedAnyEvent
     {
         add
         {
@@ -250,7 +253,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableClickedAnyEvt_Args args = new Efl.Input.IClickableClickedAnyEvt_Args();
+                        Efl.Input.ClickableClickedAnyEventArgs args = new Efl.Input.ClickableClickedAnyEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -278,8 +281,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event ClickedAnyEvt.</summary>
-    public void OnClickedAnyEvt(Efl.Input.IClickableClickedAnyEvt_Args e)
+    /// <summary>Method to raise event ClickedAnyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClickedAnyEvent(Efl.Input.ClickableClickedAnyEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_CLICKED_ANY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -301,8 +305,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         }
     }
     /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt
+    /// <value><see cref="Efl.Input.ClickablePressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickablePressedEventArgs> PressedEvent
     {
         add
         {
@@ -313,7 +317,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickablePressedEvt_Args args = new Efl.Input.IClickablePressedEvt_Args();
+                        Efl.Input.ClickablePressedEventArgs args = new Efl.Input.ClickablePressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -341,8 +345,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Input.IClickablePressedEvt_Args e)
+    /// <summary>Method to raise event PressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPressedEvent(Efl.Input.ClickablePressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_PRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -363,8 +368,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         }
     }
     /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt
+    /// <value><see cref="Efl.Input.ClickableUnpressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableUnpressedEventArgs> UnpressedEvent
     {
         add
         {
@@ -375,7 +380,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableUnpressedEvt_Args args = new Efl.Input.IClickableUnpressedEvt_Args();
+                        Efl.Input.ClickableUnpressedEventArgs args = new Efl.Input.ClickableUnpressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -403,8 +408,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Input.IClickableUnpressedEvt_Args e)
+    /// <summary>Method to raise event UnpressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnUnpressedEvent(Efl.Input.ClickableUnpressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_UNPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -425,8 +431,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         }
     }
     /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt
+    /// <value><see cref="Efl.Input.ClickableLongpressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableLongpressedEventArgs> LongpressedEvent
     {
         add
         {
@@ -437,7 +443,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableLongpressedEvt_Args args = new Efl.Input.IClickableLongpressedEvt_Args();
+                        Efl.Input.ClickableLongpressedEventArgs args = new Efl.Input.ClickableLongpressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -465,8 +471,9 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
             }
         }
     }
-    /// <summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Input.IClickableLongpressedEvt_Args e)
+    /// <summary>Method to raise event LongpressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLongpressedEvent(Efl.Input.ClickableLongpressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_LONGPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -511,7 +518,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     /// 
     /// Note: This ratio will change when user drags the panes bar.</summary>
     /// <returns>Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</returns>
-    virtual public double GetSplitRatio() {
+    public virtual double GetSplitRatio() {
          var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -525,14 +532,14 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     /// 
     /// Note: This ratio will change when user drags the panes bar.</summary>
     /// <param name="ratio">Value between 0.0 and 1.0 representing split ratio between panes first and second parts.</param>
-    virtual public void SetSplitRatio(double ratio) {
+    public virtual void SetSplitRatio(double ratio) {
                                  Efl.Ui.Panes.NativeMethods.efl_ui_panes_split_ratio_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ratio);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set whether the left and right panes can be resized by user interaction.
     /// By default panes&apos; contents are resizable by user interaction.</summary>
     /// <returns>Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</returns>
-    virtual public bool GetFixed() {
+    public virtual bool GetFixed() {
          var _ret_var = Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -540,40 +547,40 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     /// <summary>Set whether the left and right panes can be resized by user interaction.
     /// By default panes&apos; contents are resizable by user interaction.</summary>
     /// <param name="kw_fixed">Use <c>true</c> to fix the left and right panes sizes and make them not to be resized by user interaction. Use <c>false</c> to make them resizable.</param>
-    virtual public void SetFixed(bool kw_fixed) {
+    public virtual void SetFixed(bool kw_fixed) {
                                  Efl.Ui.Panes.NativeMethods.efl_ui_panes_fixed_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_fixed);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This returns true if the given object is currently in event emission</summary>
-    virtual public bool GetInteraction() {
-         var _ret_var = Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetInteraction() {
+         var _ret_var = Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Press(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+    protected virtual void Press(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    virtual public void Unpress(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+    protected virtual void Unpress(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
-    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
-    virtual public void ResetButtonState(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+    /// This will stop the timer for longpress and set the state of the clickable mixin back into the unpressed state.</summary>
+    protected virtual void ResetButtonState(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts ongoing longpress event.
     /// That is, this will stop the timer for longpress.</summary>
-    virtual public void LongpressAbort(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
+    protected virtual void LongpressAbort(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control the direction of a given widget.
@@ -581,8 +588,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -591,8 +598,8 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Set the split ratio between panes widget first and second parts.
@@ -639,7 +646,7 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -684,16 +691,6 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_panes_fixed_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_panes_fixed_set_static_delegate) });
             }
 
-            if (efl_input_clickable_interaction_get_static_delegate == null)
-            {
-                efl_input_clickable_interaction_get_static_delegate = new efl_input_clickable_interaction_get_delegate(interaction_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetInteraction") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_interaction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_interaction_get_static_delegate) });
-            }
-
             if (efl_input_clickable_press_static_delegate == null)
             {
                 efl_input_clickable_press_static_delegate = new efl_input_clickable_press_delegate(press);
@@ -734,27 +731,17 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_longpress_abort"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_longpress_abort_static_delegate) });
             }
 
-            if (efl_ui_layout_orientation_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_set_static_delegate == null)
-            {
-                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -908,42 +895,6 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
 
         private static efl_ui_panes_fixed_set_delegate efl_ui_panes_fixed_set_static_delegate;
 
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_input_clickable_interaction_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_input_clickable_interaction_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate> efl_input_clickable_interaction_get_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_interaction_get_api_delegate>(Module, "efl_input_clickable_interaction_get");
-
-        private static bool interaction_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_input_clickable_interaction_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Panes)ws.Target).GetInteraction();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_input_clickable_interaction_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_input_clickable_interaction_get_delegate efl_input_clickable_interaction_get_static_delegate;
-
         
         private delegate void efl_input_clickable_press_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
@@ -1083,77 +1034,6 @@ public class Panes : Efl.Ui.LayoutBase, Efl.Input.IClickable, Efl.Ui.ILayoutOrie
         }
 
         private static efl_input_clickable_longpress_abort_delegate efl_input_clickable_longpress_abort_static_delegate;
-
-        
-        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
-
-        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
-                try
-                {
-                    _ret_var = ((Panes)ws.Target).GetOrientation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
-
-        
-        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
-
-        
-        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
-
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Panes)ws.Target).SetOrientation(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

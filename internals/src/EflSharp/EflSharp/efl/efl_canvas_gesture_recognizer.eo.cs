@@ -79,7 +79,7 @@ public abstract class GestureRecognizer : Efl.Object
     /// <summary>This property holds the config value for the recognizer</summary>
     /// <param name="name">propery name</param>
     /// <returns>value of the property</returns>
-    virtual public Eina.Value GetConfig(System.String name) {
+    public virtual Eina.Value GetConfig(System.String name) {
                                  var _ret_var = Efl.Canvas.GestureRecognizer.NativeMethods.efl_gesture_recognizer_config_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -87,7 +87,7 @@ public abstract class GestureRecognizer : Efl.Object
     /// <summary>This function is called to create a new Efl.Canvas.Gesture object for the given target</summary>
     /// <param name="target">The target widget</param>
     /// <returns>Returns the Efl.Canvas.Gesture event object</returns>
-    virtual public Efl.Canvas.Gesture Add(Efl.Object target) {
+    public virtual Efl.Canvas.Gesture Add(Efl.Object target) {
                                  var _ret_var = Efl.Canvas.GestureRecognizer.NativeMethods.efl_gesture_recognizer_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),target);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
@@ -98,14 +98,14 @@ public abstract class GestureRecognizer : Efl.Object
     /// <param name="watched">The watched object</param>
     /// <param name="kw_event">The pointer event</param>
     /// <returns>Returns the Efl.Canvas.Gesture event object</returns>
-    virtual public Efl.Canvas.GestureRecognizerResult Recognize(Efl.Canvas.Gesture gesture, Efl.Object watched, Efl.Canvas.GestureTouch kw_event) {
+    public virtual Efl.Canvas.GestureRecognizerResult Recognize(Efl.Canvas.Gesture gesture, Efl.Object watched, Efl.Canvas.GestureTouch kw_event) {
                                                                                  var _ret_var = Efl.Canvas.GestureRecognizer.NativeMethods.efl_gesture_recognizer_recognize_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gesture, watched, kw_event);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
     /// <summary>This function is called by the framework to reset a given gesture.</summary>
     /// <param name="gesture">The gesture object</param>
-    virtual public void Reset(Efl.Canvas.Gesture gesture) {
+    public virtual void Reset(Efl.Canvas.Gesture gesture) {
                                  Efl.Canvas.GestureRecognizer.NativeMethods.efl_gesture_recognizer_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gesture);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -120,7 +120,7 @@ public abstract class GestureRecognizer : Efl.Object
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -165,7 +165,17 @@ public abstract class GestureRecognizer : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_recognizer_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_recognizer_reset_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

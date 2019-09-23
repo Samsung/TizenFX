@@ -72,7 +72,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     }
 
     /// <summary>Called when date value is changed</summary>
-    public event EventHandler ChangedEvt
+    public event EventHandler DateChangedEvent
     {
         add
         {
@@ -96,7 +96,7 @@ public class Datepicker : Efl.Ui.LayoutBase
                     }
                 };
 
-                string key = "_EFL_UI_DATEPICKER_EVENT_CHANGED";
+                string key = "_EFL_UI_DATEPICKER_EVENT_DATE_CHANGED";
                 AddNativeEventHandler(efl.Libs.Elementary, key, callerCb, value);
             }
         }
@@ -105,15 +105,16 @@ public class Datepicker : Efl.Ui.LayoutBase
         {
             lock (eflBindingEventLock)
             {
-                string key = "_EFL_UI_DATEPICKER_EVENT_CHANGED";
+                string key = "_EFL_UI_DATEPICKER_EVENT_DATE_CHANGED";
                 RemoveNativeEventHandler(efl.Libs.Elementary, key, value);
             }
         }
     }
-    /// <summary>Method to raise event ChangedEvt.</summary>
-    public void OnChangedEvt(EventArgs e)
+    /// <summary>Method to raise event DateChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDateChangedEvent(EventArgs e)
     {
-        var key = "_EFL_UI_DATEPICKER_EVENT_CHANGED";
+        var key = "_EFL_UI_DATEPICKER_EVENT_DATE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
         if (desc == IntPtr.Zero)
         {
@@ -132,8 +133,8 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void GetMin(out int year, out int month, out int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
+    public virtual void GetDateMin(out int year, out int month, out int day) {
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The lower boundary of date.
@@ -145,8 +146,8 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void SetMin(int year, int month, int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
+    public virtual void SetDateMin(int year, int month, int day) {
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The upper boundary of date.
@@ -158,8 +159,8 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void GetMax(out int year, out int month, out int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
+    public virtual void GetDateMax(out int year, out int month, out int day) {
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The upper boundary of date.
@@ -171,8 +172,8 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void SetMax(int year, int month, int day) {
-                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
+    public virtual void SetDateMax(int year, int month, int day) {
+                                                                                 Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>The current value of date.
@@ -184,7 +185,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void GetDate(out int year, out int month, out int day) {
+    public virtual void GetDate(out int year, out int month, out int day) {
                                                                                  Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out year, out month, out day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
@@ -197,7 +198,7 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// <param name="year">The year value.</param>
     /// <param name="month">The month value from 1 to 12.</param>
     /// <param name="day">The day value from 1 to 31.</param>
-    virtual public void SetDate(int year, int month, int day) {
+    public virtual void SetDate(int year, int month, int day) {
                                                                                  Efl.Ui.Datepicker.NativeMethods.efl_ui_datepicker_date_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),year, month, day);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
@@ -208,15 +209,15 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// 
     /// <c>day</c>: Day. The day range is from 1 to 31 according to <c>month</c>.</summary>
     /// <value>The year value.</value>
-    public (int, int, int) Min {
+    public (int, int, int) DateMin {
         get {
             int _out_year = default(int);
             int _out_month = default(int);
             int _out_day = default(int);
-            GetMin(out _out_year,out _out_month,out _out_day);
+            GetDateMin(out _out_year,out _out_month,out _out_day);
             return (_out_year,_out_month,_out_day);
         }
-        set { SetMin( value.Item1,  value.Item2,  value.Item3); }
+        set { SetDateMin( value.Item1,  value.Item2,  value.Item3); }
     }
     /// <summary>The upper boundary of date.
     /// <c>year</c>: Year. The year range is from 1900 to 2137.
@@ -225,15 +226,15 @@ public class Datepicker : Efl.Ui.LayoutBase
     /// 
     /// <c>day</c>: Day. The day range is from 1 to 31 according to <c>month</c>.</summary>
     /// <value>The year value.</value>
-    public (int, int, int) Max {
+    public (int, int, int) DateMax {
         get {
             int _out_year = default(int);
             int _out_month = default(int);
             int _out_day = default(int);
-            GetMax(out _out_year,out _out_month,out _out_day);
+            GetDateMax(out _out_year,out _out_month,out _out_day);
             return (_out_year,_out_month,_out_day);
         }
-        set { SetMax( value.Item1,  value.Item2,  value.Item3); }
+        set { SetDateMax( value.Item1,  value.Item2,  value.Item3); }
     }
     /// <summary>The current value of date.
     /// <c>year</c>: Year. The year range is from 1900 to 2137.
@@ -263,49 +264,49 @@ public class Datepicker : Efl.Ui.LayoutBase
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
 
-            if (efl_ui_datepicker_min_get_static_delegate == null)
+            if (efl_ui_datepicker_date_min_get_static_delegate == null)
             {
-                efl_ui_datepicker_min_get_static_delegate = new efl_ui_datepicker_min_get_delegate(min_get);
+                efl_ui_datepicker_date_min_get_static_delegate = new efl_ui_datepicker_date_min_get_delegate(date_min_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetMin") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetDateMin") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_min_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_min_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_date_min_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_date_min_get_static_delegate) });
             }
 
-            if (efl_ui_datepicker_min_set_static_delegate == null)
+            if (efl_ui_datepicker_date_min_set_static_delegate == null)
             {
-                efl_ui_datepicker_min_set_static_delegate = new efl_ui_datepicker_min_set_delegate(min_set);
+                efl_ui_datepicker_date_min_set_static_delegate = new efl_ui_datepicker_date_min_set_delegate(date_min_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetMin") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetDateMin") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_min_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_min_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_date_min_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_date_min_set_static_delegate) });
             }
 
-            if (efl_ui_datepicker_max_get_static_delegate == null)
+            if (efl_ui_datepicker_date_max_get_static_delegate == null)
             {
-                efl_ui_datepicker_max_get_static_delegate = new efl_ui_datepicker_max_get_delegate(max_get);
+                efl_ui_datepicker_date_max_get_static_delegate = new efl_ui_datepicker_date_max_get_delegate(date_max_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetDateMax") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_max_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_date_max_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_date_max_get_static_delegate) });
             }
 
-            if (efl_ui_datepicker_max_set_static_delegate == null)
+            if (efl_ui_datepicker_date_max_set_static_delegate == null)
             {
-                efl_ui_datepicker_max_set_static_delegate = new efl_ui_datepicker_max_set_delegate(max_set);
+                efl_ui_datepicker_date_max_set_static_delegate = new efl_ui_datepicker_date_max_set_delegate(date_max_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetMax") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetDateMax") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_max_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_date_max_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_date_max_set_static_delegate) });
             }
 
             if (efl_ui_datepicker_date_get_static_delegate == null)
@@ -328,7 +329,17 @@ public class Datepicker : Efl.Ui.LayoutBase
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_datepicker_date_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_datepicker_date_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -341,23 +352,23 @@ public class Datepicker : Efl.Ui.LayoutBase
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
 
         
-        private delegate void efl_ui_datepicker_min_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int year,  out int month,  out int day);
+        private delegate void efl_ui_datepicker_date_min_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int year,  out int month,  out int day);
 
         
-        public delegate void efl_ui_datepicker_min_get_api_delegate(System.IntPtr obj,  out int year,  out int month,  out int day);
+        public delegate void efl_ui_datepicker_date_min_get_api_delegate(System.IntPtr obj,  out int year,  out int month,  out int day);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_min_get_api_delegate> efl_ui_datepicker_min_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_min_get_api_delegate>(Module, "efl_ui_datepicker_min_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_min_get_api_delegate> efl_ui_datepicker_date_min_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_min_get_api_delegate>(Module, "efl_ui_datepicker_date_min_get");
 
-        private static void min_get(System.IntPtr obj, System.IntPtr pd, out int year, out int month, out int day)
+        private static void date_min_get(System.IntPtr obj, System.IntPtr pd, out int year, out int month, out int day)
         {
-            Eina.Log.Debug("function efl_ui_datepicker_min_get was called");
+            Eina.Log.Debug("function efl_ui_datepicker_date_min_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                 year = default(int);        month = default(int);        day = default(int);                                    
                 try
                 {
-                    ((Datepicker)ws.Target).GetMin(out year, out month, out day);
+                    ((Datepicker)ws.Target).GetDateMin(out year, out month, out day);
                 }
                 catch (Exception e)
                 {
@@ -369,30 +380,30 @@ public class Datepicker : Efl.Ui.LayoutBase
             }
             else
             {
-                efl_ui_datepicker_min_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out year, out month, out day);
+                efl_ui_datepicker_date_min_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out year, out month, out day);
             }
         }
 
-        private static efl_ui_datepicker_min_get_delegate efl_ui_datepicker_min_get_static_delegate;
+        private static efl_ui_datepicker_date_min_get_delegate efl_ui_datepicker_date_min_get_static_delegate;
 
         
-        private delegate void efl_ui_datepicker_min_set_delegate(System.IntPtr obj, System.IntPtr pd,  int year,  int month,  int day);
+        private delegate void efl_ui_datepicker_date_min_set_delegate(System.IntPtr obj, System.IntPtr pd,  int year,  int month,  int day);
 
         
-        public delegate void efl_ui_datepicker_min_set_api_delegate(System.IntPtr obj,  int year,  int month,  int day);
+        public delegate void efl_ui_datepicker_date_min_set_api_delegate(System.IntPtr obj,  int year,  int month,  int day);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_min_set_api_delegate> efl_ui_datepicker_min_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_min_set_api_delegate>(Module, "efl_ui_datepicker_min_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_min_set_api_delegate> efl_ui_datepicker_date_min_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_min_set_api_delegate>(Module, "efl_ui_datepicker_date_min_set");
 
-        private static void min_set(System.IntPtr obj, System.IntPtr pd, int year, int month, int day)
+        private static void date_min_set(System.IntPtr obj, System.IntPtr pd, int year, int month, int day)
         {
-            Eina.Log.Debug("function efl_ui_datepicker_min_set was called");
+            Eina.Log.Debug("function efl_ui_datepicker_date_min_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((Datepicker)ws.Target).SetMin(year, month, day);
+                    ((Datepicker)ws.Target).SetDateMin(year, month, day);
                 }
                 catch (Exception e)
                 {
@@ -404,30 +415,30 @@ public class Datepicker : Efl.Ui.LayoutBase
             }
             else
             {
-                efl_ui_datepicker_min_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), year, month, day);
+                efl_ui_datepicker_date_min_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), year, month, day);
             }
         }
 
-        private static efl_ui_datepicker_min_set_delegate efl_ui_datepicker_min_set_static_delegate;
+        private static efl_ui_datepicker_date_min_set_delegate efl_ui_datepicker_date_min_set_static_delegate;
 
         
-        private delegate void efl_ui_datepicker_max_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int year,  out int month,  out int day);
+        private delegate void efl_ui_datepicker_date_max_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int year,  out int month,  out int day);
 
         
-        public delegate void efl_ui_datepicker_max_get_api_delegate(System.IntPtr obj,  out int year,  out int month,  out int day);
+        public delegate void efl_ui_datepicker_date_max_get_api_delegate(System.IntPtr obj,  out int year,  out int month,  out int day);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_max_get_api_delegate> efl_ui_datepicker_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_max_get_api_delegate>(Module, "efl_ui_datepicker_max_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_max_get_api_delegate> efl_ui_datepicker_date_max_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_max_get_api_delegate>(Module, "efl_ui_datepicker_date_max_get");
 
-        private static void max_get(System.IntPtr obj, System.IntPtr pd, out int year, out int month, out int day)
+        private static void date_max_get(System.IntPtr obj, System.IntPtr pd, out int year, out int month, out int day)
         {
-            Eina.Log.Debug("function efl_ui_datepicker_max_get was called");
+            Eina.Log.Debug("function efl_ui_datepicker_date_max_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                 year = default(int);        month = default(int);        day = default(int);                                    
                 try
                 {
-                    ((Datepicker)ws.Target).GetMax(out year, out month, out day);
+                    ((Datepicker)ws.Target).GetDateMax(out year, out month, out day);
                 }
                 catch (Exception e)
                 {
@@ -439,30 +450,30 @@ public class Datepicker : Efl.Ui.LayoutBase
             }
             else
             {
-                efl_ui_datepicker_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out year, out month, out day);
+                efl_ui_datepicker_date_max_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out year, out month, out day);
             }
         }
 
-        private static efl_ui_datepicker_max_get_delegate efl_ui_datepicker_max_get_static_delegate;
+        private static efl_ui_datepicker_date_max_get_delegate efl_ui_datepicker_date_max_get_static_delegate;
 
         
-        private delegate void efl_ui_datepicker_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  int year,  int month,  int day);
+        private delegate void efl_ui_datepicker_date_max_set_delegate(System.IntPtr obj, System.IntPtr pd,  int year,  int month,  int day);
 
         
-        public delegate void efl_ui_datepicker_max_set_api_delegate(System.IntPtr obj,  int year,  int month,  int day);
+        public delegate void efl_ui_datepicker_date_max_set_api_delegate(System.IntPtr obj,  int year,  int month,  int day);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_max_set_api_delegate> efl_ui_datepicker_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_max_set_api_delegate>(Module, "efl_ui_datepicker_max_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_max_set_api_delegate> efl_ui_datepicker_date_max_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_datepicker_date_max_set_api_delegate>(Module, "efl_ui_datepicker_date_max_set");
 
-        private static void max_set(System.IntPtr obj, System.IntPtr pd, int year, int month, int day)
+        private static void date_max_set(System.IntPtr obj, System.IntPtr pd, int year, int month, int day)
         {
-            Eina.Log.Debug("function efl_ui_datepicker_max_set was called");
+            Eina.Log.Debug("function efl_ui_datepicker_date_max_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
                                                                                     
                 try
                 {
-                    ((Datepicker)ws.Target).SetMax(year, month, day);
+                    ((Datepicker)ws.Target).SetDateMax(year, month, day);
                 }
                 catch (Exception e)
                 {
@@ -474,11 +485,11 @@ public class Datepicker : Efl.Ui.LayoutBase
             }
             else
             {
-                efl_ui_datepicker_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), year, month, day);
+                efl_ui_datepicker_date_max_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), year, month, day);
             }
         }
 
-        private static efl_ui_datepicker_max_set_delegate efl_ui_datepicker_max_set_static_delegate;
+        private static efl_ui_datepicker_date_max_set_delegate efl_ui_datepicker_date_max_set_static_delegate;
 
         
         private delegate void efl_ui_datepicker_date_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int year,  out int month,  out int day);

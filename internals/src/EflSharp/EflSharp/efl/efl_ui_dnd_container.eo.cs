@@ -11,7 +11,7 @@ namespace Efl {
 namespace Ui {
 
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IDndContainerConcrete.NativeMethods]
+[Efl.Ui.DndContainerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IDndContainer : 
     Efl.Eo.IWrapper, IDisposable
@@ -46,7 +46,7 @@ void DelDropItem(uint seat);
     }
 }
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IDndContainerConcrete :
+public sealed class DndContainerConcrete :
     Efl.Eo.EoWrapper
     , IDndContainer
     
@@ -56,7 +56,7 @@ sealed public  class IDndContainerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IDndContainerConcrete))
+            if (((object)this).GetType() == typeof(DndContainerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -70,7 +70,7 @@ sealed public  class IDndContainerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IDndContainerConcrete(ConstructingHandle ch) : base(ch)
+    private DndContainerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -79,21 +79,22 @@ sealed public  class IDndContainerConcrete :
     /// <summary>Initializes a new instance of the <see cref="IDndContainer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IDndContainerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private DndContainerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>The time since mouse down happens to drag starts.</summary>
     /// <returns>The drag delay time</returns>
     public double GetDragDelayTime() {
-         var _ret_var = Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_delay_time_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_delay_time_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>The time since mouse down happens to drag starts.</summary>
     /// <param name="time">The drag delay time</param>
     public void SetDragDelayTime(double time) {
-                                 Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_delay_time_set_ptr.Value.Delegate(this.NativeHandle,time);
+                                 Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_delay_time_set_ptr.Value.Delegate(this.NativeHandle,time);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This registers a drag for items in a container. Many items can be dragged at a time. During dragging, there are three events emitted: EFL_DND_EVENT_DRAG_POS, EFL_DND_EVENT_DRAG_ACCEPT, EFL_DND_EVENT_DRAG_DONE.</summary>
@@ -107,13 +108,13 @@ sealed public  class IDndContainerConcrete :
         GCHandle item_func_handle = GCHandle.Alloc(item_func);
         GCHandle icon_func_handle = GCHandle.Alloc(icon_func);
         GCHandle icon_list_func_handle = GCHandle.Alloc(icon_list_func);
-                Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_item_add_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(data_func_handle), Efl.Dnd.DragDataGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(item_func_handle), Efl.Dnd.ItemGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(icon_list_func_handle), Efl.Dnd.DragIconListCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+                Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_item_add_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(data_func_handle), Efl.Dnd.DragDataGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(item_func_handle), Efl.Dnd.ItemGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, GCHandle.ToIntPtr(icon_list_func_handle), Efl.Dnd.DragIconListCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Remove drag function of items in the container object.</summary>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     public void DelDragItem(uint seat) {
-                                 Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_item_del_ptr.Value.Delegate(this.NativeHandle,seat);
+                                 Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drag_item_del_ptr.Value.Delegate(this.NativeHandle,seat);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <param name="format">Accepted data formats</param>
@@ -121,12 +122,12 @@ sealed public  class IDndContainerConcrete :
     /// <param name="seat">Specified seat for multiple seats case.</param>
     public void AddDropItem(Efl.Ui.SelectionFormat format, Efl.Dnd.ItemGet item_func, uint seat) {
                                                                  GCHandle item_func_handle = GCHandle.Alloc(item_func);
-                Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drop_item_add_ptr.Value.Delegate(this.NativeHandle,format, GCHandle.ToIntPtr(item_func_handle), Efl.Dnd.ItemGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+                Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drop_item_add_ptr.Value.Delegate(this.NativeHandle,format, GCHandle.ToIntPtr(item_func_handle), Efl.Dnd.ItemGetWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <param name="seat">Specified seat for multiple seats case.</param>
     public void DelDropItem(uint seat) {
-                                 Efl.Ui.IDndContainerConcrete.NativeMethods.efl_ui_dnd_container_drop_item_del_ptr.Value.Delegate(this.NativeHandle,seat);
+                                 Efl.Ui.DndContainerConcrete.NativeMethods.efl_ui_dnd_container_drop_item_del_ptr.Value.Delegate(this.NativeHandle,seat);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The time since mouse down happens to drag starts.</summary>
@@ -135,9 +136,10 @@ sealed public  class IDndContainerConcrete :
         get { return GetDragDelayTime(); }
         set { SetDragDelayTime(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IDndContainerConcrete.efl_ui_dnd_container_mixin_get();
+        return Efl.Ui.DndContainerConcrete.efl_ui_dnd_container_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -146,7 +148,7 @@ sealed public  class IDndContainerConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -211,13 +213,23 @@ sealed public  class IDndContainerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_container_drop_item_del"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_container_drop_item_del_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IDndContainerConcrete.efl_ui_dnd_container_mixin_get();
+            return Efl.Ui.DndContainerConcrete.efl_ui_dnd_container_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -448,7 +460,7 @@ sealed public  class IDndContainerConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIDndContainerConcrete_ExtensionMethods {
+public static class Efl_UiDndContainerConcrete_ExtensionMethods {
     public static Efl.BindableProperty<double> DragDelayTime<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IDndContainer, T>magic = null) where T : Efl.Ui.IDndContainer {
         return new Efl.BindableProperty<double>("drag_delay_time", fac);
     }

@@ -11,9 +11,9 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Interface for getting access to a single selected item in the implementor.
-/// The implementor is free to allow a specific number of selectables beeing selected or not. This interface just covers always the latest selected selectable.</summary>
+/// The implementor is free to allow a specific number of selectables being selected or not. This interface just covers always the latest selected selectable.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.ISingleSelectableConcrete.NativeMethods]
+[Efl.Ui.SingleSelectableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISingleSelectable : 
     Efl.Eo.IWrapper, IDisposable
@@ -22,24 +22,24 @@ public interface ISingleSelectable :
 /// <returns>The latest selected item.</returns>
 Efl.Ui.ISelectable GetLastSelected();
     /// <summary>A object that will be selected in case nothing is selected
-/// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+/// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
 /// 
 /// Setting this property as a result of selection events results in undefined behavior.</summary>
 Efl.Ui.ISelectable GetFallbackSelection();
     /// <summary>A object that will be selected in case nothing is selected
-/// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+/// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
 /// 
 /// Setting this property as a result of selection events results in undefined behavior.</summary>
 void SetFallbackSelection(Efl.Ui.ISelectable fallback);
-                /// <summary>Called when there is a change in the selection state, this event will collect all the item selection change events that are happening within one loop iteration. This means, you will only get this event once, even if a lot of items have changed. If you are interested in detailed changes, subscribe to the selection,changed event of Efl.Ui.Selectable.</summary>
-    event EventHandler SelectionChangedEvt;
+                /// <summary>Emitted when there is a change in the selection state. This event will collect all the item selection change events that are happening within one loop iteration. This means, you will only get this event once, even if a lot of items have changed. If you are interested in detailed changes, subscribe to the individual <see cref="Efl.Ui.ISelectable.SelectedChangedEvent"/> events of each item.</summary>
+    event EventHandler SelectionChangedEvent;
     /// <summary>The selectable that was selected most recently.</summary>
     /// <value>The latest selected item.</value>
     Efl.Ui.ISelectable LastSelected {
         get;
     }
     /// <summary>A object that will be selected in case nothing is selected
-    /// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+    /// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
     /// 
     /// Setting this property as a result of selection events results in undefined behavior.</summary>
     Efl.Ui.ISelectable FallbackSelection {
@@ -48,9 +48,9 @@ void SetFallbackSelection(Efl.Ui.ISelectable fallback);
     }
 }
 /// <summary>Interface for getting access to a single selected item in the implementor.
-/// The implementor is free to allow a specific number of selectables beeing selected or not. This interface just covers always the latest selected selectable.</summary>
+/// The implementor is free to allow a specific number of selectables being selected or not. This interface just covers always the latest selected selectable.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ISingleSelectableConcrete :
+public sealed class SingleSelectableConcrete :
     Efl.Eo.EoWrapper
     , ISingleSelectable
     
@@ -60,7 +60,7 @@ sealed public  class ISingleSelectableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ISingleSelectableConcrete))
+            if (((object)this).GetType() == typeof(SingleSelectableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -74,7 +74,7 @@ sealed public  class ISingleSelectableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ISingleSelectableConcrete(ConstructingHandle ch) : base(ch)
+    private SingleSelectableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -83,12 +83,12 @@ sealed public  class ISingleSelectableConcrete :
     /// <summary>Initializes a new instance of the <see cref="ISingleSelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ISingleSelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private SingleSelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Called when there is a change in the selection state, this event will collect all the item selection change events that are happening within one loop iteration. This means, you will only get this event once, even if a lot of items have changed. If you are interested in detailed changes, subscribe to the selection,changed event of Efl.Ui.Selectable.</summary>
-    public event EventHandler SelectionChangedEvt
+    /// <summary>Emitted when there is a change in the selection state. This event will collect all the item selection change events that are happening within one loop iteration. This means, you will only get this event once, even if a lot of items have changed. If you are interested in detailed changes, subscribe to the individual <see cref="Efl.Ui.ISelectable.SelectedChangedEvent"/> events of each item.</summary>
+    public event EventHandler SelectionChangedEvent
     {
         add
         {
@@ -126,8 +126,9 @@ sealed public  class ISingleSelectableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event SelectionChangedEvt.</summary>
-    public void OnSelectionChangedEvt(EventArgs e)
+    /// <summary>Method to raise event SelectionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSelectionChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_SINGLE_SELECTABLE_EVENT_SELECTION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -139,28 +140,29 @@ sealed public  class ISingleSelectableConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
     /// <summary>The selectable that was selected most recently.</summary>
     /// <returns>The latest selected item.</returns>
     public Efl.Ui.ISelectable GetLastSelected() {
-         var _ret_var = Efl.Ui.ISingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_last_selected_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.SingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_last_selected_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>A object that will be selected in case nothing is selected
-    /// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+    /// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
     /// 
     /// Setting this property as a result of selection events results in undefined behavior.</summary>
     public Efl.Ui.ISelectable GetFallbackSelection() {
-         var _ret_var = Efl.Ui.ISingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_fallback_selection_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.SingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_fallback_selection_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>A object that will be selected in case nothing is selected
-    /// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+    /// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
     /// 
     /// Setting this property as a result of selection events results in undefined behavior.</summary>
     public void SetFallbackSelection(Efl.Ui.ISelectable fallback) {
-                                 Efl.Ui.ISingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_fallback_selection_set_ptr.Value.Delegate(this.NativeHandle,fallback);
+                                 Efl.Ui.SingleSelectableConcrete.NativeMethods.efl_ui_single_selectable_fallback_selection_set_ptr.Value.Delegate(this.NativeHandle,fallback);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>The selectable that was selected most recently.</summary>
@@ -169,16 +171,17 @@ sealed public  class ISingleSelectableConcrete :
         get { return GetLastSelected(); }
     }
     /// <summary>A object that will be selected in case nothing is selected
-    /// A object set to this property will be selected instead of no item beeing selected. Which means, there will be always at least one element selected. If this property is NULL, the state of &quot;no item is selected&quot; can be reached.
+    /// A object set to this property will be selected instead of no item being selected. Which means, there will be always at least one element selected. If this property is <c>NULL</c>, the state of &quot;no item is selected&quot; can be reached.
     /// 
     /// Setting this property as a result of selection events results in undefined behavior.</summary>
     public Efl.Ui.ISelectable FallbackSelection {
         get { return GetFallbackSelection(); }
         set { SetFallbackSelection(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ISingleSelectableConcrete.efl_ui_single_selectable_interface_get();
+        return Efl.Ui.SingleSelectableConcrete.efl_ui_single_selectable_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -187,7 +190,7 @@ sealed public  class ISingleSelectableConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -222,13 +225,23 @@ sealed public  class ISingleSelectableConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_single_selectable_fallback_selection_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_single_selectable_fallback_selection_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ISingleSelectableConcrete.efl_ui_single_selectable_interface_get();
+            return Efl.Ui.SingleSelectableConcrete.efl_ui_single_selectable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -350,7 +363,7 @@ sealed public  class ISingleSelectableConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiISingleSelectableConcrete_ExtensionMethods {
+public static class Efl_UiSingleSelectableConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<Efl.Ui.ISelectable> FallbackSelection<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ISingleSelectable, T>magic = null) where T : Efl.Ui.ISingleSelectable {
         return new Efl.BindableProperty<Efl.Ui.ISelectable>("fallback_selection", fac);

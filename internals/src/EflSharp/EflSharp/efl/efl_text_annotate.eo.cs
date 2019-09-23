@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Cursor API</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextAnnotateConcrete.NativeMethods]
+[Efl.TextAnnotateConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextAnnotate : 
     Efl.Eo.IWrapper, IDisposable
@@ -77,7 +77,7 @@ Efl.TextAnnotateAnnotation CursorItemInsert(Efl.TextCursorCursor cur, System.Str
                                         }
 /// <summary>Cursor API</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextAnnotateConcrete :
+public sealed class TextAnnotateConcrete :
     Efl.Eo.EoWrapper
     , ITextAnnotate
     
@@ -87,7 +87,7 @@ sealed public  class ITextAnnotateConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextAnnotateConcrete))
+            if (((object)this).GetType() == typeof(TextAnnotateConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -101,7 +101,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextAnnotateConcrete(ConstructingHandle ch) : base(ch)
+    private TextAnnotateConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -110,16 +110,17 @@ sealed public  class ITextAnnotateConcrete :
     /// <summary>Initializes a new instance of the <see cref="ITextAnnotate"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextAnnotateConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextAnnotateConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>A new format for <c>annotation</c>.
     /// This will replace the format applied by <c>annotation</c> with <c>format</c>. Assumes that <c>annotation</c> is a handle for an existing annotation, i.e. one that was added using <see cref="Efl.ITextAnnotate.AnnotationInsert"/> to this object. Otherwise, this will fail and return <c>false</c>.</summary>
     /// <param name="annotation">Given annotation</param>
     /// <returns>The new format for the given annotation</returns>
     public System.String GetAnnotation(Efl.TextAnnotateAnnotation annotation) {
-                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_get_ptr.Value.Delegate(this.NativeHandle,annotation);
+                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_get_ptr.Value.Delegate(this.NativeHandle,annotation);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -129,7 +130,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="format">The new format for the given annotation</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     public bool SetAnnotation(Efl.TextAnnotateAnnotation annotation, System.String format) {
-                                                         var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_set_ptr.Value.Delegate(this.NativeHandle,annotation, format);
+                                                         var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_set_ptr.Value.Delegate(this.NativeHandle,annotation, format);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -137,7 +138,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="cur">Cursor object</param>
     /// <returns>Annotation</returns>
     public Efl.TextAnnotateAnnotation GetCursorItemAnnotation(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_cursor_item_annotation_get_ptr.Value.Delegate(this.NativeHandle,cur);
+                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_cursor_item_annotation_get_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -146,7 +147,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="end">End of range</param>
     /// <returns>Handle of the Annotation</returns>
     public Eina.Iterator<Efl.TextAnnotateAnnotation> GetRangeAnnotations(Efl.TextCursorCursor start, Efl.TextCursorCursor end) {
-                                                         var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_range_annotations_get_ptr.Value.Delegate(this.NativeHandle,start, end);
+                                                         var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_range_annotations_get_ptr.Value.Delegate(this.NativeHandle,start, end);
         Eina.Error.RaiseIfUnhandledException();
                                         return new Eina.Iterator<Efl.TextAnnotateAnnotation>(_ret_var, true);
  }
@@ -157,7 +158,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="format">Annotation format</param>
     /// <returns>Handle of inserted annotation</returns>
     public Efl.TextAnnotateAnnotation AnnotationInsert(Efl.TextCursorCursor start, Efl.TextCursorCursor end, System.String format) {
-                                                                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_insert_ptr.Value.Delegate(this.NativeHandle,start, end, format);
+                                                                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_insert_ptr.Value.Delegate(this.NativeHandle,start, end, format);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -166,7 +167,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="annotation">Annotation to be removed</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
     public bool DelAnnotation(Efl.TextAnnotateAnnotation annotation) {
-                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_del_ptr.Value.Delegate(this.NativeHandle,annotation);
+                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_del_ptr.Value.Delegate(this.NativeHandle,annotation);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -176,7 +177,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="start">Cursor to be set to the start position of the annotation in the text</param>
     /// <param name="end">Cursor to be set to the end position of the annotation in the text</param>
     public void GetAnnotationPositions(Efl.TextAnnotateAnnotation annotation, Efl.TextCursorCursor start, Efl.TextCursorCursor end) {
-                                                                                 Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_positions_get_ptr.Value.Delegate(this.NativeHandle,annotation, start, end);
+                                                                                 Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_positions_get_ptr.Value.Delegate(this.NativeHandle,annotation, start, end);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Whether this is an &quot;item&quot; type of annotation. Should be used before querying the annotation&apos;s geometry, as only &quot;item&quot; annotations have a geometry.
@@ -184,7 +185,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="annotation">Given annotation</param>
     /// <returns><c>true</c> if given annotation is an object item, <c>false</c> otherwise</returns>
     public bool AnnotationIsItem(Efl.TextAnnotateAnnotation annotation) {
-                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_annotation_is_item_ptr.Value.Delegate(this.NativeHandle,annotation);
+                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_annotation_is_item_ptr.Value.Delegate(this.NativeHandle,annotation);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -197,7 +198,7 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="h">Height of the annotation</param>
     /// <returns><c>true</c> if given annotation is an object item, <c>false</c> otherwise</returns>
     public bool GetItemGeometry(Efl.TextAnnotateAnnotation an, out int x, out int y, out int w, out int h) {
-                                                                                                                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_item_geometry_get_ptr.Value.Delegate(this.NativeHandle,an, out x, out y, out w, out h);
+                                                                                                                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_item_geometry_get_ptr.Value.Delegate(this.NativeHandle,an, out x, out y, out w, out h);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -208,13 +209,14 @@ sealed public  class ITextAnnotateConcrete :
     /// <param name="format">Size format of the inserted item. This hints how to size the item in the text.</param>
     /// <returns>The annotation handle of the inserted item.</returns>
     public Efl.TextAnnotateAnnotation CursorItemInsert(Efl.TextCursorCursor cur, System.String item, System.String format) {
-                                                                                 var _ret_var = Efl.ITextAnnotateConcrete.NativeMethods.efl_text_cursor_item_insert_ptr.Value.Delegate(this.NativeHandle,cur, item, format);
+                                                                                 var _ret_var = Efl.TextAnnotateConcrete.NativeMethods.efl_text_cursor_item_insert_ptr.Value.Delegate(this.NativeHandle,cur, item, format);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextAnnotateConcrete.efl_text_annotate_interface_get();
+        return Efl.TextAnnotateConcrete.efl_text_annotate_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -223,7 +225,7 @@ sealed public  class ITextAnnotateConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -328,13 +330,23 @@ sealed public  class ITextAnnotateConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_cursor_item_insert"), func = Marshal.GetFunctionPointerForDelegate(efl_text_cursor_item_insert_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextAnnotateConcrete.efl_text_annotate_interface_get();
+            return Efl.TextAnnotateConcrete.efl_text_annotate_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -706,7 +718,7 @@ sealed public  class ITextAnnotateConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextAnnotateConcrete_ExtensionMethods {
+public static class EflTextAnnotateConcrete_ExtensionMethods {
     
     
 }

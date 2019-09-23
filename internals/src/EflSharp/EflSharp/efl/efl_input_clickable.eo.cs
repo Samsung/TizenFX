@@ -12,85 +12,71 @@ namespace Input {
 
 /// <summary>Efl input clickable interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Input.IClickableConcrete.NativeMethods]
+[Efl.Input.ClickableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IClickable : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>This returns true if the given object is currently in event emission</summary>
 bool GetInteraction();
-    /// <summary>Change internal states that a button got pressed.
-/// When the button is already pressed, this is silently ignored.</summary>
-/// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-void Press(uint button);
-    /// <summary>Change internal states that a button got unpressed.
-/// When the button is not pressed, this is silently ignored.</summary>
-/// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-void Unpress(uint button);
-    /// <summary>This aborts the internal state after a press call.
-/// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
-void ResetButtonState(uint button);
-    /// <summary>This aborts ongoing longpress event.
-/// That is, this will stop the timer for longpress.</summary>
-void LongpressAbort(uint button);
-                        /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
-    event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt;
+                                        /// <summary>Called when object is in sequence pressed and unpressed by the primary button</summary>
+    /// <value><see cref="Efl.Input.ClickableClickedEventArgs"/></value>
+    event EventHandler<Efl.Input.ClickableClickedEventArgs> ClickedEvent;
     /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
-    event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt;
+    /// <value><see cref="Efl.Input.ClickableClickedAnyEventArgs"/></value>
+    event EventHandler<Efl.Input.ClickableClickedAnyEventArgs> ClickedAnyEvent;
     /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
-    event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt;
+    /// <value><see cref="Efl.Input.ClickablePressedEventArgs"/></value>
+    event EventHandler<Efl.Input.ClickablePressedEventArgs> PressedEvent;
     /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
-    event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt;
+    /// <value><see cref="Efl.Input.ClickableUnpressedEventArgs"/></value>
+    event EventHandler<Efl.Input.ClickableUnpressedEventArgs> UnpressedEvent;
     /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
-    event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt;
+    /// <value><see cref="Efl.Input.ClickableLongpressedEventArgs"/></value>
+    event EventHandler<Efl.Input.ClickableLongpressedEventArgs> LongpressedEvent;
     /// <summary>This returns true if the given object is currently in event emission</summary>
     bool Interaction {
         get;
     }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.ClickedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.ClickedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IClickableClickedEvt_Args : EventArgs {
+public class ClickableClickedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Called when object is in sequence pressed and unpressed, by the primary button</value>
+    /// <value>Called when object is in sequence pressed and unpressed by the primary button</value>
     public Efl.Input.ClickableClicked arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.ClickedAnyEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.ClickedAnyEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IClickableClickedAnyEvt_Args : EventArgs {
+public class ClickableClickedAnyEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</value>
     public Efl.Input.ClickableClicked arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.PressedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.PressedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IClickablePressedEvt_Args : EventArgs {
+public class ClickablePressedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when the object is pressed, event_info is the button that got pressed</value>
     public int arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.UnpressedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.UnpressedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IClickableUnpressedEvt_Args : EventArgs {
+public class ClickableUnpressedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when the object is no longer pressed, event_info is the button that got pressed</value>
     public int arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.LongpressedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IClickable.LongpressedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IClickableLongpressedEvt_Args : EventArgs {
+public class ClickableLongpressedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when the object receives a long press, event_info is the button that got pressed</value>
     public int arg { get; set; }
 }
 /// <summary>Efl input clickable interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IClickableConcrete :
+public sealed class ClickableConcrete :
     Efl.Eo.EoWrapper
     , IClickable
     
@@ -100,7 +86,7 @@ sealed public  class IClickableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IClickableConcrete))
+            if (((object)this).GetType() == typeof(ClickableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -114,7 +100,7 @@ sealed public  class IClickableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IClickableConcrete(ConstructingHandle ch) : base(ch)
+    private ClickableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -123,13 +109,13 @@ sealed public  class IClickableConcrete :
     /// <summary>Initializes a new instance of the <see cref="IClickable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IClickableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ClickableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Called when object is in sequence pressed and unpressed, by the primary button</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableClickedEvt_Args> ClickedEvt
+    /// <summary>Called when object is in sequence pressed and unpressed by the primary button</summary>
+    /// <value><see cref="Efl.Input.ClickableClickedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableClickedEventArgs> ClickedEvent
     {
         add
         {
@@ -140,7 +126,7 @@ sealed public  class IClickableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableClickedEvt_Args args = new Efl.Input.IClickableClickedEvt_Args();
+                        Efl.Input.ClickableClickedEventArgs args = new Efl.Input.ClickableClickedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -168,8 +154,9 @@ sealed public  class IClickableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ClickedEvt.</summary>
-    public void OnClickedEvt(Efl.Input.IClickableClickedEvt_Args e)
+    /// <summary>Method to raise event ClickedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClickedEvent(Efl.Input.ClickableClickedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_CLICKED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -191,8 +178,8 @@ sealed public  class IClickableConcrete :
         }
     }
     /// <summary>Called when object is in sequence pressed and unpressed by any button. The button that triggered the event can be found in the event information.</summary>
-    /// <value><see cref="Efl.Input.IClickableClickedAnyEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableClickedAnyEvt_Args> ClickedAnyEvt
+    /// <value><see cref="Efl.Input.ClickableClickedAnyEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableClickedAnyEventArgs> ClickedAnyEvent
     {
         add
         {
@@ -203,7 +190,7 @@ sealed public  class IClickableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableClickedAnyEvt_Args args = new Efl.Input.IClickableClickedAnyEvt_Args();
+                        Efl.Input.ClickableClickedAnyEventArgs args = new Efl.Input.ClickableClickedAnyEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -231,8 +218,9 @@ sealed public  class IClickableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ClickedAnyEvt.</summary>
-    public void OnClickedAnyEvt(Efl.Input.IClickableClickedAnyEvt_Args e)
+    /// <summary>Method to raise event ClickedAnyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClickedAnyEvent(Efl.Input.ClickableClickedAnyEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_CLICKED_ANY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -254,8 +242,8 @@ sealed public  class IClickableConcrete :
         }
     }
     /// <summary>Called when the object is pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickablePressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickablePressedEvt_Args> PressedEvt
+    /// <value><see cref="Efl.Input.ClickablePressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickablePressedEventArgs> PressedEvent
     {
         add
         {
@@ -266,7 +254,7 @@ sealed public  class IClickableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickablePressedEvt_Args args = new Efl.Input.IClickablePressedEvt_Args();
+                        Efl.Input.ClickablePressedEventArgs args = new Efl.Input.ClickablePressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -294,8 +282,9 @@ sealed public  class IClickableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PressedEvt.</summary>
-    public void OnPressedEvt(Efl.Input.IClickablePressedEvt_Args e)
+    /// <summary>Method to raise event PressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPressedEvent(Efl.Input.ClickablePressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_PRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -316,8 +305,8 @@ sealed public  class IClickableConcrete :
         }
     }
     /// <summary>Called when the object is no longer pressed, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableUnpressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableUnpressedEvt_Args> UnpressedEvt
+    /// <value><see cref="Efl.Input.ClickableUnpressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableUnpressedEventArgs> UnpressedEvent
     {
         add
         {
@@ -328,7 +317,7 @@ sealed public  class IClickableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableUnpressedEvt_Args args = new Efl.Input.IClickableUnpressedEvt_Args();
+                        Efl.Input.ClickableUnpressedEventArgs args = new Efl.Input.ClickableUnpressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -356,8 +345,9 @@ sealed public  class IClickableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event UnpressedEvt.</summary>
-    public void OnUnpressedEvt(Efl.Input.IClickableUnpressedEvt_Args e)
+    /// <summary>Method to raise event UnpressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnUnpressedEvent(Efl.Input.ClickableUnpressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_UNPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -378,8 +368,8 @@ sealed public  class IClickableConcrete :
         }
     }
     /// <summary>Called when the object receives a long press, event_info is the button that got pressed</summary>
-    /// <value><see cref="Efl.Input.IClickableLongpressedEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IClickableLongpressedEvt_Args> LongpressedEvt
+    /// <value><see cref="Efl.Input.ClickableLongpressedEventArgs"/></value>
+    public event EventHandler<Efl.Input.ClickableLongpressedEventArgs> LongpressedEvent
     {
         add
         {
@@ -390,7 +380,7 @@ sealed public  class IClickableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IClickableLongpressedEvt_Args args = new Efl.Input.IClickableLongpressedEvt_Args();
+                        Efl.Input.ClickableLongpressedEventArgs args = new Efl.Input.ClickableLongpressedEventArgs();
                         args.arg = Marshal.ReadInt32(evt.Info);
                         try
                         {
@@ -418,8 +408,9 @@ sealed public  class IClickableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event LongpressedEvt.</summary>
-    public void OnLongpressedEvt(Efl.Input.IClickableLongpressedEvt_Args e)
+    /// <summary>Method to raise event LongpressedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLongpressedEvent(Efl.Input.ClickableLongpressedEventArgs e)
     {
         var key = "_EFL_INPUT_EVENT_LONGPRESSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -439,45 +430,47 @@ sealed public  class IClickableConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+#pragma warning disable CS0628
     /// <summary>This returns true if the given object is currently in event emission</summary>
     public bool GetInteraction() {
-         var _ret_var = Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_interaction_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Change internal states that a button got pressed.
     /// When the button is already pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    public void Press(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate(this.NativeHandle,button);
+    protected void Press(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_press_ptr.Value.Delegate(this.NativeHandle,button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Change internal states that a button got unpressed.
     /// When the button is not pressed, this is silently ignored.</summary>
     /// <param name="button">The number of the button. FIXME ensure to have the right interval of possible input</param>
-    public void Unpress(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate(this.NativeHandle,button);
+    protected void Unpress(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_unpress_ptr.Value.Delegate(this.NativeHandle,button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts the internal state after a press call.
-    /// This will stop the timer for longpress. And set the state of the clickable mixin back into the unpressed state.</summary>
-    public void ResetButtonState(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate(this.NativeHandle,button);
+    /// This will stop the timer for longpress and set the state of the clickable mixin back into the unpressed state.</summary>
+    protected void ResetButtonState(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_button_state_reset_ptr.Value.Delegate(this.NativeHandle,button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This aborts ongoing longpress event.
     /// That is, this will stop the timer for longpress.</summary>
-    public void LongpressAbort(uint button) {
-                                 Efl.Input.IClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate(this.NativeHandle,button);
+    protected void LongpressAbort(uint button) {
+                                 Efl.Input.ClickableConcrete.NativeMethods.efl_input_clickable_longpress_abort_ptr.Value.Delegate(this.NativeHandle,button);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This returns true if the given object is currently in event emission</summary>
     public bool Interaction {
         get { return GetInteraction(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Input.IClickableConcrete.efl_input_clickable_mixin_get();
+        return Efl.Input.ClickableConcrete.efl_input_clickable_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -486,7 +479,7 @@ sealed public  class IClickableConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -501,53 +494,23 @@ sealed public  class IClickableConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_interaction_get"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_interaction_get_static_delegate) });
             }
 
-            if (efl_input_clickable_press_static_delegate == null)
+            if (includeInherited)
             {
-                efl_input_clickable_press_static_delegate = new efl_input_clickable_press_delegate(press);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "Press") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_press"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_press_static_delegate) });
-            }
-
-            if (efl_input_clickable_unpress_static_delegate == null)
-            {
-                efl_input_clickable_unpress_static_delegate = new efl_input_clickable_unpress_delegate(unpress);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unpress") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_unpress"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_unpress_static_delegate) });
-            }
-
-            if (efl_input_clickable_button_state_reset_static_delegate == null)
-            {
-                efl_input_clickable_button_state_reset_static_delegate = new efl_input_clickable_button_state_reset_delegate(button_state_reset);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ResetButtonState") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_button_state_reset"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_button_state_reset_static_delegate) });
-            }
-
-            if (efl_input_clickable_longpress_abort_static_delegate == null)
-            {
-                efl_input_clickable_longpress_abort_static_delegate = new efl_input_clickable_longpress_abort_delegate(longpress_abort);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "LongpressAbort") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_clickable_longpress_abort"), func = Marshal.GetFunctionPointerForDelegate(efl_input_clickable_longpress_abort_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Input.IClickableConcrete.efl_input_clickable_mixin_get();
+            return Efl.Input.ClickableConcrete.efl_input_clickable_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -596,33 +559,6 @@ sealed public  class IClickableConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate> efl_input_clickable_press_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_press_api_delegate>(Module, "efl_input_clickable_press");
 
-        private static void press(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_input_clickable_press was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IClickable)ws.Target).Press(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_input_clickable_press_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_input_clickable_press_delegate efl_input_clickable_press_static_delegate;
-
         
         private delegate void efl_input_clickable_unpress_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
@@ -630,33 +566,6 @@ sealed public  class IClickableConcrete :
         public delegate void efl_input_clickable_unpress_api_delegate(System.IntPtr obj,  uint button);
 
         public static Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate> efl_input_clickable_unpress_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_unpress_api_delegate>(Module, "efl_input_clickable_unpress");
-
-        private static void unpress(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_input_clickable_unpress was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IClickable)ws.Target).Unpress(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_input_clickable_unpress_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_input_clickable_unpress_delegate efl_input_clickable_unpress_static_delegate;
 
         
         private delegate void efl_input_clickable_button_state_reset_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
@@ -666,33 +575,6 @@ sealed public  class IClickableConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate> efl_input_clickable_button_state_reset_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_button_state_reset_api_delegate>(Module, "efl_input_clickable_button_state_reset");
 
-        private static void button_state_reset(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_input_clickable_button_state_reset was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IClickable)ws.Target).ResetButtonState(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_input_clickable_button_state_reset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_input_clickable_button_state_reset_delegate efl_input_clickable_button_state_reset_static_delegate;
-
         
         private delegate void efl_input_clickable_longpress_abort_delegate(System.IntPtr obj, System.IntPtr pd,  uint button);
 
@@ -700,33 +582,6 @@ sealed public  class IClickableConcrete :
         public delegate void efl_input_clickable_longpress_abort_api_delegate(System.IntPtr obj,  uint button);
 
         public static Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate> efl_input_clickable_longpress_abort_ptr = new Efl.Eo.FunctionWrapper<efl_input_clickable_longpress_abort_api_delegate>(Module, "efl_input_clickable_longpress_abort");
-
-        private static void longpress_abort(System.IntPtr obj, System.IntPtr pd, uint button)
-        {
-            Eina.Log.Debug("function efl_input_clickable_longpress_abort was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IClickable)ws.Target).LongpressAbort(button);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_input_clickable_longpress_abort_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), button);
-            }
-        }
-
-        private static efl_input_clickable_longpress_abort_delegate efl_input_clickable_longpress_abort_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
@@ -738,7 +593,7 @@ sealed public  class IClickableConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_InputIClickableConcrete_ExtensionMethods {
+public static class Efl_InputClickableConcrete_ExtensionMethods {
     
 }
 #pragma warning restore CS1591
@@ -757,8 +612,8 @@ public struct ClickableClicked
     /// <summary>The Button that is pressed</summary>
     public uint Button;
     /// <summary>Constructor for ClickableClicked.</summary>
-    /// <param name="Repeated">The amount of how often the clicked event was repeated in a certain amount of time</param>;
-    /// <param name="Button">The Button that is pressed</param>;
+    /// <param name="Repeated">The amount of how often the clicked event was repeated in a certain amount of time</param>
+    /// <param name="Button">The Button that is pressed</param>
     public ClickableClicked(
         uint Repeated = default(uint),
         uint Button = default(uint)    )

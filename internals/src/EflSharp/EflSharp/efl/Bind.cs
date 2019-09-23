@@ -4,6 +4,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System.ComponentModel;
 
@@ -48,8 +49,15 @@ public class BindableProperty<T>
                 throw new InvalidOperationException($"Failed to cast binder {binder} to IPart");
             }
 
-            var partBinder = partHolder.GetPart(this.partName) as Efl.Ui.IPropertyBind;
+            // We rely on reflection as GetPart is protected and not generated in IPart.
+            var partMethod = partHolder.GetType().GetMethod("GetPart", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
+            if (partMethod == null)
+            {
+                throw new InvalidOperationException($"Failed to get 'GetPart' method on property binder");
+            }
+
+            var partBinder = partMethod.Invoke(partHolder, new System.Object[] { this.partName }) as Efl.Ui.IPropertyBind;
             if (partBinder != null)
             {
                 return partBinder.PropertyBind(this.propertyName, modelProperty);

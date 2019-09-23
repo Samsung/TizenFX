@@ -15,7 +15,8 @@ namespace Io {
 /// 
 /// Calls to <see cref="Efl.Io.ICloser.Close"/> may or may not block, that&apos;s not up to this interface to specify.
 /// (Since EFL 1.22)</summary>
-[Efl.Io.ICloserConcrete.NativeMethods]
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+[Efl.Io.CloserConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ICloser : 
     Efl.Eo.IWrapper, IDisposable
@@ -53,7 +54,7 @@ void SetCloseOnInvalidate(bool close_on_invalidate);
 Eina.Error Close();
                             /// <summary>Notifies closed, when property is marked as true
     /// (Since EFL 1.22)</summary>
-    event EventHandler ClosedEvt;
+    event EventHandler ClosedEvent;
     /// <summary>If true will notify object was closed.
     /// (Since EFL 1.22)</summary>
     /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
@@ -82,7 +83,8 @@ Eina.Error Close();
 /// 
 /// Calls to <see cref="Efl.Io.ICloser.Close"/> may or may not block, that&apos;s not up to this interface to specify.
 /// (Since EFL 1.22)</summary>
-sealed public  class ICloserConcrete :
+/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+public sealed class CloserConcrete :
     Efl.Eo.EoWrapper
     , ICloser
     
@@ -92,7 +94,7 @@ sealed public  class ICloserConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ICloserConcrete))
+            if (((object)this).GetType() == typeof(CloserConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -106,7 +108,7 @@ sealed public  class ICloserConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ICloserConcrete(ConstructingHandle ch) : base(ch)
+    private CloserConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -115,13 +117,13 @@ sealed public  class ICloserConcrete :
     /// <summary>Initializes a new instance of the <see cref="ICloser"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ICloserConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private CloserConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Notifies closed, when property is marked as true
     /// (Since EFL 1.22)</summary>
-    public event EventHandler ClosedEvt
+    public event EventHandler ClosedEvent
     {
         add
         {
@@ -159,8 +161,9 @@ sealed public  class ICloserConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ClosedEvt.</summary>
-    public void OnClosedEvt(EventArgs e)
+    /// <summary>Method to raise event ClosedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClosedEvent(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -172,11 +175,12 @@ sealed public  class ICloserConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+#pragma warning disable CS0628
     /// <summary>If true will notify object was closed.
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if closed, <c>false</c> otherwise</returns>
     public bool GetClosed() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -185,7 +189,7 @@ sealed public  class ICloserConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if close on exec(), <c>false</c> otherwise</returns>
     public bool GetCloseOnExec() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -194,7 +198,7 @@ sealed public  class ICloserConcrete :
     /// <param name="close_on_exec"><c>true</c> if close on exec(), <c>false</c> otherwise</param>
     /// <returns><c>true</c> if could set, <c>false</c> if not supported or failed.</returns>
     public bool SetCloseOnExec(bool close_on_exec) {
-                                 var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate(this.NativeHandle,close_on_exec);
+                                 var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate(this.NativeHandle,close_on_exec);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -203,7 +207,7 @@ sealed public  class ICloserConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if close on invalidate, <c>false</c> otherwise</returns>
     public bool GetCloseOnInvalidate() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -212,7 +216,7 @@ sealed public  class ICloserConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="close_on_invalidate"><c>true</c> if close on invalidate, <c>false</c> otherwise</param>
     public void SetCloseOnInvalidate(bool close_on_invalidate) {
-                                 Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate(this.NativeHandle,close_on_invalidate);
+                                 Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate(this.NativeHandle,close_on_invalidate);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Closes the Input/Output object.
@@ -222,7 +226,7 @@ sealed public  class ICloserConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
     public Eina.Error Close() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -248,9 +252,10 @@ sealed public  class ICloserConcrete :
         get { return GetCloseOnInvalidate(); }
         set { SetCloseOnInvalidate(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Io.ICloserConcrete.efl_io_closer_interface_get();
+        return Efl.Io.CloserConcrete.efl_io_closer_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -259,7 +264,7 @@ sealed public  class ICloserConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -324,13 +329,23 @@ sealed public  class ICloserConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Io.ICloserConcrete.efl_io_closer_interface_get();
+            return Efl.Io.CloserConcrete.efl_io_closer_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -560,7 +575,7 @@ sealed public  class ICloserConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_IoICloserConcrete_ExtensionMethods {
+public static class Efl_IoCloserConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.ICloser, T>magic = null) where T : Efl.Io.ICloser {
         return new Efl.BindableProperty<bool>("close_on_exec", fac);

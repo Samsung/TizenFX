@@ -47,6 +47,7 @@ public abstract class Application
         Eina.Config.Init();
         Efl.Eo.Config.Init();
         ecore_init();
+        ecore_init_ex(0, IntPtr.Zero);
         evas_init();
         //eldbus.Config.Init();
 
@@ -140,7 +141,7 @@ public abstract class Application
 #if EFL_BETA
         app.SetCommandArray(command_line);
 #endif
-        app.ArgumentsEvt += (object sender, LoopArgumentsEvt_Args evt) =>
+        app.ArgumentsEvent += (object sender, LoopArgumentsEventArgs evt) =>
         {
             if (evt.arg.Initialization)
             {
@@ -157,15 +158,15 @@ public abstract class Application
 
             OnArguments(evt.arg);
         };
-        app.PauseEvt += (object sender, EventArgs e) =>
+        app.PauseEvent += (object sender, EventArgs e) =>
         {
             OnPause();
         };
-        app.ResumeEvt += (object sender, EventArgs e) =>
+        app.ResumeEvent += (object sender, EventArgs e) =>
         {
             OnResume();
         };
-        app.TerminateEvt += (object sender, EventArgs e) =>
+        app.TerminateEvent += (object sender, EventArgs e) =>
         {
             OnTerminate();
         };

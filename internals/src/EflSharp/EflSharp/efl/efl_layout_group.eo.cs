@@ -12,13 +12,13 @@ namespace Layout {
 
 /// <summary>APIs representing static data from a group in an edje file.
 /// (Since EFL 1.22)</summary>
-[Efl.Layout.IGroupConcrete.NativeMethods]
+[Efl.Layout.GroupConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IGroup : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+    /// <summary>The minimum size specified -- as an EDC property -- for a given Edje object
+/// This property retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
 /// 
 /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
 /// 
@@ -28,8 +28,8 @@ public interface IGroup :
 /// (Since EFL 1.22)</summary>
 /// <returns>The minimum size as set in EDC.</returns>
 Eina.Size2D GetGroupSizeMin();
-    /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-/// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// <summary>The maximum size specified -- as an EDC property -- for a given Edje object
+/// This property retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
 /// 
 /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
 /// 
@@ -39,8 +39,8 @@ Eina.Size2D GetGroupSizeMin();
 /// (Since EFL 1.22)</summary>
 /// <returns>The maximum size as set in EDC.</returns>
 Eina.Size2D GetGroupSizeMax();
-    /// <summary>Retrives an EDC data field&apos;s value from a given Edje object&apos;s group.
-/// This function fetches an EDC data field&apos;s value, which is declared on the objects building EDC file, under its group. EDC data blocks are most commonly used to pass arbitrary parameters from an application&apos;s theme to its code.
+    /// <summary>The EDC data field&apos;s value from a given Edje object&apos;s group.
+/// This property represents an EDC data field&apos;s value, which is declared on the objects building EDC file, under its group. EDC data blocks are most commonly used to pass arbitrary parameters from an application&apos;s theme to its code.
 /// 
 /// EDC data fields always hold  strings as values, hence the return type of this function. Check the complete &quot;syntax reference&quot; for EDC files.
 /// 
@@ -56,8 +56,8 @@ System.String GetGroupData(System.String key);
 /// <param name="part">The part name to check.</param>
 /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
 bool GetPartExist(System.String part);
-                    /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+                    /// <summary>The minimum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
     /// 
     /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
     /// 
@@ -69,8 +69,8 @@ bool GetPartExist(System.String part);
     Eina.Size2D GroupSizeMin {
         get;
     }
-    /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// <summary>The maximum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
     /// 
     /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
     /// 
@@ -85,7 +85,7 @@ bool GetPartExist(System.String part);
 }
 /// <summary>APIs representing static data from a group in an edje file.
 /// (Since EFL 1.22)</summary>
-sealed public  class IGroupConcrete :
+public sealed class GroupConcrete :
     Efl.Eo.EoWrapper
     , IGroup
     
@@ -95,7 +95,7 @@ sealed public  class IGroupConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IGroupConcrete))
+            if (((object)this).GetType() == typeof(GroupConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -109,7 +109,7 @@ sealed public  class IGroupConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IGroupConcrete(ConstructingHandle ch) : base(ch)
+    private GroupConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -118,12 +118,13 @@ sealed public  class IGroupConcrete :
     /// <summary>Initializes a new instance of the <see cref="IGroup"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IGroupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private GroupConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+#pragma warning disable CS0628
+    /// <summary>The minimum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
     /// 
     /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
     /// 
@@ -133,12 +134,12 @@ sealed public  class IGroupConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>The minimum size as set in EDC.</returns>
     public Eina.Size2D GetGroupSizeMin() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.GroupConcrete.NativeMethods.efl_layout_group_size_min_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// <summary>The maximum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
     /// 
     /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
     /// 
@@ -148,12 +149,12 @@ sealed public  class IGroupConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns>The maximum size as set in EDC.</returns>
     public Eina.Size2D GetGroupSizeMax() {
-         var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Layout.GroupConcrete.NativeMethods.efl_layout_group_size_max_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
-    /// <summary>Retrives an EDC data field&apos;s value from a given Edje object&apos;s group.
-    /// This function fetches an EDC data field&apos;s value, which is declared on the objects building EDC file, under its group. EDC data blocks are most commonly used to pass arbitrary parameters from an application&apos;s theme to its code.
+    /// <summary>The EDC data field&apos;s value from a given Edje object&apos;s group.
+    /// This property represents an EDC data field&apos;s value, which is declared on the objects building EDC file, under its group. EDC data blocks are most commonly used to pass arbitrary parameters from an application&apos;s theme to its code.
     /// 
     /// EDC data fields always hold  strings as values, hence the return type of this function. Check the complete &quot;syntax reference&quot; for EDC files.
     /// 
@@ -164,7 +165,7 @@ sealed public  class IGroupConcrete :
     /// <param name="key">The data field&apos;s key string</param>
     /// <returns>The data&apos;s value string.</returns>
     public System.String GetGroupData(System.String key) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate(this.NativeHandle,key);
+                                 var _ret_var = Efl.Layout.GroupConcrete.NativeMethods.efl_layout_group_data_get_ptr.Value.Delegate(this.NativeHandle,key);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -173,12 +174,12 @@ sealed public  class IGroupConcrete :
     /// <param name="part">The part name to check.</param>
     /// <returns><c>true</c> if the part exists, <c>false</c> otherwise.</returns>
     public bool GetPartExist(System.String part) {
-                                 var _ret_var = Efl.Layout.IGroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate(this.NativeHandle,part);
+                                 var _ret_var = Efl.Layout.GroupConcrete.NativeMethods.efl_layout_group_part_exist_get_ptr.Value.Delegate(this.NativeHandle,part);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Gets the minimum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
+    /// <summary>The minimum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the obj object&apos;s minimum size values, as declared in its EDC group definition. For instance, for an Edje object of minimum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; min: 100 100; } }
     /// 
     /// Note: If the <c>min</c> EDC property was not declared for this object, this call will return 0x0.
     /// 
@@ -190,8 +191,8 @@ sealed public  class IGroupConcrete :
     public Eina.Size2D GroupSizeMin {
         get { return GetGroupSizeMin(); }
     }
-    /// <summary>Gets the maximum size specified -- as an EDC property -- for a given Edje object
-    /// This function retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
+    /// <summary>The maximum size specified -- as an EDC property -- for a given Edje object
+    /// This property retrieves the object&apos;s maximum size values, as declared in its EDC group definition. For instance, for an Edje object of maximum size 100x100 pixels: collections { group { name: &quot;a_group&quot;; max: 100 100; } }
     /// 
     /// Note: If the <c>max</c> EDC property was not declared for the object, this call will return the maximum size a given Edje object may have, for each axis.
     /// 
@@ -203,9 +204,10 @@ sealed public  class IGroupConcrete :
     public Eina.Size2D GroupSizeMax {
         get { return GetGroupSizeMax(); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Layout.IGroupConcrete.efl_layout_group_interface_get();
+        return Efl.Layout.GroupConcrete.efl_layout_group_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -214,7 +216,7 @@ sealed public  class IGroupConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -259,13 +261,23 @@ sealed public  class IGroupConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_group_part_exist_get"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_group_part_exist_get_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Layout.IGroupConcrete.efl_layout_group_interface_get();
+            return Efl.Layout.GroupConcrete.efl_layout_group_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -424,7 +436,7 @@ sealed public  class IGroupConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_LayoutIGroupConcrete_ExtensionMethods {
+public static class Efl_LayoutGroupConcrete_ExtensionMethods {
     
     
     

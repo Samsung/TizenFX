@@ -10,7 +10,7 @@ namespace Efl {
 
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
-[Efl.IFileSaveConcrete.NativeMethods]
+[Efl.FileSaveConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFileSave : 
     Efl.Eo.IWrapper, IDisposable
@@ -28,7 +28,7 @@ bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info);
     }
 /// <summary>Efl file saving interface
 /// (Since EFL 1.22)</summary>
-sealed public  class IFileSaveConcrete :
+public sealed class FileSaveConcrete :
     Efl.Eo.EoWrapper
     , IFileSave
     
@@ -38,7 +38,7 @@ sealed public  class IFileSaveConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFileSaveConcrete))
+            if (((object)this).GetType() == typeof(FileSaveConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -52,7 +52,7 @@ sealed public  class IFileSaveConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFileSaveConcrete(ConstructingHandle ch) : base(ch)
+    private FileSaveConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -61,10 +61,11 @@ sealed public  class IFileSaveConcrete :
     /// <summary>Initializes a new instance of the <see cref="IFileSave"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFileSaveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FileSaveConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Save the given image object&apos;s contents to an (image) file.
     /// The extension suffix on <c>file</c> will determine which saver module Evas is to use when saving, thus the final file&apos;s format. If the file supports multiple data stored in it (Eet ones), you can specify the key to be used as the index of the image in it.
     /// 
@@ -76,14 +77,15 @@ sealed public  class IFileSaveConcrete :
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool Save(System.String file, System.String key, ref Efl.FileSaveInfo info) {
                          Efl.FileSaveInfo.NativeStruct _in_info = info;
-                                                        var _ret_var = Efl.IFileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate(this.NativeHandle,file, key, ref _in_info);
+                                                        var _ret_var = Efl.FileSaveConcrete.NativeMethods.efl_file_save_ptr.Value.Delegate(this.NativeHandle,file, key, ref _in_info);
         Eina.Error.RaiseIfUnhandledException();
                                                 info = _in_info;
         return _ret_var;
  }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IFileSaveConcrete.efl_file_save_interface_get();
+        return Efl.FileSaveConcrete.efl_file_save_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -92,7 +94,7 @@ sealed public  class IFileSaveConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -107,13 +109,23 @@ sealed public  class IFileSaveConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_file_save"), func = Marshal.GetFunctionPointerForDelegate(efl_file_save_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IFileSaveConcrete.efl_file_save_interface_get();
+            return Efl.FileSaveConcrete.efl_file_save_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -164,7 +176,7 @@ sealed public  class IFileSaveConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIFileSaveConcrete_ExtensionMethods {
+public static class EflFileSaveConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif
@@ -183,9 +195,9 @@ public struct FileSaveInfo
     /// <summary>The encoding to use when saving the file.</summary>
     public System.String Encoding;
     /// <summary>Constructor for FileSaveInfo.</summary>
-    /// <param name="Quality">The quality level (0-100) to save the file with; commonly used when saving image files.</param>;
-    /// <param name="Compression">The compression level (0-100) to save the file with.</param>;
-    /// <param name="Encoding">The encoding to use when saving the file.</param>;
+    /// <param name="Quality">The quality level (0-100) to save the file with; commonly used when saving image files.</param>
+    /// <param name="Compression">The compression level (0-100) to save the file with.</param>
+    /// <param name="Encoding">The encoding to use when saving the file.</param>
     public FileSaveInfo(
         uint Quality = default(uint),
         uint Compression = default(uint),

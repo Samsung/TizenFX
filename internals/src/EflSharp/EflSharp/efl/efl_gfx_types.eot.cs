@@ -238,9 +238,29 @@ namespace Efl {
 
 namespace Gfx {
 
+[Efl.Eo.BindingEntity]
+public enum VgCompositeMethod
+{
+None = 0,
+MatteAlpha = 1,
+MatteAlphaInverse = 2,
+MaskAdd = 3,
+MaskSubstract = 4,
+MaskIntersect = 5,
+MaskDifference = 6,
+}
+
+}
+
+}
+
+namespace Efl {
+
+namespace Gfx {
+
 /// <summary>How an image&apos;s center region (the complement to the border region) should be rendered by EFL</summary>
 [Efl.Eo.BindingEntity]
-public enum BorderFillMode
+public enum CenterFillMode
 {
 /// <summary>Image&apos;s center region is <c>not</c> to be rendered</summary>
 None = 0,
@@ -339,8 +359,8 @@ public struct Dash
     /// <summary>Distance between two dashes.</summary>
     public double Gap;
     /// <summary>Constructor for Dash.</summary>
-    /// <param name="Length">Dash drawing length.</param>;
-    /// <param name="Gap">Distance between two dashes.</param>;
+    /// <param name="Length">Dash drawing length.</param>
+    /// <param name="Gap">Distance between two dashes.</param>
     public Dash(
         double Length = default(double),
         double Gap = default(double)    )
@@ -416,11 +436,11 @@ public struct GradientStop
     /// <summary>The component A color of the gradient stop</summary>
     public int A;
     /// <summary>Constructor for GradientStop.</summary>
-    /// <param name="Offset">The location of the gradient stop within the gradient vector</param>;
-    /// <param name="R">The component R color of the gradient stop</param>;
-    /// <param name="G">The component G color of the gradient stop</param>;
-    /// <param name="B">The component B color of the gradient stop</param>;
-    /// <param name="A">The component A color of the gradient stop</param>;
+    /// <param name="Offset">The location of the gradient stop within the gradient vector</param>
+    /// <param name="R">The component R color of the gradient stop</param>
+    /// <param name="G">The component G color of the gradient stop</param>
+    /// <param name="B">The component B color of the gradient stop</param>
+    /// <param name="A">The component A color of the gradient stop</param>
     public GradientStop(
         double Offset = default(double),
         int R = default(int),
@@ -511,10 +531,10 @@ public struct StrokeColor
     /// <summary>The component A color of the stroke</summary>
     public int A;
     /// <summary>Constructor for StrokeColor.</summary>
-    /// <param name="R">The component R color of the stroke</param>;
-    /// <param name="G">The component G color of the stroke</param>;
-    /// <param name="B">The component B color of the stroke</param>;
-    /// <param name="A">The component A color of the stroke</param>;
+    /// <param name="R">The component R color of the stroke</param>
+    /// <param name="G">The component G color of the stroke</param>
+    /// <param name="B">The component B color of the stroke</param>
+    /// <param name="A">The component A color of the stroke</param>
     public StrokeColor(
         int R = default(int),
         int G = default(int),
@@ -614,15 +634,15 @@ public struct Stroke
     /// <summary>Stroke miterlimit</summary>
     public double Miterlimit;
     /// <summary>Constructor for Stroke.</summary>
-    /// <param name="Scale">Stroke scale</param>;
-    /// <param name="Width">Stroke width</param>;
-    /// <param name="Centered">Stroke centered</param>;
-    /// <param name="Color">Stroke color</param>;
-    /// <param name="Dash">Stroke dash</param>;
-    /// <param name="Dash_length">Stroke dash length</param>;
-    /// <param name="Cap">Stroke cap</param>;
-    /// <param name="Join">Stroke join</param>;
-    /// <param name="Miterlimit">Stroke miterlimit</param>;
+    /// <param name="Scale">Stroke scale</param>
+    /// <param name="Width">Stroke width</param>
+    /// <param name="Centered">Stroke centered</param>
+    /// <param name="Color">Stroke color</param>
+    /// <param name="Dash">Stroke dash</param>
+    /// <param name="Dash_length">Stroke dash length</param>
+    /// <param name="Cap">Stroke cap</param>
+    /// <param name="Join">Stroke join</param>
+    /// <param name="Miterlimit">Stroke miterlimit</param>
     public Stroke(
         double Scale = default(double),
         double Width = default(double),
@@ -732,7 +752,7 @@ public struct ShapePublic
     /// <value>Type defining stroke information. Describes the properties to define the path stroke.</value>
     public Efl.Gfx.Stroke Stroke;
     /// <summary>Constructor for ShapePublic.</summary>
-    /// <param name="Stroke">Internal representation as stroke</param>;
+    /// <param name="Stroke">Internal representation as stroke</param>
     public ShapePublic(
         Efl.Gfx.Stroke Stroke = default(Efl.Gfx.Stroke)    )
     {
@@ -795,7 +815,7 @@ public struct RenderPost
     /// <summary>A list of rectangles that were updated in the canvas.</summary>
     public Eina.List<Eina.Rect> Updated_area;
     /// <summary>Constructor for RenderPost.</summary>
-    /// <param name="Updated_area">A list of rectangles that were updated in the canvas.</param>;
+    /// <param name="Updated_area">A list of rectangles that were updated in the canvas.</param>
     public RenderPost(
         Eina.List<Eina.Rect> Updated_area = default(Eina.List<Eina.Rect>)    )
     {

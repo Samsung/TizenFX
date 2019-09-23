@@ -72,8 +72,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
 
     /// <summary>Sent after a new sub-object was added.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
-    public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
+    /// <value><see cref="Efl.ContainerContentAddedEventArgs"/></value>
+    public event EventHandler<Efl.ContainerContentAddedEventArgs> ContentAddedEvent
     {
         add
         {
@@ -84,8 +84,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContainerContentAddedEventArgs args = new Efl.ContainerContentAddedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -112,8 +112,9 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
             }
         }
     }
-    /// <summary>Method to raise event ContentAddedEvt.</summary>
-    public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
+    /// <summary>Method to raise event ContentAddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentAddedEvent(Efl.ContainerContentAddedEventArgs e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -128,8 +129,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     }
     /// <summary>Sent after a sub-object was removed, before unref.
     /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
-    public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
+    /// <value><see cref="Efl.ContainerContentRemovedEventArgs"/></value>
+    public event EventHandler<Efl.ContainerContentRemovedEventArgs> ContentRemovedEvent
     {
         add
         {
@@ -140,8 +141,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContainerContentRemovedEventArgs args = new Efl.ContainerContentRemovedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -168,8 +169,9 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
             }
         }
     }
-    /// <summary>Method to raise event ContentRemovedEvt.</summary>
-    public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
+    /// <summary>Method to raise event ContentRemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentRemovedEvent(Efl.ContainerContentRemovedEventArgs e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -183,7 +185,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
     /// <summary>Sent after the layout was updated.</summary>
-    public event EventHandler LayoutUpdatedEvt
+    public event EventHandler LayoutUpdatedEvent
     {
         add
         {
@@ -221,8 +223,9 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
             }
         }
     }
-    /// <summary>Method to raise event LayoutUpdatedEvt.</summary>
-    public void OnLayoutUpdatedEvt(EventArgs e)
+    /// <summary>Method to raise event LayoutUpdatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLayoutUpdatedEvent(EventArgs e)
     {
         var key = "_EFL_PACK_EVENT_LAYOUT_UPDATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -238,7 +241,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// This will enable the homogeneous mode where cells are of the same weight and of the same min size which is determined by maximum min size of cells.</summary>
     /// <param name="homogeneoush"><c>true</c> if the box is homogeneous horizontally, <c>false</c> otherwise</param>
     /// <param name="homogeneousv"><c>true</c> if the box is homogeneous vertically, <c>false</c> otherwise</param>
-    virtual public void GetHomogeneous(out bool homogeneoush, out bool homogeneousv) {
+    public virtual void GetHomogeneous(out bool homogeneoush, out bool homogeneousv) {
                                                          Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out homogeneoush, out homogeneousv);
         Eina.Error.RaiseIfUnhandledException();
                                          }
@@ -246,46 +249,46 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// This will enable the homogeneous mode where cells are of the same weight and of the same min size which is determined by maximum min size of cells.</summary>
     /// <param name="homogeneoush"><c>true</c> if the box is homogeneous horizontally, <c>false</c> otherwise</param>
     /// <param name="homogeneousv"><c>true</c> if the box is homogeneous vertically, <c>false</c> otherwise</param>
-    virtual public void SetHomogeneous(bool homogeneoush, bool homogeneousv) {
+    public virtual void SetHomogeneous(bool homogeneoush, bool homogeneousv) {
                                                          Efl.Ui.Table.NativeMethods.efl_ui_table_homogeneous_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),homogeneoush, homogeneousv);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Begin iterating over this object&apos;s contents.
     /// (Since EFL 1.22)</summary>
     /// <returns>Iterator on object&apos;s content.</returns>
-    virtual public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
+         var _ret_var = Efl.ContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
     /// <summary>Returns the number of contained sub-objects.
     /// (Since EFL 1.22)</summary>
     /// <returns>Number of sub-objects.</returns>
-    virtual public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual int ContentCount() {
+         var _ret_var = Efl.ContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects and unreferences them.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
-    virtual public bool ClearPack() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool ClearPack() {
+         var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes all packed sub-objects without unreferencing them.
     /// Use with caution.</summary>
     /// <returns><c>true</c> on success, <c>false</c> otherwise.</returns>
-    virtual public bool UnpackAll() {
-         var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool UnpackAll() {
+         var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_unpack_all_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Removes an existing sub-object from the container without deleting it.</summary>
     /// <param name="subobj">The sub-object to unpack.</param>
     /// <returns><c>false</c> if <c>subobj</c> wasn&apos;t in the container or couldn&apos;t be removed.</returns>
-    virtual public bool Unpack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool Unpack(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_unpack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
@@ -295,23 +298,23 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// When this container is deleted, it will request deletion of the given <c>subobj</c>. Use <see cref="Efl.IPack.Unpack"/> to remove <c>subobj</c> from this container without deleting it.</summary>
     /// <param name="subobj">The object to pack.</param>
     /// <returns><c>false</c> if <c>subobj</c> could not be packed.</returns>
-    virtual public bool Pack(Efl.Gfx.IEntity subobj) {
-                                 var _ret_var = Efl.IPackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
+    public virtual bool Pack(Efl.Gfx.IEntity subobj) {
+                                 var _ret_var = Efl.PackConcrete.NativeMethods.efl_pack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>Requests EFL to call the <see cref="Efl.IPackLayout.UpdateLayout"/> method on this object.
-    /// This <see cref="Efl.IPackLayout.UpdateLayout"/> may be called asynchronously.</summary>
-    virtual public void LayoutRequest() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <summary>Requests EFL to recalculate the layout of this object.
+    /// Internal layout methods might be called asynchronously.</summary>
+    public virtual void LayoutRequest() {
+         Efl.PackLayoutConcrete.NativeMethods.efl_pack_layout_request_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Implementation of this container&apos;s layout algorithm.
     /// EFL will call this function whenever the contents of this container need to be re-laid out on the canvas.
     /// 
-    /// This can be overriden to implement custom layout behaviors.</summary>
-    virtual public void UpdateLayout() {
-         Efl.IPackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// This can be overridden to implement custom layout behaviors.</summary>
+    protected virtual void UpdateLayout() {
+         Efl.PackLayoutConcrete.NativeMethods.efl_pack_layout_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>column of the <c>subobj</c> in this container.</summary>
@@ -319,8 +322,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="col">Column number</param>
     /// <param name="colspan">Column span</param>
     /// <returns>Returns false if item is not a child</returns>
-    virtual public bool GetTableCellColumn(Efl.Gfx.IEntity subobj, out int col, out int colspan) {
-                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_column_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out colspan);
+    public virtual bool GetTableCellColumn(Efl.Gfx.IEntity subobj, out int col, out int colspan) {
+                                                                                 var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_cell_column_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out col, out colspan);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -328,8 +331,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="subobj">Child object</param>
     /// <param name="col">Column number</param>
     /// <param name="colspan">Column span</param>
-    virtual public void SetTableCellColumn(Efl.Gfx.IEntity subobj, int col, int colspan) {
-                                                                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_column_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, colspan);
+    public virtual void SetTableCellColumn(Efl.Gfx.IEntity subobj, int col, int colspan) {
+                                                                                 Efl.PackTableConcrete.NativeMethods.efl_pack_table_cell_column_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, colspan);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>row of the <c>subobj</c> in this container.</summary>
@@ -337,8 +340,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="row">Row number</param>
     /// <param name="rowspan">Row span</param>
     /// <returns>Returns false if item is not a child</returns>
-    virtual public bool GetTableCellRow(Efl.Gfx.IEntity subobj, out int row, out int rowspan) {
-                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_row_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out row, out rowspan);
+    public virtual bool GetTableCellRow(Efl.Gfx.IEntity subobj, out int row, out int rowspan) {
+                                                                                 var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_cell_row_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, out row, out rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                         return _ret_var;
  }
@@ -346,48 +349,48 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="subobj">Child object</param>
     /// <param name="row">Row number</param>
     /// <param name="rowspan">Row span</param>
-    virtual public void SetTableCellRow(Efl.Gfx.IEntity subobj, int row, int rowspan) {
-                                                                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_cell_row_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, row, rowspan);
+    public virtual void SetTableCellRow(Efl.Gfx.IEntity subobj, int row, int rowspan) {
+                                                                                 Efl.PackTableConcrete.NativeMethods.efl_pack_table_cell_row_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, row, rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
-    virtual public void GetTableSize(out int cols, out int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cols, out rows);
+    public virtual void GetTableSize(out int cols, out int rows) {
+                                                         Efl.PackTableConcrete.NativeMethods.efl_pack_table_size_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out cols, out rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Combines <see cref="Efl.IPackTable.TableColumns"/> and <see cref="Efl.IPackTable.TableRows"/></summary>
     /// <param name="cols">Number of columns</param>
     /// <param name="rows">Number of rows</param>
-    virtual public void SetTableSize(int cols, int rows) {
-                                                         Efl.IPackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols, rows);
+    public virtual void SetTableSize(int cols, int rows) {
+                                                         Efl.PackTableConcrete.NativeMethods.efl_pack_table_size_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols, rows);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <returns>Amount of columns.</returns>
-    virtual public int GetTableColumns() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual int GetTableColumns() {
+         var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_columns_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of columns the table will have when the fill direction is horizontal. If it is vertical, the amount of columns depends on the amount of cells added and <see cref="Efl.IPackTable.TableRows"/>.</summary>
     /// <param name="cols">Amount of columns.</param>
-    virtual public void SetTableColumns(int cols) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols);
+    public virtual void SetTableColumns(int cols) {
+                                 Efl.PackTableConcrete.NativeMethods.efl_pack_table_columns_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cols);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <returns>Amount of rows.</returns>
-    virtual public int GetTableRows() {
-         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual int GetTableRows() {
+         var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_rows_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Specifies the amount of rows the table will have when the fill direction is vertical. If it is horizontal, the amount of rows depends on the amount of cells added and <see cref="Efl.IPackTable.TableColumns"/>.</summary>
     /// <param name="rows">Amount of rows.</param>
-    virtual public void SetTableRows(int rows) {
-                                 Efl.IPackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rows);
+    public virtual void SetTableRows(int rows) {
+                                 Efl.PackTableConcrete.NativeMethods.efl_pack_table_rows_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rows);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Pack object at a given location in the table.
@@ -398,8 +401,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="colspan">0 means 1, -1 means <see cref="Efl.IPackTable.TableColumns"/></param>
     /// <param name="rowspan">0 means 1, -1 means <see cref="Efl.IPackTable.TableRows"/></param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool PackTable(Efl.Gfx.IEntity subobj, int col, int row, int colspan, int rowspan) {
-                                                                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, row, colspan, rowspan);
+    public virtual bool PackTable(Efl.Gfx.IEntity subobj, int col, int row, int colspan, int rowspan) {
+                                                                                                                                 var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, col, row, colspan, rowspan);
         Eina.Error.RaiseIfUnhandledException();
                                                                                         return _ret_var;
  }
@@ -408,8 +411,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="row">Row number</param>
     /// <param name="below">If <c>true</c> get objects spanning over this cell.</param>
     /// <returns>Iterator to table contents</returns>
-    virtual public Eina.Iterator<Efl.Gfx.IEntity> GetTableContents(int col, int row, bool below) {
-                                                                                 var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row, below);
+    public virtual Eina.Iterator<Efl.Gfx.IEntity> GetTableContents(int col, int row, bool below) {
+                                                                                 var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_contents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row, below);
         Eina.Error.RaiseIfUnhandledException();
                                                         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
  }
@@ -417,39 +420,55 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// <param name="col">Column number</param>
     /// <param name="row">Row number</param>
     /// <returns>Child object</returns>
-    virtual public Efl.Gfx.IEntity GetTableContent(int col, int row) {
-                                                         var _ret_var = Efl.IPackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row);
+    public virtual Efl.Gfx.IEntity GetTableContent(int col, int row) {
+                                                         var _ret_var = Efl.PackTableConcrete.NativeMethods.efl_pack_table_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),col, row);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
-    /// <summary>Alignment of the container within its bounds</summary>
-    /// <param name="align_horiz">Horizontal alignment</param>
-    /// <param name="align_vert">Vertical alignment</param>
-    virtual public void GetContentAlign(out double align_horiz, out double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_horiz, out align_vert);
+    /// <summary>This property determines how contents will be aligned within a container if there is unused space.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintAlign"/> property in that it affects the position of all the contents within the container. For example, if a box widget has extra space on the horizontal axis, this property can be used to align the box&apos;s contents to the left or the right side.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintAlign"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="align_horiz">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end. The default value is 0.5.</param>
+    /// <param name="align_vert">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end. The default value is 0.5.</param>
+    public virtual void GetContentAlign(out double align_horiz, out double align_vert) {
+                                                         Efl.Gfx.ArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out align_horiz, out align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Alignment of the container within its bounds</summary>
-    /// <param name="align_horiz">Horizontal alignment</param>
-    /// <param name="align_vert">Vertical alignment</param>
-    virtual public void SetContentAlign(double align_horiz, double align_vert) {
-                                                         Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_horiz, align_vert);
+    /// <summary>This property determines how contents will be aligned within a container if there is unused space.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintAlign"/> property in that it affects the position of all the contents within the container. For example, if a box widget has extra space on the horizontal axis, this property can be used to align the box&apos;s contents to the left or the right side.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintAlign"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="align_horiz">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end. The default value is 0.5.</param>
+    /// <param name="align_vert">Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the vertical axis and 1.0 is at the end. The default value is 0.5.</param>
+    public virtual void SetContentAlign(double align_horiz, double align_vert) {
+                                                         Efl.Gfx.ArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),align_horiz, align_vert);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Padding between items contained in this object.</summary>
-    /// <param name="pad_horiz">Horizontal padding</param>
-    /// <param name="pad_vert">Vertical padding</param>
-    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
-    virtual public void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pad_horiz, out pad_vert, out scalable);
+    /// <summary>This property determines the space between a container&apos;s content items.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintMargin"/> property in that it is applied to each content item within the container instead of a single item. The calculation for these two properties is cumulative.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintMargin"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="pad_horiz">Horizontal padding. The default value is 0.0.</param>
+    /// <param name="pad_vert">Vertical padding. The default value is 0.0.</param>
+    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise. The default value is <c>false</c>.</param>
+    public virtual void GetContentPadding(out double pad_horiz, out double pad_vert, out bool scalable) {
+                                                                                 Efl.Gfx.ArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out pad_horiz, out pad_vert, out scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
-    /// <summary>Padding between items contained in this object.</summary>
-    /// <param name="pad_horiz">Horizontal padding</param>
-    /// <param name="pad_vert">Vertical padding</param>
-    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise</param>
-    virtual public void SetContentPadding(double pad_horiz, double pad_vert, bool scalable) {
-                                                                                 Efl.Gfx.IArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pad_horiz, pad_vert, scalable);
+    /// <summary>This property determines the space between a container&apos;s content items.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintMargin"/> property in that it is applied to each content item within the container instead of a single item. The calculation for these two properties is cumulative.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintMargin"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <param name="pad_horiz">Horizontal padding. The default value is 0.0.</param>
+    /// <param name="pad_vert">Vertical padding. The default value is 0.0.</param>
+    /// <param name="scalable"><c>true</c> if scalable, <c>false</c> otherwise. The default value is <c>false</c>.</param>
+    public virtual void SetContentPadding(double pad_horiz, double pad_vert, bool scalable) {
+                                                                                 Efl.Gfx.ArrangementConcrete.NativeMethods.efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),pad_horiz, pad_vert, scalable);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Control the direction of a given widget.
@@ -457,8 +476,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
-    virtual public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.LayoutOrientation GetOrientation() {
+         var _ret_var = Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -467,8 +486,8 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
-    virtual public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual void SetOrientation(Efl.Ui.LayoutOrientation dir) {
+                                 Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Control homogeneous mode.
@@ -506,8 +525,12 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         get { return GetTableRows(); }
         set { SetTableRows(value); }
     }
-    /// <summary>Alignment of the container within its bounds</summary>
-    /// <value>Horizontal alignment</value>
+    /// <summary>This property determines how contents will be aligned within a container if there is unused space.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintAlign"/> property in that it affects the position of all the contents within the container. For example, if a box widget has extra space on the horizontal axis, this property can be used to align the box&apos;s contents to the left or the right side.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintAlign"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <value>Double, ranging from 0.0 to 1.0, where 0.0 is at the start of the horizontal axis and 1.0 is at the end. The default value is 0.5.</value>
     public (double, double) ContentAlign {
         get {
             double _out_align_horiz = default(double);
@@ -517,8 +540,12 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         }
         set { SetContentAlign( value.Item1,  value.Item2); }
     }
-    /// <summary>Padding between items contained in this object.</summary>
-    /// <value>Horizontal padding</value>
+    /// <summary>This property determines the space between a container&apos;s content items.
+    /// It is different than the <see cref="Efl.Gfx.IHint.GetHintMargin"/> property in that it is applied to each content item within the container instead of a single item. The calculation for these two properties is cumulative.
+    /// 
+    /// See also <see cref="Efl.Gfx.IHint.GetHintMargin"/>.
+    /// (Since EFL 1.23)</summary>
+    /// <value>Horizontal padding. The default value is 0.0.</value>
     public (double, double, bool) ContentPadding {
         get {
             double _out_pad_horiz = default(double);
@@ -549,7 +576,7 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -574,76 +601,6 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_table_homogeneous_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_table_homogeneous_set_static_delegate) });
             }
 
-            if (efl_content_iterate_static_delegate == null)
-            {
-                efl_content_iterate_static_delegate = new efl_content_iterate_delegate(content_iterate);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ContentIterate") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_content_iterate_static_delegate) });
-            }
-
-            if (efl_content_count_static_delegate == null)
-            {
-                efl_content_count_static_delegate = new efl_content_count_delegate(content_count);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ContentCount") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_count"), func = Marshal.GetFunctionPointerForDelegate(efl_content_count_static_delegate) });
-            }
-
-            if (efl_pack_clear_static_delegate == null)
-            {
-                efl_pack_clear_static_delegate = new efl_pack_clear_delegate(pack_clear);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ClearPack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_clear_static_delegate) });
-            }
-
-            if (efl_pack_unpack_all_static_delegate == null)
-            {
-                efl_pack_unpack_all_static_delegate = new efl_pack_unpack_all_delegate(unpack_all);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "UnpackAll") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_unpack_all"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_unpack_all_static_delegate) });
-            }
-
-            if (efl_pack_unpack_static_delegate == null)
-            {
-                efl_pack_unpack_static_delegate = new efl_pack_unpack_delegate(unpack);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Unpack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_unpack"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_unpack_static_delegate) });
-            }
-
-            if (efl_pack_static_delegate == null)
-            {
-                efl_pack_static_delegate = new efl_pack_delegate(pack);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Pack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_static_delegate) });
-            }
-
-            if (efl_pack_layout_request_static_delegate == null)
-            {
-                efl_pack_layout_request_static_delegate = new efl_pack_layout_request_delegate(layout_request);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "LayoutRequest") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_layout_request"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_layout_request_static_delegate) });
-            }
-
             if (efl_pack_layout_update_static_delegate == null)
             {
                 efl_pack_layout_update_static_delegate = new efl_pack_layout_update_delegate(layout_update);
@@ -654,197 +611,17 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_layout_update"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_layout_update_static_delegate) });
             }
 
-            if (efl_pack_table_cell_column_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_pack_table_cell_column_get_static_delegate = new efl_pack_table_cell_column_get_delegate(table_cell_column_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableCellColumn") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_column_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_column_get_static_delegate) });
-            }
-
-            if (efl_pack_table_cell_column_set_static_delegate == null)
-            {
-                efl_pack_table_cell_column_set_static_delegate = new efl_pack_table_cell_column_set_delegate(table_cell_column_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTableCellColumn") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_column_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_column_set_static_delegate) });
-            }
-
-            if (efl_pack_table_cell_row_get_static_delegate == null)
-            {
-                efl_pack_table_cell_row_get_static_delegate = new efl_pack_table_cell_row_get_delegate(table_cell_row_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableCellRow") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_row_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_row_get_static_delegate) });
-            }
-
-            if (efl_pack_table_cell_row_set_static_delegate == null)
-            {
-                efl_pack_table_cell_row_set_static_delegate = new efl_pack_table_cell_row_set_delegate(table_cell_row_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTableCellRow") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_cell_row_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_cell_row_set_static_delegate) });
-            }
-
-            if (efl_pack_table_size_get_static_delegate == null)
-            {
-                efl_pack_table_size_get_static_delegate = new efl_pack_table_size_get_delegate(table_size_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableSize") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_size_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_size_get_static_delegate) });
-            }
-
-            if (efl_pack_table_size_set_static_delegate == null)
-            {
-                efl_pack_table_size_set_static_delegate = new efl_pack_table_size_set_delegate(table_size_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTableSize") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_size_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_size_set_static_delegate) });
-            }
-
-            if (efl_pack_table_columns_get_static_delegate == null)
-            {
-                efl_pack_table_columns_get_static_delegate = new efl_pack_table_columns_get_delegate(table_columns_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableColumns") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_columns_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_columns_get_static_delegate) });
-            }
-
-            if (efl_pack_table_columns_set_static_delegate == null)
-            {
-                efl_pack_table_columns_set_static_delegate = new efl_pack_table_columns_set_delegate(table_columns_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTableColumns") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_columns_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_columns_set_static_delegate) });
-            }
-
-            if (efl_pack_table_rows_get_static_delegate == null)
-            {
-                efl_pack_table_rows_get_static_delegate = new efl_pack_table_rows_get_delegate(table_rows_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableRows") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_rows_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_rows_get_static_delegate) });
-            }
-
-            if (efl_pack_table_rows_set_static_delegate == null)
-            {
-                efl_pack_table_rows_set_static_delegate = new efl_pack_table_rows_set_delegate(table_rows_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTableRows") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_rows_set"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_rows_set_static_delegate) });
-            }
-
-            if (efl_pack_table_static_delegate == null)
-            {
-                efl_pack_table_static_delegate = new efl_pack_table_delegate(pack_table);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PackTable") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_static_delegate) });
-            }
-
-            if (efl_pack_table_contents_get_static_delegate == null)
-            {
-                efl_pack_table_contents_get_static_delegate = new efl_pack_table_contents_get_delegate(table_contents_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableContents") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_contents_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_contents_get_static_delegate) });
-            }
-
-            if (efl_pack_table_content_get_static_delegate == null)
-            {
-                efl_pack_table_content_get_static_delegate = new efl_pack_table_content_get_delegate(table_content_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTableContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_pack_table_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_pack_table_content_get_static_delegate) });
-            }
-
-            if (efl_gfx_arrangement_content_align_get_static_delegate == null)
-            {
-                efl_gfx_arrangement_content_align_get_static_delegate = new efl_gfx_arrangement_content_align_get_delegate(content_align_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetContentAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_align_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_align_get_static_delegate) });
-            }
-
-            if (efl_gfx_arrangement_content_align_set_static_delegate == null)
-            {
-                efl_gfx_arrangement_content_align_set_static_delegate = new efl_gfx_arrangement_content_align_set_delegate(content_align_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetContentAlign") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_align_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_align_set_static_delegate) });
-            }
-
-            if (efl_gfx_arrangement_content_padding_get_static_delegate == null)
-            {
-                efl_gfx_arrangement_content_padding_get_static_delegate = new efl_gfx_arrangement_content_padding_get_delegate(content_padding_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetContentPadding") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_padding_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_padding_get_static_delegate) });
-            }
-
-            if (efl_gfx_arrangement_content_padding_set_static_delegate == null)
-            {
-                efl_gfx_arrangement_content_padding_set_static_delegate = new efl_gfx_arrangement_content_padding_set_delegate(content_padding_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetContentPadding") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_arrangement_content_padding_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_arrangement_content_padding_set_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_get_static_delegate == null)
-            {
-                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_set_static_delegate == null)
-            {
-                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
@@ -927,257 +704,6 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         private static efl_ui_table_homogeneous_set_delegate efl_ui_table_homogeneous_set_static_delegate;
 
         
-        private delegate System.IntPtr efl_content_iterate_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_content_iterate_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate> efl_content_iterate_ptr = new Efl.Eo.FunctionWrapper<efl_content_iterate_api_delegate>(Module, "efl_content_iterate");
-
-        private static System.IntPtr content_iterate(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_content_iterate was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).ContentIterate();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        _ret_var.Own = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_content_iterate_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_content_iterate_delegate efl_content_iterate_static_delegate;
-
-        
-        private delegate int efl_content_count_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate int efl_content_count_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_content_count_api_delegate> efl_content_count_ptr = new Efl.Eo.FunctionWrapper<efl_content_count_api_delegate>(Module, "efl_content_count");
-
-        private static int content_count(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_content_count was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).ContentCount();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_content_count_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_content_count_delegate efl_content_count_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_clear_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_clear_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_clear_api_delegate> efl_pack_clear_ptr = new Efl.Eo.FunctionWrapper<efl_pack_clear_api_delegate>(Module, "efl_pack_clear");
-
-        private static bool pack_clear(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_clear was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).ClearPack();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_clear_delegate efl_pack_clear_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_unpack_all_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_unpack_all_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_unpack_all_api_delegate> efl_pack_unpack_all_ptr = new Efl.Eo.FunctionWrapper<efl_pack_unpack_all_api_delegate>(Module, "efl_pack_unpack_all");
-
-        private static bool unpack_all(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_unpack_all was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).UnpackAll();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_unpack_all_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_unpack_all_delegate efl_pack_unpack_all_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_unpack_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_unpack_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_unpack_api_delegate> efl_pack_unpack_ptr = new Efl.Eo.FunctionWrapper<efl_pack_unpack_api_delegate>(Module, "efl_pack_unpack");
-
-        private static bool unpack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack_unpack was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).Unpack(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_unpack_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_unpack_delegate efl_pack_unpack_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_api_delegate> efl_pack_ptr = new Efl.Eo.FunctionWrapper<efl_pack_api_delegate>(Module, "efl_pack");
-
-        private static bool pack(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj)
-        {
-            Eina.Log.Debug("function efl_pack was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).Pack(subobj);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj);
-            }
-        }
-
-        private static efl_pack_delegate efl_pack_static_delegate;
-
-        
-        private delegate void efl_pack_layout_request_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_pack_layout_request_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_layout_request_api_delegate> efl_pack_layout_request_ptr = new Efl.Eo.FunctionWrapper<efl_pack_layout_request_api_delegate>(Module, "efl_pack_layout_request");
-
-        private static void layout_request(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_layout_request was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Table)ws.Target).LayoutRequest();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_pack_layout_request_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_layout_request_delegate efl_pack_layout_request_static_delegate;
-
-        
         private delegate void efl_pack_layout_update_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
@@ -1211,679 +737,6 @@ public class Table : Efl.Ui.Widget, Efl.IContainer, Efl.IPack, Efl.IPackLayout, 
         }
 
         private static efl_pack_layout_update_delegate efl_pack_layout_update_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_table_cell_column_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int colspan);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_table_cell_column_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int col,  out int colspan);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_get_api_delegate> efl_pack_table_cell_column_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_get_api_delegate>(Module, "efl_pack_table_cell_column_get");
-
-        private static bool table_cell_column_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, out int col, out int colspan)
-        {
-            Eina.Log.Debug("function efl_pack_table_cell_column_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                        col = default(int);        colspan = default(int);                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableCellColumn(subobj, out col, out colspan);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_cell_column_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, out col, out colspan);
-            }
-        }
-
-        private static efl_pack_table_cell_column_get_delegate efl_pack_table_cell_column_get_static_delegate;
-
-        
-        private delegate void efl_pack_table_cell_column_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int colspan);
-
-        
-        public delegate void efl_pack_table_cell_column_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int colspan);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_set_api_delegate> efl_pack_table_cell_column_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_column_set_api_delegate>(Module, "efl_pack_table_cell_column_set");
-
-        private static void table_cell_column_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int col, int colspan)
-        {
-            Eina.Log.Debug("function efl_pack_table_cell_column_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    
-                try
-                {
-                    ((Table)ws.Target).SetTableCellColumn(subobj, col, colspan);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_pack_table_cell_column_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, col, colspan);
-            }
-        }
-
-        private static efl_pack_table_cell_column_set_delegate efl_pack_table_cell_column_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_table_cell_row_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int row,  out int rowspan);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_table_cell_row_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  out int row,  out int rowspan);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_get_api_delegate> efl_pack_table_cell_row_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_get_api_delegate>(Module, "efl_pack_table_cell_row_get");
-
-        private static bool table_cell_row_get(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, out int row, out int rowspan)
-        {
-            Eina.Log.Debug("function efl_pack_table_cell_row_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                        row = default(int);        rowspan = default(int);                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableCellRow(subobj, out row, out rowspan);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_cell_row_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, out row, out rowspan);
-            }
-        }
-
-        private static efl_pack_table_cell_row_get_delegate efl_pack_table_cell_row_get_static_delegate;
-
-        
-        private delegate void efl_pack_table_cell_row_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int row,  int rowspan);
-
-        
-        public delegate void efl_pack_table_cell_row_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int row,  int rowspan);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_set_api_delegate> efl_pack_table_cell_row_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_cell_row_set_api_delegate>(Module, "efl_pack_table_cell_row_set");
-
-        private static void table_cell_row_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int row, int rowspan)
-        {
-            Eina.Log.Debug("function efl_pack_table_cell_row_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    
-                try
-                {
-                    ((Table)ws.Target).SetTableCellRow(subobj, row, rowspan);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_pack_table_cell_row_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, row, rowspan);
-            }
-        }
-
-        private static efl_pack_table_cell_row_set_delegate efl_pack_table_cell_row_set_static_delegate;
-
-        
-        private delegate void efl_pack_table_size_get_delegate(System.IntPtr obj, System.IntPtr pd,  out int cols,  out int rows);
-
-        
-        public delegate void efl_pack_table_size_get_api_delegate(System.IntPtr obj,  out int cols,  out int rows);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_size_get_api_delegate> efl_pack_table_size_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_size_get_api_delegate>(Module, "efl_pack_table_size_get");
-
-        private static void table_size_get(System.IntPtr obj, System.IntPtr pd, out int cols, out int rows)
-        {
-            Eina.Log.Debug("function efl_pack_table_size_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                        cols = default(int);        rows = default(int);                            
-                try
-                {
-                    ((Table)ws.Target).GetTableSize(out cols, out rows);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_pack_table_size_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out cols, out rows);
-            }
-        }
-
-        private static efl_pack_table_size_get_delegate efl_pack_table_size_get_static_delegate;
-
-        
-        private delegate void efl_pack_table_size_set_delegate(System.IntPtr obj, System.IntPtr pd,  int cols,  int rows);
-
-        
-        public delegate void efl_pack_table_size_set_api_delegate(System.IntPtr obj,  int cols,  int rows);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_size_set_api_delegate> efl_pack_table_size_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_size_set_api_delegate>(Module, "efl_pack_table_size_set");
-
-        private static void table_size_set(System.IntPtr obj, System.IntPtr pd, int cols, int rows)
-        {
-            Eina.Log.Debug("function efl_pack_table_size_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Table)ws.Target).SetTableSize(cols, rows);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_pack_table_size_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), cols, rows);
-            }
-        }
-
-        private static efl_pack_table_size_set_delegate efl_pack_table_size_set_static_delegate;
-
-        
-        private delegate int efl_pack_table_columns_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate int efl_pack_table_columns_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_columns_get_api_delegate> efl_pack_table_columns_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_columns_get_api_delegate>(Module, "efl_pack_table_columns_get");
-
-        private static int table_columns_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_table_columns_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableColumns();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_columns_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_table_columns_get_delegate efl_pack_table_columns_get_static_delegate;
-
-        
-        private delegate void efl_pack_table_columns_set_delegate(System.IntPtr obj, System.IntPtr pd,  int cols);
-
-        
-        public delegate void efl_pack_table_columns_set_api_delegate(System.IntPtr obj,  int cols);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_columns_set_api_delegate> efl_pack_table_columns_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_columns_set_api_delegate>(Module, "efl_pack_table_columns_set");
-
-        private static void table_columns_set(System.IntPtr obj, System.IntPtr pd, int cols)
-        {
-            Eina.Log.Debug("function efl_pack_table_columns_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Table)ws.Target).SetTableColumns(cols);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_pack_table_columns_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), cols);
-            }
-        }
-
-        private static efl_pack_table_columns_set_delegate efl_pack_table_columns_set_static_delegate;
-
-        
-        private delegate int efl_pack_table_rows_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate int efl_pack_table_rows_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_rows_get_api_delegate> efl_pack_table_rows_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_rows_get_api_delegate>(Module, "efl_pack_table_rows_get");
-
-        private static int table_rows_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_pack_table_rows_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableRows();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_rows_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_pack_table_rows_get_delegate efl_pack_table_rows_get_static_delegate;
-
-        
-        private delegate void efl_pack_table_rows_set_delegate(System.IntPtr obj, System.IntPtr pd,  int rows);
-
-        
-        public delegate void efl_pack_table_rows_set_api_delegate(System.IntPtr obj,  int rows);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_rows_set_api_delegate> efl_pack_table_rows_set_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_rows_set_api_delegate>(Module, "efl_pack_table_rows_set");
-
-        private static void table_rows_set(System.IntPtr obj, System.IntPtr pd, int rows)
-        {
-            Eina.Log.Debug("function efl_pack_table_rows_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Table)ws.Target).SetTableRows(rows);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_pack_table_rows_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), rows);
-            }
-        }
-
-        private static efl_pack_table_rows_set_delegate efl_pack_table_rows_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_pack_table_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int row,  int colspan,  int rowspan);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_pack_table_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity subobj,  int col,  int row,  int colspan,  int rowspan);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_api_delegate> efl_pack_table_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_api_delegate>(Module, "efl_pack_table");
-
-        private static bool pack_table(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity subobj, int col, int row, int colspan, int rowspan)
-        {
-            Eina.Log.Debug("function efl_pack_table was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                                                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).PackTable(subobj, col, row, colspan, rowspan);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), subobj, col, row, colspan, rowspan);
-            }
-        }
-
-        private static efl_pack_table_delegate efl_pack_table_static_delegate;
-
-        
-        private delegate System.IntPtr efl_pack_table_contents_get_delegate(System.IntPtr obj, System.IntPtr pd,  int col,  int row, [MarshalAs(UnmanagedType.U1)] bool below);
-
-        
-        public delegate System.IntPtr efl_pack_table_contents_get_api_delegate(System.IntPtr obj,  int col,  int row, [MarshalAs(UnmanagedType.U1)] bool below);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_contents_get_api_delegate> efl_pack_table_contents_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_contents_get_api_delegate>(Module, "efl_pack_table_contents_get");
-
-        private static System.IntPtr table_contents_get(System.IntPtr obj, System.IntPtr pd, int col, int row, bool below)
-        {
-            Eina.Log.Debug("function efl_pack_table_contents_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableContents(col, row, below);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        _ret_var.Own = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_pack_table_contents_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), col, row, below);
-            }
-        }
-
-        private static efl_pack_table_contents_get_delegate efl_pack_table_contents_get_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Gfx.IEntity efl_pack_table_content_get_delegate(System.IntPtr obj, System.IntPtr pd,  int col,  int row);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Gfx.IEntity efl_pack_table_content_get_api_delegate(System.IntPtr obj,  int col,  int row);
-
-        public static Efl.Eo.FunctionWrapper<efl_pack_table_content_get_api_delegate> efl_pack_table_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_pack_table_content_get_api_delegate>(Module, "efl_pack_table_content_get");
-
-        private static Efl.Gfx.IEntity table_content_get(System.IntPtr obj, System.IntPtr pd, int col, int row)
-        {
-            Eina.Log.Debug("function efl_pack_table_content_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetTableContent(col, row);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_pack_table_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), col, row);
-            }
-        }
-
-        private static efl_pack_table_content_get_delegate efl_pack_table_content_get_static_delegate;
-
-        
-        private delegate void efl_gfx_arrangement_content_align_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double align_horiz,  out double align_vert);
-
-        
-        public delegate void efl_gfx_arrangement_content_align_get_api_delegate(System.IntPtr obj,  out double align_horiz,  out double align_vert);
-
-        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_get_api_delegate> efl_gfx_arrangement_content_align_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_get_api_delegate>(Module, "efl_gfx_arrangement_content_align_get");
-
-        private static void content_align_get(System.IntPtr obj, System.IntPtr pd, out double align_horiz, out double align_vert)
-        {
-            Eina.Log.Debug("function efl_gfx_arrangement_content_align_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                        align_horiz = default(double);        align_vert = default(double);                            
-                try
-                {
-                    ((Table)ws.Target).GetContentAlign(out align_horiz, out align_vert);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_gfx_arrangement_content_align_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out align_horiz, out align_vert);
-            }
-        }
-
-        private static efl_gfx_arrangement_content_align_get_delegate efl_gfx_arrangement_content_align_get_static_delegate;
-
-        
-        private delegate void efl_gfx_arrangement_content_align_set_delegate(System.IntPtr obj, System.IntPtr pd,  double align_horiz,  double align_vert);
-
-        
-        public delegate void efl_gfx_arrangement_content_align_set_api_delegate(System.IntPtr obj,  double align_horiz,  double align_vert);
-
-        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_set_api_delegate> efl_gfx_arrangement_content_align_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_align_set_api_delegate>(Module, "efl_gfx_arrangement_content_align_set");
-
-        private static void content_align_set(System.IntPtr obj, System.IntPtr pd, double align_horiz, double align_vert)
-        {
-            Eina.Log.Debug("function efl_gfx_arrangement_content_align_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Table)ws.Target).SetContentAlign(align_horiz, align_vert);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_gfx_arrangement_content_align_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), align_horiz, align_vert);
-            }
-        }
-
-        private static efl_gfx_arrangement_content_align_set_delegate efl_gfx_arrangement_content_align_set_static_delegate;
-
-        
-        private delegate void efl_gfx_arrangement_content_padding_get_delegate(System.IntPtr obj, System.IntPtr pd,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
-
-        
-        public delegate void efl_gfx_arrangement_content_padding_get_api_delegate(System.IntPtr obj,  out double pad_horiz,  out double pad_vert, [MarshalAs(UnmanagedType.U1)] out bool scalable);
-
-        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_get_api_delegate> efl_gfx_arrangement_content_padding_get_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_get_api_delegate>(Module, "efl_gfx_arrangement_content_padding_get");
-
-        private static void content_padding_get(System.IntPtr obj, System.IntPtr pd, out double pad_horiz, out double pad_vert, out bool scalable)
-        {
-            Eina.Log.Debug("function efl_gfx_arrangement_content_padding_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                pad_horiz = default(double);        pad_vert = default(double);        scalable = default(bool);                                    
-                try
-                {
-                    ((Table)ws.Target).GetContentPadding(out pad_horiz, out pad_vert, out scalable);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_gfx_arrangement_content_padding_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out pad_horiz, out pad_vert, out scalable);
-            }
-        }
-
-        private static efl_gfx_arrangement_content_padding_get_delegate efl_gfx_arrangement_content_padding_get_static_delegate;
-
-        
-        private delegate void efl_gfx_arrangement_content_padding_set_delegate(System.IntPtr obj, System.IntPtr pd,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
-
-        
-        public delegate void efl_gfx_arrangement_content_padding_set_api_delegate(System.IntPtr obj,  double pad_horiz,  double pad_vert, [MarshalAs(UnmanagedType.U1)] bool scalable);
-
-        public static Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_set_api_delegate> efl_gfx_arrangement_content_padding_set_ptr = new Efl.Eo.FunctionWrapper<efl_gfx_arrangement_content_padding_set_api_delegate>(Module, "efl_gfx_arrangement_content_padding_set");
-
-        private static void content_padding_set(System.IntPtr obj, System.IntPtr pd, double pad_horiz, double pad_vert, bool scalable)
-        {
-            Eina.Log.Debug("function efl_gfx_arrangement_content_padding_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    
-                try
-                {
-                    ((Table)ws.Target).SetContentPadding(pad_horiz, pad_vert, scalable);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_gfx_arrangement_content_padding_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), pad_horiz, pad_vert, scalable);
-            }
-        }
-
-        private static efl_gfx_arrangement_content_padding_set_delegate efl_gfx_arrangement_content_padding_set_static_delegate;
-
-        
-        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
-
-        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
-                try
-                {
-                    _ret_var = ((Table)ws.Target).GetOrientation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
-
-        
-        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
-
-        
-        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
-
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Table)ws.Target).SetOrientation(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

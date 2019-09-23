@@ -71,7 +71,7 @@ public class Clock : Efl.Ui.LayoutBase
     }
 
     /// <summary>Called when clock changed</summary>
-    public event EventHandler ChangedEvt
+    public event EventHandler ChangedEvent
     {
         add
         {
@@ -109,8 +109,9 @@ public class Clock : Efl.Ui.LayoutBase
             }
         }
     }
-    /// <summary>Method to raise event ChangedEvt.</summary>
-    public void OnChangedEvt(EventArgs e)
+    /// <summary>Method to raise event ChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_CLOCK_EVENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -133,7 +134,7 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Default format is taken as per the system locale settings.</summary>
     /// <returns>The clock format.</returns>
-    virtual public System.String GetFormat() {
+    public virtual System.String GetFormat() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -149,14 +150,14 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Default format is taken as per the system locale settings.</summary>
     /// <param name="fmt">The clock format.</param>
-    virtual public void SetFormat(System.String fmt) {
+    public virtual void SetFormat(System.String fmt) {
                                  Efl.Ui.Clock.NativeMethods.efl_ui_clock_format_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fmt);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Whether the given clock widget should be paused or not.
     /// This function pauses or starts the clock widget.</summary>
     /// <returns><c>true</c> to pause clock, <c>false</c> otherwise</returns>
-    virtual public bool GetPause() {
+    public virtual bool GetPause() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -164,20 +165,20 @@ public class Clock : Efl.Ui.LayoutBase
     /// <summary>Whether the given clock widget should be paused or not.
     /// This function pauses or starts the clock widget.</summary>
     /// <param name="paused"><c>true</c> to pause clock, <c>false</c> otherwise</param>
-    virtual public void SetPause(bool paused) {
+    public virtual void SetPause(bool paused) {
                                  Efl.Ui.Clock.NativeMethods.efl_ui_clock_pause_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),paused);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Digits of the given clock widget should be editable when in editing mode.</summary>
     /// <returns><c>true</c> to set edit mode, <c>false</c> otherwise</returns>
-    virtual public bool GetEditMode() {
+    public virtual bool GetEditMode() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Digits of the given clock widget should be editable when in editing mode.</summary>
     /// <param name="value"><c>true</c> to set edit mode, <c>false</c> otherwise</param>
-    virtual public void SetEditMode(bool value) {
+    public virtual void SetEditMode(bool value) {
                                  Efl.Ui.Clock.NativeMethods.efl_ui_clock_edit_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
                          }
@@ -190,9 +191,11 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <returns>Time structure containing the minimum time value.</returns>
-    virtual public Efl.Time GetTimeMin() {
+    public virtual Efl.Time GetTimeMin() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -206,9 +209,11 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <param name="mintime">Time structure containing the minimum time value.</param>
-    virtual public void SetTimeMin(Efl.Time mintime) {
+    public virtual void SetTimeMin(Efl.Time mintime) {
          Efl.Time.NativeStruct _in_mintime = mintime;
                         Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_mintime);
         Eina.Error.RaiseIfUnhandledException();
@@ -222,9 +227,11 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <returns>Time structure containing the maximum time value.</returns>
-    virtual public Efl.Time GetTimeMax() {
+    public virtual Efl.Time GetTimeMax() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -238,9 +245,11 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <param name="maxtime">Time structure containing the maximum time value.</param>
-    virtual public void SetTimeMax(Efl.Time maxtime) {
+    public virtual void SetTimeMax(Efl.Time maxtime) {
          Efl.Time.NativeStruct _in_maxtime = maxtime;
                         Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_maxtime);
         Eina.Error.RaiseIfUnhandledException();
@@ -256,7 +265,7 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Minute: default value range is from 0 to 59.</summary>
     /// <returns>Time structure containing the time value.</returns>
-    virtual public Efl.Time GetTime() {
+    public virtual Efl.Time GetTime() {
          var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -272,45 +281,59 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Minute: default value range is from 0 to 59.</summary>
     /// <param name="curtime">Time structure containing the time value.</param>
-    virtual public void SetTime(Efl.Time curtime) {
+    public virtual void SetTime(Efl.Time curtime) {
          Efl.Time.NativeStruct _in_curtime = curtime;
                         Efl.Ui.Clock.NativeMethods.efl_ui_clock_time_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_curtime);
         Eina.Error.RaiseIfUnhandledException();
                          }
-    /// <summary>The field to be visible/not.</summary>
-    /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
+    /// <summary>Visibility of each field.
+    /// Allows, for example, hiding the year field by setting <see cref="Efl.Ui.ClockType.Year"/>&apos;s visibility to <c>false</c>.
+    /// 
+    /// Setting this API to <c>true</c> in itself doesn&apos;t ensure that the field is visible. The field&apos;s format also must be present in the overall clock format.  If a field&apos;s visibility is set to <c>false</c> then it won&apos;t appear even though its format is present. In summary, if this API is set to true and the corresponding field&apos;s format is present in clock format, the field is visible.
+    /// 
+    /// By default the field visibility is set to <c>true</c>.</summary>
+    /// <param name="fieldtype">Type of the field.</param>
     /// <returns><c>true</c> field can be visible, <c>false</c> otherwise.</returns>
-    virtual public bool GetFieldVisible(Efl.Ui.ClockType fieldtype) {
+    public virtual bool GetFieldVisible(Efl.Ui.ClockType fieldtype) {
                                  var _ret_var = Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype);
         Eina.Error.RaiseIfUnhandledException();
                         return _ret_var;
  }
-    /// <summary>The field to be visible/not.</summary>
-    /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
+    /// <summary>Visibility of each field.
+    /// Allows, for example, hiding the year field by setting <see cref="Efl.Ui.ClockType.Year"/>&apos;s visibility to <c>false</c>.
+    /// 
+    /// Setting this API to <c>true</c> in itself doesn&apos;t ensure that the field is visible. The field&apos;s format also must be present in the overall clock format.  If a field&apos;s visibility is set to <c>false</c> then it won&apos;t appear even though its format is present. In summary, if this API is set to true and the corresponding field&apos;s format is present in clock format, the field is visible.
+    /// 
+    /// By default the field visibility is set to <c>true</c>.</summary>
+    /// <param name="fieldtype">Type of the field.</param>
     /// <param name="visible"><c>true</c> field can be visible, <c>false</c> otherwise.</param>
-    virtual public void SetFieldVisible(Efl.Ui.ClockType fieldtype, bool visible) {
+    public virtual void SetFieldVisible(Efl.Ui.ClockType fieldtype, bool visible) {
                                                          Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, visible);
         Eina.Error.RaiseIfUnhandledException();
                                          }
-    /// <summary>Get the field limits of a field.
+    /// <summary>Numerical limits of each field.
     /// Limits can be set to individual fields, independently, except for the AM/PM field. Any field can display the values only in between these minimum and maximum limits unless the corresponding time value is restricted from MinTime to MaxTime. That is, min/max field limits always work under the limitations of mintime/maxtime.
     /// 
-    /// There is no provision to set the limits of AM/PM field.</summary>
-    /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
-    /// <param name="min">Reference to field&apos;s minimum value.</param>
-    /// <param name="max">Reference to field&apos;s maximum value.</param>
-    virtual public void GetFieldLimit(Efl.Ui.ClockType fieldtype, out int min, out int max) {
+    /// There is no provision to set the limits of AM/PM field.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.TimeMin"/> and <see cref="Efl.Ui.Clock.TimeMax"/> which set a global limit to the acceptable dates instead of to each individual field.</summary>
+    /// <param name="fieldtype">Type of the field.</param>
+    /// <param name="min">Acceptable minimum value for this field.</param>
+    /// <param name="max">Acceptable maximum value for this field.</param>
+    public virtual void GetFieldLimit(Efl.Ui.ClockType fieldtype, out int min, out int max) {
                                                                                  Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, out min, out max);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
-    /// <summary>Set a field to be visible or not.
-    /// Setting this API to <c>true</c> in itself doen&apos;t ensure that the field is visible. The field&apos;s format also must be present in the overall clock format.  If a field&apos;s visibility is set to <c>false</c> then it won&apos;t appear even though its format is present. In summary, if this API is set to true and the corresponding field&apos;s format is present in clock format, the field is visible.
+    /// <summary>Numerical limits of each field.
+    /// Limits can be set to individual fields, independently, except for the AM/PM field. Any field can display the values only in between these minimum and maximum limits unless the corresponding time value is restricted from MinTime to MaxTime. That is, min/max field limits always work under the limitations of mintime/maxtime.
     /// 
-    /// By default the field visibility is set to <c>true</c>.</summary>
-    /// <param name="fieldtype">Type of the field. #EFL_UI_CLOCK_TYPE_YEAR etc.</param>
-    /// <param name="min">Reference to field&apos;s minimum value.</param>
-    /// <param name="max">Reference to field&apos;s maximum value.</param>
-    virtual public void SetFieldLimit(Efl.Ui.ClockType fieldtype, int min, int max) {
+    /// There is no provision to set the limits of AM/PM field.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.TimeMin"/> and <see cref="Efl.Ui.Clock.TimeMax"/> which set a global limit to the acceptable dates instead of to each individual field.</summary>
+    /// <param name="fieldtype">Type of the field.</param>
+    /// <param name="min">Acceptable minimum value for this field.</param>
+    /// <param name="max">Acceptable maximum value for this field.</param>
+    public virtual void SetFieldLimit(Efl.Ui.ClockType fieldtype, int min, int max) {
                                                                                  Efl.Ui.Clock.NativeMethods.efl_ui_clock_field_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),fieldtype, min, max);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
@@ -351,7 +374,9 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <value>Time structure containing the minimum time value.</value>
     public Efl.Time TimeMin {
         get { return GetTimeMin(); }
@@ -366,7 +391,9 @@ public class Clock : Efl.Ui.LayoutBase
     /// 
     /// Hour: default value will be in terms of 24 hr format (0~23)
     /// 
-    /// Minute: default value range is from 0 to 59.</summary>
+    /// Minute: default value range is from 0 to 59.
+    /// 
+    /// Compare with <see cref="Efl.Ui.Clock.GetFieldLimit"/> which allows setting limits to each individual time field.</summary>
     /// <value>Time structure containing the maximum time value.</value>
     public Efl.Time TimeMax {
         get { return GetTimeMax(); }
@@ -398,7 +425,7 @@ public class Clock : Efl.Ui.LayoutBase
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -563,7 +590,17 @@ public class Clock : Efl.Ui.LayoutBase
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_clock_field_limit_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_clock_field_limit_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

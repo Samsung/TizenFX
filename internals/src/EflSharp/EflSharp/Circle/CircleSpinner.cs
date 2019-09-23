@@ -57,7 +57,7 @@ namespace Efl
                 /// <since_tizen> 6 </since_tizen>
                 public CircleSpinnerMarker Marker;
 
-                public event EventHandler SteadyEvt;
+                public event EventHandler SteadyEvent;
 
                 /// <summary>
                 /// Creates and initializes a new instance of the CircleSpinner class.

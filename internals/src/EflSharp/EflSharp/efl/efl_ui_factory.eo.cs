@@ -12,47 +12,34 @@ namespace Ui {
 
 /// <summary>Efl UI factory interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IFactoryConcrete.NativeMethods]
+[Efl.Ui.FactoryConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFactory : 
     Efl.Ui.IFactoryBind ,
     Efl.Ui.IPropertyBind ,
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Create a UI object from the necessary properties in the specified model.
-/// Note: This is the function you need to implement for a custom factory, but if you want to use a factory, you should rely on <see cref="Efl.Ui.ViewFactory.CreateWithEvent"/>.</summary>
-/// <param name="models">Efl iterator providing the model to be associated to the new item. It should remain valid until the end of the function call.</param>
-/// <param name="parent">Efl canvas</param>
-/// <returns>Created UI object</returns>
- Eina.Future Create(Eina.Iterator<Efl.IModel> models, Efl.Gfx.IEntity parent);
-    /// <summary>Release a UI object and disconnect from models.</summary>
+        /// <summary>Release a UI object and disconnect from models.</summary>
 /// <param name="ui_view">Efl canvas</param>
 void Release(Efl.Gfx.IEntity ui_view);
     /// <summary>This function is called during the creation of an UI object between the Efl.Object.constructor and <see cref="Efl.Object.FinalizeAdd"/> call.
-/// Note: if the <see cref="Efl.Ui.IFactory"/> does keep a cache of object, this won&apos;t be called when object are pulled out of the cache.</summary>
+/// Note: If the <see cref="Efl.Ui.IFactory"/> does keep a cache of objects, this won&apos;t be called when objects are pulled out of the cache.</summary>
 /// <param name="ui_view">The UI object being created.</param>
 void Building(Efl.Gfx.IEntity ui_view);
-        /// <summary>Async wrapper for <see cref="Create" />.</summary>
-    /// <param name="models">Efl iterator providing the model to be associated to the new item. It should remain valid until the end of the function call.</param>
-    /// <param name="parent">Efl canvas</param>
-    /// <param name="token">Token to notify the async operation of external request to cancel.</param>
-    /// <returns>An async task wrapping the result of the operation.</returns>
-    System.Threading.Tasks.Task<Eina.Value> CreateAsync(Eina.Iterator<Efl.IModel> models,Efl.Gfx.IEntity parent, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
-
-            /// <summary>Event triggered when an item has been successfully created.</summary>
-    /// <value><see cref="Efl.Ui.IFactoryCreatedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.IFactoryCreatedEvt_Args> CreatedEvt;
+                /// <summary>Event triggered when an item has been successfully created.</summary>
+    /// <value><see cref="Efl.Ui.FactoryCreatedEventArgs"/></value>
+    event EventHandler<Efl.Ui.FactoryCreatedEventArgs> CreatedEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IFactory.CreatedEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IFactory.CreatedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IFactoryCreatedEvt_Args : EventArgs {
+public class FactoryCreatedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Event triggered when an item has been successfully created.</value>
     public Efl.Ui.FactoryItemCreatedEvent arg { get; set; }
 }
 /// <summary>Efl UI factory interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFactoryConcrete :
+public sealed class FactoryConcrete :
     Efl.Eo.EoWrapper
     , IFactory
     , Efl.Ui.IFactoryBind, Efl.Ui.IPropertyBind
@@ -62,7 +49,7 @@ sealed public  class IFactoryConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFactoryConcrete))
+            if (((object)this).GetType() == typeof(FactoryConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -76,7 +63,7 @@ sealed public  class IFactoryConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFactoryConcrete(ConstructingHandle ch) : base(ch)
+    private FactoryConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -85,13 +72,13 @@ sealed public  class IFactoryConcrete :
     /// <summary>Initializes a new instance of the <see cref="IFactory"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFactoryConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FactoryConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Event triggered when an item has been successfully created.</summary>
-    /// <value><see cref="Efl.Ui.IFactoryCreatedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IFactoryCreatedEvt_Args> CreatedEvt
+    /// <value><see cref="Efl.Ui.FactoryCreatedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.FactoryCreatedEventArgs> CreatedEvent
     {
         add
         {
@@ -102,7 +89,7 @@ sealed public  class IFactoryConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IFactoryCreatedEvt_Args args = new Efl.Ui.IFactoryCreatedEvt_Args();
+                        Efl.Ui.FactoryCreatedEventArgs args = new Efl.Ui.FactoryCreatedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -130,8 +117,9 @@ sealed public  class IFactoryConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CreatedEvt.</summary>
-    public void OnCreatedEvt(Efl.Ui.IFactoryCreatedEvt_Args e)
+    /// <summary>Method to raise event CreatedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCreatedEvent(Efl.Ui.FactoryCreatedEventArgs e)
     {
         var key = "_EFL_UI_FACTORY_EVENT_CREATED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -152,9 +140,9 @@ sealed public  class IFactoryConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt
+    /// <summary>Event dispatched when a property on the object has changed due to a user interaction on the object that a model could be interested in.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertiesChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertiesChangedEventArgs> PropertiesChangedEvent
     {
         add
         {
@@ -165,7 +153,7 @@ sealed public  class IFactoryConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
+                        Efl.Ui.PropertyBindPropertiesChangedEventArgs args = new Efl.Ui.PropertyBindPropertiesChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -193,8 +181,9 @@ sealed public  class IFactoryConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
-    public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
+    /// <summary>Method to raise event PropertiesChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertiesChangedEvent(Efl.Ui.PropertyBindPropertiesChangedEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -215,9 +204,9 @@ sealed public  class IFactoryConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt
+    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to avoid generating too many events.</summary>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertyBoundEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertyBoundEventArgs> PropertyBoundEvent
     {
         add
         {
@@ -228,7 +217,7 @@ sealed public  class IFactoryConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
+                        Efl.Ui.PropertyBindPropertyBoundEventArgs args = new Efl.Ui.PropertyBindPropertyBoundEventArgs();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -256,8 +245,9 @@ sealed public  class IFactoryConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertyBoundEvt.</summary>
-    public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
+    /// <summary>Method to raise event PropertyBoundEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertyBoundEvent(Efl.Ui.PropertyBindPropertyBoundEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -277,35 +267,36 @@ sealed public  class IFactoryConcrete :
             Eina.MemoryNative.Free(info);
         }
     }
+#pragma warning disable CS0628
     /// <summary>Create a UI object from the necessary properties in the specified model.
     /// Note: This is the function you need to implement for a custom factory, but if you want to use a factory, you should rely on <see cref="Efl.Ui.ViewFactory.CreateWithEvent"/>.</summary>
     /// <param name="models">Efl iterator providing the model to be associated to the new item. It should remain valid until the end of the function call.</param>
     /// <param name="parent">Efl canvas</param>
     /// <returns>Created UI object</returns>
-    public  Eina.Future Create(Eina.Iterator<Efl.IModel> models, Efl.Gfx.IEntity parent) {
+    protected  Eina.Future Create(Eina.Iterator<Efl.IModel> models, Efl.Gfx.IEntity parent) {
          var _in_models = models.Handle;
-                                                var _ret_var = Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_create_ptr.Value.Delegate(this.NativeHandle,_in_models, parent);
+                                                var _ret_var = Efl.Ui.FactoryConcrete.NativeMethods.efl_ui_factory_create_ptr.Value.Delegate(this.NativeHandle,_in_models, parent);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Release a UI object and disconnect from models.</summary>
     /// <param name="ui_view">Efl canvas</param>
     public void Release(Efl.Gfx.IEntity ui_view) {
-                                 Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_release_ptr.Value.Delegate(this.NativeHandle,ui_view);
+                                 Efl.Ui.FactoryConcrete.NativeMethods.efl_ui_factory_release_ptr.Value.Delegate(this.NativeHandle,ui_view);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>This function is called during the creation of an UI object between the Efl.Object.constructor and <see cref="Efl.Object.FinalizeAdd"/> call.
-    /// Note: if the <see cref="Efl.Ui.IFactory"/> does keep a cache of object, this won&apos;t be called when object are pulled out of the cache.</summary>
+    /// Note: If the <see cref="Efl.Ui.IFactory"/> does keep a cache of objects, this won&apos;t be called when objects are pulled out of the cache.</summary>
     /// <param name="ui_view">The UI object being created.</param>
     public void Building(Efl.Gfx.IEntity ui_view) {
-                                 Efl.Ui.IFactoryConcrete.NativeMethods.efl_ui_factory_building_ptr.Value.Delegate(this.NativeHandle,ui_view);
+                                 Efl.Ui.FactoryConcrete.NativeMethods.efl_ui_factory_building_ptr.Value.Delegate(this.NativeHandle,ui_view);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>bind the factory with the given key string. when the data is ready or changed, factory create the object and bind the data to the key action and process promised work. Note: the input <see cref="Efl.Ui.IFactory"/> need to be <see cref="Efl.Ui.IPropertyBind.PropertyBind"/> at least once.</summary>
     /// <param name="key">Key string for bind model property data</param>
     /// <param name="factory"><see cref="Efl.Ui.IFactory"/> for create and bind model property data</param>
     public void FactoryBind(System.String key, Efl.Ui.IFactory factory) {
-                                                         Efl.Ui.IFactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate(this.NativeHandle,key, factory);
+                                                         Efl.Ui.FactoryBindConcrete.NativeMethods.efl_ui_factory_bind_ptr.Value.Delegate(this.NativeHandle,key, factory);
         Eina.Error.RaiseIfUnhandledException();
                                          }
     /// <summary>bind property data with the given key string. when the data is ready or changed, bind the data to the key action and process promised work.</summary>
@@ -313,7 +304,7 @@ sealed public  class IFactoryConcrete :
     /// <param name="property">Model property name</param>
     /// <returns>0 when it succeed, an error code otherwise.</returns>
     public Eina.Error PropertyBind(System.String key, System.String property) {
-                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate(this.NativeHandle,key, property);
+                                                         var _ret_var = Efl.Ui.PropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate(this.NativeHandle,key, property);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -328,9 +319,10 @@ sealed public  class IFactoryConcrete :
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
 
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IFactoryConcrete.efl_ui_factory_interface_get();
+        return Efl.Ui.FactoryConcrete.efl_ui_factory_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -339,20 +331,10 @@ sealed public  class IFactoryConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_ui_factory_create_static_delegate == null)
-            {
-                efl_ui_factory_create_static_delegate = new efl_ui_factory_create_delegate(create);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Create") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_factory_create"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_create_static_delegate) });
-            }
 
             if (efl_ui_factory_release_static_delegate == null)
             {
@@ -374,33 +356,23 @@ sealed public  class IFactoryConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_factory_building"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_building_static_delegate) });
             }
 
-            if (efl_ui_factory_bind_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_factory_bind_static_delegate = new efl_ui_factory_bind_delegate(factory_bind);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "FactoryBind") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_factory_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_factory_bind_static_delegate) });
-            }
-
-            if (efl_ui_property_bind_static_delegate == null)
-            {
-                efl_ui_property_bind_static_delegate = new efl_ui_property_bind_delegate(property_bind);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PropertyBind") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_property_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_property_bind_static_delegate) });
-            }
-
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IFactoryConcrete.efl_ui_factory_interface_get();
+            return Efl.Ui.FactoryConcrete.efl_ui_factory_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -412,35 +384,6 @@ sealed public  class IFactoryConcrete :
         public delegate  Eina.Future efl_ui_factory_create_api_delegate(System.IntPtr obj,  System.IntPtr models, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity parent);
 
         public static Efl.Eo.FunctionWrapper<efl_ui_factory_create_api_delegate> efl_ui_factory_create_ptr = new Efl.Eo.FunctionWrapper<efl_ui_factory_create_api_delegate>(Module, "efl_ui_factory_create");
-
-        private static  Eina.Future create(System.IntPtr obj, System.IntPtr pd, System.IntPtr models, Efl.Gfx.IEntity parent)
-        {
-            Eina.Log.Debug("function efl_ui_factory_create was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        var _in_models = new Eina.Iterator<Efl.IModel>(models, false);
-                                                     Eina.Future _ret_var = default( Eina.Future);
-                try
-                {
-                    _ret_var = ((IFactory)ws.Target).Create(_in_models, parent);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_factory_create_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), models, parent);
-            }
-        }
-
-        private static efl_ui_factory_create_delegate efl_ui_factory_create_static_delegate;
 
         
         private delegate void efl_ui_factory_release_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity ui_view);
@@ -512,77 +455,6 @@ sealed public  class IFactoryConcrete :
 
         private static efl_ui_factory_building_delegate efl_ui_factory_building_static_delegate;
 
-        
-        private delegate void efl_ui_factory_bind_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.IFactory factory);
-
-        
-        public delegate void efl_ui_factory_bind_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.IFactory factory);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate> efl_ui_factory_bind_ptr = new Efl.Eo.FunctionWrapper<efl_ui_factory_bind_api_delegate>(Module, "efl_ui_factory_bind");
-
-        private static void factory_bind(System.IntPtr obj, System.IntPtr pd, System.String key, Efl.Ui.IFactory factory)
-        {
-            Eina.Log.Debug("function efl_ui_factory_bind was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((IFactory)ws.Target).FactoryBind(key, factory);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_factory_bind_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, factory);
-            }
-        }
-
-        private static efl_ui_factory_bind_delegate efl_ui_factory_bind_static_delegate;
-
-        
-        private delegate Eina.Error efl_ui_property_bind_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String property);
-
-        
-        public delegate Eina.Error efl_ui_property_bind_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String property);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_property_bind_api_delegate> efl_ui_property_bind_ptr = new Efl.Eo.FunctionWrapper<efl_ui_property_bind_api_delegate>(Module, "efl_ui_property_bind");
-
-        private static Eina.Error property_bind(System.IntPtr obj, System.IntPtr pd, System.String key, System.String property)
-        {
-            Eina.Log.Debug("function efl_ui_property_bind was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            Eina.Error _ret_var = default(Eina.Error);
-                try
-                {
-                    _ret_var = ((IFactory)ws.Target).PropertyBind(key, property);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_property_bind_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, property);
-            }
-        }
-
-        private static efl_ui_property_bind_delegate efl_ui_property_bind_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
@@ -593,7 +465,7 @@ sealed public  class IFactoryConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIFactoryConcrete_ExtensionMethods {
+public static class Efl_UiFactoryConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif
@@ -601,7 +473,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>EFL Ui Factory event structure provided when an item was just created.</summary>
+/// <summary>EFL UI Factory event structure provided when an item was just created.</summary>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct FactoryItemCreatedEvent
@@ -611,8 +483,8 @@ public struct FactoryItemCreatedEvent
     /// <summary>The item that was just created.</summary>
     public Efl.Gfx.IEntity Item;
     /// <summary>Constructor for FactoryItemCreatedEvent.</summary>
-    /// <param name="Model">The model already set on the new item.</param>;
-    /// <param name="Item">The item that was just created.</param>;
+    /// <param name="Model">The model already set on the new item.</param>
+    /// <param name="Item">The item that was just created.</param>
     public FactoryItemCreatedEvent(
         Efl.IModel Model = default(Efl.IModel),
         Efl.Gfx.IEntity Item = default(Efl.Gfx.IEntity)    )
@@ -653,9 +525,9 @@ public struct FactoryItemCreatedEvent
         {
             var _external_struct = new FactoryItemCreatedEvent();
 
-            _external_struct.Model = (Efl.IModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Model);
+            _external_struct.Model = (Efl.ModelConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Model);
 
-            _external_struct.Item = (Efl.Gfx.IEntityConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Item);
+            _external_struct.Item = (Efl.Gfx.EntityConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Item);
             return _external_struct;
         }
 

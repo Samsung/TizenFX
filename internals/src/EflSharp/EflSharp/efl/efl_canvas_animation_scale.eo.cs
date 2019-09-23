@@ -69,10 +69,10 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="from_scale_y">Scale factor along y axis when animation starts</param>
     /// <param name="to_scale_x">Scale factor along x axis when animation ends</param>
     /// <param name="to_scale_y">Scale factor along y axis when animation ends</param>
-    /// <param name="pivot">Pivot object for the center point. If the pivot object is NULL, then the object is scaled on itself.</param>
+    /// <param name="pivot">Pivot object for the center point. If the pivot object is <c>NULL</c>, then the object is scaled on itself.</param>
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
-    virtual public void GetScale(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out Efl.Canvas.Object pivot, out double cx, out double cy) {
+    public virtual void GetScale(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out Efl.Canvas.Object pivot, out double cx, out double cy) {
                                                                                                                                                                                  Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out pivot, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
@@ -81,10 +81,10 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="from_scale_y">Scale factor along y axis when animation starts</param>
     /// <param name="to_scale_x">Scale factor along x axis when animation ends</param>
     /// <param name="to_scale_y">Scale factor along y axis when animation ends</param>
-    /// <param name="pivot">Pivot object for the center point. If the pivot object is NULL, then the object is scaled on itself.</param>
+    /// <param name="pivot">Pivot object for the center point. If the pivot object is <c>NULL</c>, then the object is scaled on itself.</param>
     /// <param name="cx">X relative coordinate of the center point. The left end is 0.0 and the right end is 1.0 (the center is 0.5).</param>
     /// <param name="cy">Y relative coordinate of the center point. The top end is 0.0 and the bottom end is 1.0 (the center is 0.5).</param>
-    virtual public void SetScale(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, Efl.Canvas.Object pivot, double cx, double cy) {
+    public virtual void SetScale(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, Efl.Canvas.Object pivot, double cx, double cy) {
                                                                                                                                                                                  Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_scale_x, from_scale_y, to_scale_x, to_scale_y, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
@@ -95,7 +95,7 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="to_scale_y">Scale factor along y axis when animation ends</param>
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
-    virtual public void GetScaleAbsolute(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out int cx, out int cy) {
+    public virtual void GetScaleAbsolute(out double from_scale_x, out double from_scale_y, out double to_scale_x, out double to_scale_y, out int cx, out int cy) {
                                                                                                                                                          Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_scale_x, out from_scale_y, out to_scale_x, out to_scale_y, out cx, out cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
@@ -106,7 +106,7 @@ public class AnimationScale : Efl.Canvas.Animation
     /// <param name="to_scale_y">Scale factor along y axis when animation ends</param>
     /// <param name="cx">X absolute coordinate of the center point.</param>
     /// <param name="cy">Y absolute coordinate of the center point.</param>
-    virtual public void SetScaleAbsolute(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, int cx, int cy) {
+    public virtual void SetScaleAbsolute(double from_scale_x, double from_scale_y, double to_scale_x, double to_scale_y, int cx, int cy) {
                                                                                                                                                          Efl.Canvas.AnimationScale.NativeMethods.efl_animation_scale_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_scale_x, from_scale_y, to_scale_x, to_scale_y, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
@@ -152,7 +152,7 @@ public class AnimationScale : Efl.Canvas.Animation
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -197,7 +197,17 @@ public class AnimationScale : Efl.Canvas.Animation
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_scale_absolute_set"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_scale_absolute_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

@@ -66,14 +66,14 @@ public class GestureZoom : Efl.Canvas.Gesture
 
     /// <summary>Gets zoom center point reported to user</summary>
     /// <returns>The radius value</returns>
-    virtual public double GetRadius() {
+    public virtual double GetRadius() {
          var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_radius_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gets zoom value. (1.0 means no zoom)</summary>
     /// <returns>The zoom value</returns>
-    virtual public double GetZoom() {
+    public virtual double GetZoom() {
          var _ret_var = Efl.Canvas.GestureZoom.NativeMethods.efl_gesture_zoom_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
@@ -89,7 +89,7 @@ public class GestureZoom : Efl.Canvas.Gesture
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -114,7 +114,17 @@ public class GestureZoom : Efl.Canvas.Gesture
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_zoom_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_zoom_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

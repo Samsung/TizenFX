@@ -12,7 +12,7 @@ namespace Ui {
 
 /// <summary>Common interface for draggable objects and parts.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IDragConcrete.NativeMethods]
+[Efl.Ui.DragConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IDrag : 
     Efl.Eo.IWrapper, IDisposable
@@ -132,7 +132,7 @@ bool MoveDragPage(double dx, double dy);
 }
 /// <summary>Common interface for draggable objects and parts.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IDragConcrete :
+public sealed class DragConcrete :
     Efl.Eo.EoWrapper
     , IDrag
     
@@ -142,7 +142,7 @@ sealed public  class IDragConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IDragConcrete))
+            if (((object)this).GetType() == typeof(DragConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -156,7 +156,7 @@ sealed public  class IDragConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IDragConcrete(ConstructingHandle ch) : base(ch)
+    private DragConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -165,16 +165,17 @@ sealed public  class IDragConcrete :
     /// <summary>Initializes a new instance of the <see cref="IDrag"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IDragConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private DragConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Gets the draggable object location.</summary>
     /// <param name="dx">The x relative position, from 0 to 1.</param>
     /// <param name="dy">The y relative position, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool GetDragValue(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_value_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -184,7 +185,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The y relative position, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool SetDragValue(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_value_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_value_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -193,7 +194,7 @@ sealed public  class IDragConcrete :
     /// <param name="dh">The drag relative height, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool GetDragSize(out double dw, out double dh) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_get_ptr.Value.Delegate(this.NativeHandle,out dw, out dh);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_size_get_ptr.Value.Delegate(this.NativeHandle,out dw, out dh);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -202,14 +203,14 @@ sealed public  class IDragConcrete :
     /// <param name="dh">The drag relative height, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool SetDragSize(double dw, double dh) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_size_set_ptr.Value.Delegate(this.NativeHandle,dw, dh);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_size_set_ptr.Value.Delegate(this.NativeHandle,dw, dh);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
     /// <summary>Gets the draggable direction.</summary>
     /// <returns>The direction(s) premitted for drag.</returns>
     public Efl.Ui.DragDir GetDragDir() {
-         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_dir_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_dir_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -218,7 +219,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The y step relative amount, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool GetDragStep(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_step_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -227,7 +228,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The y step relative amount, from 0 to 1.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool SetDragStep(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_step_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -236,7 +237,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The y page step increment</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool GetDragPage(out double dx, out double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_page_get_ptr.Value.Delegate(this.NativeHandle,out dx, out dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -245,7 +246,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The y page step increment</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool SetDragPage(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_page_set_ptr.Value.Delegate(this.NativeHandle,dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -257,7 +258,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The number of steps vertically.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool MoveDragStep(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_step_move_ptr.Value.Delegate(this.NativeHandle,dx, dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_step_move_ptr.Value.Delegate(this.NativeHandle,dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -271,7 +272,7 @@ sealed public  class IDragConcrete :
     /// <param name="dy">The number of pages vertically.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool MoveDragPage(double dx, double dy) {
-                                                         var _ret_var = Efl.Ui.IDragConcrete.NativeMethods.efl_ui_drag_page_move_ptr.Value.Delegate(this.NativeHandle,dx, dy);
+                                                         var _ret_var = Efl.Ui.DragConcrete.NativeMethods.efl_ui_drag_page_move_ptr.Value.Delegate(this.NativeHandle,dx, dy);
         Eina.Error.RaiseIfUnhandledException();
                                         return _ret_var;
  }
@@ -345,9 +346,10 @@ sealed public  class IDragConcrete :
         }
         set { SetDragPage( value.Item1,  value.Item2); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IDragConcrete.efl_ui_drag_interface_get();
+        return Efl.Ui.DragConcrete.efl_ui_drag_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -356,7 +358,7 @@ sealed public  class IDragConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -471,13 +473,23 @@ sealed public  class IDragConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_drag_page_move"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_drag_page_move_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IDragConcrete.efl_ui_drag_interface_get();
+            return Efl.Ui.DragConcrete.efl_ui_drag_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -888,7 +900,7 @@ sealed public  class IDragConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIDragConcrete_ExtensionMethods {
+public static class Efl_UiDragConcrete_ExtensionMethods {
     
     
     

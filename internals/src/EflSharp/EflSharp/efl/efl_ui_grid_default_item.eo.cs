@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Grid Default Item class.</summary>
+/// <summary>Default Item class to be used inside <see cref="Efl.Ui.Grid"/> containers. The <c>icon</c> part is in the middle, the <c>extra</c> part overlaps it on its upper-right corner. The <c>text</c> part is centered below the <c>icon</c>. Theming can change this arrangement.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.GridDefaultItem.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -80,10 +80,20 @@ public class GridDefaultItem : Efl.Ui.DefaultItem
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>

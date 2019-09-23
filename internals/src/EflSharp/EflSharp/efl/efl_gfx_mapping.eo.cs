@@ -19,7 +19,7 @@ namespace Gfx {
 /// 
 /// At the moment of writing, maps can only have 4 points (no more, no less).
 /// (Since EFL 1.22)</summary>
-[Efl.Gfx.IMappingConcrete.NativeMethods]
+[Efl.Gfx.MappingConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IMapping : 
     Efl.Eo.IWrapper, IDisposable
@@ -336,7 +336,7 @@ void Perspective3dAbsolute(double px, double py, double z0, double foc);
 /// 
 /// At the moment of writing, maps can only have 4 points (no more, no less).
 /// (Since EFL 1.22)</summary>
-sealed public  class IMappingConcrete :
+public sealed class MappingConcrete :
     Efl.Eo.EoWrapper
     , IMapping
     
@@ -346,7 +346,7 @@ sealed public  class IMappingConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IMappingConcrete))
+            if (((object)this).GetType() == typeof(MappingConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -360,7 +360,7 @@ sealed public  class IMappingConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IMappingConcrete(ConstructingHandle ch) : base(ch)
+    private MappingConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -369,16 +369,17 @@ sealed public  class IMappingConcrete :
     /// <summary>Initializes a new instance of the <see cref="IMapping"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IMappingConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private MappingConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Number of points of a map.
     /// This sets the number of points of map. Currently, the number of points must be multiples of 4.
     /// (Since EFL 1.22)</summary>
     /// <returns>The number of points of map</returns>
     public int GetMappingPointCount() {
-         var _ret_var = Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_point_count_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_point_count_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -387,7 +388,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="count">The number of points of map</param>
     public void SetMappingPointCount(int count) {
-                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_point_count_set_ptr.Value.Delegate(this.NativeHandle,count);
+                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_point_count_set_ptr.Value.Delegate(this.NativeHandle,count);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Clockwise state of a map (read-only).
@@ -395,7 +396,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if clockwise, <c>false</c> if counter clockwise</returns>
     public bool GetMappingClockwise() {
-         var _ret_var = Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_clockwise_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_clockwise_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -404,7 +405,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> by default.</returns>
     public bool GetMappingSmooth() {
-         var _ret_var = Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_smooth_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_smooth_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -413,7 +414,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="smooth"><c>true</c> by default.</param>
     public void SetMappingSmooth(bool smooth) {
-                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_smooth_set_ptr.Value.Delegate(this.NativeHandle,smooth);
+                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_smooth_set_ptr.Value.Delegate(this.NativeHandle,smooth);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Alpha flag for map rendering.
@@ -423,7 +424,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> by default.</returns>
     public bool GetMappingAlpha() {
-         var _ret_var = Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_alpha_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_alpha_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -434,7 +435,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <param name="alpha"><c>true</c> by default.</param>
     public void SetMappingAlpha(bool alpha) {
-                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_alpha_set_ptr.Value.Delegate(this.NativeHandle,alpha);
+                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_alpha_set_ptr.Value.Delegate(this.NativeHandle,alpha);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>A point&apos;s absolute coordinate on the canvas.
@@ -451,7 +452,7 @@ sealed public  class IMappingConcrete :
     /// <param name="y">Point Y coordinate in absolute pixel coordinates.</param>
     /// <param name="z">Point Z coordinate hint (pre-perspective transform).</param>
     public void GetMappingCoordAbsolute(int idx, out double x, out double y, out double z) {
-                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_coord_absolute_get_ptr.Value.Delegate(this.NativeHandle,idx, out x, out y, out z);
+                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_coord_absolute_get_ptr.Value.Delegate(this.NativeHandle,idx, out x, out y, out z);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>A point&apos;s absolute coordinate on the canvas.
@@ -468,7 +469,7 @@ sealed public  class IMappingConcrete :
     /// <param name="y">Point Y coordinate in absolute pixel coordinates.</param>
     /// <param name="z">Point Z coordinate hint (pre-perspective transform).</param>
     public void SetMappingCoordAbsolute(int idx, double x, double y, double z) {
-                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_coord_absolute_set_ptr.Value.Delegate(this.NativeHandle,idx, x, y, z);
+                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_coord_absolute_set_ptr.Value.Delegate(this.NativeHandle,idx, x, y, z);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Map point&apos;s U and V texture source point.
@@ -480,7 +481,7 @@ sealed public  class IMappingConcrete :
     /// <param name="u">Relative X coordinate within the image, from 0 to 1.</param>
     /// <param name="v">Relative Y coordinate within the image, from 0 to 1.</param>
     public void GetMappingUv(int idx, out double u, out double v) {
-                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_uv_get_ptr.Value.Delegate(this.NativeHandle,idx, out u, out v);
+                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_uv_get_ptr.Value.Delegate(this.NativeHandle,idx, out u, out v);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Map point&apos;s U and V texture source point.
@@ -492,7 +493,7 @@ sealed public  class IMappingConcrete :
     /// <param name="u">Relative X coordinate within the image, from 0 to 1.</param>
     /// <param name="v">Relative Y coordinate within the image, from 0 to 1.</param>
     public void SetMappingUv(int idx, double u, double v) {
-                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_uv_set_ptr.Value.Delegate(this.NativeHandle,idx, u, v);
+                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_uv_set_ptr.Value.Delegate(this.NativeHandle,idx, u, v);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Color of a vertex in the map.
@@ -506,7 +507,7 @@ sealed public  class IMappingConcrete :
     /// <param name="b">Blue (0 - 255)</param>
     /// <param name="a">Alpha (0 - 255)</param>
     public void GetMappingColor(int idx, out int r, out int g, out int b, out int a) {
-                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_color_get_ptr.Value.Delegate(this.NativeHandle,idx, out r, out g, out b, out a);
+                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_color_get_ptr.Value.Delegate(this.NativeHandle,idx, out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Color of a vertex in the map.
@@ -520,7 +521,7 @@ sealed public  class IMappingConcrete :
     /// <param name="b">Blue (0 - 255)</param>
     /// <param name="a">Alpha (0 - 255)</param>
     public void SetMappingColor(int idx, int r, int g, int b, int a) {
-                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_color_set_ptr.Value.Delegate(this.NativeHandle,idx, r, g, b, a);
+                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_color_set_ptr.Value.Delegate(this.NativeHandle,idx, r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Read-only property indicating whether an object is mapped.
@@ -528,7 +529,7 @@ sealed public  class IMappingConcrete :
     /// (Since EFL 1.22)</summary>
     /// <returns><c>true</c> if the object is mapped.</returns>
     public bool HasMapping() {
-         var _ret_var = Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_has_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_has_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -536,7 +537,7 @@ sealed public  class IMappingConcrete :
     /// This will reset all transformations to identity, meaning the points&apos; colors, positions and UV coordinates will be reset to their default values. <see cref="Efl.Gfx.IMapping.HasMapping"/> will then return <c>false</c>. This function will not modify the values of <see cref="Efl.Gfx.IMapping.MappingSmooth"/> or <see cref="Efl.Gfx.IMapping.MappingAlpha"/>.
     /// (Since EFL 1.22)</summary>
     public void ResetMapping() {
-         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_reset_ptr.Value.Delegate(this.NativeHandle);
+         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_reset_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
          }
     /// <summary>Apply a translation to the object using map.
@@ -546,7 +547,7 @@ sealed public  class IMappingConcrete :
     /// <param name="dy">Distance in pixels along the Y axis.</param>
     /// <param name="dz">Distance in pixels along the Z axis.</param>
     public void Translate(double dx, double dy, double dz) {
-                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_translate_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz);
+                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_translate_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Apply a rotation to the object.
@@ -561,7 +562,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cx">X relative coordinate of the center point.</param>
     /// <param name="cy">y relative coordinate of the center point.</param>
     public void Rotate(double degrees, Efl.Gfx.IEntity pivot, double cx, double cy) {
-                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_ptr.Value.Delegate(this.NativeHandle,degrees, pivot, cx, cy);
+                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_ptr.Value.Delegate(this.NativeHandle,degrees, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Rotate the object around 3 axes in 3D.
@@ -577,7 +578,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cy">y relative coordinate of the center point.</param>
     /// <param name="cz">Z absolute coordinate of the center point.</param>
     public void Rotate3d(double dx, double dy, double dz, Efl.Gfx.IEntity pivot, double cx, double cy, double cz) {
-                                                                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_3d_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz, pivot, cx, cy, cz);
+                                                                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_3d_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz, pivot, cx, cy, cz);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Rotate the object in 3D using a unit quaternion.
@@ -594,7 +595,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cy">y relative coordinate of the center point.</param>
     /// <param name="cz">Z absolute coordinate of the center point.</param>
     public void RotateQuat(double qx, double qy, double qz, double qw, Efl.Gfx.IEntity pivot, double cx, double cy, double cz) {
-                                                                                                                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_quat_ptr.Value.Delegate(this.NativeHandle,qx, qy, qz, qw, pivot, cx, cy, cz);
+                                                                                                                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_quat_ptr.Value.Delegate(this.NativeHandle,qx, qy, qz, qw, pivot, cx, cy, cz);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                          }
     /// <summary>Apply a zoom to the object.
@@ -608,7 +609,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cx">X relative coordinate of the center point.</param>
     /// <param name="cy">y relative coordinate of the center point.</param>
     public void Zoom(double zoomx, double zoomy, Efl.Gfx.IEntity pivot, double cx, double cy) {
-                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_zoom_ptr.Value.Delegate(this.NativeHandle,zoomx, zoomy, pivot, cx, cy);
+                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_zoom_ptr.Value.Delegate(this.NativeHandle,zoomx, zoomy, pivot, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Apply a lighting effect on the object.
@@ -627,7 +628,7 @@ sealed public  class IMappingConcrete :
     /// <param name="ag">Ambient color green value (0 - 255).</param>
     /// <param name="ab">Ambient color blue value (0 - 255).</param>
     public void Lighting3d(Efl.Gfx.IEntity pivot, double lx, double ly, double lz, int lr, int lg, int lb, int ar, int ag, int ab) {
-                                                                                                                                                                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_lighting_3d_ptr.Value.Delegate(this.NativeHandle,pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                                                                                                                                                                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_lighting_3d_ptr.Value.Delegate(this.NativeHandle,pivot, lx, ly, lz, lr, lg, lb, ar, ag, ab);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                                                          }
     /// <summary>Apply a perspective transform to the map
@@ -641,7 +642,7 @@ sealed public  class IMappingConcrete :
     /// <param name="z0">The &quot;0&quot; Z plane value.</param>
     /// <param name="foc">The focal distance, must be greater than 0.</param>
     public void Perspective3d(Efl.Gfx.IEntity pivot, double px, double py, double z0, double foc) {
-                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_perspective_3d_ptr.Value.Delegate(this.NativeHandle,pivot, px, py, z0, foc);
+                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_perspective_3d_ptr.Value.Delegate(this.NativeHandle,pivot, px, py, z0, foc);
         Eina.Error.RaiseIfUnhandledException();
                                                                                          }
     /// <summary>Apply a rotation to the object, using absolute coordinates.
@@ -653,7 +654,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cx">X absolute coordinate in pixels of the center point.</param>
     /// <param name="cy">y absolute coordinate in pixels of the center point.</param>
     public void RotateAbsolute(double degrees, double cx, double cy) {
-                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_absolute_ptr.Value.Delegate(this.NativeHandle,degrees, cx, cy);
+                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_absolute_ptr.Value.Delegate(this.NativeHandle,degrees, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                          }
     /// <summary>Rotate the object around 3 axes in 3D, using absolute coordinates.
@@ -668,7 +669,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cy">y absolute coordinate in pixels of the center point.</param>
     /// <param name="cz">Z absolute coordinate of the center point.</param>
     public void Rotate3dAbsolute(double dx, double dy, double dz, double cx, double cy, double cz) {
-                                                                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_3d_absolute_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz, cx, cy, cz);
+                                                                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_3d_absolute_ptr.Value.Delegate(this.NativeHandle,dx, dy, dz, cx, cy, cz);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                          }
     /// <summary>Rotate the object in 3D using a unit quaternion, using absolute coordinates.
@@ -684,7 +685,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cy">y absolute coordinate in pixels of the center point.</param>
     /// <param name="cz">Z absolute coordinate of the center point.</param>
     public void RotateQuatAbsolute(double qx, double qy, double qz, double qw, double cx, double cy, double cz) {
-                                                                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_rotate_quat_absolute_ptr.Value.Delegate(this.NativeHandle,qx, qy, qz, qw, cx, cy, cz);
+                                                                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_rotate_quat_absolute_ptr.Value.Delegate(this.NativeHandle,qx, qy, qz, qw, cx, cy, cz);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                          }
     /// <summary>Apply a zoom to the object, using absolute coordinates.
@@ -697,7 +698,7 @@ sealed public  class IMappingConcrete :
     /// <param name="cx">X absolute coordinate in pixels of the center point.</param>
     /// <param name="cy">y absolute coordinate in pixels of the center point.</param>
     public void ZoomAbsolute(double zoomx, double zoomy, double cx, double cy) {
-                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_zoom_absolute_ptr.Value.Delegate(this.NativeHandle,zoomx, zoomy, cx, cy);
+                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_zoom_absolute_ptr.Value.Delegate(this.NativeHandle,zoomx, zoomy, cx, cy);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Apply a lighting effect to the object.
@@ -715,7 +716,7 @@ sealed public  class IMappingConcrete :
     /// <param name="ag">Ambient color green value (0 - 255).</param>
     /// <param name="ab">Ambient color blue value (0 - 255).</param>
     public void Lighting3dAbsolute(double lx, double ly, double lz, int lr, int lg, int lb, int ar, int ag, int ab) {
-                                                                                                                                                                                                                                 Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_lighting_3d_absolute_ptr.Value.Delegate(this.NativeHandle,lx, ly, lz, lr, lg, lb, ar, ag, ab);
+                                                                                                                                                                                                                                 Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_lighting_3d_absolute_ptr.Value.Delegate(this.NativeHandle,lx, ly, lz, lr, lg, lb, ar, ag, ab);
         Eina.Error.RaiseIfUnhandledException();
                                                                                                                                                          }
     /// <summary>Apply a perspective transform to the map
@@ -728,7 +729,7 @@ sealed public  class IMappingConcrete :
     /// <param name="z0">The &quot;0&quot; Z plane value.</param>
     /// <param name="foc">The focal distance, must be greater than 0.</param>
     public void Perspective3dAbsolute(double px, double py, double z0, double foc) {
-                                                                                                         Efl.Gfx.IMappingConcrete.NativeMethods.efl_gfx_mapping_perspective_3d_absolute_ptr.Value.Delegate(this.NativeHandle,px, py, z0, foc);
+                                                                                                         Efl.Gfx.MappingConcrete.NativeMethods.efl_gfx_mapping_perspective_3d_absolute_ptr.Value.Delegate(this.NativeHandle,px, py, z0, foc);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Number of points of a map.
@@ -764,9 +765,10 @@ sealed public  class IMappingConcrete :
         get { return GetMappingAlpha(); }
         set { SetMappingAlpha(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IMappingConcrete.efl_gfx_mapping_mixin_get();
+        return Efl.Gfx.MappingConcrete.efl_gfx_mapping_mixin_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -775,7 +777,7 @@ sealed public  class IMappingConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -1060,13 +1062,23 @@ sealed public  class IMappingConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_mapping_perspective_3d_absolute"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_mapping_perspective_3d_absolute_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IMappingConcrete.efl_gfx_mapping_mixin_get();
+            return Efl.Gfx.MappingConcrete.efl_gfx_mapping_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -2066,7 +2078,7 @@ sealed public  class IMappingConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIMappingConcrete_ExtensionMethods {
+public static class Efl_GfxMappingConcrete_ExtensionMethods {
     public static Efl.BindableProperty<int> MappingPointCount<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IMapping, T>magic = null) where T : Efl.Gfx.IMapping {
         return new Efl.BindableProperty<int>("mapping_point_count", fac);
     }

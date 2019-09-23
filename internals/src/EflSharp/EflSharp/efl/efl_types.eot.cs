@@ -32,15 +32,15 @@ public struct Time
     /// <summary>DST. [-1/0/1]</summary>
     public int Tm_isdst;
     /// <summary>Constructor for Time.</summary>
-    /// <param name="Tm_sec">Seconds.	[0-60] (1 leap second)</param>;
-    /// <param name="Tm_min">Minutes.	[0-59]</param>;
-    /// <param name="Tm_hour">Hours.	[0-23]</param>;
-    /// <param name="Tm_mday">Day.		[1-31]</param>;
-    /// <param name="Tm_mon">Month.	[0-11]</param>;
-    /// <param name="Tm_year">Year	- 1900.</param>;
-    /// <param name="Tm_wday">Day of week.	[0-6]</param>;
-    /// <param name="Tm_yday">Days in year.[0-365]</param>;
-    /// <param name="Tm_isdst">DST. [-1/0/1]</param>;
+    /// <param name="Tm_sec">Seconds.	[0-60] (1 leap second)</param>
+    /// <param name="Tm_min">Minutes.	[0-59]</param>
+    /// <param name="Tm_hour">Hours.	[0-23]</param>
+    /// <param name="Tm_mday">Day.		[1-31]</param>
+    /// <param name="Tm_mon">Month.	[0-11]</param>
+    /// <param name="Tm_year">Year	- 1900.</param>
+    /// <param name="Tm_wday">Day of week.	[0-6]</param>
+    /// <param name="Tm_yday">Days in year.[0-365]</param>
+    /// <param name="Tm_isdst">DST. [-1/0/1]</param>
     public Time(
         int Tm_sec = default(int),
         int Tm_min = default(int),
@@ -157,12 +157,12 @@ public struct Version
     /// <summary>Contains <c>EFL_BUILD_ID</c>.</summary>
     public System.String Build_id;
     /// <summary>Constructor for Version.</summary>
-    /// <param name="Major">Major component of the version (&gt;= 1).</param>;
-    /// <param name="Minor">Minor component of the version (&gt;= 0).</param>;
-    /// <param name="Micro">Micro component of the version (&gt;= 0).</param>;
-    /// <param name="Revision">Revision component of the version (&gt;= 0).</param>;
-    /// <param name="Flavor">Special version string for this build of EFL, <c>null</c> for vanilla (upstream) EFL. Contains <c>EFL_VERSION_FLAVOR</c>.</param>;
-    /// <param name="Build_id">Contains <c>EFL_BUILD_ID</c>.</param>;
+    /// <param name="Major">Major component of the version (&gt;= 1).</param>
+    /// <param name="Minor">Minor component of the version (&gt;= 0).</param>
+    /// <param name="Micro">Micro component of the version (&gt;= 0).</param>
+    /// <param name="Revision">Revision component of the version (&gt;= 0).</param>
+    /// <param name="Flavor">Special version string for this build of EFL, <c>null</c> for vanilla (upstream) EFL. Contains <c>EFL_VERSION_FLAVOR</c>.</param>
+    /// <param name="Build_id">Contains <c>EFL_BUILD_ID</c>.</param>
     public Version(
         int Major = default(int),
         int Minor = default(int),

@@ -11,7 +11,7 @@ namespace Efl {
 /// <summary>Style to apply to the text
 /// A style can be coloring, effects, underline, strikethrough etc.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextStyleConcrete.NativeMethods]
+[Efl.TextStyleConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextStyle : 
     Efl.Eo.IWrapper, IDisposable
@@ -311,7 +311,7 @@ void SetGfxFilter(System.String code);
 /// <summary>Style to apply to the text
 /// A style can be coloring, effects, underline, strikethrough etc.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextStyleConcrete :
+public sealed class TextStyleConcrete :
     Efl.Eo.EoWrapper
     , ITextStyle
     
@@ -321,7 +321,7 @@ sealed public  class ITextStyleConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextStyleConcrete))
+            if (((object)this).GetType() == typeof(TextStyleConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -335,7 +335,7 @@ sealed public  class ITextStyleConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextStyleConcrete(ConstructingHandle ch) : base(ch)
+    private TextStyleConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
@@ -344,17 +344,18 @@ sealed public  class ITextStyleConcrete :
     /// <summary>Initializes a new instance of the <see cref="ITextStyle"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextStyleConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextStyleConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Color of text, excluding style</summary>
     /// <param name="r">Red component</param>
     /// <param name="g">Green component</param>
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetNormalColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_normal_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of text, excluding style</summary>
@@ -363,20 +364,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetNormalColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_normal_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_normal_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Enable or disable backing type</summary>
     /// <returns>Backing type</returns>
     public Efl.TextStyleBackingType GetBackingType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_backing_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Enable or disable backing type</summary>
     /// <param name="type">Backing type</param>
     public void SetBackingType(Efl.TextStyleBackingType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_type_set_ptr.Value.Delegate(this.NativeHandle,type);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_backing_type_set_ptr.Value.Delegate(this.NativeHandle,type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Backing color</summary>
@@ -385,7 +386,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetBackingColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_backing_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Backing color</summary>
@@ -394,20 +395,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetBackingColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_backing_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_backing_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Sets an underline style on the text</summary>
     /// <returns>Underline type</returns>
     public Efl.TextStyleUnderlineType GetUnderlineType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_underline_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Sets an underline style on the text</summary>
     /// <param name="type">Underline type</param>
     public void SetUnderlineType(Efl.TextStyleUnderlineType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_type_set_ptr.Value.Delegate(this.NativeHandle,type);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_underline_type_set_ptr.Value.Delegate(this.NativeHandle,type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of normal underline style</summary>
@@ -416,7 +417,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetUnderlineColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of normal underline style</summary>
@@ -425,20 +426,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetUnderlineColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Height of underline style</summary>
     /// <returns>Height</returns>
     public double GetUnderlineHeight() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_underline_height_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Height of underline style</summary>
     /// <param name="height">Height</param>
     public void SetUnderlineHeight(double height) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_height_set_ptr.Value.Delegate(this.NativeHandle,height);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_underline_height_set_ptr.Value.Delegate(this.NativeHandle,height);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of dashed underline style</summary>
@@ -447,7 +448,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetUnderlineDashedColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of dashed underline style</summary>
@@ -456,33 +457,33 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetUnderlineDashedColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Width of dashed underline style</summary>
     /// <returns>Width</returns>
     public int GetUnderlineDashedWidth() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Width of dashed underline style</summary>
     /// <param name="width">Width</param>
     public void SetUnderlineDashedWidth(int width) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_set_ptr.Value.Delegate(this.NativeHandle,width);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_width_set_ptr.Value.Delegate(this.NativeHandle,width);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Gap of dashed underline style</summary>
     /// <returns>Gap</returns>
     public int GetUnderlineDashedGap() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Gap of dashed underline style</summary>
     /// <param name="gap">Gap</param>
     public void SetUnderlineDashedGap(int gap) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_set_ptr.Value.Delegate(this.NativeHandle,gap);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_underline_dashed_gap_set_ptr.Value.Delegate(this.NativeHandle,gap);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of underline2 style</summary>
@@ -491,7 +492,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetUnderline2Color(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline2_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of underline2 style</summary>
@@ -500,20 +501,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetUnderline2Color(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_underline2_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_underline2_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Type of strikethrough style</summary>
     /// <returns>Strikethrough type</returns>
     public Efl.TextStyleStrikethroughType GetStrikethroughType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_strikethrough_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Type of strikethrough style</summary>
     /// <param name="type">Strikethrough type</param>
     public void SetStrikethroughType(Efl.TextStyleStrikethroughType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_type_set_ptr.Value.Delegate(this.NativeHandle,type);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_strikethrough_type_set_ptr.Value.Delegate(this.NativeHandle,type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of strikethrough_style</summary>
@@ -522,7 +523,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetStrikethroughColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_strikethrough_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of strikethrough_style</summary>
@@ -531,20 +532,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetStrikethroughColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_strikethrough_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_strikethrough_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <returns>Effect type</returns>
     public Efl.TextStyleEffectType GetEffectType() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_effect_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Type of effect used for the displayed text</summary>
     /// <param name="type">Effect type</param>
     public void SetEffectType(Efl.TextStyleEffectType type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_effect_type_set_ptr.Value.Delegate(this.NativeHandle,type);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_effect_type_set_ptr.Value.Delegate(this.NativeHandle,type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of outline effect</summary>
@@ -553,7 +554,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetOutlineColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_outline_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of outline effect</summary>
@@ -562,20 +563,20 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetOutlineColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_outline_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_outline_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Direction of shadow effect</summary>
     /// <returns>Shadow direction</returns>
     public Efl.TextStyleShadowDirection GetShadowDirection() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_shadow_direction_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
     /// <summary>Direction of shadow effect</summary>
     /// <param name="type">Shadow direction</param>
     public void SetShadowDirection(Efl.TextStyleShadowDirection type) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_direction_set_ptr.Value.Delegate(this.NativeHandle,type);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_shadow_direction_set_ptr.Value.Delegate(this.NativeHandle,type);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of shadow effect</summary>
@@ -584,7 +585,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetShadowColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_shadow_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of shadow effect</summary>
@@ -593,7 +594,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetShadowColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_shadow_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_shadow_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of glow effect</summary>
@@ -602,7 +603,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetGlowColor(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_glow_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Color of glow effect</summary>
@@ -611,7 +612,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetGlowColor(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_glow_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Second color of the glow effect</summary>
@@ -620,7 +621,7 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void GetGlow2Color(out byte r, out byte g, out byte b, out byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_glow2_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Second color of the glow effect</summary>
@@ -629,14 +630,14 @@ sealed public  class ITextStyleConcrete :
     /// <param name="b">Blue component</param>
     /// <param name="a">Alpha component</param>
     public void SetGlow2Color(byte r, byte g, byte b, byte a) {
-                                                                                                         Efl.ITextStyleConcrete.NativeMethods.efl_text_glow2_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+                                                                                                         Efl.TextStyleConcrete.NativeMethods.efl_text_glow2_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
                                                                          }
     /// <summary>Program that applies a special filter
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
     /// <returns>Filter code</returns>
     public System.String GetGfxFilter() {
-         var _ret_var = Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_get_ptr.Value.Delegate(this.NativeHandle);
+         var _ret_var = Efl.TextStyleConcrete.NativeMethods.efl_text_gfx_filter_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
  }
@@ -644,7 +645,7 @@ sealed public  class ITextStyleConcrete :
     /// See <see cref="Efl.Gfx.IFilter"/>.</summary>
     /// <param name="code">Filter code</param>
     public void SetGfxFilter(System.String code) {
-                                 Efl.ITextStyleConcrete.NativeMethods.efl_text_gfx_filter_set_ptr.Value.Delegate(this.NativeHandle,code);
+                                 Efl.TextStyleConcrete.NativeMethods.efl_text_gfx_filter_set_ptr.Value.Delegate(this.NativeHandle,code);
         Eina.Error.RaiseIfUnhandledException();
                          }
     /// <summary>Color of text, excluding style</summary>
@@ -832,9 +833,10 @@ sealed public  class ITextStyleConcrete :
         get { return GetGfxFilter(); }
         set { SetGfxFilter(value); }
     }
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextStyleConcrete.efl_text_style_interface_get();
+        return Efl.TextStyleConcrete.efl_text_style_interface_get();
     }
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
@@ -843,7 +845,7 @@ sealed public  class ITextStyleConcrete :
         private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -1228,13 +1230,23 @@ sealed public  class ITextStyleConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_gfx_filter_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_gfx_filter_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextStyleConcrete.efl_text_style_interface_get();
+            return Efl.TextStyleConcrete.efl_text_style_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -2586,7 +2598,7 @@ sealed public  class ITextStyleConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextStyleConcrete_ExtensionMethods {
+public static class EflTextStyleConcrete_ExtensionMethods {
     
     public static Efl.BindableProperty<Efl.TextStyleBackingType> BackingType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextStyle, T>magic = null) where T : Efl.ITextStyle {
         return new Efl.BindableProperty<Efl.TextStyleBackingType>("backing_type", fac);
