@@ -123,14 +123,14 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                DateTime from;
-                DateTime to;
+                Int32 from;
+                Int32 to;
                 int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get time interval(from value) from NetworkStatistics, Error - " + (StcError)ret);
                 }
-                return from;
+                return Interop.ConvertTimestampToDateTime(from);
             }
         }
 
@@ -143,14 +143,14 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                DateTime from;
-                DateTime to;
+                Int32 from;
+                Int32 to;
                 int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get time interval(to value) from NetworkStatistics, Error - " + (StcError)ret);
                 }
-                return to;
+                return Interop.ConvertTimestampToDateTime(to);
             }
         }
 
