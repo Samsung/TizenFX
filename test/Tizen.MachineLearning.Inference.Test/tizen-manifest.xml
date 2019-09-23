@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.machine.inference.Test" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+    <profile name="mobile" />
+    <ui-application appid="org.tizen.machine.Inference.Test" exec="Tizen.MachineLearning.Inference.Test.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>Tizen.MachineLearning.Inference.Test.dll</label>
+        <icon>Tizen.MachineLearning.Inference.Test.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <provides-appdefined-privileges />
+</manifest>

@@ -85,7 +85,7 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Gets the frequency in the dB.
+        /// Gets the frequency in dB.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
@@ -105,7 +105,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the frequency range in the dB.
+        /// Gets the frequency range in dB.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
