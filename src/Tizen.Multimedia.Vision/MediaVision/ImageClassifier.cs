@@ -31,6 +31,7 @@ namespace Tizen.Multimedia.Vision
         /// Classifies image objects on the source image using inference engine which set by <paramref name="config"/>.<br/>
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.image</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
@@ -47,6 +48,9 @@ namespace Tizen.Multimedia.Vision
         public static async Task<ImageClassificationResult> ClassifyAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
+            // `vision.inference` feature is already checked, when config is created.
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceImage);
+
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));

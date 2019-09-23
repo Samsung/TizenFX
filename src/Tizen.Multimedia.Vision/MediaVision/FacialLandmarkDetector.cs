@@ -37,6 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// If user want to set region-of-interest area in source image, Please set <see cref="InferenceModelConfiguration.Roi"/>.
         /// If not, full image area will be used to detect facail landmark.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The configuration of engine will be used for detecting.</param>
@@ -53,6 +54,9 @@ namespace Tizen.Multimedia.Vision
         public static async Task<IEnumerable<Point>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
+            // `vision.inference` feature is already checked, when config is created.
+            ValidationUtil.ValidateFeatureSupported(VisionFeatures.InferenceFace);
+
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
