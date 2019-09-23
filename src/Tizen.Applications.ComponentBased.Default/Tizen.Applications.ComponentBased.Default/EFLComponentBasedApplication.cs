@@ -11,7 +11,7 @@ namespace Tizen.Applications.ComponentBased.Default
     /// <since_tizen> 6 </since_tizen>
     public class EFLComponentBasedApplication : ComponentBasedApplication
     {
-        private const string LogTag = "Tizen.Applications.ComponentBasedApplication";
+        private const string LogTag = "Tizen.Applications";
 
         /// <summary>
         /// Initializes the ComponentBasedApplication class.

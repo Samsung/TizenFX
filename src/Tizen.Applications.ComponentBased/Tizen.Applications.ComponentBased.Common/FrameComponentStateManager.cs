@@ -7,7 +7,7 @@ namespace Tizen.Applications.ComponentBased.Common
     internal class FrameComponentStateManager : ComponentStateManger
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
-        private const string LogTag = "Tizen.Applications.FrameComponentStateManager";
+        private const string LogTag = "Tizen.Applications";
 
         internal FrameComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
