@@ -26,6 +26,7 @@ namespace Tizen.NUI
     /// ScrollView contains views that can be scrolled manually (via touch).
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollView : Scrollable
     {
         /// This will be deprecated
