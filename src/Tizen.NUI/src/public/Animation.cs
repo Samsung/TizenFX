@@ -509,6 +509,8 @@ namespace Tizen.NUI
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, Please use as keyword instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Animation DownCast(BaseHandle handle)
         {
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;

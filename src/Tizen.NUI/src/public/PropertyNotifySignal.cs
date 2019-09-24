@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -22,6 +24,9 @@ namespace Tizen.NUI
     /// Signal connection class for PropertyNotification
     ///</summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        "Please use PropertyNotification.Notified event instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PropertyNotifySignal : Disposable
     {
         /// <summary>
@@ -36,6 +41,9 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal() : this(Interop.PropertyNotifySignal.new_PropertyNotifySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -52,6 +60,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
             bool ret = Interop.PropertyNotifySignal.PropertyNotifySignal_Empty(swigCPtr);
@@ -64,6 +75,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
             uint ret = Interop.PropertyNotifySignal.PropertyNotifySignal_GetConnectionCount(swigCPtr);
@@ -76,6 +90,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -90,6 +107,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -104,6 +124,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification.Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(PropertyNotification arg)
         {
             Interop.PropertyNotifySignal.PropertyNotifySignal_Emit(swigCPtr, PropertyNotification.getCPtr(arg));
@@ -120,6 +143,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">The dispose type.</param>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
