@@ -659,7 +659,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="x">The top-left x coordinate of the input panel.</param>
         /// <param name="y">The top-left y coordinate of the input panel.</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputPanelPosition(uint x, uint y)
         {
