@@ -555,7 +555,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -595,7 +594,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <value>The current language in voice control.</value>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -629,7 +627,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <value>The current state of the voice control client.</value>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -667,7 +664,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
         /// </exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -820,7 +816,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
         /// </exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -1173,7 +1168,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
