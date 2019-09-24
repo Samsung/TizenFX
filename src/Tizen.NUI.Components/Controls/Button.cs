@@ -777,7 +777,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != value)
                 {
-                    CreateIconAttributes();
+                    CreateTextAttributes();
                     buttonAttributes.TextAttributes.PaddingLeft = value.Start;
                     buttonAttributes.TextAttributes.PaddingRight = value.End;
                     buttonAttributes.TextAttributes.PaddingTop = value.Top;
