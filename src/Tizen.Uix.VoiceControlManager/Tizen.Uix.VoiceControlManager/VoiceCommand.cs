@@ -78,7 +78,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// <feature> http://tizen.org/feature/microphone </feature>
         /// <feature> http://tizen.org/feature/speech.control </feature>
         /// <exception cref="InvalidOperationException">This exception can be due to out of memory.</exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public VoiceCommand()
