@@ -843,8 +843,8 @@ namespace Tizen.Uix.VoiceControlManager
         }
 
         /// <summary>
-        /// Sets or Gets the Audio In Type
-        /// the Values of the strings can be "VC_AUDIO_ID_BLUETOOTH" or "VC_AUDIO_ID_MSF"
+        /// Sets or Gets the Audio In Type.
+        /// The Values of the strings can be "VC_AUDIO_ID_BLUETOOTH" or "VC_AUDIO_ID_MSF"
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
