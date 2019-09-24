@@ -73,11 +73,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// The public constructor.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to out of memory.
-        /// </exception>
+        /// <privilege> http://tizen.org/privilege/recorder </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature> http://tizen.org/feature/microphone </feature>
+        /// <feature> http://tizen.org/feature/speech.control </feature>
+        /// <exception cref="InvalidOperationException">This exception can be due to out of memory.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public VoiceCommand()
@@ -132,7 +133,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// Gets or sets the command type.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <privilege> http://tizen.org/privilege/recorder </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature> http://tizen.org/feature/microphone </feature>
+        /// <feature> http://tizen.org/feature/speech.control </feature>
         /// <remarks>If you do not set the command type, the default value is undefined. You should set the type if the command is valid.</remarks>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public CommandType CommandType
@@ -169,8 +175,10 @@ namespace Tizen.Uix.VoiceControlManager
         /// Gets or sets the command format.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature> http://tizen.org/feature/microphone </feature>
+        /// <feature> http://tizen.org/feature/speech.control </feature>
         /// <remarks>The default format is Fixed.</remarks>
-        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public CommandFormat Format
         {
@@ -201,6 +209,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// A get empty string will be returned in case of some internal error.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <privilege> http://tizen.org/privilege/recorder </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature> http://tizen.org/feature/microphone </feature>
+        /// <feature> http://tizen.org/feature/speech.control </feature>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public string Command

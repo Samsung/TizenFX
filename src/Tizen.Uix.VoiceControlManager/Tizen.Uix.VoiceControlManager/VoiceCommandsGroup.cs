@@ -37,6 +37,10 @@ namespace Tizen.Uix.VoiceControlManager
         /// The public constructor.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <privilege> http://tizen.org/privilege/recorder </privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature> http://tizen.org/feature/microphone </feature>
+        /// <feature> http://tizen.org/feature/speech.control </feature>
         /// <exception cref="InvalidOperationException">This exception can be due to out of memory.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
