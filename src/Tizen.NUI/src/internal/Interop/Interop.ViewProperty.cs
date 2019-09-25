@@ -49,6 +49,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_View_Property_DOWN_FOCUSABLE_ACTOR_ID_get")]
             public static extern int View_Property_DOWN_FOCUSABLE_ACTOR_ID_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_UPDATE_SIZE_HINT_get")]
+            public static extern int View_Property_UPDATE_SIZE_HINT_get();
         }
     }
 }
