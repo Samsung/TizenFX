@@ -17,18 +17,18 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for suspended state.
+    /// Enumeration for the suspended state of the application.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public enum SuspendedState
     {
         /// <summary>
-        /// Application will enter the suspended state
+        /// Application will enter the suspended state.
         /// </summary>
         WillEnter = 0,
 
         /// <summary>
-        /// Application did exit from the suspended state
+        /// Application did exit from the suspended state.
         /// </summary>
         DidExit = 1
     }
