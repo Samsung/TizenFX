@@ -323,4 +323,23 @@ namespace Tizen.Multimedia
         /// </summary>
         NoSyncAndDeinterleave = 0x03,
     }
+
+
+    /// <summary>
+    /// Specifies the types of a codec for <see cref="Player"/>.
+    /// </summary>
+    /// <seealso cref="Player.AudioCodec"/>
+    /// <since_tizen> 6 </since_tizen>
+    public enum CodecType
+    {
+        /// <summary>
+        /// An optional flag for using the H/W codec.
+        /// </summary>
+        Hw,
+
+        /// <summary>
+        ///  An optional flag for using the S/W codec
+        /// </summary>
+        Sw,
+    }
 }
