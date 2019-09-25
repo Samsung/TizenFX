@@ -145,5 +145,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_send_launch_request_async")]
         internal static extern ErrorCode SendLaunchRequestAsync(SafeAppControlHandle handle, ResultCallback resultCallback, ReplyCallback replyCallback, IntPtr userData);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_component_id")]
+        internal static extern ErrorCode SetComponentId(SafeAppControlHandle handle, string componentId);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_component_id")]
+        internal static extern ErrorCode GetComponentId(SafeAppControlHandle handle, out string componentId);
     }
 }

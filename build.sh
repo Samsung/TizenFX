@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 SCRIPT_FILE=$(readlink -f $0)
 SCRIPT_DIR=$(dirname $SCRIPT_FILE)
@@ -20,32 +20,43 @@ usage() {
   echo "    clean              Clean all artifacts"
 }
 
+clean() {
+  $RUN_BUILD /t:clean
+  rm -f msbuild.log
+}
+
+build() {
+  if [ -d /nuget ]; then
+    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
+  fi
+  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
+  $RUN_BUILD /t:build /fl $@
+}
+
 cmd_build() {
   if [ -z "$1" ]; then
     echo "No module specified."
     exit 1
   fi
-  if [ -d /nuget ]; then
-    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
-  fi
   PROJECT=$1; shift
-  $RUN_BUILD /t:restore /p:Project=$PROJECT $NUGET_SOURCE_OPT $@
-  $RUN_BUILD /t:build /p:Project=$PROJECT $@
+  build /p:Project=$PROJECT
 }
 
 cmd_full_build() {
-  if [ -d /nuget ]; then
-    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
+  clean
+  build $@
+  cmd_dummy_build $@
+}
+
+cmd_design_build() {
+  build /p:BuildDesignAssembly=True $@
+  if [ -d "$OUTDIR"/bin/design ]; then
+    cp -f "$OUTDIR"/bin/design/*.Design.dll "$SCRIPT_DIR"/pkg/Tizen.NET.API*/design/
   fi
-  rm -f msbuild.log
-  $RUN_BUILD /t:clean
-  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
-  $RUN_BUILD /t:build /fl $@
-  $RUN_BUILD /t:dummy
 }
 
 cmd_dummy_build() {
-  $RUN_BUILD /t:dummy
+  $RUN_BUILD /t:dummy $@
 }
 
 cmd_pack() {
@@ -105,6 +116,7 @@ case "$cmd" in
   build|--build|-b) cmd_build $@ ;;
   full |--full |-f) cmd_full_build $@ ;;
   dummy|--dummy|-d) cmd_dummy_build $@ ;;
+  design|--design)  cmd_design_build $@ ;;
   pack |--pack |-p) cmd_pack $@ ;;
   install |--install |-i) cmd_install $@ ;;
   clean|--clean|-c) cmd_clean $@ ;;

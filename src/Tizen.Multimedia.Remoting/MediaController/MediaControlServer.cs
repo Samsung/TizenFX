@@ -112,6 +112,10 @@ namespace Tizen.Multimedia.Remoting
                 RegisterPlaylistCommandReceivedEvent();
                 RegisterShuffleModeCommandReceivedEvent();
                 RegisterRepeatModeCommandReceivedEvent();
+                RegisterSubtitleModeCommandReceivedEvent();
+                RegisterMode360CommandReceivedEvent();
+                RegisterDisplayModeCommandReceivedEvent();
+                RegisterDisplayRotationCommandReceivedEvent();
                 RegisterCustomCommandReceivedEvent();
                 RegisterCommandCompletedEvent();
                 RegisterSearchCommandReceivedEvent();
@@ -169,6 +173,34 @@ namespace Tizen.Multimedia.Remoting
             _isRunning = false;
         }
 
+        /// <summary>
+        /// Gets the active clients.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <returns>the activated client ids.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public static IEnumerable<string> GetActivatedClients()
+        {
+            var clientIds = new List<string>();
+
+            Native.ActivatedClientCallback activatedClientCallback = (name, _) =>
+            {
+                clientIds.Add(name);
+                return true;
+            };
+
+            Native.ForeachActivatedClient(Handle, activatedClientCallback).
+                ThrowIfError("Failed to get activated client.");
+
+            return clientIds.AsReadOnly();
+        }
+
+
+        #region Set information
         /// <summary>
         /// Updates playback state and playback position.</summary>
         /// <param name="state">The playback state.</param>
@@ -276,31 +308,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets the index of current playing media.
-        /// </summary>
-        /// <param name="index">The index of current playing media.</param>
-        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead.")]
-        public static void SetIndexOfCurrentPlayingMedia(string index)
-        {
-            if (index == null)
-            {
-                throw new ArgumentNullException(nameof(index));
-            }
-
-            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
-                .ThrowIfError("Failed to set the index of current playing media");
-
-            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
-        }
-
-        /// <summary>
         /// Sets the playlist name and index of current playing media.
         /// </summary>
         /// <param name="playlistName">The playlist name of current playing media.</param>
@@ -332,8 +339,123 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Sets the age rating of latest played media.
+        /// </summary>
+        /// <param name="ageRating">
+        /// The Age rating of latest played media. The valid range is 0 to 19, inclusive.
+        /// Especially, 0 means that media is suitable for all ages.
+        /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">The specified <paramref name="ageRating"/> is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetAgeRating(int ageRating)
+        {
+            if (ageRating < 0 || ageRating > 19)
+            {
+                throw new ArgumentOutOfRangeException(nameof(ageRating));
+            }
+
+            Native.SetAgeRating(Handle, ageRating).ThrowIfError("Failed to set age rating.");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
+        }
+
+        /// <summary>
+        /// Sets the subtitle mode.
+        /// </summary>
+        /// <param name="isEnabled">A value indicating whether the subtitle mode is enabled.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetSubtitleMode(bool isEnabled)
+        {
+            Native.UpdateSubtitleMode(Handle, isEnabled).ThrowIfError("Failed to set subtitle mode.");
+        }
+
+        /// <summary>
+        /// Sets the 360 mode.
+        /// </summary>
+        /// <param name="isEnabled">A value indicating whether the 360 mode is enabled.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetMode360(bool isEnabled)
+        {
+            Native.UpdateMode360(Handle, isEnabled).ThrowIfError("Failed to set 360 mode.");
+        }
+
+        /// <summary>
+        /// Sets the display mode.
+        /// </summary>
+        /// <param name="mode">A value indicating the <see cref="MediaControlDisplayMode"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayMode(MediaControlDisplayMode mode)
+        {
+            Native.UpdateDisplayMode(Handle, mode.ToNative()).ThrowIfError("Failed to set display mode.");
+        }
+
+        /// <summary>
+        /// Sets the display rotation.
+        /// </summary>
+        /// <param name="rotation">A value indicating the <see cref="Rotation"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayRotation(Rotation rotation)
+        {
+            Native.UpdateDisplayRotaton(Handle, rotation.ToNative()).ThrowIfError("Failed to set display rotation.");
+        }
+
+        /// <summary>
+        /// Sets the index of current playing media.
+        /// </summary>
+        /// <param name="index">The index of current playing media.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead.")]
+        public static void SetIndexOfCurrentPlayingMedia(string index)
+        {
+            if (index == null)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+
+            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
+                .ThrowIfError("Failed to set the index of current playing media");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
+        }
+        #endregion Set information
+
+
+        #region Playlist
+        /// <summary>
         /// Delete playlist.
         /// </summary>
+        /// <remarks>Currently, only server can remove the playlist.</remarks>
         /// <param name="playlist">The name of playlist.</param>
         /// <exception cref="ArgumentNullException"><paramref name="playlist"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
@@ -367,33 +489,246 @@ namespace Tizen.Multimedia.Remoting
 
             return playlistHandle;
         }
+        #endregion Playlist
 
+
+        #region Capability
         /// <summary>
-        /// Gets the active clients.
+        /// Sets the content type of latest played media.
         /// </summary>
+        /// <param name="type">A value indicating the content type of the latest played media.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <returns>the activated client ids.</returns>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public static IEnumerable<string> GetActivatedClients()
+        public static void SetPlaybackContentType(MediaControlContentType type)
         {
-            var clientIds = new List<string>();
+            ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
 
-            Native.ActivatedClientCallback activatedClientCallback = (name, _) =>
-            {
-                clientIds.Add(name);
-                return true;
-            };
+            Native.SetPlaybackContentType(Handle, type).ThrowIfError("Failed to set playback content type.");
 
-            Native.ForeachActivatedClient(Handle, activatedClientCallback).
-                ThrowIfError("Failed to get activated client.");
-
-            return clientIds.AsReadOnly();
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
+        /// <summary>
+        /// Sets the path of icon.
+        /// </summary>
+        /// <param name="path">The path of icon.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIconPath(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            Native.SetIconPath(Handle, path).ThrowIfError("Failed to set uri path.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="capabilities">The set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapabilities(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
+        {
+            foreach (var pair in capabilities)
+            {
+                ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), pair.Key, nameof(pair.Key));
+                ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), pair.Value, nameof(pair.Value));
+
+                SetPlaybackCapability(pair.Key, pair.Value);
+                Native.SetPlaybackCapability(Handle, pair.Key.ToNative(), pair.Value).
+                    ThrowIfError("Failed to set playback capability.");
+            }
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="action">A playback command.</param>
+        /// <param name="support">A value indicating whether the <paramref name="action"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="action"/> or <paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapability(MediaControlPlaybackCommand action, MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetPlaybackCapability(Handle, action.ToNative(), support).ThrowIfError("Failed to set playback capability.");
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating shuffle mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the shuffle mode is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetShuffleModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Shuffle, support).
+                ThrowIfError("Failed to set shuffle mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating repeat mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the <see cref="MediaControlRepeatMode"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetRepeatModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Repeat, support).
+                ThrowIfError("Failed to set repeat mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the supported list of <see cref="MediaControlDisplayMode"/>.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="MediaControlCapabilitySupport.NotDecided"/> is not allowed in display mode capability.
+        /// The default value of each <see cref="MediaControlDisplayMode"/> is not supported.
+        /// </remarks>
+        /// <param name="capabilities">The supported list of <see cref="MediaControlDisplayMode"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayModeCapabilities(IDictionary<MediaControlDisplayMode, MediaControlCapabilitySupport> capabilities)
+        {
+            foreach (var pair in capabilities)
+            {
+                SetDisplayModeCapability(pair.Key, pair.Value);
+            }
+        }
+
+        /// <summary>
+        /// Sets the <paramref name="mode"/> is supported or not.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="MediaControlCapabilitySupport.NotDecided"/> is not allowed in display mode capability.<br/>
+        /// The default value of each <see cref="MediaControlDisplayMode"/> is not supported.
+        /// </remarks>
+        /// <param name="mode">The <see cref="MediaControlDisplayMode"/>.</param>
+        /// <param name="support">A value indicating whether the <paramref name="mode"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> or <paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayModeCapability(MediaControlDisplayMode mode, MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlDisplayMode), mode, nameof(mode));
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            if (support == MediaControlCapabilitySupport.NotDecided)
+            {
+                throw new ArgumentException($"NotDecided is not allowed in {mode} capability.");
+            }
+
+            Native.SetDisplayModeCapability(Handle, (uint)mode.ToNative(), support).
+                ThrowIfError("Failed to set display mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the supported list of <see cref="Rotation"/>.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="MediaControlCapabilitySupport.NotDecided"/> is not allowed in display rotation capability.<br/>
+        /// The default value of each <see cref="Rotation"/> is not supported.
+        /// </remarks>
+        /// <param name="capabilities">The supported list of <see cref="Rotation"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayRotationCapabilities(IDictionary<Rotation, MediaControlCapabilitySupport> capabilities)
+        {
+            foreach (var pair in capabilities)
+            {
+                SetDisplayRotationCapability(pair.Key, pair.Value);
+            }
+        }
+
+        /// <summary>
+        /// Sets the <paramref name="rotation"/> is supported or not.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="MediaControlCapabilitySupport.NotDecided"/> is not allowed in display rotation capability.<br/>
+        /// The default value of each <see cref="Rotation"/> is not supported.
+        /// </remarks>
+        /// <param name="rotation">The <see cref="Rotation"/>.</param>
+        /// <param name="support">A value indicating whether the <paramref name="rotation"/> is supported or not..</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="rotation"/> or <paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetDisplayRotationCapability(Rotation rotation, MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(Rotation), rotation, nameof(rotation));
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            if (support == MediaControlCapabilitySupport.NotDecided)
+            {
+                throw new ArgumentException($"NotDecided is not allowed in {rotation} capability.");
+            }
+
+            Native.SetDisplayRotationCapability(Handle, (uint)rotation.ToNative(), support).
+                ThrowIfError("Failed to set display rotation capability.");
+        }
+        #endregion Capability
+
+
+        #region Command
         /// <summary>
         /// Requests commands to the client.
         /// </summary>
@@ -499,160 +834,6 @@ namespace Tizen.Multimedia.Remoting
 
             command.Response(Handle, result, null);
         }
-
-        #region Capabilities
-        /// <summary>
-        /// Sets the content type of latest played media.
-        /// </summary>
-        /// <param name="type">A value indicating the content type of the latest played media.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetPlaybackContentType(MediaControlContentType type)
-        {
-            ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
-
-            Native.SetPlaybackContentType(Handle, type).ThrowIfError("Failed to set playback content type.");
-
-            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
-        }
-
-        /// <summary>
-        /// Sets the path of icon.
-        /// </summary>
-        /// <param name="path">The path of icon.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="path"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetIconPath(string path)
-        {
-            if (path == null)
-            {
-                throw new ArgumentNullException(nameof(path));
-            }
-
-            Native.SetIconPath(Handle, path).ThrowIfError("Failed to set uri path.");
-        }
-
-        /// <summary>
-        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
-        /// </summary>
-        /// <param name="capabilities">The set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetPlaybackCapabilities(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
-        {
-            foreach (var pair in capabilities)
-            {
-                ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), pair.Key, nameof(pair.Key));
-                ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), pair.Value, nameof(pair.Value));
-
-                SetPlaybackCapability(pair.Key, pair.Value);
-                Native.SetPlaybackCapability(Handle, pair.Key.ToNative(), pair.Value).
-                    ThrowIfError("Failed to set playback capability.");
-            }
-
-            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
-        }
-
-        /// <summary>
-        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
-        /// </summary>
-        /// <param name="action">A playback command.</param>
-        /// <param name="support">A value indicating whether the <paramref name="action"/> is supported or not.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="action"/> or <paramref name="support"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetPlaybackCapability(MediaControlPlaybackCommand action, MediaControlCapabilitySupport support)
-        {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
-            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
-
-            Native.SetPlaybackCapability(Handle, action.ToNative(), support).ThrowIfError("Failed to set playback capability.");
-
-            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
-        }
-
-        /// <summary>
-        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating shuffle mode is supported or not.
-        /// </summary>
-        /// <param name="support">A value indicating whether the shuffle mode is supported or not.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetShuffleModeCapability(MediaControlCapabilitySupport support)
-        {
-            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
-
-            Native.SetSimpleCapability(Handle, MediaControlCapabilityCategory.Shuffle, support).
-                ThrowIfError("Failed to set shuffle mode capability.");
-        }
-
-        /// <summary>
-        /// Sets the content type of latest played media.
-        /// </summary>
-        /// <param name="support">A value indicating whether the <see cref="MediaControlRepeatMode"/> is supported or not.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetRepeatModeCapability(MediaControlCapabilitySupport support)
-        {
-            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
-
-            Native.SetSimpleCapability(Handle, MediaControlCapabilityCategory.Repeat, support).
-                ThrowIfError("Failed to set repeat mode capability.");
-        }
-        #endregion Capabilities
-
-        /// <summary>
-        /// Sets the age rating of latest played media.
-        /// </summary>
-        /// <param name="ageRating">
-        /// The Age rating of latest played media. The valid range is 0 to 19, inclusive.
-        /// Especially, 0 means that media is suitable for all ages.
-        /// </param>
-        /// <exception cref="ArgumentOutOfRangeException">The specified <paramref name="ageRating"/> is not valid.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The server is not running .<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static void SetAgeRating(int ageRating)
-        {
-            if (ageRating < 0 || ageRating > 19)
-            {
-                throw new ArgumentOutOfRangeException(nameof(ageRating));
-            }
-
-            Native.SetAgeRating(Handle, ageRating).ThrowIfError("Failed to set age rating.");
-
-            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
-        }
+        #endregion Command
     }
 }

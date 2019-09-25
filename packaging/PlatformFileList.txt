@@ -12,6 +12,9 @@ Tizen.Applications.Alarm.dll                       #common #mobile #mobile-emul 
 Tizen.Applications.AttachPanel.dll                 #mobile #mobile-emul
 Tizen.Applications.Badge.dll                       #mobile #mobile-emul #wearable
 Tizen.Applications.Common.dll                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.ComponentBased.dll              #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.ComponentBased.ComponentManager.dll     #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.ComponentBased.Default.dll      #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.DataControl.dll                 #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.EventManager.dll                #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.MessagePort.dll                 #common #mobile #mobile-emul #tv #wearable
@@ -36,6 +39,7 @@ Tizen.dll                                          #common #mobile #mobile-emul 
 Tizen.Location.dll                                 #mobile #mobile-emul #tv #wearable
 Tizen.Location.Geofence.dll                        #mobile #mobile-emul
 Tizen.Log.dll                                      #common #mobile #mobile-emul #tv #wearable
+Tizen.MachineLearning.Inference.dll                #mobile #mobile-emul #tv #wearable
 Tizen.Maps.dll                                     #mobile #mobile-emul #tv #wearable
 Tizen.Messaging.dll                                #mobile #mobile-emul #wearable
 Tizen.Messaging.Push.dll                           #common #mobile #mobile-emul #tv #wearable

@@ -245,7 +245,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Update the playlist by lastest info.
+        /// Update the playlist by latest info.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Update()

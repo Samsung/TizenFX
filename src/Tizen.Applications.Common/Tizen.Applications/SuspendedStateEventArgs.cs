@@ -19,13 +19,13 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The class for the argument of the SuspendedState EventHandler
+    ///  Provides data for the SuspendedState event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class SuspendedStateEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes SuspendedStateEventArgs class
+        /// Initializes a new instance of the SuspendedStateEventArgs class.
         /// </summary>
         /// <param name="state">The information of the SuspendedState</param>
         /// <since_tizen> 6 </since_tizen>
@@ -35,7 +35,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The property to get the information of the SuspendedState
+        /// Gets the suspended state of applications.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public SuspendedState SuspendedState { get; private set; }

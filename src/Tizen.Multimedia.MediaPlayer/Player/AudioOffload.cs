@@ -22,7 +22,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control the audio offload for <see cref="Multimedia.Player"/>.
+    /// The class that control the audio offload for <see cref="Multimedia.Player"/>.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class AudioOffload
@@ -52,12 +52,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enables or disables the audio offload.
         /// </summary>
-        /// <value>The value indicating whether or not AudioOffload is enabled. The default value is false.</value>
+        /// <value>The value indicating whether or not audio offload is enabled. The default value is false.</value>
         /// <remarks><para>The player lets the hardware decode and render the sound if the audio offload is enabled.
-        /// This will reduce the power consumption, but will disable the ability to handle output PCM.
+        /// Audio offload can reduce the power consumption, but disable the ability to handle output PCM.
         /// Please check the below list of functions which will not work if offloading is enabled.</para>
-        /// <para>If audio offload is enabled, the following functions will return <see cref="InvalidOperationException"/>
-        /// and they will not work at all even if they were called before offload is enabled.<br/>
+        /// <para>If audio offload is enabled, the following functions will return <see cref="InvalidOperationException"/>: <br/>
         /// <see cref="AudioEffect"/><br/>
         /// <see cref="EqualizerBand"/><br/>
         /// <see cref="PlayerTrackInfo"/><br/>
@@ -67,6 +66,7 @@ namespace Tizen.Multimedia
         /// <see cref="Player.ReplayGain"/><br/>
         /// <see cref="Player.AudioPitch"/><br/>
         /// <see cref="Player.AudioPitchEnabled"/><br/></para>
+        /// <para>Although they are called before offload is enabled, they don't work normally.</para>
         /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.
         /// The sound stream type of the player should be <see cref="AudioStreamType.Media"/>.</para></remarks>
         /// <feature>http://tizen.org/feature/multimedia.player.audio_offload</feature>
@@ -107,7 +107,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The value indicating whether or not AudioOffload is activated.</value>
         /// <remarks>
-        /// Audio offload could be inactivated depending on the audio device capability even if the audio offload feature is supported.
+        /// Audio offload could be inactivated depending on the audio device capability even though the audio offload feature is supported.
         /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
@@ -135,10 +135,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves all formats for audio offload.
+        /// Retrieves the supported audio formats for audio offload.
         /// </summary>
         /// <returns>
-        /// It returns a list contained all formats for audio offload.
+        /// It returns a list containing supported audio formats for audio offload.
         /// </returns>
         /// <remarks>The supported media format can vary depending on the device capabilities.</remarks>
         /// <feature>http://tizen.org/feature/multimedia.player.audio_offload</feature>
