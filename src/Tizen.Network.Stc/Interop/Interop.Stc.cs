@@ -31,7 +31,7 @@ internal static partial class Interop
     {
         // Callback for Statistics Information
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate CallbackRet StatsInfoCallback(int result, SafeStatsHandle info, IntPtr userData);
+        internal delegate CallbackRet StatsInfoCallback(int result, IntPtr info, IntPtr userData);
 
         // Callback for getting All Statistics Information in one handle
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -64,7 +64,7 @@ internal static partial class Interop
 
         internal static class Info {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_clone")]
-            internal static extern int StatsClone(SafeStatsHandle info, out SafeStatsHandle cloned);
+            internal static extern int StatsClone(IntPtr info, out SafeStatsHandle cloned);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_destroy")]
             internal static extern int StatsDestroy(IntPtr info);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_app_id")]

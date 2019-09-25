@@ -104,7 +104,7 @@ namespace Tizen.Network.Stc
                 id = (IntPtr)_requestAllId++;
                 _getAllStatsCb_map[id] = (int result, IntPtr infoList, IntPtr key) =>
                 {
-                    if(result != (int)StcError.None)
+                    if (result != (int)StcError.None)
                     {
                         Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
                         task.SetException(new InvalidOperationException("Error occurs during GetAllStats(), " + (StcError)result));
@@ -112,9 +112,9 @@ namespace Tizen.Network.Stc
 
                     List<NetworkStatistics> statsList = new List<NetworkStatistics>();
 
-                    Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, Interop.Stc.SafeStatsHandle info, IntPtr userDataTemp) =>
+                    Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, IntPtr info, IntPtr userDataTemp) =>
                     {
-                        if(resultTemp != (int)StcError.None)
+                        if (resultTemp != (int)StcError.None)
                         {
                             Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
                             task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
