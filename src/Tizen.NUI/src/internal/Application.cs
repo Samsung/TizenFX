@@ -1381,9 +1381,12 @@ namespace Tizen.NUI
             List<Window> WindowList = new List<Window>();
             for( uint i = 0; i < ListSize; ++i )
             {
-                Window currWin = new Window(Interop.Application.Application_GetWindowsFromList(i), true);
+                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.Application_GetWindowsFromList(i)) as Window;
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                WindowList.Add(currWin);
+                if(currWin)
+                {
+                    WindowList.Add(currWin);
+                }
             }
             return WindowList;
         }

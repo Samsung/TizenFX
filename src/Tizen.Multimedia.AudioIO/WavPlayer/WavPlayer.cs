@@ -102,7 +102,7 @@ namespace Tizen.Multimedia
 
                 using (RegisterCancellationAction(tcs, cancellationToken, id))
                 {
-                    await tcs.Task;
+                    await tcs.Task.ConfigureAwait(false);
                 }
             }
         }
