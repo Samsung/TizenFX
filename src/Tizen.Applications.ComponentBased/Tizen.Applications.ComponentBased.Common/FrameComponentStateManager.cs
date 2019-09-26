@@ -8,7 +8,7 @@ namespace Tizen.Applications.ComponentBased.Common
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
         private const string LogTag = "Tizen.Applications";
-	private IDictionary<string, IWindowInfo> _winDic = new Dictionary<string, IWindowInfo>();
+        private IDictionary<string, IWindowInfo> _winDic = new Dictionary<string, IWindowInfo>();
 
         internal FrameComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
