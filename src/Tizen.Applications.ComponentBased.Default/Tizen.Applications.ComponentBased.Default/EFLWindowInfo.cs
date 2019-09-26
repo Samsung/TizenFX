@@ -57,10 +57,9 @@ namespace Tizen.Applications.ComponentBased.Default
 
             if (disposing)
             {
+                _win.Unrealize();
+                _win = null;
             }
-
-            _win.Unrealize();
-            _win = null;
             _disposed = true;
         }
 
