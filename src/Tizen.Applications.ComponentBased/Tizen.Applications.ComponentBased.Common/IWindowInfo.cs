@@ -6,18 +6,12 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Interface for window information
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public interface IWindowInfo
+    public interface IWindowInfo : IDisposable
     {
         /// <summary>
         /// Gets window resource ID
         /// </summary>
         /// <returns></returns>
         int ResourceId { get; }
-
-        /// <summary>
-        /// Releases window resource
-        /// </summary>
-        /// <returns></returns>
-        void Release();
     }
 }

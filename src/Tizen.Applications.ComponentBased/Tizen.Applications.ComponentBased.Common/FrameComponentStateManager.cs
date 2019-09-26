@@ -117,7 +117,7 @@ namespace Tizen.Applications.ComponentBased.Common
                 if (fc.Handle == context)
                 {
                     fc.OnDestroy();
-                    _winDic[fc.Id].Release();
+                    _winDic[fc.Id].Dispose();
                     RemoveComponent(fc);
                     break;
                 }
