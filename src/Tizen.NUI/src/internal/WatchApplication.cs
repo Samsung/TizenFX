@@ -17,6 +17,7 @@
  
 using System;
 using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal class WatchApplication : Application
@@ -38,14 +39,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.
@@ -373,7 +366,5 @@ namespace Tizen.NUI
         }
 
         private static WatchApplication _instance; //singleton
-
     }
-
 }

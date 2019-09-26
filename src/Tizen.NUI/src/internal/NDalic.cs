@@ -19,7 +19,6 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-
     internal class NDalic
     {
         public static uint int_to_uint(int x)
@@ -28,7 +27,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
 
         public static readonly int VISUAL_PROPERTY_TRANSFORM = Interop.Visual.Visual_Property_TRANSFORM_get();
         public static readonly int VISUAL_PROPERTY_PREMULTIPLIED_ALPHA = Interop.Visual.Visual_Property_PREMULTIPLIED_ALPHA_get();
@@ -940,7 +938,5 @@ namespace Tizen.NUI
         internal static readonly int TOOLTIP_TAIL_VISIBILITY = Interop.NDalicToolTip.TOOLTIP_TAIL_VISIBILITY_get();
         internal static readonly int TOOLTIP_TAIL_ABOVE_VISUAL = Interop.NDalicToolTip.TOOLTIP_TAIL_ABOVE_VISUAL_get();
         internal static readonly int TOOLTIP_TAIL_BELOW_VISUAL = Interop.NDalicToolTip.TOOLTIP_TAIL_BELOW_VISUAL_get();
-
     }
-
 }

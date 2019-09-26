@@ -50,6 +50,8 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
         /// <param name="device">The camera device to access.</param>
+        /// <exception cref="ArgumentException">Invalid CameraDevice type.</exception>
+        /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
         public Camera(CameraDevice device)
@@ -831,6 +833,8 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFaceDetection()
         {
+            ValidateNotDisposed();
+
             if (_faceDetectedCallback == null)
             {
                 throw new InvalidOperationException("The face detection is not started.");

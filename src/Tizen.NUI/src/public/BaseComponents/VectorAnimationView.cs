@@ -66,13 +66,6 @@ namespace Tizen.NUI.BaseComponents
             }
             tlog.Fatal(tag, $"<<< [{GetId()}] VectorAnimationView.Dispose(type={type})");
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -289,8 +282,12 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                //SetPlayRange(0, TotalFrameNumber - 1);
+                SetPlayRange(0, TotalFrameNumber - 1);
             }
+
+            //temporal fix
+            Extents tmp = base.Margin;
+            base.Margin = tmp;
 
             base.Play();
             AnimationState = AnimationStates.Playing;

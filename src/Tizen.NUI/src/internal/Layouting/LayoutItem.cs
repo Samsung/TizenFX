@@ -529,7 +529,7 @@ namespace Tizen.NUI
                                                          " left:" + _layoutPositionData.Left +
                                                          " top:" + _layoutPositionData.Top +
                                                          " right:" + _layoutPositionData.Right +
-                                                         " bottom:" + _layoutPositionData.Right );
+                                                         " bottom:" + _layoutPositionData.Bottom );
 
                 Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
 
@@ -539,6 +539,5 @@ namespace Tizen.NUI
 
             return changed;
         }
-
     }
 }

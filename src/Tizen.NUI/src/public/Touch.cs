@@ -234,7 +234,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Degree GetAngle(uint point)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Degree GetAngle(uint point)
         {
             Degree ret = new Degree(Interop.Touch.Touch_GetAngle(swigCPtr, point), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -250,13 +252,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -275,7 +270,6 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
     }
 
     /// <summary>

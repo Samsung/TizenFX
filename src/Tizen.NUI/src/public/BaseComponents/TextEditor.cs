@@ -2094,13 +2094,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -2137,7 +2130,6 @@ namespace Tizen.NUI.BaseComponents
                 //here we send all data to user event handlers
                 _textEditorTextChangedEventHandler(this, e);
             }
-
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)

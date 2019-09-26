@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -41,10 +41,10 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(AudioStreamType), targetType, nameof(targetType));
 
-            _duckingStateChangedCallback = (AudioDuckingHandle ducking, bool isDucked, IntPtr _) =>
+            _duckingStateChangedCallback = (IntPtr ducking, bool isDucked, IntPtr _) =>
             {
                 DuckingStateChanged?.Invoke(this,
-                    new AudioDuckingStateChangedEventArgs(IsDucked));
+                    new AudioDuckingStateChangedEventArgs(isDucked));
             };
 
             Interop.AudioDucking.Create(targetType, _duckingStateChangedCallback,

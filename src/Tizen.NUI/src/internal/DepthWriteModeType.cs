@@ -17,12 +17,10 @@
 
 namespace Tizen.NUI
 {
-
     internal enum DepthWriteModeType
     {
         OFF,
         AUTO,
         ON
     }
-
 }

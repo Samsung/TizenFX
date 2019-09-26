@@ -15,7 +15,7 @@ namespace Tizen.NUI
     /// WidgetViewSignal
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class WidgetViewSignal : global::System.IDisposable
+    public class WidgetViewSignal : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
@@ -39,30 +39,24 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        ~WidgetViewSignal()
+        protected override void Dispose(DisposeTypes type)
         {
-            Dispose();
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public virtual void Dispose()
-        {
-            lock (this)
+            if (disposed)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                global::System.GC.SuppressFinalize(this);
+                return;
             }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -136,6 +130,5 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
 }

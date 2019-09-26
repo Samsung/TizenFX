@@ -154,6 +154,11 @@ namespace Tizen.Applications.ComponentBased
         /// <since_tizen> 6 </since_tizen>
         public static void TerminateBackgroundComponent(ComponentRunningContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentManagerTerminateBgComponent(context._contextHandle);
             if (err != Interop.ComponentManager.ErrorCode.None)
             {

@@ -25,7 +25,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// <since_tizen> 6 </since_tizen>
     public abstract class ComponentBasedApplication : Application
     {
-        private const string LogTag = "Tizen.Applications.ComponentBasedApplicationBase";
+        private const string LogTag = "Tizen.Applications";
         private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
 
