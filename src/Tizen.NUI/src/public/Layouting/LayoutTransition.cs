@@ -128,20 +128,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Time the transition should execute. Milliseconds.
+        /// Get, Set the time transition should execute for . Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Duration;
         /// <summary>
-        /// Delay before the transition executes. Milliseconds.
+        /// Get, Set the delay before the transition executes. Milliseconds.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public int Delay;
         /// <summary>
-        /// Function to alter the transition path over time.
+        /// Get, Set the function to alter the transition path over time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-
         public AlphaFunction AlphaFunction;
     }
 

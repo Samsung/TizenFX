@@ -54,20 +54,13 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public TransitionCondition ConditionForAnimation{get; set;}
+        internal TransitionCondition ConditionForAnimation{get; set;}
 
         /// <summary>
         /// [Draft] The View that this Layout has been assigned to.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public View Owner{get; set;}  // Should not keep a View alive.
-
-        /// <summary>
-        /// [Draft] Is this Layout set to animate its content.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public bool Animate{get; set;}
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
@@ -113,22 +106,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Constructor setting the owner of this LayoutItem.
-        /// </summary>
-        /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
-        /// <since_tizen> 6 </since_tizen>
-        public LayoutItem(View owner)
-        {
-            Owner = owner;
-            Initialize();
-        }
-
-        /// <summary>
         /// [Draft] Set parent to this layout.
         /// </summary>
         /// <param name="parent">Parent to set on this Layout.</param>
-        /// <since_tizen> 6 </since_tizen>
-        public void SetParent( ILayoutParent parent)
+        internal void SetParent( ILayoutParent parent)
         {
             Parent = parent as LayoutGroup;
         }
@@ -136,8 +117,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Unparent this layout from it's owner, and remove any layout children in derived types. <br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public void Unparent()
+        internal void Unparent()
         {
             // Enable directly derived types to first remove children
             OnUnparent();
@@ -338,33 +318,6 @@ namespace Tizen.NUI
         public MeasuredSize MeasuredHeight{ get; set; } = new MeasuredSize( new LayoutLength(-3), MeasuredSize.StateType.MeasuredSizeOK);
 
         /// <summary>
-        /// Get the measured width and state.<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public MeasuredSize MeasuredWidthAndState
-        {
-            get
-            {
-                return MeasuredWidth; // Not bitmasking State unless proven to be required.
-            }
-        }
-
-
-        /// <summary>
-        /// Get the measured height and state.<br />
-        /// This method should be used only during measurement and layout calculations.<br />
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public MeasuredSize MeasuredHeightAndState
-        {
-            get
-            {
-                return MeasuredHeight;  // Not bitmasking State unless proven to be required.
-            }
-        }
-
-        /// <summary>
         /// Returns the suggested minimum width that the layout should use.<br />
         /// This returns the maximum of the layout's minimum width and the owner's natural width.<br />
         /// </summary>
@@ -400,8 +353,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
         /// 3. If the owner's View.WidthSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public LayoutLength MinimumWidth {get; set;}
+        internal LayoutLength MinimumWidth {get; set;}
 
         /// <summary>
         /// Sets the minimum height of the layout.<br />
@@ -411,8 +363,7 @@ namespace Tizen.NUI
         /// 2. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
         /// 3. If the owner's View.HeightSpecification is set to View.LayoutParamPolicies.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public LayoutLength MinimumHeight {get; set;}
+        internal LayoutLength MinimumHeight {get; set;}
 
         ///<summary>
         /// Utility to reconcile a desired size and state, with constraints imposed by a MeasureSpecification.
@@ -501,21 +452,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Virtual method to inform derived classes when the layout size changed. <br />
-        /// </summary>
-        /// <param name="newSize">The new size of the layout.</param>
-        /// <param name="oldSize">The old size of the layout.</param>
-        /// <since_tizen> 6 </since_tizen>
-        protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
-        {
-        }
-
-        /// <summary>
         /// Virtual method to allow derived classes to remove any children before it is removed from
         /// its parent.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public virtual void OnUnparent()
+        protected virtual void OnUnparent()
         {
         }
 

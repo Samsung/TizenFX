@@ -92,11 +92,11 @@ namespace Tizen.NUI
                     totalWidth = maxPositionX - minPositionX;
                     totalHeight = maxPositionY - minPositionY;
 
-                    if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                    if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
                         childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                     }
-                    if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                    if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                     {
                         childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                     }

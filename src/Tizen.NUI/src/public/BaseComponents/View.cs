@@ -3680,8 +3680,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The weight of the View, used to share avaiable space in a layout with siblings.
+        /// The weight of the View, used to share available space in a layout with siblings.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public float Weight
         {
             get

@@ -44,16 +44,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Constructor setting the owner of this LayoutGroup.
-        /// </summary>
-        /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
-        /// <since_tizen> 6 </since_tizen>
-        public LayoutGroup(View owner) : base(owner)
-        {
-            LayoutChildren = new List<LayoutItem>();
-        }
-
-        /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -401,17 +391,6 @@ namespace Tizen.NUI
                     childLayout.Layout( childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size );
                 }
             }
-        }
-
-        /// <summary>
-        /// Overridden method called when the layout size changes.<br />
-        /// </summary>
-        /// <param name="newSize">The new size of the layout.</param>
-        /// <param name="oldSize">The old size of the layout.</param>
-        /// <since_tizen> 6 </since_tizen>
-        protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
-        {
-            // Do nothing
         }
 
         /// <summary>

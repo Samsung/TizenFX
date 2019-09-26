@@ -246,13 +246,13 @@ namespace Tizen.NUI
             childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
 
             // Child may now not fit in horizontal dimension.
-            if( childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+            if( childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
             {
                 childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
             }
 
             // Child may now not fit in vertical dimension.
-            if( childLayout.MeasuredHeightAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+            if( childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
             {
                 childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
             }
@@ -344,11 +344,11 @@ namespace Tizen.NUI
                 float marginHeight = childMargin.Top + childMargin.Bottom;
                 float childHeight = childLayout.MeasuredHeight.Size.AsDecimal() + marginHeight;
 
-                if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
                     childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
-                if (childLayout.MeasuredHeightAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
@@ -541,11 +541,11 @@ namespace Tizen.NUI
                 float marginWidth = (childLayout.Margin.Start) + (childLayout.Margin.End);
                 float childWidth = childLayout.MeasuredWidth.Size.AsDecimal() + marginWidth;
 
-                if (childLayout.MeasuredWidthAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
                     childState.widthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
-                if (childLayout.MeasuredHeightAndState.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
