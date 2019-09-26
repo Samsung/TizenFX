@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -27,7 +28,7 @@ namespace Tizen.NUI
     /// [Draft] The class that initiates the Measuring and Layouting of the tree,
     ///         It sets a callback that becomes the entry point into the C# Layouting.
     /// </summary>
-    internal class LayoutController : global::System.IDisposable
+    internal class LayoutController : Disposable
     {
         static bool LayoutDebugController = false; // Debug flag
 
@@ -39,7 +40,7 @@ namespace Tizen.NUI
         event Callback _instance;
 
         // A Flag to check if it is already disposed.
-        protected bool disposed = false;
+        private bool disposed = false;
 
         private Window _window;
 
@@ -93,6 +94,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get the Layouting animation object that transitions layouts and content.
+        /// Use OverrideCoreAnimation to explicitly control Playback.
+        /// </summary>
+        /// <returns> The layouting core Animation. </returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation GetCoreAnimation()
+        {
+            return _coreAnimation;
+        }
+
+        /// <summary>
+        /// Set or Get Layouting core animation override property.
+        /// Gives explicit control over the Layouting animation playback if set to True.
+        /// Reset to False if explicit control no longer required.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OverrideCoreAnimation {get;set;} = false;
+
+        /// <summary>
         /// Destructor which adds LayoutController to the Dispose queue.
         /// </summary>
         ~LayoutController()
@@ -132,18 +152,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose Explict or Implicit
         /// </summary>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User code
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -156,7 +169,7 @@ namespace Tizen.NUI
                 unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
-            disposed = true;
+            base.Dispose(type);
         }
 
         // Traverse through children from the provided root.
@@ -223,7 +236,7 @@ namespace Tizen.NUI
                 else
                 {
                     // Parent not a View so assume it's a Layer which is the size of the window.
-                    rootSize = _window.WindowSize;
+                    rootSize = new Size2D(_window.Size.Width, _window.Size.Height);
                 }
 
                 // Determine measure specification for root.
@@ -277,7 +290,7 @@ namespace Tizen.NUI
 
                 bool readyToPlay = SetupCoreAnimation();
 
-                if (readyToPlay)
+                if (readyToPlay && OverrideCoreAnimation==false)
                 {
                     PlayAnimation();
                 }
@@ -336,8 +349,8 @@ namespace Tizen.NUI
         /// </summary>
         private void PlayAnimation()
         {
+            Debug.WriteLineIf( LayoutDebugController, "LayoutController Playing, Core Duration:" + _coreAnimation.Duration);
             _coreAnimation.Play();
-            Debug.WriteLineIf( LayoutDebugController, "LayoutController Core Duration:" + _coreAnimation.Duration);
         }
 
         private void AnimationFinished(object sender, EventArgs e)
@@ -370,6 +383,8 @@ namespace Tizen.NUI
                 // of the other stack.  Then the main removal stack iterated when AnimationFinished
                 // occurs again.
             }
+            Debug.WriteLineIf( LayoutDebugController, "LayoutController AnimationFinished");
+            _coreAnimation?.Clear();
         }
 
         /// <summary>
@@ -381,9 +396,15 @@ namespace Tizen.NUI
             // Initialize animation for this layout run.
             bool animationPending = false;
 
+            Debug.WriteLineIf( LayoutDebugController,
+                               "LayoutController SetupCoreAnimation for:" + _layoutTransitionDataQueue.Count);
+
             if (_layoutTransitionDataQueue.Count > 0 ) // Something to animate
             {
-                _coreAnimation = new Animation();
+                if (!_coreAnimation)
+                {
+                    _coreAnimation = new Animation();
+                }
                 _coreAnimation.EndAction = Animation.EndActions.StopFinal;
                 _coreAnimation.Finished += AnimationFinished;
 
@@ -444,6 +465,13 @@ namespace Tizen.NUI
                                          sizeTransitionComponents.Delay,
                                          sizeTransitionComponents.Duration,
                                          sizeTransitionComponents.AlphaFunction);
+
+                Debug.WriteLineIf( LayoutDebugController,
+                                  "LayoutController SetupAnimationForSize View:" + layoutPositionData.Item.Owner.Name +
+                                   " width:" + (layoutPositionData.Right-layoutPositionData.Left) +
+                                   " height:" + (layoutPositionData.Bottom-layoutPositionData.Top) +
+                                   " delay:" + sizeTransitionComponents.Delay +
+                                   " duration:" + sizeTransitionComponents.Duration );
             }
         }
 
@@ -518,22 +546,23 @@ namespace Tizen.NUI
 
             bool matchedCustomTransitions = false;
 
-            // Inherit parent transitions if none already set on View for the condition.
-            // Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
             TransitionList transitionsForCurrentCondition = new TransitionList();
+            // Note, Transitions set on View rather than LayoutItem so if the Layout changes the transition persist.
 
-            ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
-            if (layoutParent !=null)
+            // Check if item to animate has it's own Transitions for this condition.
+            // If a key exists then a List of atleast 1 transition exists.
+            if (layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
             {
-                // Check if item to animate has it's own Transitions for this condition.
-                // If a key exists then a List of atleast 1 transition exists.
-                if ( layoutPositionData.Item.Owner.LayoutTransitions.ContainsKey(conditionForAnimators))
-                {
-                    // Child has transitions for the condition
-                    matchedCustomTransitions = layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition);
-                }
-                else
+                // Child has transitions for the condition
+                matchedCustomTransitions = layoutPositionData.Item.Owner.LayoutTransitions.TryGetValue(conditionForAnimators, out transitionsForCurrentCondition);
+            }
+
+            if (!matchedCustomTransitions)
+            {
+                // Inherit parent transitions as none already set on View for the condition.
+                ILayoutParent layoutParent = layoutPositionData.Item.GetParent();
+                if (layoutParent !=null)
                 {
                     // Item doesn't have it's own transitions for this condition so copy parents if
                     // has a parent with transitions.
@@ -545,13 +574,13 @@ namespace Tizen.NUI
                         // Copy parent transitions to temporary TransitionList. List contains transitions for the current condition.
                         LayoutTransitionsHelper.CopyTransitions(parentTransitionList,
                                                                 transitionsForCurrentCondition);
-
-                        matchedCustomTransitions = false; // Using parent transition as no custom match.
                     }
                 }
             }
 
-            // Position/Size transitions can be for a layout changing to another layout or an item being added or removed.
+
+            // Position/Size transitions can be displayed for a layout changing to another layout or an item being added or removed.
+
             // There can only be one position transition and one size position, they will be replaced if set multiple times.
             // transitionsForCurrentCondition represent all non position (custom) properties that should be animated.
 
@@ -577,5 +606,4 @@ namespace Tizen.NUI
         }
 
     } // class LayoutController
-
 } // namespace Tizen.NUI

@@ -44,14 +44,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -263,7 +255,5 @@ namespace Tizen.NUI
             /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
             Free
         }
-
     }
-
 }

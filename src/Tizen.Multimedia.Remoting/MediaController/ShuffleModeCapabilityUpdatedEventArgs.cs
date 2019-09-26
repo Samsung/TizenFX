@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="ShuffleModeCapabilityUpdatedEventArgs"/> class.
         /// </summary>
         /// <param name="support">The shuffle mode capabilities.</param>
-        /// <exception cref="ArgumentException"><paramref name="support"/> is not vaild.</exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is not valid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ShuffleModeCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
         {

@@ -654,6 +654,19 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the x,y coordinates of the input panel.
+        /// </summary>
+        /// <param name="x">The top-left x coordinate of the input panel.</param>
+        /// <param name="y">The top-left y coordinate of the input panel.</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetInputPanelPosition(uint x, uint y)
+        {
+            Interop.InputMethodContext.InputMethodContext_SetInputPanelPosition(swigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(InputMethodContext obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
@@ -759,14 +772,6 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User.
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
             }
 
             //Release your own unmanaged resources here.

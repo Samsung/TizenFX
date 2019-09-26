@@ -14,8 +14,8 @@
   </metadata>
   <files>
     <file src="pkg\Tizen.NET.API6\build\**" target="build" />
+    <file src="pkg\Tizen.NET.API6\design\*.dll" target="ref\netstandard2.0\Design" />
     <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
     <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
-    <file src="Artifacts\bin\design\*.Design.dll" target="ref\netstandard2.0\Design" />
   </files>
 </package>

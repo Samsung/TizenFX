@@ -17,7 +17,6 @@
 
 using System;
 using System.Collections.Generic;
-
 using Tizen.Applications.CoreBackend;
 using Tizen.Applications;
 
