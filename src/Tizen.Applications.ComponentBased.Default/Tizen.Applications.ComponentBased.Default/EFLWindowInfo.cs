@@ -10,7 +10,7 @@ namespace Tizen.Applications.ComponentBased.Default
     /// <since_tizen> 6 </since_tizen>
     public class EFLWindowInfo : IWindowInfo
     {
-        private const string LogTag = "Tizen.Applications.EFLWindow";
+        private const string LogTag = "Tizen.Applications.EFLWindowInfo";
         private Window _win;
         private int _resId;
 
@@ -21,6 +21,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// <since_tizen> 6 </since_tizen>
         public EFLWindowInfo(Window win)
         {
+            Log.Info(LogTag, "Create EFLWindow");
             _win = win;
         }
 
@@ -44,6 +45,16 @@ namespace Tizen.Applications.ComponentBased.Default
             }
         }
 
+        /// <summary>
+        /// Releases the window
+        /// </summary>
+        /// <returns></returns>
+        /// <since_tizen> 6 </since_tizen>
+        public void Release()
+        {
+            _win.Unrealize();
+            _win = null;
+        }
     }
 
 }

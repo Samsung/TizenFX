@@ -8,6 +8,7 @@ namespace Tizen.Applications.ComponentBased.Common
     {
         private Interop.CBApplication.FrameLifecycleCallbacks _callbacks;
         private const string LogTag = "Tizen.Applications.FrameComponentStateManager";
+        private IDictionary<string, IWindowInfo> _winDic = new Dictionary<string, IWindowInfo>();
 
         internal FrameComponentStateManager(Type ctype, string id, ComponentBasedApplication parent) : base(ctype, id, parent)
         {
@@ -47,6 +48,7 @@ namespace Tizen.Applications.ComponentBased.Common
             if (win == null)
                 return IntPtr.Zero;
 
+            _winDic.Add(id, win);
             if (!fc.OnCreate())
             {
                 Log.Error(LogTag, "OnCreate fail");
@@ -115,6 +117,7 @@ namespace Tizen.Applications.ComponentBased.Common
                 if (fc.Handle == context)
                 {
                     fc.OnDestroy();
+                    _winDic[fc.Id].Release();
                     RemoveComponent(fc);
                     break;
                 }

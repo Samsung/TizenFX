@@ -13,5 +13,11 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <returns></returns>
         int ResourceId { get; }
+
+        /// <summary>
+        /// Releases window resource
+        /// </summary>
+        /// <returns></returns>
+        void Release();
     }
 }
