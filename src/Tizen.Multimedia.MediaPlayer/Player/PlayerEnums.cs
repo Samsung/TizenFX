@@ -328,18 +328,18 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the types of a codec for <see cref="Player"/>.
     /// </summary>
-    /// <seealso cref="Player.AudioCodec"/>
+    /// <seealso cref="Player.AudioCodecType"/>
     /// <since_tizen> 6 </since_tizen>
     public enum CodecType
     {
         /// <summary>
         /// An optional flag for using the H/W codec.
         /// </summary>
-        Hw,
+        Hardware,
 
         /// <summary>
         ///  An optional flag for using the S/W codec
         /// </summary>
-        Sw,
+        Software,
     }
 }

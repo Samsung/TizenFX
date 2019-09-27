@@ -553,7 +553,7 @@ namespace Tizen.Multimedia
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
-        /// <seealso cref="AudioCodec"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 5 </since_tizen>
         public bool ReplayGain
         {
@@ -592,7 +592,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="AudioPitch"/>
-        /// <seealso cref="AudioCodec"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public bool AudioPitchEnabled
         {
@@ -637,7 +637,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="AudioPitchEnabled"/>
-        /// <seealso cref="AudioCodec"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public float AudioPitch
         {
@@ -683,8 +683,7 @@ namespace Tizen.Multimedia
         /// The default codec type could be different depending on the device capability.</value>
         /// <remarks>
         /// <para>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</para>
-        /// <para><see cref="CodecType.Sw"/> is supported basically.
-        /// If H/W audio codec type is not supported in some cases, S/W audio codec type could be used instead.</para>
+        /// <para>If H/W audio codec type is not supported in some cases, S/W audio codec type could be used instead.</para>
         /// <para>The availability could be changed depending on the codec capability.
         /// If an application wants to use the H/W audio codec type as default,
         /// following functions should be called after the codec type is set. :<br/>
@@ -704,7 +703,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="CodecNotSupportedException">The selected codec is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public CodecType AudioCodec
+        public CodecType AudioCodecType
         {
             get
             {

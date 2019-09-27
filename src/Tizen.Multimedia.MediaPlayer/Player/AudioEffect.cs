@@ -156,7 +156,7 @@ namespace Tizen.Multimedia
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
-        /// <seealso cref="Player.AudioCodec"/>
+        /// <seealso cref="Player.AudioCodecType"/>
         /// <since_tizen> 3 </since_tizen>
         public bool IsAvailable
         {

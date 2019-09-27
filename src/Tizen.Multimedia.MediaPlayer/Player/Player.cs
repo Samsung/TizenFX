@@ -980,7 +980,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
-        /// <seealso cref="AudioCodec"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
@@ -1017,7 +1017,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="EnableExportingAudioData"/>
-        /// <seealso cref="AudioCodec"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void DisableExportingAudioData()
         {
