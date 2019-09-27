@@ -38,8 +38,8 @@ namespace Tizen.Network.IoTConnectivity
         private bool _cacheEnabled = false;
         private ResourceOptions _options;
 
-        private int _responseCallbackId = 1;
-        private IDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback> _responseCallbacksMap;
+        private static int _responseCallbackId = 1;
+        private static IDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback> _responseCallbacksMap = new ConcurrentDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback>();
 
         private Interop.IoTConnectivity.Client.RemoteResource.CachedRepresentationChangedCallback _cacheUpdatedCallback;
         private Interop.IoTConnectivity.Client.RemoteResource.StateChangedCallback _stateChangedCallback;
@@ -80,7 +80,6 @@ namespace Tizen.Network.IoTConnectivity
             Types = new List<string>(resourceTypes);
             Interfaces = new List<string>(resourceInterfaces);
             DeviceId = null;
-            _responseCallbacksMap = new ConcurrentDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback>();
 
             CreateRemoteResource(resourceTypes._resourceTypeHandle, resourceInterfaces.ResourceInterfacesHandle);
         }
@@ -94,7 +93,6 @@ namespace Tizen.Network.IoTConnectivity
                 throw IoTConnectivityErrorFactory.GetException(ret);
             }
             SetRemoteResource();
-            _responseCallbacksMap = new ConcurrentDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback>();
         }
 
         /// <summary>
