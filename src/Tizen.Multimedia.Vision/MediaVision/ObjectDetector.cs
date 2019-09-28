@@ -27,16 +27,16 @@ namespace Tizen.Multimedia.Vision
     public static class ObjectDetector
     {
         /// <summary>
-        /// Detects objects and gets its locations on the source image using inference engine which set by <paramref name="config"/>.<br/>
+        /// Detects objects and gets its locations on the source image using inference engine set in <paramref name="config"/>.<br/>
         /// Each time when DetectAsync is called, a set of the detected objects at the media source are received asynchronously.
         /// </summary>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.image</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
-        /// <param name="config">The configuration of engine will be used for detecting.</param>
+        /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>
         /// A task that represents the asynchronous detect operation.<br/>
-        /// If there's no detected object, <see cref="ObjectDetectionResult.Number"/> will be 0 and, other properties will be null.
+        /// If there's no detected object, <see cref="ObjectDetectionResult.Number"/> will be 0 and other properties will be empty.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>

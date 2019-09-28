@@ -30,20 +30,19 @@ namespace Tizen.Multimedia.Vision
     public static class FacialLandmarkDetector
     {
         /// <summary>
-        /// Detects facial landmarks on the source image using inference engine which set by <paramref name="config"/>.<br/>
-        /// Each time when DetectAsync is called, a set of the detected facial landmark at the media source are received asynchronously.
+        /// Detects facial landmarks on the source image using inference engine set in <paramref name="config"/>.<br/>
         /// </summary>
         /// <remarks>
-        /// If user want to set region-of-interest area in source image, Please set <see cref="InferenceModelConfiguration.Roi"/>.
-        /// If not, full image area will be used to detect facail landmark.
+        /// To set region-of-interest area in source image, please set <see cref="InferenceModelConfiguration.Roi"/>.
+        /// If not set, full image area will be used to detect facial landmark.
         /// </remarks>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
-        /// <param name="config">The configuration of engine will be used for detecting.</param>
+        /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>
         /// A task that represents the asynchronous detect operation.<br/>
-        /// If there's no detected facial landmark, the return value will be null.
+        /// If there's no detected facial landmark, the return value will be empty.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>

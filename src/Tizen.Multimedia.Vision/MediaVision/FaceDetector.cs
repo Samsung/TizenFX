@@ -109,17 +109,17 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Detects faces on the source image using inference engine which set by <paramref name="config"/>.<br/>
+        /// Detects faces on the source image using inference engine set in <paramref name="config"/>.<br/>
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
         /// <remarks>
         /// If there's no detected face, <see cref="FaceDetectionResult.Number"/> will be 0 and,
-        /// <see cref="FaceDetectionResult.Confidences"/> and <see cref="FaceDetectionResult.Locations"/> will be null.
+        /// <see cref="FaceDetectionResult.Confidences"/> and <see cref="FaceDetectionResult.Locations"/> will be empty.
         /// </remarks>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
-        /// <param name="config">The configuration of engine will be used for detecting.</param>
+        /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>

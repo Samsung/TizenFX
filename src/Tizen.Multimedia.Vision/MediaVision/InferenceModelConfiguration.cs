@@ -22,10 +22,11 @@ using InteropInference = Interop.MediaVision.Inference;
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Represents a configuration of <see cref="InferenceModelConfiguration"/> instances.
+    /// Represents a configuration of <see cref="FaceDetector"/>, <see cref="FacialLandmarkDetector"/>,
+    /// <see cref="ImageClassifier"/> and <see cref="ObjectDetector"/>.
     /// </summary>
     /// <remarks>
-    /// 'Inference model' means pre-learned data, which represents by <see cref="ConfigurationFilePath"/> and
+    /// 'Inference model' means pre-learned data, which is represented by <see cref="ConfigurationFilePath"/> and
     /// <see cref="WeightFilePath"/>, <see cref="CategoryFilePath"/>.<br/>
     /// If user want to use tizen default inference model and its related value,
     /// Please refer Tizen guide page(https://developer.tizen.org/development/guides/.net-application).
@@ -72,7 +73,7 @@ namespace Tizen.Multimedia.Vision
         /// Loads inference model data and its related attributes.
         /// </summary>
         /// <remarks>
-        /// User should set all required properties of this class before calling this method.<br/>
+        /// Before calling this method, user should set all properties which is required by each inference model.<br/>
         /// The properties set after calling this method will not be affected in the result.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
@@ -314,8 +315,8 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <remarks>
         /// The default target is <see cref="InferenceTargetType.CPU"/>.<br/>
-        /// Even if user set <see cref="InferenceTargetType.GPU"/> or <see cref="InferenceTargetType.Custom"/>,<br/>
-        /// if target doesn't support it, <see cref="InferenceTargetType.CPU"/> will be used internally.
+        /// If target doesn't support <see cref="InferenceTargetType.GPU"/> and <see cref="InferenceTargetType.Custom"/>,
+        /// <see cref="InferenceTargetType.CPU"/> will be used internally, despite the user's choice.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -338,8 +339,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <remarks>
         /// Both width and height of tensor should be greater than 0.<br/>
-        /// But, specially, -1 is allowed when user want to use original image source size as TensorSize.
-        /// In this case, user should set Size(-1, -1). Both Size(-1, 1) and Size(1, -1) are not allowed.
+        /// 'Size(-1, -1) is allowed when the intention is to use original image source size as TensorSize.
         /// </remarks>
         /// <exception cref="ArgumentException">
         /// Only one of <paramref name="value.Width"/> or <paramref name="value.Height"/> have -1.</exception>
@@ -356,20 +356,21 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                if (value.Equals(new Size(-1, 1)) || value.Equals(new Size(1, -1)))
+                if ((value.Width == -1 && value.Height != -1) || (value.Height == -1 && value.Width != -1))
                 {
-                    throw new ArgumentException("If user want to set -1, set -1 to both width and height.");
+                    throw new ArgumentException("Both width and height must be set to -1, or greater than 0.");
                 }
 
                 if (value.Width == 0 || value.Width <= -2)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Width should be greater than 0." +
-                        "Or, set this property to Size(-1, -1), if you want to use original image size.");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        "Both width and height must be set to -1, or greater than 0.");
                 }
+
                 if (value.Height == 0 || value.Height <= -2)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Height should be greater than 0." +
-                        "Or, set this property to Size(-1, -1), if you want to use original image size.");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        "Both width and height must be set to -1, or greater than 0.");
                 }
 
                 Set(_keyInputTensorWidth, value.Width);
@@ -381,7 +382,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the number of inference model's tensor channel.
         /// </summary>
         /// <remarks>
-        /// For example, in case of RGB colorspace, this value can be set by 3.<br/>
+        /// For example, for RGB colorspace this value should be set to 3<br/>
         /// It should be greater than 0.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
@@ -404,7 +405,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the name of input node
+        /// Gets or sets the name of an input node
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -426,7 +427,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Gets or sets the name of output node
+        /// Gets or sets the name of an output node
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
