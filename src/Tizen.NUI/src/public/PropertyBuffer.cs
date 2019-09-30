@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -52,6 +54,10 @@ namespace Tizen.NUI
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyBuffer(PropertyMap bufferFormat) constructor instead!" +
+            "IntPtr(native integer pointer) is supposed to be not used in Application!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
             Interop.PropertyBuffer.PropertyBuffer_SetData(swigCPtr, data, size);

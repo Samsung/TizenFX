@@ -132,6 +132,10 @@ namespace Tizen.NUI
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use Notified event instead!" +
+            "IntPtr(native integer pointer) is supposed to be not used in Application!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
@@ -158,6 +162,9 @@ namespace Tizen.NUI
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyNotification() constructor instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(Interop.PropertyNotification.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
@@ -240,6 +247,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use Notified event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.PropertyNotification_NotifySignal(swigCPtr), false);
