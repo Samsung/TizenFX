@@ -24,47 +24,37 @@ namespace Tizen.Multimedia.Vision
     /// <since_tizen> 6 </since_tizen>
     public class ObjectDetectionResult
     {
-        internal ObjectDetectionResult(int[] indices, string[] names, float[] confidences,
-            global::Interop.MediaVision.Rectangle[] locations, int size)
+        internal ObjectDetectionResult(int indice, string name, float confidence,
+            global::Interop.MediaVision.Rectangle location)
         {
-            if (size > 0)
-            {
-                Number = size;
-                Indices = new ReadOnlyCollection<int>(indices);
-                Names = new ReadOnlyCollection<string>(names);
-                Confidences = new ReadOnlyCollection<float>(confidences);
-                Locations = new ReadOnlyCollection<Rectangle>(locations.ToApiStruct());
-            }
+            Indice = indice;
+            Name = name;
+            Confidence = confidence;
+            Location = location.ToApiStruct();
         }
 
         /// <summary>
-        /// Gets the number of detected objects.
+        /// Gets the indice of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int Number { get; }
+        public int Indice { get; }
 
         /// <summary>
-        /// Gets the indices of detected objects.
+        /// Gets the name of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<int> Indices { get; }
+        public string Name { get; }
 
         /// <summary>
-        /// Gets the names of detected objects.
+        /// Gets the confidence of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<string> Names { get; }
+        public float Confidence { get; }
 
         /// <summary>
-        /// Gets the confidences of detected objects.
+        /// Gets the location of detected object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<float> Confidences { get; }
-
-        /// <summary>
-        /// Gets the locations of detected objects.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<Rectangle> Locations { get; }
+        public Rectangle Location { get; }
     }
 }

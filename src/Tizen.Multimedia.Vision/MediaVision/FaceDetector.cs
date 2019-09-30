@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InteropFace = Interop.MediaVision.Face;
 using InteropInference = Interop.MediaVision.Inference;
@@ -113,21 +115,23 @@ namespace Tizen.Multimedia.Vision
         /// Each time when DetectAsync is called, a set of the detected faces at the media source are received asynchronously.
         /// </summary>
         /// <remarks>
-        /// If there's no detected face, <see cref="FaceDetectionResult.Number"/> will be 0 and,
-        /// <see cref="FaceDetectionResult.Confidences"/> and <see cref="FaceDetectionResult.Locations"/> will be empty.
+        /// If there's no detected face, empty collection will be returned.
         /// </remarks>
         /// <feature>http://tizen.org/feature/vision.inference</feature>
         /// <feature>http://tizen.org/feature/vision.inference.face</feature>
         /// <param name="source">The source of the media where faces will be detected.</param>
         /// <param name="config">The engine's configuration that will be used for detecting.</param>
-        /// <returns>A task that represents the asynchronous detect operation.</returns>
+        /// <returns>
+        /// A task that represents the asynchronous detect operation.<br/>
+        /// If there's no detected face, empty collection will be returned.
+        /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
-        public static async Task<FaceDetectionResult> DetectAsync(MediaVisionSource source,
+        public static async Task<IEnumerable<FaceDetectionResult>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
             // `vision.inference` feature is already checked, when config is created.
@@ -142,7 +146,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(config));
             }
 
-            var tcs = new TaskCompletionSource<FaceDetectionResult>();
+            var tcs = new TaskCompletionSource<IEnumerable<FaceDetectionResult>>();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
@@ -153,14 +157,14 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
-        private static InteropInference.FaceDetectedCallback GetCallback(TaskCompletionSource<FaceDetectionResult> tcs)
+        private static InteropInference.FaceDetectedCallback GetCallback(TaskCompletionSource<IEnumerable<FaceDetectionResult>> tcs)
         {
-            return (IntPtr sourceHandle, int numberOfFaces, float[] confidence,
+            return (IntPtr sourceHandle, int numberOfFaces, float[] confidences,
                 global::Interop.MediaVision.Rectangle[] locations, IntPtr _) =>
             {
                 try
                 {
-                    if (!tcs.TrySetResult(new FaceDetectionResult(confidence, locations, numberOfFaces)))
+                    if (!tcs.TrySetResult(GetResults(numberOfFaces, confidences, locations)))
                     {
                         Log.Error(MediaVisionLog.Tag, "Failed to set face detection result.");
                     }
@@ -170,6 +174,24 @@ namespace Tizen.Multimedia.Vision
                     tcs.TrySetException(e);
                 }
             };
+        }
+
+        private static IEnumerable<FaceDetectionResult> GetResults(int number, float[] confidences,
+            global::Interop.MediaVision.Rectangle[] locations)
+        {
+            if (number == 0)
+            {
+                return Enumerable.Empty<FaceDetectionResult>();
+            }
+
+            var results = new List<FaceDetectionResult>();
+
+            for (int i = 0; i < number; i++)
+            {
+                results.Add(new FaceDetectionResult(confidences[i], locations[i]));
+            }
+
+            return results;
         }
     }
 }

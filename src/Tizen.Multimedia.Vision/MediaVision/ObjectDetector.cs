@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using InteropInference = Interop.MediaVision.Inference;
 
@@ -36,7 +38,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>
         /// A task that represents the asynchronous detect operation.<br/>
-        /// If there's no detected object, <see cref="ObjectDetectionResult.Number"/> will be 0 and other properties will be empty.
+        /// If there's no detected object, empty collection will be returned.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
@@ -44,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
-        public static async Task<ObjectDetectionResult> DetectAsync(MediaVisionSource source,
+        public static async Task<IEnumerable<ObjectDetectionResult>> DetectAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
             // `vision.inference` feature is already checked, when config is created.
@@ -59,7 +61,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(config));
             }
 
-            var tcs = new TaskCompletionSource<ObjectDetectionResult>();
+            var tcs = new TaskCompletionSource<IEnumerable<ObjectDetectionResult>>();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
@@ -70,15 +72,14 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
-        private static InteropInference.ObjectDetectedCallback GetCallback(TaskCompletionSource<ObjectDetectionResult> tcs)
+        private static InteropInference.ObjectDetectedCallback GetCallback(TaskCompletionSource<IEnumerable<ObjectDetectionResult>> tcs)
         {
             return (IntPtr sourceHandle, int numberOfObjects, int[] indices, string[] names, float[] confidences,
                 global::Interop.MediaVision.Rectangle[] locations, IntPtr _) =>
             {
                 try
                 {
-                    if (!tcs.TrySetResult(new ObjectDetectionResult(indices, names, confidences, locations,
-                        numberOfObjects)))
+                    if (!tcs.TrySetResult(GetResults(numberOfObjects, indices, names, confidences, locations)))
                     {
                         Log.Error(MediaVisionLog.Tag, "Failed to set object detection result.");
                     }
@@ -88,6 +89,24 @@ namespace Tizen.Multimedia.Vision
                     tcs.TrySetException(e);
                 }
             };
+        }
+
+        private static IEnumerable<ObjectDetectionResult> GetResults(int number, int[] indices,
+            string[] names, float[] confidences, global::Interop.MediaVision.Rectangle[] locations)
+        {
+            if (number == 0)
+            {
+                return Enumerable.Empty<ObjectDetectionResult>();
+            }
+
+            var results = new List<ObjectDetectionResult>();
+
+            for (int i = 0; i < number; i++)
+            {
+                results.Add(new ObjectDetectionResult(indices[i], names[i], confidences[i], locations[i]));
+            }
+
+            return results;
         }
     }
 }

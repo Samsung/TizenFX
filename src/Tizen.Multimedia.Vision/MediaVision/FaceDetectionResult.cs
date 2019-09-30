@@ -25,32 +25,22 @@ namespace Tizen.Multimedia.Vision
     /// <since_tizen> 6 </since_tizen>
     public class FaceDetectionResult
     {
-        internal FaceDetectionResult(float[] confidence, global::Interop.MediaVision.Rectangle[] locations, int size)
+        internal FaceDetectionResult(float confidence, global::Interop.MediaVision.Rectangle location)
         {
-            if (size > 0)
-            {
-                Number = size;
-                Confidences = new ReadOnlyCollection<float>(confidence);
-                Locations = new ReadOnlyCollection<Rectangle>(locations.ToApiStruct());
-            }
+            Confidence = confidence;
+            Location = location.ToApiStruct();
         }
 
         /// <summary>
-        /// Gets the number of detected faces.
+        /// Gets the confidence of detected face.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int Number { get; }
+        public float Confidence { get; }
 
         /// <summary>
-        /// Gets the confidences of detected faces.
+        /// Gets the location of detected face.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<float> Confidences { get; }
-
-        /// <summary>
-        /// Gets the locations of detected faces.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public ReadOnlyCollection<Rectangle> Locations { get; }
+        public Rectangle Location { get; }
     }
 }

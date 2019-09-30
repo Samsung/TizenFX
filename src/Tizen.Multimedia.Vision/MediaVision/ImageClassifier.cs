@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using InteropInference = Interop.MediaVision.Inference;
@@ -37,7 +39,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The engine's configuration that will be used for classifying.</param>
         /// <returns>
         /// A task that represents the asynchronous classify operation.<br/>
-        /// If there's no classified image object, <see cref="FaceDetectionResult.Number"/> will be 0 and other properties will be empty.
+        /// If there's no classified image object, empty collection will be returned.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
@@ -45,7 +47,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <seealso cref="InferenceModelConfiguration"/>
         /// <since_tizen> 6 </since_tizen>
-        public static async Task<ImageClassificationResult> ClassifyAsync(MediaVisionSource source,
+        public static async Task<IEnumerable<ImageClassificationResult>> ClassifyAsync(MediaVisionSource source,
             InferenceModelConfiguration config)
         {
             // `vision.inference` feature is already checked, when config is created.
@@ -60,7 +62,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(config));
             }
 
-            var tcs = new TaskCompletionSource<ImageClassificationResult>();
+            var tcs = new TaskCompletionSource<IEnumerable<ImageClassificationResult>>();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
@@ -92,13 +94,13 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
-        private static InteropInference.ImageClassifedCallback GetCallback(TaskCompletionSource<ImageClassificationResult> tcs)
+        private static InteropInference.ImageClassifedCallback GetCallback(TaskCompletionSource<IEnumerable<ImageClassificationResult>> tcs)
         {
             return (IntPtr sourceHandle, int numberOfClasses, int[] indices, string[] names, float[] confidences, IntPtr _) =>
             {
                 try
                 {
-                    if (!tcs.TrySetResult(new ImageClassificationResult(indices, names, confidences, numberOfClasses)))
+                    if (!tcs.TrySetResult(GetResults(numberOfClasses, indices, names, confidences)))
                     {
                         Log.Error(MediaVisionLog.Tag, "Failed to set image classification result.");
                     }
@@ -108,6 +110,24 @@ namespace Tizen.Multimedia.Vision
                     tcs.TrySetException(e);
                 }
             };
+        }
+
+        private static IEnumerable<ImageClassificationResult> GetResults(int number, int[] indices,
+            string[] names, float[] confidences)
+        {
+            if (number == 0)
+            {
+                return Enumerable.Empty<ImageClassificationResult>();
+            }
+
+            var results = new List<ImageClassificationResult>();
+
+            for (int i = 0; i < number; i++)
+            {
+                results.Add(new ImageClassificationResult(indices[i], names[i], confidences[i]));
+            }
+
+            return results;
         }
     }
 }

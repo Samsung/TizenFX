@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="config">The engine's configuration that will be used for detecting.</param>
         /// <returns>
         /// A task that represents the asynchronous detect operation.<br/>
-        /// If there's no detected facial landmark, the return value will be empty.
+        /// If there's no detected facial landmark, empty collection will be returned.
         /// </returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
@@ -65,7 +66,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(config));
             }
 
-            var tcs = new TaskCompletionSource<Point[]>();
+            var tcs = new TaskCompletionSource<IEnumerable<Point>>();
 
             using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
             {
@@ -97,29 +98,16 @@ namespace Tizen.Multimedia.Vision
             }
         }
 
-        private static InteropInference.FacialLandmarkDetectedCallback GetCallback(TaskCompletionSource<Point[]> tcs)
+        private static InteropInference.FacialLandmarkDetectedCallback GetCallback(TaskCompletionSource<IEnumerable<Point>> tcs)
         {
             return (IntPtr sourceHandle, int numberOfLandmarks, global::Interop.MediaVision.Point[] locations, IntPtr _) =>
             {
                 try
                 {
-                    if (numberOfLandmarks == 0)
-                    {
-                        tcs.TrySetResult(null);
-                    }
-                    else
-                    {
-                        var locationResult = new Point[numberOfLandmarks];
 
-                        for (int i = 0; i < numberOfLandmarks; i++)
-                        {
-                            locationResult[i] = locations[i].ToApiStruct();
-                        }
-
-                        if (!tcs.TrySetResult(locationResult))
-                        {
-                            Log.Error(MediaVisionLog.Tag, "Failed to set facial landmark detection result.");
-                        }
+                    if (!tcs.TrySetResult(GetResults(numberOfLandmarks, locations)))
+                    {
+                        Log.Error(MediaVisionLog.Tag, "Failed to set facial landmark detection result.");
                     }
                 }
                 catch (Exception e)
@@ -127,6 +115,23 @@ namespace Tizen.Multimedia.Vision
                     tcs.TrySetException(e);
                 }
             };
+        }
+
+        private static IEnumerable<Point> GetResults(int number, global::Interop.MediaVision.Point[] locations)
+        {
+            if (number == 0)
+            {
+                return Enumerable.Empty<Point>();
+            }
+
+            var results = new List<Point>();
+
+            for (int i = 0; i < number; i++)
+            {
+                results.Add(locations[i].ToApiStruct());
+            }
+
+            return results;
         }
     }
 }

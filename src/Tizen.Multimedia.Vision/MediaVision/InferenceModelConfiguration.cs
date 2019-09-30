@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using InteropInference = Interop.MediaVision.Inference;
@@ -50,12 +51,13 @@ namespace Tizen.Multimedia.Vision
         private const string _keyInputTensorChannels = "MV_INFERENCE_INPUT_TENSOR_CHANNELS";
         private const string _keyInputNodeName = "MV_INFERENCE_INPUT_NODE_NAME";
         private const string _keyOutputNodeNames = "MV_INFERENCE_OUTPUT_NODE_NAMES";
-        private const string _keyOutputMaxNumbers = "MV_INFERENCE_OUTPUT_MAX_NUMBERS";
+        private const string _keyOutputMaxNumber = "MV_INFERENCE_OUTPUT_MAX_NUMBER";
         private const string _keyConfidenceThreshold = "MV_INFERENCE_CONFIDENCE_THRESHOLD";
 
         // The following strings are fixed in native and will not be changed.
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
+        private const string _backendTypeNotSupported = "none";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -83,7 +85,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="FileNotFoundException">
         /// <see cref="ConfigurationFilePath"/>, <see cref="WeightFilePath"/> or <see cref="CategoryFilePath"/> have invalid path.
         /// </exception>
-        /// <exception cref="FileFormatException">Inference model data is not valid</exception>
+        /// <exception cref="FileFormatException">Invalid data type is used in inference model data.</exception>
         /// <exception cref="InvalidDataException">
         /// Inference model data contains unsupported operations in current backend version.
         /// -or-<br/>
@@ -94,21 +96,17 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 6 </since_tizen>
         public void LoadInferenceModel()
         {
-            var ret = InteropInference.Configure(_inferenceHandle, GetHandle(this));
-            if (ret == MediaVisionError.NotSupportedFormat)
-            {
-                throw new FileFormatException("Inference model data is not valid.");
-            }
-            ret.Validate("Failed to configure inference model.");
+            InteropInference.Configure(_inferenceHandle, GetHandle(this)).
+                Validate("Failed to configure inference model.");
 
-            ret = InteropInference.Load(_inferenceHandle);
+            var ret = InteropInference.Load(_inferenceHandle);
             if (ret == MediaVisionError.InvalidData)
             {
                 throw new InvalidDataException("Inference model data contains unsupported operations in current backend version.");
             }
             else if (ret == MediaVisionError.NotSupportedFormat)
             {
-                throw new InvalidDataException("Invalid data type is used in inference model data.");
+                throw new FileFormatException("Invalid data type is used in inference model data.");
             }
             ret.Validate("Failed to load inference model.");
         }
@@ -118,13 +116,14 @@ namespace Tizen.Multimedia.Vision
             return _inferenceHandle;
         }
 
-        private IList<InferenceBackendType> _supportedBackend;
+        private IEnumerable<InferenceBackendType> _supportedBackend;
 
         /// <summary>
         /// Gets the list of inference backend engine which is supported in the current device.
         /// </summary>
+        /// <returns>If there's no supported backend, empty collection will be returned.</returns>
         /// <since_tizen> 6 </since_tizen>
-        public IList<InferenceBackendType> SupportedBackend
+        public IEnumerable<InferenceBackendType> SupportedBackend
         {
             get
             {
@@ -133,7 +132,7 @@ namespace Tizen.Multimedia.Vision
                     GetSupportedBackend();
                 }
 
-                return _supportedBackend;
+                return _supportedBackend ?? Enumerable.Empty<InferenceBackendType>();
             }
         }
 
@@ -153,6 +152,9 @@ namespace Tizen.Multimedia.Vision
                         case _backendTypeTFLite:
                             supportedBackend.Add(InferenceBackendType.TFLite);
                             break;
+                        case _backendTypeNotSupported:
+                            supportedBackend = null;
+                            return false;
                     }
                 }
 
@@ -162,7 +164,7 @@ namespace Tizen.Multimedia.Vision
             InteropInference.ForeachSupportedBackend(_inferenceHandle, cb, IntPtr.Zero).
                 Validate("Failed to get supported backend");
 
-            _supportedBackend = supportedBackend.AsReadOnly();
+            _supportedBackend = supportedBackend?.AsReadOnly();
         }
 
         /// <summary>
@@ -462,11 +464,11 @@ namespace Tizen.Multimedia.Vision
         {
             get
             {
-                return GetInt(_keyOutputMaxNumbers);
+                return GetInt(_keyOutputMaxNumber);
             }
             set
             {
-                Set(_keyOutputMaxNumbers, value);
+                Set(_keyOutputMaxNumber, value > 10 ? 10 : value < 1 ? 1 : value);
             }
         }
 
@@ -483,7 +485,7 @@ namespace Tizen.Multimedia.Vision
         {
             get
             {
-                return GetInt(_keyConfidenceThreshold);
+                return GetDouble(_keyConfidenceThreshold);
             }
             set
             {
