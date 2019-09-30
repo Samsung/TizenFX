@@ -24,6 +24,9 @@ namespace Tizen.NUI
     /// WidgetViewSignal
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class WidgetViewSignal : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -52,6 +55,9 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

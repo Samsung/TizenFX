@@ -55,6 +55,9 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

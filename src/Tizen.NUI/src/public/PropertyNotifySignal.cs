@@ -143,6 +143,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">The dispose type.</param>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
