@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -37,8 +38,8 @@ namespace Tizen.Network.IoTConnectivity
         private bool _cacheEnabled = false;
         private ResourceOptions _options;
 
-        private int _responseCallbackId = 1;
-        private static Dictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback> _responseCallbacksMap = new Dictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback>();
+        private static int _responseCallbackId = 1;
+        private static IDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback> _responseCallbacksMap = new ConcurrentDictionary<IntPtr, Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback>();
 
         private Interop.IoTConnectivity.Client.RemoteResource.CachedRepresentationChangedCallback _cacheUpdatedCallback;
         private Interop.IoTConnectivity.Client.RemoteResource.StateChangedCallback _stateChangedCallback;
@@ -404,10 +405,8 @@ namespace Tizen.Network.IoTConnectivity
             _responseCallbacksMap[id] = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
             {
                 IntPtr responseCallbackId = userData;
-                lock(_responseCallbacksMap)
-                {
-                    _responseCallbacksMap.Remove(responseCallbackId);
-                }
+
+                _responseCallbacksMap.Remove(responseCallbackId);
 
                 if (responseHandle != IntPtr.Zero)
                 {
@@ -459,10 +458,9 @@ namespace Tizen.Network.IoTConnectivity
             _responseCallbacksMap[id] = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
             {
                 IntPtr responseCallbackId = userData;
-                lock (_responseCallbacksMap)
-                {
-                    _responseCallbacksMap.Remove(responseCallbackId);
-                }
+
+                _responseCallbacksMap.Remove(responseCallbackId);
+
                 if (err == (int)(IoTConnectivityError.Iotivity))
                 {
                     RemoteResponse response = new RemoteResponse();
@@ -519,10 +517,9 @@ namespace Tizen.Network.IoTConnectivity
             _responseCallbacksMap[id] = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
             {
                 IntPtr responseCallbackId = userData;
-                lock (_responseCallbacksMap)
-                {
-                    _responseCallbacksMap.Remove(responseCallbackId);
-                }
+
+                _responseCallbacksMap.Remove(responseCallbackId);
+
                 if (responseHandle != IntPtr.Zero)
                 {
                     try
@@ -570,10 +567,9 @@ namespace Tizen.Network.IoTConnectivity
             _responseCallbacksMap[id] = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
             {
                 IntPtr responseCallbackId = userData;
-                lock (_responseCallbacksMap)
-                {
-                    _responseCallbacksMap.Remove(responseCallbackId);
-                }
+
+                _responseCallbacksMap.Remove(responseCallbackId);
+
                 if (err == (int)(IoTConnectivityError.Iotivity))
                 {
                     RemoteResponse response = new RemoteResponse();
