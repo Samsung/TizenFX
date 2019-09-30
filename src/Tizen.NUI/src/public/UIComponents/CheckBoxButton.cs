@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI.UIComponents
 {
     /// <summary>
@@ -26,6 +28,8 @@ namespace Tizen.NUI.UIComponents
     /// When the button is disabled, the background image and the selected image are replaced by disabled images.<br />
     /// /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class CheckBoxButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -34,6 +38,8 @@ namespace Tizen.NUI.UIComponents
         /// Creates an initialized CheckBoxButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBoxButton() : this(Interop.CheckBoxButton.CheckBoxButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -53,6 +59,8 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the CheckBoxButton instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
