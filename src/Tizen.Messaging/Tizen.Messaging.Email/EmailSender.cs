@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Tizen.Messaging.Email
@@ -25,13 +26,16 @@ namespace Tizen.Messaging.Email
     /// <since_tizen> 3 </since_tizen>
     public static class EmailSender
     {
+	static private Dictionary<int, Interop.Email.EmailSentCallback> _sendCbMap = new Dictionary<int, Interop.Email.EmailSentCallback>();
+	static private int _callbackId = 0;
+
         /// <summary>
         /// Sends the email message.
         /// </summary>
         /// <param name="email">The email message.</param>
         /// <returns> Failure if the email sending activity failed, otherwise Success.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static async Task<EmailSendResult> SendAsync(EmailMessage email)
+	/// <since_tizen> 3 </since_tizen>
+	public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
             var task = new TaskCompletionSource<EmailSendResult>();
             int ret = (int)EmailError.None;
@@ -40,15 +44,18 @@ namespace Tizen.Messaging.Email
             email.FillHandle();
             email.Save();
 
-            Interop.Email.EmailSentCallback _emailSendingCallback = (IntPtr handle, int result, IntPtr userData) =>
+            int id = _callbackId++;
+            _sendCbMap[id] = (IntPtr handle, int result, IntPtr userData) =>
             {
-                task.SetResult((EmailSendResult)result);
+                task?.SetResult((EmailSendResult)result);
+                _sendCbMap.Remove((int)userData);
             };
 
-            ret = Interop.Email.SetCb(email._emailHandle, _emailSendingCallback, IntPtr.Zero);
+            ret = Interop.Email.SetCb(email._emailHandle, _sendCbMap[id], (IntPtr)id);
             if (ret != (int)EmailError.None)
             {
                 Log.Error(EmailErrorFactory.LogTag, "Failed to set email incoming callback, Error code: " + (EmailError)ret);
+                _sendCbMap.Remove(id);
                 throw EmailErrorFactory.GetException(ret);
             }
 
@@ -56,19 +63,20 @@ namespace Tizen.Messaging.Email
             if (ret != (int)EmailError.None)
             {
                 Log.Error(EmailErrorFactory.LogTag, "Failed to send email, Error code: " + (EmailError)ret);
+                _sendCbMap.Remove(id);
                 throw EmailErrorFactory.GetException(ret);
             }
 
-            var sendResult = await task.Task;
-
+            var sendResult = await task.Task.ConfigureAwait(false);
             ret = Interop.Email.UnsetCb(email._emailHandle);
+
             if (ret != (int)EmailError.None)
             {
                 Log.Error(EmailErrorFactory.LogTag, "Failed to set email incoming callback, Error code: " + (EmailError)ret);
                 throw EmailErrorFactory.GetException(ret);
             }
-
             return sendResult;
         }
+
     }
 }
