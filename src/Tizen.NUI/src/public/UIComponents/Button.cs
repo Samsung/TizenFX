@@ -37,10 +37,12 @@ namespace Tizen.NUI.UIComponents
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Button : View
     {
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedVisualProperty = BindableProperty.Create("UnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -58,6 +60,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedVisualProperty = BindableProperty.Create("SelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -75,6 +78,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledSelectedVisualProperty = BindableProperty.Create("DisabledSelectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -92,6 +96,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledUnselectedVisualProperty = BindableProperty.Create("DisabledUnselectedVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -109,6 +114,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedBackgroundVisualProperty = BindableProperty.Create("UnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -126,6 +132,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedBackgroundVisualProperty = BindableProperty.Create("SelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -144,6 +151,7 @@ namespace Tizen.NUI.UIComponents
         });
         /// This will be deprecated
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public static readonly BindableProperty DisabledUnselectedBackgroundVisualProperty = BindableProperty.Create("DisabledUnselectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var button = (Button)bindable;
@@ -160,6 +168,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledSelectedBackgroundVisualProperty = BindableProperty.Create("DisabledSelectedBackgroundVisual", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -177,6 +186,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelRelativeAlignmentProperty = BindableProperty.Create("LabelRelativeAlignment", typeof(Align), typeof(Button), Align.End, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -213,6 +223,7 @@ namespace Tizen.NUI.UIComponents
             }
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelPaddingProperty = BindableProperty.Create("LabelPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -230,6 +241,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ForegroundVisualPaddingProperty = BindableProperty.Create("ForegroundVisualPadding", typeof(Vector4), typeof(Button), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -247,6 +259,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AutoRepeatingProperty = BindableProperty.Create("AutoRepeating", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -264,6 +277,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InitialAutoRepeatingDelayProperty = BindableProperty.Create("InitialAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -281,6 +295,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty NextAutoRepeatingDelayProperty = BindableProperty.Create("NextAutoRepeatingDelay", typeof(float), typeof(Button), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -298,6 +313,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TogglableProperty = BindableProperty.Create("Togglable", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -315,6 +331,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedProperty = BindableProperty.Create("Selected", typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -332,6 +349,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UnselectedColorProperty = BindableProperty.Create("UnselectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -355,6 +373,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedColorProperty = BindableProperty.Create("SelectedColor", typeof(Color), typeof(Button), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -378,6 +397,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelProperty = BindableProperty.Create("Label", typeof(PropertyMap), typeof(Button), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -395,6 +415,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelTextProperty = BindableProperty.Create("LabelText", typeof(string), typeof(Button), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -431,6 +452,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Button() : this(Interop.Button.new_Button__SWIG_0(), true)
         {
@@ -456,6 +478,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Clicked
         {
@@ -486,6 +509,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Pressed
         {
@@ -516,6 +540,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> Released
         {
@@ -546,6 +571,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, EventArgs, bool> StateChanged
         {
@@ -576,6 +602,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Align
         {
@@ -602,6 +629,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap UnselectedVisual
         {
@@ -620,6 +648,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SelectedVisual
         {
@@ -638,6 +667,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledSelectedVisual
         {
@@ -656,6 +686,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledUnselectedVisual
         {
@@ -674,6 +705,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap UnselectedBackgroundVisual
         {
@@ -692,6 +724,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SelectedBackgroundVisual
         {
@@ -710,6 +743,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledUnselectedBackgroundVisual
         {
@@ -728,6 +762,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap DisabledSelectedBackgroundVisual
         {
@@ -746,6 +781,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Align LabelRelativeAlignment
         {
@@ -764,6 +800,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 LabelPadding
         {
@@ -782,6 +819,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ForegroundVisualPadding
         {
@@ -800,6 +838,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutoRepeating
         {
@@ -818,6 +857,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float InitialAutoRepeatingDelay
         {
@@ -836,6 +876,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float NextAutoRepeatingDelay
         {
@@ -854,6 +895,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Togglable
         {
@@ -872,6 +914,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Selected
         {
@@ -890,6 +933,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color UnselectedColor
         {
@@ -908,6 +952,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color SelectedColor
         {
@@ -926,6 +971,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap Label
         {
@@ -944,6 +990,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LabelText
         {
@@ -995,6 +1042,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {

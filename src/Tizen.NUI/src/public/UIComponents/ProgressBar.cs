@@ -27,10 +27,12 @@ namespace Tizen.NUI.UIComponents
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ProgressBar : View
     {
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressValueProperty = BindableProperty.Create("ProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -48,6 +50,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SecondaryProgressValueProperty = BindableProperty.Create("SecondaryProgressValue", typeof(float), typeof(ProgressBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -65,6 +68,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateProperty = BindableProperty.Create("Indeterminate", typeof(bool), typeof(ProgressBar), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -82,6 +86,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -99,6 +104,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -116,6 +122,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SecondaryProgressVisualProperty = BindableProperty.Create("SecondaryProgressVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -133,6 +140,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateVisualProperty = BindableProperty.Create("IndeterminateVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -150,6 +158,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndeterminateVisualAnimationProperty = BindableProperty.Create("IndeterminateVisualAnimation", typeof(PropertyArray), typeof(ProgressBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -167,6 +176,7 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LabelVisualProperty = BindableProperty.Create("LabelVisual", typeof(PropertyMap), typeof(ProgressBar), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -193,6 +203,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ProgressBar() : this(Interop.ProgressBar.ProgressBar_New(), true)
         {
@@ -213,6 +224,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ValueChangedEventArgs> ValueChanged
         {
@@ -243,6 +255,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ProgressValue
         {
@@ -265,6 +278,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float SecondaryProgressValue
         {
@@ -283,6 +297,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Indeterminate
         {
@@ -302,6 +317,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap TrackVisual
         {
@@ -321,6 +337,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap ProgressVisual
         {
@@ -340,6 +357,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap SecondaryProgressVisual
         {
@@ -359,6 +377,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap IndeterminateVisual
         {
@@ -378,6 +397,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyArray IndeterminateVisualAnimation
         {
@@ -396,6 +416,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyMap LabelVisual
         {
@@ -426,6 +447,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -477,6 +499,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ValueChangedEventArgs : EventArgs
         {
@@ -489,6 +512,7 @@ namespace Tizen.NUI.UIComponents
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ProgressBar ProgressBar
             {
@@ -508,6 +532,7 @@ namespace Tizen.NUI.UIComponents
             /// <since_tizen> 3 </since_tizen>
             /// This will be deprecated
             [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             public float ProgressValue
             {
                 get
@@ -526,6 +551,7 @@ namespace Tizen.NUI.UIComponents
             /// <since_tizen> 3 </since_tizen>
             /// This will be deprecated
             [EditorBrowsable(EditorBrowsableState.Never)]
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             public float SecondaryProgressValue
             {
                 get
