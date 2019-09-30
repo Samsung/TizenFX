@@ -26,33 +26,31 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] LayoutGroup class providing container functionality.
     /// </summary>
-    internal class LayoutGroup : LayoutItem, ILayoutParent
+    public class LayoutGroup : LayoutItem, ILayoutParent
     {
-        protected List<LayoutItem> _children{ get;} // Children of this LayoutGroup
+        /// <summary>
+        /// [Draft] List of child layouts in this container.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        protected List<LayoutItem> LayoutChildren{ get;} // Children of this LayoutGroup
 
         /// <summary>
         /// [Draft] Constructor
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public LayoutGroup()
         {
-            _children = new List<LayoutItem>();
+            LayoutChildren = new List<LayoutItem>();
         }
 
         /// <summary>
-        /// [Draft] Constructor setting the owner of this LayoutGroup.
-        /// </summary>
-        /// <param name="owner">Owning View of this layout, currently a View but may be extending for Windows/Layers.</param>
-        public LayoutGroup(View owner) : base(owner)
-        {
-            _children = new List<LayoutItem>();
-        }
-
-          /// <summary>
         /// From ILayoutParent.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="childLayout">LayoutItem to add to the layout group.</param>
         public virtual void Add(LayoutItem childLayout)
         {
-            _children.Add(childLayout);
+            LayoutChildren.Add(childLayout);
             childLayout.SetParent(this);
             // Child added to use a Add transition.
             childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Add;
@@ -65,14 +63,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove all layout children.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void RemoveAll()
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 childLayout.ConditionForAnimation = ConditionForAnimation | TransitionCondition.Remove;
                 childLayout.Owner = null;
             }
-            _children.Clear();
+            LayoutChildren.Clear();
             // todo ensure child LayoutItems are still not parented to this group.
             RequestLayout();
         }
@@ -80,15 +79,17 @@ namespace Tizen.NUI
         /// <summary>
         /// From ILayoutParent
         /// </summary>
+        /// <param name="layoutItem">LayoutItem to remove from the layout group.</param>
+        /// <since_tizen> 6 </since_tizen>
         public virtual void Remove(LayoutItem layoutItem)
         {
             bool childRemoved = false;
-            foreach( LayoutItem childLayout in _children.ToList() )
+            foreach( LayoutItem childLayout in LayoutChildren.ToList() )
             {
                 if( childLayout == layoutItem )
                 {
                     Window.Instance.LayoutController.AddToRemovalStack(childLayout);
-                    _children.Remove(childLayout);
+                    LayoutChildren.Remove(childLayout);
                     childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                     // Add LayoutItem to the transition stack so can animate it out.
                     Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0,0,0,0));
@@ -161,7 +162,7 @@ namespace Tizen.NUI
         /// </summary>
         private void SetConditionsForAnimationOnLayoutGroup( TransitionCondition conditionToSet)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 switch( conditionToSet )
                 {
@@ -324,13 +325,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             LayoutLength measuredWidth = new LayoutLength(0.0f);
             LayoutLength measuredHeight = new LayoutLength(0.0f);
 
             // Layout takes size of largest child width and largest child height dimensions
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if( childLayout != null )
                 {
@@ -344,7 +346,7 @@ namespace Tizen.NUI
                 }
             }
 
-            if( 0 == _children.Count )
+            if( 0 == LayoutChildren.Count )
             {
                 // Must be a leaf as has no children
                 measuredWidth = GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec );
@@ -364,9 +366,10 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 if( childLayout !=null )
                 {
@@ -391,18 +394,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overridden method called when the layout size changes.<br />
-        /// </summary>
-        /// <param name="newSize">The new size of the layout.</param>
-        /// <param name="oldSize">The old size of the layout.</param>
-        protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
-        {
-            // Do nothing
-        }
-
-        /// <summary>
         /// Overridden method called when the layout is attached to an owner.<br />
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnAttachedToOwner()
         {
             // Layout takes ownership of it's owner's children.
@@ -424,6 +418,7 @@ namespace Tizen.NUI
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnChildAdd(LayoutItem child)
         {
         }
@@ -432,6 +427,7 @@ namespace Tizen.NUI
         /// Callback when child is removed from container.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnChildRemove(LayoutItem child)
         {
         }
@@ -443,9 +439,10 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">The width requirements for this view.</param>
         /// <param name="heightMeasureSpec">The height requirements for this view.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildren(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            foreach( LayoutItem childLayout in _children )
+            foreach( LayoutItem childLayout in LayoutChildren )
             {
                 MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
             }
@@ -454,11 +451,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Ask one of the children of this view to measure itself, taking into
         /// account both the MeasureSpec requirements for this view and its padding.<br />
-        /// The heavy lifting is done in GetChildMeasureSpec.<br />
+        /// The heavy lifting is done in GetChildMeasureSpecification.<br />
         /// </summary>
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChild(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
             View childOwner = child.Owner;
@@ -487,6 +485,7 @@ namespace Tizen.NUI
         /// <param name="widthUsed">Extra space that has been used up by the parent horizontally (possibly by other children of the parent).</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
         /// <param name="heightUsed">Extra space that has been used up by the parent vertically (possibly by other children of the parent).</param>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void MeasureChildWithMargins(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, LayoutLength widthUsed, MeasureSpecification parentHeightMeasureSpec, LayoutLength heightUsed)
         {
             View childOwner = child.Owner;
