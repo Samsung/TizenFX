@@ -621,6 +621,44 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating 360 mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the 360 mode is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetMode360Capability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Mode360, support).
+                ThrowIfError("Failed to set 360 mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating subtitle mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the subtitle mode is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetSubtitleModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetSimpleCapability(Handle, MediaControlNativeCapabilityCategory.Subtitle, support).
+                ThrowIfError("Failed to set subtitle mode capability.");
+        }
+
+        /// <summary>
         /// Sets the supported list of <see cref="MediaControlDisplayMode"/>.
         /// </summary>
         /// <remarks>
