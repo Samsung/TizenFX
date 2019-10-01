@@ -82,7 +82,12 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Invalid path (Since 3.0).
         /// </summary>
-        InvalidPath = MediaVisionErrorCode | 0x04
+        InvalidPath = MediaVisionErrorCode | 0x04,
+        /// <summary>
+        /// Not supported engine.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        NotSupportedEngine = MediaVisionErrorCode | 0x05
     }
 
     internal static class MediaVisionErrorExtensions
@@ -97,6 +102,7 @@ namespace Tizen.Multimedia.Vision
             switch (error)
             {
                 case MediaVisionError.NotSupported:
+                case MediaVisionError.NotSupportedEngine:
                     throw new NotSupportedException(msg);
                 case MediaVisionError.MsgTooLong:
                     throw new ArgumentException($"{msg} : Message too long.");

@@ -966,7 +966,8 @@ namespace Tizen.Multimedia
         /// <para>The audio PCM data can be retrieved using a <see cref="AudioDataDecoded"/> event as a media packet
         /// and it is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
         /// The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para>
+        /// <para>This function could be unavailable depending on the audio codec type.</para></remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <exception cref="InvalidOperationException">
@@ -976,8 +977,10 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     </exception>
+        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
@@ -1008,10 +1011,13 @@ namespace Tizen.Multimedia
         /// Disable to decode an audio data.
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
-        /// state.</remarks>
+        /// state.
+        /// This function could be unavailable depending on the audio codec type.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="EnableExportingAudioData"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void DisableExportingAudioData()
         {
@@ -1026,15 +1032,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enables to decode a video data for every frame.
         /// </summary>
-        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.
-        /// And, <see cref="Multimedia.Display"/> must not be set.</para>
-        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread(not in the main loop).</para>
-        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event as a media packet.
-        /// So if you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
-        /// The callback function holds the same buffer that will be drawn on the display device.
-        /// and the <see cref="MediaPacket"/> is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
-        /// The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state,
+        /// but <see cref="Multimedia.Display"/> must not be set.</para>
+        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread, not called in the main loop.</para>
+        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event with a media packet parameter.
+        /// If you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
+        /// The callback function holds the same buffer that is drawn on the display device.
+        /// and the <see cref="MediaPacket"/> is available until it is destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// It is recommended to destroy the packet as quickly as possible after the decoded data is rendered on the display.
+        /// All the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>

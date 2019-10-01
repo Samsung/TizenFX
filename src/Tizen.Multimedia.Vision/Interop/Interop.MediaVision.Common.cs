@@ -80,13 +80,24 @@ internal static partial class Interop
         };
     }
 
-    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(MediaVision.Rectangle[] rects)
+    internal static Tizen.Multimedia.Rectangle[] ToApiStruct(this MediaVision.Rectangle[] rects)
     {
         var result = new Tizen.Multimedia.Rectangle[rects.Length];
 
         for (int i = 0; i < rects.Length; i++)
         {
             result[i] = rects[i].ToApiStruct();
+        }
+        return result;
+    }
+
+    internal static MediaVision.Rectangle[] ToMarShalable(this Tizen.Multimedia.Rectangle[] rects)
+    {
+        var result = new MediaVision.Rectangle[rects.Length];
+
+        for (int i = 0; i < rects.Length; i++)
+        {
+            result[i] = rects[i].ToMarshalable();
         }
         return result;
     }
@@ -176,6 +187,10 @@ internal static partial class Interop
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_string_attribute")]
             internal static extern MediaVisionError SetString(IntPtr handle, string name, string value);
 
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_set_array_string_attribute")]
+            internal static extern MediaVisionError SetStringArray(IntPtr handle, string name,
+                [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] string[] value, int size);
+
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_double_attribute")]
             internal static extern MediaVisionError GetDouble(IntPtr handle, string name, out double value);
 
@@ -187,6 +202,10 @@ internal static partial class Interop
 
             [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_string_attribute")]
             internal static extern MediaVisionError GetString(IntPtr handle, string name, out IntPtr value);
+
+            [DllImport(Libraries.MediaVision, EntryPoint = "mv_engine_config_get_array_string_attribute")]
+            internal static extern MediaVisionError GetStringArray(IntPtr handle, string name,
+                out IntPtr value, out int size);
         }
     }
 }

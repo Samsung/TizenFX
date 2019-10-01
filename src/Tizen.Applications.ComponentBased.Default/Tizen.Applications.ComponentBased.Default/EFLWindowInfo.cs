@@ -13,6 +13,7 @@ namespace Tizen.Applications.ComponentBased.Default
         private const string LogTag = "Tizen.Applications";
         private Window _win;
         private int _resId;
+        private bool _disposed = false;
 
         /// <summary>
         /// Initializes the EFLWindow class.
@@ -44,6 +45,34 @@ namespace Tizen.Applications.ComponentBased.Default
             }
         }
 
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                _win.Unrealize();
+                _win = null;
+            }
+            _disposed = true;
+        }
+
+        /// <summary>
+        /// Dispose the window resources
+        /// </summary>
+        /// <returns></returns>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
     }
 
 }
