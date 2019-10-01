@@ -57,7 +57,6 @@ namespace Tizen.Multimedia.Vision
         // The following strings are fixed in native and will not be changed.
         private const string _backendTypeOpenCV = "opencv";
         private const string _backendTypeTFLite = "tflite";
-        private const string _backendTypeNotSupported = "none";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InferenceModelConfiguration"/> class.
@@ -132,7 +131,7 @@ namespace Tizen.Multimedia.Vision
                     GetSupportedBackend();
                 }
 
-                return _supportedBackend ?? Enumerable.Empty<InferenceBackendType>();
+                return _supportedBackend.Any() ? _supportedBackend : Enumerable.Empty<InferenceBackendType>();
             }
         }
 
@@ -152,9 +151,6 @@ namespace Tizen.Multimedia.Vision
                         case _backendTypeTFLite:
                             supportedBackend.Add(InferenceBackendType.TFLite);
                             break;
-                        case _backendTypeNotSupported:
-                            supportedBackend = null;
-                            return false;
                     }
                 }
 
@@ -164,7 +160,7 @@ namespace Tizen.Multimedia.Vision
             InteropInference.ForeachSupportedBackend(_inferenceHandle, cb, IntPtr.Zero).
                 Validate("Failed to get supported backend");
 
-            _supportedBackend = supportedBackend?.AsReadOnly();
+            _supportedBackend = supportedBackend;
         }
 
         /// <summary>
