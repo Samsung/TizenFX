@@ -41,10 +41,10 @@ namespace Tizen.Network.IoTConnectivity
         private static int _responseCompletionId = 1;
         private static IDictionary<IntPtr, TaskCompletionSource<RemoteResponse>> _taskCompletionMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<RemoteResponse>>();
 
-        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _getResultCallback;
-        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _putResultCallback;
-        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _postResultCallback;
-        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _deleteResultCallback;
+        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _getResultCallback = NativeGetResultCallbackHandler;
+        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _putResultCallback = NativePutResultCallbackHandler;
+        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _postResultCallback = NativePostResultCallbackHandler;
+        private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _deleteResultCallback = NativeDeleteResultCallbackHandler;
 
         private Interop.IoTConnectivity.Client.RemoteResource.CachedRepresentationChangedCallback _cacheUpdatedCallback;
         private Interop.IoTConnectivity.Client.RemoteResource.StateChangedCallback _stateChangedCallback;
@@ -410,30 +410,6 @@ namespace Tizen.Network.IoTConnectivity
 
             _taskCompletionMap[id] = tcsRemoteResponse;
 
-            _getResultCallback = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
-            {
-                IntPtr responseCompletionId = userData;
-                TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-                _taskCompletionMap.Remove(responseCompletionId);
-
-                if (responseHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
-                    }
-                    catch(Exception exp)
-                    {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
-                        responseCompletionSource.TrySetException(exp);
-                    }
-                }
-                else
-                {
-                    responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
-                }
-            };
-
             IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Get(_remoteResourceHandle, queryHandle, _getResultCallback, id);
             if (errCode != (int)IoTConnectivityError.None)
@@ -442,6 +418,30 @@ namespace Tizen.Network.IoTConnectivity
                 tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException(errCode));
             }
             return await tcsRemoteResponse.Task;
+        }
+
+        private static void NativeGetResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
+        {
+            IntPtr responseCompletionId = userData;
+            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
+            _taskCompletionMap.Remove(responseCompletionId);
+
+            if (responseHandle != IntPtr.Zero)
+            {
+                try
+                {
+                    responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
+                }
+                catch(Exception exp)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
+                    responseCompletionSource.TrySetException(exp);
+                }
+            }
+            else
+            {
+                responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
+            }
         }
 
         /// <summary>
@@ -466,36 +466,6 @@ namespace Tizen.Network.IoTConnectivity
 
             _taskCompletionMap[id] = tcsRemoteResponse;
 
-            _putResultCallback = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
-            {
-                IntPtr responseCompletionId = userData;
-                TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-                _taskCompletionMap.Remove(responseCompletionId);
-
-                if (err == (int)(IoTConnectivityError.Iotivity))
-                {
-                    RemoteResponse response = new RemoteResponse();
-                    response.Result = ResponseCode.Forbidden;
-                    response.Representation = null;
-                    responseCompletionSource.TrySetResult(response);
-                }
-                else if (responseHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
-                    }
-                    catch (Exception exp)
-                    {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
-                        responseCompletionSource.TrySetException(exp);
-                    }
-                }
-                else
-                {
-                    responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
-                }
-            };
             IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Put(_remoteResourceHandle, representation._representationHandle, queryHandle, _putResultCallback, id);
             if (errCode != (int)IoTConnectivityError.None)
@@ -504,6 +474,37 @@ namespace Tizen.Network.IoTConnectivity
                 tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException(errCode));
             }
             return await tcsRemoteResponse.Task;
+        }
+
+        private static void NativePutResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
+        {
+            IntPtr responseCompletionId = userData;
+            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
+            _taskCompletionMap.Remove(responseCompletionId);
+
+            if (err == (int)(IoTConnectivityError.Iotivity))
+            {
+                RemoteResponse response = new RemoteResponse();
+                response.Result = ResponseCode.Forbidden;
+                response.Representation = null;
+                responseCompletionSource.TrySetResult(response);
+            }
+            else if (responseHandle != IntPtr.Zero)
+            {
+                try
+                {
+                    responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
+                }
+                catch (Exception exp)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
+                    responseCompletionSource.TrySetException(exp);
+                }
+            }
+            else
+            {
+                responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
+            }
         }
 
         /// <summary>
@@ -528,29 +529,6 @@ namespace Tizen.Network.IoTConnectivity
 
             _taskCompletionMap[id] = tcsRemoteResponse;
 
-            _postResultCallback = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
-            {
-                IntPtr responseCompletionId = userData;
-                TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-                _taskCompletionMap.Remove(responseCompletionId);
-
-                if (responseHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
-                    }
-                    catch (Exception exp)
-                    {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
-                        responseCompletionSource.TrySetException(exp);
-                    }
-                }
-                else
-                {
-                    responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
-                }
-            };
             IntPtr queryHandle = (query == null) ? IntPtr.Zero : query._resourceQueryHandle;
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Post(_remoteResourceHandle, representation._representationHandle, queryHandle, _postResultCallback, id);
             if (errCode != (int)IoTConnectivityError.None)
@@ -559,6 +537,30 @@ namespace Tizen.Network.IoTConnectivity
                 tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException(errCode));
             }
             return await tcsRemoteResponse.Task;
+        }
+
+        private static void NativePostResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
+        {
+            IntPtr responseCompletionId = userData;
+            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
+            _taskCompletionMap.Remove(responseCompletionId);
+
+            if (responseHandle != IntPtr.Zero)
+            {
+                try
+                {
+                    responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
+                }
+                catch (Exception exp)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
+                    responseCompletionSource.TrySetException(exp);
+                }
+            }
+            else
+            {
+                responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
+            }
         }
 
         /// <summary>
@@ -581,37 +583,6 @@ namespace Tizen.Network.IoTConnectivity
 
             _taskCompletionMap[id] = tcsRemoteResponse;
 
-            _deleteResultCallback = (IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData) =>
-            {
-                IntPtr responseCompletionId = userData;
-                TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-                _taskCompletionMap.Remove(responseCompletionId);
-
-                if (err == (int)(IoTConnectivityError.Iotivity))
-                {
-                    RemoteResponse response = new RemoteResponse();
-                    response.Result = ResponseCode.Forbidden;
-                    response.Representation = null;
-                    responseCompletionSource.TrySetResult(response);
-                }
-                else if (responseHandle != IntPtr.Zero)
-                {
-                    try
-                    {
-                        responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
-                    }
-                    catch (Exception exp)
-                    {
-                        Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
-                        responseCompletionSource.TrySetException(exp);
-                    }
-                }
-                else
-                {
-                    responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
-                }
-            };
-
             int errCode = Interop.IoTConnectivity.Client.RemoteResource.Delete(_remoteResourceHandle, _deleteResultCallback, id);
             if (errCode != (int)IoTConnectivityError.None)
             {
@@ -619,6 +590,37 @@ namespace Tizen.Network.IoTConnectivity
                 tcsRemoteResponse.TrySetException(IoTConnectivityErrorFactory.GetException(errCode));
             }
             return await tcsRemoteResponse.Task;
+        }
+
+        private static void NativeDeleteResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
+        {
+            IntPtr responseCompletionId = userData;
+            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
+            _taskCompletionMap.Remove(responseCompletionId);
+
+            if (err == (int)(IoTConnectivityError.Iotivity))
+            {
+                RemoteResponse response = new RemoteResponse();
+                response.Result = ResponseCode.Forbidden;
+                response.Representation = null;
+                responseCompletionSource.TrySetResult(response);
+            }
+            else if (responseHandle != IntPtr.Zero)
+            {
+                try
+                {
+                    responseCompletionSource.TrySetResult(GetRemoteResponse(responseHandle));
+                }
+                catch (Exception exp)
+                {
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to get RemoteResponse: ", exp.Message);
+                    responseCompletionSource.TrySetException(exp);
+                }
+            }
+            else
+            {
+                responseCompletionSource.TrySetException(IoTConnectivityErrorFactory.GetException((int)IoTConnectivityError.System));
+            }
         }
 
         /// <summary>
@@ -859,7 +861,7 @@ namespace Tizen.Network.IoTConnectivity
             Policy = (ResourcePolicy)policy;
         }
 
-        private RemoteResponse GetRemoteResponse(IntPtr response)
+        private static RemoteResponse GetRemoteResponse(IntPtr response)
         {
             int result;
             IntPtr representationHandle, optionsHandle;
