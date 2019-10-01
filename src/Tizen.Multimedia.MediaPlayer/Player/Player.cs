@@ -1026,15 +1026,15 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Enables to decode a video data for every frame.
         /// </summary>
-        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state.
-        /// And, <see cref="Multimedia.Display"/> must not be set.</para>
-        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread(not in the main loop).</para>
-        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event as a media packet.
-        /// So if you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
-        /// The callback function holds the same buffer that will be drawn on the display device.
-        /// and the <see cref="MediaPacket"/> is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
-        /// The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// <remarks><para>The player must be in the <see cref="PlayerState.Idle"/> state,
+        /// but <see cref="Multimedia.Display"/> must not be set.</para>
+        /// <para>A <see cref="VideoFrameDecoded"/> event is called in a separate thread, not called in the main loop.</para>
+        /// <para>The video frame can be retrieved using a <see cref="VideoFrameDecoded"/> event with a media packet parameter.
+        /// If you change the media packet in the <see cref="VideoFrameDecoded"/> event, it will be displayed on the device.
+        /// The callback function holds the same buffer that is drawn on the display device.
+        /// and the <see cref="MediaPacket"/> is available until it is destroyed by <see cref="MediaPacket.Dispose()"/>.
+        /// It is recommended to destroy the packet as quickly as possible after the decoded data is rendered on the display.
+        /// All the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
