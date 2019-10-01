@@ -175,7 +175,7 @@ namespace Tizen.Multimedia
     /// The exception that is thrown when there it is not available.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class NotAvailableException : InvalidOperationException
+    public class NotAvailableException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the NotAvailableException class with a specified error message.
