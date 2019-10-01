@@ -966,7 +966,8 @@ namespace Tizen.Multimedia
         /// <para>The audio PCM data can be retrieved using a <see cref="AudioDataDecoded"/> event as a media packet
         /// and it is available until it's destroyed by <see cref="MediaPacket.Dispose()"/>.
         /// The packet has to be destroyed as quickly as possible after rendering the data
-        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para></remarks>
+        /// and all the packets have to be destroyed before <see cref="Unprepare"/> is called.</para>
+        /// <para>This function could be unavailable depending on the audio codec type.</para></remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <exception cref="InvalidOperationException">
@@ -976,8 +977,10 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     </exception>
+        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)
         {
@@ -1008,10 +1011,13 @@ namespace Tizen.Multimedia
         /// Disable to decode an audio data.
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> or <see cref="PlayerState.Ready"/>
-        /// state.</remarks>
+        /// state.
+        /// This function could be unavailable depending on the audio codec type.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
         /// <seealso cref="EnableExportingAudioData"/>
+        /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void DisableExportingAudioData()
         {
