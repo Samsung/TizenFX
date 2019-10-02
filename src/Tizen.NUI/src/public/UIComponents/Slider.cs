@@ -27,9 +27,13 @@ namespace Tizen.NUI.UIComponents
     /// The slider is a control to enable sliding an indicator between two values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Slider : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LowerBoundProperty = BindableProperty.Create("LowerBound", typeof(float), typeof(Slider), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -46,7 +50,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create("UpperBound", typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) => 
         {
@@ -63,7 +68,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -80,7 +86,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -97,7 +104,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -114,7 +122,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -131,7 +140,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -148,7 +158,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -165,7 +176,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create("DisabledColor", typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) => 
         {
@@ -182,7 +194,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -199,7 +212,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -216,7 +230,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ShowValueProperty = BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -233,7 +248,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MarksProperty = BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -250,7 +266,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -267,7 +284,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create("SnapToMarks", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
         {
@@ -297,6 +315,9 @@ namespace Tizen.NUI.UIComponents
         /// Creates the slider control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Slider() : this(Interop.Slider.Slider_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -323,6 +344,9 @@ namespace Tizen.NUI.UIComponents
         /// An event emitted when the slider value changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> ValueChanged
         {
             add
@@ -348,6 +372,9 @@ namespace Tizen.NUI.UIComponents
         /// An event emitted when the sliding is finished.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
         {
             add
@@ -373,6 +400,9 @@ namespace Tizen.NUI.UIComponents
         /// An event emitted when the slider handle reaches a mark.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
         {
             add
@@ -398,6 +428,9 @@ namespace Tizen.NUI.UIComponents
         /// The lower bound property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float LowerBound
         {
             get
@@ -414,6 +447,9 @@ namespace Tizen.NUI.UIComponents
         /// The upper bound property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float UpperBound
         {
             get
@@ -430,6 +466,9 @@ namespace Tizen.NUI.UIComponents
         /// The value property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Value
         {
             get
@@ -446,6 +485,9 @@ namespace Tizen.NUI.UIComponents
         /// The track visual property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap TrackVisual
         {
             get
@@ -462,6 +504,9 @@ namespace Tizen.NUI.UIComponents
         /// The handle visual property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap HandleVisual
         {
             get
@@ -478,6 +523,9 @@ namespace Tizen.NUI.UIComponents
         /// The progress visual property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ProgressVisual
         {
             get
@@ -494,6 +542,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup visual property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap PopupVisual
         {
             get
@@ -510,6 +561,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup arrow visual property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap PopupArrowVisual
         {
             get
@@ -526,6 +580,9 @@ namespace Tizen.NUI.UIComponents
         /// The disable color property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 DisabledColor
         {
             get
@@ -542,6 +599,9 @@ namespace Tizen.NUI.UIComponents
         /// The value precision property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int ValuePrecision
         {
             get
@@ -558,6 +618,9 @@ namespace Tizen.NUI.UIComponents
         /// The show popup property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowPopup
         {
             get
@@ -574,6 +637,9 @@ namespace Tizen.NUI.UIComponents
         /// The show value property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ShowValue
         {
             get
@@ -590,6 +656,9 @@ namespace Tizen.NUI.UIComponents
         /// The marks property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyArray Marks
         {
             get
@@ -606,6 +675,9 @@ namespace Tizen.NUI.UIComponents
         /// The snap to marks property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SnapToMarks
         {
             get
@@ -622,6 +694,9 @@ namespace Tizen.NUI.UIComponents
         /// The mark tolerance property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MarkTolerance
         {
             get
@@ -664,6 +739,9 @@ namespace Tizen.NUI.UIComponents
         /// <param name="handle">The handle to an object.</param>
         /// <returns>The handle to a slider or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Slider DownCast(BaseHandle handle)
         {
             Slider ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Slider;
@@ -725,6 +803,9 @@ namespace Tizen.NUI.UIComponents
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -821,6 +902,9 @@ namespace Tizen.NUI.UIComponents
         /// The ValueChanged event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ValueChangedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -830,6 +914,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public Slider Slider
             {
                 get
@@ -846,6 +933,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider value.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public float SlideValue
             {
                 get
@@ -863,6 +953,9 @@ namespace Tizen.NUI.UIComponents
         /// The SlidingFinished event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class SlidingFinishedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -872,6 +965,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public Slider Slider
             {
                 get
@@ -888,6 +984,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider value.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public float SlideValue
             {
                 get
@@ -905,6 +1004,9 @@ namespace Tizen.NUI.UIComponents
         /// The MarkReached event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class MarkReachedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -914,6 +1016,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public Slider Slider
             {
                 get
@@ -930,6 +1035,9 @@ namespace Tizen.NUI.UIComponents
             /// The slider value.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public int SlideValue
             {
                 get

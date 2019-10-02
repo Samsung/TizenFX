@@ -28,13 +28,18 @@ namespace Tizen.NUI.UIComponents
     /// The PushButton changes its appearance when it is pressed, and returns to its original when it is released.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PushButton : Button
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
@@ -46,6 +51,9 @@ namespace Tizen.NUI.UIComponents
         /// Creates the PushButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PushButton() : this(Interop.PushButton.PushButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -56,7 +64,8 @@ namespace Tizen.NUI.UIComponents
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICommand Command
         {
@@ -70,7 +79,8 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object CommandParameter
         {
@@ -120,6 +130,9 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the PushButton instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
