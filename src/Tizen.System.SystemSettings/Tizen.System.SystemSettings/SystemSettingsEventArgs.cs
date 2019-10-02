@@ -1193,6 +1193,7 @@ namespace Tizen.System
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
     /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/input.rotating_bezel</feature>
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
     /// <remarks>
