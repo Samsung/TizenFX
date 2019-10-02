@@ -773,6 +773,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetPlaybackRate(float rate)
         {
@@ -982,6 +983,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
+        /// <seealso cref="AudioOffload"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)

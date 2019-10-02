@@ -157,6 +157,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotAvailableException">
         ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
         /// </exception>
+        /// <seealso cref="Player.AudioOffload"/>
         /// <seealso cref="Player.AudioCodecType"/>
         /// <since_tizen> 3 </since_tizen>
         public bool IsAvailable

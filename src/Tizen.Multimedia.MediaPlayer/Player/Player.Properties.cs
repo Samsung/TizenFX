@@ -236,6 +236,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <since_tizen> 3 </since_tizen>
         public AudioLatencyMode AudioLatencyMode
         {
@@ -554,6 +555,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
         /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 5 </since_tizen>
         public bool ReplayGain
@@ -594,6 +596,7 @@ namespace Tizen.Multimedia
         ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
         /// </exception>
         /// <seealso cref="AudioPitch"/>
+        /// <seealso cref="AudioOffload"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public bool AudioPitchEnabled
@@ -640,6 +643,7 @@ namespace Tizen.Multimedia
         ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
         /// </exception>
         /// <seealso cref="AudioPitchEnabled"/>
+        /// <seealso cref="AudioOffload"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public float AudioPitch
