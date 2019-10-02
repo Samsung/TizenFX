@@ -621,7 +621,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating 360 mode is supported or not.
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating whether 360 mode is supported or not.
         /// </summary>
         /// <param name="support">A value indicating whether the 360 mode is supported or not.</param>
         /// <exception cref="InvalidOperationException">
@@ -640,7 +640,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating subtitle mode is supported or not.
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating whether subtitle mode is supported or not.
         /// </summary>
         /// <param name="support">A value indicating whether the subtitle mode is supported or not.</param>
         /// <exception cref="InvalidOperationException">
