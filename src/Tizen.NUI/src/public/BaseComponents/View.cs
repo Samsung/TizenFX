@@ -4960,7 +4960,9 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void ScaleBy(Vector3 relativeScale)
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScaleBy(Vector3 relativeScale)
         {
             Interop.ActorInternal.Actor_ScaleBy(swigCPtr, Vector3.getCPtr(relativeScale));
             if (NDalicPINVOKE.SWIGPendingException.Pending)

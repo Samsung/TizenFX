@@ -27,9 +27,13 @@ namespace Tizen.NUI.UIComponents
     /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollBar : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create("ScrollDirection", typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,7 +66,8 @@ namespace Tizen.NUI.UIComponents
                 default: return Direction.Vertical;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorHeightPolicyProperty = BindableProperty.Create("IndicatorHeightPolicy", typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -95,7 +100,8 @@ namespace Tizen.NUI.UIComponents
                 default: return IndicatorHeightPolicyType.Variable;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorFixedHeightProperty = BindableProperty.Create("IndicatorFixedHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -112,7 +118,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -129,7 +136,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -146,7 +154,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -163,7 +172,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_POSITION_INTERVALS).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -180,7 +190,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -197,7 +208,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -228,6 +240,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="direction">The direction of the scrollbar (either vertically or horizontally).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar(ScrollBar.Direction direction) : this(Interop.ScrollBar.ScrollBar_New__SWIG_0((int)direction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -237,6 +252,9 @@ namespace Tizen.NUI.UIComponents
         /// Creates an uninitialized scrollbar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar() : this(Interop.ScrollBar.ScrollBar_New__SWIG_1(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -263,6 +281,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
             add
@@ -289,6 +310,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
             add
@@ -314,17 +338,26 @@ namespace Tizen.NUI.UIComponents
         /// The direction of the scrollbar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum Direction
         {
             /// <summary>
             /// Scroll in the vertical direction
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Vertical = 0,
             /// <summary>
             /// Scroll in the horizontal direction
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Horizontal
         }
 
@@ -332,17 +365,26 @@ namespace Tizen.NUI.UIComponents
         /// The indicator height policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum IndicatorHeightPolicyType
         {
             /// <summary>
             /// Variable height changed dynamically according to the length of scroll content
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+			/// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Variable = 0,
             /// <summary>
             /// Fixed height regardless of the length of scroll content
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+			/// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Fixed
         }
 
@@ -350,6 +392,9 @@ namespace Tizen.NUI.UIComponents
         /// The direction of the scrollbar.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Direction ScrollDirection
         {
             get
@@ -367,6 +412,9 @@ namespace Tizen.NUI.UIComponents
         /// The indicator height policy.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IndicatorHeightPolicyType IndicatorHeightPolicy
         {
             get
@@ -383,6 +431,9 @@ namespace Tizen.NUI.UIComponents
         /// The fixed height of the scroll indicator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorFixedHeight
         {
             get
@@ -399,6 +450,9 @@ namespace Tizen.NUI.UIComponents
         /// The duration in seconds for the scroll indicator to become fully visible.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorShowDuration
         {
             get
@@ -415,6 +469,9 @@ namespace Tizen.NUI.UIComponents
         /// The duration in seconds for the scroll indicator to become fully invisible.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorHideDuration
         {
             get
@@ -431,6 +488,9 @@ namespace Tizen.NUI.UIComponents
         /// The list of values to get the notification when the current scroll position of the scrollable object goes above or below any of these values.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.PropertyArray ScrollPositionIntervals
         {
             get
@@ -447,6 +507,9 @@ namespace Tizen.NUI.UIComponents
         /// The minimum height for a variable size indicator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorMinimumHeight
         {
             get
@@ -463,6 +526,9 @@ namespace Tizen.NUI.UIComponents
         /// The padding at the start of the indicator. For example, the top if the scrollDirection is vertical.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorStartPadding
         {
             get
@@ -479,6 +545,9 @@ namespace Tizen.NUI.UIComponents
         /// The padding at the end of the indicator. For example, the bottom if the scrollDirection is vertical.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float IndicatorEndPadding
         {
             get
@@ -621,6 +690,9 @@ namespace Tizen.NUI.UIComponents
         /// To dispose the ScrollBar instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -689,6 +761,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the PanFinished event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class PanFinishedEventArgs : EventArgs
         {
         }
@@ -697,6 +772,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the ScrollPositionIntervalReached event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ScrollIntervalEventArgs : EventArgs
         {
             private float _currentScrollPosition;
@@ -705,6 +783,9 @@ namespace Tizen.NUI.UIComponents
             /// The current scroll position of the scrollable content.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public float CurrentScrollPosition
             {
                 get
