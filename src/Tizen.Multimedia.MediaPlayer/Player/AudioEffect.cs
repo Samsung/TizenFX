@@ -151,9 +151,10 @@ namespace Tizen.Multimedia
         /// Gets the value whether the AudioEffect is available or not.
         /// </summary>
         /// <remarks>This function returns the availability of the audio effect function group and
-        /// it could be unavailable depending on the platform capabilities.</remarks>
-        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
-        ///     -or-<br/>
+        /// it could be unavailable depending on the platform capabilities.<br/>
+        /// If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>,
+        /// the <see cref="IsAvailable"/> returns false.(Since tizen 6.0)</remarks>
+        /// <exception cref="NotAvailableException">
         ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
         /// </exception>
         /// <seealso cref="Player.AudioCodecType"/>
