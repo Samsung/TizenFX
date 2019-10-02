@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is not inside of <see cref="AudioEffect.BandLevelRange"/>.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -87,7 +87,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frequency in dB.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -107,7 +107,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frequency range in dB.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>

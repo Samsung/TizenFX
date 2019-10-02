@@ -762,8 +762,6 @@ namespace Tizen.Multimedia
         ///     The player is not in the valid state.<br/>
         ///     -or-<br/>
         ///     Streaming playback.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="rate"/> is less than -5.0.<br/>
@@ -771,6 +769,9 @@ namespace Tizen.Multimedia
         ///     <paramref name="rate"/> is greater than 5.0.<br/>
         ///     -or-<br/>
         ///     <paramref name="rate"/> is zero.
+        /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public void SetPlaybackRate(float rate)
@@ -974,10 +975,11 @@ namespace Tizen.Multimedia
         ///     Operation failed; internal error.
         ///     -or-<br/>
         ///     The player is not in the valid state.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     </exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
         /// <seealso cref="AudioCodecType"/>

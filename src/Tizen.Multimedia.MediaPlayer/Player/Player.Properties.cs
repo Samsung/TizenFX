@@ -233,7 +233,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -549,10 +549,11 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The player is not in the valid state.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 5 </since_tizen>
         public bool ReplayGain
@@ -586,11 +587,12 @@ namespace Tizen.Multimedia
         /// This function could be unavailable depending on the audio codec type.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     The player is not in the valid state.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
         /// <seealso cref="AudioPitch"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
@@ -626,16 +628,17 @@ namespace Tizen.Multimedia
         /// This function could be unavailable depending on the audio codec type.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     A pitch is not enabled.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     value is less than 0.5.
         ///     -or-<br/>
-        ///     value is greater than 2.0.<br/>
+        ///     value is greater than 2.0.
         /// </exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
         /// <seealso cref="AudioPitchEnabled"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
