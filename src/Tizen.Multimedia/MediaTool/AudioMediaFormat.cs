@@ -106,7 +106,8 @@ namespace Tizen.Multimedia
         ///     <see cref="MediaFormatAudioChannelPosition.Mono"/> or <see cref="MediaFormatAudioChannelPosition.None"/> is set with another channel position.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/> is less than zero.
+        ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/>,
+        ///     <paramref name="bitDepth"/> is less than zero.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
@@ -151,7 +152,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/>,
-        ///     <paramref name="bitDepth> is less than zero.
+        ///     <paramref name="bitDepth"/> is less than zero.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
