@@ -1145,6 +1145,41 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// Indicates whether rotary event is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/input.rotating_bezel</feature>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static bool RotaryEventEnabled
+        {
+            get
+            {
+                bool isRotaryEventEnabled;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.RotaryEventEnabled, out isRotaryEventEnabled);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isRotaryEventEnabled system setting.");
+                }
+                return isRotaryEventEnabled;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.RotaryEventEnabled, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isRotaryEventEnabled system setting.");
+                }
+            }
+        }
+
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
             string path = SystemSettings.IncomingCallRingtone;
@@ -2968,6 +3003,55 @@ namespace Tizen.System
                 if (s_accessibilityNegativeColorChanged == null)
                 {
                     SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityNegativeColor, s_accessibilityNegativeColorChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_rotaryEventEnabledChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool rotaryEventEnabled = SystemSettings.RotaryEventEnabled;
+            RotaryEventEnabledChangedEventArgs eventArgs = new RotaryEventEnabledChangedEventArgs(rotaryEventEnabled);
+            s_rotaryEventEnabledChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<RotaryEventEnabledChangedEventArgs> s_rotaryEventEnabledChanged;
+        /// <summary>
+        /// The RotaryEventEnabledChanged event is triggered when the RotaryEventEnabled value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/input.rotating_bezel</feature>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<RotaryEventEnabledChangedEventArgs> RotaryEventEnabledChanged
+        {
+            add
+            {
+                if (s_rotaryEventEnabledChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.RotaryEventEnabled, s_rotaryEventEnabledChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_rotaryEventEnabledChanged += value;
+            }
+
+            remove
+            {
+                s_rotaryEventEnabledChanged -= value;
+                if (s_rotaryEventEnabledChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.RotaryEventEnabled, s_rotaryEventEnabledChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");

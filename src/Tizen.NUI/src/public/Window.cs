@@ -631,6 +631,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        ///  Get the LayoutController for this Window.
+        /// </summary>
         internal LayoutController LayoutController
         {
             get
@@ -1521,7 +1524,7 @@ namespace Tizen.NUI
         /// <returns>The parent window of the window.</returns>
         /// <since_tizen> 6 </since_tizen>
         public Window GetParent() {
-            Window ret = new Window(Interop.Window.GetParent(swigCPtr), true);
+            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(swigCPtr)) as Window;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
