@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Tizen.Internals.Errors;
 
@@ -29,8 +30,10 @@ namespace Tizen.Account.FidoClient
         private static string _vendorName = null;
         private static int _majorVersion;
         private static int _minorVersion;
-        private static Interop.UafClient.FidoUafResponseMessageCallback _UafResponseMessageCallback = UafResponseMessageCallbackHandler;
-        private static TaskCompletionSource<UafResponse> tcs;
+        private static Dictionary<int, Interop.UafClient.FidoUafResponseMessageCallback> _ResponseMessageCbMap = new Dictionary<int, Interop.UafClient.FidoUafResponseMessageCallback>();
+        private static int _callbackId = 0;
+        private static object _callbackIdLock = new object();
+
         static UafClient()
         {
             int ret = Interop.UafClient.FidoGetClientVendor(out _vendorName);
@@ -159,27 +162,40 @@ namespace Tizen.Account.FidoClient
                 throw ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter);
             }
 
-            tcs = new TaskCompletionSource<UafResponse>();
-            
-            int ret = Interop.UafClient.FidoUafGetResponseMessage(uafMessage.Operation, channelBindng, _UafResponseMessageCallback, IntPtr.Zero);
+            TaskCompletionSource<UafResponse> tcs = new TaskCompletionSource<UafResponse>();
+
+            int id;
+            lock (_callbackIdLock) {
+                id = _callbackId++;
+            }
+
+            _ResponseMessageCbMap[id] = (int errorCode, string uafResponseJson, IntPtr userData) =>
+            {
+                if (uafMessage == null)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Invalid request or request is null");
+                    tcs.SetException(ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter));
+                }
+
+                if (errorCode != (int)FidoErrorCode.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Interop callback failed with error code: [" + errorCode + "]");
+                    tcs.SetException(ErrorFactory.GetException(errorCode));
+                }
+
+                tcs.SetResult(new UafResponse() { Response = uafResponseJson });
+                _ResponseMessageCbMap.Remove((int)userData);
+            };
+
+            int ret = Interop.UafClient.FidoUafGetResponseMessage(uafMessage.Operation, channelBindng, _ResponseMessageCbMap[id], (IntPtr)id);
             if (ret != (int)FidoErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop API failed with error code: [" + ret + "]");
+                _ResponseMessageCbMap.Remove(id);
                 throw ErrorFactory.GetException(ret);
             }
 
-            return await tcs.Task;
-        }
-
-        private static void UafResponseMessageCallbackHandler(int errorCode, string uafResponseJson, IntPtr userData)
-        {
-            if (errorCode != (int)FidoErrorCode.None)
-            {
-                Log.Error(ErrorFactory.LogTag, "Interop callback failed with error code: [" + errorCode + "]");
-                tcs.SetException(ErrorFactory.GetException(errorCode));
-            }
-
-            tcs.SetResult(new UafResponse() { Response = uafResponseJson });
+            return await tcs.Task.ConfigureAwait(true);
         }
 
         /// <summary>
