@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// For more information about the flex layout API and how to use it please refer to https://yogalayout.com/docs/
     /// We implement the subset of the API in the class below.
     /// </summary>
-    internal class FlexLayout : LayoutGroup,  global::System.IDisposable
+    public class FlexLayout : LayoutGroup,  global::System.IDisposable
     {
         float Flex{ get; set;}
         int AlignSelf{get; set;}
@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
 
-        public struct MeasuredSize
+        internal struct MeasuredSize
         {
           public MeasuredSize(float x, float y)
           {
@@ -68,6 +68,10 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
             // Throw exception if Dispose() is called in separate thread.
@@ -87,6 +91,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -120,6 +128,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Creates a FlexLayout object.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexLayout() : this(Interop.FlexLayout.FlexLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -211,6 +220,7 @@ namespace Tizen.NUI
         /// [Draft] Get/Set the flex direction in the layout.
         /// The direction of the main-axis which determines the direction that flex items are laid out.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexDirection Direction
         {
             get
@@ -226,6 +236,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the justification in the layout.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexJustification Justification
         {
             get
@@ -241,6 +252,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the wrap in the layout.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public FlexWrapType WrapType
         {
             get
@@ -256,6 +268,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the alignment of the layout content.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AlignmentType Alignment
         {
             get
@@ -271,6 +284,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Get/Set the alignment of the layout items.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public AlignmentType ItemsAlignment
         {
             get
@@ -287,6 +301,7 @@ namespace Tizen.NUI
         /// [Draft] Enumeration for the direction of the main axis in the flex container.
         /// This determines the direction that flex items are laid out in the flex container.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexDirection
         {
             /// <summary>
@@ -310,6 +325,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the alignment of the flex items when the items do not use all available space on the main-axis.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexJustification
         {
             /// <summary>
@@ -337,6 +353,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the wrap type of the flex container when there is no enough room for all the items on one flex line.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum FlexWrapType
         {
             /// <summary>
@@ -352,6 +369,7 @@ namespace Tizen.NUI
         /// <summary>
         /// [Draft] Enumeration for the alignment of the flex items or lines when the items or lines do not use all the available space on the cross-axis.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public enum AlignmentType
         {
             /// <summary>
@@ -390,14 +408,25 @@ namespace Tizen.NUI
         void InsertChild( LayoutItem child )
         {
             // Store created node for child
-            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, _children.Count-1);
+            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, LayoutChildren.Count-1);
         }
 
+        /// <summary>
+        /// Callback when child is added to container.<br />
+        /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
+        /// </summary>
+        /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnChildAdd(LayoutItem child)
         {
             InsertChild(child);
         }
 
+        /// <summary>
+        /// Callback when child is removed from container.<br />
+        /// </summary>
+        /// <param name="child">The Layout child.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnChildRemove(LayoutItem child)
         {
             // When child View is removed from it's parent View (that is a Layout) then remove it from the layout too.
@@ -405,6 +434,12 @@ namespace Tizen.NUI
             Interop.FlexLayout.FlexLayout_RemoveChild(swigCPtr, child);
         }
 
+        /// <summary>
+        /// Measure the layout and its content to determine the measured width and the measured height.<br />
+        /// </summary>
+        /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
+        /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure( MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec )
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
@@ -433,6 +468,15 @@ namespace Tizen.NUI
                                    GetDefaultSize( new LayoutLength( (float)Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr) ), heightMeasureSpec ) );
         }
 
+        /// <summary>
+        /// Assign a size and position to each of its children.<br />
+        /// </summary>
+        /// <param name="changed">This is a new size or position for this layout.</param>
+        /// <param name="left">Left position, relative to parent.</param>
+        /// <param name="top"> Top position, relative to parent.</param>
+        /// <param name="right">Right position, relative to parent.</param>
+        /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout( bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom )
         {
 
@@ -443,10 +487,10 @@ namespace Tizen.NUI
             // Call to FlexLayout implementation to calculate layout values for later retrieval.
             Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width.AsDecimal(), height.AsDecimal(), isLayoutRtl );
 
-            int count = _children.Count;
+            int count = LayoutChildren.Count;
             for( int childIndex = 0; childIndex < count; childIndex++)
             {
-                LayoutItem childLayout = _children[childIndex];
+                LayoutItem childLayout = LayoutChildren[childIndex];
                 if( childLayout != null )
                 {
                     // Get the frame for the child, start, top, end, bottom.

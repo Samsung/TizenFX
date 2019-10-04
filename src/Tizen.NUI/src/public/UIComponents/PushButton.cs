@@ -29,14 +29,17 @@ namespace Tizen.NUI.UIComponents
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PushButton : Button
     {
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create("CommandParameter", typeof(object), typeof(PushButton), null,
                 BindingMode.OneWay, null, null, null, null, null as BindableProperty.CreateDefaultValueDelegate);
@@ -49,6 +52,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PushButton() : this(Interop.PushButton.PushButton_New(), true)
         {
@@ -61,6 +65,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICommand Command
         {
@@ -75,6 +80,7 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object CommandParameter
         {
@@ -125,6 +131,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {

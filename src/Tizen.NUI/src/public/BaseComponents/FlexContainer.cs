@@ -435,6 +435,9 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use View.Flex, View.AlignSelf, View.FlexMargin instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
             internal static readonly int FLEX = Interop.FlexContainer.FlexContainer_ChildProperty_FLEX_get();

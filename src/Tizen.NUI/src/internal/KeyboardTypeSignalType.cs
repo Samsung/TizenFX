@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -22,13 +24,20 @@ namespace Tizen.NUI
     /// KeyboardTypeSignalType
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+        "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class KeyboardTypeSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool swigCMemOwn;
 
         internal KeyboardTypeSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -127,6 +136,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Empty()
         {
             bool ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Empty(swigCPtr);
@@ -139,6 +151,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetConnectionCount()
         {
             uint ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_GetConnectionCount(swigCPtr);
@@ -151,6 +166,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to connect</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -165,6 +183,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to disconnect</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -179,6 +200,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The member function to connect</param>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Emit(InputMethodContext.KeyboardType arg)
         {
             Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);
@@ -189,6 +213,9 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyboardTypeSignalType() : this(Interop.KeyboardTypeSignalType.new_KeyboardTypeSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

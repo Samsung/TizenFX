@@ -638,6 +638,48 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets the value whether the 360 mode is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlCapabilitySupport GetMode360Capability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Mode360, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get 360 mode capability");
+
+            return support;
+        }
+
+        /// <summary>
+        /// Gets the value whether the subtitle mode is supported or not.
+        /// </summary>
+        /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public MediaControlCapabilitySupport GetSubtitleModeCapability()
+        {
+            ThrowIfStopped();
+
+            Native.GetSimpleCapability(Manager.Handle, ServerAppId, MediaControlNativeCapabilityCategory.Subtitle, out MediaControlCapabilitySupport support).
+                ThrowIfError("Failed to get subtitle mode capability");
+
+            return support;
+        }
+
+        /// <summary>
         /// Gets the value whether the repeat mode is supported or not.
         /// </summary>
         /// <returns>

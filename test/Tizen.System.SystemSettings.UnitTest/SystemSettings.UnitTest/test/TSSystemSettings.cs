@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 using Tizen.System;
-
+using Tizen;
 // /opt/usr/data/settings/Ringtones/ringtone_sdk.mp3
 namespace SystemSettingsUnitTest
 {
@@ -2148,7 +2148,6 @@ namespace SystemSettingsUnitTest
             Assert.IsTrue(e.Value == s_developerOptionStateValue, "OnDeveloperOptionStateChanged: The callback should receive the latest value for the property.");
         }
 
-#if true
         // AccessibilityGrayscale
         ////[Test]
         //[Category("P1")]
@@ -2306,8 +2305,63 @@ namespace SystemSettingsUnitTest
             Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityNegativeColorChanged: AccessibilityNegativeColor not an instance of string");
             Assert.IsTrue(s_accessibilityNegativeColorValue == e.Value, "OnAccessibilityNegativeColorChanged: The callback should receive the latest value for the property.");
         }
-#endif
 
+        // RotaryEventEnabled
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:RotaryEventEnabled is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.RotaryEventEnabled A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void RotaryEventEnabled_READ_WRITE()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.RotaryEventEnabled, "RotaryEventEnabled_READ_WRITE: RotaryEventEnabled not an instance of string");
+            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+            var setValue = !preValue;
+
+            Tizen.System.SystemSettings.RotaryEventEnabled = setValue;
+            var getValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+            Assert.IsTrue(getValue == setValue, "RotaryEventEnabled_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+            LogUtils.WriteOK();
+        }
+
+        private static bool s_rotaryEventEnabledCallbackCalled = false;
+        private static bool s_rotaryEventEnabledValue = false;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:RotaryEventEnabledChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.RotaryEventEnabledChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task RotaryEventEnabledChanged_CHECK_EVENT()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Tizen.System.SystemSettings.RotaryEventEnabledChanged += OnRotaryEventEnabledChanged;
+            bool preValue = Tizen.System.SystemSettings.RotaryEventEnabled;
+            s_rotaryEventEnabledValue = !preValue;
+            Tizen.System.SystemSettings.RotaryEventEnabled = s_rotaryEventEnabledValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_rotaryEventEnabledCallbackCalled = false;
+            Tizen.System.SystemSettings.RotaryEventEnabledChanged -= OnRotaryEventEnabledChanged;
+            Tizen.System.SystemSettings.RotaryEventEnabled = !s_rotaryEventEnabledValue;
+            await Task.Delay(2000);
+            Assert.IsFalse(s_rotaryEventEnabledCallbackCalled, "RotaryEventEnabledChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+            Tizen.System.SystemSettings.RotaryEventEnabled = preValue;
+            LogUtils.WriteOK();
+        }
+        private static void OnRotaryEventEnabledChanged(object sender, Tizen.System.RotaryEventEnabledChangedEventArgs e)
+        {
+            s_rotaryEventEnabledCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnRotaryEventEnabledChanged: RotaryEventEnabled not an instance of string");
+            Assert.IsTrue(s_rotaryEventEnabledValue == e.Value, "OnRotaryEventEnabledChanged: The callback should receive the latest value for the property.");
+        }
 
 
         public static async void TestAllAsync()
