@@ -159,6 +159,12 @@ namespace Tizen.Account.FidoClient
         /// </example>
         public static async Task<UafResponse> ProcessRequestAsync(UafMessage uafMessage, string channelBindng)
         {
+            if (uafMessage == null)
+            {
+                Log.Error(ErrorFactory.LogTag, "Invalid request or request is null");
+                throw ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter);
+            }
+
             IntPtr id = IntPtr.Zero;
             lock (_taskCompletionMap)
             {
@@ -168,27 +174,18 @@ namespace Tizen.Account.FidoClient
             TaskCompletionSource<UafResponse> tcsUafResponse = new TaskCompletionSource<UafResponse>();
             _taskCompletionMap[id] = tcsUafResponse;
             int ret = Interop.UafClient.FidoUafGetResponseMessage(uafMessage.Operation, channelBindng, _UafResponseMessageCallback, id);
-
-            if (uafMessage == null)
-            {
-                Log.Error(ErrorFactory.LogTag, "Invalid request or request is null");
-                throw ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter);
-            }
-
             if (ret != (int)FidoErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop API failed with error code: [" + ret + "]");
                 throw ErrorFactory.GetException(ret);
             }
 
-            return await tcsUafResponse.Task.ConfigureAwait(true);
+            return await tcsUafResponse.Task.ConfigureAwait(false);
         }
 
         private static void UafResponseMessageCallbackHandler(int errorCode, string uafResponseJson, IntPtr userData)
         {
-            TaskCompletionSource<UafResponse> tcsUafResponse = new TaskCompletionSource<UafResponse>();
             IntPtr responseCompletionId = userData;
-
             TaskCompletionSource<UafResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
             _taskCompletionMap.Remove(responseCompletionId);
             if (errorCode != (int)FidoErrorCode.None)
@@ -198,6 +195,7 @@ namespace Tizen.Account.FidoClient
             }
 
             responseCompletionSource.SetResult(new UafResponse() { Response = uafResponseJson });
+            return;
         }
 
             /// <summary>
