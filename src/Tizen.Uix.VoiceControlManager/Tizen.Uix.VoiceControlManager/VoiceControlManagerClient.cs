@@ -425,7 +425,8 @@ namespace Tizen.Uix.VoiceControlManager
         /// <param name="commands">Command list</param>
         /// <param name="recognizedText">The Recognized text</param>
         /// <param name="message">Engine message</param>
-        /// <returns></returns>
+        /// <returns>Valid commands</returns>
+        /// <since_tizen> 6 </since_tizen>
         public delegate IEnumerable<VoiceCommand> SelectRecognizedCommandsDelegate(IEnumerable<VoiceCommand> commands, string recognizedText, string message);
 
         /// <summary>
@@ -434,10 +435,15 @@ namespace Tizen.Uix.VoiceControlManager
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) This exception can be due to out of memory.
+        /// 2) This exception can be due to operation failed.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <post>
         /// The State will be Initialized.
@@ -457,10 +463,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <post>
         /// The State will be None.
@@ -480,14 +488,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -511,8 +516,9 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -541,17 +547,14 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
         /// <returns>
         /// List of strings for supported languages.
         /// </returns>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -585,10 +588,13 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <value>The current language in voice control.</value>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized or ready.
@@ -615,10 +621,13 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <value>The current state of the voice control client.</value>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized or ready.
@@ -645,10 +654,17 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <value>The current state of the voice control service.</value>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) This exception can be due to an invalid state.
+        /// 2) This exception can be due to operation failed.
+        /// </exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be ready.
@@ -675,13 +691,15 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="format">The command format</param>
         /// <returns>The result status, true if supported</returns>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
@@ -703,12 +721,14 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="commands">Command list</param>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -731,10 +751,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -754,17 +776,15 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="path">File Path</param>
         /// <param name="type">Command type</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -784,8 +804,9 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>>
         /// <returns>
         /// The Command List else null in case of no System Commands
@@ -795,7 +816,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
         /// </exception>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -822,20 +843,18 @@ namespace Tizen.Uix.VoiceControlManager
         }
 
         /// <summary>
-        /// Sets or Gets the Audio In Type
-        /// the Values of the strings can be "VC_AUDIO_ID_BLUETOOTH" or "VC_AUDIO_ID_MSF"
+        /// Sets or Gets the Audio In Type.
+        /// The Values of the strings can be "VC_AUDIO_ID_BLUETOOTH" or "VC_AUDIO_ID_MSF"
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
@@ -871,11 +890,13 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
@@ -911,8 +932,9 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="key">Private key</param>
         /// <param name="data">Private data</param>
@@ -920,9 +942,10 @@ namespace Tizen.Uix.VoiceControlManager
         /// This can occur due to the following reasons:
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
-        /// 3) This exception can be due to out of memory.
         /// </exception>
-        /// <exception cref = "NotSupportedException" > The required feature is not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="NotSupportedException" > The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -941,17 +964,15 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="key">Private key</param>
         /// <returns>Private data</returns>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// 3) This exception can be due to out of memory.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
@@ -973,8 +994,9 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="type">Event type</param>
         /// <param name="sendEvent">The string for send event</param>
@@ -982,9 +1004,10 @@ namespace Tizen.Uix.VoiceControlManager
         /// This can occur due to the following reasons:
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
-        /// 3) This exception can be due to out of memory.
         /// </exception>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="NotSupportedException" > The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
         /// </pre>
@@ -1003,8 +1026,9 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="engineAppId">A specific engine's app id</param>
         /// <param name="evt">A engine service user request event</param>
@@ -1014,6 +1038,7 @@ namespace Tizen.Uix.VoiceControlManager
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
         /// </exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void SendSpecificEngineRequest(string engineAppId, string evt, string request)
@@ -1031,16 +1056,19 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="exclusiveCommandOption">Exclusive command option</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
-        /// 3) This exception can be due to out of memory.
+        /// 3) This exception can be due to progress to recording is not finished.
         /// </exception>
+        /// <exception cref="TimeoutException">This exception can be due to no answer from service.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Ready.
@@ -1063,14 +1091,20 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
+        /// 3) This exception can be due to progress to ready is not finished.
+        /// 4) This exception can be due to progress to recording is not finished.
+        /// 5) This exception can be due to progress to processing is not finished.
         /// </exception>
+        /// <exception cref="TimeoutException">This exception can be due to no answer from service.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Recording.
@@ -1093,15 +1127,20 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) This exception can be due to an invalid state.
         /// 2) This exception can be due to operation failed.
-        /// 3) This exception can be due to out of memory.
+        /// 3) This exception can be due to progress to ready is not finished.
+        /// 4) This exception can be due to progress to recording is not finished.
+        /// 5) This exception can be due to progress to processing is not finished.
         /// </exception>
+        /// <exception cref="TimeoutException">This exception can be due to no answer from service.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State must be Recording or Processing.
@@ -1124,9 +1163,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The Service State must be Recording.
@@ -1153,12 +1195,13 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="recognizedCommandsDelegate">The delegate for setting valid commands.</param>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void SetRecognizedCommandsSelectionDelegate(SelectRecognizedCommandsDelegate recognizedCommandsDelegate)
@@ -1192,9 +1235,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1233,9 +1278,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1280,9 +1327,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1329,9 +1378,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1383,9 +1434,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized.
@@ -1429,9 +1482,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized.
@@ -1475,9 +1530,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1520,9 +1577,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized.
@@ -1568,9 +1627,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The state must be initialized.
@@ -1612,11 +1673,12 @@ namespace Tizen.Uix.VoiceControlManager
         /// <summary>
         /// Event to be called when conversation requests.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1662,11 +1724,18 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="cmdType">Command Type</param>
-        /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) This exception can be due to an invalid state.
+        /// 2) This exception can be due to operation failed.
+        /// </exception>
+        /// <exception cref="TimeoutException">This exception can be due to no answer from service.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -1686,11 +1755,19 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="cmdType">Command Type</param>
-        /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) This exception can be due to an invalid state.
+        /// 2) This exception can be due to operation failed.
+        /// </exception>
+        /// <exception cref="TimeoutException">This exception can be due to no answer from service.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Ready
@@ -1710,9 +1787,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1759,12 +1838,13 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="privateDataDelegate">The delegate for setting private data</param>
-        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void SetPrivateDataProviderDelegate(PrivateDataProvider privateDataDelegate)
@@ -1794,9 +1874,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1840,9 +1922,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
@@ -1888,14 +1972,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -1916,14 +1997,11 @@ namespace Tizen.Uix.VoiceControlManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control_manager</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) This exception can be due to an invalid state.
-        /// 2) This exception can be due to operation failed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
@@ -1943,11 +2021,6 @@ namespace Tizen.Uix.VoiceControlManager
         /// Called when the vc client sends audio streaming for TTS feedback.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/voicecontrol.manager</privilege>
-        /// <privlevel>public</privlevel>
-        /// <feature>http://tizen.org/feature/speech.control</feature>
-        /// <feature>http://tizen.org/feature/microphone</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <pre>
         /// The State should be Initialized
         /// </pre>
