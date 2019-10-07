@@ -365,7 +365,7 @@ namespace Tizen.NUI
             {
                 string ret = Interop.Key.Key_logicalKey_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return "";
+                return ret;
             }
         }
 
