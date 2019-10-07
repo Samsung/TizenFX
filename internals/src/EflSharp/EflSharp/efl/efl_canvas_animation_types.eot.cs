@@ -18,9 +18,7 @@ Restart = 0,
 /// <summary>Reverse animation when the animation ends.</summary>
 Reverse = 1,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -62,14 +60,10 @@ public struct AnimationPlayerEventRunning
             var _external_struct = new AnimationPlayerEventRunning();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

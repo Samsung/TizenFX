@@ -8,13 +8,14 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvt"/>.</summary>
+/// <summary>Event argument wrapper for event <see cref="Efl.LoopMessageFutureHandler.MessageFutureEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class LoopMessageFutureHandlerMessageFutureEvt_Args : EventArgs {
+public class LoopMessageFutureHandlerMessageFutureEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>No description supplied.</value>
     public Efl.LoopMessageFuture arg { get; set; }
 }
+
 /// <summary>Internal use for future on an efl loop - replacing legacy ecore events</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.LoopMessageFutureHandler.NativeMethods]
@@ -39,6 +40,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_loop_message_future_handler_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="LoopMessageFutureHandler"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LoopMessageFutureHandler(Efl.Object parent= null
@@ -70,8 +72,8 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
     }
 
     /// <summary>No description supplied.</summary>
-    /// <value><see cref="Efl.LoopMessageFutureHandlerMessageFutureEvt_Args"/></value>
-    public event EventHandler<Efl.LoopMessageFutureHandlerMessageFutureEvt_Args> MessageFutureEvt
+    /// <value><see cref="Efl.LoopMessageFutureHandlerMessageFutureEventArgs"/></value>
+    public event EventHandler<Efl.LoopMessageFutureHandlerMessageFutureEventArgs> MessageFutureEvent
     {
         add
         {
@@ -82,7 +84,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.LoopMessageFutureHandlerMessageFutureEvt_Args args = new Efl.LoopMessageFutureHandlerMessageFutureEvt_Args();
+                        Efl.LoopMessageFutureHandlerMessageFutureEventArgs args = new Efl.LoopMessageFutureHandlerMessageFutureEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.LoopMessageFuture);
                         try
                         {
@@ -110,8 +112,10 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
             }
         }
     }
-    /// <summary>Method to raise event MessageFutureEvt.</summary>
-    public void OnMessageFutureEvt(Efl.LoopMessageFutureHandlerMessageFutureEvt_Args e)
+
+    /// <summary>Method to raise event MessageFutureEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMessageFutureEvent(Efl.LoopMessageFutureHandlerMessageFutureEventArgs e)
     {
         var key = "_EFL_LOOP_MESSAGE_FUTURE_HANDLER_EVENT_MESSAGE_FUTURE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -124,25 +128,30 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
+
     /// <summary>No description supplied.</summary>
     /// <returns>No description supplied.</returns>
-    virtual public Efl.LoopMessageFuture AddMessageType() {
-         var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.LoopMessageFuture AddMessageType() {
+        var _ret_var = Efl.LoopMessageFutureHandler.NativeMethods.efl_loop_message_future_handler_message_type_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.LoopMessageFutureHandler.efl_loop_message_future_handler_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.LoopMessageHandler.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -157,9 +166,20 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_message_future_handler_message_type_add"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_message_future_handler_message_type_add_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -183,7 +203,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.LoopMessageFuture _ret_var = default(Efl.LoopMessageFuture);
+                Efl.LoopMessageFuture _ret_var = default(Efl.LoopMessageFuture);
                 try
                 {
                     _ret_var = ((LoopMessageFutureHandler)ws.Target).AddMessageType();
@@ -194,8 +214,7 @@ public class LoopMessageFutureHandler : Efl.LoopMessageHandler
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {

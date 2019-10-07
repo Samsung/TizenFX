@@ -34,6 +34,7 @@ public class SurfaceX11 : Efl.Canvas.Surface
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_surface_x11_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="SurfaceX11"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public SurfaceX11(Efl.Object parent= null
@@ -64,22 +65,26 @@ public class SurfaceX11 : Efl.Canvas.Surface
     {
     }
 
+
     /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
     /// <param name="visual">X11 Visual for this Pixmap.</param>
     /// <param name="pixmap">X11 Pixmap ID.</param>
-    virtual public void GetPixmap(out System.IntPtr visual, out uint pixmap) {
-                                                         Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out visual, out pixmap);
+    public virtual void GetPixmap(out System.IntPtr visual, out uint pixmap) {
+        Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out visual, out pixmap);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
     /// <param name="visual">X11 Visual for this Pixmap.</param>
     /// <param name="pixmap">X11 Pixmap ID.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool SetPixmap(System.IntPtr visual, uint pixmap) {
-                                                         var _ret_var = Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),visual, pixmap);
+    public virtual bool SetPixmap(System.IntPtr visual, uint pixmap) {
+        var _ret_var = Efl.Canvas.SurfaceX11.NativeMethods.efl_canvas_surface_x11_pixmap_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),visual, pixmap);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>This is a helper for <see cref="Efl.Canvas.Surface.NativeBuffer"/>.</summary>
     /// <value>X11 Visual for this Pixmap.</value>
     public (System.IntPtr, uint) Pixmap {
@@ -91,18 +96,21 @@ public class SurfaceX11 : Efl.Canvas.Surface
         }
         set { SetPixmap( value.Item1,  value.Item2); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.SurfaceX11.efl_canvas_surface_x11_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Surface.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -127,9 +135,20 @@ public class SurfaceX11 : Efl.Canvas.Surface
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_surface_x11_pixmap_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_surface_x11_pixmap_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -153,7 +172,7 @@ public class SurfaceX11 : Efl.Canvas.Surface
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        visual = default(System.IntPtr);        pixmap = default(uint);                            
+                visual = default(System.IntPtr);pixmap = default(uint);
                 try
                 {
                     ((SurfaceX11)ws.Target).GetPixmap(out visual, out pixmap);
@@ -164,7 +183,7 @@ public class SurfaceX11 : Efl.Canvas.Surface
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -188,7 +207,7 @@ public class SurfaceX11 : Efl.Canvas.Surface
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((SurfaceX11)ws.Target).SetPixmap(visual, pixmap);
@@ -199,8 +218,7 @@ public class SurfaceX11 : Efl.Canvas.Surface
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -215,13 +233,11 @@ public class SurfaceX11 : Efl.Canvas.Surface
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_CanvasSurfaceX11_ExtensionMethods {
-    
 }
 #pragma warning restore CS1591
 #endif
@@ -239,8 +255,8 @@ public struct SurfaceX11Pixmap
     /// <summary>X11 Pixmap ID.</summary>
     public uint Pixmap;
     /// <summary>Constructor for SurfaceX11Pixmap.</summary>
-    /// <param name="Visual">X11 Visual for this Pixmap.</param>;
-    /// <param name="Pixmap">X11 Pixmap ID.</param>;
+    /// <param name="Visual">X11 Visual for this Pixmap.</param>
+    /// <param name="Pixmap">X11 Pixmap ID.</param>
     public SurfaceX11Pixmap(
         System.IntPtr Visual = default(System.IntPtr),
         uint Pixmap = default(uint)    )
@@ -284,14 +300,10 @@ public struct SurfaceX11Pixmap
             _external_struct.Pixmap = _internal_struct.Pixmap;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

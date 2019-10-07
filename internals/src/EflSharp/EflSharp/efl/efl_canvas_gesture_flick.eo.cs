@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>EFL Gesture Flick class</summary>
+/// <summary>Flick gesture class holding state information. See <see cref="Efl.Canvas.Gesture"/> to see what this state is and <see cref="Efl.Gesture.IEvents.GestureFlickEvent"/> for a description of the Flick gesture.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureFlick.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -34,6 +34,7 @@ public class GestureFlick : Efl.Canvas.Gesture
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_gesture_flick_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GestureFlick"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureFlick(Efl.Object parent= null
@@ -64,32 +65,37 @@ public class GestureFlick : Efl.Canvas.Gesture
     {
     }
 
-    /// <summary>Gets flick gesture momentum value</summary>
-    /// <returns>The momentum vector</returns>
-    virtual public Eina.Vector2 GetMomentum() {
-         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_momentum_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+
+    /// <summary>Gets flick gesture momentum value, this is, the direction in which the pointer was flicked.</summary>
+    /// <returns>The momentum vector.</returns>
+    public virtual Eina.Vector2 GetMomentum() {
+        var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_momentum_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Gets flick direction angle</summary>
-    /// <returns>The angle value</returns>
-    virtual public double GetAngle() {
-         var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_angle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    }
+
+    /// <summary>Gets flick gesture direction angle, this is, the angle in which the pointer was flicked.</summary>
+    /// <returns>The angle value.</returns>
+    public virtual double GetAngle() {
+        var _ret_var = Efl.Canvas.GestureFlick.NativeMethods.efl_gesture_flick_angle_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.GestureFlick.efl_canvas_gesture_flick_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Gesture.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -114,9 +120,20 @@ public class GestureFlick : Efl.Canvas.Gesture
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_flick_angle_get"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_flick_angle_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -140,7 +157,7 @@ public class GestureFlick : Efl.Canvas.Gesture
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Vector2 _ret_var = default(Eina.Vector2);
+                Eina.Vector2 _ret_var = default(Eina.Vector2);
                 try
                 {
                     _ret_var = ((GestureFlick)ws.Target).GetMomentum();
@@ -151,8 +168,7 @@ public class GestureFlick : Efl.Canvas.Gesture
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -176,7 +192,7 @@ public class GestureFlick : Efl.Canvas.Gesture
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((GestureFlick)ws.Target).GetAngle();
@@ -187,8 +203,7 @@ public class GestureFlick : Efl.Canvas.Gesture
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -203,7 +218,6 @@ public class GestureFlick : Efl.Canvas.Gesture
 }
 }
 }
-
 }
 
 #if EFL_BETA

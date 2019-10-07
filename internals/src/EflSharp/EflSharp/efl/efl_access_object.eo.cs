@@ -10,6 +10,34 @@ namespace Efl {
 
 namespace Access {
 
+/// <summary>Reading information types</summary>
+public struct ReadingInfoTypeMask
+{
+    private uint payload;
+
+    /// <summary>Converts an instance of uint to this struct.</summary>
+    /// <param name="value">The value to be converted.</param>
+    /// <returns>A struct with the given value.</returns>
+    public static implicit operator ReadingInfoTypeMask(uint value)
+    {
+        return new ReadingInfoTypeMask{payload=value};
+    }
+
+    /// <summary>Converts an instance of this struct to uint.</summary>
+    /// <param name="value">The value to be converted packed in this struct.</param>
+    /// <returns>The actual value the alias is wrapping.</returns>
+    public static implicit operator uint(ReadingInfoTypeMask value)
+    {
+        return value.payload;
+    }
+}
+}
+}
+
+namespace Efl {
+
+namespace Access {
+
 /// <summary>Accessibility object state set.</summary>
 public struct StateSet
 {
@@ -30,11 +58,8 @@ public struct StateSet
     {
         return value.payload;
     }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -46,7 +71,7 @@ public struct RelationSet
 {
     private Eina.List<Efl.Access.Relation> payload;
 
-    /// <summary>Converts an instance of Eina.List<Efl.Access.Relation> to this struct.</summary>
+    /// <summary>Converts an instance of Eina.List&lt;Efl.Access.Relation&gt; to this struct.</summary>
     /// <param name="value">The value to be converted.</param>
     /// <returns>A struct with the given value.</returns>
     public static implicit operator RelationSet(Eina.List<Efl.Access.Relation> value)
@@ -54,18 +79,15 @@ public struct RelationSet
         return new RelationSet{payload=value};
     }
 
-    /// <summary>Converts an instance of this struct to Eina.List<Efl.Access.Relation>.</summary>
+    /// <summary>Converts an instance of this struct to Eina.List&lt;Efl.Access.Relation&gt;.</summary>
     /// <param name="value">The value to be converted packed in this struct.</param>
     /// <returns>The actual value the alias is wrapping.</returns>
     public static implicit operator Eina.List<Efl.Access.Relation>(RelationSet value)
     {
         return value.payload;
     }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -73,207 +95,161 @@ namespace Efl {
 namespace Access {
 
 /// <summary>Accessibility accessible mixin</summary>
-[Efl.Access.IObjectConcrete.NativeMethods]
+[Efl.Access.ObjectConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets an localized string describing accessible object role name.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Localized accessible object role name</returns>
-System.String GetLocalizedRoleName();
     /// <summary>Accessible name of the object.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible name</returns>
-System.String GetI18nName();
-    /// <summary>Accessible name of the object.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="i18n_name">Accessible name</param>
-void SetI18nName(System.String i18n_name);
-    /// <summary>Sets name information callback about widget.
-/// if WEARABLE since_tizen 3.0 endif
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="name_cb">reading information callback</param>
-void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data);
-    /// <summary>Gets an all relations between accessible object and other accessible objects.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible relation set</returns>
-Efl.Access.RelationSet GetRelationSet();
-    /// <summary>The role of the object in accessibility domain.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible role</returns>
-Efl.Access.Role GetRole();
-    /// <summary>Sets the role of the object in accessibility domain.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="role">Accessible role</param>
-void SetRole(Efl.Access.Role role);
-    /// <summary>Gets object&apos;s accessible parent.</summary>
-/// <returns>Accessible parent</returns>
-Efl.Access.IObject GetAccessParent();
-    /// <summary>Gets object&apos;s accessible parent.</summary>
-/// <param name="parent">Accessible parent</param>
-void SetAccessParent(Efl.Access.IObject parent);
-    /// <summary>Sets contextual information callback about widget.
-/// if WEARABLE since_tizen 3.0 endif
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="description_cb">The function called to provide the accessible description.</param>
-/// <param name="data">The data passed to c description_cb.</param>
-void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data);
-    /// <summary>Sets gesture callback to give widget.
-/// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
-/// 
-/// if WEARABLE since_tizen 3.0 endif
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data);
-    /// <summary>Gets object&apos;s accessible children.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>List of widget&apos;s children</returns>
-Eina.List<Efl.Access.IObject> GetAccessChildren();
-    /// <summary>Gets human-readable string indentifying object accessibility role.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible role name</returns>
-System.String GetRoleName();
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>List of object attributes, Must be freed by the user</returns>
-Eina.List<Efl.Access.Attribute> GetAttributes();
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-/// if WEARABLE since_tizen 3.0 endif</summary>
-/// <returns>Reading information types</returns>
-Efl.Access.ReadingInfoTypeMask GetReadingInfoType();
-    /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
-/// if WEARABLE since_tizen 3.0 endif</summary>
-/// <param name="reading_info">Reading information types</param>
-void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info);
-    /// <summary>Gets index of the child in parent&apos;s children list.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Index in children list</returns>
-int GetIndexInParent();
-    /// <summary>Gets contextual information about object.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible contextual information</returns>
-System.String GetDescription();
-    /// <summary>Sets widget contextual information.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="description">Accessible contextual information</param>
-void SetDescription(System.String description);
-    /// <summary>Gets set describing object accessible states.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Accessible state set</returns>
-Efl.Access.StateSet GetStateSet();
-    /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
-/// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
-/// 
-/// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
-/// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <returns>Translation domain</returns>
-System.String GetTranslationDomain();
-    /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
-/// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
-/// 
-/// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
-/// 
-/// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="domain">Translation domain</param>
-void SetTranslationDomain(System.String domain);
-        /// <summary>Gets highlightable of given widget.
-/// if WEARABLE since_tizen 3.0 endif</summary>
-/// <returns>If c true, the object is highlightable.</returns>
-bool GetCanHighlight();
-    /// <summary>Sets highlightable to given widget.
-/// if WEARABLE since_tizen 3.0 endif</summary>
-/// <param name="can_highlight">If c true, the object is highlightable.</param>
-void SetCanHighlight(bool can_highlight);
-    /// <summary>Handles gesture on given widget.</summary>
-bool GestureDo(Efl.Access.GestureInfo gesture_info);
-    /// <summary>Add key-value pair identifying object extra attribute
-/// if WEARABLE since_tizen 3.0 endif</summary>
-/// <param name="key">The string key to give extra information</param>
-/// <param name="value">The string value to give extra information</param>
-void AppendAttribute(System.String key, System.String value);
-    /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
-/// <param name="key">The string key to identify the key-value pair</param>
-void DelAttribute(System.String key);
-    /// <summary>Removes all attributes in accessible object.</summary>
-void ClearAttributes();
-                /// <summary>Defines the relationship between two accessible objects.
-/// Adds a unique relationship between source object and relation_object of a given type.
-/// 
-/// Relationships can be queried by Assistive Technology clients to provide customized feedback, improving overall user experience.
-/// 
-/// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="type">Relation type</param>
-/// <param name="relation_object">Object to relate to</param>
-/// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
-bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
-    /// <summary>Removes the relationship between two accessible objects.
-/// If relation_object is NULL function removes all relations of the given type.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="type">Relation type</param>
-/// <param name="relation_object">Object to remove relation from</param>
-void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
-    /// <summary>Removes all relationships in accessible object.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-void ClearRelationships();
-    /// <summary>Notifies accessibility clients about current state of the accessible object.
-/// Function limits information broadcast to clients to types specified by state_types_mask parameter.
-/// 
-/// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
-void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
-                                                                                                                                                    /// <summary>Called when property has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectPropertyChangedEvt_Args"/></value>
-    event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt;
-    /// <summary>Called when children have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectChildrenChangedEvt_Args"/></value>
-    event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt;
-    /// <summary>Called when state has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectStateChangedEvt_Args"/></value>
-    event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt;
-    /// <summary>Called when boundaries have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectBoundsChangedEvt_Args"/></value>
-    event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt;
-    /// <summary>Called when visibility has changed</summary>
-    event EventHandler VisibleDataChangedEvt;
-    /// <summary>Called when active state of descendant has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectActiveDescendantChangedEvt_Args"/></value>
-    event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt;
-    /// <summary>Called when item is added</summary>
-    event EventHandler AddedEvt;
-    /// <summary>Called when item is removed</summary>
-    event EventHandler RemovedEvt;
-    event EventHandler MoveOutedEvt;
-    /// <summary>Gets an localized string describing accessible object role name.
     /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Localized accessible object role name</value>
-    System.String LocalizedRoleName {
-        get;
-    }
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <returns>Accessible name</returns>
+    System.String GetI18nName();
+
+    /// <summary>Accessible name of the object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="i18n_name">Accessible name</param>
+    void SetI18nName(System.String i18n_name);
+
+    /// <summary>Sets name information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="name_cb">reading information callback</param>
+    void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data);
+
+    /// <summary>The role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <returns>Accessible role</returns>
+    Efl.Access.Role GetRole();
+
+    /// <summary>Sets the role of the object in accessibility domain.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="role">Accessible role</param>
+    void SetRole(Efl.Access.Role role);
+
+    /// <summary>Gets object&apos;s accessible parent.</summary>
+    /// <returns>Accessible parent</returns>
+    Efl.Access.IObject GetAccessParent();
+
+    /// <summary>Gets object&apos;s accessible parent.</summary>
+    /// <param name="parent">Accessible parent</param>
+    void SetAccessParent(Efl.Access.IObject parent);
+
+    /// <summary>Sets contextual information callback about widget.
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="description_cb">The function called to provide the accessible description.</param>
+    /// <param name="data">The data passed to c description_cb.</param>
+    void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data);
+
+    /// <summary>Sets gesture callback to give widget.
+    /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
+    /// 
+    /// if WEARABLE since_tizen 3.0 endif
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data);
+
+    /// <summary>Gets contextual information about object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <returns>Accessible contextual information</returns>
+    System.String GetDescription();
+
+    /// <summary>Sets widget contextual information.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="description">Accessible contextual information</param>
+    void SetDescription(System.String description);
+
+    /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
+    /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
+    /// 
+    /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
+    /// 
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <returns>Translation domain</returns>
+    System.String GetTranslationDomain();
+
+    /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
+    /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
+    /// 
+    /// When translation domain is set, values of &quot;name&quot; and &quot;description&quot; properties will be translated with the dgettext function using the current translation domain as the &quot;domainname&quot; parameter.
+    /// 
+    /// It is the application developer&apos;s responsibility to ensure that translation files are loaded and bound to the translation domain when accessibility is enabled.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="domain">Translation domain</param>
+    void SetTranslationDomain(System.String domain);
+
+    /// <summary>Add key-value pair identifying object extra attribute
+    /// if WEARABLE since_tizen 3.0 endif</summary>
+    /// <param name="key">The string key to give extra information</param>
+    /// <param name="value">The string value to give extra information</param>
+    void AppendAttribute(System.String key, System.String value);
+
+    /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
+    /// <param name="key">The string key to identify the key-value pair</param>
+    void DelAttribute(System.String key);
+
+    /// <summary>Removes all attributes in accessible object.</summary>
+    void ClearAttributes();
+
+    /// <summary>Defines the relationship between two accessible objects.
+    /// Adds a unique relationship between source object and relation_object of a given type.
+    /// 
+    /// Relationships can be queried by Assistive Technology clients to provide customized feedback, improving overall user experience.
+    /// 
+    /// Relationship_append API is asymmetric, which means that appending, for example, relation EFL_ACCESS_RELATION_TYPE_FLOWS_TO from object A to B, do NOT append relation EFL_ACCESS_RELATION_TYPE_FLOWS_FROM from object B to object A.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="type">Relation type</param>
+    /// <param name="relation_object">Object to relate to</param>
+    /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
+    bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
+
+    /// <summary>Removes the relationship between two accessible objects.
+    /// If relation_object is <c>NULL</c> function removes all relations of the given type.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <param name="type">Relation type</param>
+    /// <param name="relation_object">Object to remove relation from</param>
+    void RemoveRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object);
+
+    /// <summary>Removes all relationships in accessible object.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    void ClearRelationships();
+
+    /// <summary>Called when property has changed</summary>
+    /// <value><see cref="Efl.Access.ObjectPropertyChangedEventArgs"/></value>
+    event EventHandler<Efl.Access.ObjectPropertyChangedEventArgs> PropertyChangedEvent;
+    /// <summary>Called when children have changed</summary>
+    /// <value><see cref="Efl.Access.ObjectChildrenChangedEventArgs"/></value>
+    event EventHandler<Efl.Access.ObjectChildrenChangedEventArgs> ChildrenChangedEvent;
+    /// <summary>Called when state has changed</summary>
+    /// <value><see cref="Efl.Access.ObjectStateChangedEventArgs"/></value>
+    event EventHandler<Efl.Access.ObjectStateChangedEventArgs> StateChangedEvent;
+    /// <summary>Called when boundaries have changed</summary>
+    /// <value><see cref="Efl.Access.ObjectBoundsChangedEventArgs"/></value>
+    event EventHandler<Efl.Access.ObjectBoundsChangedEventArgs> BoundsChangedEvent;
+    /// <summary>Called when visibility has changed</summary>
+    event EventHandler VisibleDataChangedEvent;
+    /// <summary>Called when active state of descendant has changed</summary>
+    /// <value><see cref="Efl.Access.ObjectActiveDescendantChangedEventArgs"/></value>
+    event EventHandler<Efl.Access.ObjectActiveDescendantChangedEventArgs> ActiveDescendantChangedEvent;
+    /// <summary>Called when item is added</summary>
+    event EventHandler AddedEvent;
+    /// <summary>Called when item is removed</summary>
+    event EventHandler RemovedEvent;
+    event EventHandler MoveOutedEvent;
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -282,6 +258,7 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
         get;
         set;
     }
+
     /// <summary>Sets name information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -290,13 +267,7 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
     (Efl.Access.ReadingInfoCb, System.IntPtr) NameCb {
         set;
     }
-    /// <summary>Gets an all relations between accessible object and other accessible objects.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Accessible relation set</value>
-    Efl.Access.RelationSet RelationSet {
-        get;
-    }
+
     /// <summary>The role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -305,12 +276,14 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
         get;
         set;
     }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <value>Accessible parent</value>
     Efl.Access.IObject AccessParent {
         get;
         set;
     }
+
     /// <summary>Sets contextual information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -319,6 +292,7 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
     (Efl.Access.ReadingInfoCb, System.IntPtr) DescriptionCb {
         set;
     }
+
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
@@ -328,41 +302,7 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
     (Efl.Access.GestureCb, System.IntPtr) GestureCb {
         set;
     }
-    /// <summary>Gets object&apos;s accessible children.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>List of widget&apos;s children</value>
-    Eina.List<Efl.Access.IObject> AccessChildren {
-        get;
-    }
-    /// <summary>Gets human-readable string indentifying object accessibility role.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Accessible role name</value>
-    System.String RoleName {
-        get;
-    }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>List of object attributes, Must be freed by the user</value>
-    Eina.List<Efl.Access.Attribute> Attributes {
-        get;
-    }
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
-    /// <value>Reading information types</value>
-    Efl.Access.ReadingInfoTypeMask ReadingInfoType {
-        get;
-        set;
-    }
-    /// <summary>Gets index of the child in parent&apos;s children list.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Index in children list</value>
-    int IndexInParent {
-        get;
-    }
+
     /// <summary>Gets contextual information about object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -371,13 +311,7 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
         get;
         set;
     }
-    /// <summary>Gets set describing object accessible states.
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Accessible state set</value>
-    Efl.Access.StateSet StateSet {
-        get;
-    }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -391,51 +325,51 @@ void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive);
         get;
         set;
     }
-    /// <summary>Gets highlightable of given widget.
-    /// if WEARABLE since_tizen 3.0 endif</summary>
-    /// <value>If c true, the object is highlightable.</value>
-    bool CanHighlight {
-        get;
-        set;
-    }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.PropertyChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.PropertyChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectPropertyChangedEvt_Args : EventArgs {
+public class ObjectPropertyChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when property has changed</value>
     public System.String arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ChildrenChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ChildrenChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectChildrenChangedEvt_Args : EventArgs {
+public class ObjectChildrenChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when children have changed</value>
     public Efl.Access.Event.ChildrenChanged.Data arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.StateChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.StateChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectStateChangedEvt_Args : EventArgs {
+public class ObjectStateChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when state has changed</value>
     public Efl.Access.Event.StateChanged.Data arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.BoundsChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.BoundsChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectBoundsChangedEvt_Args : EventArgs {
+public class ObjectBoundsChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when boundaries have changed</value>
     public Efl.Access.Event.GeometryChanged.Data arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ActiveDescendantChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IObject.ActiveDescendantChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectActiveDescendantChangedEvt_Args : EventArgs {
+public class ObjectActiveDescendantChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when active state of descendant has changed</value>
     public Efl.Object arg { get; set; }
 }
+
 /// <summary>Accessibility accessible mixin</summary>
-sealed public  class IObjectConcrete :
+public sealed class ObjectConcrete :
     Efl.Eo.EoWrapper
     , IObject
     
@@ -445,7 +379,7 @@ sealed public  class IObjectConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IObjectConcrete))
+            if (((object)this).GetType() == typeof(ObjectConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -459,22 +393,23 @@ sealed public  class IObjectConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IObjectConcrete(ConstructingHandle ch) : base(ch)
+    private ObjectConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_object_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when property has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectPropertyChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt
+    /// <value><see cref="Efl.Access.ObjectPropertyChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectPropertyChangedEventArgs> PropertyChangedEvent
     {
         add
         {
@@ -485,7 +420,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
+                        Efl.Access.ObjectPropertyChangedEventArgs args = new Efl.Access.ObjectPropertyChangedEventArgs();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -513,8 +448,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PropertyChangedEvt.</summary>
-    public void OnPropertyChangedEvt(Efl.Access.IObjectPropertyChangedEvt_Args e)
+
+    /// <summary>Method to raise event PropertyChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertyChangedEvent(Efl.Access.ObjectPropertyChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -534,9 +471,10 @@ sealed public  class IObjectConcrete :
             Eina.MemoryNative.Free(info);
         }
     }
+
     /// <summary>Called when children have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectChildrenChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt
+    /// <value><see cref="Efl.Access.ObjectChildrenChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectChildrenChangedEventArgs> ChildrenChangedEvent
     {
         add
         {
@@ -547,7 +485,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
+                        Efl.Access.ObjectChildrenChangedEventArgs args = new Efl.Access.ObjectChildrenChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -575,8 +513,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChildrenChangedEvt.</summary>
-    public void OnChildrenChangedEvt(Efl.Access.IObjectChildrenChangedEvt_Args e)
+
+    /// <summary>Method to raise event ChildrenChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildrenChangedEvent(Efl.Access.ObjectChildrenChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -597,9 +537,10 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when state has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectStateChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt
+    /// <value><see cref="Efl.Access.ObjectStateChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectStateChangedEventArgs> StateChangedEvent
     {
         add
         {
@@ -610,7 +551,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
+                        Efl.Access.ObjectStateChangedEventArgs args = new Efl.Access.ObjectStateChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -638,8 +579,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event StateChangedEvt.</summary>
-    public void OnStateChangedEvt(Efl.Access.IObjectStateChangedEvt_Args e)
+
+    /// <summary>Method to raise event StateChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnStateChangedEvent(Efl.Access.ObjectStateChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -660,9 +603,10 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when boundaries have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectBoundsChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt
+    /// <value><see cref="Efl.Access.ObjectBoundsChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectBoundsChangedEventArgs> BoundsChangedEvent
     {
         add
         {
@@ -673,7 +617,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
+                        Efl.Access.ObjectBoundsChangedEventArgs args = new Efl.Access.ObjectBoundsChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -701,8 +645,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event BoundsChangedEvt.</summary>
-    public void OnBoundsChangedEvt(Efl.Access.IObjectBoundsChangedEvt_Args e)
+
+    /// <summary>Method to raise event BoundsChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnBoundsChangedEvent(Efl.Access.ObjectBoundsChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -723,8 +669,9 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when visibility has changed</summary>
-    public event EventHandler VisibleDataChangedEvt
+    public event EventHandler VisibleDataChangedEvent
     {
         add
         {
@@ -762,8 +709,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event VisibleDataChangedEvt.</summary>
-    public void OnVisibleDataChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event VisibleDataChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnVisibleDataChangedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -775,9 +724,10 @@ sealed public  class IObjectConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when active state of descendant has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectActiveDescendantChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt
+    /// <value><see cref="Efl.Access.ObjectActiveDescendantChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectActiveDescendantChangedEventArgs> ActiveDescendantChangedEvent
     {
         add
         {
@@ -788,7 +738,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
+                        Efl.Access.ObjectActiveDescendantChangedEventArgs args = new Efl.Access.ObjectActiveDescendantChangedEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -816,8 +766,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ActiveDescendantChangedEvt.</summary>
-    public void OnActiveDescendantChangedEvt(Efl.Access.IObjectActiveDescendantChangedEvt_Args e)
+
+    /// <summary>Method to raise event ActiveDescendantChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnActiveDescendantChangedEvent(Efl.Access.ObjectActiveDescendantChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -830,8 +782,9 @@ sealed public  class IObjectConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Called when item is added</summary>
-    public event EventHandler AddedEvt
+    public event EventHandler AddedEvent
     {
         add
         {
@@ -869,8 +822,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event AddedEvt.</summary>
-    public void OnAddedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAddedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -882,8 +837,9 @@ sealed public  class IObjectConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when item is removed</summary>
-    public event EventHandler RemovedEvt
+    public event EventHandler RemovedEvent
     {
         add
         {
@@ -921,8 +877,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event RemovedEvt.</summary>
-    public void OnRemovedEvt(EventArgs e)
+
+    /// <summary>Method to raise event RemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRemovedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -934,7 +892,8 @@ sealed public  class IObjectConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    public event EventHandler MoveOutedEvt
+
+    public event EventHandler MoveOutedEvent
     {
         add
         {
@@ -972,8 +931,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event MoveOutedEvt.</summary>
-    public void OnMoveOutedEvt(EventArgs e)
+
+    /// <summary>Method to raise event MoveOutedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMoveOutedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -985,80 +946,96 @@ sealed public  class IObjectConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Gets an localized string describing accessible object role name.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Localized accessible object role name</returns>
-    public System.String GetLocalizedRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate(this.NativeHandle);
+    protected System.String GetLocalizedRoleName() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible name</returns>
     public System.String GetI18nName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="i18n_name">Accessible name</param>
     public void SetI18nName(System.String i18n_name) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate(this.NativeHandle,i18n_name);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate(this.NativeHandle,i18n_name);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Sets name information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="name_cb">reading information callback</param>
     public void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate(this.NativeHandle,name_cb, data);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate(this.NativeHandle,name_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Gets an all relations between accessible object and other accessible objects.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible relation set</returns>
-    public Efl.Access.RelationSet GetRelationSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate(this.NativeHandle);
+    protected Efl.Access.RelationSet GetRelationSet() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role</returns>
     public Efl.Access.Role GetRole() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets the role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="role">Accessible role</param>
     public void SetRole(Efl.Access.Role role) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate(this.NativeHandle,role);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate(this.NativeHandle,role);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <returns>Accessible parent</returns>
     public Efl.Access.IObject GetAccessParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <param name="parent">Accessible parent</param>
     public void SetAccessParent(Efl.Access.IObject parent) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate(this.NativeHandle,parent);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate(this.NativeHandle,parent);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Sets contextual information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -1066,9 +1043,11 @@ sealed public  class IObjectConcrete :
     /// <param name="description_cb">The function called to provide the accessible description.</param>
     /// <param name="data">The data passed to c description_cb.</param>
     public void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate(this.NativeHandle,description_cb, data);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate(this.NativeHandle,description_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
@@ -1076,86 +1055,101 @@ sealed public  class IObjectConcrete :
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     public void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate(this.NativeHandle,gesture_cb, data);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate(this.NativeHandle,gesture_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Gets object&apos;s accessible children.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>List of widget&apos;s children</returns>
-    public Eina.List<Efl.Access.IObject> GetAccessChildren() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate(this.NativeHandle);
+    protected Eina.List<Efl.Access.IObject> GetAccessChildren() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.IObject>(_ret_var, true, false);
- }
-    /// <summary>Gets human-readable string indentifying object accessibility role.
+
+    }
+
+    /// <summary>Gets human-readable string identifying object accessibility role.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role name</returns>
-    public System.String GetRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate(this.NativeHandle);
+    protected System.String GetRoleName() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns>List of object attributes, Must be freed by the user</returns>
-    public Eina.List<Efl.Access.Attribute> GetAttributes() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate(this.NativeHandle);
+    /// <returns>List of object attributes. Must be freed by the user</returns>
+    protected Eina.List<Efl.Access.Attribute> GetAttributes() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.Attribute>(_ret_var, true, true);
- }
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+
+    }
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <returns>Reading information types</returns>
-    public Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate(this.NativeHandle);
+    protected Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+    }
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="reading_info">Reading information types</param>
-    public void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate(this.NativeHandle,reading_info);
+    protected void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate(this.NativeHandle,reading_info);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets index of the child in parent&apos;s children list.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Index in children list</returns>
-    public int GetIndexInParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate(this.NativeHandle);
+    protected int GetIndexInParent() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets contextual information about object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible contextual information</returns>
     public System.String GetDescription() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets widget contextual information.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="description">Accessible contextual information</param>
     public void SetDescription(System.String description) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate(this.NativeHandle,description);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate(this.NativeHandle,description);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets set describing object accessible states.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible state set</returns>
-    public Efl.Access.StateSet GetStateSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate(this.NativeHandle);
+    protected Efl.Access.StateSet GetStateSet() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -1166,10 +1160,11 @@ sealed public  class IObjectConcrete :
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Translation domain</returns>
     public System.String GetTranslationDomain() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -1180,89 +1175,62 @@ sealed public  class IObjectConcrete :
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="domain">Translation domain</param>
     public void SetTranslationDomain(System.String domain) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate(this.NativeHandle,domain);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate(this.NativeHandle,domain);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get root object of accessible object hierarchy
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns>Root object</returns>
-    public static Efl.Object GetAccessRoot() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_root_get_ptr.Value.Delegate();
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
+        
+    }
+
     /// <summary>Gets highlightable of given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <returns>If c true, the object is highlightable.</returns>
-    public bool GetCanHighlight() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
+    protected bool GetCanHighlight() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets highlightable to given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="can_highlight">If c true, the object is highlightable.</param>
-    public void SetCanHighlight(bool can_highlight) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle,can_highlight);
+    protected void SetCanHighlight(bool can_highlight) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate(this.NativeHandle,can_highlight);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Handles gesture on given widget.</summary>
-    public bool GestureDo(Efl.Access.GestureInfo gesture_info) {
-         Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
-                        var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate(this.NativeHandle,_in_gesture_info);
+    protected bool DoGesture(Efl.Access.GestureInfo gesture_info) {
+        Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
+var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate(this.NativeHandle,_in_gesture_info);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Add key-value pair identifying object extra attribute
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="key">The string key to give extra information</param>
     /// <param name="value">The string value to give extra information</param>
     public void AppendAttribute(System.String key, System.String value) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate(this.NativeHandle,key, value);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate(this.NativeHandle,key, value);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
     /// <param name="key">The string key to identify the key-value pair</param>
     public void DelAttribute(System.String key) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate(this.NativeHandle,key);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate(this.NativeHandle,key);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Removes all attributes in accessible object.</summary>
     public void ClearAttributes() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Register accessibility event listener
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="cb">Callback</param>
-    /// <param name="data">Data</param>
-    /// <returns>Event handler</returns>
-    public static Efl.Access.Event.Handler AddEventHandler(Efl.EventCb cb, System.IntPtr data) {
-                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>Deregister accessibility event listener
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="handler">Event handler</param>
-    public static void DelEventHandler(Efl.Access.Event.Handler handler) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Emit event
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="accessible">Accessibility object.</param>
-    /// <param name="kw_event">Accessibility event type.</param>
-    /// <param name="event_info">Accessibility event details.</param>
-    public static void EmitEvent(Efl.Access.IObject accessible, Efl.EventDescription kw_event, System.IntPtr event_info) {
-                 var _in_kw_event = Eina.PrimitiveConversion.ManagedToPointerAlloc(kw_event);
-                                                                Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_emit_ptr.Value.Delegate(accessible, _in_kw_event, event_info);
-        Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Defines the relationship between two accessible objects.
     /// Adds a unique relationship between source object and relation_object of a given type.
     /// 
@@ -1275,42 +1243,50 @@ sealed public  class IObjectConcrete :
     /// <param name="relation_object">Object to relate to</param>
     /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
     public bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Removes the relationship between two accessible objects.
-    /// If relation_object is NULL function removes all relations of the given type.
+    /// If relation_object is <c>NULL</c> function removes all relations of the given type.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to remove relation from</param>
-    public void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
+    public void RemoveRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate(this.NativeHandle,type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Removes all relationships in accessible object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     public void ClearRelationships() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Notifies accessibility clients about current state of the accessible object.
     /// Function limits information broadcast to clients to types specified by state_types_mask parameter.
     /// 
     /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
-    public void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate(this.NativeHandle,state_types_mask, recursive);
+    protected void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate(this.NativeHandle,state_types_mask, recursive);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Gets an localized string describing accessible object role name.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Localized accessible object role name</value>
-    public System.String LocalizedRoleName {
+    protected System.String LocalizedRoleName {
         get { return GetLocalizedRoleName(); }
     }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -1319,6 +1295,7 @@ sealed public  class IObjectConcrete :
         get { return GetI18nName(); }
         set { SetI18nName(value); }
     }
+
     /// <summary>Sets name information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -1327,13 +1304,15 @@ sealed public  class IObjectConcrete :
     public (Efl.Access.ReadingInfoCb, System.IntPtr) NameCb {
         set { SetNameCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets an all relations between accessible object and other accessible objects.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible relation set</value>
-    public Efl.Access.RelationSet RelationSet {
+    protected Efl.Access.RelationSet RelationSet {
         get { return GetRelationSet(); }
     }
+
     /// <summary>The role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -1342,12 +1321,14 @@ sealed public  class IObjectConcrete :
         get { return GetRole(); }
         set { SetRole(value); }
     }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <value>Accessible parent</value>
     public Efl.Access.IObject AccessParent {
         get { return GetAccessParent(); }
         set { SetAccessParent(value); }
     }
+
     /// <summary>Sets contextual information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -1356,6 +1337,7 @@ sealed public  class IObjectConcrete :
     public (Efl.Access.ReadingInfoCb, System.IntPtr) DescriptionCb {
         set { SetDescriptionCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
@@ -1365,41 +1347,47 @@ sealed public  class IObjectConcrete :
     public (Efl.Access.GestureCb, System.IntPtr) GestureCb {
         set { SetGestureCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets object&apos;s accessible children.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of widget&apos;s children</value>
-    public Eina.List<Efl.Access.IObject> AccessChildren {
+    protected Eina.List<Efl.Access.IObject> AccessChildren {
         get { return GetAccessChildren(); }
     }
-    /// <summary>Gets human-readable string indentifying object accessibility role.
+
+    /// <summary>Gets human-readable string identifying object accessibility role.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role name</value>
-    public System.String RoleName {
+    protected System.String RoleName {
         get { return GetRoleName(); }
     }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+
+    /// <summary>Gets key-value pairs identifying object extra attributes. Must be free by a user.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>List of object attributes, Must be freed by the user</value>
-    public Eina.List<Efl.Access.Attribute> Attributes {
+    /// <value>List of object attributes. Must be freed by the user</value>
+    protected Eina.List<Efl.Access.Attribute> Attributes {
         get { return GetAttributes(); }
     }
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>Reading information types</value>
-    public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
+    protected Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
         set { SetReadingInfoType(value); }
     }
+
     /// <summary>Gets index of the child in parent&apos;s children list.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Index in children list</value>
-    public int IndexInParent {
+    protected int IndexInParent {
         get { return GetIndexInParent(); }
     }
+
     /// <summary>Gets contextual information about object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -1408,13 +1396,15 @@ sealed public  class IObjectConcrete :
         get { return GetDescription(); }
         set { SetDescription(value); }
     }
+
     /// <summary>Gets set describing object accessible states.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible state set</value>
-    public Efl.Access.StateSet StateSet {
+    protected Efl.Access.StateSet StateSet {
         get { return GetStateSet(); }
     }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -1428,45 +1418,33 @@ sealed public  class IObjectConcrete :
         get { return GetTranslationDomain(); }
         set { SetTranslationDomain(value); }
     }
-    /// <summary>Get root object of accessible object hierarchy
-    /// 
-    /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>Root object</value>
-    public static Efl.Object AccessRoot {
-        get { return GetAccessRoot(); }
-    }
+
     /// <summary>Gets highlightable of given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>If c true, the object is highlightable.</value>
-    public bool CanHighlight {
+    protected bool CanHighlight {
         get { return GetCanHighlight(); }
         set { SetCanHighlight(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
+        return Efl.Access.ObjectConcrete.efl_access_object_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_access_object_localized_role_name_get_static_delegate == null)
-            {
-                efl_access_object_localized_role_name_get_static_delegate = new efl_access_object_localized_role_name_get_delegate(localized_role_name_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetLocalizedRoleName") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_localized_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_localized_role_name_get_static_delegate) });
-            }
 
             if (efl_access_object_i18n_name_get_static_delegate == null)
             {
@@ -1496,16 +1474,6 @@ sealed public  class IObjectConcrete :
             if (methods.FirstOrDefault(m => m.Name == "SetNameCb") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_name_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_name_cb_set_static_delegate) });
-            }
-
-            if (efl_access_object_relation_set_get_static_delegate == null)
-            {
-                efl_access_object_relation_set_get_static_delegate = new efl_access_object_relation_set_get_delegate(relation_set_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRelationSet") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relation_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relation_set_get_static_delegate) });
             }
 
             if (efl_access_object_role_get_static_delegate == null)
@@ -1568,66 +1536,6 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_cb_set_static_delegate) });
             }
 
-            if (efl_access_object_access_children_get_static_delegate == null)
-            {
-                efl_access_object_access_children_get_static_delegate = new efl_access_object_access_children_get_delegate(access_children_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAccessChildren") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_children_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_children_get_static_delegate) });
-            }
-
-            if (efl_access_object_role_name_get_static_delegate == null)
-            {
-                efl_access_object_role_name_get_static_delegate = new efl_access_object_role_name_get_delegate(role_name_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRoleName") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_name_get_static_delegate) });
-            }
-
-            if (efl_access_object_attributes_get_static_delegate == null)
-            {
-                efl_access_object_attributes_get_static_delegate = new efl_access_object_attributes_get_delegate(attributes_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAttributes") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attributes_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_get_static_delegate) });
-            }
-
-            if (efl_access_object_reading_info_type_get_static_delegate == null)
-            {
-                efl_access_object_reading_info_type_get_static_delegate = new efl_access_object_reading_info_type_get_delegate(reading_info_type_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetReadingInfoType") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_reading_info_type_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_get_static_delegate) });
-            }
-
-            if (efl_access_object_reading_info_type_set_static_delegate == null)
-            {
-                efl_access_object_reading_info_type_set_static_delegate = new efl_access_object_reading_info_type_set_delegate(reading_info_type_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetReadingInfoType") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_reading_info_type_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_reading_info_type_set_static_delegate) });
-            }
-
-            if (efl_access_object_index_in_parent_get_static_delegate == null)
-            {
-                efl_access_object_index_in_parent_get_static_delegate = new efl_access_object_index_in_parent_get_delegate(index_in_parent_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetIndexInParent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_index_in_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_index_in_parent_get_static_delegate) });
-            }
-
             if (efl_access_object_description_get_static_delegate == null)
             {
                 efl_access_object_description_get_static_delegate = new efl_access_object_description_get_delegate(description_get);
@@ -1648,16 +1556,6 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_set_static_delegate) });
             }
 
-            if (efl_access_object_state_set_get_static_delegate == null)
-            {
-                efl_access_object_state_set_get_static_delegate = new efl_access_object_state_set_get_delegate(state_set_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetStateSet") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_set_get_static_delegate) });
-            }
-
             if (efl_access_object_translation_domain_get_static_delegate == null)
             {
                 efl_access_object_translation_domain_get_static_delegate = new efl_access_object_translation_domain_get_delegate(translation_domain_get);
@@ -1676,36 +1574,6 @@ sealed public  class IObjectConcrete :
             if (methods.FirstOrDefault(m => m.Name == "SetTranslationDomain") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_set_static_delegate) });
-            }
-
-            if (efl_access_object_can_highlight_get_static_delegate == null)
-            {
-                efl_access_object_can_highlight_get_static_delegate = new efl_access_object_can_highlight_get_delegate(can_highlight_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCanHighlight") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_get_static_delegate) });
-            }
-
-            if (efl_access_object_can_highlight_set_static_delegate == null)
-            {
-                efl_access_object_can_highlight_set_static_delegate = new efl_access_object_can_highlight_set_delegate(can_highlight_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCanHighlight") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_can_highlight_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_can_highlight_set_static_delegate) });
-            }
-
-            if (efl_access_object_gesture_do_static_delegate == null)
-            {
-                efl_access_object_gesture_do_static_delegate = new efl_access_object_gesture_do_delegate(gesture_do);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GestureDo") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_do"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_do_static_delegate) });
             }
 
             if (efl_access_object_attribute_append_static_delegate == null)
@@ -1753,7 +1621,7 @@ sealed public  class IObjectConcrete :
                 efl_access_object_relationship_remove_static_delegate = new efl_access_object_relationship_remove_delegate(relationship_remove);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "RelationshipRemove") != null)
+            if (methods.FirstOrDefault(m => m.Name == "RemoveRelationship") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationship_remove"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_remove_static_delegate) });
             }
@@ -1768,23 +1636,24 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationships_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationships_clear_static_delegate) });
             }
 
-            if (efl_access_object_state_notify_static_delegate == null)
+            if (includeInherited)
             {
-                efl_access_object_state_notify_static_delegate = new efl_access_object_state_notify_delegate(state_notify);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "StateNotify") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_notify"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_notify_static_delegate) });
-            }
-
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Access.IObjectConcrete.efl_access_object_mixin_get();
+            return Efl.Access.ObjectConcrete.efl_access_object_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1796,34 +1665,6 @@ sealed public  class IObjectConcrete :
         public delegate System.String efl_access_object_localized_role_name_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate> efl_access_object_localized_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_localized_role_name_get_api_delegate>(Module, "efl_access_object_localized_role_name_get");
-
-        private static System.String localized_role_name_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_localized_role_name_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetLocalizedRoleName();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_localized_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_localized_role_name_get_delegate efl_access_object_localized_role_name_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_i18n_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1839,7 +1680,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetI18nName();
@@ -1850,8 +1691,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1875,7 +1715,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).SetI18nName(i18n_name);
@@ -1886,7 +1726,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1910,7 +1750,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IObject)ws.Target).SetNameCb(name_cb, data);
@@ -1921,7 +1761,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1939,34 +1779,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate> efl_access_object_relation_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relation_set_get_api_delegate>(Module, "efl_access_object_relation_set_get");
 
-        private static Efl.Access.RelationSet relation_set_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_relation_set_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetRelationSet();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_relation_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_relation_set_get_delegate efl_access_object_relation_set_get_static_delegate;
-
         
         private delegate Efl.Access.Role efl_access_object_role_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1981,7 +1793,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.Role _ret_var = default(Efl.Access.Role);
+                Efl.Access.Role _ret_var = default(Efl.Access.Role);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetRole();
@@ -1992,8 +1804,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2017,7 +1828,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).SetRole(role);
@@ -2028,7 +1839,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2052,7 +1863,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
+                Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetAccessParent();
@@ -2063,8 +1874,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2088,7 +1898,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).SetAccessParent(parent);
@@ -2099,7 +1909,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2123,7 +1933,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IObject)ws.Target).SetDescriptionCb(description_cb, data);
@@ -2134,7 +1944,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2158,7 +1968,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IObject)ws.Target).SetGestureCb(gesture_cb, data);
@@ -2169,7 +1979,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2187,34 +1997,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate> efl_access_object_access_children_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_children_get_api_delegate>(Module, "efl_access_object_access_children_get");
 
-        private static System.IntPtr access_children_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_access_children_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetAccessChildren();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        _ret_var.Own = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_access_object_access_children_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_access_children_get_delegate efl_access_object_access_children_get_static_delegate;
-
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_role_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2222,34 +2004,6 @@ sealed public  class IObjectConcrete :
         public delegate System.String efl_access_object_role_name_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate> efl_access_object_role_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_name_get_api_delegate>(Module, "efl_access_object_role_name_get");
-
-        private static System.String role_name_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_role_name_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetRoleName();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_role_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_role_name_get_delegate efl_access_object_role_name_get_static_delegate;
 
         
         private delegate System.IntPtr efl_access_object_attributes_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2259,34 +2013,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate> efl_access_object_attributes_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_get_api_delegate>(Module, "efl_access_object_attributes_get");
 
-        private static System.IntPtr attributes_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_attributes_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetAttributes();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_access_object_attributes_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_attributes_get_delegate efl_access_object_attributes_get_static_delegate;
-
         
         private delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2294,34 +2020,6 @@ sealed public  class IObjectConcrete :
         public delegate Efl.Access.ReadingInfoTypeMask efl_access_object_reading_info_type_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate> efl_access_object_reading_info_type_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_get_api_delegate>(Module, "efl_access_object_reading_info_type_get");
-
-        private static Efl.Access.ReadingInfoTypeMask reading_info_type_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_reading_info_type_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetReadingInfoType();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_reading_info_type_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_reading_info_type_get_delegate efl_access_object_reading_info_type_get_static_delegate;
 
         
         private delegate void efl_access_object_reading_info_type_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoTypeMask reading_info);
@@ -2331,33 +2029,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate> efl_access_object_reading_info_type_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_reading_info_type_set_api_delegate>(Module, "efl_access_object_reading_info_type_set");
 
-        private static void reading_info_type_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoTypeMask reading_info)
-        {
-            Eina.Log.Debug("function efl_access_object_reading_info_type_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IObject)ws.Target).SetReadingInfoType(reading_info);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_reading_info_type_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), reading_info);
-            }
-        }
-
-        private static efl_access_object_reading_info_type_set_delegate efl_access_object_reading_info_type_set_static_delegate;
-
         
         private delegate int efl_access_object_index_in_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2365,34 +2036,6 @@ sealed public  class IObjectConcrete :
         public delegate int efl_access_object_index_in_parent_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate> efl_access_object_index_in_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_index_in_parent_get_api_delegate>(Module, "efl_access_object_index_in_parent_get");
-
-        private static int index_in_parent_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_index_in_parent_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetIndexInParent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_index_in_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_index_in_parent_get_delegate efl_access_object_index_in_parent_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_description_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2408,7 +2051,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetDescription();
@@ -2419,8 +2062,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2444,7 +2086,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).SetDescription(description);
@@ -2455,7 +2097,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2473,34 +2115,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate> efl_access_object_state_set_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_set_get_api_delegate>(Module, "efl_access_object_state_set_get");
 
-        private static Efl.Access.StateSet state_set_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_state_set_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetStateSet();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_state_set_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_state_set_get_delegate efl_access_object_state_set_get_static_delegate;
-
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
         private delegate System.String efl_access_object_translation_domain_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2515,7 +2129,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetTranslationDomain();
@@ -2526,8 +2140,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2551,7 +2164,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).SetTranslationDomain(domain);
@@ -2562,7 +2175,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2580,32 +2193,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate> efl_access_object_access_root_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_root_get_api_delegate>(Module, "efl_access_object_access_root_get");
 
-        private static Efl.Object access_root_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_access_root_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Object _ret_var = default(Efl.Object);
-                try
-                {
-                    _ret_var = IObjectConcrete.GetAccessRoot();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_access_root_get_ptr.Value.Delegate();
-            }
-        }
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_object_can_highlight_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -2613,34 +2200,6 @@ sealed public  class IObjectConcrete :
         public delegate bool efl_access_object_can_highlight_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate> efl_access_object_can_highlight_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_get_api_delegate>(Module, "efl_access_object_can_highlight_get");
-
-        private static bool can_highlight_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_can_highlight_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetCanHighlight();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_can_highlight_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_can_highlight_get_delegate efl_access_object_can_highlight_get_static_delegate;
 
         
         private delegate void efl_access_object_can_highlight_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_highlight);
@@ -2650,33 +2209,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate> efl_access_object_can_highlight_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_can_highlight_set_api_delegate>(Module, "efl_access_object_can_highlight_set");
 
-        private static void can_highlight_set(System.IntPtr obj, System.IntPtr pd, bool can_highlight)
-        {
-            Eina.Log.Debug("function efl_access_object_can_highlight_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IObject)ws.Target).SetCanHighlight(can_highlight);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_can_highlight_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_highlight);
-            }
-        }
-
-        private static efl_access_object_can_highlight_set_delegate efl_access_object_can_highlight_set_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_object_gesture_do_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureInfo.NativeStruct gesture_info);
 
@@ -2684,35 +2216,6 @@ sealed public  class IObjectConcrete :
         public delegate bool efl_access_object_gesture_do_api_delegate(System.IntPtr obj,  Efl.Access.GestureInfo.NativeStruct gesture_info);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate> efl_access_object_gesture_do_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_do_api_delegate>(Module, "efl_access_object_gesture_do");
-
-        private static bool gesture_do(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureInfo.NativeStruct gesture_info)
-        {
-            Eina.Log.Debug("function efl_access_object_gesture_do was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        Efl.Access.GestureInfo _in_gesture_info = gesture_info;
-                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GestureDo(_in_gesture_info);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_gesture_do_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gesture_info);
-            }
-        }
-
-        private static efl_access_object_gesture_do_delegate efl_access_object_gesture_do_static_delegate;
 
         
         private delegate void efl_access_object_attribute_append_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
@@ -2728,7 +2231,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IObject)ws.Target).AppendAttribute(key, value);
@@ -2739,7 +2242,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2763,7 +2266,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IObject)ws.Target).DelAttribute(key);
@@ -2774,7 +2277,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2798,7 +2301,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IObject)ws.Target).ClearAttributes();
@@ -2809,7 +2312,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -2827,32 +2330,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate> efl_access_object_event_handler_add_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_add_api_delegate>(Module, "efl_access_object_event_handler_add");
 
-        private static Efl.Access.Event.Handler event_handler_add(System.IntPtr obj, System.IntPtr pd, Efl.EventCb cb, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_access_object_event_handler_add was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
-                try
-                {
-                    _ret_var = IObjectConcrete.AddEventHandler(cb, data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
-            }
-        }
-
         
         private delegate void efl_access_object_event_handler_del_delegate( Efl.Access.Event.Handler handler);
 
@@ -2861,31 +2338,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate> efl_access_object_event_handler_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_handler_del_api_delegate>(Module, "efl_access_object_event_handler_del");
 
-        private static void event_handler_del(System.IntPtr obj, System.IntPtr pd, Efl.Access.Event.Handler handler)
-        {
-            Eina.Log.Debug("function efl_access_object_event_handler_del was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    IObjectConcrete.DelEventHandler(handler);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
-            }
-        }
-
         
         private delegate void efl_access_object_event_emit_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject accessible,  System.IntPtr kw_event,  System.IntPtr event_info);
 
@@ -2893,32 +2345,6 @@ sealed public  class IObjectConcrete :
         public delegate void efl_access_object_event_emit_api_delegate([MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject accessible,  System.IntPtr kw_event,  System.IntPtr event_info);
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate> efl_access_object_event_emit_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_event_emit_api_delegate>(Module, "efl_access_object_event_emit");
-
-        private static void event_emit(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject accessible, System.IntPtr kw_event, System.IntPtr event_info)
-        {
-            Eina.Log.Debug("function efl_access_object_event_emit was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
-                                                                    
-                try
-                {
-                    IObjectConcrete.EmitEvent(accessible, _in_kw_event, event_info);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_access_object_event_emit_ptr.Value.Delegate(accessible, kw_event, event_info);
-            }
-        }
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_object_relationship_append_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
@@ -2934,7 +2360,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).AppendRelationship(type, relation_object);
@@ -2945,8 +2371,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2970,10 +2395,10 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
-                    ((IObject)ws.Target).RelationshipRemove(type, relation_object);
+                    ((IObject)ws.Target).RemoveRelationship(type, relation_object);
                 }
                 catch (Exception e)
                 {
@@ -2981,7 +2406,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -3005,7 +2430,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IObject)ws.Target).ClearRelationships();
@@ -3016,7 +2441,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -3034,51 +2459,20 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate> efl_access_object_state_notify_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_state_notify_api_delegate>(Module, "efl_access_object_state_notify");
 
-        private static void state_notify(System.IntPtr obj, System.IntPtr pd, Efl.Access.StateSet state_types_mask, bool recursive)
-        {
-            Eina.Log.Debug("function efl_access_object_state_notify was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((IObject)ws.Target).StateNotify(state_types_mask, recursive);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_state_notify_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), state_types_mask, recursive);
-            }
-        }
-
-        private static efl_access_object_state_notify_delegate efl_access_object_state_notify_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_AccessIObjectConcrete_ExtensionMethods {
-    
+public static class Efl_AccessObjectConcrete_ExtensionMethods {
     public static Efl.BindableProperty<System.String> I18nName<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<System.String>("i18n_name", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<Efl.Access.Role> Role<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<Efl.Access.Role>("role", fac);
     }
@@ -3087,26 +2481,18 @@ public static class Efl_AccessIObjectConcrete_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Access.IObject>("access_parent", fac);
     }
 
-    
-    
-    
-    
-    
     public static Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask> ReadingInfoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask>("reading_info_type", fac);
     }
 
-    
     public static Efl.BindableProperty<System.String> Description<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<System.String>("description", fac);
     }
 
-    
     public static Efl.BindableProperty<System.String> TranslationDomain<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<System.String>("translation_domain", fac);
     }
 
-    
     public static Efl.BindableProperty<bool> CanHighlight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IObject, T>magic = null) where T : Efl.Access.IObject {
         return new Efl.BindableProperty<bool>("can_highlight", fac);
     }
@@ -3129,9 +2515,7 @@ Disabled = 1,
 /// <summary>skip object in accessibility hierarchy</summary>
 Skipped = 2,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3351,9 +2735,7 @@ InfoBar = 102,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 103,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3459,9 +2841,7 @@ Highlightable = 45,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 46,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3513,9 +2893,7 @@ DescribedBy = 18,
 /// <summary>Last enum entry sentinel</summary>
 LastDefined = 19,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3539,13 +2917,9 @@ Description = 4,
 /// <summary>State should be read.</summary>
 State = 8,
 }
-
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3592,9 +2966,7 @@ ThreeFingersFlickRightReturn = 33,
 ThreeFingersFlickUpReturn = 34,
 ThreeFingersFlickDownReturn = 35,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3609,9 +2981,7 @@ Move = 1,
 End = 2,
 Abort = 3,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3655,17 +3025,12 @@ public struct Handler
             var _external_struct = new Handler();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3687,8 +3052,8 @@ public struct Data
     /// <summary>New value</summary>
     public bool New_value;
     /// <summary>Constructor for Data.</summary>
-    /// <param name="Type">Type of the state changed event</param>;
-    /// <param name="New_value">New value</param>;
+    /// <param name="Type">Type of the state changed event</param>
+    /// <param name="New_value">New value</param>
     public Data(
         Efl.Access.StateType Type = default(Efl.Access.StateType),
         bool New_value = default(bool)    )
@@ -3732,19 +3097,13 @@ public struct Data
             _external_struct.New_value = _internal_struct.New_value != 0;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3769,10 +3128,10 @@ public struct Data
     /// <summary>Height</summary>
     public int Height;
     /// <summary>Constructor for Data.</summary>
-    /// <param name="X">X coordinate</param>;
-    /// <param name="Y">Y coordinate</param>;
-    /// <param name="Width">Width</param>;
-    /// <param name="Height">Height</param>;
+    /// <param name="X">X coordinate</param>
+    /// <param name="Y">Y coordinate</param>
+    /// <param name="Width">Width</param>
+    /// <param name="Height">Height</param>
     public Data(
         int X = default(int),
         int Y = default(int),
@@ -3828,19 +3187,13 @@ public struct Data
             _external_struct.Height = _internal_struct.Height;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3861,8 +3214,8 @@ public struct Data
     /// <summary>Child object</summary>
     public Efl.Object Child;
     /// <summary>Constructor for Data.</summary>
-    /// <param name="Is_added">Child is added or not</param>;
-    /// <param name="Child">Child object</param>;
+    /// <param name="Is_added">Child is added or not</param>
+    /// <param name="Child">Child object</param>
     public Data(
         bool Is_added = default(bool),
         Efl.Object Child = default(Efl.Object)    )
@@ -3907,19 +3260,13 @@ public struct Data
             _external_struct.Child = (Efl.Object) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Child);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -3936,8 +3283,8 @@ public struct Attribute
     /// <summary>Attribute value</summary>
     public System.String Value;
     /// <summary>Constructor for Attribute.</summary>
-    /// <param name="Key">Attribute key</param>;
-    /// <param name="Value">Attribute value</param>;
+    /// <param name="Key">Attribute key</param>
+    /// <param name="Value">Attribute value</param>
     public Attribute(
         System.String Key = default(System.String),
         System.String Value = default(System.String)    )
@@ -3981,15 +3328,11 @@ public struct Attribute
             _external_struct.Value = Eina.StringConversion.NativeUtf8ToManagedString(_internal_struct.Value);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -4007,8 +3350,8 @@ public struct Relation
     /// <summary>List with relation objects</summary>
     public Eina.List<Efl.Object> Objects;
     /// <summary>Constructor for Relation.</summary>
-    /// <param name="Type">Relation type</param>;
-    /// <param name="Objects">List with relation objects</param>;
+    /// <param name="Type">Relation type</param>
+    /// <param name="Objects">List with relation objects</param>
     public Relation(
         Efl.Access.RelationType Type = default(Efl.Access.RelationType),
         Eina.List<Efl.Object> Objects = default(Eina.List<Efl.Object>)    )
@@ -4052,15 +3395,11 @@ public struct Relation
             _external_struct.Objects = new Eina.List<Efl.Object>(_internal_struct.Objects, false, false);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -4086,13 +3425,13 @@ public struct GestureInfo
     /// <summary>gesture occurance time</summary>
     public uint Event_time;
     /// <summary>Constructor for GestureInfo.</summary>
-    /// <param name="Type">Gesture type</param>;
-    /// <param name="X_beg">start gesture x co-ordinate</param>;
-    /// <param name="Y_beg">start gesture y co-ordinate</param>;
-    /// <param name="X_end">end gesture x co-ordinate</param>;
-    /// <param name="Y_end">end gesture y co-ordinate</param>;
-    /// <param name="State">state of gesture</param>;
-    /// <param name="Event_time">gesture occurance time</param>;
+    /// <param name="Type">Gesture type</param>
+    /// <param name="X_beg">start gesture x co-ordinate</param>
+    /// <param name="Y_beg">start gesture y co-ordinate</param>
+    /// <param name="X_end">end gesture x co-ordinate</param>
+    /// <param name="Y_end">end gesture y co-ordinate</param>
+    /// <param name="State">state of gesture</param>
+    /// <param name="Event_time">gesture occurance time</param>
     public GestureInfo(
         Efl.Access.Gesture Type = default(Efl.Access.Gesture),
         int X_beg = default(int),
@@ -4166,14 +3505,10 @@ public struct GestureInfo
             _external_struct.Event_time = _internal_struct.Event_time;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

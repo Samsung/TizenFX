@@ -34,6 +34,7 @@ public class Polygon : Efl.Canvas.Object
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_polygon_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Polygon"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Polygon(Efl.Object parent= null
@@ -64,30 +65,37 @@ public class Polygon : Efl.Canvas.Object
     {
     }
 
+
     /// <summary>Adds the given point to the given evas polygon object.</summary>
     /// <param name="pos">A point coordinate.</param>
-    virtual public void AddPoint(Eina.Position2D pos) {
-         Eina.Position2D.NativeStruct _in_pos = pos;
-                        Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_point_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
+    public virtual void AddPoint(Eina.Position2D pos) {
+        Eina.Position2D.NativeStruct _in_pos = pos;
+Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_point_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_pos);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Removes all of the points from the given evas polygon object.</summary>
-    virtual public void ClearPoints() {
-         Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_points_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual void ClearPoints() {
+        Efl.Canvas.Polygon.NativeMethods.efl_canvas_polygon_points_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Polygon.efl_canvas_polygon_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -112,9 +120,20 @@ public class Polygon : Efl.Canvas.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_polygon_points_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_polygon_points_clear_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -138,8 +157,8 @@ public class Polygon : Efl.Canvas.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Eina.Position2D _in_pos = pos;
-                            
+                Eina.Position2D _in_pos = pos;
+
                 try
                 {
                     ((Polygon)ws.Target).AddPoint(_in_pos);
@@ -150,7 +169,7 @@ public class Polygon : Efl.Canvas.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -174,7 +193,7 @@ public class Polygon : Efl.Canvas.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Polygon)ws.Target).ClearPoints();
@@ -185,7 +204,7 @@ public class Polygon : Efl.Canvas.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -200,7 +219,6 @@ public class Polygon : Efl.Canvas.Object
 }
 }
 }
-
 }
 
 #if EFL_BETA

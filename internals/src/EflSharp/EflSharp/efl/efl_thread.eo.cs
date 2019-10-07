@@ -31,6 +31,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_thread_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Thread"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Thread(Efl.Object parent= null
@@ -61,9 +62,10 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     {
     }
 
-    /// <summary>Notifies closed, when property is marked as true
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler ClosedEvt
+
+    /// <summary>Notifies closed, when property is marked as true</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler ClosedEvent
     {
         add
         {
@@ -101,8 +103,10 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    /// <summary>Method to raise event ClosedEvt.</summary>
-    public void OnClosedEvt(EventArgs e)
+
+    /// <summary>Method to raise event ClosedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnClosedEvent(EventArgs e)
     {
         var key = "_EFL_IO_CLOSER_EVENT_CLOSED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -114,13 +118,14 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Notifies can_read property changed.
     /// If <see cref="Efl.Io.IReader.CanRead"/> is <c>true</c> there is data to <see cref="Efl.Io.IReader.Read"/> without blocking/error. If <see cref="Efl.Io.IReader.CanRead"/> is <c>false</c>, <see cref="Efl.Io.IReader.Read"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.ReaderCanReadChangedEventArgs"/></value>
+    public event EventHandler<Efl.Io.ReaderCanReadChangedEventArgs> CanReadChangedEvent
     {
         add
         {
@@ -131,7 +136,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        Efl.Io.ReaderCanReadChangedEventArgs args = new Efl.Io.ReaderCanReadChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -159,8 +164,10 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    /// <summary>Method to raise event CanReadChangedEvt.</summary>
-    public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
+
+    /// <summary>Method to raise event CanReadChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCanReadChangedEvent(Efl.Io.ReaderCanReadChangedEventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -180,14 +187,15 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Notifies end of stream, when property is marked as true.
     /// If this is used alongside with an <see cref="Efl.Io.ICloser"/>, then it should be emitted before that call.
     /// 
     /// It should be emitted only once for an object unless it implements <see cref="Efl.Io.IPositioner.Seek"/>.
     /// 
-    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler EosEvt
+    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler EosEvent
     {
         add
         {
@@ -225,8 +233,10 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    /// <summary>Method to raise event EosEvt.</summary>
-    public void OnEosEvt(EventArgs e)
+
+    /// <summary>Method to raise event EosEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEosEvent(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -238,13 +248,14 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Notifies can_write property changed.
     /// If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>true</c> there is data to <see cref="Efl.Io.IWriter.Write"/> without blocking/error. If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>false</c>, <see cref="Efl.Io.IWriter.Write"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.WriterCanWriteChangedEventArgs"/></value>
+    public event EventHandler<Efl.Io.WriterCanWriteChangedEventArgs> CanWriteChangedEvent
     {
         add
         {
@@ -255,7 +266,7 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
+                        Efl.Io.WriterCanWriteChangedEventArgs args = new Efl.Io.WriterCanWriteChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -283,8 +294,10 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             }
         }
     }
-    /// <summary>Method to raise event CanWriteChangedEvt.</summary>
-    public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
+
+    /// <summary>Method to raise event CanWriteChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCanWriteChangedEvent(Efl.Io.WriterCanWriteChangedEventArgs e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -304,42 +317,58 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <returns>No description supplied.</returns>
-    virtual public System.IntPtr GetIndata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
+    public virtual System.IntPtr GetIndata() {
+        var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <param name="data">No description supplied.</param>
-    virtual public void SetIndata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
+    }
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
+    public virtual void SetIndata(System.IntPtr data) {
+        Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <returns>No description supplied.</returns>
-    virtual public System.IntPtr GetOutdata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
+    public virtual System.IntPtr GetOutdata() {
+        var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <param name="data">No description supplied.</param>
-    virtual public void SetOutdata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
+    }
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
+    public virtual void SetOutdata(System.IntPtr data) {
+        Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),data);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <param name="func">No description supplied.</param>
-    virtual public void Call(EflThreadIOCall func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        
+    }
+
+    /// <summary>Executes a method on a different thread, asynchronously.</summary>
+    /// <param name="func">The method to execute asynchronously.</param>
+    public virtual void Call(EflThreadIOCall func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <param name="func">No description supplied.</param>
-    /// <returns>No description supplied.</returns>
-    virtual public System.IntPtr CallSync(EflThreadIOCallSync func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        
+    }
+
+    /// <summary>Executes a method on a different thread, synchronously. This call will not return until the method finishes and its return value can be recovered.</summary>
+    /// <param name="func">The method to execute synchronously.</param>
+    /// <returns>The return value from the method.</returns>
+    public virtual System.IntPtr SyncCall(EflThreadIOCallSync func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
     /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
     /// 
@@ -348,172 +377,199 @@ public class Thread : Efl.Task, Efl.IThreadIO, Efl.Core.ICommandLine, Efl.Io.ICl
     /// &quot;VAR=x /bin/command &amp;&amp; /bin/othercommand &gt;&amp; /dev/null&quot; &quot;VAR=x /bin/command `/bin/othercommand` | /bin/cmd2 &amp;&amp; cmd3 &amp;&quot; etc.
     /// 
     /// If you set the command the arg_count/value property contents can change and be completely re-evaluated by parsing the command string into an argument array set along with interpreting escapes back into individual argument strings.</summary>
-    virtual public System.String GetCommand() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetCommand() {
+        var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <param name="array">An array where every array field is an argument</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
-         var _in_array = array.Handle;
+    public virtual bool SetCommandArray(Eina.Array<Eina.Stringshare> array) {
+        var _in_array = array.Handle;
 array.Own = false;
 array.OwnContent = false;
-                        var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
+var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_array_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_array);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Use a string to fill this object
     /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
     /// <param name="str">A command in form of a string</param>
     /// <returns>On success <c>true</c>, <c>false</c> otherwise</returns>
-    virtual public bool SetCommandString(System.String str) {
-                                 var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
+    public virtual bool SetCommandString(System.String str) {
+        var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the accessor which enables access to each argument that got passed to this object.</summary>
-    virtual public Eina.Accessor<Eina.Stringshare> CommandAccess() {
-         var _ret_var = Efl.Core.ICommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Accessor<Eina.Stringshare> CommandAccess() {
+        var _ret_var = Efl.Core.CommandLineConcrete.NativeMethods.efl_core_command_line_command_access_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Accessor<Eina.Stringshare>(_ret_var, false);
- }
-    /// <summary>If true will notify object was closed.
-    /// (Since EFL 1.22)</summary>
+
+    }
+
+    /// <summary>If true will notify object was closed.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if closed, <c>false</c> otherwise</returns>
-    virtual public bool GetClosed() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetClosed() {
+        var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_closed_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>If true will automatically close resources on exec() calls.
-    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
-    /// (Since EFL 1.22)</summary>
+    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if close on exec(), <c>false</c> otherwise</returns>
-    virtual public bool GetCloseOnExec() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetCloseOnExec() {
+        var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_exec_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c>, will close on exec() call.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c>, will close on exec() call.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="close_on_exec"><c>true</c> if close on exec(), <c>false</c> otherwise</param>
     /// <returns><c>true</c> if could set, <c>false</c> if not supported or failed.</returns>
-    virtual public bool SetCloseOnExec(bool close_on_exec) {
-                                 var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_exec);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>If true will automatically close() on object invalidate.
-    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-    /// (Since EFL 1.22)</summary>
-    /// <returns><c>true</c> if close on invalidate, <c>false</c> otherwise</returns>
-    virtual public bool GetCloseOnInvalidate() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool SetCloseOnExec(bool close_on_exec) {
+        var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_exec_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_exec);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>If true will automatically close() on object invalidate.
-    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="close_on_invalidate"><c>true</c> if close on invalidate, <c>false</c> otherwise</param>
-    virtual public void SetCloseOnInvalidate(bool close_on_invalidate) {
-                                 Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_invalidate);
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if close on invalidate, <c>false</c> otherwise</returns>
+    public virtual bool GetCloseOnInvalidate() {
+        var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        return _ret_var;
+    }
+
+    /// <summary>If true will automatically close() on object invalidate.
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="close_on_invalidate"><c>true</c> if close on invalidate, <c>false</c> otherwise</param>
+    public virtual void SetCloseOnInvalidate(bool close_on_invalidate) {
+        Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),close_on_invalidate);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
     /// <summary>Closes the Input/Output object.
     /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is to be defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
     /// 
-    /// You can understand this method as close(2) libc function.
-    /// (Since EFL 1.22)</summary>
+    /// You can understand this method as close(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    virtual public Eina.Error Close() {
-         var _ret_var = Efl.Io.ICloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Error Close() {
+        var _ret_var = Efl.Io.CloserConcrete.NativeMethods.efl_io_closer_close_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</returns>
-    virtual public bool GetCanRead() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetCanRead() {
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="can_read"><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</param>
-    virtual public void SetCanRead(bool can_read) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_read);
+    protected virtual void SetCanRead(bool can_read) {
+        Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_read);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if end of stream, <c>false</c> otherwise</returns>
-    virtual public bool GetEos() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetEos() {
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="is_eos"><c>true</c> if end of stream, <c>false</c> otherwise</param>
-    virtual public void SetEos(bool is_eos) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_eos);
+    protected virtual void SetEos(bool is_eos) {
+        Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_eos);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Reads data into a pre-allocated buffer.
     /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is to be defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
     /// 
-    /// You can understand this method as read(2) libc function.
-    /// (Since EFL 1.22)</summary>
+    /// You can understand this method as read(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="rw_slice">Provides a pre-allocated memory to be filled up to rw_slice.len. It will be populated and the length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    virtual public Eina.Error Read(ref  Eina.RwSlice rw_slice) {
-                                 var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref rw_slice);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
-    /// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
-    virtual public bool GetCanWrite() {
-         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Error Read(ref  Eina.RwSlice rw_slice) {
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref rw_slice);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="can_write"><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</param>
-    virtual public void SetCanWrite(bool can_write) {
-                                 Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_write);
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
+    public virtual bool GetCanWrite() {
+        var _ret_var = Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        return _ret_var;
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="can_write"><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</param>
+    protected virtual void SetCanWrite(bool can_write) {
+        Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_write);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
     /// <summary>Writes data from a pre-populated buffer.
     /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
     /// 
-    /// You can understand this method as write(2) libc function.
-    /// (Since EFL 1.22)</summary>
+    /// You can understand this method as write(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
-    /// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
+    /// <param name="remaining">Convenience to output the remaining parts of slice that were not written. If the full slice was written, this will be a slice of zero-length.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
-    virtual public Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining) {
-                                                         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref slice, ref remaining);
+    public virtual Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining) {
+        var _ret_var = Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),ref slice, ref remaining);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <value>No description supplied.</value>
+        return _ret_var;
+    }
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     public System.IntPtr Indata {
         get { return GetIndata(); }
         set { SetIndata(value); }
     }
-    /// <value>No description supplied.</value>
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     public System.IntPtr Outdata {
         get { return GetOutdata(); }
         set { SetOutdata(value); }
     }
+
     /// <summary>A commandline that encodes arguments in a command string. This command is unix shell-style, thus whitespace separates arguments unless escaped. Also a semi-colon &apos;;&apos;, ampersand &apos;&amp;&apos;, pipe/bar &apos;|&apos;, hash &apos;#&apos;, bracket, square brace, brace character (&apos;(&apos;, &apos;)&apos;, &apos;[&apos;, &apos;]&apos;, &apos;{&apos;, &apos;}&apos;), exclamation mark &apos;!&apos;,  backquote &apos;`&apos;, greator or less than (&apos;&gt;&apos; &apos;&lt;&apos;) character unless escaped or in quotes would cause args_count/value to not be generated properly, because it would force complex shell interpretation which will not be supported in evaluating the arg_count/value information, but the final shell may interpret this if this is executed via a command-line shell. To not be a complex shell command, it should be simple with paths, options and variable expansions, but nothing more complex involving the above unescaped characters.
     /// &quot;cat -option /path/file&quot; &quot;cat &apos;quoted argument&apos;&quot; &quot;cat ~/path/escaped argument&quot; &quot;/bin/cat escaped argument <c>VARIABLE</c>&quot; etc.
     /// 
@@ -525,246 +581,87 @@ array.OwnContent = false;
     public System.String Command {
         get { return GetCommand(); }
     }
+
     /// <summary>Use an array to fill this object
     /// Every element of a string is a argument.</summary>
     /// <value>An array where every array field is an argument</value>
     public Eina.Array<Eina.Stringshare> CommandArray {
         set { SetCommandArray(value); }
     }
+
     /// <summary>Use a string to fill this object
     /// The string will be split at every unescaped &apos; &apos;, every resulting substring will be a new argument to the command line.</summary>
     /// <value>A command in form of a string</value>
     public System.String CommandString {
         set { SetCommandString(value); }
     }
-    /// <summary>If true will notify object was closed.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If true will notify object was closed.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if closed, <c>false</c> otherwise</value>
     public bool Closed {
         get { return GetClosed(); }
     }
+
     /// <summary>If true will automatically close resources on exec() calls.
-    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().
-    /// (Since EFL 1.22)</summary>
+    /// When using file descriptors this should set FD_CLOEXEC so they are not inherited by the processes (children or self) doing exec().</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if close on exec(), <c>false</c> otherwise</value>
     public bool CloseOnExec {
         get { return GetCloseOnExec(); }
         set { SetCloseOnExec(value); }
     }
+
     /// <summary>If true will automatically close() on object invalidate.
-    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.
-    /// (Since EFL 1.22)</summary>
+    /// If the object was disconnected from its parent (including the main loop) without close, this property will state whenever it should be closed or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if close on invalidate, <c>false</c> otherwise</value>
     public bool CloseOnInvalidate {
         get { return GetCloseOnInvalidate(); }
         set { SetCloseOnInvalidate(value); }
     }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
-        set { SetCanRead(value); }
+        protected set { SetCanRead(value); }
     }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
-        set { SetEos(value); }
+        protected set { SetEos(value); }
     }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     public bool CanWrite {
         get { return GetCanWrite(); }
-        set { SetCanWrite(value); }
+        protected set { SetCanWrite(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Thread.efl_thread_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Task.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_threadio_indata_get_static_delegate == null)
-            {
-                efl_threadio_indata_get_static_delegate = new efl_threadio_indata_get_delegate(indata_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetIndata") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_indata_get"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_indata_get_static_delegate) });
-            }
-
-            if (efl_threadio_indata_set_static_delegate == null)
-            {
-                efl_threadio_indata_set_static_delegate = new efl_threadio_indata_set_delegate(indata_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetIndata") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_indata_set"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_indata_set_static_delegate) });
-            }
-
-            if (efl_threadio_outdata_get_static_delegate == null)
-            {
-                efl_threadio_outdata_get_static_delegate = new efl_threadio_outdata_get_delegate(outdata_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOutdata") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_outdata_get"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_outdata_get_static_delegate) });
-            }
-
-            if (efl_threadio_outdata_set_static_delegate == null)
-            {
-                efl_threadio_outdata_set_static_delegate = new efl_threadio_outdata_set_delegate(outdata_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOutdata") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_outdata_set"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_outdata_set_static_delegate) });
-            }
-
-            if (efl_threadio_call_static_delegate == null)
-            {
-                efl_threadio_call_static_delegate = new efl_threadio_call_delegate(call);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Call") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_call"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_call_static_delegate) });
-            }
-
-            if (efl_threadio_call_sync_static_delegate == null)
-            {
-                efl_threadio_call_sync_static_delegate = new efl_threadio_call_sync_delegate(call_sync);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "CallSync") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_call_sync"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_call_sync_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_get_static_delegate == null)
-            {
-                efl_core_command_line_command_get_static_delegate = new efl_core_command_line_command_get_delegate(command_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCommand") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_get"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_get_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_array_set_static_delegate == null)
-            {
-                efl_core_command_line_command_array_set_static_delegate = new efl_core_command_line_command_array_set_delegate(command_array_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCommandArray") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_array_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_array_set_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_string_set_static_delegate == null)
-            {
-                efl_core_command_line_command_string_set_static_delegate = new efl_core_command_line_command_string_set_delegate(command_string_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCommandString") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_string_set_static_delegate) });
-            }
-
-            if (efl_core_command_line_command_access_static_delegate == null)
-            {
-                efl_core_command_line_command_access_static_delegate = new efl_core_command_line_command_access_delegate(command_access);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "CommandAccess") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_core_command_line_command_access"), func = Marshal.GetFunctionPointerForDelegate(efl_core_command_line_command_access_static_delegate) });
-            }
-
-            if (efl_io_closer_closed_get_static_delegate == null)
-            {
-                efl_io_closer_closed_get_static_delegate = new efl_io_closer_closed_get_delegate(closed_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetClosed") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_closed_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_closed_get_static_delegate) });
-            }
-
-            if (efl_io_closer_close_on_exec_get_static_delegate == null)
-            {
-                efl_io_closer_close_on_exec_get_static_delegate = new efl_io_closer_close_on_exec_get_delegate(close_on_exec_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCloseOnExec") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close_on_exec_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_on_exec_get_static_delegate) });
-            }
-
-            if (efl_io_closer_close_on_exec_set_static_delegate == null)
-            {
-                efl_io_closer_close_on_exec_set_static_delegate = new efl_io_closer_close_on_exec_set_delegate(close_on_exec_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCloseOnExec") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close_on_exec_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_on_exec_set_static_delegate) });
-            }
-
-            if (efl_io_closer_close_on_invalidate_get_static_delegate == null)
-            {
-                efl_io_closer_close_on_invalidate_get_static_delegate = new efl_io_closer_close_on_invalidate_get_delegate(close_on_invalidate_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCloseOnInvalidate") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close_on_invalidate_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_on_invalidate_get_static_delegate) });
-            }
-
-            if (efl_io_closer_close_on_invalidate_set_static_delegate == null)
-            {
-                efl_io_closer_close_on_invalidate_set_static_delegate = new efl_io_closer_close_on_invalidate_set_delegate(close_on_invalidate_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCloseOnInvalidate") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close_on_invalidate_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_on_invalidate_set_static_delegate) });
-            }
-
-            if (efl_io_closer_close_static_delegate == null)
-            {
-                efl_io_closer_close_static_delegate = new efl_io_closer_close_delegate(close);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Close") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_closer_close"), func = Marshal.GetFunctionPointerForDelegate(efl_io_closer_close_static_delegate) });
-            }
-
-            if (efl_io_reader_can_read_get_static_delegate == null)
-            {
-                efl_io_reader_can_read_get_static_delegate = new efl_io_reader_can_read_get_delegate(can_read_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCanRead") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_can_read_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_can_read_get_static_delegate) });
-            }
 
             if (efl_io_reader_can_read_set_static_delegate == null)
             {
@@ -774,16 +671,6 @@ array.OwnContent = false;
             if (methods.FirstOrDefault(m => m.Name == "SetCanRead") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_can_read_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_can_read_set_static_delegate) });
-            }
-
-            if (efl_io_reader_eos_get_static_delegate == null)
-            {
-                efl_io_reader_eos_get_static_delegate = new efl_io_reader_eos_get_delegate(eos_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetEos") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_eos_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_eos_get_static_delegate) });
             }
 
             if (efl_io_reader_eos_set_static_delegate == null)
@@ -796,26 +683,6 @@ array.OwnContent = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_eos_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_eos_set_static_delegate) });
             }
 
-            if (efl_io_reader_read_static_delegate == null)
-            {
-                efl_io_reader_read_static_delegate = new efl_io_reader_read_delegate(read);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Read") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_read"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_read_static_delegate) });
-            }
-
-            if (efl_io_writer_can_write_get_static_delegate == null)
-            {
-                efl_io_writer_can_write_get_static_delegate = new efl_io_writer_can_write_get_delegate(can_write_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCanWrite") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_can_write_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_can_write_get_static_delegate) });
-            }
-
             if (efl_io_writer_can_write_set_static_delegate == null)
             {
                 efl_io_writer_can_write_set_static_delegate = new efl_io_writer_can_write_set_delegate(can_write_set);
@@ -826,19 +693,20 @@ array.OwnContent = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_can_write_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_can_write_set_static_delegate) });
             }
 
-            if (efl_io_writer_write_static_delegate == null)
+            if (includeInherited)
             {
-                efl_io_writer_write_static_delegate = new efl_io_writer_write_delegate(write);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "Write") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_write"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_write_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -847,617 +715,6 @@ array.OwnContent = false;
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
-
-        
-        private delegate System.IntPtr efl_threadio_indata_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_threadio_indata_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_indata_get_api_delegate> efl_threadio_indata_get_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_indata_get_api_delegate>(Module, "efl_threadio_indata_get");
-
-        private static System.IntPtr indata_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_threadio_indata_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.IntPtr _ret_var = default(System.IntPtr);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetIndata();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_threadio_indata_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_threadio_indata_get_delegate efl_threadio_indata_get_static_delegate;
-
-        
-        private delegate void efl_threadio_indata_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr data);
-
-        
-        public delegate void efl_threadio_indata_set_api_delegate(System.IntPtr obj,  System.IntPtr data);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_indata_set_api_delegate> efl_threadio_indata_set_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_indata_set_api_delegate>(Module, "efl_threadio_indata_set");
-
-        private static void indata_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_threadio_indata_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Thread)ws.Target).SetIndata(data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_threadio_indata_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), data);
-            }
-        }
-
-        private static efl_threadio_indata_set_delegate efl_threadio_indata_set_static_delegate;
-
-        
-        private delegate System.IntPtr efl_threadio_outdata_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_threadio_outdata_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_outdata_get_api_delegate> efl_threadio_outdata_get_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_outdata_get_api_delegate>(Module, "efl_threadio_outdata_get");
-
-        private static System.IntPtr outdata_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_threadio_outdata_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.IntPtr _ret_var = default(System.IntPtr);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetOutdata();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_threadio_outdata_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_threadio_outdata_get_delegate efl_threadio_outdata_get_static_delegate;
-
-        
-        private delegate void efl_threadio_outdata_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr data);
-
-        
-        public delegate void efl_threadio_outdata_set_api_delegate(System.IntPtr obj,  System.IntPtr data);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_outdata_set_api_delegate> efl_threadio_outdata_set_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_outdata_set_api_delegate>(Module, "efl_threadio_outdata_set");
-
-        private static void outdata_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_threadio_outdata_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Thread)ws.Target).SetOutdata(data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_threadio_outdata_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), data);
-            }
-        }
-
-        private static efl_threadio_outdata_set_delegate efl_threadio_outdata_set_static_delegate;
-
-        
-        private delegate void efl_threadio_call_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb);
-
-        
-        public delegate void efl_threadio_call_api_delegate(System.IntPtr obj,  IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_call_api_delegate> efl_threadio_call_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_call_api_delegate>(Module, "efl_threadio_call");
-
-        private static void call(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EflThreadIOCallInternal func, EinaFreeCb func_free_cb)
-        {
-            Eina.Log.Debug("function efl_threadio_call was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                            EflThreadIOCallWrapper func_wrapper = new EflThreadIOCallWrapper(func, func_data, func_free_cb);
-            
-                try
-                {
-                    ((Thread)ws.Target).Call(func_wrapper.ManagedCb);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_threadio_call_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), func_data, func, func_free_cb);
-            }
-        }
-
-        private static efl_threadio_call_delegate efl_threadio_call_static_delegate;
-
-        
-        private delegate System.IntPtr efl_threadio_call_sync_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
-
-        
-        public delegate System.IntPtr efl_threadio_call_sync_api_delegate(System.IntPtr obj,  IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb);
-
-        public static Efl.Eo.FunctionWrapper<efl_threadio_call_sync_api_delegate> efl_threadio_call_sync_ptr = new Efl.Eo.FunctionWrapper<efl_threadio_call_sync_api_delegate>(Module, "efl_threadio_call_sync");
-
-        private static System.IntPtr call_sync(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, EflThreadIOCallSyncInternal func, EinaFreeCb func_free_cb)
-        {
-            Eina.Log.Debug("function efl_threadio_call_sync was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                            EflThreadIOCallSyncWrapper func_wrapper = new EflThreadIOCallSyncWrapper(func, func_data, func_free_cb);
-            System.IntPtr _ret_var = default(System.IntPtr);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).CallSync(func_wrapper.ManagedCb);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_threadio_call_sync_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), func_data, func, func_free_cb);
-            }
-        }
-
-        private static efl_threadio_call_sync_delegate efl_threadio_call_sync_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_core_command_line_command_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_core_command_line_command_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate> efl_core_command_line_command_get_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_get_api_delegate>(Module, "efl_core_command_line_command_get");
-
-        private static System.String command_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetCommand();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_core_command_line_command_get_delegate efl_core_command_line_command_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_core_command_line_command_array_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr array);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_core_command_line_command_array_set_api_delegate(System.IntPtr obj,  System.IntPtr array);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate> efl_core_command_line_command_array_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_array_set_api_delegate>(Module, "efl_core_command_line_command_array_set");
-
-        private static bool command_array_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr array)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_array_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        var _in_array = new Eina.Array<Eina.Stringshare>(array, true, true);
-                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).SetCommandArray(_in_array);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_array_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), array);
-            }
-        }
-
-        private static efl_core_command_line_command_array_set_delegate efl_core_command_line_command_array_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_core_command_line_command_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_core_command_line_command_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String str);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate> efl_core_command_line_command_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_string_set_api_delegate>(Module, "efl_core_command_line_command_string_set");
-
-        private static bool command_string_set(System.IntPtr obj, System.IntPtr pd, System.String str)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_string_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).SetCommandString(str);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), str);
-            }
-        }
-
-        private static efl_core_command_line_command_string_set_delegate efl_core_command_line_command_string_set_static_delegate;
-
-        
-        private delegate System.IntPtr efl_core_command_line_command_access_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_core_command_line_command_access_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate> efl_core_command_line_command_access_ptr = new Efl.Eo.FunctionWrapper<efl_core_command_line_command_access_api_delegate>(Module, "efl_core_command_line_command_access");
-
-        private static System.IntPtr command_access(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_core_command_line_command_access was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Accessor<Eina.Stringshare> _ret_var = default(Eina.Accessor<Eina.Stringshare>);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).CommandAccess();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_core_command_line_command_access_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_core_command_line_command_access_delegate efl_core_command_line_command_access_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_closer_closed_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_closer_closed_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_closed_get_api_delegate> efl_io_closer_closed_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_closed_get_api_delegate>(Module, "efl_io_closer_closed_get");
-
-        private static bool closed_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_closer_closed_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetClosed();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_closer_closed_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_closer_closed_get_delegate efl_io_closer_closed_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_closer_close_on_exec_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_closer_close_on_exec_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_close_on_exec_get_api_delegate> efl_io_closer_close_on_exec_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_close_on_exec_get_api_delegate>(Module, "efl_io_closer_close_on_exec_get");
-
-        private static bool close_on_exec_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_closer_close_on_exec_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetCloseOnExec();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_closer_close_on_exec_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_closer_close_on_exec_get_delegate efl_io_closer_close_on_exec_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_closer_close_on_exec_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool close_on_exec);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_closer_close_on_exec_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool close_on_exec);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_close_on_exec_set_api_delegate> efl_io_closer_close_on_exec_set_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_close_on_exec_set_api_delegate>(Module, "efl_io_closer_close_on_exec_set");
-
-        private static bool close_on_exec_set(System.IntPtr obj, System.IntPtr pd, bool close_on_exec)
-        {
-            Eina.Log.Debug("function efl_io_closer_close_on_exec_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).SetCloseOnExec(close_on_exec);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_closer_close_on_exec_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), close_on_exec);
-            }
-        }
-
-        private static efl_io_closer_close_on_exec_set_delegate efl_io_closer_close_on_exec_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_closer_close_on_invalidate_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_closer_close_on_invalidate_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_close_on_invalidate_get_api_delegate> efl_io_closer_close_on_invalidate_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_close_on_invalidate_get_api_delegate>(Module, "efl_io_closer_close_on_invalidate_get");
-
-        private static bool close_on_invalidate_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_closer_close_on_invalidate_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetCloseOnInvalidate();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_closer_close_on_invalidate_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_closer_close_on_invalidate_get_delegate efl_io_closer_close_on_invalidate_get_static_delegate;
-
-        
-        private delegate void efl_io_closer_close_on_invalidate_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool close_on_invalidate);
-
-        
-        public delegate void efl_io_closer_close_on_invalidate_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool close_on_invalidate);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_close_on_invalidate_set_api_delegate> efl_io_closer_close_on_invalidate_set_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_close_on_invalidate_set_api_delegate>(Module, "efl_io_closer_close_on_invalidate_set");
-
-        private static void close_on_invalidate_set(System.IntPtr obj, System.IntPtr pd, bool close_on_invalidate)
-        {
-            Eina.Log.Debug("function efl_io_closer_close_on_invalidate_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Thread)ws.Target).SetCloseOnInvalidate(close_on_invalidate);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_io_closer_close_on_invalidate_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), close_on_invalidate);
-            }
-        }
-
-        private static efl_io_closer_close_on_invalidate_set_delegate efl_io_closer_close_on_invalidate_set_static_delegate;
-
-        
-        private delegate Eina.Error efl_io_closer_close_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Eina.Error efl_io_closer_close_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_closer_close_api_delegate> efl_io_closer_close_ptr = new Efl.Eo.FunctionWrapper<efl_io_closer_close_api_delegate>(Module, "efl_io_closer_close");
-
-        private static Eina.Error close(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_closer_close was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Error _ret_var = default(Eina.Error);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).Close();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_closer_close_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_closer_close_delegate efl_io_closer_close_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_reader_can_read_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_reader_can_read_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_reader_can_read_get_api_delegate> efl_io_reader_can_read_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_can_read_get_api_delegate>(Module, "efl_io_reader_can_read_get");
-
-        private static bool can_read_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_reader_can_read_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetCanRead();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_reader_can_read_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_reader_can_read_get_delegate efl_io_reader_can_read_get_static_delegate;
 
         
         private delegate void efl_io_reader_can_read_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_read);
@@ -1473,7 +730,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Thread)ws.Target).SetCanRead(can_read);
@@ -1484,7 +741,7 @@ array.OwnContent = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1493,42 +750,6 @@ array.OwnContent = false;
         }
 
         private static efl_io_reader_can_read_set_delegate efl_io_reader_can_read_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_reader_eos_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_reader_eos_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_reader_eos_get_api_delegate> efl_io_reader_eos_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_eos_get_api_delegate>(Module, "efl_io_reader_eos_get");
-
-        private static bool eos_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_reader_eos_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetEos();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_reader_eos_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_reader_eos_get_delegate efl_io_reader_eos_get_static_delegate;
 
         
         private delegate void efl_io_reader_eos_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool is_eos);
@@ -1544,7 +765,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Thread)ws.Target).SetEos(is_eos);
@@ -1555,7 +776,7 @@ array.OwnContent = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1564,78 +785,6 @@ array.OwnContent = false;
         }
 
         private static efl_io_reader_eos_set_delegate efl_io_reader_eos_set_static_delegate;
-
-        
-        private delegate Eina.Error efl_io_reader_read_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.RwSlice rw_slice);
-
-        
-        public delegate Eina.Error efl_io_reader_read_api_delegate(System.IntPtr obj,  ref  Eina.RwSlice rw_slice);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_reader_read_api_delegate> efl_io_reader_read_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_read_api_delegate>(Module, "efl_io_reader_read");
-
-        private static Eina.Error read(System.IntPtr obj, System.IntPtr pd, ref  Eina.RwSlice rw_slice)
-        {
-            Eina.Log.Debug("function efl_io_reader_read was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Eina.Error _ret_var = default(Eina.Error);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).Read(ref rw_slice);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_reader_read_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), ref rw_slice);
-            }
-        }
-
-        private static efl_io_reader_read_delegate efl_io_reader_read_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_io_writer_can_write_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_io_writer_can_write_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_writer_can_write_get_api_delegate> efl_io_writer_can_write_get_ptr = new Efl.Eo.FunctionWrapper<efl_io_writer_can_write_get_api_delegate>(Module, "efl_io_writer_can_write_get");
-
-        private static bool can_write_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_io_writer_can_write_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).GetCanWrite();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_writer_can_write_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_io_writer_can_write_get_delegate efl_io_writer_can_write_get_static_delegate;
 
         
         private delegate void efl_io_writer_can_write_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool can_write);
@@ -1651,7 +800,7 @@ array.OwnContent = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Thread)ws.Target).SetCanWrite(can_write);
@@ -1662,7 +811,7 @@ array.OwnContent = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1671,42 +820,6 @@ array.OwnContent = false;
         }
 
         private static efl_io_writer_can_write_set_delegate efl_io_writer_can_write_set_static_delegate;
-
-        
-        private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
-
-        
-        public delegate Eina.Error efl_io_writer_write_api_delegate(System.IntPtr obj,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
-
-        public static Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate> efl_io_writer_write_ptr = new Efl.Eo.FunctionWrapper<efl_io_writer_write_api_delegate>(Module, "efl_io_writer_write");
-
-        private static Eina.Error write(System.IntPtr obj, System.IntPtr pd, ref  Eina.Slice slice, ref  Eina.Slice remaining)
-        {
-            Eina.Log.Debug("function efl_io_writer_write was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                remaining = default( Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
-                try
-                {
-                    _ret_var = ((Thread)ws.Target).Write(ref slice, ref remaining);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_io_writer_write_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), ref slice, ref remaining);
-            }
-        }
-
-        private static efl_io_writer_write_delegate efl_io_writer_write_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
@@ -1725,7 +838,6 @@ public static class EflThread_ExtensionMethods {
         return new Efl.BindableProperty<System.IntPtr>("outdata", fac);
     }
 
-    
     public static Efl.BindableProperty<Eina.Array<Eina.Stringshare>> CommandArray<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
         return new Efl.BindableProperty<Eina.Array<Eina.Stringshare>>("command_array", fac);
     }
@@ -1734,7 +846,6 @@ public static class EflThread_ExtensionMethods {
         return new Efl.BindableProperty<System.String>("command_string", fac);
     }
 
-    
     public static Efl.BindableProperty<bool> CloseOnExec<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Thread, T>magic = null) where T : Efl.Thread {
         return new Efl.BindableProperty<bool>("close_on_exec", fac);
     }

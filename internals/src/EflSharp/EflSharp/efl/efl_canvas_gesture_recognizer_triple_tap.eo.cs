@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>EFL Gesture Recognizer Triple Tap class</summary>
+/// <summary>This is the recognizer for Triple-tap gestures. See <see cref="Efl.Canvas.GestureTripleTap"/> and <see cref="Efl.Canvas.GestureRecognizer"/>. For internal use only.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureRecognizerTripleTap.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -34,6 +34,7 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_gesture_recognizer_triple_tap_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GestureRecognizerTripleTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureRecognizerTripleTap(Efl.Object parent= null
@@ -64,37 +65,44 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
     {
     }
 
-    /// <summary>Sets the time between taps to be recognized as a double tap.</summary>
-    /// <returns>Time value.</returns>
-    virtual public double GetTimeout() {
-         var _ret_var = Efl.Canvas.GestureRecognizerTripleTap.NativeMethods.efl_gesture_recognizer_triple_tap_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+
+    /// <summary>Minimum time between each consecutive tap to be recognized as a triple tap.</summary>
+    /// <returns>Time in seconds.</returns>
+    public virtual double GetTimeout() {
+        var _ret_var = Efl.Canvas.GestureRecognizerTripleTap.NativeMethods.efl_gesture_recognizer_triple_tap_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Sets the time between taps to be recognized as a double tap.</summary>
-    /// <param name="time">Time value.</param>
-    virtual public void SetTimeout(double time) {
-                                 Efl.Canvas.GestureRecognizerTripleTap.NativeMethods.efl_gesture_recognizer_triple_tap_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
+    }
+
+    /// <summary>Minimum time between each consecutive tap to be recognized as a triple tap.</summary>
+    /// <param name="time">Time in seconds.</param>
+    public virtual void SetTimeout(double time) {
+        Efl.Canvas.GestureRecognizerTripleTap.NativeMethods.efl_gesture_recognizer_triple_tap_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Sets the time between taps to be recognized as a double tap.</summary>
-    /// <value>Time value.</value>
+        
+    }
+
+    /// <summary>Minimum time between each consecutive tap to be recognized as a triple tap.</summary>
+    /// <value>Time in seconds.</value>
     public double Timeout {
         get { return GetTimeout(); }
         set { SetTimeout(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.GestureRecognizerTripleTap.efl_canvas_gesture_recognizer_triple_tap_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.GestureRecognizer.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -119,9 +127,20 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_recognizer_triple_tap_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_recognizer_triple_tap_timeout_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -145,7 +164,7 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((GestureRecognizerTripleTap)ws.Target).GetTimeout();
@@ -156,8 +175,7 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -181,7 +199,7 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((GestureRecognizerTripleTap)ws.Target).SetTimeout(time);
@@ -192,7 +210,7 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -207,7 +225,6 @@ public class GestureRecognizerTripleTap : Efl.Canvas.GestureRecognizer
 }
 }
 }
-
 }
 
 #if EFL_BETA

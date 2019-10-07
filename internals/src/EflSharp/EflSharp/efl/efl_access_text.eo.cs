@@ -12,149 +12,42 @@ namespace Access {
 
 /// <summary>Elementary accessible text interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Access.ITextConcrete.NativeMethods]
+[Efl.Access.TextConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IText : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets single character present in accessible widget&apos;s text at given offset.</summary>
-/// <param name="offset">Position in text.</param>
-/// <returns>Character at offset. 0 when out-of bounds offset has been given. Codepoints between DC80 and DCFF indicates that string includes invalid UTF8 chars.</returns>
-Eina.Unicode GetCharacter(int offset);
-    /// <summary>Gets string, start and end offset in text according to given initial offset and granularity.</summary>
-/// <param name="granularity">Text granularity</param>
-/// <param name="start_offset">Offset indicating start of string according to given granularity.  -1 in case of error.</param>
-/// <param name="end_offset">Offset indicating end of string according to given granularity. -1 in case of error.</param>
-/// <returns>Newly allocated UTF-8 encoded string. Must be free by a user.</returns>
-System.String GetString(Efl.Access.TextGranularity granularity, int start_offset, int end_offset);
-    /// <summary>Gets text of accessible widget.</summary>
-/// <param name="start_offset">Position in text.</param>
-/// <param name="end_offset">End offset of text.</param>
-/// <returns>UTF-8 encoded text.</returns>
-System.String GetAccessText(int start_offset, int end_offset);
-    /// <summary>Gets offset position of caret (cursor)</summary>
-/// <returns>Offset</returns>
-int GetCaretOffset();
-    /// <summary>Caret offset property</summary>
-/// <param name="offset">Offset</param>
-/// <returns><c>true</c> if caret was successfully moved, <c>false</c> otherwise.</returns>
-bool SetCaretOffset(int offset);
-    /// <summary>Indicate if a text attribute with a given name is set</summary>
-/// <param name="name">Text attribute name</param>
-/// <param name="start_offset">Position in text from which given attribute is set.</param>
-/// <param name="end_offset">Position in text to which given attribute is set.</param>
-/// <param name="value">Value of text attribute. Should be free()</param>
-/// <returns><c>true</c> if attribute name is set, <c>false</c> otherwise</returns>
-bool GetAttribute(System.String name, int start_offset, int end_offset, out System.String value);
-    /// <summary>Gets list of all text attributes.</summary>
-/// <param name="start_offset">Start offset</param>
-/// <param name="end_offset">End offset</param>
-/// <returns>List of text attributes</returns>
-Eina.List<Efl.Access.TextAttribute> GetTextAttributes(int start_offset, int end_offset);
-    /// <summary>Default attributes</summary>
-/// <returns>List of default attributes</returns>
-Eina.List<Efl.Access.TextAttribute> GetDefaultAttributes();
-    /// <summary>Character extents</summary>
-/// <param name="offset">Offset</param>
-/// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
-/// <param name="rect">Extents rectangle</param>
-/// <returns><c>true</c> if character extents, <c>false</c> otherwise</returns>
-bool GetCharacterExtents(int offset, bool screen_coords, out Eina.Rect rect);
-    /// <summary>Character count</summary>
-/// <returns>Character count</returns>
-int GetCharacterCount();
-    /// <summary>Offset at given point</summary>
-/// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
-/// <param name="x">X coordinate</param>
-/// <param name="y">Y coordinate</param>
-/// <returns>Offset</returns>
-int GetOffsetAtPoint(bool screen_coords, int x, int y);
-    /// <summary>Bounded ranges</summary>
-/// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
-/// <param name="rect">Bounding box</param>
-/// <param name="xclip">xclip</param>
-/// <param name="yclip">yclip</param>
-/// <returns>List of ranges</returns>
-Eina.List<Efl.Access.TextRange> GetBoundedRanges(bool screen_coords, Eina.Rect rect, Efl.Access.TextClipType xclip, Efl.Access.TextClipType yclip);
-    /// <summary>Range extents</summary>
-/// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
-/// <param name="start_offset">Start offset</param>
-/// <param name="end_offset">End offset</param>
-/// <param name="rect">Range rectangle</param>
-/// <returns><c>true</c> if range extents, <c>false</c> otherwise</returns>
-bool GetRangeExtents(bool screen_coords, int start_offset, int end_offset, out Eina.Rect rect);
-    /// <summary>Selection count property</summary>
-/// <returns>Selection counter</returns>
-int GetSelectionsCount();
-    /// <summary>Selection property</summary>
-/// <param name="selection_number">Selection number for identification</param>
-/// <param name="start_offset">Selection start offset</param>
-/// <param name="end_offset">Selection end offset</param>
-void GetAccessSelection(int selection_number, out int start_offset, out int end_offset);
-    /// <summary>Selection property</summary>
-/// <param name="selection_number">Selection number for identification</param>
-/// <param name="start_offset">Selection start offset</param>
-/// <param name="end_offset">Selection end offset</param>
-/// <returns><c>true</c> if selection was set, <c>false</c> otherwise</returns>
-bool SetAccessSelection(int selection_number, int start_offset, int end_offset);
-    /// <summary>Add selection</summary>
-/// <param name="start_offset">Start selection from this offset</param>
-/// <param name="end_offset">End selection at this offset</param>
-/// <returns><c>true</c> if selection was added, <c>false</c> otherwise</returns>
-bool AddSelection(int start_offset, int end_offset);
-    /// <summary>Remove selection</summary>
-/// <param name="selection_number">Selection number to be removed</param>
-/// <returns><c>true</c> if selection was removed, <c>false</c> otherwise</returns>
-bool SelectionRemove(int selection_number);
-                                                                            /// <summary>Caret moved</summary>
-    event EventHandler AccessTextCaretMovedEvt;
+    /// <summary>Caret moved</summary>
+    event EventHandler AccessTextCaretMovedEvent;
     /// <summary>Text was inserted</summary>
-    /// <value><see cref="Efl.Access.ITextAccessTextInsertedEvt_Args"/></value>
-    event EventHandler<Efl.Access.ITextAccessTextInsertedEvt_Args> AccessTextInsertedEvt;
+    /// <value><see cref="Efl.Access.TextAccessTextInsertedEventArgs"/></value>
+    event EventHandler<Efl.Access.TextAccessTextInsertedEventArgs> AccessTextInsertedEvent;
     /// <summary>Text was removed</summary>
-    /// <value><see cref="Efl.Access.ITextAccessTextRemovedEvt_Args"/></value>
-    event EventHandler<Efl.Access.ITextAccessTextRemovedEvt_Args> AccessTextRemovedEvt;
+    /// <value><see cref="Efl.Access.TextAccessTextRemovedEventArgs"/></value>
+    event EventHandler<Efl.Access.TextAccessTextRemovedEventArgs> AccessTextRemovedEvent;
     /// <summary>Text selection has changed</summary>
-    event EventHandler AccessTextSelectionChangedEvt;
-    /// <summary>Caret offset property</summary>
-    /// <value>Offset</value>
-    int CaretOffset {
-        get;
-        set;
-    }
-    /// <summary>Default attributes</summary>
-    /// <value>List of default attributes</value>
-    Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
-        get;
-    }
-    /// <summary>Character count</summary>
-    /// <value>Character count</value>
-    int CharacterCount {
-        get;
-    }
-    /// <summary>Selection count property</summary>
-    /// <value>Selection counter</value>
-    int SelectionsCount {
-        get;
-    }
+    event EventHandler AccessTextSelectionChangedEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextInsertedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextInsertedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ITextAccessTextInsertedEvt_Args : EventArgs {
+public class TextAccessTextInsertedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Text was inserted</value>
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextRemovedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Access.IText.AccessTextRemovedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ITextAccessTextRemovedEvt_Args : EventArgs {
+public class TextAccessTextRemovedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Text was removed</value>
     public Efl.Access.TextChangeInfo arg { get; set; }
 }
+
 /// <summary>Elementary accessible text interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextConcrete :
+public sealed class TextConcrete :
     Efl.Eo.EoWrapper
     , IText
     
@@ -164,7 +57,7 @@ sealed public  class ITextConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextConcrete))
+            if (((object)this).GetType() == typeof(TextConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -178,21 +71,22 @@ sealed public  class ITextConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextConcrete(ConstructingHandle ch) : base(ch)
+    private TextConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_access_text_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IText"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Caret moved</summary>
-    public event EventHandler AccessTextCaretMovedEvt
+    public event EventHandler AccessTextCaretMovedEvent
     {
         add
         {
@@ -230,8 +124,10 @@ sealed public  class ITextConcrete :
             }
         }
     }
-    /// <summary>Method to raise event AccessTextCaretMovedEvt.</summary>
-    public void OnAccessTextCaretMovedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AccessTextCaretMovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAccessTextCaretMovedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_CARET_MOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -243,9 +139,10 @@ sealed public  class ITextConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Text was inserted</summary>
-    /// <value><see cref="Efl.Access.ITextAccessTextInsertedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.ITextAccessTextInsertedEvt_Args> AccessTextInsertedEvt
+    /// <value><see cref="Efl.Access.TextAccessTextInsertedEventArgs"/></value>
+    public event EventHandler<Efl.Access.TextAccessTextInsertedEventArgs> AccessTextInsertedEvent
     {
         add
         {
@@ -256,7 +153,7 @@ sealed public  class ITextConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.ITextAccessTextInsertedEvt_Args args = new Efl.Access.ITextAccessTextInsertedEvt_Args();
+                        Efl.Access.TextAccessTextInsertedEventArgs args = new Efl.Access.TextAccessTextInsertedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -284,8 +181,10 @@ sealed public  class ITextConcrete :
             }
         }
     }
-    /// <summary>Method to raise event AccessTextInsertedEvt.</summary>
-    public void OnAccessTextInsertedEvt(Efl.Access.ITextAccessTextInsertedEvt_Args e)
+
+    /// <summary>Method to raise event AccessTextInsertedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAccessTextInsertedEvent(Efl.Access.TextAccessTextInsertedEventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_INSERTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -306,9 +205,10 @@ sealed public  class ITextConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Text was removed</summary>
-    /// <value><see cref="Efl.Access.ITextAccessTextRemovedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.ITextAccessTextRemovedEvt_Args> AccessTextRemovedEvt
+    /// <value><see cref="Efl.Access.TextAccessTextRemovedEventArgs"/></value>
+    public event EventHandler<Efl.Access.TextAccessTextRemovedEventArgs> AccessTextRemovedEvent
     {
         add
         {
@@ -319,7 +219,7 @@ sealed public  class ITextConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.ITextAccessTextRemovedEvt_Args args = new Efl.Access.ITextAccessTextRemovedEvt_Args();
+                        Efl.Access.TextAccessTextRemovedEventArgs args = new Efl.Access.TextAccessTextRemovedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -347,8 +247,10 @@ sealed public  class ITextConcrete :
             }
         }
     }
-    /// <summary>Method to raise event AccessTextRemovedEvt.</summary>
-    public void OnAccessTextRemovedEvt(Efl.Access.ITextAccessTextRemovedEvt_Args e)
+
+    /// <summary>Method to raise event AccessTextRemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAccessTextRemovedEvent(Efl.Access.TextAccessTextRemovedEventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -369,8 +271,9 @@ sealed public  class ITextConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Text selection has changed</summary>
-    public event EventHandler AccessTextSelectionChangedEvt
+    public event EventHandler AccessTextSelectionChangedEvent
     {
         add
         {
@@ -408,8 +311,10 @@ sealed public  class ITextConcrete :
             }
         }
     }
-    /// <summary>Method to raise event AccessTextSelectionChangedEvt.</summary>
-    public void OnAccessTextSelectionChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AccessTextSelectionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAccessTextSelectionChangedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_TEXT_EVENT_ACCESS_TEXT_SELECTION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -421,401 +326,262 @@ sealed public  class ITextConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Gets single character present in accessible widget&apos;s text at given offset.</summary>
     /// <param name="offset">Position in text.</param>
-    /// <returns>Character at offset. 0 when out-of bounds offset has been given. Codepoints between DC80 and DCFF indicates that string includes invalid UTF8 chars.</returns>
-    public Eina.Unicode GetCharacter(int offset) {
-                                 var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_character_get_ptr.Value.Delegate(this.NativeHandle,offset);
+    /// <returns>Character at offset. 0 when out-of bounds offset has been given. Codepoints between DC80 and DCFF indicate that string includes invalid UTF8 chars.</returns>
+    protected Eina.Unicode GetCharacter(int offset) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_character_get_ptr.Value.Delegate(this.NativeHandle,offset);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets string, start and end offset in text according to given initial offset and granularity.</summary>
     /// <param name="granularity">Text granularity</param>
-    /// <param name="start_offset">Offset indicating start of string according to given granularity.  -1 in case of error.</param>
+    /// <param name="start_offset">Offset indicating start of string according to given granularity. -1 in case of error.</param>
     /// <param name="end_offset">Offset indicating end of string according to given granularity. -1 in case of error.</param>
     /// <returns>Newly allocated UTF-8 encoded string. Must be free by a user.</returns>
-    public System.String GetString(Efl.Access.TextGranularity granularity, int start_offset, int end_offset) {
-                 var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
-                                                        var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_string_get_ptr.Value.Delegate(this.NativeHandle,granularity, _in_start_offset, _in_end_offset);
+    protected System.String GetString(Efl.Access.TextGranularity granularity, int start_offset, int end_offset) {
+        var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
+var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_string_get_ptr.Value.Delegate(this.NativeHandle,granularity, _in_start_offset, _in_end_offset);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets text of accessible widget.</summary>
     /// <param name="start_offset">Position in text.</param>
     /// <param name="end_offset">End offset of text.</param>
     /// <returns>UTF-8 encoded text.</returns>
-    public System.String GetAccessText(int start_offset, int end_offset) {
-                                                         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_get_ptr.Value.Delegate(this.NativeHandle,start_offset, end_offset);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>Gets offset position of caret (cursor)</summary>
-    /// <returns>Offset</returns>
-    public int GetCaretOffset() {
-         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_caret_offset_get_ptr.Value.Delegate(this.NativeHandle);
+    protected System.String GetAccessText(int start_offset, int end_offset) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_get_ptr.Value.Delegate(this.NativeHandle,start_offset, end_offset);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>Gets offset position of caret (cursor)</summary>
+    /// <returns>Offset</returns>
+    protected int GetCaretOffset() {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_caret_offset_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>Caret offset property</summary>
     /// <param name="offset">Offset</param>
     /// <returns><c>true</c> if caret was successfully moved, <c>false</c> otherwise.</returns>
-    public bool SetCaretOffset(int offset) {
-                                 var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_caret_offset_set_ptr.Value.Delegate(this.NativeHandle,offset);
+    protected bool SetCaretOffset(int offset) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_caret_offset_set_ptr.Value.Delegate(this.NativeHandle,offset);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Indicate if a text attribute with a given name is set</summary>
     /// <param name="name">Text attribute name</param>
     /// <param name="start_offset">Position in text from which given attribute is set.</param>
     /// <param name="end_offset">Position in text to which given attribute is set.</param>
     /// <param name="value">Value of text attribute. Should be free()</param>
     /// <returns><c>true</c> if attribute name is set, <c>false</c> otherwise</returns>
-    public bool GetAttribute(System.String name, int start_offset, int end_offset, out System.String value) {
-                 var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
-                                                                                var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_attribute_get_ptr.Value.Delegate(this.NativeHandle,name, _in_start_offset, _in_end_offset, out value);
+    protected bool GetAttribute(System.String name, int start_offset, int end_offset, out System.String value) {
+        var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
+var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_attribute_get_ptr.Value.Delegate(this.NativeHandle,name, _in_start_offset, _in_end_offset, out value);
         Eina.Error.RaiseIfUnhandledException();
-                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets list of all text attributes.</summary>
     /// <param name="start_offset">Start offset</param>
     /// <param name="end_offset">End offset</param>
     /// <returns>List of text attributes</returns>
-    public Eina.List<Efl.Access.TextAttribute> GetTextAttributes(int start_offset, int end_offset) {
-         var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
-                                        var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_attributes_get_ptr.Value.Delegate(this.NativeHandle,_in_start_offset, _in_end_offset);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return new Eina.List<Efl.Access.TextAttribute>(_ret_var, true, true);
- }
-    /// <summary>Default attributes</summary>
-    /// <returns>List of default attributes</returns>
-    public Eina.List<Efl.Access.TextAttribute> GetDefaultAttributes() {
-         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_default_attributes_get_ptr.Value.Delegate(this.NativeHandle);
+    protected Eina.List<Efl.Access.TextAttribute> GetTextAttributes(int start_offset, int end_offset) {
+        var _in_start_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(start_offset);
+var _in_end_offset = Eina.PrimitiveConversion.ManagedToPointerAlloc(end_offset);
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_attributes_get_ptr.Value.Delegate(this.NativeHandle,_in_start_offset, _in_end_offset);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.TextAttribute>(_ret_var, true, true);
- }
+
+    }
+
+    /// <summary>Default attributes</summary>
+    /// <returns>List of default attributes</returns>
+    protected Eina.List<Efl.Access.TextAttribute> GetDefaultAttributes() {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_default_attributes_get_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return new Eina.List<Efl.Access.TextAttribute>(_ret_var, true, true);
+
+    }
+
     /// <summary>Character extents</summary>
     /// <param name="offset">Offset</param>
     /// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="rect">Extents rectangle</param>
     /// <returns><c>true</c> if character extents, <c>false</c> otherwise</returns>
-    public bool GetCharacterExtents(int offset, bool screen_coords, out Eina.Rect rect) {
-                                                 var _out_rect = new Eina.Rect.NativeStruct();
-                                var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_character_extents_get_ptr.Value.Delegate(this.NativeHandle,offset, screen_coords, out _out_rect);
+    protected bool GetCharacterExtents(int offset, bool screen_coords, out Eina.Rect rect) {
+        var _out_rect = new Eina.Rect.NativeStruct();
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_character_extents_get_ptr.Value.Delegate(this.NativeHandle,offset, screen_coords, out _out_rect);
         Eina.Error.RaiseIfUnhandledException();
-                        rect = _out_rect;
-                                return _ret_var;
- }
+rect = _out_rect;
+        return _ret_var;
+    }
+
     /// <summary>Character count</summary>
     /// <returns>Character count</returns>
-    public int GetCharacterCount() {
-         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_character_count_get_ptr.Value.Delegate(this.NativeHandle);
+    protected int GetCharacterCount() {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_character_count_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Offset at given point</summary>
     /// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     /// <returns>Offset</returns>
-    public int GetOffsetAtPoint(bool screen_coords, int x, int y) {
-                                                                                 var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_offset_at_point_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, x, y);
+    protected int GetOffsetAtPoint(bool screen_coords, int x, int y) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_offset_at_point_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Bounded ranges</summary>
     /// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="rect">Bounding box</param>
     /// <param name="xclip">xclip</param>
     /// <param name="yclip">yclip</param>
     /// <returns>List of ranges</returns>
-    public Eina.List<Efl.Access.TextRange> GetBoundedRanges(bool screen_coords, Eina.Rect rect, Efl.Access.TextClipType xclip, Efl.Access.TextClipType yclip) {
-                 Eina.Rect.NativeStruct _in_rect = rect;
-                                                                                        var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_bounded_ranges_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, _in_rect, xclip, yclip);
+    protected Eina.List<Efl.Access.TextRange> GetBoundedRanges(bool screen_coords, Eina.Rect rect, Efl.Access.TextClipType xclip, Efl.Access.TextClipType yclip) {
+        Eina.Rect.NativeStruct _in_rect = rect;
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_bounded_ranges_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, _in_rect, xclip, yclip);
         Eina.Error.RaiseIfUnhandledException();
-                                                                        return new Eina.List<Efl.Access.TextRange>(_ret_var, true, true);
- }
+        return new Eina.List<Efl.Access.TextRange>(_ret_var, true, true);
+
+    }
+
     /// <summary>Range extents</summary>
     /// <param name="screen_coords">If <c>true</c>, x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="start_offset">Start offset</param>
     /// <param name="end_offset">End offset</param>
     /// <param name="rect">Range rectangle</param>
     /// <returns><c>true</c> if range extents, <c>false</c> otherwise</returns>
-    public bool GetRangeExtents(bool screen_coords, int start_offset, int end_offset, out Eina.Rect rect) {
-                                                                 var _out_rect = new Eina.Rect.NativeStruct();
-                                        var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_range_extents_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, start_offset, end_offset, out _out_rect);
+    protected bool GetRangeExtents(bool screen_coords, int start_offset, int end_offset, out Eina.Rect rect) {
+        var _out_rect = new Eina.Rect.NativeStruct();
+var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_range_extents_get_ptr.Value.Delegate(this.NativeHandle,screen_coords, start_offset, end_offset, out _out_rect);
         Eina.Error.RaiseIfUnhandledException();
-                                rect = _out_rect;
-                                        return _ret_var;
- }
+rect = _out_rect;
+        return _ret_var;
+    }
+
     /// <summary>Selection count property</summary>
     /// <returns>Selection counter</returns>
-    public int GetSelectionsCount() {
-         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_selections_count_get_ptr.Value.Delegate(this.NativeHandle);
+    protected int GetSelectionsCount() {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_selections_count_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Selection property</summary>
     /// <param name="selection_number">Selection number for identification</param>
     /// <param name="start_offset">Selection start offset</param>
     /// <param name="end_offset">Selection end offset</param>
-    public void GetAccessSelection(int selection_number, out int start_offset, out int end_offset) {
-                                                                                 Efl.Access.ITextConcrete.NativeMethods.efl_access_text_access_selection_get_ptr.Value.Delegate(this.NativeHandle,selection_number, out start_offset, out end_offset);
+    protected void GetAccessSelection(int selection_number, out int start_offset, out int end_offset) {
+        Efl.Access.TextConcrete.NativeMethods.efl_access_text_access_selection_get_ptr.Value.Delegate(this.NativeHandle,selection_number, out start_offset, out end_offset);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Selection property</summary>
     /// <param name="selection_number">Selection number for identification</param>
     /// <param name="start_offset">Selection start offset</param>
     /// <param name="end_offset">Selection end offset</param>
     /// <returns><c>true</c> if selection was set, <c>false</c> otherwise</returns>
-    public bool SetAccessSelection(int selection_number, int start_offset, int end_offset) {
-                                                                                 var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_access_selection_set_ptr.Value.Delegate(this.NativeHandle,selection_number, start_offset, end_offset);
+    protected bool SetAccessSelection(int selection_number, int start_offset, int end_offset) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_access_selection_set_ptr.Value.Delegate(this.NativeHandle,selection_number, start_offset, end_offset);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Add selection</summary>
     /// <param name="start_offset">Start selection from this offset</param>
     /// <param name="end_offset">End selection at this offset</param>
     /// <returns><c>true</c> if selection was added, <c>false</c> otherwise</returns>
-    public bool AddSelection(int start_offset, int end_offset) {
-                                                         var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_selection_add_ptr.Value.Delegate(this.NativeHandle,start_offset, end_offset);
+    protected bool AddSelection(int start_offset, int end_offset) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_selection_add_ptr.Value.Delegate(this.NativeHandle,start_offset, end_offset);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Remove selection</summary>
     /// <param name="selection_number">Selection number to be removed</param>
     /// <returns><c>true</c> if selection was removed, <c>false</c> otherwise</returns>
-    public bool SelectionRemove(int selection_number) {
-                                 var _ret_var = Efl.Access.ITextConcrete.NativeMethods.efl_access_text_selection_remove_ptr.Value.Delegate(this.NativeHandle,selection_number);
+    protected bool RemoveSelection(int selection_number) {
+        var _ret_var = Efl.Access.TextConcrete.NativeMethods.efl_access_text_selection_remove_ptr.Value.Delegate(this.NativeHandle,selection_number);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Caret offset property</summary>
     /// <value>Offset</value>
-    public int CaretOffset {
+    protected int CaretOffset {
         get { return GetCaretOffset(); }
         set { SetCaretOffset(value); }
     }
+
     /// <summary>Default attributes</summary>
     /// <value>List of default attributes</value>
-    public Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
+    protected Eina.List<Efl.Access.TextAttribute> DefaultAttributes {
         get { return GetDefaultAttributes(); }
     }
+
     /// <summary>Character count</summary>
     /// <value>Character count</value>
-    public int CharacterCount {
+    protected int CharacterCount {
         get { return GetCharacterCount(); }
     }
+
     /// <summary>Selection count property</summary>
     /// <value>Selection counter</value>
-    public int SelectionsCount {
+    protected int SelectionsCount {
         get { return GetSelectionsCount(); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Access.ITextConcrete.efl_access_text_interface_get();
+        return Efl.Access.TextConcrete.efl_access_text_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            var methods = Efl.Eo.Globals.GetUserMethods(type);
-
-            if (efl_access_text_character_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_access_text_character_get_static_delegate = new efl_access_text_character_get_delegate(character_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCharacter") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_character_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_character_get_static_delegate) });
-            }
-
-            if (efl_access_text_string_get_static_delegate == null)
-            {
-                efl_access_text_string_get_static_delegate = new efl_access_text_string_get_delegate(string_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetString") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_string_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_string_get_static_delegate) });
-            }
-
-            if (efl_access_text_get_static_delegate == null)
-            {
-                efl_access_text_get_static_delegate = new efl_access_text_get_delegate(access_text_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAccessText") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_get_static_delegate) });
-            }
-
-            if (efl_access_text_caret_offset_get_static_delegate == null)
-            {
-                efl_access_text_caret_offset_get_static_delegate = new efl_access_text_caret_offset_get_delegate(caret_offset_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCaretOffset") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_caret_offset_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_caret_offset_get_static_delegate) });
-            }
-
-            if (efl_access_text_caret_offset_set_static_delegate == null)
-            {
-                efl_access_text_caret_offset_set_static_delegate = new efl_access_text_caret_offset_set_delegate(caret_offset_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCaretOffset") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_caret_offset_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_caret_offset_set_static_delegate) });
-            }
-
-            if (efl_access_text_attribute_get_static_delegate == null)
-            {
-                efl_access_text_attribute_get_static_delegate = new efl_access_text_attribute_get_delegate(attribute_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAttribute") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_attribute_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_attribute_get_static_delegate) });
-            }
-
-            if (efl_access_text_attributes_get_static_delegate == null)
-            {
-                efl_access_text_attributes_get_static_delegate = new efl_access_text_attributes_get_delegate(text_attributes_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTextAttributes") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_attributes_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_attributes_get_static_delegate) });
-            }
-
-            if (efl_access_text_default_attributes_get_static_delegate == null)
-            {
-                efl_access_text_default_attributes_get_static_delegate = new efl_access_text_default_attributes_get_delegate(default_attributes_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetDefaultAttributes") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_default_attributes_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_default_attributes_get_static_delegate) });
-            }
-
-            if (efl_access_text_character_extents_get_static_delegate == null)
-            {
-                efl_access_text_character_extents_get_static_delegate = new efl_access_text_character_extents_get_delegate(character_extents_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCharacterExtents") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_character_extents_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_character_extents_get_static_delegate) });
-            }
-
-            if (efl_access_text_character_count_get_static_delegate == null)
-            {
-                efl_access_text_character_count_get_static_delegate = new efl_access_text_character_count_get_delegate(character_count_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetCharacterCount") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_character_count_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_character_count_get_static_delegate) });
-            }
-
-            if (efl_access_text_offset_at_point_get_static_delegate == null)
-            {
-                efl_access_text_offset_at_point_get_static_delegate = new efl_access_text_offset_at_point_get_delegate(offset_at_point_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOffsetAtPoint") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_offset_at_point_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_offset_at_point_get_static_delegate) });
-            }
-
-            if (efl_access_text_bounded_ranges_get_static_delegate == null)
-            {
-                efl_access_text_bounded_ranges_get_static_delegate = new efl_access_text_bounded_ranges_get_delegate(bounded_ranges_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetBoundedRanges") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_bounded_ranges_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_bounded_ranges_get_static_delegate) });
-            }
-
-            if (efl_access_text_range_extents_get_static_delegate == null)
-            {
-                efl_access_text_range_extents_get_static_delegate = new efl_access_text_range_extents_get_delegate(range_extents_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRangeExtents") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_range_extents_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_range_extents_get_static_delegate) });
-            }
-
-            if (efl_access_text_selections_count_get_static_delegate == null)
-            {
-                efl_access_text_selections_count_get_static_delegate = new efl_access_text_selections_count_get_delegate(selections_count_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetSelectionsCount") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_selections_count_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_selections_count_get_static_delegate) });
-            }
-
-            if (efl_access_text_access_selection_get_static_delegate == null)
-            {
-                efl_access_text_access_selection_get_static_delegate = new efl_access_text_access_selection_get_delegate(access_selection_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAccessSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_access_selection_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_access_selection_get_static_delegate) });
-            }
-
-            if (efl_access_text_access_selection_set_static_delegate == null)
-            {
-                efl_access_text_access_selection_set_static_delegate = new efl_access_text_access_selection_set_delegate(access_selection_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetAccessSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_access_selection_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_access_selection_set_static_delegate) });
-            }
-
-            if (efl_access_text_selection_add_static_delegate == null)
-            {
-                efl_access_text_selection_add_static_delegate = new efl_access_text_selection_add_delegate(selection_add);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "AddSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_selection_add"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_selection_add_static_delegate) });
-            }
-
-            if (efl_access_text_selection_remove_static_delegate == null)
-            {
-                efl_access_text_selection_remove_static_delegate = new efl_access_text_selection_remove_delegate(selection_remove);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SelectionRemove") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_text_selection_remove"), func = Marshal.GetFunctionPointerForDelegate(efl_access_text_selection_remove_static_delegate) });
-            }
-
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Access.ITextConcrete.efl_access_text_interface_get();
+            return Efl.Access.TextConcrete.efl_access_text_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -828,34 +594,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_character_get_api_delegate> efl_access_text_character_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_character_get_api_delegate>(Module, "efl_access_text_character_get");
 
-        private static Eina.Unicode character_get(System.IntPtr obj, System.IntPtr pd, int offset)
-        {
-            Eina.Log.Debug("function efl_access_text_character_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Eina.Unicode _ret_var = default(Eina.Unicode);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetCharacter(offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_character_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), offset);
-            }
-        }
-
-        private static efl_access_text_character_get_delegate efl_access_text_character_get_static_delegate;
-
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))]
         private delegate System.String efl_access_text_string_get_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.TextGranularity granularity,  System.IntPtr start_offset,  System.IntPtr end_offset);
 
@@ -863,36 +601,6 @@ sealed public  class ITextConcrete :
         public delegate System.String efl_access_text_string_get_api_delegate(System.IntPtr obj,  Efl.Access.TextGranularity granularity,  System.IntPtr start_offset,  System.IntPtr end_offset);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_string_get_api_delegate> efl_access_text_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_string_get_api_delegate>(Module, "efl_access_text_string_get");
-
-        private static System.String string_get(System.IntPtr obj, System.IntPtr pd, Efl.Access.TextGranularity granularity, System.IntPtr start_offset, System.IntPtr end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_string_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
-                                                            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetString(granularity, _in_start_offset, _in_end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), granularity, start_offset, end_offset);
-            }
-        }
-
-        private static efl_access_text_string_get_delegate efl_access_text_string_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))]
         private delegate System.String efl_access_text_get_delegate(System.IntPtr obj, System.IntPtr pd,  int start_offset,  int end_offset);
@@ -902,34 +610,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_get_api_delegate> efl_access_text_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_get_api_delegate>(Module, "efl_access_text_get");
 
-        private static System.String access_text_get(System.IntPtr obj, System.IntPtr pd, int start_offset, int end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetAccessText(start_offset, end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), start_offset, end_offset);
-            }
-        }
-
-        private static efl_access_text_get_delegate efl_access_text_get_static_delegate;
-
         
         private delegate int efl_access_text_caret_offset_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -937,34 +617,6 @@ sealed public  class ITextConcrete :
         public delegate int efl_access_text_caret_offset_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_caret_offset_get_api_delegate> efl_access_text_caret_offset_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_caret_offset_get_api_delegate>(Module, "efl_access_text_caret_offset_get");
-
-        private static int caret_offset_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_text_caret_offset_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetCaretOffset();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_caret_offset_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_text_caret_offset_get_delegate efl_access_text_caret_offset_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_caret_offset_set_delegate(System.IntPtr obj, System.IntPtr pd,  int offset);
@@ -974,34 +626,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_caret_offset_set_api_delegate> efl_access_text_caret_offset_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_caret_offset_set_api_delegate>(Module, "efl_access_text_caret_offset_set");
 
-        private static bool caret_offset_set(System.IntPtr obj, System.IntPtr pd, int offset)
-        {
-            Eina.Log.Debug("function efl_access_text_caret_offset_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).SetCaretOffset(offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_caret_offset_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), offset);
-            }
-        }
-
-        private static efl_access_text_caret_offset_set_delegate efl_access_text_caret_offset_set_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_attribute_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name,  System.IntPtr start_offset,  System.IntPtr end_offset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))] out System.String value);
 
@@ -1009,36 +633,6 @@ sealed public  class ITextConcrete :
         public delegate bool efl_access_text_attribute_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String name,  System.IntPtr start_offset,  System.IntPtr end_offset, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))] out System.String value);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_attribute_get_api_delegate> efl_access_text_attribute_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_attribute_get_api_delegate>(Module, "efl_access_text_attribute_get");
-
-        private static bool attribute_get(System.IntPtr obj, System.IntPtr pd, System.String name, System.IntPtr start_offset, System.IntPtr end_offset, out System.String value)
-        {
-            Eina.Log.Debug("function efl_access_text_attribute_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
-                                        value = default(System.String);                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetAttribute(name, _in_start_offset, _in_end_offset, out value);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_attribute_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), name, start_offset, end_offset, out value);
-            }
-        }
-
-        private static efl_access_text_attribute_get_delegate efl_access_text_attribute_get_static_delegate;
 
         
         private delegate System.IntPtr efl_access_text_attributes_get_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr start_offset,  System.IntPtr end_offset);
@@ -1048,36 +642,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_attributes_get_api_delegate> efl_access_text_attributes_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_attributes_get_api_delegate>(Module, "efl_access_text_attributes_get");
 
-        private static System.IntPtr text_attributes_get(System.IntPtr obj, System.IntPtr pd, System.IntPtr start_offset, System.IntPtr end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_attributes_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        var _in_start_offset = Eina.PrimitiveConversion.PointerToManaged<int>(start_offset);
-        var _in_end_offset = Eina.PrimitiveConversion.PointerToManaged<int>(end_offset);
-                                            Eina.List<Efl.Access.TextAttribute> _ret_var = default(Eina.List<Efl.Access.TextAttribute>);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetTextAttributes(_in_start_offset, _in_end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_access_text_attributes_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), start_offset, end_offset);
-            }
-        }
-
-        private static efl_access_text_attributes_get_delegate efl_access_text_attributes_get_static_delegate;
-
         
         private delegate System.IntPtr efl_access_text_default_attributes_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1085,34 +649,6 @@ sealed public  class ITextConcrete :
         public delegate System.IntPtr efl_access_text_default_attributes_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_default_attributes_get_api_delegate> efl_access_text_default_attributes_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_default_attributes_get_api_delegate>(Module, "efl_access_text_default_attributes_get");
-
-        private static System.IntPtr default_attributes_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_text_default_attributes_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.List<Efl.Access.TextAttribute> _ret_var = default(Eina.List<Efl.Access.TextAttribute>);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetDefaultAttributes();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_access_text_default_attributes_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_text_default_attributes_get_delegate efl_access_text_default_attributes_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_character_extents_get_delegate(System.IntPtr obj, System.IntPtr pd,  int offset, [MarshalAs(UnmanagedType.U1)] bool screen_coords,  out Eina.Rect.NativeStruct rect);
@@ -1122,36 +658,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_character_extents_get_api_delegate> efl_access_text_character_extents_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_character_extents_get_api_delegate>(Module, "efl_access_text_character_extents_get");
 
-        private static bool character_extents_get(System.IntPtr obj, System.IntPtr pd, int offset, bool screen_coords, out Eina.Rect.NativeStruct rect)
-        {
-            Eina.Log.Debug("function efl_access_text_character_extents_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                Eina.Rect _out_rect = default(Eina.Rect);
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetCharacterExtents(offset, screen_coords, out _out_rect);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        rect = _out_rect;
-                                return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_character_extents_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), offset, screen_coords, out rect);
-            }
-        }
-
-        private static efl_access_text_character_extents_get_delegate efl_access_text_character_extents_get_static_delegate;
-
         
         private delegate int efl_access_text_character_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1159,34 +665,6 @@ sealed public  class ITextConcrete :
         public delegate int efl_access_text_character_count_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_character_count_get_api_delegate> efl_access_text_character_count_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_character_count_get_api_delegate>(Module, "efl_access_text_character_count_get");
-
-        private static int character_count_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_text_character_count_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetCharacterCount();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_character_count_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_text_character_count_get_delegate efl_access_text_character_count_get_static_delegate;
 
         
         private delegate int efl_access_text_offset_at_point_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool screen_coords,  int x,  int y);
@@ -1196,34 +674,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_offset_at_point_get_api_delegate> efl_access_text_offset_at_point_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_offset_at_point_get_api_delegate>(Module, "efl_access_text_offset_at_point_get");
 
-        private static int offset_at_point_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int x, int y)
-        {
-            Eina.Log.Debug("function efl_access_text_offset_at_point_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetOffsetAtPoint(screen_coords, x, y);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_offset_at_point_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), screen_coords, x, y);
-            }
-        }
-
-        private static efl_access_text_offset_at_point_get_delegate efl_access_text_offset_at_point_get_static_delegate;
-
         
         private delegate System.IntPtr efl_access_text_bounded_ranges_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool screen_coords,  Eina.Rect.NativeStruct rect,  Efl.Access.TextClipType xclip,  Efl.Access.TextClipType yclip);
 
@@ -1231,35 +681,6 @@ sealed public  class ITextConcrete :
         public delegate System.IntPtr efl_access_text_bounded_ranges_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool screen_coords,  Eina.Rect.NativeStruct rect,  Efl.Access.TextClipType xclip,  Efl.Access.TextClipType yclip);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_bounded_ranges_get_api_delegate> efl_access_text_bounded_ranges_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_bounded_ranges_get_api_delegate>(Module, "efl_access_text_bounded_ranges_get");
-
-        private static System.IntPtr bounded_ranges_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, Eina.Rect.NativeStruct rect, Efl.Access.TextClipType xclip, Efl.Access.TextClipType yclip)
-        {
-            Eina.Log.Debug("function efl_access_text_bounded_ranges_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                Eina.Rect _in_rect = rect;
-                                                                                            Eina.List<Efl.Access.TextRange> _ret_var = default(Eina.List<Efl.Access.TextRange>);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetBoundedRanges(screen_coords, _in_rect, xclip, yclip);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                        _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_access_text_bounded_ranges_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), screen_coords, rect, xclip, yclip);
-            }
-        }
-
-        private static efl_access_text_bounded_ranges_get_delegate efl_access_text_bounded_ranges_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_range_extents_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool screen_coords,  int start_offset,  int end_offset,  out Eina.Rect.NativeStruct rect);
@@ -1269,36 +690,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_range_extents_get_api_delegate> efl_access_text_range_extents_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_range_extents_get_api_delegate>(Module, "efl_access_text_range_extents_get");
 
-        private static bool range_extents_get(System.IntPtr obj, System.IntPtr pd, bool screen_coords, int start_offset, int end_offset, out Eina.Rect.NativeStruct rect)
-        {
-            Eina.Log.Debug("function efl_access_text_range_extents_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                Eina.Rect _out_rect = default(Eina.Rect);
-                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetRangeExtents(screen_coords, start_offset, end_offset, out _out_rect);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                rect = _out_rect;
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_range_extents_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), screen_coords, start_offset, end_offset, out rect);
-            }
-        }
-
-        private static efl_access_text_range_extents_get_delegate efl_access_text_range_extents_get_static_delegate;
-
         
         private delegate int efl_access_text_selections_count_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1306,34 +697,6 @@ sealed public  class ITextConcrete :
         public delegate int efl_access_text_selections_count_get_api_delegate(System.IntPtr obj);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_selections_count_get_api_delegate> efl_access_text_selections_count_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_selections_count_get_api_delegate>(Module, "efl_access_text_selections_count_get");
-
-        private static int selections_count_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_text_selections_count_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            int _ret_var = default(int);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).GetSelectionsCount();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_selections_count_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_text_selections_count_get_delegate efl_access_text_selections_count_get_static_delegate;
 
         
         private delegate void efl_access_text_access_selection_get_delegate(System.IntPtr obj, System.IntPtr pd,  int selection_number,  out int start_offset,  out int end_offset);
@@ -1343,33 +706,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_access_selection_get_api_delegate> efl_access_text_access_selection_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_access_selection_get_api_delegate>(Module, "efl_access_text_access_selection_get");
 
-        private static void access_selection_get(System.IntPtr obj, System.IntPtr pd, int selection_number, out int start_offset, out int end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_access_selection_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                        start_offset = default(int);        end_offset = default(int);                                    
-                try
-                {
-                    ((IText)ws.Target).GetAccessSelection(selection_number, out start_offset, out end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        
-            }
-            else
-            {
-                efl_access_text_access_selection_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), selection_number, out start_offset, out end_offset);
-            }
-        }
-
-        private static efl_access_text_access_selection_get_delegate efl_access_text_access_selection_get_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_access_selection_set_delegate(System.IntPtr obj, System.IntPtr pd,  int selection_number,  int start_offset,  int end_offset);
 
@@ -1377,34 +713,6 @@ sealed public  class ITextConcrete :
         public delegate bool efl_access_text_access_selection_set_api_delegate(System.IntPtr obj,  int selection_number,  int start_offset,  int end_offset);
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_access_selection_set_api_delegate> efl_access_text_access_selection_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_access_selection_set_api_delegate>(Module, "efl_access_text_access_selection_set");
-
-        private static bool access_selection_set(System.IntPtr obj, System.IntPtr pd, int selection_number, int start_offset, int end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_access_selection_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).SetAccessSelection(selection_number, start_offset, end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_access_selection_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), selection_number, start_offset, end_offset);
-            }
-        }
-
-        private static efl_access_text_access_selection_set_delegate efl_access_text_access_selection_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_selection_add_delegate(System.IntPtr obj, System.IntPtr pd,  int start_offset,  int end_offset);
@@ -1414,34 +722,6 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_selection_add_api_delegate> efl_access_text_selection_add_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_selection_add_api_delegate>(Module, "efl_access_text_selection_add");
 
-        private static bool selection_add(System.IntPtr obj, System.IntPtr pd, int start_offset, int end_offset)
-        {
-            Eina.Log.Debug("function efl_access_text_selection_add was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).AddSelection(start_offset, end_offset);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_selection_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), start_offset, end_offset);
-            }
-        }
-
-        private static efl_access_text_selection_add_delegate efl_access_text_selection_add_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_access_text_selection_remove_delegate(System.IntPtr obj, System.IntPtr pd,  int selection_number);
 
@@ -1450,62 +730,20 @@ sealed public  class ITextConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_access_text_selection_remove_api_delegate> efl_access_text_selection_remove_ptr = new Efl.Eo.FunctionWrapper<efl_access_text_selection_remove_api_delegate>(Module, "efl_access_text_selection_remove");
 
-        private static bool selection_remove(System.IntPtr obj, System.IntPtr pd, int selection_number)
-        {
-            Eina.Log.Debug("function efl_access_text_selection_remove was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IText)ws.Target).SelectionRemove(selection_number);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_text_selection_remove_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), selection_number);
-            }
-        }
-
-        private static efl_access_text_selection_remove_delegate efl_access_text_selection_remove_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_AccessITextConcrete_ExtensionMethods {
-    
-    
-    
+public static class Efl_AccessTextConcrete_ExtensionMethods {
     public static Efl.BindableProperty<int> CaretOffset<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Access.IText, T>magic = null) where T : Efl.Access.IText {
         return new Efl.BindableProperty<int>("caret_offset", fac);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 #pragma warning restore CS1591
 #endif
@@ -1528,9 +766,7 @@ Line = 3,
 /// <summary>Paragraph granularity</summary>
 Paragraph = 4,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -1550,9 +786,7 @@ Max = 2,
 /// <summary>Both clip types</summary>
 Both = 3,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -1569,8 +803,8 @@ public struct TextAttribute
     /// <summary>Text attribute value</summary>
     public System.String Value;
     /// <summary>Constructor for TextAttribute.</summary>
-    /// <param name="Name">Text attribute name</param>;
-    /// <param name="Value">Text attribute value</param>;
+    /// <param name="Name">Text attribute name</param>
+    /// <param name="Value">Text attribute value</param>
     public TextAttribute(
         System.String Name = default(System.String),
         System.String Value = default(System.String)    )
@@ -1614,15 +848,11 @@ public struct TextAttribute
             _external_struct.Value = Eina.StringConversion.NativeUtf8ToManagedString(_internal_struct.Value);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -1641,9 +871,9 @@ public struct TextRange
     /// <summary>Range content</summary>
     public char Content;
     /// <summary>Constructor for TextRange.</summary>
-    /// <param name="Start_offset">Range start offset</param>;
-    /// <param name="End_offset">Range end offset</param>;
-    /// <param name="Content">Range content</param>;
+    /// <param name="Start_offset">Range start offset</param>
+    /// <param name="End_offset">Range end offset</param>
+    /// <param name="Content">Range content</param>
     public TextRange(
         int Start_offset = default(int),
         int End_offset = default(int),
@@ -1693,15 +923,11 @@ public struct TextRange
             _external_struct.Content = Eina.PrimitiveConversion.PointerToManaged<char>(_internal_struct.Content);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -1722,10 +948,10 @@ public struct TextChangeInfo
     /// <summary>Change length</summary>
     public uint Len;
     /// <summary>Constructor for TextChangeInfo.</summary>
-    /// <param name="Content">Change content</param>;
-    /// <param name="Inserted"><c>true</c> if text got inserted</param>;
-    /// <param name="Pos">Change position</param>;
-    /// <param name="Len">Change length</param>;
+    /// <param name="Content">Change content</param>
+    /// <param name="Inserted"><c>true</c> if text got inserted</param>
+    /// <param name="Pos">Change position</param>
+    /// <param name="Len">Change length</param>
     public TextChangeInfo(
         System.String Content = default(System.String),
         bool Inserted = default(bool),
@@ -1781,14 +1007,10 @@ public struct TextChangeInfo
             _external_struct.Len = _internal_struct.Len;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

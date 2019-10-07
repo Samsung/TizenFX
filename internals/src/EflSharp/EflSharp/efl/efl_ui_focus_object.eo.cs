@@ -12,143 +12,130 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>Functions of focusable objects.
-/// (Since EFL 1.22)</summary>
-[Efl.Ui.Focus.IObjectConcrete.NativeMethods]
+/// <summary>Functions of focusable objects.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Ui.Focus.ObjectConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IObject : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-/// (Since EFL 1.22)</summary>
-/// <returns>The geometry to use.</returns>
-Eina.Rect GetFocusGeometry();
-    /// <summary>Returns whether the widget is currently focused or not.
-/// (Since EFL 1.22)</summary>
-/// <returns>The focused state of the object.</returns>
-bool GetFocus();
-    /// <summary>This is called by the manager and should never be called by anyone else.
-/// The function emits the focus state events, if focus is different to the previous state.
-/// (Since EFL 1.22)</summary>
-/// <param name="focus">The focused state of the object.</param>
-void SetFocus(bool focus);
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-/// (Since EFL 1.22)</summary>
-/// <returns>The manager object</returns>
-Efl.Ui.Focus.IManager GetFocusManager();
-    /// <summary>Describes which logical parent is used by this object.
-/// (Since EFL 1.22)</summary>
-/// <returns>The focus parent.</returns>
-Efl.Ui.Focus.IObject GetFocusParent();
-    /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <returns><c>true</c> if a child has focus.</returns>
-bool GetChildFocus();
-    /// <summary>Indicates if a child of this object has focus set to true.
-/// (Since EFL 1.22)</summary>
-/// <param name="child_focus"><c>true</c> if a child has focus.</param>
-void SetChildFocus(bool child_focus);
-    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.
-/// (Since EFL 1.22)</summary>
-void SetupOrder();
-    /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.
-/// (Since EFL 1.22)</summary>
-void SetupOrderNonRecursive();
-    /// <summary>Virtual function handling focus in/out events on the widget
-/// (Since EFL 1.22)</summary>
-/// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise</returns>
-bool UpdateOnFocus();
-                                            /// <summary>Emitted if the focus state has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt;
-    /// <summary>Emitted when a new manager is the parent for this object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt;
-    /// <summary>Emitted when a new logical parent should be used.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt;
-    /// <summary>Emitted if child_focus has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt;
-    /// <summary>Emitted if focus geometry of this object has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt;
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-    /// (Since EFL 1.22)</summary>
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The geometry to use.</returns>
+    Eina.Rect GetFocusGeometry();
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The focused state of the object.</returns>
+    bool GetFocus();
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The manager object.</returns>
+    Efl.Ui.Focus.IManager GetFocusManager();
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The focus parent.</returns>
+    Efl.Ui.Focus.IObject GetFocusParent();
+
+    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to have a chance to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void SetupOrder();
+
+    /// <summary>Emitted if the focus state has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ObjectFocusChangedEventArgs> FocusChangedEvent;
+    /// <summary>Emitted when a new manager is the parent for this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs> FocusManagerChangedEvent;
+    /// <summary>Emitted when a new logical parent should be used.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusParentChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ObjectFocusParentChangedEventArgs> FocusParentChangedEvent;
+    /// <summary>Emitted if child_focus has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectChildFocusChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ObjectChildFocusChangedEventArgs> ChildFocusChangedEvent;
+    /// <summary>Emitted if focus geometry of this object has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs> FocusGeometryChangedEvent;
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The geometry to use.</value>
     Eina.Rect FocusGeometry {
         get;
     }
-    /// <summary>Returns whether the widget is currently focused or not.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focused state of the object.</value>
     bool Focus {
         get;
-        set;
     }
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The manager object</value>
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The manager object.</value>
     Efl.Ui.Focus.IManager FocusManager {
         get;
     }
-    /// <summary>Describes which logical parent is used by this object.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focus parent.</value>
     Efl.Ui.Focus.IObject FocusParent {
         get;
     }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
-    /// <value><c>true</c> if a child has focus.</value>
-    bool ChildFocus {
-        get;
-        set;
-    }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectFocusChangedEvt_Args : EventArgs {
+public class ObjectFocusChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted if the focus state has changed.</value>
     public bool arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusManagerChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectFocusManagerChangedEvt_Args : EventArgs {
+public class ObjectFocusManagerChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted when a new manager is the parent for this object.</value>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusParentChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectFocusParentChangedEvt_Args : EventArgs {
+public class ObjectFocusParentChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted when a new logical parent should be used.</value>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.ChildFocusChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectChildFocusChangedEvt_Args : EventArgs {
+public class ObjectChildFocusChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted if child_focus has changed.</value>
     public bool arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IObject.FocusGeometryChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IObjectFocusGeometryChangedEvt_Args : EventArgs {
+public class ObjectFocusGeometryChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted if focus geometry of this object has changed.</value>
     public Eina.Rect arg { get; set; }
 }
-/// <summary>Functions of focusable objects.
-/// (Since EFL 1.22)</summary>
-sealed public  class IObjectConcrete :
+
+/// <summary>Functions of focusable objects.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ObjectConcrete :
     Efl.Eo.EoWrapper
     , IObject
     
@@ -158,7 +145,7 @@ sealed public  class IObjectConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IObjectConcrete))
+            if (((object)this).GetType() == typeof(ObjectConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -172,23 +159,24 @@ sealed public  class IObjectConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IObjectConcrete(ConstructingHandle ch) : base(ch)
+    private ObjectConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_object_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IObject"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ObjectConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Emitted if the focus state has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt
+    /// <summary>Emitted if the focus state has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusChangedEventArgs> FocusChangedEvent
     {
         add
         {
@@ -199,7 +187,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectFocusChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -227,8 +215,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusChangedEvt.</summary>
-    public void OnFocusChangedEvt(Efl.Ui.Focus.IObjectFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusChangedEvent(Efl.Ui.Focus.ObjectFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -248,10 +238,11 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted when a new manager is the parent for this object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt
+
+    /// <summary>Emitted when a new manager is the parent for this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs> FocusManagerChangedEvent
     {
         add
         {
@@ -262,8 +253,8 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
+                        Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ManagerConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -290,8 +281,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusManagerChangedEvt.</summary>
-    public void OnFocusManagerChangedEvt(Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusManagerChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusManagerChangedEvent(Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -304,10 +297,11 @@ sealed public  class IObjectConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Emitted when a new logical parent should be used.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt
+
+    /// <summary>Emitted when a new logical parent should be used.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusParentChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusParentChangedEventArgs> FocusParentChangedEvent
     {
         add
         {
@@ -318,8 +312,8 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
+                        Efl.Ui.Focus.ObjectFocusParentChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusParentChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ObjectConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -346,8 +340,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusParentChangedEvt.</summary>
-    public void OnFocusParentChangedEvt(Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusParentChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusParentChangedEvent(Efl.Ui.Focus.ObjectFocusParentChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -360,10 +356,11 @@ sealed public  class IObjectConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Emitted if child_focus has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt
+
+    /// <summary>Emitted if child_focus has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectChildFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectChildFocusChangedEventArgs> ChildFocusChangedEvent
     {
         add
         {
@@ -374,7 +371,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectChildFocusChangedEventArgs args = new Efl.Ui.Focus.ObjectChildFocusChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -402,8 +399,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChildFocusChangedEvt.</summary>
-    public void OnChildFocusChangedEvt(Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event ChildFocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildFocusChangedEvent(Efl.Ui.Focus.ObjectChildFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -423,10 +422,11 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted if focus geometry of this object has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt
+
+    /// <summary>Emitted if focus geometry of this object has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs> FocusGeometryChangedEvent
     {
         add
         {
@@ -437,7 +437,7 @@ sealed public  class IObjectConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -465,8 +465,10 @@ sealed public  class IObjectConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusGeometryChangedEvt.</summary>
-    public void OnFocusGeometryChangedEvt(Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusGeometryChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusGeometryChangedEvent(Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -487,125 +489,150 @@ sealed public  class IObjectConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The geometry to use.</returns>
     public Eina.Rect GetFocusGeometry() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Returns whether the widget is currently focused or not.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The focused state of the object.</returns>
     public bool GetFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This is called by the manager and should never be called by anyone else.
-    /// The function emits the focus state events, if focus is different to the previous state.
-    /// (Since EFL 1.22)</summary>
+    /// The function emits the focus state events, if focus is different to the previous state.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="focus">The focused state of the object.</param>
-    public void SetFocus(bool focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate(this.NativeHandle,focus);
+    protected void SetFocus(bool focus) {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate(this.NativeHandle,focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The manager object</returns>
+        
+    }
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The manager object.</returns>
     public Efl.Ui.Focus.IManager GetFocusManager() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Describes which logical parent is used by this object.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The focus parent.</returns>
     public Efl.Ui.Focus.IObject GetFocusParent() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if a child has focus.</returns>
-    public bool GetChildFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate(this.NativeHandle);
+    protected bool GetChildFocus() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="child_focus"><c>true</c> if a child has focus.</param>
-    public void SetChildFocus(bool child_focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate(this.NativeHandle,child_focus);
+    protected void SetChildFocus(bool child_focus) {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate(this.NativeHandle,child_focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to have a chance to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void SetupOrder() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.
-    /// (Since EFL 1.22)</summary>
-    public void SetupOrderNonRecursive() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate(this.NativeHandle);
+        
+    }
+
+    /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    protected void SetupOrderNonRecursive() {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Virtual function handling focus in/out events on the widget
-    /// (Since EFL 1.22)</summary>
-    /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise</returns>
-    public bool UpdateOnFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate(this.NativeHandle);
+        
+    }
+
+    /// <summary>Virtual function handling focus in/out events on the widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise.</returns>
+    protected bool UpdateOnFocus() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The geometry to use.</value>
     public Eina.Rect FocusGeometry {
         get { return GetFocusGeometry(); }
     }
-    /// <summary>Returns whether the widget is currently focused or not.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focused state of the object.</value>
     public bool Focus {
         get { return GetFocus(); }
-        set { SetFocus(value); }
+        protected set { SetFocus(value); }
     }
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The manager object</value>
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The manager object.</value>
     public Efl.Ui.Focus.IManager FocusManager {
         get { return GetFocusManager(); }
     }
-    /// <summary>Describes which logical parent is used by this object.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focus parent.</value>
     public Efl.Ui.Focus.IObject FocusParent {
         get { return GetFocusParent(); }
     }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if a child has focus.</value>
-    public bool ChildFocus {
+    protected bool ChildFocus {
         get { return GetChildFocus(); }
         set { SetChildFocus(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.Focus.IObjectConcrete.efl_ui_focus_object_mixin_get();
+        return Efl.Ui.Focus.ObjectConcrete.efl_ui_focus_object_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -630,16 +657,6 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_get_static_delegate) });
             }
 
-            if (efl_ui_focus_object_focus_set_static_delegate == null)
-            {
-                efl_ui_focus_object_focus_set_static_delegate = new efl_ui_focus_object_focus_set_delegate(focus_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_set_static_delegate) });
-            }
-
             if (efl_ui_focus_object_focus_manager_get_static_delegate == null)
             {
                 efl_ui_focus_object_focus_manager_get_static_delegate = new efl_ui_focus_object_focus_manager_get_delegate(focus_manager_get);
@@ -660,26 +677,6 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_parent_get_static_delegate) });
             }
 
-            if (efl_ui_focus_object_child_focus_get_static_delegate == null)
-            {
-                efl_ui_focus_object_child_focus_get_static_delegate = new efl_ui_focus_object_child_focus_get_delegate(child_focus_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetChildFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_child_focus_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_child_focus_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_child_focus_set_static_delegate == null)
-            {
-                efl_ui_focus_object_child_focus_set_static_delegate = new efl_ui_focus_object_child_focus_set_delegate(child_focus_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetChildFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_child_focus_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_child_focus_set_static_delegate) });
-            }
-
             if (efl_ui_focus_object_setup_order_static_delegate == null)
             {
                 efl_ui_focus_object_setup_order_static_delegate = new efl_ui_focus_object_setup_order_delegate(setup_order);
@@ -690,33 +687,24 @@ sealed public  class IObjectConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_setup_order"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_setup_order_static_delegate) });
             }
 
-            if (efl_ui_focus_object_setup_order_non_recursive_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_focus_object_setup_order_non_recursive_static_delegate = new efl_ui_focus_object_setup_order_non_recursive_delegate(setup_order_non_recursive);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetupOrderNonRecursive") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_setup_order_non_recursive"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_setup_order_non_recursive_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_on_focus_update_static_delegate == null)
-            {
-                efl_ui_focus_object_on_focus_update_static_delegate = new efl_ui_focus_object_on_focus_update_delegate(on_focus_update);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "UpdateOnFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_on_focus_update"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_on_focus_update_static_delegate) });
-            }
-
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.Focus.IObjectConcrete.efl_ui_focus_object_mixin_get();
+            return Efl.Ui.Focus.ObjectConcrete.efl_ui_focus_object_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -735,7 +723,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetFocusGeometry();
@@ -746,8 +734,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -771,7 +758,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetFocus();
@@ -782,8 +769,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -801,33 +787,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_set_api_delegate> efl_ui_focus_object_focus_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_set_api_delegate>(Module, "efl_ui_focus_object_focus_set");
 
-        private static void focus_set(System.IntPtr obj, System.IntPtr pd, bool focus)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_focus_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IObject)ws.Target).SetFocus(focus);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_focus_object_focus_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), focus);
-            }
-        }
-
-        private static efl_ui_focus_object_focus_set_delegate efl_ui_focus_object_focus_set_static_delegate;
-
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Ui.Focus.IManager efl_ui_focus_object_focus_manager_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -842,7 +801,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
+                Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetFocusManager();
@@ -853,8 +812,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -878,7 +836,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IObject)ws.Target).GetFocusParent();
@@ -889,8 +847,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -908,34 +865,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_child_focus_get_api_delegate> efl_ui_focus_object_child_focus_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_child_focus_get_api_delegate>(Module, "efl_ui_focus_object_child_focus_get");
 
-        private static bool child_focus_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_child_focus_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).GetChildFocus();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_child_focus_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_child_focus_get_delegate efl_ui_focus_object_child_focus_get_static_delegate;
-
         
         private delegate void efl_ui_focus_object_child_focus_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool child_focus);
 
@@ -943,33 +872,6 @@ sealed public  class IObjectConcrete :
         public delegate void efl_ui_focus_object_child_focus_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool child_focus);
 
         public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_child_focus_set_api_delegate> efl_ui_focus_object_child_focus_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_child_focus_set_api_delegate>(Module, "efl_ui_focus_object_child_focus_set");
-
-        private static void child_focus_set(System.IntPtr obj, System.IntPtr pd, bool child_focus)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_child_focus_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IObject)ws.Target).SetChildFocus(child_focus);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_focus_object_child_focus_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), child_focus);
-            }
-        }
-
-        private static efl_ui_focus_object_child_focus_set_delegate efl_ui_focus_object_child_focus_set_static_delegate;
 
         
         private delegate void efl_ui_focus_object_setup_order_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -985,7 +887,7 @@ sealed public  class IObjectConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IObject)ws.Target).SetupOrder();
@@ -996,7 +898,7 @@ sealed public  class IObjectConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1014,33 +916,6 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_setup_order_non_recursive_api_delegate> efl_ui_focus_object_setup_order_non_recursive_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_setup_order_non_recursive_api_delegate>(Module, "efl_ui_focus_object_setup_order_non_recursive");
 
-        private static void setup_order_non_recursive(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_setup_order_non_recursive was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((IObject)ws.Target).SetupOrderNonRecursive();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_setup_order_non_recursive_delegate efl_ui_focus_object_setup_order_non_recursive_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_focus_object_on_focus_update_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -1049,54 +924,21 @@ sealed public  class IObjectConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_on_focus_update_api_delegate> efl_ui_focus_object_on_focus_update_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_on_focus_update_api_delegate>(Module, "efl_ui_focus_object_on_focus_update");
 
-        private static bool on_focus_update(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_on_focus_update was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((IObject)ws.Target).UpdateOnFocus();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_on_focus_update_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_on_focus_update_delegate efl_ui_focus_object_on_focus_update_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_Ui_FocusIObjectConcrete_ExtensionMethods {
-    
+public static class Efl_Ui_FocusObjectConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> Focus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IObject, T>magic = null) where T : Efl.Ui.Focus.IObject {
         return new Efl.BindableProperty<bool>("focus", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<bool> ChildFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IObject, T>magic = null) where T : Efl.Ui.Focus.IObject {
         return new Efl.BindableProperty<bool>("child_focus", fac);
     }

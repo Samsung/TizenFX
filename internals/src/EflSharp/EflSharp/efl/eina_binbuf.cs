@@ -6,6 +6,9 @@ using System.Runtime.InteropServices;
 namespace Eina
 {
 
+/// <summary>
+///   A Generic buffer designed to be a mutable string (SINCE EFL 1.23).
+/// </summary>
 public class Binbuf : IDisposable
 {
     [DllImport(efl.Libs.Eina)] public static extern IntPtr
@@ -39,9 +42,12 @@ public class Binbuf : IDisposable
     [DllImport(efl.Libs.Eina)] public static extern Eina.Slice
         eina_binbuf_slice_get(IntPtr buf);
 
+    /// <summary>Pointer to the native buffer.</summary>
     public IntPtr Handle {get;set;} = IntPtr.Zero;
+    ///<summary>Whether this wrapper owns the native buffer.</summary>
     public bool Own {get;set;}
 
+    /// <summary> Length of the buffer.</summary>
     public int Length
     {
         get { return (int)GetLength(); }
@@ -57,6 +63,9 @@ public class Binbuf : IDisposable
         }
     }
 
+    /// <summary>
+    ///   Create a new buffer.
+    /// </summary>
     public Binbuf()
     {
         InitNew();
@@ -76,6 +85,10 @@ public class Binbuf : IDisposable
         }
     }
 
+    /// <summary>
+    ///   Create a new buffer with elements.
+    /// </summary>
+    ///// <param name="bb">Elements to initialize the new buffer.</param>
     public Binbuf(Binbuf bb)
     {
         InitNew();
@@ -86,6 +99,11 @@ public class Binbuf : IDisposable
         }
     }
 
+    /// <summary>
+    ///   Create a new buffer.
+    /// </summary>
+    ///// <param name="handle">The native handle to be wrapped.</param>
+    ///// <param name="own">Whether this wrapper owns the native handle.</param>
     public Binbuf(IntPtr handle, bool own)
     {
         Handle = handle;
@@ -97,6 +115,9 @@ public class Binbuf : IDisposable
         Dispose(false);
     }
 
+    /// <summary>Disposes of this wrapper, releasing the native buffer if owned.</summary>
+    /// <param name="disposing">True if this was called from <see cref="Dispose()"/> public method. False if
+    /// called from the C# finalizer.</param>
     protected virtual void Dispose(bool disposing)
     {
         IntPtr h = Handle;
@@ -114,17 +135,23 @@ public class Binbuf : IDisposable
         }
     }
 
+    /// <summary>Releases the native resources held by this instance.</summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>Releases the native resources held by this instance.</summary>
     public void Free()
     {
         Dispose();
     }
 
+    /// <summary>
+    ///   Releases the native buffer.
+    /// </summary>
+    /// <returns>The native buffer.</returns>
     public IntPtr Release()
     {
         IntPtr h = Handle;
@@ -132,61 +159,127 @@ public class Binbuf : IDisposable
         return h;
     }
 
+    /// <summary>
+    ///   Resets the buffer.
+    /// </summary>
     public void Reset()
     {
         eina_binbuf_reset(Handle);
     }
 
+    /// <summary>
+    ///   Appends a string of inputed buffer's length to the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="str">The string buffer.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Append(byte[] str)
     {
         return 0 != eina_binbuf_append_length(Handle, str, (UIntPtr)(str.Length));
     }
 
+    /// <summary>
+    ///   Appends a string of exact length to the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="str">The string buffer.</param>
+    ///// <param name="length">The exact length to use.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Append(byte[] str, uint length)
     {
         return 0 != eina_binbuf_append_length(Handle, str, (UIntPtr)length);
     }
 
+    /// <summary>
+    ///   Appends a Binbuf to the buffer.
+    /// </summary>
+    ///// <param name="bb">The buffer to be appended.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Append(Binbuf bb)
     {
         return 0 != eina_binbuf_append_buffer(Handle, bb.Handle);
     }
 
+    /// <summary>
+    ///  Appends a character to the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="c">The char to appended.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Append(byte c)
     {
         return 0 != eina_binbuf_append_char(Handle, c);
     }
 
+    /// <summary>
+    ///  Appends a slice to the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="slice">The slice to appended.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Append(Eina.Slice slice)
     {
         return 0 != eina_binbuf_append_slice(Handle, slice);
     }
 
+    /// <summary>
+    ///   Inserts a string of inputed buffer's length into the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="str">The string buffer.</param>
+    ///// <param name="pos">The position to insert the string.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Insert(byte[] str, uint pos)
     {
         return 0 != eina_binbuf_insert_length(Handle, str, (UIntPtr)(str.Length), (UIntPtr)pos);
     }
 
+    /// <summary>
+    ///   Inserts a string of exact length into the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="str">The string buffer.</param>
+    ///// <param name="length">The exact length to use.</param>
+    ///// <param name="pos">The position to insert the string.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Insert(byte[] str, uint length, uint pos)
     {
         return 0 != eina_binbuf_insert_length(Handle, str, (UIntPtr)length, (UIntPtr)pos);
     }
 
+    /// <summary>
+    ///   Inserts a character into the buffer, reallocating as  necessary.
+    /// </summary>
+    ///// <param name="c">The char to appended.</param>
+    ///// <param name="pos">The position to insert the string.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Insert(byte c, uint pos)
     {
         return 0 != eina_binbuf_insert_char(Handle, c, (UIntPtr)pos);
     }
 
+    /// <summary>
+    ///    Inserts a slice into the buffer, reallocating as necessary.
+    /// </summary>
+    ///// <param name="slice">The slice to appended.</param>
+    ///// <param name="pos">The position to insert the string.</param>
+    /// <returns>true on success, false if data could not be appended.</returns>
     public bool Insert(Eina.Slice slice, uint pos)
     {
         return 0 != eina_binbuf_insert_slice(Handle, slice, (UIntPtr)pos);
     }
 
+    /// <summary>
+    ///    Removes a slice of the buffer.
+    /// </summary>
+    ///// <param name="start">The initial (inclusive) slice position to start
+    ///// removing, in bytes.</param>
+    ///// <param name="end">The final (non-inclusive) slice position to finish
+    ///// removing, in bytes..</param>
+    /// <returns>true on success, false on failure.</returns>
     public bool Remove(uint start, uint end)
     {
         return 0 != eina_binbuf_remove(Handle, (UIntPtr)start, (UIntPtr)end);
     }
 
+    /// <summary>
+    ///   Retrieves a string to the contents of the buffer.
+    /// </summary>
+    /// <returns>The string that is contained in buffer.</returns>
     public byte[] GetBytes()
     {
         var ptr = eina_binbuf_string_get(Handle);
@@ -201,21 +294,34 @@ public class Binbuf : IDisposable
         return mArray;
     }
 
+    /// <summary>
+    ///   Retrieves a string to the contents of the buffer.
+    /// </summary>
+    /// <returns>The string that is contained in buffer.</returns>
     public IntPtr GetStringNative()
     {
         return eina_binbuf_string_get(Handle);
     }
 
+    /// <summary>
+    ///   Frees the buffer.
+    /// </summary>
     public void FreeString()
     {
         eina_binbuf_string_free(Handle);
     }
 
+    /// <summary>
+    ///   Retrieves the length of the buffer's contents.
+    /// </summary>
     public UIntPtr GetLength()
     {
         return eina_binbuf_length_get(Handle);
     }
 
+    /// <summary>
+    ///    Gets a slice of the buffer's contents.
+    /// </summary>
     Eina.Slice GetSlice()
     {
         return eina_binbuf_slice_get(Handle);

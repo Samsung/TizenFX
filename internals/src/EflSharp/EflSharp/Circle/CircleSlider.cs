@@ -9,68 +9,6 @@ namespace Efl
         namespace Wearable
         {
             /// <summary>
-            /// CircleSliderBar is a part used to set the color of the bar.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            public class CircleSliderBar : ICircleColor
-            {
-                IntPtr _handle;
-                public CircleSliderBar(IntPtr CircleHandle) { _handle = CircleHandle; }
-
-                /// <summary>
-                /// Sets the color of the bar on the circle slider.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void SetColor(int r, int g, int b, int a)
-                {
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_color_set(_handle, r, g, b, a);
-                }
-
-                /// <summary>
-                /// Gets the color of the bar on the circle slider.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void GetColor(out int r, out int g, out int b, out int a)
-                {
-                    r = g = b = a = -1;
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_color_get(_handle, out r, out g, out b, out a);
-                }
-            }
-
-            /// <summary>
-            /// CircleSliderBarBackground is a part used to set the background color of the bar.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            public class CircleSliderBarBackground : ICircleColor
-            {
-                IntPtr _handle;
-                public CircleSliderBarBackground(IntPtr CircleHandle) { _handle = CircleHandle; }
-
-                /// <summary>
-                /// Sets the background color of the bar on the circle slider.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void SetColor(int r, int g, int b, int a)
-                {
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_item_color_set(_handle, "bg", r, g, b, a);
-                }
-
-                /// <summary>
-                /// Gets the background color of the bar on the circle slider.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void GetColor(out int r, out int g, out int b, out int a)
-                {
-                    r = g = b = a = -1;
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_item_color_get(_handle, "bg", out r, out g, out b, out a);
-                }
-            }
-
-            /// <summary>
             /// CircleSlider is a circular designed widget used to select a value in a range by the rotary event.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
@@ -81,13 +19,13 @@ namespace Efl
                 /// Get the handle for the circle widget.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public virtual IntPtr CircleHandle => _handle;
+                public IntPtr CircleHandle => _handle;
 
                 /// <summary>
                 /// Changed will be triggered when the circle slider value changes.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler ChangedEvt;
+                public event EventHandler ChangedEvent;
                 const string ChangedEventName = "value,changed";
                 private Interop.Evas.SmartCallback smartChanged;
 
@@ -95,29 +33,49 @@ namespace Efl
                 /// Sets or gets the color of the bar.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleSliderBar Bar;
+                public Efl.Gfx.Color32 BarColor
+                {
+                    get
+                    {
+                        int r, g, b, a;
+                        Interop.Eext.eext_circle_object_color_get(_handle, out r, out g, out b, out a);
+                        return new Efl.Gfx.Color32((byte)r, (byte)g, (byte)b, (byte)a);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_circle_object_color_set(_handle, value.R, value.G, value.B, value.A);
+                    }
+                }
 
                 /// <summary>
                 /// Sets or gets the background color of the bar.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleSliderBarBackground BarBackground;
+                public Efl.Gfx.Color32 BackgroundColor
+                {
+                    get
+                    {
+                        int r, g, b, a;
+                        Interop.Eext.eext_circle_object_item_color_get(_handle, "bg", out r, out g, out b, out a);
+                        return new Efl.Gfx.Color32((byte)r, (byte)g, (byte)b, (byte)a);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_circle_object_item_color_set(_handle, "bg", value.R, value.G, value.B, value.A);
+                    }
+                }
 
                 /// <summary>
                 /// Creates and initializes a new instance of the CircleSlider class.
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new CircleSlider will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleSlider(Efl.Ui.Widget parent) : base(parent)
+                public CircleSlider(Efl.Object parent) : base(parent)
                 {
                     _handle = Interop.Eext.eext_circle_object_slider_add(parent.NativeHandle, IntPtr.Zero);
-
-                    Bar = new Efl.Ui.Wearable.CircleSliderBar(_handle);
-                    BarBackground = new Efl.Ui.Wearable.CircleSliderBarBackground(_handle);
-
                     smartChanged = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
-                        ChangedEvt?.Invoke(this, EventArgs.Empty);
+                        ChangedEvent?.Invoke(this, EventArgs.Empty);
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(_handle, ChangedEventName, smartChanged, IntPtr.Zero);
@@ -150,31 +108,15 @@ namespace Efl
                     }
                 }
 
-
-                /// <summary>
-                /// Sets or gets the disabled state of the circle slider.
+                /// <summary>Enables or disables this widget.
+                /// Disabling a widget will disable all its children recursively, but only this widget will be marked as disabled internally.
                 /// </summary>
+                /// <param name="disabled"><c>true</c> if the widget is disabled.<br/>The default value is <c>false</c>.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public bool Disable
+                public override void SetDisabled(bool disabled)
                 {
-                    get => !Enable;
-                    set => Enable = !value;
-                }
-
-                /// <summary>
-                /// Sets or gets the enabled state of the circle slider.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public bool Enable
-                {
-                    get
-                    {
-                        return !Interop.Eext.eext_circle_object_disabled_get(CircleHandle);
-                    }
-                    set
-                    {
-                        Interop.Eext.eext_circle_object_disabled_set(CircleHandle, !value);
-                    }
+                    base.SetDisabled(disabled);
+                    Interop.Eext.eext_circle_object_disabled_set(CircleHandle, disabled);
                 }
 
                 /// <summary>

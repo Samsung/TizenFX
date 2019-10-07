@@ -34,6 +34,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_animation_group_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="AnimationGroup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationGroup(Efl.Object parent= null
@@ -71,37 +72,46 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
     {
     }
 
+
     /// <summary>Add the given animation to the animation group.</summary>
     /// <param name="animation">The animation which needs to be added to the animation group</param>
-    virtual public void AddAnimation(Efl.Canvas.Animation animation) {
-                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
+    public virtual void AddAnimation(Efl.Canvas.Animation animation) {
+        Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Delete the given animation from the animation group.</summary>
     /// <param name="animation">The animation which needs to be deleted from the animation group</param>
-    virtual public void DelAnimation(Efl.Canvas.Animation animation) {
-                                 Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
+    public virtual void DelAnimation(Efl.Canvas.Animation animation) {
+        Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animation_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),animation);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Get the animations of the animation group.</summary>
     /// <returns>The animations of the animation group</returns>
-    virtual public Eina.List<Efl.Canvas.Animation> GetAnimations() {
-         var _ret_var = Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animations_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.List<Efl.Canvas.Animation> GetAnimations() {
+        var _ret_var = Efl.Canvas.AnimationGroup.NativeMethods.efl_animation_group_animations_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Canvas.Animation>(_ret_var, false, false);
- }
+
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationGroup.efl_canvas_animation_group_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Animation.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -136,9 +146,20 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_group_animations_get"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_group_animations_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -162,7 +183,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((AnimationGroup)ws.Target).AddAnimation(animation);
@@ -173,7 +194,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -197,7 +218,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((AnimationGroup)ws.Target).DelAnimation(animation);
@@ -208,7 +229,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -232,7 +253,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Canvas.Animation> _ret_var = default(Eina.List<Efl.Canvas.Animation>);
+                Eina.List<Efl.Canvas.Animation> _ret_var = default(Eina.List<Efl.Canvas.Animation>);
                 try
                 {
                     _ret_var = ((AnimationGroup)ws.Target).GetAnimations();
@@ -243,8 +264,7 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {
@@ -259,7 +279,6 @@ public abstract class AnimationGroup : Efl.Canvas.Animation
 }
 }
 }
-
 }
 
 #if EFL_BETA

@@ -29,11 +29,8 @@ public struct Size
     {
         return value.payload;
     }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -62,41 +59,39 @@ Ycbcr420nv12601Pl = 6,
 Ycbcr420tm12601Pl = 7,
 /// <summary>AY 8bits Alpha and 8bits Grey, accessed 1 16bits at a time.</summary>
 Agry88 = 8,
-/// <summary>OpenGL ETC1 encoding of RGB texture (4 bit per pixel)
-/// (Since EFL 1.10.)</summary>
+/// <summary>OpenGL ETC1 encoding of RGB texture (4 bit per pixel)</summary>
+/// <since_tizen> 6 </since_tizen>
 Etc1 = 9,
-/// <summary>OpenGL GL_COMPRESSED_RGB8_ETC2 texture compression format (4 bit per pixel)
-/// (Since EFL 1.10.)</summary>
+/// <summary>OpenGL GL_COMPRESSED_RGB8_ETC2 texture compression format (4 bit per pixel)</summary>
+/// <since_tizen> 6 </since_tizen>
 Rgb8Etc2 = 10,
-/// <summary>OpenGL GL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha (8 bit per pixel)
-/// (Since EFL 1.10.)</summary>
+/// <summary>OpenGL GL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha (8 bit per pixel)</summary>
+/// <since_tizen> 6 </since_tizen>
 Rgba8Etc2Eac = 11,
-/// <summary>ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha
-/// (Since EFL 1.11.)</summary>
+/// <summary>ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha</summary>
+/// <since_tizen> 6 </since_tizen>
 Etc1Alpha = 12,
-/// <summary>OpenGL COMPRESSED_RGB_S3TC_DXT1_EXT format with RGB only.
-/// (Since EFL 1.11.)</summary>
+/// <summary>OpenGL COMPRESSED_RGB_S3TC_DXT1_EXT format with RGB only.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbS3tcDxt1 = 13,
-/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT1_EXT format with RGBA punchthrough.
-/// (Since EFL 1.11.)</summary>
+/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT1_EXT format with RGBA punchthrough.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbaS3tcDxt1 = 14,
-/// <summary>DirectDraw DXT2 format with premultiplied RGBA. Not supported by OpenGL itself.
-/// (Since EFL 1.11.)</summary>
+/// <summary>DirectDraw DXT2 format with premultiplied RGBA. Not supported by OpenGL itself.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbaS3tcDxt2 = 15,
-/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT3_EXT format with RGBA.
-/// (Since EFL 1.11.)</summary>
+/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT3_EXT format with RGBA.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbaS3tcDxt3 = 16,
-/// <summary>DirectDraw DXT4 format with premultiplied RGBA. Not supported by OpenGL itself.
-/// (Since EFL 1.11.)</summary>
+/// <summary>DirectDraw DXT4 format with premultiplied RGBA. Not supported by OpenGL itself.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbaS3tcDxt4 = 17,
-/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT5_EXT format with RGBA.
-/// (Since EFL 1.11.)</summary>
+/// <summary>OpenGL COMPRESSED_RGBA_S3TC_DXT5_EXT format with RGBA.</summary>
+/// <since_tizen> 6 </since_tizen>
 RgbaS3tcDxt5 = 18,
 Palette = 19,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -104,6 +99,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>Graphics render operation mode</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum RenderOp
 {
@@ -114,17 +110,15 @@ Copy = 1,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 2,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>These values determine how the points are interpreted in a stream of points.
-/// (Since EFL 1.14)</summary>
+/// <summary>These values determine how the points are interpreted in a stream of points.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum PathCommandType
 {
@@ -141,17 +135,15 @@ Close = 4,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 5,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>These values determine how the end of opened sub-paths are rendered in a stroke. <see cref="Efl.Gfx.IShape.SetStrokeCap"/>
-/// (Since EFL 1.14)</summary>
+/// <summary>These values determine how the end of opened sub-paths are rendered in a stroke. <see cref="Efl.Gfx.IShape.SetStrokeCap"/></summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Cap
 {
@@ -164,17 +156,15 @@ Square = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>These values determine how two joining lines are rendered in a stroker. <see cref="Efl.Gfx.IShape.SetStrokeJoin"/>
-/// (Since EFL 1.14)</summary>
+/// <summary>These values determine how two joining lines are rendered in a stroker. <see cref="Efl.Gfx.IShape.SetStrokeJoin"/></summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Join
 {
@@ -187,17 +177,15 @@ Bevel = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Specifies how the area outside the gradient area should be filled. <see cref="Efl.Gfx.IGradient.SetSpread"/>
-/// (Since EFL 1.14)</summary>
+/// <summary>Specifies how the area outside the gradient area should be filled. <see cref="Efl.Gfx.IGradient.SetSpread"/></summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum GradientSpread
 {
@@ -210,17 +198,15 @@ Repeat = 2,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 3,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Type defining how an image content get filled.
-/// (Since EFL 1.14)</summary>
+/// <summary>Type defining how an image content get filled.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum FillRule
 {
@@ -229,9 +215,25 @@ Winding = 0,
 /// <summary>Draw a horizontal line from the point to a location outside the shape, and count the number of intersections. If the number of intersections is an odd number, the point is inside the shape.</summary>
 OddEven = 1,
 }
-
+}
 }
 
+namespace Efl {
+
+namespace Gfx {
+
+[Efl.Eo.BindingEntity]
+public enum VgCompositeMethod
+{
+None = 0,
+MatteAlpha = 1,
+MatteAlphaInverse = 2,
+MaskAdd = 3,
+MaskSubstract = 4,
+MaskIntersect = 5,
+MaskDifference = 6,
+}
+}
 }
 
 namespace Efl {
@@ -240,7 +242,7 @@ namespace Gfx {
 
 /// <summary>How an image&apos;s center region (the complement to the border region) should be rendered by EFL</summary>
 [Efl.Eo.BindingEntity]
-public enum BorderFillMode
+public enum CenterFillMode
 {
 /// <summary>Image&apos;s center region is <c>not</c> to be rendered</summary>
 None = 0,
@@ -249,17 +251,15 @@ Default = 1,
 /// <summary>Image&apos;s center region is to be made solid, even if it has transparency on it</summary>
 Solid = 2,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>What property got changed for this object
-/// (Since EFL 1.18)</summary>
+/// <summary>What property got changed for this object</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum ChangeFlag
 {
@@ -274,9 +274,7 @@ Fill = 4,
 /// <summary>All properties got changed.</summary>
 All = 65535,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -285,6 +283,7 @@ namespace Gfx {
 
 /// <summary>Aspect types/policies for scaling size hints.
 /// See also <see cref="Efl.Gfx.IHint.GetHintAspect"/>.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum HintAspect
 {
@@ -299,9 +298,7 @@ Vertical = 3,
 /// <summary>Use all horizontal and vertical container spaces to place an object (never growing it out of those bounds), using the given aspect.</summary>
 Both = 4,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -319,17 +316,15 @@ Outline = 1,
 /// <summary>Shadow color</summary>
 Shadow = 2,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Type describing dash. <see cref="Efl.Gfx.IShape.GetStrokeDash"/>
-/// (Since EFL 1.14)</summary>
+/// <summary>Type describing dash. <see cref="Efl.Gfx.IShape.GetStrokeDash"/></summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Dash
@@ -339,8 +334,8 @@ public struct Dash
     /// <summary>Distance between two dashes.</summary>
     public double Gap;
     /// <summary>Constructor for Dash.</summary>
-    /// <param name="Length">Dash drawing length.</param>;
-    /// <param name="Gap">Distance between two dashes.</param>;
+    /// <param name="Length">Dash drawing length.</param>
+    /// <param name="Gap">Distance between two dashes.</param>
     public Dash(
         double Length = default(double),
         double Gap = default(double)    )
@@ -384,23 +379,19 @@ public struct Dash
             _external_struct.Gap = _internal_struct.Gap;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Type defining gradient stops. Describes the location and color of a transition point in a gradient.
-/// (Since EFL 1.14)</summary>
+/// <summary>Type defining gradient stops. Describes the location and color of a transition point in a gradient.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct GradientStop
@@ -416,11 +407,11 @@ public struct GradientStop
     /// <summary>The component A color of the gradient stop</summary>
     public int A;
     /// <summary>Constructor for GradientStop.</summary>
-    /// <param name="Offset">The location of the gradient stop within the gradient vector</param>;
-    /// <param name="R">The component R color of the gradient stop</param>;
-    /// <param name="G">The component G color of the gradient stop</param>;
-    /// <param name="B">The component B color of the gradient stop</param>;
-    /// <param name="A">The component A color of the gradient stop</param>;
+    /// <param name="Offset">The location of the gradient stop within the gradient vector</param>
+    /// <param name="R">The component R color of the gradient stop</param>
+    /// <param name="G">The component G color of the gradient stop</param>
+    /// <param name="B">The component B color of the gradient stop</param>
+    /// <param name="A">The component A color of the gradient stop</param>
     public GradientStop(
         double Offset = default(double),
         int R = default(int),
@@ -482,15 +473,11 @@ public struct GradientStop
             _external_struct.A = _internal_struct.A;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -511,10 +498,10 @@ public struct StrokeColor
     /// <summary>The component A color of the stroke</summary>
     public int A;
     /// <summary>Constructor for StrokeColor.</summary>
-    /// <param name="R">The component R color of the stroke</param>;
-    /// <param name="G">The component G color of the stroke</param>;
-    /// <param name="B">The component B color of the stroke</param>;
-    /// <param name="A">The component A color of the stroke</param>;
+    /// <param name="R">The component R color of the stroke</param>
+    /// <param name="G">The component G color of the stroke</param>
+    /// <param name="B">The component B color of the stroke</param>
+    /// <param name="A">The component A color of the stroke</param>
     public StrokeColor(
         int R = default(int),
         int G = default(int),
@@ -570,23 +557,19 @@ public struct StrokeColor
             _external_struct.A = _internal_struct.A;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Type defining stroke information. Describes the properties to define the path stroke.
-/// (Since EFL 1.14)</summary>
+/// <summary>Type defining stroke information. Describes the properties to define the path stroke.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Stroke
@@ -614,15 +597,15 @@ public struct Stroke
     /// <summary>Stroke miterlimit</summary>
     public double Miterlimit;
     /// <summary>Constructor for Stroke.</summary>
-    /// <param name="Scale">Stroke scale</param>;
-    /// <param name="Width">Stroke width</param>;
-    /// <param name="Centered">Stroke centered</param>;
-    /// <param name="Color">Stroke color</param>;
-    /// <param name="Dash">Stroke dash</param>;
-    /// <param name="Dash_length">Stroke dash length</param>;
-    /// <param name="Cap">Stroke cap</param>;
-    /// <param name="Join">Stroke join</param>;
-    /// <param name="Miterlimit">Stroke miterlimit</param>;
+    /// <param name="Scale">Stroke scale</param>
+    /// <param name="Width">Stroke width</param>
+    /// <param name="Centered">Stroke centered</param>
+    /// <param name="Color">Stroke color</param>
+    /// <param name="Dash">Stroke dash</param>
+    /// <param name="Dash_length">Stroke dash length</param>
+    /// <param name="Cap">Stroke cap</param>
+    /// <param name="Join">Stroke join</param>
+    /// <param name="Miterlimit">Stroke miterlimit</param>
     public Stroke(
         double Scale = default(double),
         double Width = default(double),
@@ -708,15 +691,11 @@ public struct Stroke
             _external_struct.Miterlimit = _internal_struct.Miterlimit;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -732,7 +711,7 @@ public struct ShapePublic
     /// <value>Type defining stroke information. Describes the properties to define the path stroke.</value>
     public Efl.Gfx.Stroke Stroke;
     /// <summary>Constructor for ShapePublic.</summary>
-    /// <param name="Stroke">Internal representation as stroke</param>;
+    /// <param name="Stroke">Internal representation as stroke</param>
     public ShapePublic(
         Efl.Gfx.Stroke Stroke = default(Efl.Gfx.Stroke)    )
     {
@@ -770,15 +749,11 @@ public struct ShapePublic
             _external_struct.Stroke = _internal_struct.Stroke;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -795,7 +770,7 @@ public struct RenderPost
     /// <summary>A list of rectangles that were updated in the canvas.</summary>
     public Eina.List<Eina.Rect> Updated_area;
     /// <summary>Constructor for RenderPost.</summary>
-    /// <param name="Updated_area">A list of rectangles that were updated in the canvas.</param>;
+    /// <param name="Updated_area">A list of rectangles that were updated in the canvas.</param>
     public RenderPost(
         Eina.List<Eina.Rect> Updated_area = default(Eina.List<Eina.Rect>)    )
     {
@@ -833,16 +808,11 @@ public struct RenderPost
             _external_struct.Updated_area = new Eina.List<Eina.Rect>(_internal_struct.Updated_area, false, false);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
 

@@ -65,6 +65,8 @@ internal class ModelHelper
 /// var model = new Efl.GenericModel&lt;PersonModel&gt;(modelData, parent);
 /// PersonModel p = await model.GetAtAsync(0);
 /// </code>
+///
+/// (Since EFL 1.23)
 /// </summary>
 [Efl.Eo.BindingEntity]
 public class UserModel<T> : Efl.MonoModelInternal, IDisposable

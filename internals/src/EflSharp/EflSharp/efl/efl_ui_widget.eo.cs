@@ -10,88 +10,11 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>
+/// <summary>Base class for all Efl.Ui.* widgets
+/// The class here is designed in a way that widgets can be expressed as a tree. The parent relation in the tree can be fetched via <see cref="Efl.Ui.Widget.WidgetParent"/> . The parent relation should never be modified directly, instead you should use the APIs of the widgets (Typically <see cref="Efl.IPackLinear"/>, <see cref="Efl.IPackTable"/> or <see cref="Efl.IContent"/>).
 /// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="obj">Canvas object</param>
-/// <param name="region">Showed region</param>
-[Efl.Eo.BindingEntity]
-public delegate void ScrollableOnShowRegion(Efl.Canvas.Object obj, Eina.Rect region);
-public delegate void ScrollableOnShowRegionInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Rect.NativeStruct region);
-internal class ScrollableOnShowRegionWrapper : IDisposable
-{
-
-    private ScrollableOnShowRegionInternal _cb;
-    private IntPtr _cb_data;
-    private EinaFreeCb _cb_free_cb;
-
-    internal ScrollableOnShowRegionWrapper (ScrollableOnShowRegionInternal _cb, IntPtr _cb_data, EinaFreeCb _cb_free_cb)
-    {
-        this._cb = _cb;
-        this._cb_data = _cb_data;
-        this._cb_free_cb = _cb_free_cb;
-    }
-
-    ~ScrollableOnShowRegionWrapper()
-    {
-        Dispose(false);
-    }
-
-    protected virtual void Dispose(bool disposing)
-    {
-        if (this._cb_free_cb != null)
-        {
-            if (disposing)
-            {
-                this._cb_free_cb(this._cb_data);
-            }
-            else
-            {
-                Efl.Eo.Globals.ThreadSafeFreeCbExec(this._cb_free_cb, this._cb_data);
-            }
-            this._cb_free_cb = null;
-            this._cb_data = IntPtr.Zero;
-            this._cb = null;
-        }
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    internal void ManagedCb(Efl.Canvas.Object obj,Eina.Rect region)
-    {
-                Eina.Rect.NativeStruct _in_region = region;
-                                        _cb(_cb_data, obj, _in_region);
-        Eina.Error.RaiseIfUnhandledException();
-                                            }
-
-        internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Rect.NativeStruct region)
-    {
-        GCHandle handle = GCHandle.FromIntPtr(cb_data);
-        ScrollableOnShowRegion cb = (ScrollableOnShowRegion)handle.Target;
-                Eina.Rect _in_region = region;
-                                            
-        try {
-            cb(obj, _in_region);
-        } catch (Exception e) {
-            Eina.Log.Warning($"Callback error: {e.ToString()}");
-            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-        }
-                                            }
-}
-}
-
-}
-
-namespace Efl {
-
-namespace Ui {
-
-/// <summary>Efl UI widget abstract class
-/// (Since EFL 1.22)</summary>
+/// Properties implemented here should be treated with extra care, some are defined for the sub-tree, others are defined for the widget itself, additional information for this can be fetched from the documentation in the implements section.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Ui.Widget.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, Efl.Access.IComponent, Efl.Access.IObject, Efl.Access.Widget.IAction, Efl.Ui.IDnd, Efl.Ui.II18n, Efl.Ui.IL10n, Efl.Ui.IPropertyBind, Efl.Ui.ISelection, Efl.Ui.IView, Efl.Ui.Focus.IObject
@@ -114,9 +37,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_widget_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Widget"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Widget(Efl.Object parent
             , System.String style = null) : base(efl_ui_widget_class_get(), parent)
     {
@@ -157,7 +81,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     {
     }
 
-    public event EventHandler AtspiHighlightedEvt
+    public event EventHandler AtspiHighlightedEvent
     {
         add
         {
@@ -195,8 +119,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event AtspiHighlightedEvt.</summary>
-    public void OnAtspiHighlightedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AtspiHighlightedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAtspiHighlightedEvent(EventArgs e)
     {
         var key = "_EFL_UI_WIDGET_EVENT_ATSPI_HIGHLIGHTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -208,7 +134,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    public event EventHandler AtspiUnhighlightedEvt
+
+    public event EventHandler AtspiUnhighlightedEvent
     {
         add
         {
@@ -246,8 +173,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event AtspiUnhighlightedEvt.</summary>
-    public void OnAtspiUnhighlightedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AtspiUnhighlightedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAtspiUnhighlightedEvent(EventArgs e)
     {
         var key = "_EFL_UI_WIDGET_EVENT_ATSPI_UNHIGHLIGHTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -259,9 +188,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when widget language changed
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler LanguageChangedEvt
+
+    /// <summary>Called when widget language changed</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler LanguageChangedEvent
     {
         add
         {
@@ -299,8 +229,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event LanguageChangedEvt.</summary>
-    public void OnLanguageChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event LanguageChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnLanguageChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_WIDGET_EVENT_LANGUAGE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -312,9 +244,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Called when accessibility changed
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler AccessChangedEvt
+
+    /// <summary>Called when accessibility changed</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler AccessChangedEvent
     {
         add
         {
@@ -352,8 +285,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event AccessChangedEvt.</summary>
-    public void OnAccessChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AccessChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAccessChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_WIDGET_EVENT_ACCESS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -365,9 +300,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
     /// <summary>Called when property has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectPropertyChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectPropertyChangedEvt_Args> PropertyChangedEvt
+    /// <value><see cref="Efl.Access.ObjectPropertyChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectPropertyChangedEventArgs> PropertyChangedEvent
     {
         add
         {
@@ -378,7 +315,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectPropertyChangedEvt_Args args = new Efl.Access.IObjectPropertyChangedEvt_Args();
+                        Efl.Access.ObjectPropertyChangedEventArgs args = new Efl.Access.ObjectPropertyChangedEventArgs();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -406,8 +343,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event PropertyChangedEvt.</summary>
-    public void OnPropertyChangedEvt(Efl.Access.IObjectPropertyChangedEvt_Args e)
+
+    /// <summary>Method to raise event PropertyChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertyChangedEvent(Efl.Access.ObjectPropertyChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_PROPERTY_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -427,9 +366,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Eina.MemoryNative.Free(info);
         }
     }
+
     /// <summary>Called when children have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectChildrenChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectChildrenChangedEvt_Args> ChildrenChangedEvt
+    /// <value><see cref="Efl.Access.ObjectChildrenChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectChildrenChangedEventArgs> ChildrenChangedEvent
     {
         add
         {
@@ -440,7 +380,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectChildrenChangedEvt_Args args = new Efl.Access.IObjectChildrenChangedEvt_Args();
+                        Efl.Access.ObjectChildrenChangedEventArgs args = new Efl.Access.ObjectChildrenChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -468,8 +408,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event ChildrenChangedEvt.</summary>
-    public void OnChildrenChangedEvt(Efl.Access.IObjectChildrenChangedEvt_Args e)
+
+    /// <summary>Method to raise event ChildrenChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildrenChangedEvent(Efl.Access.ObjectChildrenChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_CHILDREN_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -490,9 +432,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when state has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectStateChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectStateChangedEvt_Args> StateChangedEvt
+    /// <value><see cref="Efl.Access.ObjectStateChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectStateChangedEventArgs> StateChangedEvent
     {
         add
         {
@@ -503,7 +446,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectStateChangedEvt_Args args = new Efl.Access.IObjectStateChangedEvt_Args();
+                        Efl.Access.ObjectStateChangedEventArgs args = new Efl.Access.ObjectStateChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -531,8 +474,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event StateChangedEvt.</summary>
-    public void OnStateChangedEvt(Efl.Access.IObjectStateChangedEvt_Args e)
+
+    /// <summary>Method to raise event StateChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnStateChangedEvent(Efl.Access.ObjectStateChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_STATE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -553,9 +498,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when boundaries have changed</summary>
-    /// <value><see cref="Efl.Access.IObjectBoundsChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectBoundsChangedEvt_Args> BoundsChangedEvt
+    /// <value><see cref="Efl.Access.ObjectBoundsChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectBoundsChangedEventArgs> BoundsChangedEvent
     {
         add
         {
@@ -566,7 +512,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectBoundsChangedEvt_Args args = new Efl.Access.IObjectBoundsChangedEvt_Args();
+                        Efl.Access.ObjectBoundsChangedEventArgs args = new Efl.Access.ObjectBoundsChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -594,8 +540,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event BoundsChangedEvt.</summary>
-    public void OnBoundsChangedEvt(Efl.Access.IObjectBoundsChangedEvt_Args e)
+
+    /// <summary>Method to raise event BoundsChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnBoundsChangedEvent(Efl.Access.ObjectBoundsChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_BOUNDS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -616,8 +564,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Called when visibility has changed</summary>
-    public event EventHandler VisibleDataChangedEvt
+    public event EventHandler VisibleDataChangedEvent
     {
         add
         {
@@ -655,8 +604,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event VisibleDataChangedEvt.</summary>
-    public void OnVisibleDataChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event VisibleDataChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnVisibleDataChangedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_VISIBLE_DATA_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -668,9 +619,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when active state of descendant has changed</summary>
-    /// <value><see cref="Efl.Access.IObjectActiveDescendantChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Access.IObjectActiveDescendantChangedEvt_Args> ActiveDescendantChangedEvt
+    /// <value><see cref="Efl.Access.ObjectActiveDescendantChangedEventArgs"/></value>
+    public event EventHandler<Efl.Access.ObjectActiveDescendantChangedEventArgs> ActiveDescendantChangedEvent
     {
         add
         {
@@ -681,7 +633,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Access.IObjectActiveDescendantChangedEvt_Args args = new Efl.Access.IObjectActiveDescendantChangedEvt_Args();
+                        Efl.Access.ObjectActiveDescendantChangedEventArgs args = new Efl.Access.ObjectActiveDescendantChangedEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -709,8 +661,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event ActiveDescendantChangedEvt.</summary>
-    public void OnActiveDescendantChangedEvt(Efl.Access.IObjectActiveDescendantChangedEvt_Args e)
+
+    /// <summary>Method to raise event ActiveDescendantChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnActiveDescendantChangedEvent(Efl.Access.ObjectActiveDescendantChangedEventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ACTIVE_DESCENDANT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -723,8 +677,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Called when item is added</summary>
-    public event EventHandler AddedEvt
+    public event EventHandler AddedEvent
     {
         add
         {
@@ -762,8 +717,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event AddedEvt.</summary>
-    public void OnAddedEvt(EventArgs e)
+
+    /// <summary>Method to raise event AddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnAddedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -775,8 +732,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when item is removed</summary>
-    public event EventHandler RemovedEvt
+    public event EventHandler RemovedEvent
     {
         add
         {
@@ -814,8 +772,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event RemovedEvt.</summary>
-    public void OnRemovedEvt(EventArgs e)
+
+    /// <summary>Method to raise event RemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRemovedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -827,7 +787,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    public event EventHandler MoveOutedEvt
+
+    public event EventHandler MoveOutedEvent
     {
         add
         {
@@ -865,8 +826,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event MoveOutedEvt.</summary>
-    public void OnMoveOutedEvt(EventArgs e)
+
+    /// <summary>Method to raise event MoveOutedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMoveOutedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_OBJECT_EVENT_MOVE_OUTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -878,7 +841,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    public event EventHandler ReadingStateChangedEvt
+
+    public event EventHandler ReadingStateChangedEvent
     {
         add
         {
@@ -916,8 +880,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event ReadingStateChangedEvt.</summary>
-    public void OnReadingStateChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event ReadingStateChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnReadingStateChangedEvent(EventArgs e)
     {
         var key = "_EFL_ACCESS_WIDGET_ACTION_EVENT_READING_STATE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -929,9 +895,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>accept drag data</summary>
-    /// <value><see cref="Efl.Ui.IDndDragAcceptEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IDndDragAcceptEvt_Args> DragAcceptEvt
+    /// <value><see cref="Efl.Ui.DndDragAcceptEventArgs"/></value>
+    public event EventHandler<Efl.Ui.DndDragAcceptEventArgs> DragAcceptEvent
     {
         add
         {
@@ -942,7 +909,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IDndDragAcceptEvt_Args args = new Efl.Ui.IDndDragAcceptEvt_Args();
+                        Efl.Ui.DndDragAcceptEventArgs args = new Efl.Ui.DndDragAcceptEventArgs();
                         args.arg = (bool)Marshal.PtrToStructure(evt.Info, typeof(bool));
                         try
                         {
@@ -970,8 +937,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragAcceptEvt.</summary>
-    public void OnDragAcceptEvt(Efl.Ui.IDndDragAcceptEvt_Args e)
+
+    /// <summary>Method to raise event DragAcceptEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragAcceptEvent(Efl.Ui.DndDragAcceptEventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_ACCEPT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -991,8 +960,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>drag is done (mouse up)</summary>
-    public event EventHandler DragDoneEvt
+    public event EventHandler DragDoneEvent
     {
         add
         {
@@ -1030,8 +1000,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragDoneEvt.</summary>
-    public void OnDragDoneEvt(EventArgs e)
+
+    /// <summary>Method to raise event DragDoneEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragDoneEvent(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_DONE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1043,8 +1015,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>called when the drag object enters this object</summary>
-    public event EventHandler DragEnterEvt
+    public event EventHandler DragEnterEvent
     {
         add
         {
@@ -1082,8 +1055,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragEnterEvt.</summary>
-    public void OnDragEnterEvt(EventArgs e)
+
+    /// <summary>Method to raise event DragEnterEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragEnterEvent(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_ENTER";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1095,8 +1070,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>called when the drag object leaves this object</summary>
-    public event EventHandler DragLeaveEvt
+    public event EventHandler DragLeaveEvent
     {
         add
         {
@@ -1134,8 +1110,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragLeaveEvt.</summary>
-    public void OnDragLeaveEvt(EventArgs e)
+
+    /// <summary>Method to raise event DragLeaveEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragLeaveEvent(EventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_LEAVE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1147,9 +1125,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>called when the drag object changes drag position</summary>
-    /// <value><see cref="Efl.Ui.IDndDragPosEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IDndDragPosEvt_Args> DragPosEvt
+    /// <value><see cref="Efl.Ui.DndDragPosEventArgs"/></value>
+    public event EventHandler<Efl.Ui.DndDragPosEventArgs> DragPosEvent
     {
         add
         {
@@ -1160,7 +1139,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IDndDragPosEvt_Args args = new Efl.Ui.IDndDragPosEvt_Args();
+                        Efl.Ui.DndDragPosEventArgs args = new Efl.Ui.DndDragPosEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1188,8 +1167,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragPosEvt.</summary>
-    public void OnDragPosEvt(Efl.Ui.IDndDragPosEvt_Args e)
+
+    /// <summary>Method to raise event DragPosEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragPosEvent(Efl.Ui.DndDragPosEventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_POS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1210,9 +1191,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>called when the drag object dropped on this object</summary>
-    /// <value><see cref="Efl.Ui.IDndDragDropEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IDndDragDropEvt_Args> DragDropEvt
+    /// <value><see cref="Efl.Ui.DndDragDropEventArgs"/></value>
+    public event EventHandler<Efl.Ui.DndDragDropEventArgs> DragDropEvent
     {
         add
         {
@@ -1223,7 +1205,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IDndDragDropEvt_Args args = new Efl.Ui.IDndDragDropEvt_Args();
+                        Efl.Ui.DndDragDropEventArgs args = new Efl.Ui.DndDragDropEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1251,8 +1233,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event DragDropEvt.</summary>
-    public void OnDragDropEvt(Efl.Ui.IDndDragDropEvt_Args e)
+
+    /// <summary>Method to raise event DragDropEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDragDropEvent(Efl.Ui.DndDragDropEventArgs e)
     {
         var key = "_EFL_UI_DND_EVENT_DRAG_DROP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1273,9 +1257,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event dispatched when a property on the object has changed due to an user interaction on the object that a model could be interested in.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertiesChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertiesChangedEvt_Args> PropertiesChangedEvt
+
+    /// <summary>Event dispatched when a property on the object has changed due to a user interaction on the object that a model could be interested in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertiesChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertiesChangedEventArgs> PropertiesChangedEvent
     {
         add
         {
@@ -1286,7 +1272,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertiesChangedEvt_Args args = new Efl.Ui.IPropertyBindPropertiesChangedEvt_Args();
+                        Efl.Ui.PropertyBindPropertiesChangedEventArgs args = new Efl.Ui.PropertyBindPropertiesChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1314,8 +1300,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event PropertiesChangedEvt.</summary>
-    public void OnPropertiesChangedEvt(Efl.Ui.IPropertyBindPropertiesChangedEvt_Args e)
+
+    /// <summary>Method to raise event PropertiesChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertiesChangedEvent(Efl.Ui.PropertyBindPropertiesChangedEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTIES_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1336,9 +1324,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to not overgenerate event.</summary>
-    /// <value><see cref="Efl.Ui.IPropertyBindPropertyBoundEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IPropertyBindPropertyBoundEvt_Args> PropertyBoundEvt
+
+    /// <summary>Event dispatched when a property on the object is bound to a model. This is useful to avoid generating too many events.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.PropertyBindPropertyBoundEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PropertyBindPropertyBoundEventArgs> PropertyBoundEvent
     {
         add
         {
@@ -1349,7 +1339,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IPropertyBindPropertyBoundEvt_Args args = new Efl.Ui.IPropertyBindPropertyBoundEvt_Args();
+                        Efl.Ui.PropertyBindPropertyBoundEventArgs args = new Efl.Ui.PropertyBindPropertyBoundEventArgs();
                         args.arg = Eina.StringConversion.NativeUtf8ToManagedString(evt.Info);
                         try
                         {
@@ -1377,8 +1367,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event PropertyBoundEvt.</summary>
-    public void OnPropertyBoundEvt(Efl.Ui.IPropertyBindPropertyBoundEvt_Args e)
+
+    /// <summary>Method to raise event PropertyBoundEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPropertyBoundEvent(Efl.Ui.PropertyBindPropertyBoundEventArgs e)
     {
         var key = "_EFL_UI_PROPERTY_BIND_EVENT_PROPERTY_BOUND";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1398,9 +1390,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Eina.MemoryNative.Free(info);
         }
     }
+
     /// <summary>Called when display server&apos;s selection has changed</summary>
-    /// <value><see cref="Efl.Ui.ISelectionWmSelectionChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt
+    /// <value><see cref="Efl.Ui.SelectionWmSelectionChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.SelectionWmSelectionChangedEventArgs> WmSelectionChangedEvent
     {
         add
         {
@@ -1411,7 +1404,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.ISelectionWmSelectionChangedEvt_Args args = new Efl.Ui.ISelectionWmSelectionChangedEvt_Args();
+                        Efl.Ui.SelectionWmSelectionChangedEventArgs args = new Efl.Ui.SelectionWmSelectionChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1439,8 +1432,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event WmSelectionChangedEvt.</summary>
-    public void OnWmSelectionChangedEvt(Efl.Ui.ISelectionWmSelectionChangedEvt_Args e)
+
+    /// <summary>Method to raise event WmSelectionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWmSelectionChangedEvent(Efl.Ui.SelectionWmSelectionChangedEventArgs e)
     {
         var key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1461,9 +1456,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Event dispatched when a new model is set.</summary>
-    /// <value><see cref="Efl.Ui.IViewModelChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IViewModelChangedEvt_Args> ModelChangedEvt
+    /// <value><see cref="Efl.Ui.ViewModelChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.ViewModelChangedEventArgs> ModelChangedEvent
     {
         add
         {
@@ -1474,7 +1470,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IViewModelChangedEvt_Args args = new Efl.Ui.IViewModelChangedEvt_Args();
+                        Efl.Ui.ViewModelChangedEventArgs args = new Efl.Ui.ViewModelChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1502,8 +1498,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event ModelChangedEvt.</summary>
-    public void OnModelChangedEvt(Efl.Ui.IViewModelChangedEvt_Args e)
+
+    /// <summary>Method to raise event ModelChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnModelChangedEvent(Efl.Ui.ViewModelChangedEventArgs e)
     {
         var key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1524,10 +1522,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted if the focus state has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusChangedEvt_Args> FocusChangedEvt
+
+    /// <summary>Emitted if the focus state has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusChangedEventArgs> FocusChangedEvent
     {
         add
         {
@@ -1538,7 +1537,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectFocusChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -1566,8 +1565,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event FocusChangedEvt.</summary>
-    public void OnFocusChangedEvt(Efl.Ui.Focus.IObjectFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusChangedEvent(Efl.Ui.Focus.ObjectFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1587,10 +1588,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted when a new manager is the parent for this object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args> FocusManagerChangedEvt
+
+    /// <summary>Emitted when a new manager is the parent for this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs> FocusManagerChangedEvent
     {
         add
         {
@@ -1601,8 +1603,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
+                        Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ManagerConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1629,8 +1631,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event FocusManagerChangedEvt.</summary>
-    public void OnFocusManagerChangedEvt(Efl.Ui.Focus.IObjectFocusManagerChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusManagerChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusManagerChangedEvent(Efl.Ui.Focus.ObjectFocusManagerChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_MANAGER_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1643,10 +1647,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Emitted when a new logical parent should be used.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args> FocusParentChangedEvt
+
+    /// <summary>Emitted when a new logical parent should be used.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusParentChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusParentChangedEventArgs> FocusParentChangedEvent
     {
         add
         {
@@ -1657,8 +1662,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
+                        Efl.Ui.Focus.ObjectFocusParentChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusParentChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ObjectConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -1685,8 +1690,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event FocusParentChangedEvt.</summary>
-    public void OnFocusParentChangedEvt(Efl.Ui.Focus.IObjectFocusParentChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusParentChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusParentChangedEvent(Efl.Ui.Focus.ObjectFocusParentChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_PARENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1699,10 +1706,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Emitted if child_focus has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args> ChildFocusChangedEvt
+
+    /// <summary>Emitted if child_focus has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectChildFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectChildFocusChangedEventArgs> ChildFocusChangedEvent
     {
         add
         {
@@ -1713,7 +1721,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args args = new Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectChildFocusChangedEventArgs args = new Efl.Ui.Focus.ObjectChildFocusChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -1741,8 +1749,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event ChildFocusChangedEvt.</summary>
-    public void OnChildFocusChangedEvt(Efl.Ui.Focus.IObjectChildFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event ChildFocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChildFocusChangedEvent(Efl.Ui.Focus.ObjectChildFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_CHILD_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1762,10 +1772,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted if focus geometry of this object has changed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args> FocusGeometryChangedEvt
+
+    /// <summary>Emitted if focus geometry of this object has changed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs> FocusGeometryChangedEvent
     {
         add
         {
@@ -1776,7 +1787,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args args = new Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args();
+                        Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs args = new Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -1804,8 +1815,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             }
         }
     }
-    /// <summary>Method to raise event FocusGeometryChangedEvt.</summary>
-    public void OnFocusGeometryChangedEvt(Efl.Ui.Focus.IObjectFocusGeometryChangedEvt_Args e)
+
+    /// <summary>Method to raise event FocusGeometryChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusGeometryChangedEvent(Efl.Ui.Focus.ObjectFocusGeometryChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_OBJECT_EVENT_FOCUS_GEOMETRY_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -1826,6 +1839,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             Marshal.FreeHGlobal(info);
         }
     }
+
     public Efl.Ui.WidgetPartBg BackgroundPart
     {
         get
@@ -1841,506 +1855,577 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
     }
     /// <summary>Returns the current cursor name.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The cursor name, defined either by the display system or the theme.</returns>
-    virtual public System.String GetCursor() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetCursor() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets or unsets the current cursor.
     /// If <c>cursor</c> is <c>null</c> this function will reset the cursor to the default one.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="cursor">The cursor name, defined either by the display system or the theme.</param>
     /// <returns><c>true</c> if successful.</returns>
-    virtual public bool SetCursor(System.String cursor) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cursor);
+    public virtual bool SetCursor(System.String cursor) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),cursor);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Returns the current cursor style name.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns>A specific style to use, eg. default, transparent, ....</returns>
-    virtual public System.String GetCursorStyle() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>A specific style to use, e.g. default, transparent, ....</returns>
+    public virtual System.String GetCursorStyle() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets a style for the current cursor. Call after <see cref="Efl.Ui.Widget.SetCursor"/>.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="style">A specific style to use, eg. default, transparent, ....</param>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="style">A specific style to use, e.g. default, transparent, ....</param>
     /// <returns><c>true</c> if successful.</returns>
-    virtual public bool SetCursorStyle(System.String style) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
+    public virtual bool SetCursorStyle(System.String style) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Returns the current state of theme cursors search.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Whether to use theme cursors.</returns>
-    virtual public bool GetCursorThemeSearchEnabled() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetCursorThemeSearchEnabled() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Enables or disables theme cursors.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="allow">Whether to use theme cursors.</param>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="allow">Whether to use theme cursors.<br/>The default value is <c>true</c>.</param>
     /// <returns><c>true</c> if successful.</returns>
-    virtual public bool SetCursorThemeSearchEnabled(bool allow) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
+    public virtual bool SetCursorThemeSearchEnabled(bool allow) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_cursor_theme_search_enabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Sets the new resize object for this widget.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Sets the new resize object for this widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="sobj">A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</param>
-    virtual protected void SetResizeObject(Efl.Canvas.Object sobj) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sobj);
+    protected virtual void SetResizeObject(Efl.Canvas.Object sobj) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_resize_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sobj);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Returns whether the widget is disabled.
-    /// This will return <c>true</c> if any widget in the parent hierarchy is disabled. Re-enabling that parent may in turn change the disabled state of this widget.
-    /// (Since EFL 1.22)</summary>
+    /// This will return <c>true</c> if any widget in the parent hierarchy is disabled. Re-enabling that parent may in turn change the disabled state of this widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if the widget is disabled.</returns>
-    virtual public bool GetDisabled() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetDisabled() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Enables or disables this widget.
-    /// Disabling a widget will disable all its children recursively, but only this widget will be marked as disabled internally.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="disabled"><c>true</c> if the widget is disabled.</param>
-    virtual public void SetDisabled(bool disabled) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
+    /// Disabling a widget will disable all its children recursively, but only this widget will be marked as disabled internally.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="disabled"><c>true</c> if the widget is disabled.<br/>The default value is <c>false</c>.</param>
+    public virtual void SetDisabled(bool disabled) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_disabled_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),disabled);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Returns the current style of a widget.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Returns the current style of a widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</returns>
-    virtual public System.String GetStyle() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetStyle() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Can only be called during construction, before finalize.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Can only be called during construction, before finalize.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="style">Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</param>
     /// <returns>Whether the style was successfully applied or not, see the Efl.Ui.Theme.Apply_Error subset of <see cref="Eina.Error"/> for more information.</returns>
-    virtual protected Eina.Error SetStyle(System.String style) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
+    public virtual Eina.Error SetStyle(System.String style) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_style_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),style);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>The ability for a widget to be focused.
     /// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
     /// 
     /// Note: Objects which are meant to be interacted with by input events are created able to be focused, by default. All the others are not.
     /// 
-    /// This property&apos;s default value depends on the widget (eg. a box is not focusable, but a button is).
-    /// (Since EFL 1.22)</summary>
+    /// This property&apos;s default value depends on the widget (e.g. a box is not focusable, but a button is).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Whether the object is focusable.</returns>
-    virtual public bool GetFocusAllow() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFocusAllow() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The ability for a widget to be focused.
     /// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
     /// 
     /// Note: Objects which are meant to be interacted with by input events are created able to be focused, by default. All the others are not.
     /// 
-    /// This property&apos;s default value depends on the widget (eg. a box is not focusable, but a button is).
-    /// (Since EFL 1.22)</summary>
+    /// This property&apos;s default value depends on the widget (e.g. a box is not focusable, but a button is).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="can_focus">Whether the object is focusable.</param>
-    virtual public void SetFocusAllow(bool can_focus) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_focus);
+    public virtual void SetFocusAllow(bool can_focus) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>The internal parent of this widget.
-    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
-    /// (Since EFL 1.22)</summary>
+    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Widget parent object</returns>
-    virtual protected Efl.Ui.Widget GetWidgetParent() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Ui.Widget GetWidgetParent() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The internal parent of this widget.
-    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
-    /// (Since EFL 1.22)</summary>
+    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="parent">Widget parent object</param>
-    virtual protected void SetWidgetParent(Efl.Ui.Widget parent) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
+    protected virtual void SetWidgetParent(Efl.Ui.Widget parent) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Accessibility information.
     /// This is a replacement string to be read by the accessibility text-to-speech engine, if accessibility is enabled by configuration. This will take precedence over the default text for this object, which means for instance that the label of a button won&apos;t be read out loud, instead <c>txt</c> will be read out.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Accessibility text description.</returns>
-    virtual public System.String GetAccessInfo() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetAccessInfo() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Accessibility information.
     /// This is a replacement string to be read by the accessibility text-to-speech engine, if accessibility is enabled by configuration. This will take precedence over the default text for this object, which means for instance that the label of a button won&apos;t be read out loud, instead <c>txt</c> will be read out.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="txt">Accessibility text description.</param>
-    virtual public void SetAccessInfo(System.String txt) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),txt);
+    public virtual void SetAccessInfo(System.String txt) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_access_info_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),txt);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Region of interest inside this widget, that should be given priority to be visible inside a scroller.
     /// When this widget or one of its subwidgets is given focus, this region should be shown, which means any parent scroller should attempt to display the given area of this widget. For instance, an entry given focus should scroll to show the text cursor if that cursor moves. In this example, this region defines the relative geometry of the cursor within the widget.
     /// 
-    /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
-    /// (Since EFL 1.22)</summary>
+    /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</returns>
-    virtual protected Eina.Rect GetInterestRegion() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.Rect GetInterestRegion() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_interest_region_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>This is a read-only property.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>This is a read-only property.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The rectangle area.</returns>
-    virtual protected Eina.Rect GetFocusHighlightGeometry() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.Rect GetFocusHighlightGeometry() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_highlight_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Focus order property
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>FIXME</returns>
-    virtual public uint GetFocusOrder() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual uint GetFocusOrder() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>A custom chain of objects to pass focus.
     /// Note: On focus cycle, only will be evaluated children of this container.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Chain of objects</returns>
-    virtual public Eina.List<Efl.Canvas.Object> GetFocusCustomChain() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.List<Efl.Canvas.Object> GetFocusCustomChain() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Canvas.Object>(_ret_var, false, false);
- }
+
+    }
+
     /// <summary>This function overwrites any previous custom focus chain within the list of objects. The previous list will be deleted and this list will be managed by elementary. After it is set, don&apos;t modify it.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="objs">Chain of objects to pass focus</param>
-    virtual public void SetFocusCustomChain(Eina.List<Efl.Canvas.Object> objs) {
-         var _in_objs = objs.Handle;
-                        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_objs);
+    public virtual void SetFocusCustomChain(Eina.List<Efl.Canvas.Object> objs) {
+        var _in_objs = objs.Handle;
+Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_objs);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Current focused object in object tree.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Current focused or <c>null</c>, if there is no focused object.</returns>
-    virtual public Efl.Canvas.Object GetFocusedObject() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Canvas.Object GetFocusedObject() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The widget&apos;s focus move policy.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Focus move policy</returns>
-    virtual public Efl.Ui.Focus.MovePolicy GetFocusMovePolicy() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.Focus.MovePolicy GetFocusMovePolicy() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The widget&apos;s focus move policy.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="policy">Focus move policy</param>
-    virtual public void SetFocusMovePolicy(Efl.Ui.Focus.MovePolicy policy) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),policy);
+    public virtual void SetFocusMovePolicy(Efl.Ui.Focus.MovePolicy policy) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),policy);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Control the widget&apos;s focus_move_policy mode setting.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</returns>
-    virtual public bool GetFocusMovePolicyAutomatic() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFocusMovePolicyAutomatic() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Control the widget&apos;s focus_move_policy mode setting.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="automatic"><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</param>
-    virtual public void SetFocusMovePolicyAutomatic(bool automatic) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
+    public virtual void SetFocusMovePolicyAutomatic(bool automatic) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_move_policy_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Virtual function handling input events on the widget.
     /// This method should return <c>true</c> if the event has been processed. Only key down, key up and pointer wheel events will be propagated through this function.
     /// 
-    /// It is common for the event to be also marked as processed as in <see cref="Efl.Input.IEvent.Processed"/>, if this operation was successful. This makes sure other widgets will not also process this input event.
-    /// (Since EFL 1.22)</summary>
+    /// It is common for the event to be also marked as processed as in <see cref="Efl.Input.IEvent.Processed"/>, if this operation was successful. This makes sure other widgets will not also process this input event.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="eo_event">EO event struct with an Efl.Input.Event as info.</param>
     /// <param name="source">Source object where the event originated. Often same as this.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual protected bool WidgetInputEventHandler(Efl.Event eo_event, Efl.Canvas.Object source) {
-                                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),eo_event, source);
+    protected virtual bool WidgetInputEventHandler(Efl.Event eo_event, Efl.Canvas.Object source) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_input_event_handler_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),eo_event, source);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Hook function called when widget is activated through accessibility.
     /// This meant to be overridden by subclasses to support accessibility. This is an unstable API.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="act">Type of activation.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual protected bool OnAccessActivate(Efl.Ui.Activate act) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),act);
+    protected virtual bool OnAccessActivate(Efl.Ui.Activate act) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_activate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),act);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Hook function called when accessibility is changed on the widget.
     /// This meant to be overridden by subclasses to support accessibility. This is an unstable API.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="enable"><c>true</c> if accessibility is enabled.</param>
-    virtual protected void UpdateOnAccess(bool enable) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
+    protected virtual void UpdateOnAccess(bool enable) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_on_access_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>&apos;Virtual&apos; function on the widget being set screen reader.
-    /// (Since EFL 1.22)</summary>
-    virtual public void ScreenReader(bool is_screen_reader) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_screen_reader_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_screen_reader);
+        
+    }
+
+    /// <summary>&apos;Virtual&apos; function on the widget being set screen reader.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ScreenReader(bool is_screen_reader) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_screen_reader_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_screen_reader);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>&apos;Virtual&apos; function on the widget being set atspi.
-    /// (Since EFL 1.22)</summary>
-    virtual public void Atspi(bool is_atspi) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_atspi_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_atspi);
+        
+    }
+
+    /// <summary>&apos;Virtual&apos; function on the widget being set atspi.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void Atspi(bool is_atspi) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_atspi_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),is_atspi);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Virtual function customizing sub objects being added.
     /// When a widget is added as a sub-object of another widget (like list elements inside a list container, for example) some of its properties are automatically adapted to the parent&apos;s current values (like focus, access, theme, scale, mirror, scrollable child get, translate, display mode set, tree dump). Override this method if you want to customize differently sub-objects being added to this object.
     /// 
     /// Sub objects can be any canvas object, not necessarily widgets.
     /// 
-    /// See also <see cref="Efl.Ui.Widget.WidgetParent"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See also <see cref="Efl.Ui.Widget.WidgetParent"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="sub_obj">Sub object to be added. Not necessarily a widget itself.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual protected bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
+    protected virtual bool AddWidgetSubObject(Efl.Canvas.Object sub_obj) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Virtual function customizing sub objects being removed.
     /// When a widget is removed as a sub-object from another widget (<see cref="Efl.IPack.Unpack"/>, <see cref="Efl.IContent.UnsetContent"/>, for example) some of its properties are automatically adjusted.(like focus, access, tree dump) Override this method if you want to customize differently sub-objects being removed to this object.
     /// 
     /// Sub objects can be any canvas object, not necessarily widgets.
     /// 
-    /// See also <see cref="Efl.Ui.Widget.WidgetParent"/> and <see cref="Efl.Ui.Widget.AddWidgetSubObject"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See also <see cref="Efl.Ui.Widget.WidgetParent"/> and <see cref="Efl.Ui.Widget.AddWidgetSubObject"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="sub_obj">Sub object to be removed. Should be a child of this widget.</param>
     /// <returns>Indicates if the operation succeeded.</returns>
-    virtual protected bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
+    protected virtual bool DelWidgetSubObject(Efl.Canvas.Object sub_obj) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_sub_object_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sub_obj);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Virtual function called when the widget needs to re-apply its theme.
     /// This may be called when the object is first created, or whenever the widget is modified in any way that may require a reload of the theme. This may include but is not limited to scale, theme, or mirrored mode changes.
     /// 
-    /// Note: even widgets not based on layouts may override this method to handle widget updates (scale, mirrored mode, etc...).
-    /// (Since EFL 1.22)</summary>
+    /// Note: even widgets not based on layouts may override this method to handle widget updates (scale, mirrored mode, etc...).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Indicates success, and if the current theme or default theme was used.</returns>
-    virtual protected Eina.Error ThemeApply() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.Error ApplyTheme() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_theme_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Push scroll hold
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void PushScrollHold() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void PushScrollHold() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Pop scroller hold
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void PopScrollHold() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void PopScrollHold() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_hold_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Push scroller freeze
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void PushScrollFreeze() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void PushScrollFreeze() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_push_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Pop scroller freeze
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void PopScrollFreeze() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void PopScrollFreeze() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_scroll_freeze_pop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Get the access object of given part of the widget.
-    /// (Since EFL 1.18)</summary>
+        
+    }
+
+    /// <summary>Get the access object of given part of the widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="part">The object&apos;s part name to get access object</param>
-    virtual public Efl.Canvas.Object GetPartAccessObject(System.String part) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_part_access_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
+    public virtual Efl.Canvas.Object GetPartAccessObject(System.String part) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_part_access_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),part);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Get newest focus in order
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Get newest focus in order</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="newest_focus_order">Newest focus order</param>
     /// <param name="can_focus_only"><c>true</c> only us widgets which can focus, <c>false</c> otherweise</param>
     /// <returns>Handle to focused widget</returns>
-    virtual public Efl.Canvas.Object GetNewestFocusOrder(out uint newest_focus_order, bool can_focus_only) {
-                                                         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_newest_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out newest_focus_order, can_focus_only);
+    public virtual Efl.Canvas.Object GetNewestFocusOrder(out uint newest_focus_order, bool can_focus_only) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_newest_focus_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out newest_focus_order, can_focus_only);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Set the next object with specific focus direction.
-    /// (Since EFL 1.8)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="next">Focus next object</param>
     /// <param name="dir">Focus direction</param>
-    virtual public void SetFocusNextObject(Efl.Canvas.Object next, Efl.Ui.Focus.Direction dir) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next, dir);
+    public virtual void SetFocusNextObject(Efl.Canvas.Object next, Efl.Ui.Focus.Direction dir) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next, dir);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Get the next object with specific focus direction.
-    /// (Since EFL 1.8)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="dir">Focus direction</param>
     /// <returns>Focus next object</returns>
-    virtual public Efl.Canvas.Object GetFocusNextObject(Efl.Ui.Focus.Direction dir) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual Efl.Canvas.Object GetFocusNextObject(Efl.Ui.Focus.Direction dir) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Set the next object item with specific focus direction.
-    /// (Since EFL 1.16)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="next_item">Focus next object item</param>
     /// <param name="dir">Focus direction</param>
-    virtual public void SetFocusNextItem(Efl.Ui.Widget next_item, Efl.Ui.Focus.Direction dir) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next_item, dir);
+    public virtual void SetFocusNextItem(Efl.Ui.Widget next_item, Efl.Ui.Focus.Direction dir) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),next_item, dir);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Get the next object item with specific focus direction.
-    /// (Since EFL 1.16)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="dir">Focus direction</param>
     /// <returns>Focus next object item</returns>
-    virtual public Efl.Ui.Widget GetFocusNextItem(Efl.Ui.Focus.Direction dir) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual Efl.Ui.Widget GetFocusNextItem(Efl.Ui.Focus.Direction dir) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_item_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Handle focus tree unfocusable
-    /// (Since EFL 1.22)</summary>
-    virtual public void FocusTreeUnfocusableHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_tree_unfocusable_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        return _ret_var;
+    }
+
+    /// <summary>Handle focus tree unfocusable</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusTreeUnfocusableHandle() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_tree_unfocusable_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Prepend object to custom focus chain.
     /// Note: If @&quot;relative_child&quot; equal to <c>null</c> or not in custom chain, the object will be added in begin.
     /// 
     /// Note: On focus cycle, only will be evaluated children of this container.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="child">The child to be added in custom chain.</param>
     /// <param name="relative_child">The relative object to position the child.</param>
-    virtual public void FocusCustomChainPrepend(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_prepend_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
+    public virtual void PrependFocusCustomChain(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_prepend_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Give focus to next object with specific focus direction in object tree.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="dir">Direction to move the focus.</param>
-    virtual public void FocusCycle(Efl.Ui.Focus.Direction dir) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_cycle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
+    public virtual void FocusCycle(Efl.Ui.Focus.Direction dir) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_cycle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>&apos;Virtual&apos; function handling passing focus to sub-objects given a direction, in degrees.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="kw_base">Base object</param>
     /// <param name="degree">Degree</param>
     /// <param name="direction">Direction</param>
     /// <param name="direction_item">Direction item</param>
     /// <param name="weight">Weight</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool FocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
-                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
-        Eina.Error.RaiseIfUnhandledException();
-                                                                                        return _ret_var;
- }
-    /// <summary>&apos;Virtual&apos; function which checks if handling of passing focus to sub-objects is supported by widget.
-    /// (Since EFL 1.22)
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool IsFocusNextManager() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool FocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Get focus list direction
-    /// (Since EFL 1.22)
+    }
+
+    /// <summary>&apos;Virtual&apos; function which checks if handling of passing focus to sub-objects is supported by widget.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
+    public virtual bool IsFocusNextManager() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Get focus list direction
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="kw_base">Base object</param>
     /// <param name="items">Item list</param>
     /// <param name="list_data_get">Data get function</param>
@@ -2349,494 +2434,572 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="direction_item">Direction item</param>
     /// <param name="weight">Weight</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool GetFocusListDirection(Efl.Canvas.Object kw_base, Eina.List<Efl.Object> items, System.IntPtr list_data_get, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
-                 var _in_items = items.Handle;
-                                                                                                                                                                var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
+    public virtual bool GetFocusListDirection(Efl.Canvas.Object kw_base, Eina.List<Efl.Object> items, System.IntPtr list_data_get, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
+        var _in_items = items.Handle;
+var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Clear focused object
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void ClearFocusedObject() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ClearFocusedObject() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focused_object_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Go in focus direction
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="degree">Degree</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool FocusDirectionGo(double degree) {
-                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_go_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),degree);
+    public virtual bool FocusDirectionGo(double degree) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_go_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),degree);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get next focus item
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="dir">Focus direction</param>
     /// <param name="next">Next object</param>
     /// <param name="next_item">Next item</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool GetFocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
-                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
+    public virtual bool GetFocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Restore the focus state of the sub-tree.
     /// This API will restore the focus state of the sub-tree to the latest state. If a sub-tree is unfocused and wants to get back to the latest focus state, this API will be helpful.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void FocusRestore() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_restore_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusRestore() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_restore_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Unset a custom focus chain on a given Elementary widget.
     /// Any focus chain previously set is removed entirely after this call.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void UnsetFocusCustomChain() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void UnsetFocusCustomChain() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Steal focus
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="item">Widget to steal focus from</param>
-    virtual public void FocusSteal(Efl.Ui.Widget item) {
-                                 Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_steal_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
+    public virtual void StealFocus(Efl.Ui.Widget item) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_steal_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Handle hide focus
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void FocusHideHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_hide_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusHideHandle() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_hide_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>&apos;Virtual&apos; function handling passing focus to sub-objects.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="dir">Focus direction</param>
     /// <param name="next">Next object</param>
     /// <param name="next_item">Next item</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool FocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
-                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
+    public virtual bool FocusNext(Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_next_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get next item in focus list
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="items">Item list</param>
     /// <param name="list_data_get">Function type</param>
     /// <param name="dir">Focus direction</param>
     /// <param name="next">Next object</param>
     /// <param name="next_item">Next item</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool GetFocusListNext(Eina.List<Efl.Object> items, System.IntPtr list_data_get, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
-         var _in_items = items.Handle;
-                                                                                                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_items, list_data_get, dir, out next, out next_item);
+    public virtual bool GetFocusListNext(Eina.List<Efl.Object> items, System.IntPtr list_data_get, Efl.Ui.Focus.Direction dir, out Efl.Canvas.Object next, out Efl.Ui.Widget next_item) {
+        var _in_items = items.Handle;
+var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_list_next_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_items, list_data_get, dir, out next, out next_item);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                        return _ret_var;
- }
-    /// <summary>Handle focus mouse up
-    /// (Since EFL 1.22)</summary>
-    virtual public void FocusMouseUpHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_mouse_up_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        return _ret_var;
+    }
+
+    /// <summary>Handle focus mouse up</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusMouseUpHandle() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_mouse_up_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Get focus direction
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="kw_base">Base</param>
     /// <param name="degree">Degree</param>
     /// <param name="direction">Direction</param>
     /// <param name="direction_item">Direction item</param>
     /// <param name="weight">Weight</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool GetFocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
-                                                                                                                                 var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
+    public virtual bool GetFocusDirection(Efl.Canvas.Object kw_base, double degree, out Efl.Canvas.Object direction, out Efl.Ui.Widget direction_item, out double weight) {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_base, degree, out direction, out direction_item, out weight);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Handle disable widget focus
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void FocusDisabledHandle() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_disabled_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusDisabledHandle() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_disabled_handle_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Append object to custom focus chain.
     /// Note: If @&quot;relative_child&quot; equal to <c>null</c> or not in custom chain, the object will be added in end.
     /// 
     /// Note: On focus cycle, only will be evaluated children of this container.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="child">The child to be added in custom chain.</param>
     /// <param name="relative_child">The relative object to position the child.</param>
-    virtual public void AppendFocusCustomChain(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
-                                                         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
+    public virtual void AppendFocusCustomChain(Efl.Canvas.Object child, Efl.Canvas.Object relative_child) {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_custom_chain_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child, relative_child);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>No description supplied.
-    /// (Since EFL 1.18)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void FocusReconfigure() {
-         Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_reconfigure_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FocusReconfigure() {
+        Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_reconfigure_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Virtual function which checks if this widget can handle passing focus to sub-object, in a given direction.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Virtual function which checks if this widget can handle passing focus to sub-object, in a given direction.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual protected bool IsFocusDirectionManager() {
-         var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool IsFocusDirectionManager() {
+        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_direction_manager_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Apply a new focus state on the widget.
     /// This method is called internally by <see cref="Efl.Ui.Widget"/>. Override it to change how a widget interacts with its focus manager. If a widget desires to change the applied configuration, it has to modify <c>configured_state</c> in addition to any internal changes.
     /// 
-    /// The default implementation (when this method is not overridden) applies <c>configured_state</c> using the <c>manager</c> contained inside.
-    /// (Since EFL 1.22)</summary>
+    /// The default implementation (when this method is not overridden) applies <c>configured_state</c> using the <c>manager</c> contained inside.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="current_state">The current focus configuration of the widget.</param>
     /// <param name="configured_state">The new configuration being set on the widget.</param>
     /// <param name="redirect">A redirect object if there is any</param>
     /// <returns>Returns <c>true</c> if the widget is registered in the focus manager, <c>false</c> if not.</returns>
-    virtual protected bool FocusStateApply(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
-         Efl.Ui.WidgetFocusState.NativeStruct _in_current_state = current_state;
-                                var _out_configured_state = new Efl.Ui.WidgetFocusState.NativeStruct();
-                                        var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_current_state, ref _out_configured_state, redirect);
+    protected virtual bool ApplyFocusState(Efl.Ui.WidgetFocusState current_state, ref Efl.Ui.WidgetFocusState configured_state, Efl.Ui.Widget redirect) {
+        Efl.Ui.WidgetFocusState.NativeStruct _in_current_state = current_state;
+var _out_configured_state = new Efl.Ui.WidgetFocusState.NativeStruct();
+var _ret_var = Efl.Ui.Widget.NativeMethods.efl_ui_widget_focus_state_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_current_state, ref _out_configured_state, redirect);
         Eina.Error.RaiseIfUnhandledException();
-                configured_state = _out_configured_state;
-                                        return _ret_var;
- }
-    /// <summary>Get a proxy object referring to a part of an object.
-    /// (Since EFL 1.22)</summary>
+configured_state = _out_configured_state;
+        return _ret_var;
+    }
+
+    /// <summary>Get a proxy object referring to a part of an object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="name">The part name.</param>
     /// <returns>A (proxy) object, valid for a single call.</returns>
-    virtual public Efl.Object GetPart(System.String name) {
-                                 var _ret_var = Efl.IPartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
+    protected virtual Efl.Object GetPart(System.String name) {
+        var _ret_var = Efl.PartConcrete.NativeMethods.efl_part_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets action name for given id</summary>
     /// <param name="id">ID to get action name for</param>
     /// <returns>Action name</returns>
-    virtual public System.String GetActionName(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
+    protected virtual System.String GetActionName(int id) {
+        var _ret_var = Efl.Access.ActionConcrete.NativeMethods.efl_access_action_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets localized action name for given id</summary>
     /// <param name="id">ID to get localized name for</param>
     /// <returns>Localized name</returns>
-    virtual public System.String GetActionLocalizedName(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_localized_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
+    protected virtual System.String GetActionLocalizedName(int id) {
+        var _ret_var = Efl.Access.ActionConcrete.NativeMethods.efl_access_action_localized_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get list of available widget actions</summary>
     /// <returns>Contains statically allocated strings.</returns>
-    virtual public Eina.List<Efl.Access.ActionData> GetActions() {
-         var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.List<Efl.Access.ActionData> GetActions() {
+        var _ret_var = Efl.Access.ActionConcrete.NativeMethods.efl_access_action_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.ActionData>(_ret_var, false, false);
- }
+
+    }
+
     /// <summary>Performs action on given widget.</summary>
     /// <param name="id">ID for widget</param>
     /// <returns><c>true</c> if action was performed, <c>false</c> otherwise</returns>
-    virtual public bool ActionDo(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
+    protected virtual bool DoAction(int id) {
+        var _ret_var = Efl.Access.ActionConcrete.NativeMethods.efl_access_action_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets configured keybinding for specific action and widget.</summary>
     /// <param name="id">ID for widget</param>
     /// <returns>Should be freed by the user.</returns>
-    virtual public System.String GetActionKeybinding(int id) {
-                                 var _ret_var = Efl.Access.IActionConcrete.NativeMethods.efl_access_action_keybinding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
-    /// <returns>Z order of component</returns>
-    virtual public int GetZOrder() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_z_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual System.String GetActionKeybinding(int id) {
+        var _ret_var = Efl.Access.ActionConcrete.NativeMethods.efl_access_action_keybinding_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),id);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
+    /// <returns>Z order of component</returns>
+    protected virtual int GetZOrder() {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_z_order_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>Geometry of accessible widget.</summary>
     /// <param name="screen_coords">If <c>true</c> x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <returns>The geometry.</returns>
-    virtual public Eina.Rect GetExtents(bool screen_coords) {
-                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords);
+    protected virtual Eina.Rect GetExtents(bool screen_coords) {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_extents_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Geometry of accessible widget.</summary>
     /// <param name="screen_coords">If <c>true</c> x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="rect">The geometry.</param>
     /// <returns><c>true</c> if geometry was set, <c>false</c> otherwise</returns>
-    virtual public bool SetExtents(bool screen_coords, Eina.Rect rect) {
-                 Eina.Rect.NativeStruct _in_rect = rect;
-                                        var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_extents_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, _in_rect);
+    protected virtual bool SetExtents(bool screen_coords, Eina.Rect rect) {
+        Eina.Rect.NativeStruct _in_rect = rect;
+var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_extents_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, _in_rect);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Position of accessible widget.</summary>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
-    virtual public void GetScreenPosition(out int x, out int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
+    protected virtual void GetScreenPosition(out int x, out int y) {
+        Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_screen_position_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Position of accessible widget.</summary>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     /// <returns><c>true</c> if position was set, <c>false</c> otherwise</returns>
-    virtual public bool SetScreenPosition(int x, int y) {
-                                                         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_screen_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
+    protected virtual bool SetScreenPosition(int x, int y) {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_screen_position_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Gets position of socket offset.</summary>
-    virtual public void GetSocketOffset(out int x, out int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
+    protected virtual void GetSocketOffset(out int x, out int y) {
+        Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_socket_offset_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out x, out y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Sets position of socket offset.</summary>
-    virtual public void SetSocketOffset(int x, int y) {
-                                                         Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_socket_offset_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
+    protected virtual void SetSocketOffset(int x, int y) {
+        Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_socket_offset_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Contains accessible widget</summary>
     /// <param name="screen_coords">If <c>true</c> x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     /// <returns><c>true</c> if params have been set, <c>false</c> otherwise</returns>
-    virtual public bool Contains(bool screen_coords, int x, int y) {
-                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_contains_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
-        Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
-    /// <summary>Focuses accessible widget.</summary>
-    /// <returns><c>true</c> if focus grab focus succeed, <c>false</c> otherwise.</returns>
-    virtual public bool GrabFocus() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_focus_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool Contains(bool screen_coords, int x, int y) {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_contains_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>Focuses accessible widget.</summary>
+    /// <returns><c>true</c> if focus grab focus succeed, <c>false</c> otherwise.</returns>
+    protected virtual bool GrabFocus() {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_focus_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>Gets top component object occupying space at given coordinates.</summary>
     /// <param name="screen_coords">If <c>true</c> x and y values will be relative to screen origin, otherwise relative to canvas</param>
     /// <param name="x">X coordinate</param>
     /// <param name="y">Y coordinate</param>
     /// <returns>Top component object at given coordinate</returns>
-    virtual public Efl.Object GetAccessibleAtPoint(bool screen_coords, int x, int y) {
-                                                                                 var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_accessible_at_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
+    protected virtual Efl.Object GetAccessibleAtPoint(bool screen_coords, int x, int y) {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_accessible_at_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),screen_coords, x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Highlights accessible widget. returns true if highlight grab has successed, false otherwise.
     /// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
-    virtual public bool GrabHighlight() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool GrabHighlight() {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_highlight_grab_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Clears highlight of accessible widget. returns true if clear has successed, false otherwise.
     /// if MOBILE since_tizen 4.0 elseif WEARABLE since_tizen 3.0 endif</summary>
-    virtual public bool ClearHighlight() {
-         var _ret_var = Efl.Access.IComponentConcrete.NativeMethods.efl_access_component_highlight_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool ClearHighlight() {
+        var _ret_var = Efl.Access.ComponentConcrete.NativeMethods.efl_access_component_highlight_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets an localized string describing accessible object role name.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Localized accessible object role name</returns>
-    virtual public System.String GetLocalizedRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual System.String GetLocalizedRoleName() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_localized_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible name</returns>
-    virtual public System.String GetI18nName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetI18nName() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_i18n_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="i18n_name">Accessible name</param>
-    virtual public void SetI18nName(System.String i18n_name) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),i18n_name);
+    public virtual void SetI18nName(System.String i18n_name) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_i18n_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),i18n_name);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Sets name information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="name_cb">reading information callback</param>
-    virtual public void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name_cb, data);
+    public virtual void SetNameCb(Efl.Access.ReadingInfoCb name_cb, System.IntPtr data) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_name_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Gets an all relations between accessible object and other accessible objects.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible relation set</returns>
-    virtual public Efl.Access.RelationSet GetRelationSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Access.RelationSet GetRelationSet() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relation_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role</returns>
-    virtual public Efl.Access.Role GetRole() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Access.Role GetRole() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets the role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="role">Accessible role</param>
-    virtual public void SetRole(Efl.Access.Role role) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),role);
+    public virtual void SetRole(Efl.Access.Role role) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),role);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <returns>Accessible parent</returns>
-    virtual public Efl.Access.IObject GetAccessParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Access.IObject GetAccessParent() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <param name="parent">Accessible parent</param>
-    virtual public void SetAccessParent(Efl.Access.IObject parent) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
+    public virtual void SetAccessParent(Efl.Access.IObject parent) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Sets contextual information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="description_cb">The function called to provide the accessible description.</param>
     /// <param name="data">The data passed to c description_cb.</param>
-    virtual public void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description_cb, data);
+    public virtual void SetDescriptionCb(Efl.Access.ReadingInfoCb description_cb, System.IntPtr data) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
     /// if WEARABLE since_tizen 3.0 endif
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gesture_cb, data);
+    public virtual void SetGestureCb(Efl.Access.GestureCb gesture_cb, System.IntPtr data) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_gesture_cb_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),gesture_cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Gets object&apos;s accessible children.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>List of widget&apos;s children</returns>
-    virtual public Eina.List<Efl.Access.IObject> GetAccessChildren() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.List<Efl.Access.IObject> GetAccessChildren() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.IObject>(_ret_var, true, false);
- }
-    /// <summary>Gets human-readable string indentifying object accessibility role.
+
+    }
+
+    /// <summary>Gets human-readable string identifying object accessibility role.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible role name</returns>
-    virtual public System.String GetRoleName() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual System.String GetRoleName() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_role_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns>List of object attributes, Must be freed by the user</returns>
-    virtual public Eina.List<Efl.Access.Attribute> GetAttributes() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>List of object attributes. Must be freed by the user</returns>
+    protected virtual Eina.List<Efl.Access.Attribute> GetAttributes() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attributes_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Access.Attribute>(_ret_var, true, true);
- }
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+
+    }
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <returns>Reading information types</returns>
-    virtual public Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Access.ReadingInfoTypeMask GetReadingInfoType() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_reading_info_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Sets reading information of an accessible object. If set as 0, existing reading info will be deleted and by default all four reading information types like name, role, state and description will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+    }
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="reading_info">Reading information types</param>
-    virtual public void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),reading_info);
+    protected virtual void SetReadingInfoType(Efl.Access.ReadingInfoTypeMask reading_info) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_reading_info_type_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),reading_info);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets index of the child in parent&apos;s children list.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Index in children list</returns>
-    virtual public int GetIndexInParent() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual int GetIndexInParent() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_index_in_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets contextual information about object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible contextual information</returns>
-    virtual public System.String GetDescription() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetDescription() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets widget contextual information.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="description">Accessible contextual information</param>
-    virtual public void SetDescription(System.String description) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description);
+    public virtual void SetDescription(System.String description) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_description_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),description);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets set describing object accessible states.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Accessible state set</returns>
-    virtual public Efl.Access.StateSet GetStateSet() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Access.StateSet GetStateSet() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_state_set_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -2846,11 +3009,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Translation domain</returns>
-    virtual public System.String GetTranslationDomain() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetTranslationDomain() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_translation_domain_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -2860,90 +3024,108 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="domain">Translation domain</param>
-    virtual public void SetTranslationDomain(System.String domain) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),domain);
+    public virtual void SetTranslationDomain(System.String domain) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_translation_domain_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),domain);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get root object of accessible object hierarchy
+        
+    }
+
+    /// <summary>Root object of accessible object hierarchy
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <returns>Root object</returns>
     public static Efl.Object GetAccessRoot() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_access_root_get_ptr.Value.Delegate();
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_access_root_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Gets highlightable of given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <returns>If c true, the object is highlightable.</returns>
-    virtual public bool GetCanHighlight() {
-         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool GetCanHighlight() {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_can_highlight_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets highlightable to given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="can_highlight">If c true, the object is highlightable.</param>
-    virtual public void SetCanHighlight(bool can_highlight) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_highlight);
+    protected virtual void SetCanHighlight(bool can_highlight) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_can_highlight_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),can_highlight);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Handles gesture on given widget.</summary>
-    virtual public bool GestureDo(Efl.Access.GestureInfo gesture_info) {
-         Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
-                        var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_gesture_info);
+    protected virtual bool DoGesture(Efl.Access.GestureInfo gesture_info) {
+        Efl.Access.GestureInfo.NativeStruct _in_gesture_info = gesture_info;
+var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_gesture_do_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_gesture_info);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Add key-value pair identifying object extra attribute
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <param name="key">The string key to give extra information</param>
     /// <param name="value">The string value to give extra information</param>
-    virtual public void AppendAttribute(System.String key, System.String value) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, value);
+    public virtual void AppendAttribute(System.String key, System.String value) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attribute_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, value);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>delete key-value pair identifying object extra attributes when key is given</summary>
     /// <param name="key">The string key to identify the key-value pair</param>
-    virtual public void DelAttribute(System.String key) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
+    public virtual void DelAttribute(System.String key) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attribute_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Removes all attributes in accessible object.</summary>
-    virtual public void ClearAttributes() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual void ClearAttributes() {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_attributes_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Register accessibility event listener
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="cb">Callback</param>
     /// <param name="data">Data</param>
     /// <returns>Event handler</returns>
-    public static Efl.Access.Event.Handler AddEventHandler(Efl.EventCb cb, System.IntPtr data) {
-                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
+    protected static Efl.Access.Event.Handler AddEventHandler(Efl.EventCb cb, System.IntPtr data) {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_event_handler_add_ptr.Value.Delegate(cb, data);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Deregister accessibility event listener
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="handler">Event handler</param>
-    public static void DelEventHandler(Efl.Access.Event.Handler handler) {
-                                 Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
+    protected static void DelEventHandler(Efl.Access.Event.Handler handler) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_event_handler_del_ptr.Value.Delegate(handler);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Emit event
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="accessible">Accessibility object.</param>
     /// <param name="kw_event">Accessibility event type.</param>
     /// <param name="event_info">Accessibility event details.</param>
-    public static void EmitEvent(Efl.Access.IObject accessible, Efl.EventDescription kw_event, System.IntPtr event_info) {
-                 var _in_kw_event = Eina.PrimitiveConversion.ManagedToPointerAlloc(kw_event);
-                                                                Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_event_emit_ptr.Value.Delegate(accessible, _in_kw_event, event_info);
+    protected static void EmitEvent(Efl.Access.IObject accessible, Efl.EventDescription kw_event, System.IntPtr event_info) {
+        var _in_kw_event = Eina.PrimitiveConversion.ManagedToPointerAlloc(kw_event);
+Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_event_emit_ptr.Value.Delegate(accessible, _in_kw_event, event_info);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Defines the relationship between two accessible objects.
     /// Adds a unique relationship between source object and relation_object of a given type.
     /// 
@@ -2955,288 +3137,345 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to relate to</param>
     /// <returns><c>true</c> if relationship was successfully appended, <c>false</c> otherwise</returns>
-    virtual public bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         var _ret_var = Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
+    public virtual bool AppendRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
+        var _ret_var = Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationship_append_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Removes the relationship between two accessible objects.
-    /// If relation_object is NULL function removes all relations of the given type.
+    /// If relation_object is <c>NULL</c> function removes all relations of the given type.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <param name="type">Relation type</param>
     /// <param name="relation_object">Object to remove relation from</param>
-    virtual public void RelationshipRemove(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
+    public virtual void RemoveRelationship(Efl.Access.RelationType type, Efl.Access.IObject relation_object) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationship_remove_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, relation_object);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Removes all relationships in accessible object.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    virtual public void ClearRelationships() {
-         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual void ClearRelationships() {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_relationships_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Notifies accessibility clients about current state of the accessible object.
     /// Function limits information broadcast to clients to types specified by state_types_mask parameter.
     /// 
     /// if recursive parameter is set, function will traverse all accessible children and call state_notify function on them.</summary>
-    virtual public void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
-                                                         Efl.Access.IObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),state_types_mask, recursive);
+    protected virtual void StateNotify(Efl.Access.StateSet state_types_mask, bool recursive) {
+        Efl.Access.ObjectConcrete.NativeMethods.efl_access_object_state_notify_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),state_types_mask, recursive);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Elementary actions</summary>
     /// <returns>NULL-terminated array of Efl.Access.Action_Data.</returns>
-    virtual public Efl.Access.ActionData GetElmActions() {
-         var _ret_var = Efl.Access.Widget.IActionConcrete.NativeMethods.efl_access_widget_action_elm_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Access.ActionData GetElmActions() {
+        var _ret_var = Efl.Access.Widget.ActionConcrete.NativeMethods.efl_access_widget_action_elm_actions_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Start a drag and drop process at the drag side. During dragging, there are three events emitted as belows: - EFL_UI_DND_EVENT_DRAG_POS - EFL_UI_DND_EVENT_DRAG_ACCEPT - EFL_UI_DND_EVENT_DRAG_DONE</summary>
     /// <param name="format">The data format</param>
     /// <param name="data">The drag data</param>
     /// <param name="action">Action when data is transferred</param>
     /// <param name="icon_func">Function pointer to create icon</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void DragStart(Efl.Ui.SelectionFormat format, Eina.Slice data, Efl.Ui.SelectionAction action, Efl.Dnd.DragIconCreate icon_func, uint seat) {
-                                                                                                                 GCHandle icon_func_handle = GCHandle.Alloc(icon_func);
-                Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, data, action, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+    public virtual void DragStart(Efl.Ui.SelectionFormat format, Eina.Slice data, Efl.Ui.SelectionAction action, Efl.Dnd.DragIconCreate icon_func, uint seat) {
+        GCHandle icon_func_handle = GCHandle.Alloc(icon_func);
+Efl.Ui.DndConcrete.NativeMethods.efl_ui_dnd_drag_start_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, data, action, GCHandle.ToIntPtr(icon_func_handle), Efl.Dnd.DragIconCreateWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
+        
+    }
+
     /// <summary>Set the action for the drag</summary>
     /// <param name="action">Drag action</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void SetDragAction(Efl.Ui.SelectionAction action, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_action_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),action, seat);
+    public virtual void SetDragAction(Efl.Ui.SelectionAction action, uint seat) {
+        Efl.Ui.DndConcrete.NativeMethods.efl_ui_dnd_drag_action_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),action, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Cancel the on-going drag</summary>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void DragCancel(uint seat) {
-                                 Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drag_cancel_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),seat);
+    public virtual void CancelDrag(uint seat) {
+        Efl.Ui.DndConcrete.NativeMethods.efl_ui_dnd_drag_cancel_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),seat);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Make the current object as drop target. There are four events emitted: - EFL_UI_DND_EVENT_DRAG_ENTER - EFL_UI_DND_EVENT_DRAG_LEAVE - EFL_UI_DND_EVENT_DRAG_POS - EFL_UI_DND_EVENT_DRAG_DROP.</summary>
     /// <param name="format">Accepted data format</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void AddDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
+    public virtual void AddDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
+        Efl.Ui.DndConcrete.NativeMethods.efl_ui_dnd_drop_target_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Delete the dropable status from object</summary>
     /// <param name="format">Accepted data format</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void DelDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
-                                                         Efl.Ui.IDndConcrete.NativeMethods.efl_ui_dnd_drop_target_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
+    public virtual void DelDropTarget(Efl.Ui.SelectionFormat format, uint seat) {
+        Efl.Ui.DndConcrete.NativeMethods.efl_ui_dnd_drop_target_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),format, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
-    virtual public bool GetMirrored() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetMirrored() {
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
-    virtual public void SetMirrored(bool rtl) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rtl);
+    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).<br/>The default value is <c>false</c>.</param>
+    public virtual void SetMirrored(bool rtl) {
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),rtl);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
     /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
     /// <returns>Whether the widget uses automatic mirroring</returns>
-    virtual public bool GetMirroredAutomatic() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetMirroredAutomatic() {
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
     /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-    /// <param name="automatic">Whether the widget uses automatic mirroring</param>
-    virtual public void SetMirroredAutomatic(bool automatic) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
+    /// <param name="automatic">Whether the widget uses automatic mirroring<br/>The default value is <c>true</c>.</param>
+    public virtual void SetMirroredAutomatic(bool automatic) {
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),automatic);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets the language for this object.</summary>
     /// <returns>The current language.</returns>
-    virtual public System.String GetLanguage() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetLanguage() {
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets the language for this object.</summary>
     /// <param name="language">The current language.</param>
-    virtual public void SetLanguage(System.String language) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),language);
+    public virtual void SetLanguage(System.String language) {
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),language);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>A unique string to be translated.
     /// Often this will be a human-readable string (e.g. in English) but it can also be a unique string identifier that must then be translated to the current locale with <c>dgettext</c>() or any similar mechanism.
     /// 
     /// Setting this property will enable translation for this object or part.</summary>
     /// <param name="domain">A translation domain. If <c>null</c> this means the default domain is used.</param>
     /// <returns>This returns the untranslated value of <c>label</c>. The translated string can usually be retrieved with <see cref="Efl.IText.GetText"/>.</returns>
-    virtual public System.String GetL10nText(out System.String domain) {
-                                 var _ret_var = Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out domain);
+    public virtual System.String GetL10nText(out System.String domain) {
+        var _ret_var = Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out domain);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Sets the new untranslated string and domain for this object.</summary>
     /// <param name="label">A unique (untranslated) string.</param>
     /// <param name="domain">A translation domain. If <c>null</c> this uses the default domain (eg. set by <c>textdomain</c>()).</param>
-    virtual public void SetL10nText(System.String label, System.String domain) {
-                                                         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),label, domain);
+    public virtual void SetL10nText(System.String label, System.String domain) {
+        Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),label, domain);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Requests this object to update its text strings for the current locale.
     /// Currently strings are translated with <c>dgettext</c>, so support for this function may depend on the platform. It is up to the application to provide its own translation data.
     /// 
-    /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to <see cref="Efl.Ui.IL10n.UpdateTranslation"/> to children objects.</summary>
-    virtual public void UpdateTranslation() {
-         Efl.Ui.IL10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// This function is a hook meant to be implemented by any object that supports translation. This can be called whenever a new object is created or when the current locale changes, for instance. This should only trigger further calls to Efl.Ui.L10n.translation_update to children objects.</summary>
+    protected virtual void UpdateTranslation() {
+        Efl.Ui.L10nConcrete.NativeMethods.efl_ui_l10n_translation_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>bind property data with the given key string. when the data is ready or changed, bind the data to the key action and process promised work.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="key">key string for bind model property data</param>
     /// <param name="property">Model property name</param>
     /// <returns>0 when it succeed, an error code otherwise.</returns>
-    virtual public Eina.Error PropertyBind(System.String key, System.String property) {
-                                                         var _ret_var = Efl.Ui.IPropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, property);
+    public virtual Eina.Error BindProperty(System.String key, System.String property) {
+        var _ret_var = Efl.Ui.PropertyBindConcrete.NativeMethods.efl_ui_property_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),key, property);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Set the selection data to the object</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
     /// <param name="data">Selection data</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>Future for tracking when the selection is lost</returns>
-    virtual public  Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat) {
-                                                                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, data, seat);
+    public virtual  Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat) {
+        var _ret_var = Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, data, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the data from the object that has selection</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
     /// <param name="data_func">Data ready function pointer</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat) {
-                                                                                         GCHandle data_func_handle = GCHandle.Alloc(data_func);
-                Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+    public virtual void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat) {
+        GCHandle data_func_handle = GCHandle.Alloc(data_func);
+Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Clear the selection data from the object</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
-    virtual public void ClearSelection(Efl.Ui.SelectionType type, uint seat) {
-                                                         Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
+    public virtual void ClearSelection(Efl.Ui.SelectionType type, uint seat) {
+        Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Determine whether the selection data has owner</summary>
     /// <param name="type">Selection type</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>EINA_TRUE if there is object owns selection, otherwise EINA_FALSE</returns>
-    virtual public bool HasOwner(Efl.Ui.SelectionType type, uint seat) {
-                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
+    public virtual bool HasOwner(Efl.Ui.SelectionType type, uint seat) {
+        var _ret_var = Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Model that is/will be</summary>
     /// <returns>Efl model</returns>
-    virtual public Efl.IModel GetModel() {
-         var _ret_var = Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.IModel GetModel() {
+        var _ret_var = Efl.Ui.ViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Model that is/will be</summary>
     /// <param name="model">Efl model</param>
-    virtual public void SetModel(Efl.IModel model) {
-                                 Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
+    public virtual void SetModel(Efl.IModel model) {
+        Efl.Ui.ViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The geometry to use.</returns>
-    virtual public Eina.Rect GetFocusGeometry() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Rect GetFocusGeometry() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Returns whether the widget is currently focused or not.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The focused state of the object.</returns>
-    virtual public bool GetFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFocus() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This is called by the manager and should never be called by anyone else.
-    /// The function emits the focus state events, if focus is different to the previous state.
-    /// (Since EFL 1.22)</summary>
+    /// The function emits the focus state events, if focus is different to the previous state.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="focus">The focused state of the object.</param>
-    virtual public void SetFocus(bool focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
+    protected virtual void SetFocus(bool focus) {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The manager object</returns>
-    virtual public Efl.Ui.Focus.IManager GetFocusManager() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The manager object.</returns>
+    public virtual Efl.Ui.Focus.IManager GetFocusManager() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Describes which logical parent is used by this object.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The focus parent.</returns>
-    virtual public Efl.Ui.Focus.IObject GetFocusParent() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.Focus.IObject GetFocusParent() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if a child has focus.</returns>
-    virtual public bool GetChildFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool GetChildFocus() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="child_focus"><c>true</c> if a child has focus.</param>
-    virtual public void SetChildFocus(bool child_focus) {
-                                 Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_focus);
+    protected virtual void SetChildFocus(bool child_focus) {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_child_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child_focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.
-    /// (Since EFL 1.22)</summary>
-    virtual public void SetupOrder() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Tells the object that its children will be queried soon by the focus manager. Overwrite this to have a chance to update the order of the children. Deleting items in this call will result in undefined behaviour and may cause your system to crash.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void SetupOrder() {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.
-    /// (Since EFL 1.22)</summary>
-    virtual public void SetupOrderNonRecursive() {
-         Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>This is called when <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> is called, but only on the first call, additional recursive calls to <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> will not call this function again.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    protected virtual void SetupOrderNonRecursive() {
+        Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_setup_order_non_recursive_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Virtual function handling focus in/out events on the widget
-    /// (Since EFL 1.22)</summary>
-    /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise</returns>
-    virtual public bool UpdateOnFocus() {
-         var _ret_var = Efl.Ui.Focus.IObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Virtual function handling focus in/out events on the widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if this widget can handle focus, <c>false</c> otherwise.</returns>
+    protected virtual bool UpdateOnFocus() {
+        var _ret_var = Efl.Ui.Focus.ObjectConcrete.NativeMethods.efl_ui_focus_object_on_focus_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Async wrapper for <see cref="SetSelection" />.</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
@@ -3254,164 +3493,180 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     /// This is the cursor that will be displayed when mouse is over the object. The object can have only one cursor set to it so if <see cref="Efl.Ui.Widget.SetCursor"/> is called twice for an object, the previous set will be unset.
     /// 
     /// If using X cursors, a definition of all the valid cursor names is listed on Elementary_Cursors.h. If an invalid name is set the default cursor will be used.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The cursor name, defined either by the display system or the theme.</value>
     public System.String Cursor {
         get { return GetCursor(); }
         set { SetCursor(value); }
     }
+
     /// <summary>A different style for the cursor.
     /// This only makes sense if theme cursors are used. The cursor should be set with <see cref="Efl.Ui.Widget.SetCursor"/> first before setting its style with this property.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>A specific style to use, eg. default, transparent, ....</value>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>A specific style to use, e.g. default, transparent, ....</value>
     public System.String CursorStyle {
         get { return GetCursorStyle(); }
         set { SetCursorStyle(value); }
     }
+
     /// <summary>Whether the cursor may be looked in the theme or not.
     /// If <c>false</c>, the cursor may only come from the render engine, i.e. from the display manager.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Whether to use theme cursors.</value>
     public bool CursorThemeSearchEnabled {
         get { return GetCursorThemeSearchEnabled(); }
         set { SetCursorThemeSearchEnabled(value); }
     }
+
     /// <summary>This is the internal canvas object managed by a widget.
-    /// This property is protected as it is meant for widget implementations only, to set and access the internal canvas object. Do use this function unless you&apos;re implementing a widget.
-    /// (Since EFL 1.22)</summary>
+    /// This property is protected as it is meant for widget implementations only, to set and access the internal canvas object. Do use this function unless you&apos;re implementing a widget.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>A canvas object (often a <see cref="Efl.Canvas.Layout"/> object).</value>
     protected Efl.Canvas.Object ResizeObject {
         set { SetResizeObject(value); }
     }
+
     /// <summary>Whether the widget is enabled (accepts and reacts to user inputs).
-    /// The property works counted, this means, whenever n-caller set the value to <c>true</c>, n-caller have to set it to <c>false</c> in order to get it out of the disabled state again.
-    /// 
-    /// Each widget may handle the disabled state differently, but overall disabled widgets shall not respond to any input events. This is <c>false</c> by default, meaning the widget is enabled.
-    /// (Since EFL 1.22)</summary>
+    /// Each widget may handle the disabled state differently, but overall disabled widgets shall not respond to any input events. This is <c>false</c> by default, meaning the widget is enabled.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if the widget is disabled.</value>
     public bool Disabled {
         get { return GetDisabled(); }
         set { SetDisabled(value); }
     }
+
     /// <summary>The widget style to use.
     /// Styles define different look and feel for widgets, and may provide different parts for layout-based widgets. Styles vary from widget to widget and may be defined by other themes by means of extensions and overlays.
     /// 
-    /// The style can only be set before <see cref="Efl.Object.FinalizeAdd"/>, which means at construction time of the object (inside <c>efl_add</c> in C).
-    /// (Since EFL 1.22)</summary>
+    /// The style can only be set before <see cref="Efl.Object.FinalizeAdd"/>, which means at construction time of the object (inside <c>efl_add</c> in C).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Name of the style to use. Refer to each widget&apos;s documentation for the available style names, or to the themes in use.</value>
     public System.String Style {
         get { return GetStyle(); }
-        protected set { SetStyle(value); }
+        set { SetStyle(value); }
     }
+
     /// <summary>The ability for a widget to be focused.
     /// Unfocusable objects do nothing when programmatically focused. The nearest focusable parent object the one really getting focus. Also, when they receive mouse input, they will get the event, but not take away the focus from where it was previously.
     /// 
     /// Note: Objects which are meant to be interacted with by input events are created able to be focused, by default. All the others are not.
     /// 
-    /// This property&apos;s default value depends on the widget (eg. a box is not focusable, but a button is).
-    /// (Since EFL 1.22)</summary>
+    /// This property&apos;s default value depends on the widget (e.g. a box is not focusable, but a button is).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Whether the object is focusable.</value>
     public bool FocusAllow {
         get { return GetFocusAllow(); }
         set { SetFocusAllow(value); }
     }
+
     /// <summary>The internal parent of this widget.
-    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.
-    /// (Since EFL 1.22)</summary>
+    /// <see cref="Efl.Ui.Widget"/> objects have a parent hierarchy that may differ slightly from their <see cref="Efl.Object"/> or <see cref="Efl.Canvas.Object"/> hierarchy. This is meant for internal handling.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Widget parent object</value>
     protected Efl.Ui.Widget WidgetParent {
         get { return GetWidgetParent(); }
         set { SetWidgetParent(value); }
     }
+
     /// <summary>Accessibility information.
     /// This is a replacement string to be read by the accessibility text-to-speech engine, if accessibility is enabled by configuration. This will take precedence over the default text for this object, which means for instance that the label of a button won&apos;t be read out loud, instead <c>txt</c> will be read out.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Accessibility text description.</value>
     public System.String AccessInfo {
         get { return GetAccessInfo(); }
         set { SetAccessInfo(value); }
     }
+
     /// <summary>Region of interest inside this widget, that should be given priority to be visible inside a scroller.
     /// When this widget or one of its subwidgets is given focus, this region should be shown, which means any parent scroller should attempt to display the given area of this widget. For instance, an entry given focus should scroll to show the text cursor if that cursor moves. In this example, this region defines the relative geometry of the cursor within the widget.
     /// 
-    /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.
-    /// (Since EFL 1.22)</summary>
+    /// Note: The region is relative to the top-left corner of the widget, i.e. X,Y start from 0,0 to indicate the top-left corner of the widget. W,H must be greater or equal to 1 for this region to be taken into account, otherwise it is ignored.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The relative region to show. If width or height is &lt;= 0 it will be ignored, and no action will be taken.</value>
     protected Eina.Rect InterestRegion {
         get { return GetInterestRegion(); }
     }
+
     /// <summary>The rectangle region to be highlighted on focus.
-    /// This is a rectangle region where the focus highlight should be displayed.
-    /// (Since EFL 1.22)</summary>
+    /// This is a rectangle region where the focus highlight should be displayed.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The rectangle area.</value>
     protected Eina.Rect FocusHighlightGeometry {
         get { return GetFocusHighlightGeometry(); }
     }
+
     /// <summary>Focus order property
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>FIXME</value>
     public uint FocusOrder {
         get { return GetFocusOrder(); }
     }
+
     /// <summary>A custom chain of objects to pass focus.
     /// Note: On focus cycle, only will be evaluated children of this container.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Chain of objects to pass focus</value>
     public Eina.List<Efl.Canvas.Object> FocusCustomChain {
         get { return GetFocusCustomChain(); }
         set { SetFocusCustomChain(value); }
     }
+
     /// <summary>Current focused object in object tree.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Current focused or <c>null</c>, if there is no focused object.</value>
     public Efl.Canvas.Object FocusedObject {
         get { return GetFocusedObject(); }
     }
+
     /// <summary>The widget&apos;s focus move policy.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Focus move policy</value>
     public Efl.Ui.Focus.MovePolicy FocusMovePolicy {
         get { return GetFocusMovePolicy(); }
         set { SetFocusMovePolicy(value); }
     }
+
     /// <summary>Control the widget&apos;s focus_move_policy mode setting.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> to follow system focus move policy change, <c>false</c> otherwise</value>
     public bool FocusMovePolicyAutomatic {
         get { return GetFocusMovePolicyAutomatic(); }
         set { SetFocusMovePolicyAutomatic(value); }
     }
+
     /// <summary>Get list of available widget actions</summary>
     /// <value>Contains statically allocated strings.</value>
-    public Eina.List<Efl.Access.ActionData> Actions {
+    protected Eina.List<Efl.Access.ActionData> Actions {
         get { return GetActions(); }
     }
+
     /// <summary>Gets the depth at which the component is shown in relation to other components in the same container.</summary>
     /// <value>Z order of component</value>
-    public int ZOrder {
+    protected int ZOrder {
         get { return GetZOrder(); }
     }
+
     /// <summary>Position of accessible widget.</summary>
     /// <value>X coordinate</value>
-    public (int, int) ScreenPosition {
+    protected (int, int) ScreenPosition {
         get {
             int _out_x = default(int);
             int _out_y = default(int);
@@ -3420,8 +3675,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
         set { SetScreenPosition( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets position of socket offset.</summary>
-    public (int, int) SocketOffset {
+    protected (int, int) SocketOffset {
         get {
             int _out_x = default(int);
             int _out_y = default(int);
@@ -3430,13 +3686,15 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
         set { SetSocketOffset( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets an localized string describing accessible object role name.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Localized accessible object role name</value>
-    public System.String LocalizedRoleName {
+    protected System.String LocalizedRoleName {
         get { return GetLocalizedRoleName(); }
     }
+
     /// <summary>Accessible name of the object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -3445,6 +3703,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetI18nName(); }
         set { SetI18nName(value); }
     }
+
     /// <summary>Sets name information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -3453,13 +3712,15 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     public (Efl.Access.ReadingInfoCb, System.IntPtr) NameCb {
         set { SetNameCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets an all relations between accessible object and other accessible objects.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible relation set</value>
-    public Efl.Access.RelationSet RelationSet {
+    protected Efl.Access.RelationSet RelationSet {
         get { return GetRelationSet(); }
     }
+
     /// <summary>The role of the object in accessibility domain.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -3468,12 +3729,14 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetRole(); }
         set { SetRole(value); }
     }
+
     /// <summary>Gets object&apos;s accessible parent.</summary>
     /// <value>Accessible parent</value>
     public Efl.Access.IObject AccessParent {
         get { return GetAccessParent(); }
         set { SetAccessParent(value); }
     }
+
     /// <summary>Sets contextual information callback about widget.
     /// if WEARABLE since_tizen 3.0 endif
     /// 
@@ -3482,6 +3745,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     public (Efl.Access.ReadingInfoCb, System.IntPtr) DescriptionCb {
         set { SetDescriptionCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Sets gesture callback to give widget.
     /// Warning: Please do not abuse this API. The purpose of this API is to support special application such as screen-reader guidance. Before using this API, please check if there is another way.
     /// 
@@ -3491,41 +3755,47 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
     public (Efl.Access.GestureCb, System.IntPtr) GestureCb {
         set { SetGestureCb( value.Item1,  value.Item2); }
     }
+
     /// <summary>Gets object&apos;s accessible children.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>List of widget&apos;s children</value>
-    public Eina.List<Efl.Access.IObject> AccessChildren {
+    protected Eina.List<Efl.Access.IObject> AccessChildren {
         get { return GetAccessChildren(); }
     }
-    /// <summary>Gets human-readable string indentifying object accessibility role.
+
+    /// <summary>Gets human-readable string identifying object accessibility role.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible role name</value>
-    public System.String RoleName {
+    protected System.String RoleName {
         get { return GetRoleName(); }
     }
-    /// <summary>Gets key-value pairs indentifying object extra attributes. Must be free by a user.
+
+    /// <summary>Gets key-value pairs identifying object extra attributes. Must be free by a user.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <value>List of object attributes, Must be freed by the user</value>
-    public Eina.List<Efl.Access.Attribute> Attributes {
+    /// <value>List of object attributes. Must be freed by the user</value>
+    protected Eina.List<Efl.Access.Attribute> Attributes {
         get { return GetAttributes(); }
     }
-    /// <summary>Gets reading information types of an accessible object. if no reading information is set, 0 is returned which means all four reading information types will be read on object highlight
-    /// if WEARABLE since_tizen 3.0 endif</summary>
+
+    /// <summary>Reading information of an accessible object.
+    /// If no reading information is set, 0 is returned which means all four reading information types will be read from object highlight. If set to 0, existing reading info will be deleted. if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>Reading information types</value>
-    public Efl.Access.ReadingInfoTypeMask ReadingInfoType {
+    protected Efl.Access.ReadingInfoTypeMask ReadingInfoType {
         get { return GetReadingInfoType(); }
         set { SetReadingInfoType(value); }
     }
+
     /// <summary>Gets index of the child in parent&apos;s children list.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Index in children list</value>
-    public int IndexInParent {
+    protected int IndexInParent {
         get { return GetIndexInParent(); }
     }
+
     /// <summary>Gets contextual information about object.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
@@ -3534,13 +3804,15 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetDescription(); }
         set { SetDescription(value); }
     }
+
     /// <summary>Gets set describing object accessible states.
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Accessible state set</value>
-    public Efl.Access.StateSet StateSet {
+    protected Efl.Access.StateSet StateSet {
         get { return GetStateSet(); }
     }
+
     /// <summary>The translation domain of &quot;name&quot; and &quot;description&quot; properties.
     /// Translation domain should be set if the application wants to support i18n for accessibility &quot;name&quot; and &quot;description&quot; properties.
     /// 
@@ -3554,25 +3826,29 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetTranslationDomain(); }
         set { SetTranslationDomain(value); }
     }
-    /// <summary>Get root object of accessible object hierarchy
+
+    /// <summary>Root object of accessible object hierarchy
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
     /// <value>Root object</value>
     public static Efl.Object AccessRoot {
         get { return GetAccessRoot(); }
     }
+
     /// <summary>Gets highlightable of given widget.
     /// if WEARABLE since_tizen 3.0 endif</summary>
     /// <value>If c true, the object is highlightable.</value>
-    public bool CanHighlight {
+    protected bool CanHighlight {
         get { return GetCanHighlight(); }
         set { SetCanHighlight(value); }
     }
+
     /// <summary>Elementary actions</summary>
     /// <value>NULL-terminated array of Efl.Access.Action_Data.</value>
-    public Efl.Access.ActionData ElmActions {
+    protected Efl.Access.ActionData ElmActions {
         get { return GetElmActions(); }
     }
+
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
@@ -3580,6 +3856,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetMirrored(); }
         set { SetMirrored(value); }
     }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
@@ -3589,62 +3866,72 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         get { return GetMirroredAutomatic(); }
         set { SetMirroredAutomatic(value); }
     }
+
     /// <summary>The (human) language for this object.</summary>
     /// <value>The current language.</value>
     public System.String Language {
         get { return GetLanguage(); }
         set { SetLanguage(value); }
     }
+
     /// <summary>Model that is/will be</summary>
     /// <value>Efl model</value>
     public Efl.IModel Model {
         get { return GetModel(); }
         set { SetModel(value); }
     }
-    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The geometry (that is, the bounding rectangle) used to calculate the relationship with other objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The geometry to use.</value>
     public Eina.Rect FocusGeometry {
         get { return GetFocusGeometry(); }
     }
-    /// <summary>Returns whether the widget is currently focused or not.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Whether the widget is currently focused or not.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focused state of the object.</value>
     public bool Focus {
         get { return GetFocus(); }
-        set { SetFocus(value); }
+        protected set { SetFocus(value); }
     }
-    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of a Efl.Ui.Focus.Manager will not have this focus manager as this object, but rather the second focus manager where it is registered in.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The manager object</value>
+
+    /// <summary>This is the focus manager where this focus object is registered in. The element which is the <c>root</c> of an <see cref="Efl.Ui.Focus.IManager"/> will not have this focus manager as this object, but rather the focus manager where that is registered in.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The manager object.</value>
     public Efl.Ui.Focus.IManager FocusManager {
         get { return GetFocusManager(); }
     }
-    /// <summary>Describes which logical parent is used by this object.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The logical parent used by this object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The focus parent.</value>
     public Efl.Ui.Focus.IObject FocusParent {
         get { return GetFocusParent(); }
     }
-    /// <summary>Indicates if a child of this object has focus set to true.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Indicates if a child of this object has focus set to true.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if a child has focus.</value>
-    public bool ChildFocus {
+    protected bool ChildFocus {
         get { return GetChildFocus(); }
         set { SetChildFocus(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Widget.efl_ui_widget_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Group.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -3994,7 +4281,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_ui_widget_theme_apply_static_delegate = new efl_ui_widget_theme_apply_delegate(theme_apply);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "ThemeApply") != null)
+            if (methods.FirstOrDefault(m => m.Name == "ApplyTheme") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_theme_apply"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_theme_apply_static_delegate) });
             }
@@ -4114,7 +4401,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_ui_widget_focus_custom_chain_prepend_static_delegate = new efl_ui_widget_focus_custom_chain_prepend_delegate(focus_custom_chain_prepend);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "FocusCustomChainPrepend") != null)
+            if (methods.FirstOrDefault(m => m.Name == "PrependFocusCustomChain") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_focus_custom_chain_prepend"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_focus_custom_chain_prepend_static_delegate) });
             }
@@ -4214,7 +4501,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_ui_widget_focus_steal_static_delegate = new efl_ui_widget_focus_steal_delegate(focus_steal);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "FocusSteal") != null)
+            if (methods.FirstOrDefault(m => m.Name == "StealFocus") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_focus_steal"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_focus_steal_static_delegate) });
             }
@@ -4314,7 +4601,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_ui_widget_focus_state_apply_static_delegate = new efl_ui_widget_focus_state_apply_delegate(focus_state_apply);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "FocusStateApply") != null)
+            if (methods.FirstOrDefault(m => m.Name == "ApplyFocusState") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_focus_state_apply"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_focus_state_apply_static_delegate) });
             }
@@ -4364,7 +4651,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_access_action_do_static_delegate = new efl_access_action_do_delegate(action_do);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "ActionDo") != null)
+            if (methods.FirstOrDefault(m => m.Name == "DoAction") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_action_do"), func = Marshal.GetFunctionPointerForDelegate(efl_access_action_do_static_delegate) });
             }
@@ -4509,36 +4796,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_localized_role_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_localized_role_name_get_static_delegate) });
             }
 
-            if (efl_access_object_i18n_name_get_static_delegate == null)
-            {
-                efl_access_object_i18n_name_get_static_delegate = new efl_access_object_i18n_name_get_delegate(i18n_name_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetI18nName") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_i18n_name_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_get_static_delegate) });
-            }
-
-            if (efl_access_object_i18n_name_set_static_delegate == null)
-            {
-                efl_access_object_i18n_name_set_static_delegate = new efl_access_object_i18n_name_set_delegate(i18n_name_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetI18nName") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_i18n_name_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_i18n_name_set_static_delegate) });
-            }
-
-            if (efl_access_object_name_cb_set_static_delegate == null)
-            {
-                efl_access_object_name_cb_set_static_delegate = new efl_access_object_name_cb_set_delegate(name_cb_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetNameCb") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_name_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_name_cb_set_static_delegate) });
-            }
-
             if (efl_access_object_relation_set_get_static_delegate == null)
             {
                 efl_access_object_relation_set_get_static_delegate = new efl_access_object_relation_set_get_delegate(relation_set_get);
@@ -4547,66 +4804,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (methods.FirstOrDefault(m => m.Name == "GetRelationSet") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relation_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relation_set_get_static_delegate) });
-            }
-
-            if (efl_access_object_role_get_static_delegate == null)
-            {
-                efl_access_object_role_get_static_delegate = new efl_access_object_role_get_delegate(role_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRole") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_get_static_delegate) });
-            }
-
-            if (efl_access_object_role_set_static_delegate == null)
-            {
-                efl_access_object_role_set_static_delegate = new efl_access_object_role_set_delegate(role_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetRole") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_role_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_role_set_static_delegate) });
-            }
-
-            if (efl_access_object_access_parent_get_static_delegate == null)
-            {
-                efl_access_object_access_parent_get_static_delegate = new efl_access_object_access_parent_get_delegate(access_parent_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetAccessParent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_get_static_delegate) });
-            }
-
-            if (efl_access_object_access_parent_set_static_delegate == null)
-            {
-                efl_access_object_access_parent_set_static_delegate = new efl_access_object_access_parent_set_delegate(access_parent_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetAccessParent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_access_parent_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_access_parent_set_static_delegate) });
-            }
-
-            if (efl_access_object_description_cb_set_static_delegate == null)
-            {
-                efl_access_object_description_cb_set_static_delegate = new efl_access_object_description_cb_set_delegate(description_cb_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetDescriptionCb") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_cb_set_static_delegate) });
-            }
-
-            if (efl_access_object_gesture_cb_set_static_delegate == null)
-            {
-                efl_access_object_gesture_cb_set_static_delegate = new efl_access_object_gesture_cb_set_delegate(gesture_cb_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetGestureCb") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_cb_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_cb_set_static_delegate) });
             }
 
             if (efl_access_object_access_children_get_static_delegate == null)
@@ -4669,26 +4866,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_index_in_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_index_in_parent_get_static_delegate) });
             }
 
-            if (efl_access_object_description_get_static_delegate == null)
-            {
-                efl_access_object_description_get_static_delegate = new efl_access_object_description_get_delegate(description_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetDescription") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_get_static_delegate) });
-            }
-
-            if (efl_access_object_description_set_static_delegate == null)
-            {
-                efl_access_object_description_set_static_delegate = new efl_access_object_description_set_delegate(description_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetDescription") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_description_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_description_set_static_delegate) });
-            }
-
             if (efl_access_object_state_set_get_static_delegate == null)
             {
                 efl_access_object_state_set_get_static_delegate = new efl_access_object_state_set_get_delegate(state_set_get);
@@ -4697,26 +4874,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (methods.FirstOrDefault(m => m.Name == "GetStateSet") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_state_set_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_state_set_get_static_delegate) });
-            }
-
-            if (efl_access_object_translation_domain_get_static_delegate == null)
-            {
-                efl_access_object_translation_domain_get_static_delegate = new efl_access_object_translation_domain_get_delegate(translation_domain_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetTranslationDomain") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_get_static_delegate) });
-            }
-
-            if (efl_access_object_translation_domain_set_static_delegate == null)
-            {
-                efl_access_object_translation_domain_set_static_delegate = new efl_access_object_translation_domain_set_delegate(translation_domain_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetTranslationDomain") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_translation_domain_set"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_translation_domain_set_static_delegate) });
             }
 
             if (efl_access_object_can_highlight_get_static_delegate == null)
@@ -4744,69 +4901,9 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 efl_access_object_gesture_do_static_delegate = new efl_access_object_gesture_do_delegate(gesture_do);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GestureDo") != null)
+            if (methods.FirstOrDefault(m => m.Name == "DoGesture") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_gesture_do"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_gesture_do_static_delegate) });
-            }
-
-            if (efl_access_object_attribute_append_static_delegate == null)
-            {
-                efl_access_object_attribute_append_static_delegate = new efl_access_object_attribute_append_delegate(attribute_append);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "AppendAttribute") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attribute_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_append_static_delegate) });
-            }
-
-            if (efl_access_object_attribute_del_static_delegate == null)
-            {
-                efl_access_object_attribute_del_static_delegate = new efl_access_object_attribute_del_delegate(attribute_del);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "DelAttribute") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attribute_del"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attribute_del_static_delegate) });
-            }
-
-            if (efl_access_object_attributes_clear_static_delegate == null)
-            {
-                efl_access_object_attributes_clear_static_delegate = new efl_access_object_attributes_clear_delegate(attributes_clear);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ClearAttributes") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_attributes_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_attributes_clear_static_delegate) });
-            }
-
-            if (efl_access_object_relationship_append_static_delegate == null)
-            {
-                efl_access_object_relationship_append_static_delegate = new efl_access_object_relationship_append_delegate(relationship_append);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "AppendRelationship") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationship_append"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_append_static_delegate) });
-            }
-
-            if (efl_access_object_relationship_remove_static_delegate == null)
-            {
-                efl_access_object_relationship_remove_static_delegate = new efl_access_object_relationship_remove_delegate(relationship_remove);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "RelationshipRemove") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationship_remove"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationship_remove_static_delegate) });
-            }
-
-            if (efl_access_object_relationships_clear_static_delegate == null)
-            {
-                efl_access_object_relationships_clear_static_delegate = new efl_access_object_relationships_clear_delegate(relationships_clear);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ClearRelationships") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_object_relationships_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_access_object_relationships_clear_static_delegate) });
             }
 
             if (efl_access_object_state_notify_static_delegate == null)
@@ -4829,136 +4926,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_access_widget_action_elm_actions_get"), func = Marshal.GetFunctionPointerForDelegate(efl_access_widget_action_elm_actions_get_static_delegate) });
             }
 
-            if (efl_ui_dnd_drag_start_static_delegate == null)
-            {
-                efl_ui_dnd_drag_start_static_delegate = new efl_ui_dnd_drag_start_delegate(drag_start);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "DragStart") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_drag_start"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_drag_start_static_delegate) });
-            }
-
-            if (efl_ui_dnd_drag_action_set_static_delegate == null)
-            {
-                efl_ui_dnd_drag_action_set_static_delegate = new efl_ui_dnd_drag_action_set_delegate(drag_action_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetDragAction") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_drag_action_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_drag_action_set_static_delegate) });
-            }
-
-            if (efl_ui_dnd_drag_cancel_static_delegate == null)
-            {
-                efl_ui_dnd_drag_cancel_static_delegate = new efl_ui_dnd_drag_cancel_delegate(drag_cancel);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "DragCancel") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_drag_cancel"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_drag_cancel_static_delegate) });
-            }
-
-            if (efl_ui_dnd_drop_target_add_static_delegate == null)
-            {
-                efl_ui_dnd_drop_target_add_static_delegate = new efl_ui_dnd_drop_target_add_delegate(drop_target_add);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "AddDropTarget") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_drop_target_add"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_drop_target_add_static_delegate) });
-            }
-
-            if (efl_ui_dnd_drop_target_del_static_delegate == null)
-            {
-                efl_ui_dnd_drop_target_del_static_delegate = new efl_ui_dnd_drop_target_del_delegate(drop_target_del);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "DelDropTarget") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_dnd_drop_target_del"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_dnd_drop_target_del_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_get_static_delegate == null)
-            {
-                efl_ui_mirrored_get_static_delegate = new efl_ui_mirrored_get_delegate(mirrored_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetMirrored") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_get_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_set_static_delegate == null)
-            {
-                efl_ui_mirrored_set_static_delegate = new efl_ui_mirrored_set_delegate(mirrored_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetMirrored") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_set_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_automatic_get_static_delegate == null)
-            {
-                efl_ui_mirrored_automatic_get_static_delegate = new efl_ui_mirrored_automatic_get_delegate(mirrored_automatic_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetMirroredAutomatic") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_get_static_delegate) });
-            }
-
-            if (efl_ui_mirrored_automatic_set_static_delegate == null)
-            {
-                efl_ui_mirrored_automatic_set_static_delegate = new efl_ui_mirrored_automatic_set_delegate(mirrored_automatic_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetMirroredAutomatic") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_mirrored_automatic_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_mirrored_automatic_set_static_delegate) });
-            }
-
-            if (efl_ui_language_get_static_delegate == null)
-            {
-                efl_ui_language_get_static_delegate = new efl_ui_language_get_delegate(language_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetLanguage") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_get_static_delegate) });
-            }
-
-            if (efl_ui_language_set_static_delegate == null)
-            {
-                efl_ui_language_set_static_delegate = new efl_ui_language_set_delegate(language_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetLanguage") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_set_static_delegate) });
-            }
-
-            if (efl_ui_l10n_text_get_static_delegate == null)
-            {
-                efl_ui_l10n_text_get_static_delegate = new efl_ui_l10n_text_get_delegate(l10n_text_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetL10nText") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_l10n_text_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_l10n_text_get_static_delegate) });
-            }
-
-            if (efl_ui_l10n_text_set_static_delegate == null)
-            {
-                efl_ui_l10n_text_set_static_delegate = new efl_ui_l10n_text_set_delegate(l10n_text_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetL10nText") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_l10n_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_l10n_text_set_static_delegate) });
-            }
-
             if (efl_ui_l10n_translation_update_static_delegate == null)
             {
                 efl_ui_l10n_translation_update_static_delegate = new efl_ui_l10n_translation_update_delegate(translation_update);
@@ -4969,96 +4936,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_l10n_translation_update"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_l10n_translation_update_static_delegate) });
             }
 
-            if (efl_ui_property_bind_static_delegate == null)
-            {
-                efl_ui_property_bind_static_delegate = new efl_ui_property_bind_delegate(property_bind);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PropertyBind") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_property_bind"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_property_bind_static_delegate) });
-            }
-
-            if (efl_ui_selection_set_static_delegate == null)
-            {
-                efl_ui_selection_set_static_delegate = new efl_ui_selection_set_delegate(selection_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selection_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selection_set_static_delegate) });
-            }
-
-            if (efl_ui_selection_get_static_delegate == null)
-            {
-                efl_ui_selection_get_static_delegate = new efl_ui_selection_get_delegate(selection_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selection_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selection_get_static_delegate) });
-            }
-
-            if (efl_ui_selection_clear_static_delegate == null)
-            {
-                efl_ui_selection_clear_static_delegate = new efl_ui_selection_clear_delegate(selection_clear);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ClearSelection") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selection_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selection_clear_static_delegate) });
-            }
-
-            if (efl_ui_selection_has_owner_static_delegate == null)
-            {
-                efl_ui_selection_has_owner_static_delegate = new efl_ui_selection_has_owner_delegate(has_owner);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "HasOwner") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selection_has_owner"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selection_has_owner_static_delegate) });
-            }
-
-            if (efl_ui_view_model_get_static_delegate == null)
-            {
-                efl_ui_view_model_get_static_delegate = new efl_ui_view_model_get_delegate(model_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetModel") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_view_model_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_view_model_get_static_delegate) });
-            }
-
-            if (efl_ui_view_model_set_static_delegate == null)
-            {
-                efl_ui_view_model_set_static_delegate = new efl_ui_view_model_set_delegate(model_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetModel") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_view_model_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_view_model_set_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_focus_geometry_get_static_delegate == null)
-            {
-                efl_ui_focus_object_focus_geometry_get_static_delegate = new efl_ui_focus_object_focus_geometry_get_delegate(focus_geometry_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFocusGeometry") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_geometry_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_geometry_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_focus_get_static_delegate == null)
-            {
-                efl_ui_focus_object_focus_get_static_delegate = new efl_ui_focus_object_focus_get_delegate(focus_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_get_static_delegate) });
-            }
-
             if (efl_ui_focus_object_focus_set_static_delegate == null)
             {
                 efl_ui_focus_object_focus_set_static_delegate = new efl_ui_focus_object_focus_set_delegate(focus_set);
@@ -5067,26 +4944,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (methods.FirstOrDefault(m => m.Name == "SetFocus") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_set_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_focus_manager_get_static_delegate == null)
-            {
-                efl_ui_focus_object_focus_manager_get_static_delegate = new efl_ui_focus_object_focus_manager_get_delegate(focus_manager_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFocusManager") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_manager_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_manager_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_object_focus_parent_get_static_delegate == null)
-            {
-                efl_ui_focus_object_focus_parent_get_static_delegate = new efl_ui_focus_object_focus_parent_get_delegate(focus_parent_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFocusParent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_focus_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_focus_parent_get_static_delegate) });
             }
 
             if (efl_ui_focus_object_child_focus_get_static_delegate == null)
@@ -5109,16 +4966,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_child_focus_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_child_focus_set_static_delegate) });
             }
 
-            if (efl_ui_focus_object_setup_order_static_delegate == null)
-            {
-                efl_ui_focus_object_setup_order_static_delegate = new efl_ui_focus_object_setup_order_delegate(setup_order);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetupOrder") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_setup_order"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_setup_order_static_delegate) });
-            }
-
             if (efl_ui_focus_object_setup_order_non_recursive_static_delegate == null)
             {
                 efl_ui_focus_object_setup_order_non_recursive_static_delegate = new efl_ui_focus_object_setup_order_non_recursive_delegate(setup_order_non_recursive);
@@ -5139,9 +4986,20 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_object_on_focus_update"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_object_on_focus_update_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -5165,7 +5023,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetCursor();
@@ -5176,8 +5034,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5201,7 +5058,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetCursor(cursor);
@@ -5212,8 +5069,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5237,7 +5093,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetCursorStyle();
@@ -5248,8 +5104,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5273,7 +5128,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetCursorStyle(style);
@@ -5284,8 +5139,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5309,7 +5163,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetCursorThemeSearchEnabled();
@@ -5320,8 +5174,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5345,7 +5198,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetCursorThemeSearchEnabled(allow);
@@ -5356,8 +5209,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5381,7 +5233,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetResizeObject(sobj);
@@ -5392,7 +5244,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5416,7 +5268,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetDisabled();
@@ -5427,8 +5279,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5452,7 +5303,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetDisabled(disabled);
@@ -5463,7 +5314,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5487,7 +5338,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetStyle();
@@ -5498,8 +5349,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5523,7 +5373,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Error _ret_var = default(Eina.Error);
+                Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetStyle(style);
@@ -5534,8 +5384,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5559,7 +5408,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusAllow();
@@ -5570,8 +5419,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5595,7 +5443,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocusAllow(can_focus);
@@ -5606,7 +5454,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5630,7 +5478,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
+                Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetWidgetParent();
@@ -5641,8 +5489,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5666,7 +5513,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetWidgetParent(parent);
@@ -5677,7 +5524,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5701,7 +5548,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetAccessInfo();
@@ -5712,8 +5559,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5737,7 +5583,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetAccessInfo(txt);
@@ -5748,7 +5594,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5772,7 +5618,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetInterestRegion();
@@ -5783,8 +5629,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5808,7 +5653,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusHighlightGeometry();
@@ -5819,8 +5664,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5844,7 +5688,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            uint _ret_var = default(uint);
+                uint _ret_var = default(uint);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusOrder();
@@ -5855,8 +5699,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5880,7 +5723,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Canvas.Object> _ret_var = default(Eina.List<Efl.Canvas.Object>);
+                Eina.List<Efl.Canvas.Object> _ret_var = default(Eina.List<Efl.Canvas.Object>);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusCustomChain();
@@ -5891,8 +5734,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {
@@ -5916,8 +5758,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_objs = new Eina.List<Efl.Canvas.Object>(objs, false, false);
-                            
+                var _in_objs = new Eina.List<Efl.Canvas.Object>(objs, false, false);
+
                 try
                 {
                     ((Widget)ws.Target).SetFocusCustomChain(_in_objs);
@@ -5928,7 +5770,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -5952,7 +5794,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusedObject();
@@ -5963,8 +5805,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -5988,7 +5829,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.MovePolicy _ret_var = default(Efl.Ui.Focus.MovePolicy);
+                Efl.Ui.Focus.MovePolicy _ret_var = default(Efl.Ui.Focus.MovePolicy);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusMovePolicy();
@@ -5999,8 +5840,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6024,7 +5864,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocusMovePolicy(policy);
@@ -6035,7 +5875,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6059,7 +5899,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusMovePolicyAutomatic();
@@ -6070,8 +5910,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6095,7 +5934,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocusMovePolicyAutomatic(automatic);
@@ -6106,7 +5945,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6130,7 +5969,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).WidgetInputEventHandler(eo_event, source);
@@ -6141,8 +5980,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6166,7 +6004,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).OnAccessActivate(act);
@@ -6177,8 +6015,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6202,7 +6039,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).UpdateOnAccess(enable);
@@ -6213,7 +6050,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6237,7 +6074,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).ScreenReader(is_screen_reader);
@@ -6248,7 +6085,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6272,7 +6109,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).Atspi(is_atspi);
@@ -6283,7 +6120,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6307,7 +6144,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).AddWidgetSubObject(sub_obj);
@@ -6318,8 +6155,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6343,7 +6179,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).DelWidgetSubObject(sub_obj);
@@ -6354,8 +6190,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6379,10 +6214,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Error _ret_var = default(Eina.Error);
+                Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
-                    _ret_var = ((Widget)ws.Target).ThemeApply();
+                    _ret_var = ((Widget)ws.Target).ApplyTheme();
                 }
                 catch (Exception e)
                 {
@@ -6390,8 +6225,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6415,7 +6249,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).PushScrollHold();
@@ -6426,7 +6260,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -6450,7 +6284,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).PopScrollHold();
@@ -6461,7 +6295,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -6485,7 +6319,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).PushScrollFreeze();
@@ -6496,7 +6330,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -6520,7 +6354,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).PopScrollFreeze();
@@ -6531,7 +6365,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -6555,7 +6389,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetPartAccessObject(part);
@@ -6566,8 +6400,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6591,7 +6424,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        newest_focus_order = default(uint);                                    Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                newest_focus_order = default(uint);Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetNewestFocusOrder(out newest_focus_order, can_focus_only);
@@ -6602,8 +6435,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6627,7 +6459,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocusNextObject(next, dir);
@@ -6638,7 +6470,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -6662,7 +6494,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusNextObject(dir);
@@ -6673,8 +6505,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6698,7 +6529,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocusNextItem(next_item, dir);
@@ -6709,7 +6540,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -6733,7 +6564,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
+                Efl.Ui.Widget _ret_var = default(Efl.Ui.Widget);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusNextItem(dir);
@@ -6744,8 +6575,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6769,7 +6599,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusTreeUnfocusableHandle();
@@ -6780,7 +6610,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -6804,10 +6634,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
-                    ((Widget)ws.Target).FocusCustomChainPrepend(child, relative_child);
+                    ((Widget)ws.Target).PrependFocusCustomChain(child, relative_child);
                 }
                 catch (Exception e)
                 {
@@ -6815,7 +6645,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -6839,7 +6669,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).FocusCycle(dir);
@@ -6850,7 +6680,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -6874,7 +6704,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                    bool _ret_var = default(bool);
+                direction = default(Efl.Canvas.Object);direction_item = default(Efl.Ui.Widget);weight = default(double);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).FocusDirection(kw_base, degree, out direction, out direction_item, out weight);
@@ -6885,8 +6715,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6910,7 +6739,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).IsFocusNextManager();
@@ -6921,8 +6750,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6947,7 +6775,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (ws != null)
             {
                 var _in_items = new Eina.List<Efl.Object>(items, false, false);
-                                                                                direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                                    bool _ret_var = default(bool);
+direction = default(Efl.Canvas.Object);direction_item = default(Efl.Ui.Widget);weight = default(double);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusListDirection(kw_base, _in_items, list_data_get, degree, out direction, out direction_item, out weight);
@@ -6958,8 +6786,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -6983,7 +6810,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).ClearFocusedObject();
@@ -6994,7 +6821,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7018,7 +6845,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).FocusDirectionGo(degree);
@@ -7029,8 +6856,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7054,7 +6880,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                    bool _ret_var = default(bool);
+                next = default(Efl.Canvas.Object);next_item = default(Efl.Ui.Widget);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusNext(dir, out next, out next_item);
@@ -7065,8 +6891,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7090,7 +6915,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusRestore();
@@ -7101,7 +6926,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7125,7 +6950,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).UnsetFocusCustomChain();
@@ -7136,7 +6961,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7160,10 +6985,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
-                    ((Widget)ws.Target).FocusSteal(item);
+                    ((Widget)ws.Target).StealFocus(item);
                 }
                 catch (Exception e)
                 {
@@ -7171,7 +6996,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -7195,7 +7020,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusHideHandle();
@@ -7206,7 +7031,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7230,7 +7055,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                    bool _ret_var = default(bool);
+                next = default(Efl.Canvas.Object);next_item = default(Efl.Ui.Widget);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).FocusNext(dir, out next, out next_item);
@@ -7241,8 +7066,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7266,8 +7090,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_items = new Eina.List<Efl.Object>(items, false, false);
-                                                                next = default(Efl.Canvas.Object);        next_item = default(Efl.Ui.Widget);                                                    bool _ret_var = default(bool);
+                var _in_items = new Eina.List<Efl.Object>(items, false, false);
+next = default(Efl.Canvas.Object);next_item = default(Efl.Ui.Widget);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusListNext(_in_items, list_data_get, dir, out next, out next_item);
@@ -7278,8 +7102,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7303,7 +7126,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusMouseUpHandle();
@@ -7314,7 +7137,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7338,7 +7161,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                direction = default(Efl.Canvas.Object);        direction_item = default(Efl.Ui.Widget);        weight = default(double);                                                    bool _ret_var = default(bool);
+                direction = default(Efl.Canvas.Object);direction_item = default(Efl.Ui.Widget);weight = default(double);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetFocusDirection(kw_base, degree, out direction, out direction_item, out weight);
@@ -7349,8 +7172,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7374,7 +7196,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusDisabledHandle();
@@ -7385,7 +7207,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7409,7 +7231,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Widget)ws.Target).AppendFocusCustomChain(child, relative_child);
@@ -7420,7 +7242,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -7444,7 +7266,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).FocusReconfigure();
@@ -7455,7 +7277,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -7479,7 +7301,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).IsFocusDirectionManager();
@@ -7490,8 +7312,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7515,12 +7336,12 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Efl.Ui.WidgetFocusState _in_current_state = current_state;
-                                Efl.Ui.WidgetFocusState _out_configured_state = default(Efl.Ui.WidgetFocusState);
-                                            bool _ret_var = default(bool);
+                Efl.Ui.WidgetFocusState _in_current_state = current_state;
+Efl.Ui.WidgetFocusState _out_configured_state = default(Efl.Ui.WidgetFocusState);
+bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)ws.Target).FocusStateApply(_in_current_state, ref _out_configured_state, redirect);
+                    _ret_var = ((Widget)ws.Target).ApplyFocusState(_in_current_state, ref _out_configured_state, redirect);
                 }
                 catch (Exception e)
                 {
@@ -7528,9 +7349,8 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                configured_state = _out_configured_state;
-                                        return _ret_var;
-
+        configured_state = _out_configured_state;
+        return _ret_var;
             }
             else
             {
@@ -7554,7 +7374,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetPart(name);
@@ -7565,8 +7385,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7590,7 +7409,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetActionName(id);
@@ -7601,8 +7420,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7626,7 +7444,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetActionLocalizedName(id);
@@ -7637,8 +7455,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7662,7 +7479,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Access.ActionData> _ret_var = default(Eina.List<Efl.Access.ActionData>);
+                Eina.List<Efl.Access.ActionData> _ret_var = default(Eina.List<Efl.Access.ActionData>);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetActions();
@@ -7673,8 +7490,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {
@@ -7698,10 +7514,10 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)ws.Target).ActionDo(id);
+                    _ret_var = ((Widget)ws.Target).DoAction(id);
                 }
                 catch (Exception e)
                 {
@@ -7709,8 +7525,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7734,7 +7549,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetActionKeybinding(id);
@@ -7745,8 +7560,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7770,7 +7584,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetZOrder();
@@ -7781,8 +7595,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7806,7 +7619,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetExtents(screen_coords);
@@ -7817,8 +7630,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7843,7 +7655,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (ws != null)
             {
                 Eina.Rect _in_rect = rect;
-                                            bool _ret_var = default(bool);
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetExtents(screen_coords, _in_rect);
@@ -7854,8 +7666,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7879,7 +7690,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        x = default(int);        y = default(int);                            
+                x = default(int);y = default(int);
                 try
                 {
                     ((Widget)ws.Target).GetScreenPosition(out x, out y);
@@ -7890,7 +7701,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -7914,7 +7725,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).SetScreenPosition(x, y);
@@ -7925,8 +7736,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -7950,7 +7760,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        x = default(int);        y = default(int);                            
+                x = default(int);y = default(int);
                 try
                 {
                     ((Widget)ws.Target).GetSocketOffset(out x, out y);
@@ -7961,7 +7771,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -7985,7 +7795,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Widget)ws.Target).SetSocketOffset(x, y);
@@ -7996,7 +7806,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -8020,7 +7830,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).Contains(screen_coords, x, y);
@@ -8031,8 +7841,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8056,7 +7865,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GrabFocus();
@@ -8067,8 +7876,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8092,7 +7900,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetAccessibleAtPoint(screen_coords, x, y);
@@ -8103,8 +7911,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8128,7 +7935,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GrabHighlight();
@@ -8139,8 +7946,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8164,7 +7970,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).ClearHighlight();
@@ -8175,8 +7981,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8200,7 +8005,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetLocalizedRoleName();
@@ -8211,8 +8016,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8221,112 +8025,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_object_localized_role_name_get_delegate efl_access_object_localized_role_name_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_access_object_i18n_name_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_access_object_i18n_name_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate> efl_access_object_i18n_name_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_get_api_delegate>(Module, "efl_access_object_i18n_name_get");
-
-        private static System.String i18n_name_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_i18n_name_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetI18nName();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_i18n_name_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_i18n_name_get_delegate efl_access_object_i18n_name_get_static_delegate;
-
-        
-        private delegate void efl_access_object_i18n_name_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String i18n_name);
-
-        
-        public delegate void efl_access_object_i18n_name_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String i18n_name);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate> efl_access_object_i18n_name_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_i18n_name_set_api_delegate>(Module, "efl_access_object_i18n_name_set");
-
-        private static void i18n_name_set(System.IntPtr obj, System.IntPtr pd, System.String i18n_name)
-        {
-            Eina.Log.Debug("function efl_access_object_i18n_name_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetI18nName(i18n_name);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_i18n_name_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), i18n_name);
-            }
-        }
-
-        private static efl_access_object_i18n_name_set_delegate efl_access_object_i18n_name_set_static_delegate;
-
-        
-        private delegate void efl_access_object_name_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data);
-
-        
-        public delegate void efl_access_object_name_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.ReadingInfoCb name_cb,  System.IntPtr data);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate> efl_access_object_name_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_name_cb_set_api_delegate>(Module, "efl_access_object_name_cb_set");
-
-        private static void name_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb name_cb, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_access_object_name_cb_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).SetNameCb(name_cb, data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_name_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), name_cb, data);
-            }
-        }
-
-        private static efl_access_object_name_cb_set_delegate efl_access_object_name_cb_set_static_delegate;
 
         
         private delegate Efl.Access.RelationSet efl_access_object_relation_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -8342,7 +8040,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
+                Efl.Access.RelationSet _ret_var = default(Efl.Access.RelationSet);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetRelationSet();
@@ -8353,8 +8051,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8363,218 +8060,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_object_relation_set_get_delegate efl_access_object_relation_set_get_static_delegate;
-
-        
-        private delegate Efl.Access.Role efl_access_object_role_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Access.Role efl_access_object_role_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate> efl_access_object_role_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_get_api_delegate>(Module, "efl_access_object_role_get");
-
-        private static Efl.Access.Role role_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_role_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Access.Role _ret_var = default(Efl.Access.Role);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetRole();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_role_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_role_get_delegate efl_access_object_role_get_static_delegate;
-
-        
-        private delegate void efl_access_object_role_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.Role role);
-
-        
-        public delegate void efl_access_object_role_set_api_delegate(System.IntPtr obj,  Efl.Access.Role role);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate> efl_access_object_role_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_role_set_api_delegate>(Module, "efl_access_object_role_set");
-
-        private static void role_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.Role role)
-        {
-            Eina.Log.Debug("function efl_access_object_role_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetRole(role);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_role_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), role);
-            }
-        }
-
-        private static efl_access_object_role_set_delegate efl_access_object_role_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Access.IObject efl_access_object_access_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Access.IObject efl_access_object_access_parent_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate> efl_access_object_access_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_get_api_delegate>(Module, "efl_access_object_access_parent_get");
-
-        private static Efl.Access.IObject access_parent_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_access_parent_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Access.IObject _ret_var = default(Efl.Access.IObject);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetAccessParent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_access_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_access_parent_get_delegate efl_access_object_access_parent_get_static_delegate;
-
-        
-        private delegate void efl_access_object_access_parent_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject parent);
-
-        
-        public delegate void efl_access_object_access_parent_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject parent);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate> efl_access_object_access_parent_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_access_parent_set_api_delegate>(Module, "efl_access_object_access_parent_set");
-
-        private static void access_parent_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.IObject parent)
-        {
-            Eina.Log.Debug("function efl_access_object_access_parent_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetAccessParent(parent);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_access_parent_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), parent);
-            }
-        }
-
-        private static efl_access_object_access_parent_set_delegate efl_access_object_access_parent_set_static_delegate;
-
-        
-        private delegate void efl_access_object_description_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data);
-
-        
-        public delegate void efl_access_object_description_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.ReadingInfoCb description_cb,  System.IntPtr data);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate> efl_access_object_description_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_cb_set_api_delegate>(Module, "efl_access_object_description_cb_set");
-
-        private static void description_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.ReadingInfoCb description_cb, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_access_object_description_cb_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).SetDescriptionCb(description_cb, data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_description_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), description_cb, data);
-            }
-        }
-
-        private static efl_access_object_description_cb_set_delegate efl_access_object_description_cb_set_static_delegate;
-
-        
-        private delegate void efl_access_object_gesture_cb_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.GestureCb gesture_cb,  System.IntPtr data);
-
-        
-        public delegate void efl_access_object_gesture_cb_set_api_delegate(System.IntPtr obj,  Efl.Access.GestureCb gesture_cb,  System.IntPtr data);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate> efl_access_object_gesture_cb_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_gesture_cb_set_api_delegate>(Module, "efl_access_object_gesture_cb_set");
-
-        private static void gesture_cb_set(System.IntPtr obj, System.IntPtr pd, Efl.Access.GestureCb gesture_cb, System.IntPtr data)
-        {
-            Eina.Log.Debug("function efl_access_object_gesture_cb_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).SetGestureCb(gesture_cb, data);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_gesture_cb_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), gesture_cb, data);
-            }
-        }
-
-        private static efl_access_object_gesture_cb_set_delegate efl_access_object_gesture_cb_set_static_delegate;
 
         
         private delegate System.IntPtr efl_access_object_access_children_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -8590,7 +8075,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
+                Eina.List<Efl.Access.IObject> _ret_var = default(Eina.List<Efl.Access.IObject>);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetAccessChildren();
@@ -8601,8 +8086,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; return _ret_var.Handle;
             }
             else
             {
@@ -8626,7 +8110,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetRoleName();
@@ -8637,8 +8121,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8662,7 +8145,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
+                Eina.List<Efl.Access.Attribute> _ret_var = default(Eina.List<Efl.Access.Attribute>);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetAttributes();
@@ -8673,8 +8156,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; _ret_var.OwnContent = false; return _ret_var.Handle;
             }
             else
             {
@@ -8698,7 +8180,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
+                Efl.Access.ReadingInfoTypeMask _ret_var = default(Efl.Access.ReadingInfoTypeMask);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetReadingInfoType();
@@ -8709,8 +8191,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8734,7 +8215,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetReadingInfoType(reading_info);
@@ -8745,7 +8226,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -8769,7 +8250,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetIndexInParent();
@@ -8780,8 +8261,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8790,77 +8270,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_object_index_in_parent_get_delegate efl_access_object_index_in_parent_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_access_object_description_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_access_object_description_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate> efl_access_object_description_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_get_api_delegate>(Module, "efl_access_object_description_get");
-
-        private static System.String description_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_description_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetDescription();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_description_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_description_get_delegate efl_access_object_description_get_static_delegate;
-
-        
-        private delegate void efl_access_object_description_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String description);
-
-        
-        public delegate void efl_access_object_description_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String description);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate> efl_access_object_description_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_description_set_api_delegate>(Module, "efl_access_object_description_set");
-
-        private static void description_set(System.IntPtr obj, System.IntPtr pd, System.String description)
-        {
-            Eina.Log.Debug("function efl_access_object_description_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetDescription(description);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_description_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), description);
-            }
-        }
-
-        private static efl_access_object_description_set_delegate efl_access_object_description_set_static_delegate;
 
         
         private delegate Efl.Access.StateSet efl_access_object_state_set_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -8876,7 +8285,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
+                Efl.Access.StateSet _ret_var = default(Efl.Access.StateSet);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetStateSet();
@@ -8887,8 +8296,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -8897,77 +8305,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_object_state_set_get_delegate efl_access_object_state_set_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_access_object_translation_domain_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_access_object_translation_domain_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate> efl_access_object_translation_domain_get_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_get_api_delegate>(Module, "efl_access_object_translation_domain_get");
-
-        private static System.String translation_domain_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_translation_domain_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetTranslationDomain();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_translation_domain_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_translation_domain_get_delegate efl_access_object_translation_domain_get_static_delegate;
-
-        
-        private delegate void efl_access_object_translation_domain_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
-
-        
-        public delegate void efl_access_object_translation_domain_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate> efl_access_object_translation_domain_set_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_translation_domain_set_api_delegate>(Module, "efl_access_object_translation_domain_set");
-
-        private static void translation_domain_set(System.IntPtr obj, System.IntPtr pd, System.String domain)
-        {
-            Eina.Log.Debug("function efl_access_object_translation_domain_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetTranslationDomain(domain);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_translation_domain_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), domain);
-            }
-        }
-
-        private static efl_access_object_translation_domain_set_delegate efl_access_object_translation_domain_set_static_delegate;
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Object efl_access_object_access_root_get_delegate();
@@ -8983,7 +8320,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = Widget.GetAccessRoot();
@@ -8994,8 +8331,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -9017,7 +8353,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetCanHighlight();
@@ -9028,8 +8364,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -9053,7 +8388,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetCanHighlight(can_highlight);
@@ -9064,7 +8399,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -9088,11 +8423,11 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Efl.Access.GestureInfo _in_gesture_info = gesture_info;
-                            bool _ret_var = default(bool);
+                Efl.Access.GestureInfo _in_gesture_info = gesture_info;
+bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Widget)ws.Target).GestureDo(_in_gesture_info);
+                    _ret_var = ((Widget)ws.Target).DoGesture(_in_gesture_info);
                 }
                 catch (Exception e)
                 {
@@ -9100,8 +8435,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -9110,111 +8444,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_object_gesture_do_delegate efl_access_object_gesture_do_static_delegate;
-
-        
-        private delegate void efl_access_object_attribute_append_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
-
-        
-        public delegate void efl_access_object_attribute_append_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String value);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate> efl_access_object_attribute_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_append_api_delegate>(Module, "efl_access_object_attribute_append");
-
-        private static void attribute_append(System.IntPtr obj, System.IntPtr pd, System.String key, System.String value)
-        {
-            Eina.Log.Debug("function efl_access_object_attribute_append was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).AppendAttribute(key, value);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_attribute_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, value);
-            }
-        }
-
-        private static efl_access_object_attribute_append_delegate efl_access_object_attribute_append_static_delegate;
-
-        
-        private delegate void efl_access_object_attribute_del_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
-
-        
-        public delegate void efl_access_object_attribute_del_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate> efl_access_object_attribute_del_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attribute_del_api_delegate>(Module, "efl_access_object_attribute_del");
-
-        private static void attribute_del(System.IntPtr obj, System.IntPtr pd, System.String key)
-        {
-            Eina.Log.Debug("function efl_access_object_attribute_del was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).DelAttribute(key);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_access_object_attribute_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key);
-            }
-        }
-
-        private static efl_access_object_attribute_del_delegate efl_access_object_attribute_del_static_delegate;
-
-        
-        private delegate void efl_access_object_attributes_clear_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_access_object_attributes_clear_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate> efl_access_object_attributes_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_attributes_clear_api_delegate>(Module, "efl_access_object_attributes_clear");
-
-        private static void attributes_clear(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_attributes_clear was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Widget)ws.Target).ClearAttributes();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_access_object_attributes_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_attributes_clear_delegate efl_access_object_attributes_clear_static_delegate;
 
         
         private delegate Efl.Access.Event.Handler efl_access_object_event_handler_add_delegate( Efl.EventCb cb,  System.IntPtr data);
@@ -9230,7 +8459,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
+                Efl.Access.Event.Handler _ret_var = default(Efl.Access.Event.Handler);
                 try
                 {
                     _ret_var = Widget.AddEventHandler(cb, data);
@@ -9241,8 +8470,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -9264,7 +8492,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     Widget.DelEventHandler(handler);
@@ -9275,7 +8503,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -9298,7 +8526,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             if (ws != null)
             {
                 var _in_kw_event = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(kw_event);
-                                                                    
+
                 try
                 {
                     Widget.EmitEvent(accessible, _in_kw_event, event_info);
@@ -9309,119 +8537,13 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
                 efl_access_object_event_emit_ptr.Value.Delegate(accessible, kw_event, event_info);
             }
         }
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_access_object_relationship_append_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_access_object_relationship_append_api_delegate(System.IntPtr obj,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate> efl_access_object_relationship_append_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_append_api_delegate>(Module, "efl_access_object_relationship_append");
-
-        private static bool relationship_append(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
-        {
-            Eina.Log.Debug("function efl_access_object_relationship_append was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).AppendRelationship(type, relation_object);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_access_object_relationship_append_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, relation_object);
-            }
-        }
-
-        private static efl_access_object_relationship_append_delegate efl_access_object_relationship_append_static_delegate;
-
-        
-        private delegate void efl_access_object_relationship_remove_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
-
-        
-        public delegate void efl_access_object_relationship_remove_api_delegate(System.IntPtr obj,  Efl.Access.RelationType type, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Access.IObject relation_object);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate> efl_access_object_relationship_remove_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationship_remove_api_delegate>(Module, "efl_access_object_relationship_remove");
-
-        private static void relationship_remove(System.IntPtr obj, System.IntPtr pd, Efl.Access.RelationType type, Efl.Access.IObject relation_object)
-        {
-            Eina.Log.Debug("function efl_access_object_relationship_remove was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).RelationshipRemove(type, relation_object);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_access_object_relationship_remove_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, relation_object);
-            }
-        }
-
-        private static efl_access_object_relationship_remove_delegate efl_access_object_relationship_remove_static_delegate;
-
-        
-        private delegate void efl_access_object_relationships_clear_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_access_object_relationships_clear_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate> efl_access_object_relationships_clear_ptr = new Efl.Eo.FunctionWrapper<efl_access_object_relationships_clear_api_delegate>(Module, "efl_access_object_relationships_clear");
-
-        private static void relationships_clear(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_access_object_relationships_clear was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Widget)ws.Target).ClearRelationships();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_access_object_relationships_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_access_object_relationships_clear_delegate efl_access_object_relationships_clear_static_delegate;
 
         
         private delegate void efl_access_object_state_notify_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Access.StateSet state_types_mask, [MarshalAs(UnmanagedType.U1)] bool recursive);
@@ -9437,7 +8559,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Widget)ws.Target).StateNotify(state_types_mask, recursive);
@@ -9448,7 +8570,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -9472,7 +8594,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Access.ActionData _ret_var = default(Efl.Access.ActionData);
+                Efl.Access.ActionData _ret_var = default(Efl.Access.ActionData);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetElmActions();
@@ -9483,8 +8605,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -9493,468 +8614,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_access_widget_action_elm_actions_get_delegate efl_access_widget_action_elm_actions_get_static_delegate;
-
-        
-        private delegate void efl_ui_dnd_drag_start_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionFormat format,  Eina.Slice data,  Efl.Ui.SelectionAction action,  IntPtr icon_func_data, Efl.Dnd.DragIconCreateInternal icon_func, EinaFreeCb icon_func_free_cb,  uint seat);
-
-        
-        public delegate void efl_ui_dnd_drag_start_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionFormat format,  Eina.Slice data,  Efl.Ui.SelectionAction action,  IntPtr icon_func_data, Efl.Dnd.DragIconCreateInternal icon_func, EinaFreeCb icon_func_free_cb,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_start_api_delegate> efl_ui_dnd_drag_start_ptr = new Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_start_api_delegate>(Module, "efl_ui_dnd_drag_start");
-
-        private static void drag_start(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, Eina.Slice data, Efl.Ui.SelectionAction action, IntPtr icon_func_data, Efl.Dnd.DragIconCreateInternal icon_func, EinaFreeCb icon_func_free_cb, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_dnd_drag_start was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                                                    Efl.Dnd.DragIconCreateWrapper icon_func_wrapper = new Efl.Dnd.DragIconCreateWrapper(icon_func, icon_func_data, icon_func_free_cb);
-                    
-                try
-                {
-                    ((Widget)ws.Target).DragStart(format, data, action, icon_func_wrapper.ManagedCb, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                                        
-            }
-            else
-            {
-                efl_ui_dnd_drag_start_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), format, data, action, icon_func_data, icon_func, icon_func_free_cb, seat);
-            }
-        }
-
-        private static efl_ui_dnd_drag_start_delegate efl_ui_dnd_drag_start_static_delegate;
-
-        
-        private delegate void efl_ui_dnd_drag_action_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionAction action,  uint seat);
-
-        
-        public delegate void efl_ui_dnd_drag_action_set_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionAction action,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_action_set_api_delegate> efl_ui_dnd_drag_action_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_action_set_api_delegate>(Module, "efl_ui_dnd_drag_action_set");
-
-        private static void drag_action_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionAction action, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_dnd_drag_action_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).SetDragAction(action, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_dnd_drag_action_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), action, seat);
-            }
-        }
-
-        private static efl_ui_dnd_drag_action_set_delegate efl_ui_dnd_drag_action_set_static_delegate;
-
-        
-        private delegate void efl_ui_dnd_drag_cancel_delegate(System.IntPtr obj, System.IntPtr pd,  uint seat);
-
-        
-        public delegate void efl_ui_dnd_drag_cancel_api_delegate(System.IntPtr obj,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_cancel_api_delegate> efl_ui_dnd_drag_cancel_ptr = new Efl.Eo.FunctionWrapper<efl_ui_dnd_drag_cancel_api_delegate>(Module, "efl_ui_dnd_drag_cancel");
-
-        private static void drag_cancel(System.IntPtr obj, System.IntPtr pd, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_dnd_drag_cancel was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).DragCancel(seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_dnd_drag_cancel_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), seat);
-            }
-        }
-
-        private static efl_ui_dnd_drag_cancel_delegate efl_ui_dnd_drag_cancel_static_delegate;
-
-        
-        private delegate void efl_ui_dnd_drop_target_add_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionFormat format,  uint seat);
-
-        
-        public delegate void efl_ui_dnd_drop_target_add_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionFormat format,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_dnd_drop_target_add_api_delegate> efl_ui_dnd_drop_target_add_ptr = new Efl.Eo.FunctionWrapper<efl_ui_dnd_drop_target_add_api_delegate>(Module, "efl_ui_dnd_drop_target_add");
-
-        private static void drop_target_add(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_dnd_drop_target_add was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).AddDropTarget(format, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_dnd_drop_target_add_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), format, seat);
-            }
-        }
-
-        private static efl_ui_dnd_drop_target_add_delegate efl_ui_dnd_drop_target_add_static_delegate;
-
-        
-        private delegate void efl_ui_dnd_drop_target_del_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionFormat format,  uint seat);
-
-        
-        public delegate void efl_ui_dnd_drop_target_del_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionFormat format,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_dnd_drop_target_del_api_delegate> efl_ui_dnd_drop_target_del_ptr = new Efl.Eo.FunctionWrapper<efl_ui_dnd_drop_target_del_api_delegate>(Module, "efl_ui_dnd_drop_target_del");
-
-        private static void drop_target_del(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionFormat format, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_dnd_drop_target_del was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).DelDropTarget(format, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_dnd_drop_target_del_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), format, seat);
-            }
-        }
-
-        private static efl_ui_dnd_drop_target_del_delegate efl_ui_dnd_drop_target_del_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_mirrored_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_mirrored_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate> efl_ui_mirrored_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_get_api_delegate>(Module, "efl_ui_mirrored_get");
-
-        private static bool mirrored_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetMirrored();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_mirrored_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_mirrored_get_delegate efl_ui_mirrored_get_static_delegate;
-
-        
-        private delegate void efl_ui_mirrored_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool rtl);
-
-        
-        public delegate void efl_ui_mirrored_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool rtl);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate> efl_ui_mirrored_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_set_api_delegate>(Module, "efl_ui_mirrored_set");
-
-        private static void mirrored_set(System.IntPtr obj, System.IntPtr pd, bool rtl)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetMirrored(rtl);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_mirrored_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), rtl);
-            }
-        }
-
-        private static efl_ui_mirrored_set_delegate efl_ui_mirrored_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_mirrored_automatic_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_mirrored_automatic_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate> efl_ui_mirrored_automatic_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_get_api_delegate>(Module, "efl_ui_mirrored_automatic_get");
-
-        private static bool mirrored_automatic_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_automatic_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetMirroredAutomatic();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_mirrored_automatic_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_mirrored_automatic_get_delegate efl_ui_mirrored_automatic_get_static_delegate;
-
-        
-        private delegate void efl_ui_mirrored_automatic_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool automatic);
-
-        
-        public delegate void efl_ui_mirrored_automatic_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.U1)] bool automatic);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate> efl_ui_mirrored_automatic_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_mirrored_automatic_set_api_delegate>(Module, "efl_ui_mirrored_automatic_set");
-
-        private static void mirrored_automatic_set(System.IntPtr obj, System.IntPtr pd, bool automatic)
-        {
-            Eina.Log.Debug("function efl_ui_mirrored_automatic_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetMirroredAutomatic(automatic);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_mirrored_automatic_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), automatic);
-            }
-        }
-
-        private static efl_ui_mirrored_automatic_set_delegate efl_ui_mirrored_automatic_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_ui_language_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_ui_language_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate> efl_ui_language_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_get_api_delegate>(Module, "efl_ui_language_get");
-
-        private static System.String language_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_language_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetLanguage();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_language_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_language_get_delegate efl_ui_language_get_static_delegate;
-
-        
-        private delegate void efl_ui_language_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
-
-        
-        public delegate void efl_ui_language_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String language);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate> efl_ui_language_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_language_set_api_delegate>(Module, "efl_ui_language_set");
-
-        private static void language_set(System.IntPtr obj, System.IntPtr pd, System.String language)
-        {
-            Eina.Log.Debug("function efl_ui_language_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetLanguage(language);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_language_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), language);
-            }
-        }
-
-        private static efl_ui_language_set_delegate efl_ui_language_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_ui_l10n_text_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String domain);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_ui_l10n_text_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String domain);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_l10n_text_get_api_delegate> efl_ui_l10n_text_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_l10n_text_get_api_delegate>(Module, "efl_ui_l10n_text_get");
-
-        private static System.String l10n_text_get(System.IntPtr obj, System.IntPtr pd, out System.String domain)
-        {
-            Eina.Log.Debug("function efl_ui_l10n_text_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                System.String _out_domain = default(System.String);
-                    System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetL10nText(out _out_domain);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        domain = _out_domain;
-                return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_l10n_text_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out domain);
-            }
-        }
-
-        private static efl_ui_l10n_text_get_delegate efl_ui_l10n_text_get_static_delegate;
-
-        
-        private delegate void efl_ui_l10n_text_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String label, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
-
-        
-        public delegate void efl_ui_l10n_text_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String label, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String domain);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_l10n_text_set_api_delegate> efl_ui_l10n_text_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_l10n_text_set_api_delegate>(Module, "efl_ui_l10n_text_set");
-
-        private static void l10n_text_set(System.IntPtr obj, System.IntPtr pd, System.String label, System.String domain)
-        {
-            Eina.Log.Debug("function efl_ui_l10n_text_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).SetL10nText(label, domain);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_l10n_text_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), label, domain);
-            }
-        }
-
-        private static efl_ui_l10n_text_set_delegate efl_ui_l10n_text_set_static_delegate;
 
         
         private delegate void efl_ui_l10n_translation_update_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -9970,7 +8629,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).UpdateTranslation();
@@ -9981,7 +8640,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -9990,328 +8649,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_ui_l10n_translation_update_delegate efl_ui_l10n_translation_update_static_delegate;
-
-        
-        private delegate Eina.Error efl_ui_property_bind_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String property);
-
-        
-        public delegate Eina.Error efl_ui_property_bind_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String key, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String property);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_property_bind_api_delegate> efl_ui_property_bind_ptr = new Efl.Eo.FunctionWrapper<efl_ui_property_bind_api_delegate>(Module, "efl_ui_property_bind");
-
-        private static Eina.Error property_bind(System.IntPtr obj, System.IntPtr pd, System.String key, System.String property)
-        {
-            Eina.Log.Debug("function efl_ui_property_bind was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            Eina.Error _ret_var = default(Eina.Error);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).PropertyBind(key, property);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_property_bind_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), key, property);
-            }
-        }
-
-        private static efl_ui_property_bind_delegate efl_ui_property_bind_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
-        private delegate  Eina.Future efl_ui_selection_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionType type,  Efl.Ui.SelectionFormat format,  Eina.Slice data,  uint seat);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]
-        public delegate  Eina.Future efl_ui_selection_set_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionType type,  Efl.Ui.SelectionFormat format,  Eina.Slice data,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_selection_set_api_delegate> efl_ui_selection_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selection_set_api_delegate>(Module, "efl_ui_selection_set");
-
-        private static  Eina.Future selection_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_selection_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                                             Eina.Future _ret_var = default( Eina.Future);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).SetSelection(type, format, data, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_selection_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, format, data, seat);
-            }
-        }
-
-        private static efl_ui_selection_set_delegate efl_ui_selection_set_static_delegate;
-
-        
-        private delegate void efl_ui_selection_get_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionType type,  Efl.Ui.SelectionFormat format,  IntPtr data_func_data, Efl.Ui.SelectionDataReadyInternal data_func, EinaFreeCb data_func_free_cb,  uint seat);
-
-        
-        public delegate void efl_ui_selection_get_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionType type,  Efl.Ui.SelectionFormat format,  IntPtr data_func_data, Efl.Ui.SelectionDataReadyInternal data_func, EinaFreeCb data_func_free_cb,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_selection_get_api_delegate> efl_ui_selection_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selection_get_api_delegate>(Module, "efl_ui_selection_get");
-
-        private static void selection_get(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, IntPtr data_func_data, Efl.Ui.SelectionDataReadyInternal data_func, EinaFreeCb data_func_free_cb, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_selection_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                            Efl.Ui.SelectionDataReadyWrapper data_func_wrapper = new Efl.Ui.SelectionDataReadyWrapper(data_func, data_func_data, data_func_free_cb);
-                    
-                try
-                {
-                    ((Widget)ws.Target).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                                        
-            }
-            else
-            {
-                efl_ui_selection_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, format, data_func_data, data_func, data_func_free_cb, seat);
-            }
-        }
-
-        private static efl_ui_selection_get_delegate efl_ui_selection_get_static_delegate;
-
-        
-        private delegate void efl_ui_selection_clear_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionType type,  uint seat);
-
-        
-        public delegate void efl_ui_selection_clear_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionType type,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_selection_clear_api_delegate> efl_ui_selection_clear_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selection_clear_api_delegate>(Module, "efl_ui_selection_clear");
-
-        private static void selection_clear(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_selection_clear was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Widget)ws.Target).ClearSelection(type, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_selection_clear_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, seat);
-            }
-        }
-
-        private static efl_ui_selection_clear_delegate efl_ui_selection_clear_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_selection_has_owner_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.SelectionType type,  uint seat);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_selection_has_owner_api_delegate(System.IntPtr obj,  Efl.Ui.SelectionType type,  uint seat);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_selection_has_owner_api_delegate> efl_ui_selection_has_owner_ptr = new Efl.Eo.FunctionWrapper<efl_ui_selection_has_owner_api_delegate>(Module, "efl_ui_selection_has_owner");
-
-        private static bool has_owner(System.IntPtr obj, System.IntPtr pd, Efl.Ui.SelectionType type, uint seat)
-        {
-            Eina.Log.Debug("function efl_ui_selection_has_owner was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).HasOwner(type, seat);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_selection_has_owner_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), type, seat);
-            }
-        }
-
-        private static efl_ui_selection_has_owner_delegate efl_ui_selection_has_owner_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.IModel efl_ui_view_model_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.IModel efl_ui_view_model_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_view_model_get_api_delegate> efl_ui_view_model_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_view_model_get_api_delegate>(Module, "efl_ui_view_model_get");
-
-        private static Efl.IModel model_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_view_model_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.IModel _ret_var = default(Efl.IModel);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetModel();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_view_model_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_view_model_get_delegate efl_ui_view_model_get_static_delegate;
-
-        
-        private delegate void efl_ui_view_model_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel model);
-
-        
-        public delegate void efl_ui_view_model_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel model);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_view_model_set_api_delegate> efl_ui_view_model_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_view_model_set_api_delegate>(Module, "efl_ui_view_model_set");
-
-        private static void model_set(System.IntPtr obj, System.IntPtr pd, Efl.IModel model)
-        {
-            Eina.Log.Debug("function efl_ui_view_model_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Widget)ws.Target).SetModel(model);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_view_model_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), model);
-            }
-        }
-
-        private static efl_ui_view_model_set_delegate efl_ui_view_model_set_static_delegate;
-
-        
-        private delegate Eina.Rect.NativeStruct efl_ui_focus_object_focus_geometry_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Eina.Rect.NativeStruct efl_ui_focus_object_focus_geometry_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_geometry_get_api_delegate> efl_ui_focus_object_focus_geometry_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_geometry_get_api_delegate>(Module, "efl_ui_focus_object_focus_geometry_get");
-
-        private static Eina.Rect.NativeStruct focus_geometry_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_focus_geometry_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Rect _ret_var = default(Eina.Rect);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetFocusGeometry();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_focus_geometry_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_focus_geometry_get_delegate efl_ui_focus_object_focus_geometry_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_focus_object_focus_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_focus_object_focus_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_get_api_delegate> efl_ui_focus_object_focus_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_get_api_delegate>(Module, "efl_ui_focus_object_focus_get");
-
-        private static bool focus_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_focus_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetFocus();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_focus_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_focus_get_delegate efl_ui_focus_object_focus_get_static_delegate;
 
         
         private delegate void efl_ui_focus_object_focus_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.U1)] bool focus);
@@ -10327,7 +8664,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetFocus(focus);
@@ -10338,7 +8675,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -10347,78 +8684,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_ui_focus_object_focus_set_delegate efl_ui_focus_object_focus_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IManager efl_ui_focus_object_focus_manager_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IManager efl_ui_focus_object_focus_manager_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_manager_get_api_delegate> efl_ui_focus_object_focus_manager_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_manager_get_api_delegate>(Module, "efl_ui_focus_object_focus_manager_get");
-
-        private static Efl.Ui.Focus.IManager focus_manager_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_focus_manager_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetFocusManager();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_focus_manager_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_focus_manager_get_delegate efl_ui_focus_object_focus_manager_get_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_object_focus_parent_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_object_focus_parent_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_parent_get_api_delegate> efl_ui_focus_object_focus_parent_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_focus_parent_get_api_delegate>(Module, "efl_ui_focus_object_focus_parent_get");
-
-        private static Efl.Ui.Focus.IObject focus_parent_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_focus_parent_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Widget)ws.Target).GetFocusParent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_object_focus_parent_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_focus_parent_get_delegate efl_ui_focus_object_focus_parent_get_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_focus_object_child_focus_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -10434,7 +8699,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).GetChildFocus();
@@ -10445,8 +8710,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -10470,7 +8734,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Widget)ws.Target).SetChildFocus(child_focus);
@@ -10481,7 +8745,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -10490,41 +8754,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
         }
 
         private static efl_ui_focus_object_child_focus_set_delegate efl_ui_focus_object_child_focus_set_static_delegate;
-
-        
-        private delegate void efl_ui_focus_object_setup_order_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_ui_focus_object_setup_order_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_object_setup_order_api_delegate> efl_ui_focus_object_setup_order_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_object_setup_order_api_delegate>(Module, "efl_ui_focus_object_setup_order");
-
-        private static void setup_order(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_object_setup_order was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Widget)ws.Target).SetupOrder();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_object_setup_order_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_object_setup_order_delegate efl_ui_focus_object_setup_order_static_delegate;
 
         
         private delegate void efl_ui_focus_object_setup_order_non_recursive_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -10540,7 +8769,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Widget)ws.Target).SetupOrderNonRecursive();
@@ -10551,7 +8780,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -10575,7 +8804,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Widget)ws.Target).UpdateOnFocus();
@@ -10586,8 +8815,7 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -10602,7 +8830,6 @@ public abstract class Widget : Efl.Canvas.Group, Efl.IPart, Efl.Access.IAction, 
 }
 }
 }
-
 }
 
 #if EFL_BETA
@@ -10644,14 +8871,10 @@ public static class Efl_UiWidget_ExtensionMethods {
         return new Efl.BindableProperty<System.String>("access_info", fac);
     }
 
-    
-    
-    
     public static Efl.BindableProperty<Eina.List<Efl.Canvas.Object>> FocusCustomChain<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<Eina.List<Efl.Canvas.Object>>("focus_custom_chain", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.Ui.Focus.MovePolicy> FocusMovePolicy<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<Efl.Ui.Focus.MovePolicy>("focus_move_policy", fac);
     }
@@ -10660,21 +8883,10 @@ public static class Efl_UiWidget_ExtensionMethods {
         return new Efl.BindableProperty<bool>("focus_move_policy_automatic", fac);
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
     public static Efl.BindableProperty<System.String> I18nName<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<System.String>("i18n_name", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<Efl.Access.Role> Role<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<Efl.Access.Role>("role", fac);
     }
@@ -10683,31 +8895,22 @@ public static class Efl_UiWidget_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Access.IObject>("access_parent", fac);
     }
 
-    
-    
-    
-    
-    
     public static Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask> ReadingInfoType<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<Efl.Access.ReadingInfoTypeMask>("reading_info_type", fac);
     }
 
-    
     public static Efl.BindableProperty<System.String> Description<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<System.String>("description", fac);
     }
 
-    
     public static Efl.BindableProperty<System.String> TranslationDomain<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<System.String>("translation_domain", fac);
     }
 
-    
     public static Efl.BindableProperty<bool> CanHighlight<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<bool>("can_highlight", fac);
     }
 
-    
     public static Efl.BindableProperty<bool> Mirrored<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<bool>("mirrored", fac);
     }
@@ -10720,28 +8923,24 @@ public static class Efl_UiWidget_ExtensionMethods {
         return new Efl.BindableProperty<System.String>("language", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.IModel> Model<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<Efl.IModel>("model", fac);
     }
 
-    
     public static Efl.BindableProperty<bool> Focus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<bool>("focus", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<bool> ChildFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T>magic = null) where T : Efl.Ui.Widget {
         return new Efl.BindableProperty<bool>("child_focus", fac);
     }
 
-        public static Efl.BindablePart<Efl.Ui.WidgetPartBg> BackgroundPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T> x=null) where T : Efl.Ui.Widget
+    public static Efl.BindablePart<Efl.Ui.WidgetPartBg> BackgroundPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T> x=null) where T : Efl.Ui.Widget
     {
         return new Efl.BindablePart<Efl.Ui.WidgetPartBg>("background" ,fac);
     }
 
-        public static Efl.BindablePart<Efl.Ui.WidgetPartShadow> ShadowPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T> x=null) where T : Efl.Ui.Widget
+    public static Efl.BindablePart<Efl.Ui.WidgetPartShadow> ShadowPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Widget, T> x=null) where T : Efl.Ui.Widget
     {
         return new Efl.BindablePart<Efl.Ui.WidgetPartShadow>("shadow" ,fac);
     }
@@ -10753,8 +8952,8 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>All relevant fields needed for the current state of focus registration
-/// (Since EFL 1.22)</summary>
+/// <summary>All relevant fields needed for the current state of focus registration</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct WidgetFocusState
@@ -10766,9 +8965,9 @@ public struct WidgetFocusState
     /// <summary><c>true</c> if this is registered as logical currently</summary>
     public bool Logical;
     /// <summary>Constructor for WidgetFocusState.</summary>
-    /// <param name="Manager">The manager where the widget is registered in</param>;
-    /// <param name="Parent">The parent the widget is using as logical parent</param>;
-    /// <param name="Logical"><c>true</c> if this is registered as logical currently</param>;
+    /// <param name="Manager">The manager where the widget is registered in</param>
+    /// <param name="Parent">The parent the widget is using as logical parent</param>
+    /// <param name="Logical"><c>true</c> if this is registered as logical currently</param>
     public WidgetFocusState(
         Efl.Ui.Focus.IManager Manager = default(Efl.Ui.Focus.IManager),
         Efl.Ui.Focus.IObject Parent = default(Efl.Ui.Focus.IObject),
@@ -10814,20 +9013,16 @@ public struct WidgetFocusState
         {
             var _external_struct = new WidgetFocusState();
 
-            _external_struct.Manager = (Efl.Ui.Focus.IManagerConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Manager);
+            _external_struct.Manager = (Efl.Ui.Focus.ManagerConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Manager);
 
-            _external_struct.Parent = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Parent);
+            _external_struct.Parent = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Parent);
             _external_struct.Logical = _internal_struct.Logical != 0;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

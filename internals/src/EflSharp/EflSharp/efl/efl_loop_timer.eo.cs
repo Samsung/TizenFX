@@ -11,8 +11,8 @@ namespace Efl {
 /// <summary>Timers are objects that will call a given callback at some point in the future and repeat that tick at a given interval.
 /// Timers require the ecore main loop to be running and functioning properly. They do not guarantee exact timing but try to work on a &quot;best effort&quot; basis.
 /// 
-/// The <see cref="Efl.Object.FreezeEvent"/> and <see cref="Efl.Object.ThawEvent"/> calls are used to pause and unpause the timer.
-/// (Since EFL 1.22)</summary>
+/// The <see cref="Efl.Object.FreezeEvent"/> and <see cref="Efl.Object.ThawEvent"/> calls are used to pause and unpause the timer.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.LoopTimer.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LoopTimer : Efl.LoopConsumer
@@ -35,9 +35,10 @@ public class LoopTimer : Efl.LoopConsumer
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_loop_timer_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="LoopTimer"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="timerInterval">Interval the timer ticks on. See <see cref="Efl.LoopTimer.SetTimerInterval" /></param>
+/// <param name="timerInterval">Interval the timer ticks on. See <see cref="Efl.LoopTimer.SetTimerInterval" /></param>
     public LoopTimer(Efl.Object parent
             , double timerInterval) : base(efl_loop_timer_class_get(), parent)
     {
@@ -71,9 +72,9 @@ public class LoopTimer : Efl.LoopConsumer
     {
     }
 
-    /// <summary>Event triggered when the specified time as passed.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler TimerTickEvt
+    /// <summary>Event triggered when the specified time as passed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler TimerTickEvent
     {
         add
         {
@@ -111,8 +112,10 @@ public class LoopTimer : Efl.LoopConsumer
             }
         }
     }
-    /// <summary>Method to raise event TimerTickEvt.</summary>
-    public void OnTimerTickEvt(EventArgs e)
+
+    /// <summary>Method to raise event TimerTickEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnTimerTickEvent(EventArgs e)
     {
         var key = "_EFL_LOOP_TIMER_EVENT_TIMER_TICK";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -124,74 +127,90 @@ public class LoopTimer : Efl.LoopConsumer
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Gets the interval the timer ticks on.
-    /// (Since EFL 1.22)</summary>
+
+
+    /// <summary>Gets the interval the timer ticks on.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The new interval in seconds</returns>
-    virtual public double GetTimerInterval() {
-         var _ret_var = Efl.LoopTimer.NativeMethods.efl_loop_timer_interval_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetTimerInterval() {
+        var _ret_var = Efl.LoopTimer.NativeMethods.efl_loop_timer_interval_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Changes the interval the timer ticks off. If set during a timer call this will affect the next interval.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="kw_in">The new interval in seconds</param>
-    virtual public void SetTimerInterval(double kw_in) {
-                                 Efl.LoopTimer.NativeMethods.efl_loop_timer_interval_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_in);
+    }
+
+    /// <summary>Changes the interval the timer ticks off. If set during a timer call this will affect the next interval.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="kw_in">The new interval in seconds<br/>The default value is <c>+1.000000</c>.</param>
+    public virtual void SetTimerInterval(double kw_in) {
+        Efl.LoopTimer.NativeMethods.efl_loop_timer_interval_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_in);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Gets the pending time regarding a timer.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Gets the pending time regarding a timer.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Pending time</returns>
-    virtual public double GetTimePending() {
-         var _ret_var = Efl.LoopTimer.NativeMethods.efl_loop_timer_time_pending_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetTimePending() {
+        var _ret_var = Efl.LoopTimer.NativeMethods.efl_loop_timer_time_pending_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Resets a timer to its full interval. This effectively makes the timer start ticking off from zero now.
-    /// This is equal to delaying the timer by the already passed time, since the timer started ticking
-    /// (Since EFL 1.22)</summary>
-    virtual public void ResetTimer() {
-         Efl.LoopTimer.NativeMethods.efl_loop_timer_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// This is equal to delaying the timer by the already passed time, since the timer started ticking</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ResetTimer() {
+        Efl.LoopTimer.NativeMethods.efl_loop_timer_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>This effectively resets a timer but based on the time when this iteration of the main loop started.
-    /// (Since EFL 1.22)</summary>
-    virtual public void ResetTimerLoop() {
-         Efl.LoopTimer.NativeMethods.efl_loop_timer_loop_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>This effectively resets a timer but based on the time when this iteration of the main loop started.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ResetTimerLoop() {
+        Efl.LoopTimer.NativeMethods.efl_loop_timer_loop_reset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Adds a delay to the next occurrence of a timer. This doesn&apos;t affect the timer interval.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Adds a delay to the next occurrence of a timer. This doesn&apos;t affect the timer interval.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="add">The amount of time by which to delay the timer in seconds</param>
-    virtual public void TimerDelay(double add) {
-                                 Efl.LoopTimer.NativeMethods.efl_loop_timer_delay_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),add);
+    public virtual void TimerDelay(double add) {
+        Efl.LoopTimer.NativeMethods.efl_loop_timer_delay_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),add);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Interval the timer ticks on.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Interval the timer ticks on.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The new interval in seconds</value>
     public double TimerInterval {
         get { return GetTimerInterval(); }
         set { SetTimerInterval(value); }
     }
-    /// <summary>Pending time regarding a timer.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Pending time regarding a timer.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Pending time</value>
     public double TimePending {
         get { return GetTimePending(); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.LoopTimer.efl_loop_timer_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.LoopConsumer.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -256,9 +275,20 @@ public class LoopTimer : Efl.LoopConsumer
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_loop_timer_delay"), func = Marshal.GetFunctionPointerForDelegate(efl_loop_timer_delay_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -282,7 +312,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((LoopTimer)ws.Target).GetTimerInterval();
@@ -293,8 +323,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -318,7 +347,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((LoopTimer)ws.Target).SetTimerInterval(kw_in);
@@ -329,7 +358,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -353,7 +382,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((LoopTimer)ws.Target).GetTimePending();
@@ -364,8 +393,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -389,7 +417,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((LoopTimer)ws.Target).ResetTimer();
@@ -400,7 +428,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -424,7 +452,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((LoopTimer)ws.Target).ResetTimerLoop();
@@ -435,7 +463,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -459,7 +487,7 @@ public class LoopTimer : Efl.LoopConsumer
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((LoopTimer)ws.Target).TimerDelay(add);
@@ -470,7 +498,7 @@ public class LoopTimer : Efl.LoopConsumer
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -493,7 +521,6 @@ public static class EflLoopTimer_ExtensionMethods {
         return new Efl.BindableProperty<double>("timer_interval", fac);
     }
 
-    
 }
 #pragma warning restore CS1591
 #endif

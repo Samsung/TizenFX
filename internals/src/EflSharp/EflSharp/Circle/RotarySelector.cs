@@ -29,7 +29,7 @@ namespace Efl
                 public int OldIndex { get; internal set; }
             }
 
-
+            /// <summary>
             /// The event argument of Rotary Selector editing state.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
@@ -64,13 +64,13 @@ namespace Efl
                 /// Clicked will be triggered when selecting again the already selected item or selecting a selector.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<RotarySelectorItemEventArgs> ClickedEvt;
+                public event EventHandler<RotarySelectorItemEventArgs> ClickedEvent;
 
                 /// <summary>
                 /// Selected will be triggered when selecting an item.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<RotarySelectorItemEventArgs> SelectedEvt;
+                public event EventHandler<RotarySelectorItemEventArgs> SelectedEvent;
 
                 /// <summary>
                 /// Triggered when the user deleted the item
@@ -102,20 +102,20 @@ namespace Efl
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new RotarySelector will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public RotarySelector(Efl.Ui.Widget parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_rotary_selector_add(parent.NativeHandle)))
+                public RotarySelector(Efl.Object parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_rotary_selector_add(parent.NativeHandle)))
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
                         RotarySelectorItem clickedItem = FindItemByNativeHandle(e);
                         if (clickedItem != null)
-                            ClickedEvt?.Invoke(this, new RotarySelectorItemEventArgs { item = clickedItem});
+                            ClickedEvent?.Invoke(this, new RotarySelectorItemEventArgs { item = clickedItem});
                     });
 
                     smartSelected = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
                         RotarySelectorItem selectedItem = FindItemByNativeHandle(e);
                         if (selectedItem != null)
-                            SelectedEvt?.Invoke(this, new RotarySelectorItemEventArgs { item = selectedItem });
+                            SelectedEvent?.Invoke(this, new RotarySelectorItemEventArgs { item = selectedItem });
                     });
 
                     smartDeleted = new Interop.Evas.SmartCallback((d, o, e) =>

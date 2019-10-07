@@ -33,6 +33,7 @@ public class ProcEnv : Efl.Core.Env
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_core_proc_env_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="ProcEnv"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ProcEnv(Efl.Object parent= null
@@ -63,30 +64,45 @@ public class ProcEnv : Efl.Core.Env
     {
     }
 
+
     /// <summary>Get a instance of this object
     /// The object will apply the environment operations onto this process.</summary>
     public static Efl.Core.Env Self() {
-         var _ret_var = Efl.Core.ProcEnv.NativeMethods.efl_env_self_ptr.Value.Delegate();
+        var _ret_var = Efl.Core.ProcEnv.NativeMethods.efl_env_self_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Core.ProcEnv.efl_core_proc_env_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Core.Env.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -110,7 +126,7 @@ public class ProcEnv : Efl.Core.Env
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Core.Env _ret_var = default(Efl.Core.Env);
+                Efl.Core.Env _ret_var = default(Efl.Core.Env);
                 try
                 {
                     _ret_var = ProcEnv.Self();
@@ -121,8 +137,7 @@ public class ProcEnv : Efl.Core.Env
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -135,7 +150,6 @@ public class ProcEnv : Efl.Core.Env
 }
 }
 }
-
 }
 
 #if EFL_BETA

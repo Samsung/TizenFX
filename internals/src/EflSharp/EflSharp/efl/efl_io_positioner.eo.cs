@@ -12,35 +12,40 @@ namespace Io {
 
 /// <summary>Generic interface for objects that can change or report position.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Io.IPositionerConcrete.NativeMethods]
+[Efl.Io.PositionerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPositioner : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Position property</summary>
-/// <returns>Position in file or buffer</returns>
-ulong GetPosition();
+    /// <returns>Position in file or buffer</returns>
+    ulong GetPosition();
+
     /// <summary>Try to set position object, relative to start of file. See <see cref="Efl.Io.IPositioner.Seek"/></summary>
-/// <param name="position">Position in file or buffer</param>
-/// <returns><c>true</c> if could reposition, <c>false</c> if errors.</returns>
-bool SetPosition(ulong position);
+    /// <param name="position">Position in file or buffer</param>
+    /// <returns><c>true</c> if could reposition, <c>false</c> if errors.</returns>
+    bool SetPosition(ulong position);
+
     /// <summary>Seek in data</summary>
-/// <param name="offset">Offset in byte relative to whence</param>
-/// <param name="whence">Whence</param>
-/// <returns>0 on succeed, a mapping of errno otherwise</returns>
-Eina.Error Seek(long offset, Efl.Io.PositionerWhence whence);
-                /// <summary>Notifies position changed</summary>
-    event EventHandler PositionChangedEvt;
+    /// <param name="offset">Offset in byte relative to whence</param>
+    /// <param name="whence">Whence</param>
+    /// <returns>0 on succeed, a mapping of errno otherwise</returns>
+    Eina.Error Seek(long offset, Efl.Io.PositionerWhence whence);
+
+    /// <summary>Notifies position changed</summary>
+    event EventHandler PositionChangedEvent;
     /// <summary>Position property</summary>
     /// <value>Position in file or buffer</value>
     ulong Position {
         get;
         set;
     }
+
 }
+
 /// <summary>Generic interface for objects that can change or report position.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IPositionerConcrete :
+public sealed class PositionerConcrete :
     Efl.Eo.EoWrapper
     , IPositioner
     
@@ -50,7 +55,7 @@ sealed public  class IPositionerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPositionerConcrete))
+            if (((object)this).GetType() == typeof(PositionerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -64,21 +69,22 @@ sealed public  class IPositionerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPositionerConcrete(ConstructingHandle ch) : base(ch)
+    private PositionerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_positioner_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IPositioner"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPositionerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PositionerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Notifies position changed</summary>
-    public event EventHandler PositionChangedEvt
+    public event EventHandler PositionChangedEvent
     {
         add
         {
@@ -116,8 +122,10 @@ sealed public  class IPositionerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PositionChangedEvt.</summary>
-    public void OnPositionChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event PositionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPositionChangedEvent(EventArgs e)
     {
         var key = "_EFL_IO_POSITIONER_EVENT_POSITION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -129,48 +137,58 @@ sealed public  class IPositionerConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Position property</summary>
     /// <returns>Position in file or buffer</returns>
     public ulong GetPosition() {
-         var _ret_var = Efl.Io.IPositionerConcrete.NativeMethods.efl_io_positioner_position_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Io.PositionerConcrete.NativeMethods.efl_io_positioner_position_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Try to set position object, relative to start of file. See <see cref="Efl.Io.IPositioner.Seek"/></summary>
     /// <param name="position">Position in file or buffer</param>
     /// <returns><c>true</c> if could reposition, <c>false</c> if errors.</returns>
     public bool SetPosition(ulong position) {
-                                 var _ret_var = Efl.Io.IPositionerConcrete.NativeMethods.efl_io_positioner_position_set_ptr.Value.Delegate(this.NativeHandle,position);
+        var _ret_var = Efl.Io.PositionerConcrete.NativeMethods.efl_io_positioner_position_set_ptr.Value.Delegate(this.NativeHandle,position);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Seek in data</summary>
     /// <param name="offset">Offset in byte relative to whence</param>
     /// <param name="whence">Whence</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
     public Eina.Error Seek(long offset, Efl.Io.PositionerWhence whence) {
-                                                         var _ret_var = Efl.Io.IPositionerConcrete.NativeMethods.efl_io_positioner_seek_ptr.Value.Delegate(this.NativeHandle,offset, whence);
+        var _ret_var = Efl.Io.PositionerConcrete.NativeMethods.efl_io_positioner_seek_ptr.Value.Delegate(this.NativeHandle,offset, whence);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Position property</summary>
     /// <value>Position in file or buffer</value>
     public ulong Position {
         get { return GetPosition(); }
         set { SetPosition(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Io.IPositionerConcrete.efl_io_positioner_mixin_get();
+        return Efl.Io.PositionerConcrete.efl_io_positioner_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -205,13 +223,24 @@ sealed public  class IPositionerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_positioner_seek"), func = Marshal.GetFunctionPointerForDelegate(efl_io_positioner_seek_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Io.IPositionerConcrete.efl_io_positioner_mixin_get();
+            return Efl.Io.PositionerConcrete.efl_io_positioner_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -230,7 +259,7 @@ sealed public  class IPositionerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            ulong _ret_var = default(ulong);
+                ulong _ret_var = default(ulong);
                 try
                 {
                     _ret_var = ((IPositioner)ws.Target).GetPosition();
@@ -241,8 +270,7 @@ sealed public  class IPositionerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -266,7 +294,7 @@ sealed public  class IPositionerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IPositioner)ws.Target).SetPosition(position);
@@ -277,8 +305,7 @@ sealed public  class IPositionerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -302,7 +329,7 @@ sealed public  class IPositionerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            Eina.Error _ret_var = default(Eina.Error);
+                Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((IPositioner)ws.Target).Seek(offset, whence);
@@ -313,8 +340,7 @@ sealed public  class IPositionerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -329,12 +355,11 @@ sealed public  class IPositionerConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_IoIPositionerConcrete_ExtensionMethods {
+public static class Efl_IoPositionerConcrete_ExtensionMethods {
     public static Efl.BindableProperty<ulong> Position<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IPositioner, T>magic = null) where T : Efl.Io.IPositioner {
         return new Efl.BindableProperty<ulong>("position", fac);
     }
@@ -357,8 +382,6 @@ Current = 1,
 /// <summary>Seek from the end of stream/file</summary>
 End = 2,
 }
-
 }
-
 }
 

@@ -8,6 +8,7 @@ using System.Threading;
 using System.ComponentModel;
 /// <param name="parent">This object can be used to know when to cancel the future.</param>
 /// <param name="child">You must reference this object for the duration of your use of it as the caller will not do that for you.</param>
+/// <returns><c>true</c> if the model should be kept.</returns>
 [Efl.Eo.BindingEntity]
 public delegate  Eina.Future EflFilterModel(Efl.FilterModel parent, Efl.IModel child);
 [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]public delegate  Eina.Future EflFilterModelInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.FilterModel parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel child);
@@ -56,30 +57,28 @@ internal class EflFilterModelWrapper : IDisposable
 
     internal  Eina.Future ManagedCb(Efl.FilterModel parent,Efl.IModel child)
     {
-                                                        var _ret_var = _cb(_cb_data, parent, child);
-        Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
+var _ret_var = _cb(_cb_data, parent, child);
+Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
     }
 
     [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Eina.FutureMarshaler))]    internal static  Eina.Future Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.FilterModel parent, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel child)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         EflFilterModel cb = (EflFilterModel)handle.Target;
-                                                             Eina.Future _ret_var = default( Eina.Future);
-        try {
+ Eina.Future _ret_var = default( Eina.Future);        try {
             _ret_var = cb(parent, child);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                                        return _ret_var;
-    }
+        return _ret_var;    }
 }
 
 
 namespace Efl {
 
-/// <summary>Efl model designed to filter its children.</summary>
+/// <summary>Filtering data that <see cref="Efl.IModel"/> provides is the main feature of this class. This class provides a filter function so only children that match it are returned.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.FilterModel.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -103,11 +102,12 @@ public class FilterModel : Efl.CompositeModel
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_filter_model_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="FilterModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="filterSet">Set a filter function that will catch children from the composited model. See <see cref="Efl.FilterModel.SetFilter" /></param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
+/// <param name="filterSet">Set a filter function that will catch children from the composited model. See <see cref="Efl.FilterModel.SetFilter" /></param>
+/// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+/// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public FilterModel(Efl.Object parent
             , EflFilterModel filterSet, Efl.IModel model, uint? index = null) : base(efl_filter_model_class_get(), parent)
     {
@@ -151,25 +151,30 @@ public class FilterModel : Efl.CompositeModel
     {
     }
 
+
     /// <summary>Set a filter function that will catch children from the composited model.</summary>
-    /// <param name="filter">Filter callback</param>
-    virtual public void SetFilter(EflFilterModel filter) {
-                         GCHandle filter_handle = GCHandle.Alloc(filter);
-        Efl.FilterModel.NativeMethods.efl_filter_model_filter_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(filter_handle), EflFilterModelWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+    /// <param name="filter">Filter callback.</param>
+    public virtual void SetFilter(EflFilterModel filter) {
+        GCHandle filter_handle = GCHandle.Alloc(filter);
+Efl.FilterModel.NativeMethods.efl_filter_model_filter_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(filter_handle), EflFilterModelWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.FilterModel.efl_filter_model_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.CompositeModel.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -184,9 +189,20 @@ public class FilterModel : Efl.CompositeModel
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_filter_model_filter_set"), func = Marshal.GetFunctionPointerForDelegate(efl_filter_model_filter_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -210,8 +226,8 @@ public class FilterModel : Efl.CompositeModel
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            EflFilterModelWrapper filter_wrapper = new EflFilterModelWrapper(filter, filter_data, filter_free_cb);
-            
+                    EflFilterModelWrapper filter_wrapper = new EflFilterModelWrapper(filter, filter_data, filter_free_cb);
+
                 try
                 {
                     ((FilterModel)ws.Target).SetFilter(filter_wrapper.ManagedCb);
@@ -222,7 +238,7 @@ public class FilterModel : Efl.CompositeModel
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {

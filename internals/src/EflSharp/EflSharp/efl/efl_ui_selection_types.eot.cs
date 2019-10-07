@@ -59,29 +59,28 @@ internal class SelectionDataReadyWrapper : IDisposable
 
     internal void ManagedCb(Efl.Object obj,ref Efl.Ui.SelectionData seldata)
     {
-                Efl.Ui.SelectionData.NativeStruct _in_seldata = seldata;
-                                        _cb(_cb_data, obj, ref _in_seldata);
-        Eina.Error.RaiseIfUnhandledException();
-                                seldata = _in_seldata;
-            }
+Efl.Ui.SelectionData.NativeStruct _in_seldata = seldata;
+_cb(_cb_data, obj, ref _in_seldata);
+Eina.Error.RaiseIfUnhandledException();
+seldata = _in_seldata;
+        
+    }
 
         internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Object obj,  ref Efl.Ui.SelectionData.NativeStruct seldata)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         SelectionDataReady cb = (SelectionDataReady)handle.Target;
-                Efl.Ui.SelectionData _in_seldata = seldata;
-                                            
+Efl.Ui.SelectionData _in_seldata = seldata;
         try {
             cb(obj, ref _in_seldata);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                                seldata = _in_seldata;
+seldata = _in_seldata;
             }
 }
 }
-
 }
 
 namespace Efl {
@@ -101,9 +100,7 @@ Dnd = 2,
 /// <summary>Clipboard selection (ctrl+C)</summary>
 Clipboard = 3,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -129,9 +126,7 @@ Vcard = 8,
 /// <summary>Raw HTML-like data (eg. webkit)</summary>
 Html = 16,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -159,9 +154,7 @@ Link = 6,
 /// <summary>Describe the data</summary>
 Description = 7,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -188,11 +181,11 @@ public struct SelectionData
     /// <summary>Item under the drag position. It is only available for container</summary>
     public Efl.Object Item;
     /// <summary>Constructor for SelectionData.</summary>
-    /// <param name="Pos">Coordinates of the drop (DND operations only)</param>;
-    /// <param name="Format">Format of the selection</param>;
-    /// <param name="Content">Selection data</param>;
-    /// <param name="Action">Action to perform with the data</param>;
-    /// <param name="Item">Item under the drag position. It is only available for container</param>;
+    /// <param name="Pos">Coordinates of the drop (DND operations only)</param>
+    /// <param name="Format">Format of the selection</param>
+    /// <param name="Content">Selection data</param>
+    /// <param name="Action">Action to perform with the data</param>
+    /// <param name="Item">Item under the drag position. It is only available for container</param>
     public SelectionData(
         Eina.Position2D Pos = default(Eina.Position2D),
         Efl.Ui.SelectionFormat Format = default(Efl.Ui.SelectionFormat),
@@ -259,15 +252,11 @@ public struct SelectionData
             _external_struct.Item = (Efl.Object) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Item);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -289,10 +278,10 @@ public struct SelectionChanged
     /// <summary>EINA_TRUE if the selection has an owner</summary>
     public bool Exist;
     /// <summary>Constructor for SelectionChanged.</summary>
-    /// <param name="Type">Selection type</param>;
-    /// <param name="Seat">The seat on which the selection changed, or NULL for &quot;default&quot;</param>;
-    /// <param name="Display">The display connection object, NULL under X11</param>;
-    /// <param name="Exist">EINA_TRUE if the selection has an owner</param>;
+    /// <param name="Type">Selection type</param>
+    /// <param name="Seat">The seat on which the selection changed, or NULL for &quot;default&quot;</param>
+    /// <param name="Display">The display connection object, NULL under X11</param>
+    /// <param name="Exist">EINA_TRUE if the selection has an owner</param>
     public SelectionChanged(
         Efl.Ui.SelectionType Type = default(Efl.Ui.SelectionType),
         int Seat = default(int),
@@ -348,14 +337,10 @@ public struct SelectionChanged
             _external_struct.Exist = _internal_struct.Exist != 0;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

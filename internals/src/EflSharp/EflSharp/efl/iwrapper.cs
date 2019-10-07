@@ -351,26 +351,8 @@ public class Globals
         if (nativeClass != null)
         {
             Eina.Log.Debug("nativeClass != null");
-            var descs = nativeClass.GetEoOps(type);
+            var descs = nativeClass.GetEoOps(type, true);
             var count = descs.Count;
-
-            var all_interfaces = type.GetInterfaces();
-            var base_interfaces = type.BaseType.GetInterfaces();
-            foreach (var iface in all_interfaces)
-            {
-                if (!System.Array.Exists(base_interfaces, element => element == iface))
-                {
-                    var nc = GetNativeClass(iface);
-                    if (nc != null)
-                    {
-                        var moredescs = nc.GetEoOps(type);
-                        Eina.Log.Debug($"adding {moredescs.Count} more descs to registration");
-                        descs.AddRange(moredescs);
-                        count = descs.Count;
-                    }
-                }
-            }
-
             IntPtr descs_ptr = IntPtr.Zero;
 
             if (count > 0)
@@ -753,7 +735,7 @@ public static class Config
 public abstract class NativeClass : System.Attribute
 {
     public abstract IntPtr GetEflClass();
-    public abstract System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type);
+    public abstract System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited);
 }
 
 /// <summary>Attribute for private native classes.
@@ -766,7 +748,7 @@ public class PrivateNativeClass : NativeClass
         return IntPtr.Zero;
     }
 
-    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+    public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
     {
         return null;
     }
@@ -861,7 +843,7 @@ public static class ClassRegister
 
             if (t == null)
             {
-                return typeof(Efl.Object);
+                return typeof(Efl.ObjectRealized);
             }
         }
 

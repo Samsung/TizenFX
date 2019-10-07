@@ -12,7 +12,6 @@ namespace Efl {
 /// Intended to be used in scenarios where the user needs a manually defined data model, like in tests.
 /// 
 /// It does not model anything in particular and does not affect anything else in the system.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.GenericModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class GenericModel : Efl.LoopModel
@@ -35,6 +34,7 @@ public class GenericModel : Efl.LoopModel
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_generic_model_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GenericModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GenericModel(Efl.Object parent= null
@@ -65,22 +65,35 @@ public class GenericModel : Efl.LoopModel
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.GenericModel.efl_generic_model_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.LoopModel.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()

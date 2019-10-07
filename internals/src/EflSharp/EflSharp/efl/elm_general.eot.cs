@@ -9,8 +9,8 @@ namespace Elm {
 
 namespace Object {
 
-/// <summary>Possible values for the #ELM_OBJECT_SELECT_MODE policy.
-/// (Since EFL 1.7)</summary>
+/// <summary>Possible values for the #ELM_OBJECT_SELECT_MODE policy.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum SelectMode
 {
@@ -25,9 +25,7 @@ DisplayOnly = 3,
 /// <summary>canary value: any value greater or equal to ELM_OBJECT_SELECT_MODE_MAX is forbidden.</summary>
 Max = 4,
 }
-
 }
-
 }
 
 namespace Elm {
@@ -45,9 +43,7 @@ File = 1,
 /// <summary>Icon is of type standard</summary>
 Standard = 2,
 }
-
 }
-
 }
 
 namespace Elm {
@@ -84,21 +80,18 @@ Hex = 9,
 Terminal = 10,
 /// <summary>Like normal, but no auto-correct, no auto-capitalization etc.</summary>
 Password = 11,
-/// <summary>Date and time layout
-/// (Since EFL 1.8)</summary>
+/// <summary>Date and time layout</summary>
+/// <since_tizen> 6 </since_tizen>
 Datetime = 12,
-/// <summary>Emoticon layout
-/// (Since EFL 1.10)</summary>
+/// <summary>Emoticon layout</summary>
+/// <since_tizen> 6 </since_tizen>
 Emoticon = 13,
-/// <summary>Voice layout, but if the IME does not support voice layout, then normal layout will be shown.
-/// (Since EFL 1.19)</summary>
+/// <summary>Voice layout, but if the IME does not support voice layout, then normal layout will be shown.</summary>
+/// <since_tizen> 6 </since_tizen>
 Voice = 14,
 }
-
 }
-
 }
-
 }
 
 namespace Elm {
@@ -116,11 +109,8 @@ Automatic = 0,
 /// <summary>Alphabet</summary>
 Alphabet = 1,
 }
-
 }
-
 }
-
 }
 
 namespace Elm {
@@ -140,9 +130,7 @@ Sentence = 2,
 /// <summary>Autocapitalize all letters.</summary>
 Allcharacter = 3,
 }
-
 }
-
 }
 
 namespace Elm {
@@ -173,74 +161,68 @@ Next = 5,
 Search = 6,
 /// <summary>Send.</summary>
 Send = 7,
-/// <summary>Sign-in
-/// (Since EFL 1.8)</summary>
+/// <summary>Sign-in</summary>
+/// <since_tizen> 6 </since_tizen>
 Signin = 8,
 }
-
 }
-
 }
-
 }
-
 }
 
 namespace Elm {
 
 namespace Input {
 
-/// <summary>Enumeration that defines the types of Input Hints.
-/// (Since EFL 1.12)</summary>
+/// <summary>Enumeration that defines the types of Input Hints.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Hints
 {
-/// <summary>No active hints
-/// (Since EFL 1.12)</summary>
+/// <summary>No active hints</summary>
+/// <since_tizen> 6 </since_tizen>
 None = 0,
-/// <summary>Suggest word auto completion
-/// (Since EFL 1.12)</summary>
+/// <summary>Suggest word auto completion</summary>
+/// <since_tizen> 6 </since_tizen>
 AutoComplete = 1,
-/// <summary>Typed text should not be stored.
-/// (Since EFL 1.12)</summary>
+/// <summary>Typed text should not be stored.</summary>
+/// <since_tizen> 6 </since_tizen>
 SensitiveData = 2,
-/// <summary>Autofill hint for a credit card expiration date
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a credit card expiration date</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillCreditCardExpirationDate = 256,
-/// <summary>Autofill hint for a credit card expiration day
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a credit card expiration day</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillCreditCardExpirationDay = 512,
-/// <summary>Autofill hint for a credit card expiration month
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a credit card expiration month</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillCreditCardExpirationMonth = 768,
-/// <summary>Autofill hint for a credit card expiration year
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a credit card expiration year</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillCreditCardExpirationYear = 1024,
-/// <summary>Autofill hint for a credit card number
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a credit card number</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillCreditCardNumber = 1280,
-/// <summary>Autofill hint for an email address
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for an email address</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillEmailAddress = 1536,
-/// <summary>Autofill hint for a user&apos;s real name
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a user&apos;s real name</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillName = 1792,
-/// <summary>Autofill hint for a phone number
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a phone number</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillPhone = 2048,
-/// <summary>Autofill hint for a postal address
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a postal address</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillPostalAddress = 2304,
-/// <summary>Autofill hint for a postal code
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a postal code</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillPostalCode = 2560,
-/// <summary>Autofill hint for a user&apos;s ID
-/// (Since EFL 1.21)</summary>
+/// <summary>Autofill hint for a user&apos;s ID</summary>
+/// <since_tizen> 6 </since_tizen>
 AutofillId = 2816,
 }
-
 }
-
 }
 
 namespace Elm {
@@ -280,11 +262,8 @@ public struct ValidateContent
             var _external_struct = new ValidateContent();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -326,11 +305,8 @@ public struct EntryAnchorInfo
             var _external_struct = new EntryAnchorInfo();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -372,11 +348,8 @@ public struct EntryAnchorHoverInfo
             var _external_struct = new EntryAnchorHoverInfo();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }

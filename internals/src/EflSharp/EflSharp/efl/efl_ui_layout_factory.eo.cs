@@ -34,9 +34,10 @@ public class LayoutFactory : Efl.Ui.CachingFactory
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_layout_factory_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="LayoutFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
+/// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public LayoutFactory(Efl.Object parent
             , Type itemClass = null) : base(efl_ui_layout_factory_class_get(), parent)
     {
@@ -70,26 +71,31 @@ public class LayoutFactory : Efl.Ui.CachingFactory
     {
     }
 
+
     /// <summary>No description supplied.</summary>
     /// <param name="klass">The class of the group.</param>
     /// <param name="group">The group.</param>
     /// <param name="style">The style to used.</param>
-    virtual public void ThemeConfig(System.String klass, System.String group, System.String style) {
-                                                                                 Efl.Ui.LayoutFactory.NativeMethods.efl_ui_layout_factory_theme_config_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, group, style);
+    public virtual void ThemeConfig(System.String klass, System.String group, System.String style) {
+        Efl.Ui.LayoutFactory.NativeMethods.efl_ui_layout_factory_theme_config_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, group, style);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.LayoutFactory.efl_ui_layout_factory_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.CachingFactory.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -104,9 +110,20 @@ public class LayoutFactory : Efl.Ui.CachingFactory
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_factory_theme_config"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_factory_theme_config_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -130,7 +147,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    
+                
                 try
                 {
                     ((LayoutFactory)ws.Target).ThemeConfig(klass, group, style);
@@ -141,7 +158,7 @@ public class LayoutFactory : Efl.Ui.CachingFactory
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
@@ -156,7 +173,6 @@ public class LayoutFactory : Efl.Ui.CachingFactory
 }
 }
 }
-
 }
 
 #if EFL_BETA

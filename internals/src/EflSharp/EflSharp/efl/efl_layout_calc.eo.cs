@@ -11,89 +11,92 @@ namespace Efl {
 namespace Layout {
 
 /// <summary>This interface defines a common set of APIs used to trigger calculations with layout objects.
-/// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
-/// (Since EFL 1.22)</summary>
-[Efl.Layout.ICalcConcrete.NativeMethods]
+/// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Layout.CalcConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ICalc : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Whether this object updates its size hints automatically.
-/// (Since EFL 1.22)</summary>
-/// <returns>Whether or not update the size hints.</returns>
-bool GetCalcAutoUpdateHints();
-    /// <summary>Enable or disable auto-update of size hints.
-/// (Since EFL 1.22)</summary>
-/// <param name="update">Whether or not update the size hints.</param>
-void SetCalcAutoUpdateHints(bool update);
+    /// <summary>Whether this object updates its size hints automatically.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Whether or not update the size hints.</returns>
+    bool GetCalcAutoUpdateHints();
+
+    /// <summary>Enable or disable auto-update of size hints.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="update">Whether or not update the size hints.<br/>The default value is <c>false</c>.</param>
+    void SetCalcAutoUpdateHints(bool update);
+
     /// <summary>Calculates the minimum required size for a given layout object.
-/// This call will trigger an internal recalculation of all parts of the object, in order to return its minimum required dimensions for width and height. The user might choose to impose those minimum sizes, making the resulting calculation to get to values greater or equal than <c>restricted</c> in both directions.
-/// 
-/// Note: At the end of this call, the object won&apos;t be automatically resized to the new dimensions, but just return the calculated sizes. The caller is the one up to change its geometry or not.
-/// 
-/// Warning: Be advised that invisible parts in the object will be taken into account in this calculation.
-/// (Since EFL 1.22)</summary>
-/// <param name="restricted">The minimum size constraint as input, the returned size can not be lower than this (in both directions).</param>
-/// <returns>The minimum required size.</returns>
-Eina.Size2D CalcSizeMin(Eina.Size2D restricted);
+    /// This call will trigger an internal recalculation of all parts of the object, in order to return its minimum required dimensions for width and height. The user might choose to impose those minimum sizes, making the resulting calculation to get to values greater or equal than <c>restricted</c> in both directions.
+    /// 
+    /// Note: At the end of this call, the object won&apos;t be automatically resized to the new dimensions, but just return the calculated sizes. The caller is the one up to change its geometry or not.
+    /// 
+    /// Warning: Be advised that invisible parts in the object will be taken into account in this calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="restricted">The minimum size constraint as input, the returned size can not be lower than this (in both directions).</param>
+    /// <returns>The minimum required size.</returns>
+    Eina.Size2D CalcSizeMin(Eina.Size2D restricted);
+
     /// <summary>Calculates the geometry of the region, relative to a given layout object&apos;s area, occupied by all parts in the object.
-/// This function gets the geometry of the rectangle equal to the area required to group all parts in obj&apos;s group/collection. The x and y coordinates are relative to the top left corner of the whole obj object&apos;s area. Parts placed out of the group&apos;s boundaries will also be taken in account, so that x and y may be negative.
-/// 
-/// Note: On failure, this function will make all non-<c>null</c> geometry pointers&apos; pointed variables be set to zero.
-/// (Since EFL 1.22)</summary>
-/// <returns>The calculated region.</returns>
-Eina.Rect CalcPartsExtends();
+    /// This function gets the geometry of the rectangle equal to the area required to group all parts in obj&apos;s group/collection. The x and y coordinates are relative to the top left corner of the whole obj object&apos;s area. Parts placed out of the group&apos;s boundaries will also be taken in account, so that x and y may be negative.
+    /// 
+    /// Note: On failure, this function will make all non-<c>null</c> geometry pointers&apos; pointed variables be set to zero.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The calculated region.</returns>
+    Eina.Rect CalcPartsExtends();
+
     /// <summary>Freezes the layout object.
-/// This function puts all changes on hold. Successive freezes will nest, requiring an equal number of thaws.
-/// 
-/// See also <see cref="Efl.Layout.ICalc.ThawCalc"/>.
-/// (Since EFL 1.22)</summary>
-/// <returns>The frozen state or 0 on error</returns>
-int FreezeCalc();
+    /// This function puts all changes on hold. Successive freezes will nest, requiring an equal number of thaws.
+    /// 
+    /// See also <see cref="Efl.Layout.ICalc.ThawCalc"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The frozen state or 0 on error</returns>
+    int FreezeCalc();
+
     /// <summary>Thaws the layout object.
-/// This function thaws (in other words &quot;unfreezes&quot;) the given layout object.
-/// 
-/// Note: If successive freezes were done, an equal number of thaws will be required.
-/// 
-/// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/>.
-/// (Since EFL 1.22)</summary>
-/// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
-int ThawCalc();
-    /// <summary>Forces a Size/Geometry calculation.
-/// Forces the object to recalculate its layout regardless of freeze/thaw. This API should be used carefully.
-/// 
-/// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
-/// (Since EFL 1.22)</summary>
-void CalcForce();
-                                /// <summary>The layout was recalculated.
-    /// (Since EFL 1.22)</summary>
-    event EventHandler RecalcEvt;
-    /// <summary>A circular dependency between parts of the object was found.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
-    event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt;
+    /// This function thaws (in other words &quot;unfreezes&quot;) the given layout object.
+    /// 
+    /// Note: If successive freezes were done, an equal number of thaws will be required.
+    /// 
+    /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
+    int ThawCalc();
+
+    /// <summary>The layout was recalculated.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    event EventHandler RecalcEvent;
+    /// <summary>A circular dependency between parts of the object was found.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Layout.CalcCircularDependencyEventArgs"/></value>
+    event EventHandler<Efl.Layout.CalcCircularDependencyEventArgs> CircularDependencyEvent;
     /// <summary>Whether this object updates its size hints automatically.
     /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
     /// 
-    /// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.
-    /// (Since EFL 1.22)</summary>
+    /// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Whether or not update the size hints.</value>
     bool CalcAutoUpdateHints {
         get;
         set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Layout.ICalc.CircularDependencyEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ICalcCircularDependencyEvt_Args : EventArgs {
+public class CalcCircularDependencyEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A circular dependency between parts of the object was found.</value>
     public Eina.Array<System.String> arg { get; set; }
 }
+
 /// <summary>This interface defines a common set of APIs used to trigger calculations with layout objects.
-/// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.
-/// (Since EFL 1.22)</summary>
-sealed public  class ICalcConcrete :
+/// This defines all the APIs supported by legacy &quot;Edje&quot; object, known in EO API as Efl.Canvas.Layout.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class CalcConcrete :
     Efl.Eo.EoWrapper
     , ICalc
     
@@ -103,7 +106,7 @@ sealed public  class ICalcConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ICalcConcrete))
+            if (((object)this).GetType() == typeof(CalcConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -117,22 +120,23 @@ sealed public  class ICalcConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ICalcConcrete(ConstructingHandle ch) : base(ch)
+    private CalcConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
         efl_layout_calc_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="ICalc"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ICalcConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private CalcConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>The layout was recalculated.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler RecalcEvt
+    /// <summary>The layout was recalculated.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler RecalcEvent
     {
         add
         {
@@ -170,8 +174,10 @@ sealed public  class ICalcConcrete :
             }
         }
     }
-    /// <summary>Method to raise event RecalcEvt.</summary>
-    public void OnRecalcEvt(EventArgs e)
+
+    /// <summary>Method to raise event RecalcEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRecalcEvent(EventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_RECALC";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
@@ -183,10 +189,11 @@ sealed public  class ICalcConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>A circular dependency between parts of the object was found.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Layout.ICalcCircularDependencyEvt_Args"/></value>
-    public event EventHandler<Efl.Layout.ICalcCircularDependencyEvt_Args> CircularDependencyEvt
+
+    /// <summary>A circular dependency between parts of the object was found.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Layout.CalcCircularDependencyEventArgs"/></value>
+    public event EventHandler<Efl.Layout.CalcCircularDependencyEventArgs> CircularDependencyEvent
     {
         add
         {
@@ -197,7 +204,7 @@ sealed public  class ICalcConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Layout.ICalcCircularDependencyEvt_Args args = new Efl.Layout.ICalcCircularDependencyEvt_Args();
+                        Efl.Layout.CalcCircularDependencyEventArgs args = new Efl.Layout.CalcCircularDependencyEventArgs();
                         args.arg = new Eina.Array<System.String>(evt.Info, false, false);
                         try
                         {
@@ -225,8 +232,10 @@ sealed public  class ICalcConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CircularDependencyEvt.</summary>
-    public void OnCircularDependencyEvt(Efl.Layout.ICalcCircularDependencyEvt_Args e)
+
+    /// <summary>Method to raise event CircularDependencyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCircularDependencyEvent(Efl.Layout.CalcCircularDependencyEventArgs e)
     {
         var key = "_EFL_LAYOUT_EVENT_CIRCULAR_DEPENDENCY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Edje, key);
@@ -239,102 +248,118 @@ sealed public  class ICalcConcrete :
         IntPtr info = e.arg.Handle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Whether this object updates its size hints automatically.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>Whether this object updates its size hints automatically.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Whether or not update the size hints.</returns>
     public bool GetCalcAutoUpdateHints() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Enable or disable auto-update of size hints.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="update">Whether or not update the size hints.</param>
+    }
+
+    /// <summary>Enable or disable auto-update of size hints.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="update">Whether or not update the size hints.<br/>The default value is <c>false</c>.</param>
     public void SetCalcAutoUpdateHints(bool update) {
-                                 Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(this.NativeHandle,update);
+        Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_auto_update_hints_set_ptr.Value.Delegate(this.NativeHandle,update);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Calculates the minimum required size for a given layout object.
     /// This call will trigger an internal recalculation of all parts of the object, in order to return its minimum required dimensions for width and height. The user might choose to impose those minimum sizes, making the resulting calculation to get to values greater or equal than <c>restricted</c> in both directions.
     /// 
     /// Note: At the end of this call, the object won&apos;t be automatically resized to the new dimensions, but just return the calculated sizes. The caller is the one up to change its geometry or not.
     /// 
-    /// Warning: Be advised that invisible parts in the object will be taken into account in this calculation.
-    /// (Since EFL 1.22)</summary>
+    /// Warning: Be advised that invisible parts in the object will be taken into account in this calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="restricted">The minimum size constraint as input, the returned size can not be lower than this (in both directions).</param>
     /// <returns>The minimum required size.</returns>
     public Eina.Size2D CalcSizeMin(Eina.Size2D restricted) {
-         Eina.Size2D.NativeStruct _in_restricted = restricted;
-                        var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate(this.NativeHandle,_in_restricted);
+        Eina.Size2D.NativeStruct _in_restricted = restricted;
+var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_size_min_ptr.Value.Delegate(this.NativeHandle,_in_restricted);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Calculates the geometry of the region, relative to a given layout object&apos;s area, occupied by all parts in the object.
     /// This function gets the geometry of the rectangle equal to the area required to group all parts in obj&apos;s group/collection. The x and y coordinates are relative to the top left corner of the whole obj object&apos;s area. Parts placed out of the group&apos;s boundaries will also be taken in account, so that x and y may be negative.
     /// 
-    /// Note: On failure, this function will make all non-<c>null</c> geometry pointers&apos; pointed variables be set to zero.
-    /// (Since EFL 1.22)</summary>
+    /// Note: On failure, this function will make all non-<c>null</c> geometry pointers&apos; pointed variables be set to zero.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The calculated region.</returns>
     public Eina.Rect CalcPartsExtends() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_parts_extends_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Freezes the layout object.
     /// This function puts all changes on hold. Successive freezes will nest, requiring an equal number of thaws.
     /// 
-    /// See also <see cref="Efl.Layout.ICalc.ThawCalc"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See also <see cref="Efl.Layout.ICalc.ThawCalc"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The frozen state or 0 on error</returns>
     public int FreezeCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_freeze_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Thaws the layout object.
     /// This function thaws (in other words &quot;unfreezes&quot;) the given layout object.
     /// 
     /// Note: If successive freezes were done, an equal number of thaws will be required.
     /// 
-    /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
     public int ThawCalc() {
-         var _ret_var = Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_thaw_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Forces a Size/Geometry calculation.
     /// Forces the object to recalculate its layout regardless of freeze/thaw. This API should be used carefully.
     /// 
-    /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.
-    /// (Since EFL 1.22)</summary>
-    public void CalcForce() {
-         Efl.Layout.ICalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate(this.NativeHandle);
+    /// See also <see cref="Efl.Layout.ICalc.FreezeCalc"/> and <see cref="Efl.Layout.ICalc.ThawCalc"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    protected void CalcForce() {
+        Efl.Layout.CalcConcrete.NativeMethods.efl_layout_calc_force_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Whether this object updates its size hints automatically.
     /// By default edje doesn&apos;t set size hints on itself. If this property is set to <c>true</c>, size hints will be updated after recalculation. Be careful, as recalculation may happen often, enabling this property may have a considerable performance impact as other widgets will be notified of the size hints changes.
     /// 
-    /// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.
-    /// (Since EFL 1.22)</summary>
+    /// A layout recalculation can be triggered by <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcSizeMin"/>, <see cref="Efl.Layout.ICalc.CalcPartsExtends"/> or even any other internal event.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Whether or not update the size hints.</value>
     public bool CalcAutoUpdateHints {
         get { return GetCalcAutoUpdateHints(); }
         set { SetCalcAutoUpdateHints(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Layout.ICalcConcrete.efl_layout_calc_interface_get();
+        return Efl.Layout.CalcConcrete.efl_layout_calc_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Edje);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -399,23 +424,24 @@ sealed public  class ICalcConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_thaw"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_thaw_static_delegate) });
             }
 
-            if (efl_layout_calc_force_static_delegate == null)
+            if (includeInherited)
             {
-                efl_layout_calc_force_static_delegate = new efl_layout_calc_force_delegate(calc_force);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "CalcForce") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_calc_force"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_calc_force_static_delegate) });
-            }
-
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Layout.ICalcConcrete.efl_layout_calc_interface_get();
+            return Efl.Layout.CalcConcrete.efl_layout_calc_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -434,7 +460,7 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ICalc)ws.Target).GetCalcAutoUpdateHints();
@@ -445,8 +471,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -470,7 +495,7 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ICalc)ws.Target).SetCalcAutoUpdateHints(update);
@@ -481,7 +506,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -505,8 +530,8 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Eina.Size2D _in_restricted = restricted;
-                            Eina.Size2D _ret_var = default(Eina.Size2D);
+                Eina.Size2D _in_restricted = restricted;
+Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
                     _ret_var = ((ICalc)ws.Target).CalcSizeMin(_in_restricted);
@@ -517,8 +542,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -542,7 +566,7 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((ICalc)ws.Target).CalcPartsExtends();
@@ -553,8 +577,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -578,7 +601,7 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((ICalc)ws.Target).FreezeCalc();
@@ -589,8 +612,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -614,7 +636,7 @@ sealed public  class ICalcConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((ICalc)ws.Target).ThawCalc();
@@ -625,8 +647,7 @@ sealed public  class ICalcConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -644,44 +665,16 @@ sealed public  class ICalcConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate> efl_layout_calc_force_ptr = new Efl.Eo.FunctionWrapper<efl_layout_calc_force_api_delegate>(Module, "efl_layout_calc_force");
 
-        private static void calc_force(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_layout_calc_force was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((ICalc)ws.Target).CalcForce();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_layout_calc_force_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_layout_calc_force_delegate efl_layout_calc_force_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_LayoutICalcConcrete_ExtensionMethods {
+public static class Efl_LayoutCalcConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> CalcAutoUpdateHints<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Layout.ICalc, T>magic = null) where T : Efl.Layout.ICalc {
         return new Efl.BindableProperty<bool>("calc_auto_update_hints", fac);
     }

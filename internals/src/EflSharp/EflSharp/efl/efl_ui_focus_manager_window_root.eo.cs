@@ -12,19 +12,20 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>A interface to indicate the end of a focus chain.
-/// Focusmanagers are ensuring that if they give focus to something, that they are registered in the upper focus manager. The most upper focus manager does not need to do that, and can implement this interface to indicate that.
-/// (Since EFL 1.22)</summary>
-[Efl.Ui.Focus.IManagerWindowRootConcrete.NativeMethods]
+/// <summary>An interface to indicate the end of a focus chain.
+/// Focus managers are ensuring that if they give focus to something, that is registered in the upper focus manager. The uppermost focus manager does not need to do that, and can implement this interface to indicate so.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Ui.Focus.ManagerWindowRootConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IManagerWindowRoot : 
     Efl.Eo.IWrapper, IDisposable
 {
 }
-/// <summary>A interface to indicate the end of a focus chain.
-/// Focusmanagers are ensuring that if they give focus to something, that they are registered in the upper focus manager. The most upper focus manager does not need to do that, and can implement this interface to indicate that.
-/// (Since EFL 1.22)</summary>
-sealed public  class IManagerWindowRootConcrete :
+
+/// <summary>An interface to indicate the end of a focus chain.
+/// Focus managers are ensuring that if they give focus to something, that is registered in the upper focus manager. The uppermost focus manager does not need to do that, and can implement this interface to indicate so.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ManagerWindowRootConcrete :
     Efl.Eo.EoWrapper
     , IManagerWindowRoot
     
@@ -34,7 +35,7 @@ sealed public  class IManagerWindowRootConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IManagerWindowRootConcrete))
+            if (((object)this).GetType() == typeof(ManagerWindowRootConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -48,39 +49,54 @@ sealed public  class IManagerWindowRootConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IManagerWindowRootConcrete(ConstructingHandle ch) : base(ch)
+    private ManagerWindowRootConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_manager_window_root_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IManagerWindowRoot"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IManagerWindowRootConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ManagerWindowRootConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.Focus.IManagerWindowRootConcrete.efl_ui_focus_manager_window_root_interface_get();
+        return Efl.Ui.Focus.ManagerWindowRootConcrete.efl_ui_focus_manager_window_root_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.Focus.IManagerWindowRootConcrete.efl_ui_focus_manager_window_root_interface_get();
+            return Efl.Ui.Focus.ManagerWindowRootConcrete.efl_ui_focus_manager_window_root_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -90,14 +106,12 @@ sealed public  class IManagerWindowRootConcrete :
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_Ui_FocusIManagerWindowRootConcrete_ExtensionMethods {
+public static class Efl_Ui_FocusManagerWindowRootConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

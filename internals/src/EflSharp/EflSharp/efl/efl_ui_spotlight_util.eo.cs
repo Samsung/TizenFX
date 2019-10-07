@@ -35,6 +35,7 @@ public class Util : Efl.Eo.EoWrapper
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_spotlight_util_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Util"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Util(Efl.Object parent= null
@@ -66,28 +67,42 @@ public class Util : Efl.Eo.EoWrapper
     }
 
     /// <summary>Get a preconfigured stack obejct</summary>
-    public static Efl.Ui.Spotlight.Container StackGen(Efl.Ui.Widget parent) {
-                                 var _ret_var = Efl.Ui.Spotlight.Util.NativeMethods.efl_ui_spotlight_util_stack_gen_ptr.Value.Delegate(parent);
+    public static Efl.Ui.Spotlight.Container GenStack(Efl.Ui.Widget parent) {
+        var _ret_var = Efl.Ui.Spotlight.Util.NativeMethods.efl_ui_spotlight_util_stack_gen_ptr.Value.Delegate(parent);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Spotlight.Util.efl_ui_spotlight_util_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -111,10 +126,10 @@ public class Util : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Spotlight.Container _ret_var = default(Efl.Ui.Spotlight.Container);
+                Efl.Ui.Spotlight.Container _ret_var = default(Efl.Ui.Spotlight.Container);
                 try
                 {
-                    _ret_var = Util.StackGen(parent);
+                    _ret_var = Util.GenStack(parent);
                 }
                 catch (Exception e)
                 {
@@ -122,8 +137,7 @@ public class Util : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -136,9 +150,7 @@ public class Util : Efl.Eo.EoWrapper
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

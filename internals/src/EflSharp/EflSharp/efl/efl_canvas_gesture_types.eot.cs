@@ -22,9 +22,7 @@ Update = 2,
 /// <summary>Last fingure touch up</summary>
 End = 3,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -46,9 +44,7 @@ Finished = 3,
 /// <summary>A gesture was canceled.</summary>
 Canceled = 4,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -72,9 +68,7 @@ Cancel = 16,
 /// <summary>The gesture result mask</summary>
 ResultMask = 255,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -93,8 +87,6 @@ Momentum = 4,
 Flick = 5,
 Zoom = 6,
 }
-
 }
-
 }
 

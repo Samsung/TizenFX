@@ -9,48 +9,53 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Common interface for objects (containers) that can have multiple contents (sub-objects).
-/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.
-/// (Since EFL 1.22)</summary>
-[Efl.IContainerConcrete.NativeMethods]
+/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.ContainerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IContainer : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Begin iterating over this object&apos;s contents.
-/// (Since EFL 1.22)</summary>
-/// <returns>Iterator on object&apos;s content.</returns>
-Eina.Iterator<Efl.Gfx.IEntity> ContentIterate();
-    /// <summary>Returns the number of contained sub-objects.
-/// (Since EFL 1.22)</summary>
-/// <returns>Number of sub-objects.</returns>
-int ContentCount();
-            /// <summary>Sent after a new sub-object was added.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
-    event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt;
-    /// <summary>Sent after a sub-object was removed, before unref.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
-    event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt;
+    /// <summary>Begin iterating over this object&apos;s contents.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Iterator on object&apos;s content.</returns>
+    Eina.Iterator<Efl.Gfx.IEntity> IterateContent();
+
+    /// <summary>Returns the number of contained sub-objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Number of sub-objects.</returns>
+    int ContentCount();
+
+    /// <summary>Sent after a new sub-object was added.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContainerContentAddedEventArgs"/></value>
+    event EventHandler<Efl.ContainerContentAddedEventArgs> ContentAddedEvent;
+    /// <summary>Sent after a sub-object was removed, before unref.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContainerContentRemovedEventArgs"/></value>
+    event EventHandler<Efl.ContainerContentRemovedEventArgs> ContentRemovedEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentAddedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentAddedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IContainerContentAddedEvt_Args : EventArgs {
+public class ContainerContentAddedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Sent after a new sub-object was added.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentRemovedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.IContainer.ContentRemovedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IContainerContentRemovedEvt_Args : EventArgs {
+public class ContainerContentRemovedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Sent after a sub-object was removed, before unref.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
+
 /// <summary>Common interface for objects (containers) that can have multiple contents (sub-objects).
-/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.
-/// (Since EFL 1.22)</summary>
-sealed public  class IContainerConcrete :
+/// APIs in this interface deal with containers of multiple sub-objects, not with individual parts.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ContainerConcrete :
     Efl.Eo.EoWrapper
     , IContainer
     
@@ -60,7 +65,7 @@ sealed public  class IContainerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IContainerConcrete))
+            if (((object)this).GetType() == typeof(ContainerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -74,23 +79,24 @@ sealed public  class IContainerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IContainerConcrete(ConstructingHandle ch) : base(ch)
+    private ContainerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_container_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IContainer"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IContainerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ContainerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Sent after a new sub-object was added.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentAddedEvt_Args"/></value>
-    public event EventHandler<Efl.IContainerContentAddedEvt_Args> ContentAddedEvt
+    /// <summary>Sent after a new sub-object was added.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContainerContentAddedEventArgs"/></value>
+    public event EventHandler<Efl.ContainerContentAddedEventArgs> ContentAddedEvent
     {
         add
         {
@@ -101,8 +107,8 @@ sealed public  class IContainerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContainerContentAddedEvt_Args args = new Efl.IContainerContentAddedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContainerContentAddedEventArgs args = new Efl.ContainerContentAddedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -129,8 +135,10 @@ sealed public  class IContainerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ContentAddedEvt.</summary>
-    public void OnContentAddedEvt(Efl.IContainerContentAddedEvt_Args e)
+
+    /// <summary>Method to raise event ContentAddedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentAddedEvent(Efl.ContainerContentAddedEventArgs e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_ADDED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -143,10 +151,11 @@ sealed public  class IContainerConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Sent after a sub-object was removed, before unref.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContainerContentRemovedEvt_Args"/></value>
-    public event EventHandler<Efl.IContainerContentRemovedEvt_Args> ContentRemovedEvt
+
+    /// <summary>Sent after a sub-object was removed, before unref.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContainerContentRemovedEventArgs"/></value>
+    public event EventHandler<Efl.ContainerContentRemovedEventArgs> ContentRemovedEvent
     {
         add
         {
@@ -157,8 +166,8 @@ sealed public  class IContainerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContainerContentRemovedEvt_Args args = new Efl.IContainerContentRemovedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContainerContentRemovedEventArgs args = new Efl.ContainerContentRemovedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -185,8 +194,10 @@ sealed public  class IContainerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ContentRemovedEvt.</summary>
-    public void OnContentRemovedEvt(Efl.IContainerContentRemovedEvt_Args e)
+
+    /// <summary>Method to raise event ContentRemovedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentRemovedEvent(Efl.ContainerContentRemovedEventArgs e)
     {
         var key = "_EFL_CONTAINER_EVENT_CONTENT_REMOVED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -199,34 +210,43 @@ sealed public  class IContainerConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Begin iterating over this object&apos;s contents.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>Begin iterating over this object&apos;s contents.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Iterator on object&apos;s content.</returns>
-    public Eina.Iterator<Efl.Gfx.IEntity> ContentIterate() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
+    public Eina.Iterator<Efl.Gfx.IEntity> IterateContent() {
+        var _ret_var = Efl.ContainerConcrete.NativeMethods.efl_content_iterate_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Gfx.IEntity>(_ret_var, true);
- }
-    /// <summary>Returns the number of contained sub-objects.
-    /// (Since EFL 1.22)</summary>
+
+    }
+
+    /// <summary>Returns the number of contained sub-objects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Number of sub-objects.</returns>
     public int ContentCount() {
-         var _ret_var = Efl.IContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ContainerConcrete.NativeMethods.efl_content_count_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IContainerConcrete.efl_container_interface_get();
+        return Efl.ContainerConcrete.efl_container_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -236,7 +256,7 @@ sealed public  class IContainerConcrete :
                 efl_content_iterate_static_delegate = new efl_content_iterate_delegate(content_iterate);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "ContentIterate") != null)
+            if (methods.FirstOrDefault(m => m.Name == "IterateContent") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_iterate"), func = Marshal.GetFunctionPointerForDelegate(efl_content_iterate_static_delegate) });
             }
@@ -251,13 +271,24 @@ sealed public  class IContainerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_count"), func = Marshal.GetFunctionPointerForDelegate(efl_content_count_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IContainerConcrete.efl_container_interface_get();
+            return Efl.ContainerConcrete.efl_container_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -276,10 +307,10 @@ sealed public  class IContainerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
+                Eina.Iterator<Efl.Gfx.IEntity> _ret_var = default(Eina.Iterator<Efl.Gfx.IEntity>);
                 try
                 {
-                    _ret_var = ((IContainer)ws.Target).ContentIterate();
+                    _ret_var = ((IContainer)ws.Target).IterateContent();
                 }
                 catch (Exception e)
                 {
@@ -287,8 +318,7 @@ sealed public  class IContainerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; return _ret_var.Handle;
             }
             else
             {
@@ -312,7 +342,7 @@ sealed public  class IContainerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((IContainer)ws.Target).ContentCount();
@@ -323,8 +353,7 @@ sealed public  class IContainerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -342,7 +371,7 @@ sealed public  class IContainerConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIContainerConcrete_ExtensionMethods {
+public static class EflContainerConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

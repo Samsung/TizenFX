@@ -15,82 +15,102 @@ namespace Gfx {
 /// 
 /// This was a beta feature since 1.15.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IFilterConcrete.NativeMethods]
+[Efl.Gfx.FilterConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFilter : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
-/// <param name="code">The Lua program source code.</param>
-/// <param name="name">An optional name for this filter.</param>
-void GetFilterProgram(out System.String code, out System.String name);
-    /// <summary>Set a graphical filter program on this object.
-/// Valid for Text and Image objects at the moment.
-/// 
-/// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
-/// 
-/// Set to <c>null</c> to disable filtering.</summary>
-/// <param name="code">The Lua program source code.</param>
-/// <param name="name">An optional name for this filter.</param>
-void SetFilterProgram(System.String code, System.String name);
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
+    /// <param name="code">The Lua program source code.</param>
+    /// <param name="name">An optional name for this filter.</param>
+    void GetFilterProgram(out System.String code, out System.String name);
+
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
+    /// <param name="code">The Lua program source code.</param>
+    /// <param name="name">An optional name for this filter.</param>
+    void SetFilterProgram(System.String code, System.String name);
+
     /// <summary>Set the current state of the filter.
-/// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
-/// 
-/// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
-/// <param name="cur_state">Current state of the filter</param>
-/// <param name="cur_val">Current value</param>
-/// <param name="next_state">Next filter state, optional</param>
-/// <param name="next_val">Next value, optional</param>
-/// <param name="pos">Position, optional</param>
-void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos);
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <param name="cur_state">Current state of the filter</param>
+    /// <param name="cur_val">Current value</param>
+    /// <param name="next_state">Next filter state, optional</param>
+    /// <param name="next_val">Next value, optional</param>
+    /// <param name="pos">Position, optional</param>
+    void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos);
+
     /// <summary>Set the current state of the filter.
-/// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
-/// 
-/// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
-/// <param name="cur_state">Current state of the filter</param>
-/// <param name="cur_val">Current value</param>
-/// <param name="next_state">Next filter state, optional</param>
-/// <param name="next_val">Next value, optional</param>
-/// <param name="pos">Position, optional</param>
-void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos);
+    /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
+    /// 
+    /// A full state is defined by two states (name + value): origin state and target state of an ongoing animation, as well as the <c>pos</c> progress (from 0 to 1) of that animation timeline. The second state can be omitted if there is no ongoing animation.</summary>
+    /// <param name="cur_state">Current state of the filter</param>
+    /// <param name="cur_val">Current value</param>
+    /// <param name="next_state">Next filter state, optional</param>
+    /// <param name="next_val">Next value, optional</param>
+    /// <param name="pos">Position, optional</param>
+    void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos);
+
     /// <summary>Gets the padding required to apply this filter.</summary>
-/// <param name="l">Padding on the left</param>
-/// <param name="r">Padding on the right</param>
-/// <param name="t">Padding on the top</param>
-/// <param name="b">Padding on the bottom</param>
-void GetFilterPadding(out int l, out int r, out int t, out int b);
+    /// <param name="l">Padding on the left</param>
+    /// <param name="r">Padding on the right</param>
+    /// <param name="t">Padding on the top</param>
+    /// <param name="b">Padding on the bottom</param>
+    void GetFilterPadding(out int l, out int r, out int t, out int b);
+
     /// <summary>Bind an object to use as a mask or texture in a filter program.
-/// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
-/// <param name="name">Buffer name as used in the program.</param>
-/// <returns>Object to use as a source of pixels.</returns>
-Efl.Gfx.IEntity GetFilterSource(System.String name);
+    /// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
+    /// <param name="name">Buffer name as used in the program.</param>
+    /// <returns>Object to use as a source of pixels.</returns>
+    Efl.Gfx.IEntity GetFilterSource(System.String name);
+
     /// <summary>Bind an object to use as a mask or texture in a filter program.
-/// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
-/// <param name="name">Buffer name as used in the program.</param>
-/// <param name="source">Object to use as a source of pixels.</param>
-void SetFilterSource(System.String name, Efl.Gfx.IEntity source);
+    /// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
+    /// <param name="name">Buffer name as used in the program.</param>
+    /// <param name="source">Object to use as a source of pixels.</param>
+    void SetFilterSource(System.String name, Efl.Gfx.IEntity source);
+
     /// <summary>Extra data used by the filter program.
-/// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
-/// 
-/// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
-/// <param name="name">Name of the global variable</param>
-/// <param name="value">String value to use as data</param>
-/// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
-void GetFilterData(System.String name, out System.String value, out bool execute);
+    /// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
+    /// 
+    /// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
+    /// <param name="name">Name of the global variable</param>
+    /// <param name="value">String value to use as data</param>
+    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;<br/>The default value is <c>false</c>.</param>
+    void GetFilterData(System.String name, out System.String value, out bool execute);
+
     /// <summary>Extra data used by the filter program.
-/// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
-/// 
-/// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
-/// <param name="name">Name of the global variable</param>
-/// <param name="value">String value to use as data</param>
-/// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
-void SetFilterData(System.String name, System.String value, bool execute);
-                                        /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+    /// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
+    /// 
+    /// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
+    /// <param name="name">Name of the global variable</param>
+    /// <param name="value">String value to use as data</param>
+    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;<br/>The default value is <c>false</c>.</param>
+    void SetFilterData(System.String name, System.String value, bool execute);
+
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <value>The Lua program source code.</value>
     (System.String, System.String) FilterProgram {
         get;
         set;
     }
+
     /// <summary>Set the current state of the filter.
     /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
     /// 
@@ -100,18 +120,21 @@ void SetFilterData(System.String name, System.String value, bool execute);
         get;
         set;
     }
+
     /// <summary>Required padding to apply this filter without cropping.
     /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
     (int, int, int, int) FilterPadding {
         get;
     }
+
 }
+
 /// <summary>Graphical filters can be applied to any object implementing this interface.
 /// Filters are programmable effects that run whenever the object is rendered on its canvas. The program language is Lua and a complete reference can be found under &quot;EFL Graphics Filters&quot;.
 /// 
 /// This was a beta feature since 1.15.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFilterConcrete :
+public sealed class FilterConcrete :
     Efl.Eo.EoWrapper
     , IFilter
     
@@ -121,7 +144,7 @@ sealed public  class IFilterConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFilterConcrete))
+            if (((object)this).GetType() == typeof(FilterConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -135,27 +158,36 @@ sealed public  class IFilterConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFilterConcrete(ConstructingHandle ch) : base(ch)
+    private FilterConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_filter_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IFilter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FilterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+#pragma warning disable CS0628
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     public void GetFilterProgram(out System.String code, out System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate(this.NativeHandle,out code, out name);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_program_get_ptr.Value.Delegate(this.NativeHandle,out code, out name);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Set a graphical filter program on this object.
+        
+    }
+
+    /// <summary>A graphical filter program on this object.
     /// Valid for Text and Image objects at the moment.
     /// 
     /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
@@ -164,9 +196,11 @@ sealed public  class IFilterConcrete :
     /// <param name="code">The Lua program source code.</param>
     /// <param name="name">An optional name for this filter.</param>
     public void SetFilterProgram(System.String code, System.String name) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate(this.NativeHandle,code, name);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_program_set_ptr.Value.Delegate(this.NativeHandle,code, name);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Set the current state of the filter.
     /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
     /// 
@@ -177,9 +211,11 @@ sealed public  class IFilterConcrete :
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     public void GetFilterState(out System.String cur_state, out double cur_val, out System.String next_state, out double next_val, out double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate(this.NativeHandle,out cur_state, out cur_val, out next_state, out next_val, out pos);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_state_get_ptr.Value.Delegate(this.NativeHandle,out cur_state, out cur_val, out next_state, out next_val, out pos);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
+        
+    }
+
     /// <summary>Set the current state of the filter.
     /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
     /// 
@@ -190,58 +226,74 @@ sealed public  class IFilterConcrete :
     /// <param name="next_val">Next value, optional</param>
     /// <param name="pos">Position, optional</param>
     public void SetFilterState(System.String cur_state, double cur_val, System.String next_state, double next_val, double pos) {
-                                                                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate(this.NativeHandle,cur_state, cur_val, next_state, next_val, pos);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_state_set_ptr.Value.Delegate(this.NativeHandle,cur_state, cur_val, next_state, next_val, pos);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
+        
+    }
+
     /// <summary>Gets the padding required to apply this filter.</summary>
     /// <param name="l">Padding on the left</param>
     /// <param name="r">Padding on the right</param>
     /// <param name="t">Padding on the top</param>
     /// <param name="b">Padding on the bottom</param>
     public void GetFilterPadding(out int l, out int r, out int t, out int b) {
-                                                                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_padding_get_ptr.Value.Delegate(this.NativeHandle,out l, out r, out t, out b);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Bind an object to use as a mask or texture in a filter program.
     /// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
     /// <param name="name">Buffer name as used in the program.</param>
     /// <returns>Object to use as a source of pixels.</returns>
     public Efl.Gfx.IEntity GetFilterSource(System.String name) {
-                                 var _ret_var = Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate(this.NativeHandle,name);
+        var _ret_var = Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_source_get_ptr.Value.Delegate(this.NativeHandle,name);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Bind an object to use as a mask or texture in a filter program.
     /// This will create automatically a new RGBA buffer containing the source object&apos;s pixels (as it is rendered).</summary>
     /// <param name="name">Buffer name as used in the program.</param>
     /// <param name="source">Object to use as a source of pixels.</param>
     public void SetFilterSource(System.String name, Efl.Gfx.IEntity source) {
-                                                         Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate(this.NativeHandle,name, source);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_source_set_ptr.Value.Delegate(this.NativeHandle,name, source);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Extra data used by the filter program.
     /// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
     /// 
     /// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
     /// <param name="name">Name of the global variable</param>
     /// <param name="value">String value to use as data</param>
-    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
+    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;<br/>The default value is <c>false</c>.</param>
     public void GetFilterData(System.String name, out System.String value, out bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate(this.NativeHandle,name, out value, out execute);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_data_get_ptr.Value.Delegate(this.NativeHandle,name, out value, out execute);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Extra data used by the filter program.
     /// Each data element is a string (<c>value</c>) stored as a global variable <c>name</c>. The program is then responsible for conversion to numbers, tables, etc...
     /// 
     /// If the <c>execute</c> flag is set, then the <c>value</c> can be complex and run, as if the original Lua program contained a line &apos;name = value&apos;. This can be used to pass in tables.</summary>
     /// <param name="name">Name of the global variable</param>
     /// <param name="value">String value to use as data</param>
-    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;</param>
+    /// <param name="execute">If <c>true</c>, execute &apos;name = value&apos;<br/>The default value is <c>false</c>.</param>
     public void SetFilterData(System.String name, System.String value, bool execute) {
-                                                                                 Efl.Gfx.IFilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate(this.NativeHandle,name, value, execute);
+        Efl.Gfx.FilterConcrete.NativeMethods.efl_gfx_filter_data_set_ptr.Value.Delegate(this.NativeHandle,name, value, execute);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
-    /// <summary>Gets the code of the filter program set on this object. May be <c>null</c>.</summary>
+        
+    }
+
+    /// <summary>A graphical filter program on this object.
+    /// Valid for Text and Image objects at the moment.
+    /// 
+    /// The argument passed to this function is a string containing a valid Lua program based on the filters API as described in the &quot;EFL Graphics Filters&quot; reference page.
+    /// 
+    /// Set to <c>null</c> to disable filtering.</summary>
     /// <value>The Lua program source code.</value>
     public (System.String, System.String) FilterProgram {
         get {
@@ -252,6 +304,7 @@ sealed public  class IFilterConcrete :
         }
         set { SetFilterProgram( value.Item1,  value.Item2); }
     }
+
     /// <summary>Set the current state of the filter.
     /// This should be used by Edje (EFL&apos;s internal layout engine), but could also be used when implementing animations programmatically.
     /// 
@@ -269,6 +322,7 @@ sealed public  class IFilterConcrete :
         }
         set { SetFilterState( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
     }
+
     /// <summary>Required padding to apply this filter without cropping.
     /// Read-only property that can be used to calculate the object&apos;s final geometry. This can be overridden (set) from inside the filter program by using the function &apos;padding_set&apos; in the Lua program.</summary>
     public (int, int, int, int) FilterPadding {
@@ -281,18 +335,22 @@ sealed public  class IFilterConcrete :
             return (_out_l,_out_r,_out_t,_out_b);
         }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
+        return Efl.Gfx.FilterConcrete.efl_gfx_filter_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -387,13 +445,24 @@ sealed public  class IFilterConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_filter_data_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_filter_data_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IFilterConcrete.efl_gfx_filter_interface_get();
+            return Efl.Gfx.FilterConcrete.efl_gfx_filter_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -412,9 +481,9 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        System.String _out_code = default(System.String);
-        System.String _out_name = default(System.String);
-                            
+                System.String _out_code = default(System.String);
+System.String _out_name = default(System.String);
+
                 try
                 {
                     ((IFilter)ws.Target).GetFilterProgram(out _out_code, out _out_name);
@@ -426,8 +495,8 @@ sealed public  class IFilterConcrete :
                 }
 
         code = _out_code;
-        name = _out_name;
-                        
+name = _out_name;
+        
             }
             else
             {
@@ -451,7 +520,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IFilter)ws.Target).SetFilterProgram(code, name);
@@ -462,7 +531,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -486,9 +555,9 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                System.String _out_cur_state = default(System.String);
-        cur_val = default(double);        System.String _out_next_state = default(System.String);
-        next_val = default(double);        pos = default(double);                                                    
+                System.String _out_cur_state = default(System.String);
+cur_val = default(double);System.String _out_next_state = default(System.String);
+next_val = default(double);pos = default(double);
                 try
                 {
                     ((IFilter)ws.Target).GetFilterState(out _out_cur_state, out cur_val, out _out_next_state, out next_val, out pos);
@@ -500,8 +569,8 @@ sealed public  class IFilterConcrete :
                 }
 
         cur_state = _out_cur_state;
-                next_state = _out_next_state;
-                                                                
+next_state = _out_next_state;
+        
             }
             else
             {
@@ -525,7 +594,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                    
+                
                 try
                 {
                     ((IFilter)ws.Target).SetFilterState(cur_state, cur_val, next_state, next_val, pos);
@@ -536,7 +605,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        
+                
             }
             else
             {
@@ -560,7 +629,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        l = default(int);        r = default(int);        t = default(int);        b = default(int);                                            
+                l = default(int);r = default(int);t = default(int);b = default(int);
                 try
                 {
                     ((IFilter)ws.Target).GetFilterPadding(out l, out r, out t, out b);
@@ -571,7 +640,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -595,7 +664,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
+                Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
                     _ret_var = ((IFilter)ws.Target).GetFilterSource(name);
@@ -606,8 +675,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -631,7 +699,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IFilter)ws.Target).SetFilterSource(name, source);
@@ -642,7 +710,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -666,8 +734,8 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        System.String _out_value = default(System.String);
-        execute = default(bool);                                    
+                System.String _out_value = default(System.String);
+execute = default(bool);
                 try
                 {
                     ((IFilter)ws.Target).GetFilterData(name, out _out_value, out execute);
@@ -678,8 +746,8 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                value = _out_value;
-                                        
+        value = _out_value;
+        
             }
             else
             {
@@ -703,7 +771,7 @@ sealed public  class IFilterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    
+                
                 try
                 {
                     ((IFilter)ws.Target).SetFilterData(name, value, execute);
@@ -714,7 +782,7 @@ sealed public  class IFilterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
@@ -729,17 +797,11 @@ sealed public  class IFilterConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIFilterConcrete_ExtensionMethods {
-    
-    
-    
-    
-    
+public static class Efl_GfxFilterConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

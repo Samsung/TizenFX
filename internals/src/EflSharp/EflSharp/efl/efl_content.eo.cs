@@ -9,52 +9,58 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Common interface for objects that have a single sub-object as content.
-/// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.
-/// (Since EFL 1.22)</summary>
-[Efl.IContentConcrete.NativeMethods]
+/// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.ContentConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IContent : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <returns>The sub-object.</returns>
-Efl.Gfx.IEntity GetContent();
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The sub-object.</returns>
+    Efl.Gfx.IEntity GetContent();
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-/// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-/// (Since EFL 1.22)</summary>
-/// <param name="content">The sub-object.</param>
-/// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
-bool SetContent(Efl.Gfx.IEntity content);
-    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.
-/// (Since EFL 1.22)</summary>
-/// <returns>Unswallowed object</returns>
-Efl.Gfx.IEntity UnsetContent();
-                /// <summary>Sent after the content is set or unset using the current content object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
-    event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt;
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="content">The sub-object.</param>
+    /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
+    bool SetContent(Efl.Gfx.IEntity content);
+
+    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Unswallowed object</returns>
+    Efl.Gfx.IEntity UnsetContent();
+
+    /// <summary>Sent after the content is set or unset using the current content object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContentContentChangedEventArgs"/></value>
+    event EventHandler<Efl.ContentContentChangedEventArgs> ContentChangedEvent;
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The sub-object.</value>
     Efl.Gfx.IEntity Content {
         get;
         set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.IContent.ContentChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.IContent.ContentChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IContentContentChangedEvt_Args : EventArgs {
+public class ContentContentChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Sent after the content is set or unset using the current content object.</value>
     public Efl.Gfx.IEntity arg { get; set; }
 }
+
 /// <summary>Common interface for objects that have a single sub-object as content.
-/// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.
-/// (Since EFL 1.22)</summary>
-sealed public  class IContentConcrete :
+/// This is used for the default content part of widgets, as well as for individual parts through <see cref="Efl.IPart"/>.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ContentConcrete :
     Efl.Eo.EoWrapper
     , IContent
     
@@ -64,7 +70,7 @@ sealed public  class IContentConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IContentConcrete))
+            if (((object)this).GetType() == typeof(ContentConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -78,23 +84,24 @@ sealed public  class IContentConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IContentConcrete(ConstructingHandle ch) : base(ch)
+    private ContentConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_content_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IContent"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IContentConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ContentConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Sent after the content is set or unset using the current content object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
-    public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
+    /// <summary>Sent after the content is set or unset using the current content object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContentContentChangedEventArgs"/></value>
+    public event EventHandler<Efl.ContentContentChangedEventArgs> ContentChangedEvent
     {
         add
         {
@@ -105,8 +112,8 @@ sealed public  class IContentConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContentContentChangedEventArgs args = new Efl.ContentContentChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -133,8 +140,10 @@ sealed public  class IContentConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ContentChangedEvt.</summary>
-    public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
+
+    /// <summary>Method to raise event ContentChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentChangedEvent(Efl.ContentContentChangedEventArgs e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -147,53 +156,63 @@ sealed public  class IContentConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The sub-object.</returns>
     public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
     public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate(this.NativeHandle,content);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>Unswallowed object</returns>
-    public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate(this.NativeHandle,content);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Unswallowed object</returns>
+    public Efl.Gfx.IEntity UnsetContent() {
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate(this.NativeHandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IContentConcrete.efl_content_interface_get();
+        return Efl.ContentConcrete.efl_content_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -228,13 +247,24 @@ sealed public  class IContentConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_unset"), func = Marshal.GetFunctionPointerForDelegate(efl_content_unset_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IContentConcrete.efl_content_interface_get();
+            return Efl.ContentConcrete.efl_content_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -253,7 +283,7 @@ sealed public  class IContentConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
+                Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
                     _ret_var = ((IContent)ws.Target).GetContent();
@@ -264,8 +294,7 @@ sealed public  class IContentConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -289,7 +318,7 @@ sealed public  class IContentConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IContent)ws.Target).SetContent(content);
@@ -300,8 +329,7 @@ sealed public  class IContentConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -325,7 +353,7 @@ sealed public  class IContentConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
+                Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
                 try
                 {
                     _ret_var = ((IContent)ws.Target).UnsetContent();
@@ -336,8 +364,7 @@ sealed public  class IContentConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -355,7 +382,7 @@ sealed public  class IContentConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIContentConcrete_ExtensionMethods {
+public static class EflContentConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IContent, T>magic = null) where T : Efl.IContent {
         return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
     }

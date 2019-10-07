@@ -10,7 +10,7 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>EFL Gesture Long Tap class</summary>
+/// <summary>Long-tap gesture class holding state information. See <see cref="Efl.Canvas.Gesture"/> to see what this state is and <see cref="Efl.Gesture.IEvents.GestureLongTapEvent"/> for a description of the Long-tap gesture.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureLongTap.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -34,6 +34,7 @@ public class GestureLongTap : Efl.Canvas.Gesture
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_gesture_long_tap_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GestureLongTap"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureLongTap(Efl.Object parent= null
@@ -64,22 +65,35 @@ public class GestureLongTap : Efl.Canvas.Gesture
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.GestureLongTap.efl_canvas_gesture_long_tap_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Gesture.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -94,7 +108,6 @@ public class GestureLongTap : Efl.Canvas.Gesture
 }
 }
 }
-
 }
 
 #if EFL_BETA

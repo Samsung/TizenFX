@@ -24,6 +24,8 @@ public static partial class NativeMethods
 
 /// <summary>
 /// Placeholder type to interact with the native type Eina_Stringshare, mainly for eina containers.
+///
+/// (Since Efl 1.23)
 /// </summary>
 /// <remarks>
 /// Using System.String and merely converting this type to it (by cast or implicitly)

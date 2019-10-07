@@ -11,8 +11,8 @@ namespace Efl {
 /// <summary>Callback priority. Range is -32k - 32k. The lower the number, the higher the priority.
 /// This is used to insert an event handler relative to the existing stack of sorted event handlers according to that priority. All event handlers always have a priority. If not specified <see cref="Efl.Constants.CallbackPriorityDefault"/> is to be assumed.
 /// 
-/// See <see cref="Efl.Constants.CallbackPriorityBefore"/> <see cref="Efl.Constants.CallbackPriorityDefault"/>  <see cref="Efl.Constants.CallbackPriorityAfter"/>
-/// (Since EFL 1.22)</summary>
+/// See <see cref="Efl.Constants.CallbackPriorityBefore"/> <see cref="Efl.Constants.CallbackPriorityDefault"/>  <see cref="Efl.Constants.CallbackPriorityAfter"/></summary>
+/// <since_tizen> 6 </since_tizen>
 public struct CallbackPriority
 {
     private short payload;
@@ -32,9 +32,7 @@ public struct CallbackPriority
     {
         return value.payload;
     }
-
 }
-
 }
 
 namespace Efl {
@@ -42,6 +40,7 @@ namespace Efl {
 public partial class Constants
 {
     /// <summary>Slightly more prioritized than default.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public static readonly Efl.CallbackPriority CallbackPriorityBefore = -100;
 }
 }
@@ -51,6 +50,7 @@ namespace Efl {
 public partial class Constants
 {
     /// <summary>Default priority.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public static readonly Efl.CallbackPriority CallbackPriorityDefault = 0;
 }
 }
@@ -60,6 +60,7 @@ namespace Efl {
 public partial class Constants
 {
     /// <summary>Slightly less prioritized than default.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public static readonly Efl.CallbackPriority CallbackPriorityAfter = 100;
 }
 }
@@ -69,8 +70,8 @@ namespace Efl {
 /// <summary>Abstract EFL object class.
 /// All EFL objects inherit from this class, which provides basic functionality like naming, debugging, hierarchy traversal, event emission and life cycle management.
 /// 
-/// Life Cycle Objects are created with efl_add() and mostly disposed of with efl_del(). As an optimization, efl_add() accepts a list of initialization functions which the programmer can use to further customize the object before it is fully constructed. Also, objects can have a parent which will keep them alive as long as the parent is alive, so the programmer does not need to keep track of references. (See the <see cref="Efl.Object.Parent"/> property for details). Due to the above characteristics, EFL objects undergo the following phases during their Life Cycle: - Construction: The Efl.Object.constructor method is called. Afterwards, any user-supplied initialization methods are called. - Finalization: The <see cref="Efl.Object.FinalizeAdd"/> method is called and <see cref="Efl.Object.GetFinalized"/> is set to <c>true</c> when it returns. Object is usable at this point. - Invalidation: The object has lost its parent. The <see cref="Efl.Object.Invalidate"/> method is called so all the object&apos;s relationships can be terminated. <see cref="Efl.Object.GetInvalidated"/> is set to <c>true</c>. - Destruction: The object has no parent and it can be destroyed. The <see cref="Efl.Object.Destructor"/> method is called, use it to return any resources the object might have gathered during its life.
-/// (Since EFL 1.22)</summary>
+/// Life Cycle Objects are created with efl_add() and mostly disposed of with efl_del(). As an optimization, efl_add() accepts a list of initialization functions which the programmer can use to further customize the object before it is fully constructed. Also, objects can have a parent which will keep them alive as long as the parent is alive, so the programmer does not need to keep track of references. (See the <see cref="Efl.Object.Parent"/> property for details). Due to the above characteristics, EFL objects undergo the following phases during their Life Cycle: - Construction: The Efl.Object.constructor method is called. Afterwards, any user-supplied initialization methods are called. - Finalization: The <see cref="Efl.Object.FinalizeAdd"/> method is called and <see cref="Efl.Object.GetFinalized"/> is set to <c>true</c> when it returns. Object is usable at this point. - Invalidation: The object has lost its parent. The <see cref="Efl.Object.Invalidate"/> method is called so all the object&apos;s relationships can be terminated. <see cref="Efl.Object.GetInvalidated"/> is set to <c>true</c>. - Destruction: The object has no parent and it can be destroyed. The <see cref="Efl.Object.Destructor"/> method is called, use it to return any resources the object might have gathered during its life.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Object.NativeMethods]
 [Efl.Eo.BindingEntity]
 public abstract partial class Object : Efl.Eo.EoWrapper
@@ -93,6 +94,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Eo)] internal static extern System.IntPtr
         efl_object_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Object"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Object(Efl.Object parent= null
@@ -130,9 +132,9 @@ public abstract partial class Object : Efl.Eo.EoWrapper
     {
     }
 
-    /// <summary>Object is being deleted. See <see cref="Efl.Object.Destructor"/>.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler DelEvt
+    /// <summary>Object is being deleted. See <see cref="Efl.Object.Destructor"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler DelEvent
     {
         add
         {
@@ -170,8 +172,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event DelEvt.</summary>
-    public void OnDelEvt(EventArgs e)
+
+    /// <summary>Method to raise event DelEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDelEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_DEL";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -183,9 +187,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Object is being invalidated and losing its parent. See <see cref="Efl.Object.Invalidate"/>.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler InvalidateEvt
+
+    /// <summary>Object is being invalidated and losing its parent. See <see cref="Efl.Object.Invalidate"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler InvalidateEvent
     {
         add
         {
@@ -223,8 +228,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event InvalidateEvt.</summary>
-    public void OnInvalidateEvt(EventArgs e)
+
+    /// <summary>Method to raise event InvalidateEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnInvalidateEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_INVALIDATE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -236,9 +243,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Object has lost its last reference, only parent relationship is keeping it alive. Advanced usage.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler NorefEvt
+
+    /// <summary>Object has lost its last reference, only parent relationship is keeping it alive. Advanced usage.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler NorefEvent
     {
         add
         {
@@ -276,8 +284,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event NorefEvt.</summary>
-    public void OnNorefEvt(EventArgs e)
+
+    /// <summary>Method to raise event NorefEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnNorefEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_NOREF";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -289,9 +299,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Object has lost a reference and only one is left. It has just one owner now. Triggered whenever the refcount goes from two to one.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler OwnershipUniqueEvt
+
+    /// <summary>Object has lost a reference and only one is left. It has just one owner now. Triggered whenever the refcount goes from two to one.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler OwnershipUniqueEvent
     {
         add
         {
@@ -329,8 +340,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event OwnershipUniqueEvt.</summary>
-    public void OnOwnershipUniqueEvt(EventArgs e)
+
+    /// <summary>Method to raise event OwnershipUniqueEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnOwnershipUniqueEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_OWNERSHIP_UNIQUE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -342,9 +355,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Object has acquired a second reference. It has multiple owners now. Triggered whenever increasing the refcount from one to two, it will not trigger by further increasing the refcount beyond two.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler OwnershipSharedEvt
+
+    /// <summary>Object has acquired a second reference. It has multiple owners now. Triggered whenever increasing the refcount from one to two, it will not trigger by further increasing the refcount beyond two.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler OwnershipSharedEvent
     {
         add
         {
@@ -382,8 +396,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event OwnershipSharedEvt.</summary>
-    public void OnOwnershipSharedEvt(EventArgs e)
+
+    /// <summary>Method to raise event OwnershipSharedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnOwnershipSharedEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_OWNERSHIP_SHARED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -395,9 +411,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Object has been fully destroyed. It can not be used beyond this point. This event should only serve to clean up any reference you keep to the object.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler DestructEvt
+
+    /// <summary>Object has been fully destroyed. It can not be used beyond this point. This event should only serve to clean up any reference you keep to the object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler DestructEvent
     {
         add
         {
@@ -435,8 +452,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             }
         }
     }
-    /// <summary>Method to raise event DestructEvt.</summary>
-    public void OnDestructEvt(EventArgs e)
+
+    /// <summary>Method to raise event DestructEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDestructEvent(EventArgs e)
     {
         var key = "_EFL_EVENT_DESTRUCT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Eo, key);
@@ -448,390 +467,450 @@ public abstract partial class Object : Efl.Eo.EoWrapper
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
     /// <summary>The parent of an object.
     /// Parents keep references to their children and will release these references when destroyed. In this way, objects can be assigned to a parent upon creation, tying their life cycle so the programmer does not need to worry about destroying the child object. In order to destroy an object before its parent, set the parent to <c>NULL</c> and use efl_unref(), or use efl_del() directly.
     /// 
     /// The Eo parent is conceptually user set. That means that a parent should not be changed behind the scenes in an unexpected way.
     /// 
-    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.
-    /// (Since EFL 1.22)</summary>
+    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The new parent.</returns>
-    virtual public Efl.Object GetParent() {
-         var _ret_var = Efl.Object.NativeMethods.efl_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Object GetParent() {
+        var _ret_var = Efl.Object.NativeMethods.efl_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The parent of an object.
     /// Parents keep references to their children and will release these references when destroyed. In this way, objects can be assigned to a parent upon creation, tying their life cycle so the programmer does not need to worry about destroying the child object. In order to destroy an object before its parent, set the parent to <c>NULL</c> and use efl_unref(), or use efl_del() directly.
     /// 
     /// The Eo parent is conceptually user set. That means that a parent should not be changed behind the scenes in an unexpected way.
     /// 
-    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.
-    /// (Since EFL 1.22)</summary>
+    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="parent">The new parent.</param>
-    virtual public void SetParent(Efl.Object parent) {
-                                 Efl.Object.NativeMethods.efl_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
+    public virtual void SetParent(Efl.Object parent) {
+        Efl.Object.NativeMethods.efl_parent_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),parent);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>The name of the object.
-    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The name.</returns>
-    virtual public System.String GetName() {
-         var _ret_var = Efl.Object.NativeMethods.efl_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetName() {
+        var _ret_var = Efl.Object.NativeMethods.efl_name_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The name of the object.
-    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="name">The name.</param>
-    virtual public void SetName(System.String name) {
-                                 Efl.Object.NativeMethods.efl_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
+    public virtual void SetName(System.String name) {
+        Efl.Object.NativeMethods.efl_name_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>A human readable comment for the object.
-    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The comment.</returns>
-    virtual public System.String GetComment() {
-         var _ret_var = Efl.Object.NativeMethods.efl_comment_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetComment() {
+        var _ret_var = Efl.Object.NativeMethods.efl_comment_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>A human readable comment for the object.
-    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="comment">The comment.</param>
-    virtual public void SetComment(System.String comment) {
-                                 Efl.Object.NativeMethods.efl_comment_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comment);
+    public virtual void SetComment(System.String comment) {
+        Efl.Object.NativeMethods.efl_comment_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comment);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Return the global count of freeze events.
-    /// This is the amount of calls to <see cref="Efl.Object.FreezeEventGlobal"/> minus the amount of calls to <see cref="Efl.Object.ThawEventGlobal"/>. EFL will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).
-    /// (Since EFL 1.22)</summary>
+    /// This is the amount of calls to <see cref="Efl.Object.FreezeEventGlobal"/> minus the amount of calls to <see cref="Efl.Object.ThawEventGlobal"/>. EFL will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The global event freeze count.</returns>
     public static int GetEventGlobalFreezeCount() {
-         var _ret_var = Efl.Object.NativeMethods.efl_event_global_freeze_count_get_ptr.Value.Delegate();
+        var _ret_var = Efl.Object.NativeMethods.efl_event_global_freeze_count_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Return the count of freeze events for this object.
-    /// This is the amount of calls to <see cref="Efl.Object.FreezeEvent"/> minus the amount of calls to <see cref="Efl.Object.ThawEvent"/>. This object will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).
-    /// (Since EFL 1.22)</summary>
+    /// This is the amount of calls to <see cref="Efl.Object.FreezeEvent"/> minus the amount of calls to <see cref="Efl.Object.ThawEvent"/>. This object will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The event freeze count of this object.</returns>
-    virtual public int GetEventFreezeCount() {
-         var _ret_var = Efl.Object.NativeMethods.efl_event_freeze_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual int GetEventFreezeCount() {
+        var _ret_var = Efl.Object.NativeMethods.efl_event_freeze_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary><c>true</c> if the object has been finalized, i.e. construction has finished. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary><c>true</c> if the object has been finalized, i.e. construction has finished. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if the object is finalized, <c>false</c> otherwise.</returns>
-    virtual public bool GetFinalized() {
-         var _ret_var = Efl.Object.NativeMethods.efl_finalized_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFinalized() {
+        var _ret_var = Efl.Object.NativeMethods.efl_finalized_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary><c>true</c> if the object has been invalidated, i.e. it has no parent. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary><c>true</c> if the object has been invalidated, i.e. it has no parent. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if the object is invalidated, <c>false</c> otherwise.</returns>
-    virtual public bool GetInvalidated() {
-         var _ret_var = Efl.Object.NativeMethods.efl_invalidated_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetInvalidated() {
+        var _ret_var = Efl.Object.NativeMethods.efl_invalidated_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary><c>true</c> if the object has started the invalidation phase, but has not finished it yet. Note: This might become <c>true</c> before <see cref="Efl.Object.Invalidate"/> is called. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary><c>true</c> if the object has started the invalidation phase, but has not finished it yet. Note: This might become <c>true</c> before <see cref="Efl.Object.Invalidate"/> is called. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if the object is invalidating, <c>false</c> otherwise.</returns>
-    virtual public bool GetInvalidating() {
-         var _ret_var = Efl.Object.NativeMethods.efl_invalidating_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetInvalidating() {
+        var _ret_var = Efl.Object.NativeMethods.efl_invalidating_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Allow an object to be deleted by unref even if it has a parent.
     /// This simply hides the error message warning that an object being destroyed still has a parent. This property is false by default.
     /// 
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</returns>
-    virtual public bool GetAllowParentUnref() {
-         var _ret_var = Efl.Object.NativeMethods.efl_allow_parent_unref_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetAllowParentUnref() {
+        var _ret_var = Efl.Object.NativeMethods.efl_allow_parent_unref_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Allow an object to be deleted by unref even if it has a parent.
     /// This simply hides the error message warning that an object being destroyed still has a parent. This property is false by default.
     /// 
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="allow">Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</param>
-    virtual public void SetAllowParentUnref(bool allow) {
-                                 Efl.Object.NativeMethods.efl_allow_parent_unref_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="allow">Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.<br/>The default value is <c>false</c>.</param>
+    public virtual void SetAllowParentUnref(bool allow) {
+        Efl.Object.NativeMethods.efl_allow_parent_unref_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Build a read-only name for this object used for debugging.
     /// Multiple calls using efl_super() can be chained in order to build the entire debug name, from parent to child classes. In C the usual way to build the string is as follows:
     /// 
     /// efl_debug_name_override(efl_super(obj, MY_CLASS), sb); eina_strbuf_append_printf(sb, &quot;new_information&quot;);
     /// 
-    /// Usually more debug information should be added to <c>sb</c> after calling the super function.
-    /// (Since EFL 1.22)</summary>
+    /// Usually more debug information should be added to <c>sb</c> after calling the super function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="sb">A string buffer, must not be <c>null</c>.</param>
-    virtual public void DebugNameOverride(Eina.Strbuf sb) {
-                                 Efl.Object.NativeMethods.efl_debug_name_override_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sb);
+    public virtual void DebugNameOverride(Eina.Strbuf sb) {
+        Efl.Object.NativeMethods.efl_debug_name_override_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sb);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Searches upwards in the object tree for a provider which knows the given class/interface.
-    /// The object from the provider will then be returned. The base implementation calls the provider_find function on the object parent, and returns its result. If no parent is present NULL is returned. Each implementation has to support this function by overriding it and returning itself if the interface matches the parameter. If this is not done the class cannot be found up in the object tree.
-    /// (Since EFL 1.22)</summary>
+    /// The object from the provider will then be returned. The base implementation calls the provider_find function on the object parent, and returns its result. If no parent is present <c>NULL</c> is returned. Each implementation has to support this function by overriding it and returning itself if the interface matches the parameter. If this is not done the class cannot be found up in the object tree.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="klass">The class identifier to search for.</param>
     /// <returns>Object from the provider list.</returns>
-    virtual public Efl.Object FindProvider(Type klass) {
-                                 var _ret_var = Efl.Object.NativeMethods.efl_provider_find_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Implement this method to provide deinitialization code for your object if you need it.
-    /// Will be called once <see cref="Efl.Object.Invalidate"/> has returned. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
-    virtual public void Destructor() {
-         Efl.Object.NativeMethods.efl_destructor_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
-        Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Implement this method to finish the initialization of your object after all (if any) user-provided configuration methods have been executed.
-    /// Use this method to delay expensive operations until user configuration has finished, to avoid building the object in a &quot;default&quot; state in the constructor, just to have to throw it all away because a user configuration (a property being set, for example) requires a different state. This is the last call inside efl_add() and will set <see cref="Efl.Object.GetFinalized"/> to <c>true</c> once it returns. This is an optimization and implementing this method is optional if you already perform all your initialization in the Efl.Object.constructor method. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The new object. Return <c>NULL</c> to abort object creation.</returns>
-    virtual public Efl.Object FinalizeAdd() {
-         var _ret_var = Efl.Object.NativeMethods.efl_finalize_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Object FindProvider(Type klass) {
+        var _ret_var = Efl.Object.NativeMethods.efl_provider_find_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Implement this method to perform special actions when your object loses its parent, if you need to.
-    /// It is called when the parent reference is lost or set to <c>NULL</c>. After this call returns, <see cref="Efl.Object.GetInvalidated"/> is set to <c>true</c>. This allows a simpler tear down of complex hierarchies, by performing object destruction in two steps, first all object relationships are broken and then the isolated objects are destroyed. Performing everything in the <see cref="Efl.Object.Destructor"/> can sometimes lead to deadlocks, but implementing this method is optional if this is not your case. When an object with a parent is destroyed, it first receives a call to <see cref="Efl.Object.Invalidate"/> and then to <see cref="Efl.Object.Destructor"/>. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
-    virtual public void Invalidate() {
-         Efl.Object.NativeMethods.efl_invalidate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    }
+
+    /// <summary>Implement this method to provide deinitialization code for your object if you need it.
+    /// Will be called once <see cref="Efl.Object.Invalidate"/> has returned. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void Destructor() {
+        Efl.Object.NativeMethods.efl_destructor_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
+    /// <summary>Implement this method to finish the initialization of your object after all (if any) user-provided configuration methods have been executed.
+    /// Use this method to delay expensive operations until user configuration has finished, to avoid building the object in a &quot;default&quot; state in the constructor, just to have to throw it all away because a user configuration (a property being set, for example) requires a different state. This is the last call inside efl_add() and will set <see cref="Efl.Object.GetFinalized"/> to <c>true</c> once it returns. This is an optimization and implementing this method is optional if you already perform all your initialization in the Efl.Object.constructor method. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The new object. Return <c>NULL</c> to abort object creation.</returns>
+    public virtual Efl.Object FinalizeAdd() {
+        var _ret_var = Efl.Object.NativeMethods.efl_finalize_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Implement this method to perform special actions when your object loses its parent, if you need to.
+    /// It is called when the parent reference is lost or set to <c>NULL</c>. After this call returns, <see cref="Efl.Object.GetInvalidated"/> is set to <c>true</c>. This allows a simpler tear down of complex hierarchies, by performing object destruction in two steps, first all object relationships are broken and then the isolated objects are destroyed. Performing everything in the <see cref="Efl.Object.Destructor"/> can sometimes lead to deadlocks, but implementing this method is optional if this is not your case. When an object with a parent is destroyed, it first receives a call to <see cref="Efl.Object.Invalidate"/> and then to <see cref="Efl.Object.Destructor"/>. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void Invalidate() {
+        Efl.Object.NativeMethods.efl_invalidate_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
     /// <summary>Find a child object with the given name and return it.
     /// The search string can be a glob (shell style, using *). It can also specify class name in the format of &quot;class:name&quot; where &quot;:&quot; separates class and name. Both class and name can be globs. If the class is specified but the name is empty like &quot;class:&quot; then the search will match any object of that class.
-    /// (Since EFL 1.22)</summary>
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="search">The name search string.</param>
     /// <returns>The first object found.</returns>
-    virtual public Efl.Object FindName(System.String search) {
-                                 var _ret_var = Efl.Object.NativeMethods.efl_name_find_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),search);
+    public virtual Efl.Object FindName(System.String search) {
+        var _ret_var = Efl.Object.NativeMethods.efl_name_find_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),search);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Thaw events of object.
-    /// Allows event callbacks to be called again for this object after a call to <see cref="Efl.Object.FreezeEvent"/>. The amount of thaws must match the amount of freezes for events to be re-enabled.
-    /// (Since EFL 1.22)</summary>
-    virtual public void ThawEvent() {
-         Efl.Object.NativeMethods.efl_event_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// Allows event callbacks to be called again for this object after a call to <see cref="Efl.Object.FreezeEvent"/>. The amount of thaws must match the amount of freezes for events to be re-enabled.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ThawEvent() {
+        Efl.Object.NativeMethods.efl_event_thaw_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Freeze events of this object.
-    /// Prevents event callbacks from being called for this object. Enable events again using <see cref="Efl.Object.ThawEvent"/>. Events marked <c>hot</c> cannot be stopped.
-    /// (Since EFL 1.22)</summary>
-    virtual public void FreezeEvent() {
-         Efl.Object.NativeMethods.efl_event_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// Prevents event callbacks from being called for this object. Enable events again using <see cref="Efl.Object.ThawEvent"/>. Events marked <c>hot</c> cannot be stopped.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FreezeEvent() {
+        Efl.Object.NativeMethods.efl_event_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Gobally thaw events for ALL EFL OBJECTS.
-    /// Allows event callbacks to be called for all EFL objects after they have been disabled by <see cref="Efl.Object.FreezeEventGlobal"/>. The amount of thaws must match the amount of freezes for events to be re-enabled.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Globally thaw events for ALL EFL OBJECTS.
+    /// Allows event callbacks to be called for all EFL objects after they have been disabled by <see cref="Efl.Object.FreezeEventGlobal"/>. The amount of thaws must match the amount of freezes for events to be re-enabled.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public static void ThawEventGlobal() {
-         Efl.Object.NativeMethods.efl_event_global_thaw_ptr.Value.Delegate();
+        Efl.Object.NativeMethods.efl_event_global_thaw_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Globally freeze events for ALL EFL OBJECTS.
     /// Prevents event callbacks from being called for all EFL objects. Enable events again using <see cref="Efl.Object.ThawEventGlobal"/>. Events marked <c>hot</c> cannot be stopped.
     /// 
-    /// Note: USE WITH CAUTION.
-    /// (Since EFL 1.22)</summary>
+    /// Note: USE WITH CAUTION.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public static void FreezeEventGlobal() {
-         Efl.Object.NativeMethods.efl_event_global_freeze_ptr.Value.Delegate();
+        Efl.Object.NativeMethods.efl_event_global_freeze_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Stop the current callback call.
-    /// This stops the current callback call. Any other callbacks for the current event will not be called. This is useful when you want to filter out events. Just add higher priority events and call this under certain conditions to block a certain event.
-    /// (Since EFL 1.22)</summary>
-    virtual public void EventCallbackStop() {
-         Efl.Object.NativeMethods.efl_event_callback_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// This stops the current callback call. Any other callbacks for the current event will not be called. This is useful when you want to filter out events. Just add higher priority events and call this under certain conditions to block a certain event.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void EventCallbackStop() {
+        Efl.Object.NativeMethods.efl_event_callback_stop_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Remove an event callback forwarder for a specified event and object.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Remove an event callback forwarder for a specified event and object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="desc">The description of the event to listen to</param>
     /// <param name="new_obj">The object to emit events from</param>
-    virtual public void DelEventCallbackForwarder(Efl.EventDescription desc, Efl.Object new_obj) {
-         var _in_desc = Eina.PrimitiveConversion.ManagedToPointerAlloc(desc);
-                                                Efl.Object.NativeMethods.efl_event_callback_forwarder_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_desc, new_obj);
+    public virtual void DelEventCallbackForwarder(Efl.EventDescription desc, Efl.Object new_obj) {
+        var _in_desc = Eina.PrimitiveConversion.ManagedToPointerAlloc(desc);
+Efl.Object.NativeMethods.efl_event_callback_forwarder_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_desc, new_obj);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Get an iterator on all childrens
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Get an iterator on all children.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Children iterator</returns>
-    virtual public Eina.Iterator<Efl.Object> NewChildrenIterator() {
-         var _ret_var = Efl.Object.NativeMethods.efl_children_iterator_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Iterator<Efl.Object> NewChildrenIterator() {
+        var _ret_var = Efl.Object.NativeMethods.efl_children_iterator_new_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Object>(_ret_var, true);
- }
+
+    }
+
     /// <summary>Make an object a composite object of another.
     /// The class of comp_obj must be part of the extensions of the class of the parent. It isn&apos;t possible to attach more then 1 composite of the same class. This function also sets the parent of comp_obj to parent.
     /// 
-    /// See <see cref="Efl.Object.CompositeDetach"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)
+    /// See <see cref="Efl.Object.DetachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="comp_obj">the object that will be used to composite the parent.</param>
     /// <returns><c>true</c> if successful. <c>false</c> otherwise.</returns>
-    virtual public bool AttachComposite(Efl.Object comp_obj) {
-                                 var _ret_var = Efl.Object.NativeMethods.efl_composite_attach_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comp_obj);
+    public virtual bool AttachComposite(Efl.Object comp_obj) {
+        var _ret_var = Efl.Object.NativeMethods.efl_composite_attach_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comp_obj);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Detach a composite object from another object.
     /// This functions also sets the parent of comp_obj to <c>null</c>.
     /// 
     /// See <see cref="Efl.Object.AttachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="comp_obj">The object that will be removed from the parent.</param>
     /// <returns><c>true</c> if successful. <c>false</c> otherwise.</returns>
-    virtual public bool CompositeDetach(Efl.Object comp_obj) {
-                                 var _ret_var = Efl.Object.NativeMethods.efl_composite_detach_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comp_obj);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Check if an object is part of a composite object.
-    /// See <see cref="Efl.Object.AttachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
-    /// (Since EFL 1.22)
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <returns><c>true</c> if it is. <c>false</c> otherwise.</returns>
-    virtual public bool IsCompositePart() {
-         var _ret_var = Efl.Object.NativeMethods.efl_composite_part_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool DetachComposite(Efl.Object comp_obj) {
+        var _ret_var = Efl.Object.NativeMethods.efl_composite_detach_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),comp_obj);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Will register a manager of a specific class to be answered by eo.provider_find.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Check if an object is part of a composite object.
+    /// See <see cref="Efl.Object.AttachComposite"/>, <see cref="Efl.Object.IsCompositePart"/>.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if it is. <c>false</c> otherwise.</returns>
+    public virtual bool IsCompositePart() {
+        var _ret_var = Efl.Object.NativeMethods.efl_composite_part_is_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Will register a manager of a specific class to be answered by <see cref="Efl.Object.FindProvider"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="klass">The class provided by the registered provider.</param>
     /// <param name="provider">The provider for the newly registered class that has to provide that said Efl.Class.</param>
     /// <returns><c>true</c> if successfully register, <c>false</c> otherwise.</returns>
-    virtual public bool ProviderRegister(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Object.NativeMethods.efl_provider_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
+    public virtual bool RegisterProvider(Type klass, Efl.Object provider) {
+        var _ret_var = Efl.Object.NativeMethods.efl_provider_register_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>Will unregister a manager of a specific class that was previously registered and answered by eo.provider_find.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Will unregister a manager of a specific class that was previously registered and answered by <see cref="Efl.Object.FindProvider"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="klass">The class provided by the provider to unregister for.</param>
     /// <param name="provider">The provider for the registered class to unregister.</param>
     /// <returns><c>true</c> if successfully unregistered, <c>false</c> otherwise.</returns>
-    virtual public bool ProviderUnregister(Type klass, Efl.Object provider) {
-                                                         var _ret_var = Efl.Object.NativeMethods.efl_provider_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
+    public virtual bool UnregisterProvider(Type klass, Efl.Object provider) {
+        var _ret_var = Efl.Object.NativeMethods.efl_provider_unregister_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),klass, provider);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>The parent of an object.
     /// Parents keep references to their children and will release these references when destroyed. In this way, objects can be assigned to a parent upon creation, tying their life cycle so the programmer does not need to worry about destroying the child object. In order to destroy an object before its parent, set the parent to <c>NULL</c> and use efl_unref(), or use efl_del() directly.
     /// 
     /// The Eo parent is conceptually user set. That means that a parent should not be changed behind the scenes in an unexpected way.
     /// 
-    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.
-    /// (Since EFL 1.22)</summary>
+    /// For example: If you have a widget which can swallow objects into an internal box, the parent of the swallowed objects should be the widget, not the internal box. The user is not even aware of the existence of the internal box.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The new parent.</value>
     public Efl.Object Parent {
         get { return GetParent(); }
         set { SetParent(value); }
     }
+
     /// <summary>The name of the object.
-    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a name. Names may not contain the following characters: / ? * [ ] !  : Using any of these in a name will result in undefined behavior later on. An empty string is considered the same as a <c>NULL</c> string or no string for the name.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The name.</value>
     public System.String Name {
         get { return GetName(); }
         set { SetName(value); }
     }
+
     /// <summary>A human readable comment for the object.
-    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.
-    /// (Since EFL 1.22)</summary>
+    /// Every EFL object can have a comment. This is intended for developers and debugging. An empty string is considered the same as a <c>NULL</c> string or no string for the comment.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The comment.</value>
     public System.String Comment {
         get { return GetComment(); }
         set { SetComment(value); }
     }
+
     /// <summary>Return the global count of freeze events.
-    /// This is the amount of calls to <see cref="Efl.Object.FreezeEventGlobal"/> minus the amount of calls to <see cref="Efl.Object.ThawEventGlobal"/>. EFL will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).
-    /// (Since EFL 1.22)</summary>
+    /// This is the amount of calls to <see cref="Efl.Object.FreezeEventGlobal"/> minus the amount of calls to <see cref="Efl.Object.ThawEventGlobal"/>. EFL will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The global event freeze count.</value>
     public static int EventGlobalFreezeCount {
         get { return GetEventGlobalFreezeCount(); }
     }
+
     /// <summary>Return the count of freeze events for this object.
-    /// This is the amount of calls to <see cref="Efl.Object.FreezeEvent"/> minus the amount of calls to <see cref="Efl.Object.ThawEvent"/>. This object will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).
-    /// (Since EFL 1.22)</summary>
+    /// This is the amount of calls to <see cref="Efl.Object.FreezeEvent"/> minus the amount of calls to <see cref="Efl.Object.ThawEvent"/>. This object will not emit any event while this count is &gt; 0 (Except events marked <c>hot</c>).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The event freeze count of this object.</value>
     public int EventFreezeCount {
         get { return GetEventFreezeCount(); }
     }
-    /// <summary><c>true</c> if the object has been finalized, i.e. construction has finished. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary><c>true</c> if the object has been finalized, i.e. construction has finished. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if the object is finalized, <c>false</c> otherwise.</value>
     public bool Finalized {
         get { return GetFinalized(); }
     }
-    /// <summary><c>true</c> if the object has been invalidated, i.e. it has no parent. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary><c>true</c> if the object has been invalidated, i.e. it has no parent. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if the object is invalidated, <c>false</c> otherwise.</value>
     public bool Invalidated {
         get { return GetInvalidated(); }
     }
-    /// <summary><c>true</c> if the object has started the invalidation phase, but has not finished it yet. Note: This might become <c>true</c> before <see cref="Efl.Object.Invalidate"/> is called. See the Life Cycle section in this class&apos; description.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary><c>true</c> if the object has started the invalidation phase, but has not finished it yet. Note: This might become <c>true</c> before <see cref="Efl.Object.Invalidate"/> is called. See the Life Cycle section in this class&apos; description.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if the object is invalidating, <c>false</c> otherwise.</value>
     public bool Invalidating {
         get { return GetInvalidating(); }
     }
+
     /// <summary>Allow an object to be deleted by unref even if it has a parent.
     /// This simply hides the error message warning that an object being destroyed still has a parent. This property is false by default.
     /// 
     /// In a normal object use case, when ownership of an object is given to a caller, said ownership should be released with efl_unref(). If the object has a parent, this will print error messages, as efl_unref() is stealing the ref from the parent.
     /// 
     /// Warning: Use this function very carefully, unless you&apos;re absolutely sure of what you are doing.
-    /// (Since EFL 1.22)
     /// 
     /// <b>This is a BETA property</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Whether to allow efl_unref() to zero even if <see cref="Efl.Object.Parent"/> is not <c>null</c>.</value>
     public bool AllowParentUnref {
         get { return GetAllowParentUnref(); }
         set { SetAllowParentUnref(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Object.efl_object_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Eo);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Eo);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -1081,7 +1160,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                 efl_composite_detach_static_delegate = new efl_composite_detach_delegate(composite_detach);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "CompositeDetach") != null)
+            if (methods.FirstOrDefault(m => m.Name == "DetachComposite") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_composite_detach"), func = Marshal.GetFunctionPointerForDelegate(efl_composite_detach_static_delegate) });
             }
@@ -1101,7 +1180,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                 efl_provider_register_static_delegate = new efl_provider_register_delegate(provider_register);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "ProviderRegister") != null)
+            if (methods.FirstOrDefault(m => m.Name == "RegisterProvider") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_provider_register"), func = Marshal.GetFunctionPointerForDelegate(efl_provider_register_static_delegate) });
             }
@@ -1111,14 +1190,25 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                 efl_provider_unregister_static_delegate = new efl_provider_unregister_delegate(provider_unregister);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "ProviderUnregister") != null)
+            if (methods.FirstOrDefault(m => m.Name == "UnregisterProvider") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_provider_unregister"), func = Marshal.GetFunctionPointerForDelegate(efl_provider_unregister_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -1142,7 +1232,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetParent();
@@ -1153,8 +1243,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1178,7 +1267,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Object)ws.Target).SetParent(parent);
@@ -1189,7 +1278,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1213,7 +1302,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetName();
@@ -1224,8 +1313,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1249,7 +1337,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Object)ws.Target).SetName(name);
@@ -1260,7 +1348,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1284,7 +1372,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetComment();
@@ -1295,8 +1383,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1320,7 +1407,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Object)ws.Target).SetComment(comment);
@@ -1331,7 +1418,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1355,7 +1442,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = Object.GetEventGlobalFreezeCount();
@@ -1366,8 +1453,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1389,7 +1475,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetEventFreezeCount();
@@ -1400,8 +1486,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1425,7 +1510,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetFinalized();
@@ -1436,8 +1521,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1461,7 +1545,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetInvalidated();
@@ -1472,8 +1556,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1497,7 +1580,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetInvalidating();
@@ -1508,8 +1591,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1533,7 +1615,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).GetAllowParentUnref();
@@ -1544,8 +1626,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1569,7 +1650,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Object)ws.Target).SetAllowParentUnref(allow);
@@ -1580,7 +1661,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1604,7 +1685,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Object)ws.Target).DebugNameOverride(sb);
@@ -1615,7 +1696,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1639,7 +1720,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Object)ws.Target).FindProvider(klass);
@@ -1650,8 +1731,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1675,7 +1755,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Object)ws.Target).Destructor();
@@ -1686,7 +1766,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1710,7 +1790,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Object)ws.Target).FinalizeAdd();
@@ -1721,8 +1801,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1746,7 +1825,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Object)ws.Target).Invalidate();
@@ -1757,7 +1836,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1781,7 +1860,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Object _ret_var = default(Efl.Object);
+                Efl.Object _ret_var = default(Efl.Object);
                 try
                 {
                     _ret_var = ((Object)ws.Target).FindName(search);
@@ -1792,8 +1871,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1817,7 +1895,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Object)ws.Target).ThawEvent();
@@ -1828,7 +1906,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1852,7 +1930,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Object)ws.Target).FreezeEvent();
@@ -1863,7 +1941,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1887,7 +1965,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     Object.ThawEventGlobal();
@@ -1898,7 +1976,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1920,7 +1998,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     Object.FreezeEventGlobal();
@@ -1931,7 +2009,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1953,7 +2031,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Object)ws.Target).EventCallbackStop();
@@ -1964,7 +2042,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1988,8 +2066,8 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_desc = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(desc);
-                                                    
+                var _in_desc = Eina.PrimitiveConversion.PointerToManaged<Efl.EventDescription>(desc);
+
                 try
                 {
                     ((Object)ws.Target).DelEventCallbackForwarder(_in_desc, new_obj);
@@ -2000,7 +2078,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2024,7 +2102,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Iterator<Efl.Object> _ret_var = default(Eina.Iterator<Efl.Object>);
+                Eina.Iterator<Efl.Object> _ret_var = default(Eina.Iterator<Efl.Object>);
                 try
                 {
                     _ret_var = ((Object)ws.Target).NewChildrenIterator();
@@ -2035,8 +2113,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; return _ret_var.Handle;
             }
             else
             {
@@ -2060,7 +2137,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).AttachComposite(comp_obj);
@@ -2071,8 +2148,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2096,10 +2172,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Object)ws.Target).CompositeDetach(comp_obj);
+                    _ret_var = ((Object)ws.Target).DetachComposite(comp_obj);
                 }
                 catch (Exception e)
                 {
@@ -2107,8 +2183,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2132,7 +2207,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Object)ws.Target).IsCompositePart();
@@ -2143,8 +2218,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2168,10 +2242,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Object)ws.Target).ProviderRegister(klass, provider);
+                    _ret_var = ((Object)ws.Target).RegisterProvider(klass, provider);
                 }
                 catch (Exception e)
                 {
@@ -2179,8 +2253,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2204,10 +2277,10 @@ public abstract partial class Object : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
-                    _ret_var = ((Object)ws.Target).ProviderUnregister(klass, provider);
+                    _ret_var = ((Object)ws.Target).UnregisterProvider(klass, provider);
                 }
                 catch (Exception e)
                 {
@@ -2215,8 +2288,7 @@ public abstract partial class Object : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2247,11 +2319,6 @@ public static class EflObject_ExtensionMethods {
         return new Efl.BindableProperty<System.String>("comment", fac);
     }
 
-    
-    
-    
-    
-    
     public static Efl.BindableProperty<bool> AllowParentUnref<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Object, T>magic = null) where T : Efl.Object {
         return new Efl.BindableProperty<bool>("allow_parent_unref", fac);
     }

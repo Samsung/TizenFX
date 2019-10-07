@@ -34,6 +34,7 @@ public class AnimationAlpha : Efl.Canvas.Animation
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_animation_alpha_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="AnimationAlpha"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationAlpha(Efl.Object parent= null
@@ -64,20 +65,25 @@ public class AnimationAlpha : Efl.Canvas.Animation
     {
     }
 
+
     /// <summary>Alpha property</summary>
     /// <param name="from_alpha">Alpha value when animation starts</param>
     /// <param name="to_alpha">Alpha value when animation ends</param>
-    virtual public void GetAlpha(out double from_alpha, out double to_alpha) {
-                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_alpha, out to_alpha);
+    public virtual void GetAlpha(out double from_alpha, out double to_alpha) {
+        Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_alpha, out to_alpha);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Alpha property</summary>
     /// <param name="from_alpha">Alpha value when animation starts</param>
     /// <param name="to_alpha">Alpha value when animation ends</param>
-    virtual public void SetAlpha(double from_alpha, double to_alpha) {
-                                                         Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_alpha, to_alpha);
+    public virtual void SetAlpha(double from_alpha, double to_alpha) {
+        Efl.Canvas.AnimationAlpha.NativeMethods.efl_animation_alpha_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_alpha, to_alpha);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Alpha property</summary>
     /// <value>Alpha value when animation starts</value>
     public (double, double) Alpha {
@@ -89,18 +95,21 @@ public class AnimationAlpha : Efl.Canvas.Animation
         }
         set { SetAlpha( value.Item1,  value.Item2); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationAlpha.efl_canvas_animation_alpha_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Animation.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -125,9 +134,20 @@ public class AnimationAlpha : Efl.Canvas.Animation
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_alpha_set"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_alpha_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -151,7 +171,7 @@ public class AnimationAlpha : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        from_alpha = default(double);        to_alpha = default(double);                            
+                from_alpha = default(double);to_alpha = default(double);
                 try
                 {
                     ((AnimationAlpha)ws.Target).GetAlpha(out from_alpha, out to_alpha);
@@ -162,7 +182,7 @@ public class AnimationAlpha : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -186,7 +206,7 @@ public class AnimationAlpha : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((AnimationAlpha)ws.Target).SetAlpha(from_alpha, to_alpha);
@@ -197,7 +217,7 @@ public class AnimationAlpha : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -212,13 +232,11 @@ public class AnimationAlpha : Efl.Canvas.Animation
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_CanvasAnimationAlpha_ExtensionMethods {
-    
 }
 #pragma warning restore CS1591
 #endif

@@ -10,88 +10,106 @@ namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Efl Gfx Color Class mixin class</summary>
+/// <summary>This mixin provides an interface for objects supporting color classes (this is, named colors) and provides a helper method to also allow hexadecimal color codes.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IColorClassConcrete.NativeMethods]
+[Efl.Gfx.ColorClassConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IColorClass : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Get the color of color class.
-/// This function gets the color values for a color class. If no explicit object color is set, then global values will be used.
-/// 
-/// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
-/// 
-/// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
-/// <param name="color_class">The name of color class</param>
-/// <param name="layer">The layer to set the color</param>
-/// <param name="r">The intensity of the red color</param>
-/// <param name="g">The intensity of the green color</param>
-/// <param name="b">The intensity of the blue color</param>
-/// <param name="a">The alpha value</param>
-/// <returns><c>true</c> if getting the color succeeded, <c>false</c> otherwise</returns>
-bool GetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a);
-    /// <summary>Set the color of color class.
-/// This function sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
-/// 
-/// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
-/// 
-/// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
-/// 
-/// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
-/// <param name="color_class">The name of color class</param>
-/// <param name="layer">The layer to set the color</param>
-/// <param name="r">The intensity of the red color</param>
-/// <param name="g">The intensity of the green color</param>
-/// <param name="b">The intensity of the blue color</param>
-/// <param name="a">The alpha value</param>
-/// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
-bool SetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a);
-    /// <summary>Get the hex color string of color class.
-/// This function gets the color values for a color class. If no explicit object color is set, then global values will be used.
-/// 
-/// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
-/// 
-/// Returns NULL if the color class cannot be fetched.
-/// 
-/// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
-/// <param name="color_class">The name of color class</param>
-/// <param name="layer">The layer to set the color</param>
-/// <returns>the hex color code.</returns>
-System.String GetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer);
-    /// <summary>Set the hex color string of color class.
-/// This function sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
-/// 
-/// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
-/// 
-/// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
-/// 
-/// Note: These color values are expected to be premultiplied by the alpha.</summary>
-/// <param name="color_class">The name of color class</param>
-/// <param name="layer">The layer to set the color</param>
-/// <param name="colorcode">the hex color code.</param>
-/// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
-bool SetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode);
+    /// <summary>Color for the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+    /// 
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
+    /// 
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
+    /// 
+    /// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
+    /// <param name="color_class">The name of color class</param>
+    /// <param name="layer">The layer to set the color</param>
+    /// <param name="r">The intensity of the red color</param>
+    /// <param name="g">The intensity of the green color</param>
+    /// <param name="b">The intensity of the blue color</param>
+    /// <param name="a">The alpha value</param>
+    /// <returns><c>true</c> if getting the color succeeded, <c>false</c> otherwise</returns>
+    bool GetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a);
+
+    /// <summary>Color for the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+    /// 
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
+    /// 
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
+    /// 
+    /// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
+    /// <param name="color_class">The name of color class</param>
+    /// <param name="layer">The layer to set the color</param>
+    /// <param name="r">The intensity of the red color</param>
+    /// <param name="g">The intensity of the green color</param>
+    /// <param name="b">The intensity of the blue color</param>
+    /// <param name="a">The alpha value</param>
+    /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
+    bool SetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a);
+
+    /// <summary>Hexadecimal color code string of the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+    /// 
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
+    /// 
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
+    /// 
+    /// Note: These color values are expected to be premultiplied by the alpha.</summary>
+    /// <param name="color_class">The name of color class</param>
+    /// <param name="layer">The layer to set the color</param>
+    /// <returns>the hex color code.</returns>
+    System.String GetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer);
+
+    /// <summary>Hexadecimal color code string of the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+    /// 
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
+    /// 
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
+    /// 
+    /// Note: These color values are expected to be premultiplied by the alpha.</summary>
+    /// <param name="color_class">The name of color class</param>
+    /// <param name="layer">The layer to set the color</param>
+    /// <param name="colorcode">the hex color code.</param>
+    /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
+    bool SetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode);
+
     /// <summary>Get the description of a color class.
-/// This function gets the description of a color class in use by an object.</summary>
-/// <param name="color_class">The name of color class</param>
-/// <returns>The description of the target color class or <c>null</c> if not found</returns>
-System.String GetColorClassDescription(System.String color_class);
+    /// This function gets the description of a color class in use by an object.</summary>
+    /// <param name="color_class">The name of color class</param>
+    /// <returns>The description of the target color class or <c>null</c> if not found</returns>
+    System.String GetColorClassDescription(System.String color_class);
+
     /// <summary>Delete the color class.
-/// This function deletes any values for the specified color class.
-/// 
-/// Deleting the color class will revert it to the values defined by <see cref="Efl.Gfx.IColorClass.GetColorClass"/> or the color class defined in the theme file.
-/// 
-/// Deleting the color class will emit the signal &quot;color_class,del&quot; for the given Edje object.</summary>
-/// <param name="color_class">The name of color_class</param>
-void DelColorClass(System.String color_class);
+    /// This function deletes any values for the specified color class.
+    /// 
+    /// Deleting the color class will revert it to the values defined by <see cref="Efl.Gfx.IColorClass.GetColorClass"/> or the color class defined in the theme file.
+    /// 
+    /// Deleting the color class will emit the signal &quot;color_class,del&quot; for the given Edje object.</summary>
+    /// <param name="color_class">The name of color_class</param>
+    void DelColorClass(System.String color_class);
+
     /// <summary>Delete all color classes defined in object level.
-/// This function deletes any color classes defined in object level. Clearing color classes will revert the color of all edje parts to the values defined in global level or theme file.</summary>
-void ClearColorClass();
-                            }
-/// <summary>Efl Gfx Color Class mixin class</summary>
+    /// This function deletes any color classes defined in object level. Clearing color classes will revert the color of all edje parts to the values defined in global level or theme file.</summary>
+    void ClearColorClass();
+
+}
+
+/// <summary>This mixin provides an interface for objects supporting color classes (this is, named colors) and provides a helper method to also allow hexadecimal color codes.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IColorClassConcrete :
+public sealed class ColorClassConcrete :
     Efl.Eo.EoWrapper
     , IColorClass
     
@@ -101,7 +119,7 @@ sealed public  class IColorClassConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IColorClassConcrete))
+            if (((object)this).GetType() == typeof(ColorClassConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -115,23 +133,29 @@ sealed public  class IColorClassConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IColorClassConcrete(ConstructingHandle ch) : base(ch)
+    private ColorClassConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_class_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IColorClass"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IColorClassConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ColorClassConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Get the color of color class.
-    /// This function gets the color values for a color class. If no explicit object color is set, then global values will be used.
+#pragma warning disable CS0628
+    /// <summary>Color for the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
     /// 
-    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
+    /// 
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
     /// 
     /// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
     /// <param name="color_class">The name of color class</param>
@@ -142,16 +166,19 @@ sealed public  class IColorClassConcrete :
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if getting the color succeeded, <c>false</c> otherwise</returns>
     public bool GetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, out int r, out int g, out int b, out int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate(this.NativeHandle,color_class, layer, out r, out g, out b, out a);
+        var _ret_var = Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_get_ptr.Value.Delegate(this.NativeHandle,color_class, layer, out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                        return _ret_var;
- }
-    /// <summary>Set the color of color class.
-    /// This function sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+        return _ret_var;
+    }
+
+    /// <summary>Color for the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
     /// 
-    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
     /// 
     /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
     /// 
     /// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
     /// <param name="color_class">The name of color class</param>
@@ -162,32 +189,38 @@ sealed public  class IColorClassConcrete :
     /// <param name="a">The alpha value</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     public bool SetColorClass(System.String color_class, Efl.Gfx.ColorClassLayer layer, int r, int g, int b, int a) {
-                                                                                                                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate(this.NativeHandle,color_class, layer, r, g, b, a);
+        var _ret_var = Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_set_ptr.Value.Delegate(this.NativeHandle,color_class, layer, r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                        return _ret_var;
- }
-    /// <summary>Get the hex color string of color class.
-    /// This function gets the color values for a color class. If no explicit object color is set, then global values will be used.
+        return _ret_var;
+    }
+
+    /// <summary>Hexadecimal color code string of the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
     /// 
-    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
     /// 
-    /// Returns NULL if the color class cannot be fetched.
+    /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
     /// 
-    /// Note: These color values are expected to be premultiplied by <c>a</c>.</summary>
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
+    /// 
+    /// Note: These color values are expected to be premultiplied by the alpha.</summary>
     /// <param name="color_class">The name of color class</param>
     /// <param name="layer">The layer to set the color</param>
     /// <returns>the hex color code.</returns>
     public System.String GetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer) {
-                                                         var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate(this.NativeHandle,color_class, layer);
+        var _ret_var = Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_code_get_ptr.Value.Delegate(this.NativeHandle,color_class, layer);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>Set the hex color string of color class.
-    /// This function sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
+        return _ret_var;
+    }
+
+    /// <summary>Hexadecimal color code string of the color class.
+    /// This property sets the color values for a color class. This will cause all edje parts in the specified object that have the specified color class to have their colors multiplied by these values.
     /// 
-    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the second two only apply to text parts).
+    /// The first color is the object, the second is the text outline, and the third is the text shadow. (Note that the last two only apply to text parts).
     /// 
     /// Setting color emits a signal &quot;color_class,set&quot; with source being the given color.
+    /// 
+    /// When retrieving the color of an object, if no explicit object color is set, then global values will be used.
     /// 
     /// Note: These color values are expected to be premultiplied by the alpha.</summary>
     /// <param name="color_class">The name of color class</param>
@@ -195,19 +228,21 @@ sealed public  class IColorClassConcrete :
     /// <param name="colorcode">the hex color code.</param>
     /// <returns><c>true</c> if setting the color succeeded, <c>false</c> otherwise</returns>
     public bool SetColorClassCode(System.String color_class, Efl.Gfx.ColorClassLayer layer, System.String colorcode) {
-                                                                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate(this.NativeHandle,color_class, layer, colorcode);
+        var _ret_var = Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_code_set_ptr.Value.Delegate(this.NativeHandle,color_class, layer, colorcode);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the description of a color class.
     /// This function gets the description of a color class in use by an object.</summary>
     /// <param name="color_class">The name of color class</param>
     /// <returns>The description of the target color class or <c>null</c> if not found</returns>
     public System.String GetColorClassDescription(System.String color_class) {
-                                 var _ret_var = Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate(this.NativeHandle,color_class);
+        var _ret_var = Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_description_get_ptr.Value.Delegate(this.NativeHandle,color_class);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Delete the color class.
     /// This function deletes any values for the specified color class.
     /// 
@@ -216,27 +251,34 @@ sealed public  class IColorClassConcrete :
     /// Deleting the color class will emit the signal &quot;color_class,del&quot; for the given Edje object.</summary>
     /// <param name="color_class">The name of color_class</param>
     public void DelColorClass(System.String color_class) {
-                                 Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate(this.NativeHandle,color_class);
+        Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_del_ptr.Value.Delegate(this.NativeHandle,color_class);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Delete all color classes defined in object level.
     /// This function deletes any color classes defined in object level. Clearing color classes will revert the color of all edje parts to the values defined in global level or theme file.</summary>
     public void ClearColorClass() {
-         Efl.Gfx.IColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Gfx.ColorClassConcrete.NativeMethods.efl_gfx_color_class_clear_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IColorClassConcrete.efl_gfx_color_class_mixin_get();
+        return Efl.Gfx.ColorClassConcrete.efl_gfx_color_class_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -311,13 +353,24 @@ sealed public  class IColorClassConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_color_class_clear"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_color_class_clear_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IColorClassConcrete.efl_gfx_color_class_mixin_get();
+            return Efl.Gfx.ColorClassConcrete.efl_gfx_color_class_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -336,7 +389,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                        r = default(int);        g = default(int);        b = default(int);        a = default(int);                                                            bool _ret_var = default(bool);
+                r = default(int);g = default(int);b = default(int);a = default(int);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IColorClass)ws.Target).GetColorClass(color_class, layer, out r, out g, out b, out a);
@@ -347,8 +400,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -372,7 +424,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IColorClass)ws.Target).SetColorClass(color_class, layer, r, g, b, a);
@@ -383,8 +435,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -408,7 +459,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IColorClass)ws.Target).GetColorClassCode(color_class, layer);
@@ -419,8 +470,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -444,7 +494,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IColorClass)ws.Target).SetColorClassCode(color_class, layer, colorcode);
@@ -455,8 +505,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -480,7 +529,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IColorClass)ws.Target).GetColorClassDescription(color_class);
@@ -491,8 +540,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -516,7 +564,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IColorClass)ws.Target).DelColorClass(color_class);
@@ -527,7 +575,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -551,7 +599,7 @@ sealed public  class IColorClassConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IColorClass)ws.Target).ClearColorClass();
@@ -562,7 +610,7 @@ sealed public  class IColorClassConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -577,15 +625,11 @@ sealed public  class IColorClassConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIColorClassConcrete_ExtensionMethods {
-    
-    
-    
+public static class Efl_GfxColorClassConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

@@ -10,44 +10,47 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Selectable interface for ui objects
-/// A object implementing this can be selected. When the selected property of this object changes, the selected,changed event is emitted.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.ISelectableConcrete.NativeMethods]
+/// <summary>Selectable interface for UI objects
+/// An object implementing this interface can be selected. When the selected property of this object changes, the <see cref="Efl.Ui.ISelectable.SelectedChangedEvent"/> event is emitted.</summary>
+[Efl.Ui.SelectableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISelectable : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>The selected state of this object
-/// A change to this property emits the changed event.</summary>
-/// <returns>The selected state of this object</returns>
-bool GetSelected();
-    /// <summary>The selected state of this object
-/// A change to this property emits the changed event.</summary>
-/// <param name="selected">The selected state of this object</param>
-void SetSelected(bool selected);
-            /// <summary>Called when the selected state has changed</summary>
-    /// <value><see cref="Efl.Ui.ISelectableSelectedChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.ISelectableSelectedChangedEvt_Args> SelectedChangedEvt;
+    /// A change to this property emits the changed event.</summary>
+    /// <returns>The selected state of this object.</returns>
+    bool GetSelected();
+
     /// <summary>The selected state of this object
     /// A change to this property emits the changed event.</summary>
-    /// <value>The selected state of this object</value>
+    /// <param name="selected">The selected state of this object.</param>
+    void SetSelected(bool selected);
+
+    /// <summary>Called when the selected state has changed.</summary>
+    /// <value><see cref="Efl.Ui.SelectableSelectedChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.SelectableSelectedChangedEventArgs> SelectedChangedEvent;
+    /// <summary>The selected state of this object
+    /// A change to this property emits the changed event.</summary>
+    /// <value>The selected state of this object.</value>
     bool Selected {
         get;
         set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.SelectedChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelectable.SelectedChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ISelectableSelectedChangedEvt_Args : EventArgs {
+public class SelectableSelectedChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Called when the selected state has changed</value>
+    /// <value>Called when the selected state has changed.</value>
     public bool arg { get; set; }
 }
-/// <summary>Selectable interface for ui objects
-/// A object implementing this can be selected. When the selected property of this object changes, the selected,changed event is emitted.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ISelectableConcrete :
+
+/// <summary>Selectable interface for UI objects
+/// An object implementing this interface can be selected. When the selected property of this object changes, the <see cref="Efl.Ui.ISelectable.SelectedChangedEvent"/> event is emitted.</summary>
+public sealed class SelectableConcrete :
     Efl.Eo.EoWrapper
     , ISelectable
     
@@ -57,7 +60,7 @@ sealed public  class ISelectableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ISelectableConcrete))
+            if (((object)this).GetType() == typeof(SelectableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -71,22 +74,23 @@ sealed public  class ISelectableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ISelectableConcrete(ConstructingHandle ch) : base(ch)
+    private SelectableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_selectable_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="ISelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ISelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private SelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Called when the selected state has changed</summary>
-    /// <value><see cref="Efl.Ui.ISelectableSelectedChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.ISelectableSelectedChangedEvt_Args> SelectedChangedEvt
+    /// <summary>Called when the selected state has changed.</summary>
+    /// <value><see cref="Efl.Ui.SelectableSelectedChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.SelectableSelectedChangedEventArgs> SelectedChangedEvent
     {
         add
         {
@@ -97,7 +101,7 @@ sealed public  class ISelectableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.ISelectableSelectedChangedEvt_Args args = new Efl.Ui.ISelectableSelectedChangedEvt_Args();
+                        Efl.Ui.SelectableSelectedChangedEventArgs args = new Efl.Ui.SelectableSelectedChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -125,8 +129,10 @@ sealed public  class ISelectableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event SelectedChangedEvt.</summary>
-    public void OnSelectedChangedEvt(Efl.Ui.ISelectableSelectedChangedEvt_Args e)
+
+    /// <summary>Method to raise event SelectedChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnSelectedChangedEvent(Efl.Ui.SelectableSelectedChangedEventArgs e)
     {
         var key = "_EFL_UI_EVENT_SELECTED_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -146,40 +152,50 @@ sealed public  class ISelectableConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
+
+#pragma warning disable CS0628
     /// <summary>The selected state of this object
     /// A change to this property emits the changed event.</summary>
-    /// <returns>The selected state of this object</returns>
+    /// <returns>The selected state of this object.</returns>
     public bool GetSelected() {
-         var _ret_var = Efl.Ui.ISelectableConcrete.NativeMethods.efl_ui_selectable_selected_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.SelectableConcrete.NativeMethods.efl_ui_selectable_selected_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The selected state of this object
     /// A change to this property emits the changed event.</summary>
-    /// <param name="selected">The selected state of this object</param>
+    /// <param name="selected">The selected state of this object.</param>
     public void SetSelected(bool selected) {
-                                 Efl.Ui.ISelectableConcrete.NativeMethods.efl_ui_selectable_selected_set_ptr.Value.Delegate(this.NativeHandle,selected);
+        Efl.Ui.SelectableConcrete.NativeMethods.efl_ui_selectable_selected_set_ptr.Value.Delegate(this.NativeHandle,selected);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>The selected state of this object
     /// A change to this property emits the changed event.</summary>
-    /// <value>The selected state of this object</value>
+    /// <value>The selected state of this object.</value>
     public bool Selected {
         get { return GetSelected(); }
         set { SetSelected(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ISelectableConcrete.efl_ui_selectable_interface_get();
+        return Efl.Ui.SelectableConcrete.efl_ui_selectable_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -204,13 +220,24 @@ sealed public  class ISelectableConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selectable_selected_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selectable_selected_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ISelectableConcrete.efl_ui_selectable_interface_get();
+            return Efl.Ui.SelectableConcrete.efl_ui_selectable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -229,7 +256,7 @@ sealed public  class ISelectableConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ISelectable)ws.Target).GetSelected();
@@ -240,8 +267,7 @@ sealed public  class ISelectableConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -265,7 +291,7 @@ sealed public  class ISelectableConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ISelectable)ws.Target).SetSelected(selected);
@@ -276,7 +302,7 @@ sealed public  class ISelectableConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -291,12 +317,11 @@ sealed public  class ISelectableConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiISelectableConcrete_ExtensionMethods {
+public static class Efl_UiSelectableConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> Selected<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.ISelectable, T>magic = null) where T : Efl.Ui.ISelectable {
         return new Efl.BindableProperty<bool>("selected", fac);
     }

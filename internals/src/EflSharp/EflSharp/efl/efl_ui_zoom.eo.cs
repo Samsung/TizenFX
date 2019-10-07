@@ -12,65 +12,79 @@ namespace Ui {
 
 /// <summary>Efl UI zoom interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IZoomConcrete.NativeMethods]
+[Efl.Ui.ZoomConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IZoom : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
-/// <returns>The paused state.</returns>
-bool GetZoomAnimation();
+    /// <returns>The paused state.</returns>
+    bool GetZoomAnimation();
+
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
-/// <param name="paused">The paused state.</param>
-void SetZoomAnimation(bool paused);
-    /// <summary>Get the zoom level of the photo
-/// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-/// <returns>The zoom level to set</returns>
-double GetZoomLevel();
-    /// <summary>Set the zoom level of the photo
-/// This sets the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).</summary>
-/// <param name="zoom">The zoom level to set</param>
-void SetZoomLevel(double zoom);
-    /// <summary>Get the zoom mode
-/// This gets the current zoom mode of the zoomable object.</summary>
-/// <returns>The zoom mode.</returns>
-Efl.Ui.ZoomMode GetZoomMode();
-    /// <summary>Set the zoom mode
-/// This sets the zoom mode to manual or one of several automatic levels. Manual (EFL_UI_ZOOM_MODE_MANUAL) means that zoom is set manually by <see cref="Efl.Ui.IZoom.SetZoomLevel"/> and will stay at that level until changed by code or until zoom mode is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on properties.
-/// 
-/// #EFL_UI_ZOOM_MODE_AUTO_FIT) will adjust zoom so the photo fits EXACTLY inside the scroll frame with no pixels outside this region. #EFL_UI_ZOOM_MODE_AUTO_FILL will be similar but ensure no pixels within the frame are left unfilled.</summary>
-/// <param name="mode">The zoom mode.</param>
-void SetZoomMode(Efl.Ui.ZoomMode mode);
-                            /// <summary>Called when zooming started</summary>
-    event EventHandler ZoomStartEvt;
+    /// <param name="paused">The paused state.</param>
+    void SetZoomAnimation(bool paused);
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <returns>The image&apos;s current zoom level.</returns>
+    double GetZoomLevel();
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <param name="zoom">The image&apos;s current zoom level.</param>
+    void SetZoomLevel(double zoom);
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
+    /// <returns>The zoom mode.</returns>
+    Efl.Ui.ZoomMode GetZoomMode();
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
+    /// <param name="mode">The zoom mode.<br/>The default value is <see cref="Efl.Ui.ZoomMode.Manual"/>.</param>
+    void SetZoomMode(Efl.Ui.ZoomMode mode);
+
+    /// <summary>Called when zooming started</summary>
+    event EventHandler ZoomStartEvent;
     /// <summary>Called when zooming stopped</summary>
-    event EventHandler ZoomStopEvt;
+    event EventHandler ZoomStopEvent;
     /// <summary>Called when zooming changed</summary>
-    event EventHandler ZoomChangeEvt;
+    event EventHandler ZoomChangeEvent;
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <value>The paused state.</value>
     bool ZoomAnimation {
         get;
         set;
     }
-    /// <summary>Get the zoom level of the photo
-    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-    /// <value>The zoom level to set</value>
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <value>The image&apos;s current zoom level.</value>
     double ZoomLevel {
         get;
         set;
     }
-    /// <summary>Get the zoom mode
-    /// This gets the current zoom mode of the zoomable object.</summary>
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
     /// <value>The zoom mode.</value>
     Efl.Ui.ZoomMode ZoomMode {
         get;
         set;
     }
+
 }
+
 /// <summary>Efl UI zoom interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IZoomConcrete :
+public sealed class ZoomConcrete :
     Efl.Eo.EoWrapper
     , IZoom
     
@@ -80,7 +94,7 @@ sealed public  class IZoomConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IZoomConcrete))
+            if (((object)this).GetType() == typeof(ZoomConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -94,21 +108,22 @@ sealed public  class IZoomConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IZoomConcrete(ConstructingHandle ch) : base(ch)
+    private ZoomConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_zoom_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IZoom"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IZoomConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ZoomConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when zooming started</summary>
-    public event EventHandler ZoomStartEvt
+    public event EventHandler ZoomStartEvent
     {
         add
         {
@@ -146,8 +161,10 @@ sealed public  class IZoomConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ZoomStartEvt.</summary>
-    public void OnZoomStartEvt(EventArgs e)
+
+    /// <summary>Method to raise event ZoomStartEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnZoomStartEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_START";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -159,8 +176,9 @@ sealed public  class IZoomConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when zooming stopped</summary>
-    public event EventHandler ZoomStopEvt
+    public event EventHandler ZoomStopEvent
     {
         add
         {
@@ -198,8 +216,10 @@ sealed public  class IZoomConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ZoomStopEvt.</summary>
-    public void OnZoomStopEvt(EventArgs e)
+
+    /// <summary>Method to raise event ZoomStopEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnZoomStopEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_STOP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -211,8 +231,9 @@ sealed public  class IZoomConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Called when zooming changed</summary>
-    public event EventHandler ZoomChangeEvt
+    public event EventHandler ZoomChangeEvent
     {
         add
         {
@@ -250,8 +271,10 @@ sealed public  class IZoomConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ZoomChangeEvt.</summary>
-    public void OnZoomChangeEvt(EventArgs e)
+
+    /// <summary>Method to raise event ZoomChangeEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnZoomChangeEvent(EventArgs e)
     {
         var key = "_EFL_UI_EVENT_ZOOM_CHANGE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -263,83 +286,105 @@ sealed public  class IZoomConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <returns>The paused state.</returns>
     public bool GetZoomAnimation() {
-         var _ret_var = Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_animation_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_animation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <param name="paused">The paused state.</param>
     public void SetZoomAnimation(bool paused) {
-                                 Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_animation_set_ptr.Value.Delegate(this.NativeHandle,paused);
+        Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_animation_set_ptr.Value.Delegate(this.NativeHandle,paused);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the zoom level of the photo
-    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-    /// <returns>The zoom level to set</returns>
+        
+    }
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <returns>The image&apos;s current zoom level.</returns>
     public double GetZoomLevel() {
-         var _ret_var = Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_level_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_level_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Set the zoom level of the photo
-    /// This sets the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).</summary>
-    /// <param name="zoom">The zoom level to set</param>
+    }
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <param name="zoom">The image&apos;s current zoom level.</param>
     public void SetZoomLevel(double zoom) {
-                                 Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_level_set_ptr.Value.Delegate(this.NativeHandle,zoom);
+        Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_level_set_ptr.Value.Delegate(this.NativeHandle,zoom);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the zoom mode
-    /// This gets the current zoom mode of the zoomable object.</summary>
+        
+    }
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
     /// <returns>The zoom mode.</returns>
     public Efl.Ui.ZoomMode GetZoomMode() {
-         var _ret_var = Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_mode_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_mode_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Set the zoom mode
-    /// This sets the zoom mode to manual or one of several automatic levels. Manual (EFL_UI_ZOOM_MODE_MANUAL) means that zoom is set manually by <see cref="Efl.Ui.IZoom.SetZoomLevel"/> and will stay at that level until changed by code or until zoom mode is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on properties.
-    /// 
-    /// #EFL_UI_ZOOM_MODE_AUTO_FIT) will adjust zoom so the photo fits EXACTLY inside the scroll frame with no pixels outside this region. #EFL_UI_ZOOM_MODE_AUTO_FILL will be similar but ensure no pixels within the frame are left unfilled.</summary>
-    /// <param name="mode">The zoom mode.</param>
+    }
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
+    /// <param name="mode">The zoom mode.<br/>The default value is <see cref="Efl.Ui.ZoomMode.Manual"/>.</param>
     public void SetZoomMode(Efl.Ui.ZoomMode mode) {
-                                 Efl.Ui.IZoomConcrete.NativeMethods.efl_ui_zoom_mode_set_ptr.Value.Delegate(this.NativeHandle,mode);
+        Efl.Ui.ZoomConcrete.NativeMethods.efl_ui_zoom_mode_set_ptr.Value.Delegate(this.NativeHandle,mode);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>This sets the zoom animation state to on or off for zoomable. The default is off. When <c>paused</c> is <c>true</c>, it will stop zooming using animation on zoom level changes and change instantly, stopping any existing animations that are running.</summary>
     /// <value>The paused state.</value>
     public bool ZoomAnimation {
         get { return GetZoomAnimation(); }
         set { SetZoomAnimation(value); }
     }
-    /// <summary>Get the zoom level of the photo
-    /// This returns the current zoom level of the zoomable object. Note that if you set the fill mode to other than #EFL_UI_ZOOM_MODE_MANUAL (which is the default), the zoom level may be changed at any time by the  zoomable object itself to account for photo size and zoomable viewport size.</summary>
-    /// <value>The zoom level to set</value>
+
+    /// <summary>Zoom level of the image.
+    /// This selects the zoom level. If <c>zoom</c> is 1, it means no zoom. If it&apos;s smaller than 1, it means zoom in. If it&apos;s bigger than 1, it means zoom out. For  example, <c>zoom</c> 1 will be 1:1 pixel for pixel. <c>zoom</c> 2 will be 2:1 (that is 2x2 photo pixels will display as 1 on-screen pixel) which is a zoom out. 4:1 will be 4x4 photo pixels as 1 screen pixel, and so on. The <c>zoom</c> parameter must be greater than 0. It is suggested to stick to powers of 2. (1, 2, 4, 8, 16, 32, etc.).
+    /// 
+    /// Note that if you set <see cref="Efl.Ui.IZoom.ZoomMode"/> to anything other than <see cref="Efl.Ui.ZoomMode.Manual"/> (which is the default value) the <see cref="Efl.Ui.IZoom.ZoomLevel"/> might be changed at any time by the zoomable object itself to account for image and viewport size changes.</summary>
+    /// <value>The image&apos;s current zoom level.</value>
     public double ZoomLevel {
         get { return GetZoomLevel(); }
         set { SetZoomLevel(value); }
     }
-    /// <summary>Get the zoom mode
-    /// This gets the current zoom mode of the zoomable object.</summary>
+
+    /// <summary>Zoom mode.
+    /// This sets the zoom mode to manual or one of several automatic levels. <see cref="Efl.Ui.ZoomMode.Manual"/> means that zoom is controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/> and will stay at that level until changed by code or until <see cref="Efl.Ui.IZoom.ZoomMode"/> is changed. This is the default mode. The Automatic modes will allow the zoomable object to automatically adjust zoom mode based on image and viewport size changes.</summary>
     /// <value>The zoom mode.</value>
     public Efl.Ui.ZoomMode ZoomMode {
         get { return GetZoomMode(); }
         set { SetZoomMode(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IZoomConcrete.efl_ui_zoom_interface_get();
+        return Efl.Ui.ZoomConcrete.efl_ui_zoom_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -404,13 +449,24 @@ sealed public  class IZoomConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_zoom_mode_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_zoom_mode_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IZoomConcrete.efl_ui_zoom_interface_get();
+            return Efl.Ui.ZoomConcrete.efl_ui_zoom_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -429,7 +485,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IZoom)ws.Target).GetZoomAnimation();
@@ -440,8 +496,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -465,7 +520,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IZoom)ws.Target).SetZoomAnimation(paused);
@@ -476,7 +531,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -500,7 +555,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((IZoom)ws.Target).GetZoomLevel();
@@ -511,8 +566,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -536,7 +590,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IZoom)ws.Target).SetZoomLevel(zoom);
@@ -547,7 +601,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -571,7 +625,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.ZoomMode _ret_var = default(Efl.Ui.ZoomMode);
+                Efl.Ui.ZoomMode _ret_var = default(Efl.Ui.ZoomMode);
                 try
                 {
                     _ret_var = ((IZoom)ws.Target).GetZoomMode();
@@ -582,8 +636,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -607,7 +660,7 @@ sealed public  class IZoomConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IZoom)ws.Target).SetZoomMode(mode);
@@ -618,7 +671,7 @@ sealed public  class IZoomConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -633,12 +686,11 @@ sealed public  class IZoomConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIZoomConcrete_ExtensionMethods {
+public static class Efl_UiZoomConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> ZoomAnimation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IZoom, T>magic = null) where T : Efl.Ui.IZoom {
         return new Efl.BindableProperty<bool>("zoom_animation", fac);
     }
@@ -662,19 +714,17 @@ namespace Ui {
 [Efl.Eo.BindingEntity]
 public enum ZoomMode
 {
-/// <summary>Zoom controlled normally by efl_ui_zoom_set</summary>
+/// <summary>Zoom controlled manually by <see cref="Efl.Ui.IZoom.ZoomLevel"/>.</summary>
 Manual = 0,
-/// <summary>Zoom until photo fits in zoomable object</summary>
+/// <summary>Zoom until whole image fits inside object. Parts of the object might be left blank.</summary>
 AutoFit = 1,
-/// <summary>Zoom until photo fills zoomable object</summary>
+/// <summary>Zoom until image fills the object. Parts of the image might not show.</summary>
 AutoFill = 2,
-/// <summary>Zoom in until photo fits in zoomable object</summary>
+/// <summary>Zoom in until image fits inside object.</summary>
 AutoFitIn = 3,
-/// <summary>Sentinel value to indicate last enum field during iteration</summary>
+/// <summary>Internal. Sentinel value to indicate last enum field during iteration.</summary>
 Last = 4,
 }
-
 }
-
 }
 

@@ -18,9 +18,9 @@ namespace Efl
                 IntPtr _handle;
                 public IntPtr NativeHandle => _handle;
 
-                public CircleUIManager(Efl.Ui.Win conformant)
+                public CircleUIManager(Efl.Ui.Win win)
                 {
-                    _handle = Interop.Eext.eext_circle_surface_conformant_add(conformant.NativeHandle);
+                    _handle = Interop.Eext.eext_circle_surface_conformant_add(win.NativeHandle);
                 }
 
                 public CircleUIManager(Efl.Object layout)

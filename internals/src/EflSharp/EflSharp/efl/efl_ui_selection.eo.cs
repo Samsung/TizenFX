@@ -12,34 +12,38 @@ namespace Ui {
 
 /// <summary>Efl Ui Selection class</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.ISelectionConcrete.NativeMethods]
+[Efl.Ui.SelectionConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISelection : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Set the selection data to the object</summary>
-/// <param name="type">Selection Type</param>
-/// <param name="format">Selection Format</param>
-/// <param name="data">Selection data</param>
-/// <param name="seat">Specified seat for multiple seats case.</param>
-/// <returns>Future for tracking when the selection is lost</returns>
- Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat);
+    /// <param name="type">Selection Type</param>
+    /// <param name="format">Selection Format</param>
+    /// <param name="data">Selection data</param>
+    /// <param name="seat">Specified seat for multiple seats case.</param>
+    /// <returns>Future for tracking when the selection is lost</returns>
+     Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat);
+
     /// <summary>Get the data from the object that has selection</summary>
-/// <param name="type">Selection Type</param>
-/// <param name="format">Selection Format</param>
-/// <param name="data_func">Data ready function pointer</param>
-/// <param name="seat">Specified seat for multiple seats case.</param>
-void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat);
+    /// <param name="type">Selection Type</param>
+    /// <param name="format">Selection Format</param>
+    /// <param name="data_func">Data ready function pointer</param>
+    /// <param name="seat">Specified seat for multiple seats case.</param>
+    void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat);
+
     /// <summary>Clear the selection data from the object</summary>
-/// <param name="type">Selection Type</param>
-/// <param name="seat">Specified seat for multiple seats case.</param>
-void ClearSelection(Efl.Ui.SelectionType type, uint seat);
+    /// <param name="type">Selection Type</param>
+    /// <param name="seat">Specified seat for multiple seats case.</param>
+    void ClearSelection(Efl.Ui.SelectionType type, uint seat);
+
     /// <summary>Determine whether the selection data has owner</summary>
-/// <param name="type">Selection type</param>
-/// <param name="seat">Specified seat for multiple seats case.</param>
-/// <returns>EINA_TRUE if there is object owns selection, otherwise EINA_FALSE</returns>
-bool HasOwner(Efl.Ui.SelectionType type, uint seat);
-        /// <summary>Async wrapper for <see cref="SetSelection" />.</summary>
+    /// <param name="type">Selection type</param>
+    /// <param name="seat">Specified seat for multiple seats case.</param>
+    /// <returns>EINA_TRUE if there is object owns selection, otherwise EINA_FALSE</returns>
+    bool HasOwner(Efl.Ui.SelectionType type, uint seat);
+
+    /// <summary>Async wrapper for <see cref="SetSelection" />.</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
     /// <param name="data">Selection data</param>
@@ -48,20 +52,22 @@ bool HasOwner(Efl.Ui.SelectionType type, uint seat);
     /// <returns>An async task wrapping the result of the operation.</returns>
     System.Threading.Tasks.Task<Eina.Value> SetSelectionAsync(Efl.Ui.SelectionType type,Efl.Ui.SelectionFormat format,Eina.Slice data,uint seat, System.Threading.CancellationToken token = default(System.Threading.CancellationToken));
 
-                /// <summary>Called when display server&apos;s selection has changed</summary>
-    /// <value><see cref="Efl.Ui.ISelectionWmSelectionChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt;
+    /// <summary>Called when display server&apos;s selection has changed</summary>
+    /// <value><see cref="Efl.Ui.SelectionWmSelectionChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.SelectionWmSelectionChangedEventArgs> WmSelectionChangedEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelection.WmSelectionChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.ISelection.WmSelectionChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class ISelectionWmSelectionChangedEvt_Args : EventArgs {
+public class SelectionWmSelectionChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when display server&apos;s selection has changed</value>
     public Efl.Ui.SelectionChanged arg { get; set; }
 }
+
 /// <summary>Efl Ui Selection class</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ISelectionConcrete :
+public sealed class SelectionConcrete :
     Efl.Eo.EoWrapper
     , ISelection
     
@@ -71,7 +77,7 @@ sealed public  class ISelectionConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ISelectionConcrete))
+            if (((object)this).GetType() == typeof(SelectionConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -85,22 +91,23 @@ sealed public  class ISelectionConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ISelectionConcrete(ConstructingHandle ch) : base(ch)
+    private SelectionConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_selection_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="ISelection"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ISelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private SelectionConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when display server&apos;s selection has changed</summary>
-    /// <value><see cref="Efl.Ui.ISelectionWmSelectionChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.ISelectionWmSelectionChangedEvt_Args> WmSelectionChangedEvt
+    /// <value><see cref="Efl.Ui.SelectionWmSelectionChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.SelectionWmSelectionChangedEventArgs> WmSelectionChangedEvent
     {
         add
         {
@@ -111,7 +118,7 @@ sealed public  class ISelectionConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.ISelectionWmSelectionChangedEvt_Args args = new Efl.Ui.ISelectionWmSelectionChangedEvt_Args();
+                        Efl.Ui.SelectionWmSelectionChangedEventArgs args = new Efl.Ui.SelectionWmSelectionChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -139,8 +146,10 @@ sealed public  class ISelectionConcrete :
             }
         }
     }
-    /// <summary>Method to raise event WmSelectionChangedEvt.</summary>
-    public void OnWmSelectionChangedEvt(Efl.Ui.ISelectionWmSelectionChangedEvt_Args e)
+
+    /// <summary>Method to raise event WmSelectionChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnWmSelectionChangedEvent(Efl.Ui.SelectionWmSelectionChangedEventArgs e)
     {
         var key = "_EFL_UI_SELECTION_EVENT_WM_SELECTION_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -161,6 +170,9 @@ sealed public  class ISelectionConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Set the selection data to the object</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
@@ -168,36 +180,42 @@ sealed public  class ISelectionConcrete :
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>Future for tracking when the selection is lost</returns>
     public  Eina.Future SetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Eina.Slice data, uint seat) {
-                                                                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate(this.NativeHandle,type, format, data, seat);
+        var _ret_var = Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_set_ptr.Value.Delegate(this.NativeHandle,type, format, data, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the data from the object that has selection</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
     /// <param name="data_func">Data ready function pointer</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     public void GetSelection(Efl.Ui.SelectionType type, Efl.Ui.SelectionFormat format, Efl.Ui.SelectionDataReady data_func, uint seat) {
-                                                                                         GCHandle data_func_handle = GCHandle.Alloc(data_func);
-                Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate(this.NativeHandle,type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
+        GCHandle data_func_handle = GCHandle.Alloc(data_func);
+Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_get_ptr.Value.Delegate(this.NativeHandle,type, format, GCHandle.ToIntPtr(data_func_handle), Efl.Ui.SelectionDataReadyWrapper.Cb, Efl.Eo.Globals.free_gchandle, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Clear the selection data from the object</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     public void ClearSelection(Efl.Ui.SelectionType type, uint seat) {
-                                                         Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate(this.NativeHandle,type, seat);
+        Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_clear_ptr.Value.Delegate(this.NativeHandle,type, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Determine whether the selection data has owner</summary>
     /// <param name="type">Selection type</param>
     /// <param name="seat">Specified seat for multiple seats case.</param>
     /// <returns>EINA_TRUE if there is object owns selection, otherwise EINA_FALSE</returns>
     public bool HasOwner(Efl.Ui.SelectionType type, uint seat) {
-                                                         var _ret_var = Efl.Ui.ISelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate(this.NativeHandle,type, seat);
+        var _ret_var = Efl.Ui.SelectionConcrete.NativeMethods.efl_ui_selection_has_owner_ptr.Value.Delegate(this.NativeHandle,type, seat);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Async wrapper for <see cref="SetSelection" />.</summary>
     /// <param name="type">Selection Type</param>
     /// <param name="format">Selection Format</param>
@@ -211,18 +229,21 @@ sealed public  class ISelectionConcrete :
         return Efl.Eo.Globals.WrapAsync(future, token);
     }
 
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.ISelectionConcrete.efl_ui_selection_mixin_get();
+        return Efl.Ui.SelectionConcrete.efl_ui_selection_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -267,13 +288,24 @@ sealed public  class ISelectionConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_selection_has_owner"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_selection_has_owner_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.ISelectionConcrete.efl_ui_selection_mixin_get();
+            return Efl.Ui.SelectionConcrete.efl_ui_selection_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -292,7 +324,7 @@ sealed public  class ISelectionConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                             Eina.Future _ret_var = default( Eina.Future);
+                 Eina.Future _ret_var = default( Eina.Future);
                 try
                 {
                     _ret_var = ((ISelection)ws.Target).SetSelection(type, format, data, seat);
@@ -303,8 +335,7 @@ sealed public  class ISelectionConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -328,8 +359,8 @@ sealed public  class ISelectionConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                            Efl.Ui.SelectionDataReadyWrapper data_func_wrapper = new Efl.Ui.SelectionDataReadyWrapper(data_func, data_func_data, data_func_free_cb);
-                    
+                    Efl.Ui.SelectionDataReadyWrapper data_func_wrapper = new Efl.Ui.SelectionDataReadyWrapper(data_func, data_func_data, data_func_free_cb);
+
                 try
                 {
                     ((ISelection)ws.Target).GetSelection(type, format, data_func_wrapper.ManagedCb, seat);
@@ -340,7 +371,7 @@ sealed public  class ISelectionConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -364,7 +395,7 @@ sealed public  class ISelectionConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((ISelection)ws.Target).ClearSelection(type, seat);
@@ -375,7 +406,7 @@ sealed public  class ISelectionConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -399,7 +430,7 @@ sealed public  class ISelectionConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ISelection)ws.Target).HasOwner(type, seat);
@@ -410,8 +441,7 @@ sealed public  class ISelectionConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -426,12 +456,11 @@ sealed public  class ISelectionConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiISelectionConcrete_ExtensionMethods {
+public static class Efl_UiSelectionConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

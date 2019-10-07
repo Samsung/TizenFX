@@ -12,161 +12,188 @@ namespace Gfx {
 
 /// <summary>EFL graphics path object interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IPathConcrete.NativeMethods]
+[Efl.Gfx.PathConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IPath : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
-/// <param name="op">Command list</param>
-/// <param name="points">Point list</param>
-void GetPath(out Efl.Gfx.PathCommandType op, out double points);
+    /// <param name="op">Command list</param>
+    /// <param name="points">Point list</param>
+    void GetPath(out Efl.Gfx.PathCommandType op, out double points);
+
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
-/// <param name="op">Command list</param>
-/// <param name="points">Point list</param>
-void SetPath(Efl.Gfx.PathCommandType op, double points);
+    /// <param name="op">Command list</param>
+    /// <param name="points">Point list</param>
+    void SetPath(Efl.Gfx.PathCommandType op, double points);
+
     /// <summary>Path length property</summary>
-/// <param name="commands">Commands</param>
-/// <param name="points">Points</param>
-void GetLength(out uint commands, out uint points);
+    /// <param name="commands">Commands</param>
+    /// <param name="points">Points</param>
+    void GetLength(out uint commands, out uint points);
+
     /// <summary>Current point coordinates</summary>
-/// <param name="x">X co-ordinate of the current point.</param>
-/// <param name="y">Y co-ordinate of the current point.</param>
-void GetCurrent(out double x, out double y);
+    /// <param name="x">X co-ordinate of the current point.</param>
+    /// <param name="y">Y co-ordinate of the current point.</param>
+    void GetCurrent(out double x, out double y);
+
     /// <summary>Current control point coordinates</summary>
-/// <param name="x">X co-ordinate of control point.</param>
-/// <param name="y">Y co-ordinate of control point.</param>
-void GetCurrentCtrl(out double x, out double y);
+    /// <param name="x">X co-ordinate of control point.</param>
+    /// <param name="y">Y co-ordinate of control point.</param>
+    void GetCurrentCtrl(out double x, out double y);
+
     /// <summary>Copy the path data from the object specified.</summary>
-/// <param name="dup_from">Shape object from where data will be copied.</param>
-void CopyFrom(Efl.Object dup_from);
+    /// <param name="dup_from">Shape object from where data will be copied.</param>
+    void CopyFrom(Efl.Object dup_from);
+
     /// <summary>Compute and return the bounding box of the currently set path</summary>
-/// <param name="r">Contain the bounding box of the currently set path</param>
-void GetBounds(out Eina.Rect r);
+    /// <param name="r">Contain the bounding box of the currently set path</param>
+    void GetBounds(out Eina.Rect r);
+
     /// <summary>Reset the path data of the path object.</summary>
-void Reset();
+    void Reset();
+
     /// <summary>Moves the current point to the given point,  implicitly starting a new subpath and closing the previous one.
-/// See also <see cref="Efl.Gfx.IPath.CloseAppend"/>.</summary>
-/// <param name="x">X co-ordinate of the current point.</param>
-/// <param name="y">Y co-ordinate of the current point.</param>
-void AppendMoveTo(double x, double y);
+    /// See also <see cref="Efl.Gfx.IPath.CloseAppend"/>.</summary>
+    /// <param name="x">X co-ordinate of the current point.</param>
+    /// <param name="y">Y co-ordinate of the current point.</param>
+    void AppendMoveTo(double x, double y);
+
     /// <summary>Adds a straight line from the current position to the given end point. After the line is drawn, the current position is updated to be at the end point of the line.
-/// If no current position present, it draws a line to itself, basically a point.
-/// 
-/// See also <see cref="Efl.Gfx.IPath.AppendMoveTo"/>.</summary>
-/// <param name="x">X co-ordinate of end point of the line.</param>
-/// <param name="y">Y co-ordinate of end point of the line.</param>
-void AppendLineTo(double x, double y);
+    /// If no current position present, it draws a line to itself, basically a point.
+    /// 
+    /// See also <see cref="Efl.Gfx.IPath.AppendMoveTo"/>.</summary>
+    /// <param name="x">X co-ordinate of end point of the line.</param>
+    /// <param name="y">Y co-ordinate of end point of the line.</param>
+    void AppendLineTo(double x, double y);
+
     /// <summary>Adds a quadratic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x, ctrl_y). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
-/// <param name="x">X co-ordinate of end point of the line.</param>
-/// <param name="y">Y co-ordinate of end point of the line.</param>
-/// <param name="ctrl_x">X co-ordinate of control point.</param>
-/// <param name="ctrl_y">Y co-ordinate of control point.</param>
-void AppendQuadraticTo(double x, double y, double ctrl_x, double ctrl_y);
-    /// <summary>Same as efl_gfx_path_append_quadratic_to() api only difference is that it uses the current control point to draw the bezier.
-/// See also <see cref="Efl.Gfx.IPath.AppendQuadraticTo"/>.</summary>
-/// <param name="x">X co-ordinate of end point of the line.</param>
-/// <param name="y">Y co-ordinate of end point of the line.</param>
-void AppendSquadraticTo(double x, double y);
+    /// <param name="x">X co-ordinate of end point of the line.</param>
+    /// <param name="y">Y co-ordinate of end point of the line.</param>
+    /// <param name="ctrl_x">X co-ordinate of control point.</param>
+    /// <param name="ctrl_y">Y co-ordinate of control point.</param>
+    void AppendQuadraticTo(double x, double y, double ctrl_x, double ctrl_y);
+
+    /// <summary>Same as <see cref="Efl.Gfx.IPath.AppendQuadraticTo"/> api only difference is that it uses the current control point to draw the bezier.</summary>
+    /// <param name="x">X co-ordinate of end point of the line.</param>
+    /// <param name="y">Y co-ordinate of end point of the line.</param>
+    void AppendSquadraticTo(double x, double y);
+
     /// <summary>Adds a cubic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x0, ctrl_y0), and (ctrl_x1, ctrl_y1). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
-/// <param name="ctrl_x0">X co-ordinate of 1st control point.</param>
-/// <param name="ctrl_y0">Y co-ordinate of 1st control point.</param>
-/// <param name="ctrl_x1">X co-ordinate of 2nd control point.</param>
-/// <param name="ctrl_y1">Y co-ordinate of 2nd control point.</param>
-/// <param name="x">X co-ordinate of end point of the line.</param>
-/// <param name="y">Y co-ordinate of end point of the line.</param>
-void AppendCubicTo(double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y);
-    /// <summary>Same as efl_gfx_path_append_cubic_to() api only difference is that it uses the current control point to draw the bezier.
-/// See also <see cref="Efl.Gfx.IPath.AppendCubicTo"/>.</summary>
-/// <param name="x">X co-ordinate of end point of the line.</param>
-/// <param name="y">Y co-ordinate of end point of the line.</param>
-/// <param name="ctrl_x">X co-ordinate of 2nd control point.</param>
-/// <param name="ctrl_y">Y co-ordinate of 2nd control point.</param>
-void AppendScubicTo(double x, double y, double ctrl_x, double ctrl_y);
+    /// <param name="ctrl_x0">X co-ordinate of 1st control point.</param>
+    /// <param name="ctrl_y0">Y co-ordinate of 1st control point.</param>
+    /// <param name="ctrl_x1">X co-ordinate of 2nd control point.</param>
+    /// <param name="ctrl_y1">Y co-ordinate of 2nd control point.</param>
+    /// <param name="x">X co-ordinate of end point of the line.</param>
+    /// <param name="y">Y co-ordinate of end point of the line.</param>
+    void AppendCubicTo(double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y);
+
+    /// <summary>Same as <see cref="Efl.Gfx.IPath.AppendCubicTo"/> api only difference is that it uses the current control point to draw the bezier.</summary>
+    /// <param name="x">X co-ordinate of end point of the line.</param>
+    /// <param name="y">Y co-ordinate of end point of the line.</param>
+    /// <param name="ctrl_x">X co-ordinate of 2nd control point.</param>
+    /// <param name="ctrl_y">Y co-ordinate of 2nd control point.</param>
+    void AppendScubicTo(double x, double y, double ctrl_x, double ctrl_y);
+
     /// <summary>Append an arc that connects from the current point int the point list to the given point (x,y). The arc is defined by the given radius in  x-direction (rx) and radius in y direction (ry).
-/// Use this api if you know the end point&apos;s of the arc otherwise use more convenient function <see cref="Efl.Gfx.IPath.AppendArc"/>.</summary>
-/// <param name="x">X co-ordinate of end point of the arc.</param>
-/// <param name="y">Y co-ordinate of end point of the arc.</param>
-/// <param name="rx">Radius of arc in x direction.</param>
-/// <param name="ry">Radius of arc in y direction.</param>
-/// <param name="angle">X-axis rotation , normally 0.</param>
-/// <param name="large_arc">Defines whether to draw the larger arc or smaller arc joining two point.</param>
-/// <param name="sweep">Defines whether the arc will be drawn counter-clockwise or clockwise from current point to the end point taking into account the large_arc property.</param>
-void AppendArcTo(double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep);
+    /// Use this api if you know the end point&apos;s of the arc otherwise use more convenient function <see cref="Efl.Gfx.IPath.AppendArc"/>.</summary>
+    /// <param name="x">X co-ordinate of end point of the arc.</param>
+    /// <param name="y">Y co-ordinate of end point of the arc.</param>
+    /// <param name="rx">Radius of arc in x direction.</param>
+    /// <param name="ry">Radius of arc in y direction.</param>
+    /// <param name="angle">X-axis rotation , normally 0.</param>
+    /// <param name="large_arc">Defines whether to draw the larger arc or smaller arc joining two point.</param>
+    /// <param name="sweep">Defines whether the arc will be drawn counter-clockwise or clockwise from current point to the end point taking into account the large_arc property.</param>
+    void AppendArcTo(double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep);
+
     /// <summary>Append an arc that enclosed in the given rectangle (x, y, w, h). The angle is defined in counter clock wise , use -ve angle for clockwise arc.</summary>
-/// <param name="x">X co-ordinate of the rect.</param>
-/// <param name="y">Y co-ordinate of the rect.</param>
-/// <param name="w">Width of the rect.</param>
-/// <param name="h">Height of the rect.</param>
-/// <param name="start_angle">Angle at which the arc will start</param>
-/// <param name="sweep_length">@ Length of the arc.</param>
-void AppendArc(double x, double y, double w, double h, double start_angle, double sweep_length);
+    /// <param name="x">X co-ordinate of the rect.</param>
+    /// <param name="y">Y co-ordinate of the rect.</param>
+    /// <param name="w">Width of the rect.</param>
+    /// <param name="h">Height of the rect.</param>
+    /// <param name="start_angle">Angle at which the arc will start</param>
+    /// <param name="sweep_length">@ Length of the arc.</param>
+    void AppendArc(double x, double y, double w, double h, double start_angle, double sweep_length);
+
     /// <summary>Closes the current subpath by drawing a line to the beginning of the subpath, automatically starting a new path. The current point of the new path is (0, 0).
-/// If the subpath does not contain any points, this function does nothing.</summary>
-void CloseAppend();
+    /// If the subpath does not contain any points, this function does nothing.</summary>
+    void CloseAppend();
+
     /// <summary>Append a circle with given center and radius.</summary>
-/// <param name="x">X co-ordinate of the center of the circle.</param>
-/// <param name="y">Y co-ordinate of the center of the circle.</param>
-/// <param name="radius">Radius of the circle.</param>
-void AppendCircle(double x, double y, double radius);
+    /// <param name="x">X co-ordinate of the center of the circle.</param>
+    /// <param name="y">Y co-ordinate of the center of the circle.</param>
+    /// <param name="radius">Radius of the circle.</param>
+    void AppendCircle(double x, double y, double radius);
+
     /// <summary>Append the given rectangle with rounded corner to the path.
-/// The xr and yr arguments specify the radii of the ellipses defining the corners of the rounded rectangle.
-/// 
-/// xr and yr are specified in terms of width and height respectively.
-/// 
-/// If xr and yr are 0, then it will draw a rectangle without rounded corner.</summary>
-/// <param name="x">X co-ordinate of the rectangle.</param>
-/// <param name="y">Y co-ordinate of the rectangle.</param>
-/// <param name="w">Width of the rectangle.</param>
-/// <param name="h">Height of the rectangle.</param>
-/// <param name="rx">The x radius of the rounded corner and should be in range [ 0 to w/2 ]</param>
-/// <param name="ry">The y radius of the rounded corner and should be in range [ 0 to h/2 ]</param>
-void AppendRect(double x, double y, double w, double h, double rx, double ry);
+    /// The xr and yr arguments specify the radii of the ellipses defining the corners of the rounded rectangle.
+    /// 
+    /// xr and yr are specified in terms of width and height respectively.
+    /// 
+    /// If xr and yr are 0, then it will draw a rectangle without rounded corner.</summary>
+    /// <param name="x">X co-ordinate of the rectangle.</param>
+    /// <param name="y">Y co-ordinate of the rectangle.</param>
+    /// <param name="w">Width of the rectangle.</param>
+    /// <param name="h">Height of the rectangle.</param>
+    /// <param name="rx">The x radius of the rounded corner and should be in range [ 0 to w/2 ]</param>
+    /// <param name="ry">The y radius of the rounded corner and should be in range [ 0 to h/2 ]</param>
+    void AppendRect(double x, double y, double w, double h, double rx, double ry);
+
     /// <summary>Append SVG path data</summary>
-/// <param name="svg_path_data">SVG path data to append</param>
-void AppendSvgPath(System.String svg_path_data);
+    /// <param name="svg_path_data">SVG path data to append</param>
+    void AppendSvgPath(System.String svg_path_data);
+
     /// <summary>Creates intermediary path part-way between two paths
-/// Sets the points of the <c>obj</c> as the linear interpolation of the points in the <c>from</c> and <c>to</c> paths.  The path&apos;s x,y position and control point coordinates are likewise interpolated.
-/// 
-/// The <c>from</c> and <c>to</c> paths must not already have equivalent points, and <c>to</c> must contain at least as many points as <c>from</c>, else the function returns <c>false</c> with no interpolation performed.  If <c>to</c> has more points than <c>from</c>, the excess points are ignored.</summary>
-/// <param name="from">Source path</param>
-/// <param name="to">Destination path</param>
-/// <param name="pos_map">Position map in range 0.0 to 1.0</param>
-/// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-bool Interpolate(Efl.Object from, Efl.Object to, double pos_map);
+    /// Sets the points of the <c>obj</c> as the linear interpolation of the points in the <c>from</c> and <c>to</c> paths.  The path&apos;s x,y position and control point coordinates are likewise interpolated.
+    /// 
+    /// The <c>from</c> and <c>to</c> paths must not already have equivalent points, and <c>to</c> must contain at least as many points as <c>from</c>, else the function returns <c>false</c> with no interpolation performed.  If <c>to</c> has more points than <c>from</c>, the excess points are ignored.</summary>
+    /// <param name="from">Source path</param>
+    /// <param name="to">Destination path</param>
+    /// <param name="pos_map">Position map in range 0.0 to 1.0</param>
+    /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
+    bool Interpolate(Efl.Object from, Efl.Object to, double pos_map);
+
     /// <summary>Equal commands in object</summary>
-/// <param name="with">Object</param>
-/// <returns>True on success, <c>false</c> otherwise</returns>
-bool EqualCommands(Efl.Object with);
+    /// <param name="with">Object</param>
+    /// <returns>True on success, <c>false</c> otherwise</returns>
+    bool EqualCommands(Efl.Object with);
+
     /// <summary>Reserve path commands buffer in advance. If you know the count of path commands coming, you can reserve commands buffer in advance to avoid buffer growing job.</summary>
-/// <param name="cmd_count">Commands count to reserve</param>
-/// <param name="pts_count">Pointers count to reserve</param>
-void Reserve(uint cmd_count, uint pts_count);
+    /// <param name="cmd_count">Commands count to reserve</param>
+    /// <param name="pts_count">Pointers count to reserve</param>
+    void Reserve(uint cmd_count, uint pts_count);
+
     /// <summary>Request to update the path object.
-/// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
-void Commit();
-                                                                                                    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
+    void Commit();
+
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
     /// <value>Command list</value>
     (Efl.Gfx.PathCommandType, double) Path {
         get;
         set;
     }
+
     /// <summary>Path length property</summary>
     (uint, uint) Length {
         get;
     }
+
     /// <summary>Current point coordinates</summary>
     (double, double) Current {
         get;
     }
+
     /// <summary>Current control point coordinates</summary>
     (double, double) CurrentCtrl {
         get;
     }
+
 }
+
 /// <summary>EFL graphics path object interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IPathConcrete :
+public sealed class PathConcrete :
     Efl.Eo.EoWrapper
     , IPath
     
@@ -176,7 +203,7 @@ sealed public  class IPathConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IPathConcrete))
+            if (((object)this).GetType() == typeof(PathConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -190,87 +217,107 @@ sealed public  class IPathConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IPathConcrete(ConstructingHandle ch) : base(ch)
+    private PathConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_path_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IPath"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IPathConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private PathConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
+    }
+
+#pragma warning disable CS0628
+    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
+    /// <param name="op">Command list</param>
+    /// <param name="points">Point list</param>
+    public void GetPath(out Efl.Gfx.PathCommandType op, out double points) {
+        System.IntPtr _out_op = System.IntPtr.Zero;
+System.IntPtr _out_points = System.IntPtr.Zero;
+Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate(this.NativeHandle,out _out_op, out _out_points);
+        Eina.Error.RaiseIfUnhandledException();
+op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(_out_op);
+points = Eina.PrimitiveConversion.PointerToManaged<double>(_out_points);
+        
     }
 
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
     /// <param name="op">Command list</param>
     /// <param name="points">Point list</param>
-    public void GetPath(out Efl.Gfx.PathCommandType op, out double points) {
-                         System.IntPtr _out_op = System.IntPtr.Zero;
-        System.IntPtr _out_points = System.IntPtr.Zero;
-                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_get_ptr.Value.Delegate(this.NativeHandle,out _out_op, out _out_points);
-        Eina.Error.RaiseIfUnhandledException();
-        op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(_out_op);
-        points = Eina.PrimitiveConversion.PointerToManaged<double>(_out_points);
-                         }
-    /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
-    /// <param name="op">Command list</param>
-    /// <param name="points">Point list</param>
     public void SetPath(Efl.Gfx.PathCommandType op, double points) {
-         var _in_op = Eina.PrimitiveConversion.ManagedToPointerAlloc(op);
-        var _in_points = Eina.PrimitiveConversion.ManagedToPointerAlloc(points);
-                                        Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate(this.NativeHandle,_in_op, _in_points);
+        var _in_op = Eina.PrimitiveConversion.ManagedToPointerAlloc(op);
+var _in_points = Eina.PrimitiveConversion.ManagedToPointerAlloc(points);
+Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_set_ptr.Value.Delegate(this.NativeHandle,_in_op, _in_points);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Path length property</summary>
     /// <param name="commands">Commands</param>
     /// <param name="points">Points</param>
     public void GetLength(out uint commands, out uint points) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate(this.NativeHandle,out commands, out points);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_length_get_ptr.Value.Delegate(this.NativeHandle,out commands, out points);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Current point coordinates</summary>
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     public void GetCurrent(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_current_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Current control point coordinates</summary>
     /// <param name="x">X co-ordinate of control point.</param>
     /// <param name="y">Y co-ordinate of control point.</param>
     public void GetCurrentCtrl(out double x, out double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_current_ctrl_get_ptr.Value.Delegate(this.NativeHandle,out x, out y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Copy the path data from the object specified.</summary>
     /// <param name="dup_from">Shape object from where data will be copied.</param>
     public void CopyFrom(Efl.Object dup_from) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate(this.NativeHandle,dup_from);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_copy_from_ptr.Value.Delegate(this.NativeHandle,dup_from);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Compute and return the bounding box of the currently set path</summary>
     /// <param name="r">Contain the bounding box of the currently set path</param>
     public void GetBounds(out Eina.Rect r) {
-                 var _out_r = new Eina.Rect.NativeStruct();
-                Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate(this.NativeHandle,out _out_r);
+        var _out_r = new Eina.Rect.NativeStruct();
+Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_bounds_get_ptr.Value.Delegate(this.NativeHandle,out _out_r);
         Eina.Error.RaiseIfUnhandledException();
-        r = _out_r;
-                 }
+r = _out_r;
+        
+    }
+
     /// <summary>Reset the path data of the path object.</summary>
     public void Reset() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_reset_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Moves the current point to the given point,  implicitly starting a new subpath and closing the previous one.
     /// See also <see cref="Efl.Gfx.IPath.CloseAppend"/>.</summary>
     /// <param name="x">X co-ordinate of the current point.</param>
     /// <param name="y">Y co-ordinate of the current point.</param>
     public void AppendMoveTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate(this.NativeHandle,x, y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_move_to_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Adds a straight line from the current position to the given end point. After the line is drawn, the current position is updated to be at the end point of the line.
     /// If no current position present, it draws a line to itself, basically a point.
     /// 
@@ -278,26 +325,31 @@ sealed public  class IPathConcrete :
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     public void AppendLineTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate(this.NativeHandle,x, y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_line_to_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Adds a quadratic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x, ctrl_y). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     /// <param name="ctrl_x">X co-ordinate of control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of control point.</param>
     public void AppendQuadraticTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate(this.NativeHandle,x, y, ctrl_x, ctrl_y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_quadratic_to_ptr.Value.Delegate(this.NativeHandle,x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
-    /// <summary>Same as efl_gfx_path_append_quadratic_to() api only difference is that it uses the current control point to draw the bezier.
-    /// See also <see cref="Efl.Gfx.IPath.AppendQuadraticTo"/>.</summary>
+        
+    }
+
+    /// <summary>Same as <see cref="Efl.Gfx.IPath.AppendQuadraticTo"/> api only difference is that it uses the current control point to draw the bezier.</summary>
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     public void AppendSquadraticTo(double x, double y) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate(this.NativeHandle,x, y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_squadratic_to_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Adds a cubic Bezier curve between the current position and the given end point (x,y) using the control points specified by (ctrl_x0, ctrl_y0), and (ctrl_x1, ctrl_y1). After the path is drawn, the current position is updated to be at the end point of the path.</summary>
     /// <param name="ctrl_x0">X co-ordinate of 1st control point.</param>
     /// <param name="ctrl_y0">Y co-ordinate of 1st control point.</param>
@@ -306,19 +358,22 @@ sealed public  class IPathConcrete :
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     public void AppendCubicTo(double ctrl_x0, double ctrl_y0, double ctrl_x1, double ctrl_y1, double x, double y) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate(this.NativeHandle,ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_cubic_to_ptr.Value.Delegate(this.NativeHandle,ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                         }
-    /// <summary>Same as efl_gfx_path_append_cubic_to() api only difference is that it uses the current control point to draw the bezier.
-    /// See also <see cref="Efl.Gfx.IPath.AppendCubicTo"/>.</summary>
+        
+    }
+
+    /// <summary>Same as <see cref="Efl.Gfx.IPath.AppendCubicTo"/> api only difference is that it uses the current control point to draw the bezier.</summary>
     /// <param name="x">X co-ordinate of end point of the line.</param>
     /// <param name="y">Y co-ordinate of end point of the line.</param>
     /// <param name="ctrl_x">X co-ordinate of 2nd control point.</param>
     /// <param name="ctrl_y">Y co-ordinate of 2nd control point.</param>
     public void AppendScubicTo(double x, double y, double ctrl_x, double ctrl_y) {
-                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate(this.NativeHandle,x, y, ctrl_x, ctrl_y);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_scubic_to_ptr.Value.Delegate(this.NativeHandle,x, y, ctrl_x, ctrl_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Append an arc that connects from the current point int the point list to the given point (x,y). The arc is defined by the given radius in  x-direction (rx) and radius in y direction (ry).
     /// Use this api if you know the end point&apos;s of the arc otherwise use more convenient function <see cref="Efl.Gfx.IPath.AppendArc"/>.</summary>
     /// <param name="x">X co-ordinate of end point of the arc.</param>
@@ -329,9 +384,11 @@ sealed public  class IPathConcrete :
     /// <param name="large_arc">Defines whether to draw the larger arc or smaller arc joining two point.</param>
     /// <param name="sweep">Defines whether the arc will be drawn counter-clockwise or clockwise from current point to the end point taking into account the large_arc property.</param>
     public void AppendArcTo(double x, double y, double rx, double ry, double angle, bool large_arc, bool sweep) {
-                                                                                                                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate(this.NativeHandle,x, y, rx, ry, angle, large_arc, sweep);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_arc_to_ptr.Value.Delegate(this.NativeHandle,x, y, rx, ry, angle, large_arc, sweep);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                                         }
+        
+    }
+
     /// <summary>Append an arc that enclosed in the given rectangle (x, y, w, h). The angle is defined in counter clock wise , use -ve angle for clockwise arc.</summary>
     /// <param name="x">X co-ordinate of the rect.</param>
     /// <param name="y">Y co-ordinate of the rect.</param>
@@ -340,23 +397,29 @@ sealed public  class IPathConcrete :
     /// <param name="start_angle">Angle at which the arc will start</param>
     /// <param name="sweep_length">@ Length of the arc.</param>
     public void AppendArc(double x, double y, double w, double h, double start_angle, double sweep_length) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate(this.NativeHandle,x, y, w, h, start_angle, sweep_length);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_arc_ptr.Value.Delegate(this.NativeHandle,x, y, w, h, start_angle, sweep_length);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                         }
+        
+    }
+
     /// <summary>Closes the current subpath by drawing a line to the beginning of the subpath, automatically starting a new path. The current point of the new path is (0, 0).
     /// If the subpath does not contain any points, this function does nothing.</summary>
     public void CloseAppend() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_close_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Append a circle with given center and radius.</summary>
     /// <param name="x">X co-ordinate of the center of the circle.</param>
     /// <param name="y">Y co-ordinate of the center of the circle.</param>
     /// <param name="radius">Radius of the circle.</param>
     public void AppendCircle(double x, double y, double radius) {
-                                                                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate(this.NativeHandle,x, y, radius);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_circle_ptr.Value.Delegate(this.NativeHandle,x, y, radius);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Append the given rectangle with rounded corner to the path.
     /// The xr and yr arguments specify the radii of the ellipses defining the corners of the rounded rectangle.
     /// 
@@ -370,15 +433,19 @@ sealed public  class IPathConcrete :
     /// <param name="rx">The x radius of the rounded corner and should be in range [ 0 to w/2 ]</param>
     /// <param name="ry">The y radius of the rounded corner and should be in range [ 0 to h/2 ]</param>
     public void AppendRect(double x, double y, double w, double h, double rx, double ry) {
-                                                                                                                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate(this.NativeHandle,x, y, w, h, rx, ry);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_rect_ptr.Value.Delegate(this.NativeHandle,x, y, w, h, rx, ry);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                         }
+        
+    }
+
     /// <summary>Append SVG path data</summary>
     /// <param name="svg_path_data">SVG path data to append</param>
     public void AppendSvgPath(System.String svg_path_data) {
-                                 Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate(this.NativeHandle,svg_path_data);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_append_svg_path_ptr.Value.Delegate(this.NativeHandle,svg_path_data);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Creates intermediary path part-way between two paths
     /// Sets the points of the <c>obj</c> as the linear interpolation of the points in the <c>from</c> and <c>to</c> paths.  The path&apos;s x,y position and control point coordinates are likewise interpolated.
     /// 
@@ -388,31 +455,37 @@ sealed public  class IPathConcrete :
     /// <param name="pos_map">Position map in range 0.0 to 1.0</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
     public bool Interpolate(Efl.Object from, Efl.Object to, double pos_map) {
-                                                                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate(this.NativeHandle,from, to, pos_map);
+        var _ret_var = Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_interpolate_ptr.Value.Delegate(this.NativeHandle,from, to, pos_map);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Equal commands in object</summary>
     /// <param name="with">Object</param>
     /// <returns>True on success, <c>false</c> otherwise</returns>
     public bool EqualCommands(Efl.Object with) {
-                                 var _ret_var = Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate(this.NativeHandle,with);
+        var _ret_var = Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_equal_commands_ptr.Value.Delegate(this.NativeHandle,with);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Reserve path commands buffer in advance. If you know the count of path commands coming, you can reserve commands buffer in advance to avoid buffer growing job.</summary>
     /// <param name="cmd_count">Commands count to reserve</param>
     /// <param name="pts_count">Pointers count to reserve</param>
     public void Reserve(uint cmd_count, uint pts_count) {
-                                                         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate(this.NativeHandle,cmd_count, pts_count);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_reserve_ptr.Value.Delegate(this.NativeHandle,cmd_count, pts_count);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Request to update the path object.
     /// One path object may get appending several path calls (such as append_cubic, append_rect, etc) to construct the final path data. Here commit means all path data is prepared and now object could update its own internal status based on the last path information.</summary>
     public void Commit() {
-         Efl.Gfx.IPathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Gfx.PathConcrete.NativeMethods.efl_gfx_path_commit_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Set the list of commands and points to be used to create the content of path.</summary>
     /// <value>Command list</value>
     public (Efl.Gfx.PathCommandType, double) Path {
@@ -424,6 +497,7 @@ sealed public  class IPathConcrete :
         }
         set { SetPath( value.Item1,  value.Item2); }
     }
+
     /// <summary>Path length property</summary>
     public (uint, uint) Length {
         get {
@@ -433,6 +507,7 @@ sealed public  class IPathConcrete :
             return (_out_commands,_out_points);
         }
     }
+
     /// <summary>Current point coordinates</summary>
     public (double, double) Current {
         get {
@@ -442,6 +517,7 @@ sealed public  class IPathConcrete :
             return (_out_x,_out_y);
         }
     }
+
     /// <summary>Current control point coordinates</summary>
     public (double, double) CurrentCtrl {
         get {
@@ -451,18 +527,22 @@ sealed public  class IPathConcrete :
             return (_out_x,_out_y);
         }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IPathConcrete.efl_gfx_path_mixin_get();
+        return Efl.Gfx.PathConcrete.efl_gfx_path_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -707,13 +787,24 @@ sealed public  class IPathConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_path_commit"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_path_commit_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IPathConcrete.efl_gfx_path_mixin_get();
+            return Efl.Gfx.PathConcrete.efl_gfx_path_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -732,9 +823,9 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
-        double _out_points = default(double);
-                            
+                Efl.Gfx.PathCommandType _out_op = default(Efl.Gfx.PathCommandType);
+double _out_points = default(double);
+
                 try
                 {
                     ((IPath)ws.Target).GetPath(out _out_op, out _out_points);
@@ -746,8 +837,8 @@ sealed public  class IPathConcrete :
                 }
 
         op = Eina.PrimitiveConversion.ManagedToPointerAlloc(_out_op);
-        points = Eina.PrimitiveConversion.ManagedToPointerAlloc(_out_points);
-                        
+points = Eina.PrimitiveConversion.ManagedToPointerAlloc(_out_points);
+        
             }
             else
             {
@@ -771,9 +862,9 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(op);
-        var _in_points = Eina.PrimitiveConversion.PointerToManaged<double>(points);
-                                            
+                var _in_op = Eina.PrimitiveConversion.PointerToManaged<Efl.Gfx.PathCommandType>(op);
+var _in_points = Eina.PrimitiveConversion.PointerToManaged<double>(points);
+
                 try
                 {
                     ((IPath)ws.Target).SetPath(_in_op, _in_points);
@@ -784,7 +875,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -808,7 +899,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        commands = default(uint);        points = default(uint);                            
+                commands = default(uint);points = default(uint);
                 try
                 {
                     ((IPath)ws.Target).GetLength(out commands, out points);
@@ -819,7 +910,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -843,7 +934,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        x = default(double);        y = default(double);                            
+                x = default(double);y = default(double);
                 try
                 {
                     ((IPath)ws.Target).GetCurrent(out x, out y);
@@ -854,7 +945,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -878,7 +969,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        x = default(double);        y = default(double);                            
+                x = default(double);y = default(double);
                 try
                 {
                     ((IPath)ws.Target).GetCurrentCtrl(out x, out y);
@@ -889,7 +980,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -913,7 +1004,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IPath)ws.Target).CopyFrom(dup_from);
@@ -924,7 +1015,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -949,7 +1040,7 @@ sealed public  class IPathConcrete :
             if (ws != null)
             {
                 Eina.Rect _out_r = default(Eina.Rect);
-                    
+
                 try
                 {
                     ((IPath)ws.Target).GetBounds(out _out_r);
@@ -961,7 +1052,7 @@ sealed public  class IPathConcrete :
                 }
 
         r = _out_r;
-                
+        
             }
             else
             {
@@ -985,7 +1076,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IPath)ws.Target).Reset();
@@ -996,7 +1087,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1020,7 +1111,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendMoveTo(x, y);
@@ -1031,7 +1122,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1055,7 +1146,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendLineTo(x, y);
@@ -1066,7 +1157,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1090,7 +1181,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendQuadraticTo(x, y, ctrl_x, ctrl_y);
@@ -1101,7 +1192,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -1125,7 +1216,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendSquadraticTo(x, y);
@@ -1136,7 +1227,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1160,7 +1251,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendCubicTo(ctrl_x0, ctrl_y0, ctrl_x1, ctrl_y1, x, y);
@@ -1171,7 +1262,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                        
+                
             }
             else
             {
@@ -1195,7 +1286,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendScubicTo(x, y, ctrl_x, ctrl_y);
@@ -1206,7 +1297,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -1230,7 +1321,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                                                                    
+                
                 try
                 {
                     ((IPath)ws.Target).AppendArcTo(x, y, rx, ry, angle, large_arc, sweep);
@@ -1241,7 +1332,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                                        
+                
             }
             else
             {
@@ -1265,7 +1356,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendArc(x, y, w, h, start_angle, sweep_length);
@@ -1276,7 +1367,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                        
+                
             }
             else
             {
@@ -1300,7 +1391,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IPath)ws.Target).CloseAppend();
@@ -1311,7 +1402,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1335,7 +1426,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    
+                
                 try
                 {
                     ((IPath)ws.Target).AppendCircle(x, y, radius);
@@ -1346,7 +1437,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
@@ -1370,7 +1461,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).AppendRect(x, y, w, h, rx, ry);
@@ -1381,7 +1472,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                        
+                
             }
             else
             {
@@ -1405,7 +1496,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IPath)ws.Target).AppendSvgPath(svg_path_data);
@@ -1416,7 +1507,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1440,7 +1531,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IPath)ws.Target).Interpolate(from, to, pos_map);
@@ -1451,8 +1542,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1476,7 +1566,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IPath)ws.Target).EqualCommands(with);
@@ -1487,8 +1577,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1512,7 +1601,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IPath)ws.Target).Reserve(cmd_count, pts_count);
@@ -1523,7 +1612,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1547,7 +1636,7 @@ sealed public  class IPathConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IPath)ws.Target).Commit();
@@ -1558,7 +1647,7 @@ sealed public  class IPathConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1573,16 +1662,11 @@ sealed public  class IPathConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIPathConcrete_ExtensionMethods {
-    
-    
-    
-    
+public static class Efl_GfxPathConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

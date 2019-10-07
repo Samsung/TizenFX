@@ -12,44 +12,51 @@ namespace Ui {
 
 /// <summary>A common Internationalization interface for UI objects.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.II18nConcrete.NativeMethods]
+[Efl.Ui.I18nConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface II18n : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Whether this object should be mirrored.
-/// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-/// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
-bool GetMirrored();
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
+    bool GetMirrored();
+
     /// <summary>Whether this object should be mirrored.
-/// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-/// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
-void SetMirrored(bool rtl);
+    /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
+    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).<br/>The default value is <c>false</c>.</param>
+    void SetMirrored(bool rtl);
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
-/// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
-/// 
-/// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-/// <returns>Whether the widget uses automatic mirroring</returns>
-bool GetMirroredAutomatic();
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <returns>Whether the widget uses automatic mirroring</returns>
+    bool GetMirroredAutomatic();
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
-/// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
-/// 
-/// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-/// <param name="automatic">Whether the widget uses automatic mirroring</param>
-void SetMirroredAutomatic(bool automatic);
+    /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
+    /// 
+    /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
+    /// <param name="automatic">Whether the widget uses automatic mirroring<br/>The default value is <c>true</c>.</param>
+    void SetMirroredAutomatic(bool automatic);
+
     /// <summary>Gets the language for this object.</summary>
-/// <returns>The current language.</returns>
-System.String GetLanguage();
+    /// <returns>The current language.</returns>
+    System.String GetLanguage();
+
     /// <summary>Sets the language for this object.</summary>
-/// <param name="language">The current language.</param>
-void SetLanguage(System.String language);
-                            /// <summary>Whether this object should be mirrored.
+    /// <param name="language">The current language.</param>
+    void SetLanguage(System.String language);
+
+    /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
     bool Mirrored {
         get;
         set;
     }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
@@ -59,16 +66,19 @@ void SetLanguage(System.String language);
         get;
         set;
     }
+
     /// <summary>The (human) language for this object.</summary>
     /// <value>The current language.</value>
     System.String Language {
         get;
         set;
     }
+
 }
+
 /// <summary>A common Internationalization interface for UI objects.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class II18nConcrete :
+public sealed class I18nConcrete :
     Efl.Eo.EoWrapper
     , II18n
     
@@ -78,7 +88,7 @@ sealed public  class II18nConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(II18nConcrete))
+            if (((object)this).GetType() == typeof(I18nConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -92,66 +102,77 @@ sealed public  class II18nConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private II18nConcrete(ConstructingHandle ch) : base(ch)
+    private I18nConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_i18n_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="II18n"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private II18nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private I18nConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <returns><c>true</c> for RTL, <c>false</c> for LTR (default).</returns>
     public bool GetMirrored() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
-    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).</param>
+    /// <param name="rtl"><c>true</c> for RTL, <c>false</c> for LTR (default).<br/>The default value is <c>false</c>.</param>
     public void SetMirrored(bool rtl) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate(this.NativeHandle,rtl);
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_set_ptr.Value.Delegate(this.NativeHandle,rtl);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
     /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
     /// <returns>Whether the widget uses automatic mirroring</returns>
     public bool GetMirroredAutomatic() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_automatic_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
     /// This property may be implemented by high-level widgets (in Efl.Ui) but not by low-level widgets (in <see cref="Efl.Canvas.IScene"/>) as the configuration should affect only high-level widgets.</summary>
-    /// <param name="automatic">Whether the widget uses automatic mirroring</param>
+    /// <param name="automatic">Whether the widget uses automatic mirroring<br/>The default value is <c>true</c>.</param>
     public void SetMirroredAutomatic(bool automatic) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate(this.NativeHandle,automatic);
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_mirrored_automatic_set_ptr.Value.Delegate(this.NativeHandle,automatic);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Gets the language for this object.</summary>
     /// <returns>The current language.</returns>
     public System.String GetLanguage() {
-         var _ret_var = Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.I18nConcrete.NativeMethods.efl_ui_language_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sets the language for this object.</summary>
     /// <param name="language">The current language.</param>
     public void SetLanguage(System.String language) {
-                                 Efl.Ui.II18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate(this.NativeHandle,language);
+        Efl.Ui.I18nConcrete.NativeMethods.efl_ui_language_set_ptr.Value.Delegate(this.NativeHandle,language);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Whether this object should be mirrored.
     /// If mirrored, an object is in RTL (right to left) mode instead of LTR (left to right).</summary>
     /// <value><c>true</c> for RTL, <c>false</c> for LTR (default).</value>
@@ -159,6 +180,7 @@ sealed public  class II18nConcrete :
         get { return GetMirrored(); }
         set { SetMirrored(value); }
     }
+
     /// <summary>Whether the property <see cref="Efl.Ui.II18n.Mirrored"/> should be set automatically.
     /// If enabled, the system or application configuration will be used to set the value of <see cref="Efl.Ui.II18n.Mirrored"/>.
     /// 
@@ -168,24 +190,29 @@ sealed public  class II18nConcrete :
         get { return GetMirroredAutomatic(); }
         set { SetMirroredAutomatic(value); }
     }
+
     /// <summary>The (human) language for this object.</summary>
     /// <value>The current language.</value>
     public System.String Language {
         get { return GetLanguage(); }
         set { SetLanguage(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.II18nConcrete.efl_ui_i18n_interface_get();
+        return Efl.Ui.I18nConcrete.efl_ui_i18n_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -250,13 +277,24 @@ sealed public  class II18nConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_language_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_language_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.II18nConcrete.efl_ui_i18n_interface_get();
+            return Efl.Ui.I18nConcrete.efl_ui_i18n_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -275,7 +313,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((II18n)ws.Target).GetMirrored();
@@ -286,8 +324,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -311,7 +348,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((II18n)ws.Target).SetMirrored(rtl);
@@ -322,7 +359,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -346,7 +383,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((II18n)ws.Target).GetMirroredAutomatic();
@@ -357,8 +394,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -382,7 +418,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((II18n)ws.Target).SetMirroredAutomatic(automatic);
@@ -393,7 +429,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -417,7 +453,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((II18n)ws.Target).GetLanguage();
@@ -428,8 +464,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -453,7 +488,7 @@ sealed public  class II18nConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((II18n)ws.Target).SetLanguage(language);
@@ -464,7 +499,7 @@ sealed public  class II18nConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -479,12 +514,11 @@ sealed public  class II18nConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiII18nConcrete_ExtensionMethods {
+public static class Efl_UiI18nConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> Mirrored<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.II18n, T>magic = null) where T : Efl.Ui.II18n {
         return new Efl.BindableProperty<bool>("mirrored", fac);
     }

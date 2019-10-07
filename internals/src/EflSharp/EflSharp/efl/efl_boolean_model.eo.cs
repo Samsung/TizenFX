@@ -8,7 +8,8 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Efl boolean model class</summary>
+/// <summary><see cref="Efl.IModel"/> that efficiently stores boolean properties (they can only be <c>true</c> or <c>false</c>).
+/// Internally the values are stored in a compact bit buffer, taking up minimum memory. An example usage is <see cref="Efl.Ui.SelectModel"/>.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.BooleanModel.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -32,10 +33,11 @@ public class BooleanModel : Efl.CompositeModel
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_boolean_model_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="BooleanModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
+/// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+/// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public BooleanModel(Efl.Object parent
             , Efl.IModel model, uint? index = null) : base(efl_boolean_model_class_get(), parent)
     {
@@ -74,35 +76,49 @@ public class BooleanModel : Efl.CompositeModel
     {
     }
 
-    /// <summary>Add a new named boolean property with a defined default value.</summary>
-    virtual public void AddBoolean(System.String name, bool default_value) {
-                                                         Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, default_value);
+
+    /// <summary>Adds a new named boolean property with a default value.</summary>
+    /// <param name="name">The name of the new boolean property.</param>
+    /// <param name="default_value">Default value for new boolean property.</param>
+    public virtual void AddBoolean(System.String name, bool default_value) {
+        Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, default_value);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Delete an existing named boolean property</summary>
-    virtual public void DelBoolean(System.String name) {
-                                 Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
+        
+    }
+
+    /// <summary>Deletes an existing named boolean property.</summary>
+    /// <param name="name">Name of the property to be deleted.</param>
+    public virtual void DelBoolean(System.String name) {
+        Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get an iterator that will quickly find all the index with the requested value for a specific boolean.</summary>
+        
+    }
+
+    /// <summary>Gets an iterator that will quickly find all the indices with the requested value for a specific property.</summary>
+    /// <param name="name">The name of the property to examine.</param>
+    /// <param name="request">The value to look for.</param>
     /// <returns>The iterator that is valid until any change is made on the model.</returns>
-    virtual public Eina.Iterator<ulong> GetBooleanIterator(System.String name, bool request) {
-                                                         var _ret_var = Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_iterator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, request);
+    public virtual Eina.Iterator<ulong> GetBooleanIterator(System.String name, bool request) {
+        var _ret_var = Efl.BooleanModel.NativeMethods.efl_boolean_model_boolean_iterator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, request);
         Eina.Error.RaiseIfUnhandledException();
-                                        return new Eina.Iterator<ulong>(_ret_var, false);
- }
+        return new Eina.Iterator<ulong>(_ret_var, false);
+
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.BooleanModel.efl_boolean_model_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.CompositeModel.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -137,9 +153,20 @@ public class BooleanModel : Efl.CompositeModel
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_boolean_model_boolean_iterator_get"), func = Marshal.GetFunctionPointerForDelegate(efl_boolean_model_boolean_iterator_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -163,7 +190,7 @@ public class BooleanModel : Efl.CompositeModel
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((BooleanModel)ws.Target).AddBoolean(name, default_value);
@@ -174,7 +201,7 @@ public class BooleanModel : Efl.CompositeModel
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -198,7 +225,7 @@ public class BooleanModel : Efl.CompositeModel
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((BooleanModel)ws.Target).DelBoolean(name);
@@ -209,7 +236,7 @@ public class BooleanModel : Efl.CompositeModel
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -233,7 +260,7 @@ public class BooleanModel : Efl.CompositeModel
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            Eina.Iterator<ulong> _ret_var = default(Eina.Iterator<ulong>);
+                Eina.Iterator<ulong> _ret_var = default(Eina.Iterator<ulong>);
                 try
                 {
                     _ret_var = ((BooleanModel)ws.Target).GetBooleanIterator(name, request);
@@ -244,8 +271,7 @@ public class BooleanModel : Efl.CompositeModel
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {

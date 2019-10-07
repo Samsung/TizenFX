@@ -10,8 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Grid Default Item class.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+/// <summary>Default Item class to be used inside <see cref="Efl.Ui.Grid"/> containers. The <c>icon</c> part is in the middle, the <c>extra</c> part overlaps it on its upper-right corner. The <c>text</c> part is centered below the <c>icon</c>. Theming can change this arrangement.</summary>
 [Efl.Ui.GridDefaultItem.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class GridDefaultItem : Efl.Ui.DefaultItem
@@ -34,9 +33,10 @@ public class GridDefaultItem : Efl.Ui.DefaultItem
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_grid_default_item_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GridDefaultItem"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public GridDefaultItem(Efl.Object parent
             , System.String style = null) : base(efl_ui_grid_default_item_class_get(), parent)
     {
@@ -70,22 +70,35 @@ public class GridDefaultItem : Efl.Ui.DefaultItem
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.GridDefaultItem.efl_ui_grid_default_item_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.DefaultItem.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -100,7 +113,6 @@ public class GridDefaultItem : Efl.Ui.DefaultItem
 }
 }
 }
-
 }
 
 #if EFL_BETA

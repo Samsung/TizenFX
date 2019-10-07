@@ -11,7 +11,6 @@ namespace Efl {
 namespace Ui {
 
 /// <summary>Elementary layout internal part background class</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.LayoutPartBg.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class LayoutPartBg : Efl.Ui.WidgetPartBg
@@ -34,6 +33,7 @@ public class LayoutPartBg : Efl.Ui.WidgetPartBg
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_layout_part_bg_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="LayoutPartBg"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public LayoutPartBg(Efl.Object parent= null
@@ -64,22 +64,35 @@ public class LayoutPartBg : Efl.Ui.WidgetPartBg
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.LayoutPartBg.efl_ui_layout_part_bg_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.WidgetPartBg.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -94,7 +107,6 @@ public class LayoutPartBg : Efl.Ui.WidgetPartBg
 }
 }
 }
-
 }
 
 #if EFL_BETA

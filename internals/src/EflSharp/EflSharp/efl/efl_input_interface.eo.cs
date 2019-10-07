@@ -18,184 +18,222 @@ namespace Input {
 /// A &quot;finger&quot; refers to a single point of input, usually in an absolute coordinates input device, and that can support more than one input position at at time (think multi-touch screens). The first finger (id 0) is sent along with a pointer event, so be careful to not handle those events twice. Note that if the input device can support &quot;hovering&quot;, it is entirely possible to receive move events without down coming first.
 /// 
 /// A &quot;key&quot; is a key press from a keyboard or equivalent type of input device. Long, repeated, key presses will always happen like this: down...up,down...up,down...up (not down...up or down...down...down...up).</summary>
-[Efl.Input.IInterfaceConcrete.NativeMethods]
+/// <since_tizen> 6 </since_tizen>
+[Efl.Input.InterfaceConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IInterface : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Check if input events from a given seat is enabled.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="seat">The seat to act on.</param>
-/// <returns><c>true</c> to enable events for a seat or <c>false</c> otherwise.</returns>
-bool GetSeatEventFilter(Efl.Input.Device seat);
-    /// <summary>Add or remove a given seat to the filter list. If the filter list is empty this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is in the list.
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="seat">The seat to act on.</param>
-/// <param name="enable"><c>true</c> to enable events for a seat or <c>false</c> otherwise.</param>
-void SetSeatEventFilter(Efl.Input.Device seat, bool enable);
-            /// <summary>Main pointer move (current and previous positions are known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerMoveEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerMoveEvt_Args> PointerMoveEvt;
+    /// <summary>Whether input events from a given seat are enabled. If the filter list is empty (no seat is disabled) this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is not in the list.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="seat">The seat to act on.</param>
+    /// <returns><c>true</c> to enable events for a seat or <c>false</c> otherwise.</returns>
+    bool GetSeatEventFilter(Efl.Input.Device seat);
+
+    /// <summary>Whether input events from a given seat are enabled. If the filter list is empty (no seat is disabled) this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is not in the list.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="seat">The seat to act on.</param>
+    /// <param name="enable"><c>true</c> to enable events for a seat or <c>false</c> otherwise.</param>
+    void SetSeatEventFilter(Efl.Input.Device seat, bool enable);
+
+    /// <summary>Main pointer move (current and previous positions are known).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerMoveEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerMoveEventArgs> PointerMoveEvent;
     /// <summary>Main pointer button pressed (button id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerDownEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerDownEvt_Args> PointerDownEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerDownEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerDownEventArgs> PointerDownEvent;
     /// <summary>Main pointer button released (button id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerUpEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerUpEvt_Args> PointerUpEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerUpEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerUpEventArgs> PointerUpEvent;
     /// <summary>Main pointer button press was cancelled (button id is known). This can happen in rare cases when the window manager passes the focus to a more urgent window, for instance. You probably don&apos;t need to listen to this event, as it will be accompanied by an up event.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerCancelEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerCancelEvt_Args> PointerCancelEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerCancelEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerCancelEventArgs> PointerCancelEvent;
     /// <summary>Pointer entered a window or a widget.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerInEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerInEvt_Args> PointerInEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerInEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerInEventArgs> PointerInEvent;
     /// <summary>Pointer left a window or a widget.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerOutEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerOutEvt_Args> PointerOutEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerOutEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerOutEventArgs> PointerOutEvent;
     /// <summary>Mouse wheel event.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerWheelEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerWheelEvt_Args> PointerWheelEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerWheelEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerWheelEventArgs> PointerWheelEvent;
     /// <summary>Pen or other axis event update.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerAxisEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfacePointerAxisEvt_Args> PointerAxisEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerAxisEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfacePointerAxisEventArgs> PointerAxisEvent;
     /// <summary>Finger moved (current and previous positions are known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerMoveEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceFingerMoveEvt_Args> FingerMoveEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerMoveEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceFingerMoveEventArgs> FingerMoveEvent;
     /// <summary>Finger pressed (finger id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerDownEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceFingerDownEvt_Args> FingerDownEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerDownEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceFingerDownEventArgs> FingerDownEvent;
     /// <summary>Finger released (finger id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerUpEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceFingerUpEvt_Args> FingerUpEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerUpEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceFingerUpEventArgs> FingerUpEvent;
     /// <summary>Keyboard key press.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceKeyDownEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceKeyDownEvt_Args> KeyDownEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceKeyDownEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceKeyDownEventArgs> KeyDownEvent;
     /// <summary>Keyboard key release.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceKeyUpEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceKeyUpEvt_Args> KeyUpEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceKeyUpEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceKeyUpEventArgs> KeyUpEvent;
     /// <summary>All input events are on hold or resumed.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceHoldEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceHoldEvt_Args> HoldEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceHoldEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceHoldEventArgs> HoldEvent;
     /// <summary>A focus in event.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFocusInEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceFocusInEvt_Args> FocusInEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFocusInEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceFocusInEventArgs> FocusInEvent;
     /// <summary>A focus out event.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFocusOutEvt_Args"/></value>
-    event EventHandler<Efl.Input.IInterfaceFocusOutEvt_Args> FocusOutEvt;
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFocusOutEventArgs"/></value>
+    event EventHandler<Efl.Input.InterfaceFocusOutEventArgs> FocusOutEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerMoveEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerMoveEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerMoveEvt_Args : EventArgs {
+public class InterfacePointerMoveEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Main pointer move (current and previous positions are known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerDownEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerDownEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerDownEvt_Args : EventArgs {
+public class InterfacePointerDownEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Main pointer button pressed (button id is known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerUpEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerUpEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerUpEvt_Args : EventArgs {
+public class InterfacePointerUpEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Main pointer button released (button id is known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerCancelEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerCancelEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerCancelEvt_Args : EventArgs {
+public class InterfacePointerCancelEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Main pointer button press was cancelled (button id is known). This can happen in rare cases when the window manager passes the focus to a more urgent window, for instance. You probably don&apos;t need to listen to this event, as it will be accompanied by an up event.</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerInEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerInEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerInEvt_Args : EventArgs {
+public class InterfacePointerInEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Pointer entered a window or a widget.</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerOutEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerOutEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerOutEvt_Args : EventArgs {
+public class InterfacePointerOutEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Pointer left a window or a widget.</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerWheelEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerWheelEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerWheelEvt_Args : EventArgs {
+public class InterfacePointerWheelEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Mouse wheel event.</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerAxisEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.PointerAxisEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfacePointerAxisEvt_Args : EventArgs {
+public class InterfacePointerAxisEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Pen or other axis event update.</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerMoveEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerMoveEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceFingerMoveEvt_Args : EventArgs {
+public class InterfaceFingerMoveEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Finger moved (current and previous positions are known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerDownEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerDownEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceFingerDownEvt_Args : EventArgs {
+public class InterfaceFingerDownEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Finger pressed (finger id is known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerUpEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FingerUpEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceFingerUpEvt_Args : EventArgs {
+public class InterfaceFingerUpEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Finger released (finger id is known).</value>
     public Efl.Input.Pointer arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyDownEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyDownEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceKeyDownEvt_Args : EventArgs {
+public class InterfaceKeyDownEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Keyboard key press.</value>
     public Efl.Input.Key arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyUpEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.KeyUpEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceKeyUpEvt_Args : EventArgs {
+public class InterfaceKeyUpEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Keyboard key release.</value>
     public Efl.Input.Key arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.HoldEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.HoldEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceHoldEvt_Args : EventArgs {
+public class InterfaceHoldEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>All input events are on hold or resumed.</value>
     public Efl.Input.Hold arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusInEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusInEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceFocusInEvt_Args : EventArgs {
+public class InterfaceFocusInEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A focus in event.</value>
     public Efl.Input.Focus arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusOutEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Input.IInterface.FocusOutEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IInterfaceFocusOutEvt_Args : EventArgs {
+public class InterfaceFocusOutEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>A focus out event.</value>
     public Efl.Input.Focus arg { get; set; }
 }
+
 /// <summary>An object implementing this interface can send pointer events.
 /// Windows and canvas objects may send input events.
 /// 
@@ -204,7 +242,8 @@ public class IInterfaceFocusOutEvt_Args : EventArgs {
 /// A &quot;finger&quot; refers to a single point of input, usually in an absolute coordinates input device, and that can support more than one input position at at time (think multi-touch screens). The first finger (id 0) is sent along with a pointer event, so be careful to not handle those events twice. Note that if the input device can support &quot;hovering&quot;, it is entirely possible to receive move events without down coming first.
 /// 
 /// A &quot;key&quot; is a key press from a keyboard or equivalent type of input device. Long, repeated, key presses will always happen like this: down...up,down...up,down...up (not down...up or down...down...down...up).</summary>
-sealed public  class IInterfaceConcrete :
+/// <since_tizen> 6 </since_tizen>
+public sealed class InterfaceConcrete :
     Efl.Eo.EoWrapper
     , IInterface
     
@@ -214,7 +253,7 @@ sealed public  class IInterfaceConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IInterfaceConcrete))
+            if (((object)this).GetType() == typeof(InterfaceConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -228,22 +267,24 @@ sealed public  class IInterfaceConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IInterfaceConcrete(ConstructingHandle ch) : base(ch)
+    private InterfaceConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_input_interface_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IInterface"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IInterfaceConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private InterfaceConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Main pointer move (current and previous positions are known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerMoveEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerMoveEvt_Args> PointerMoveEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerMoveEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerMoveEventArgs> PointerMoveEvent
     {
         add
         {
@@ -254,7 +295,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerMoveEvt_Args args = new Efl.Input.IInterfacePointerMoveEvt_Args();
+                        Efl.Input.InterfacePointerMoveEventArgs args = new Efl.Input.InterfacePointerMoveEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -282,8 +323,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerMoveEvt.</summary>
-    public void OnPointerMoveEvt(Efl.Input.IInterfacePointerMoveEvt_Args e)
+
+    /// <summary>Method to raise event PointerMoveEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerMoveEvent(Efl.Input.InterfacePointerMoveEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_MOVE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -296,9 +339,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Main pointer button pressed (button id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerDownEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerDownEvt_Args> PointerDownEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerDownEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerDownEventArgs> PointerDownEvent
     {
         add
         {
@@ -309,7 +354,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerDownEvt_Args args = new Efl.Input.IInterfacePointerDownEvt_Args();
+                        Efl.Input.InterfacePointerDownEventArgs args = new Efl.Input.InterfacePointerDownEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -337,8 +382,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerDownEvt.</summary>
-    public void OnPointerDownEvt(Efl.Input.IInterfacePointerDownEvt_Args e)
+
+    /// <summary>Method to raise event PointerDownEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerDownEvent(Efl.Input.InterfacePointerDownEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_DOWN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -351,9 +398,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Main pointer button released (button id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerUpEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerUpEvt_Args> PointerUpEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerUpEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerUpEventArgs> PointerUpEvent
     {
         add
         {
@@ -364,7 +413,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerUpEvt_Args args = new Efl.Input.IInterfacePointerUpEvt_Args();
+                        Efl.Input.InterfacePointerUpEventArgs args = new Efl.Input.InterfacePointerUpEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -392,8 +441,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerUpEvt.</summary>
-    public void OnPointerUpEvt(Efl.Input.IInterfacePointerUpEvt_Args e)
+
+    /// <summary>Method to raise event PointerUpEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerUpEvent(Efl.Input.InterfacePointerUpEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_UP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -406,9 +457,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Main pointer button press was cancelled (button id is known). This can happen in rare cases when the window manager passes the focus to a more urgent window, for instance. You probably don&apos;t need to listen to this event, as it will be accompanied by an up event.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerCancelEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerCancelEvt_Args> PointerCancelEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerCancelEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerCancelEventArgs> PointerCancelEvent
     {
         add
         {
@@ -419,7 +472,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerCancelEvt_Args args = new Efl.Input.IInterfacePointerCancelEvt_Args();
+                        Efl.Input.InterfacePointerCancelEventArgs args = new Efl.Input.InterfacePointerCancelEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -447,8 +500,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerCancelEvt.</summary>
-    public void OnPointerCancelEvt(Efl.Input.IInterfacePointerCancelEvt_Args e)
+
+    /// <summary>Method to raise event PointerCancelEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerCancelEvent(Efl.Input.InterfacePointerCancelEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_CANCEL";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -461,9 +516,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Pointer entered a window or a widget.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerInEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerInEvt_Args> PointerInEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerInEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerInEventArgs> PointerInEvent
     {
         add
         {
@@ -474,7 +531,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerInEvt_Args args = new Efl.Input.IInterfacePointerInEvt_Args();
+                        Efl.Input.InterfacePointerInEventArgs args = new Efl.Input.InterfacePointerInEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -502,8 +559,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerInEvt.</summary>
-    public void OnPointerInEvt(Efl.Input.IInterfacePointerInEvt_Args e)
+
+    /// <summary>Method to raise event PointerInEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerInEvent(Efl.Input.InterfacePointerInEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_IN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -516,9 +575,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Pointer left a window or a widget.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerOutEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerOutEvt_Args> PointerOutEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerOutEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerOutEventArgs> PointerOutEvent
     {
         add
         {
@@ -529,7 +590,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerOutEvt_Args args = new Efl.Input.IInterfacePointerOutEvt_Args();
+                        Efl.Input.InterfacePointerOutEventArgs args = new Efl.Input.InterfacePointerOutEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -557,8 +618,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerOutEvt.</summary>
-    public void OnPointerOutEvt(Efl.Input.IInterfacePointerOutEvt_Args e)
+
+    /// <summary>Method to raise event PointerOutEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerOutEvent(Efl.Input.InterfacePointerOutEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_OUT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -571,9 +634,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Mouse wheel event.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerWheelEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerWheelEvt_Args> PointerWheelEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerWheelEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerWheelEventArgs> PointerWheelEvent
     {
         add
         {
@@ -584,7 +649,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerWheelEvt_Args args = new Efl.Input.IInterfacePointerWheelEvt_Args();
+                        Efl.Input.InterfacePointerWheelEventArgs args = new Efl.Input.InterfacePointerWheelEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -612,8 +677,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerWheelEvt.</summary>
-    public void OnPointerWheelEvt(Efl.Input.IInterfacePointerWheelEvt_Args e)
+
+    /// <summary>Method to raise event PointerWheelEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerWheelEvent(Efl.Input.InterfacePointerWheelEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_WHEEL";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -626,9 +693,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Pen or other axis event update.</summary>
-    /// <value><see cref="Efl.Input.IInterfacePointerAxisEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfacePointerAxisEvt_Args> PointerAxisEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfacePointerAxisEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfacePointerAxisEventArgs> PointerAxisEvent
     {
         add
         {
@@ -639,7 +708,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfacePointerAxisEvt_Args args = new Efl.Input.IInterfacePointerAxisEvt_Args();
+                        Efl.Input.InterfacePointerAxisEventArgs args = new Efl.Input.InterfacePointerAxisEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -667,8 +736,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event PointerAxisEvt.</summary>
-    public void OnPointerAxisEvt(Efl.Input.IInterfacePointerAxisEvt_Args e)
+
+    /// <summary>Method to raise event PointerAxisEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnPointerAxisEvent(Efl.Input.InterfacePointerAxisEventArgs e)
     {
         var key = "_EFL_EVENT_POINTER_AXIS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -681,9 +752,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Finger moved (current and previous positions are known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerMoveEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceFingerMoveEvt_Args> FingerMoveEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerMoveEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceFingerMoveEventArgs> FingerMoveEvent
     {
         add
         {
@@ -694,7 +767,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceFingerMoveEvt_Args args = new Efl.Input.IInterfaceFingerMoveEvt_Args();
+                        Efl.Input.InterfaceFingerMoveEventArgs args = new Efl.Input.InterfaceFingerMoveEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -722,8 +795,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FingerMoveEvt.</summary>
-    public void OnFingerMoveEvt(Efl.Input.IInterfaceFingerMoveEvt_Args e)
+
+    /// <summary>Method to raise event FingerMoveEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFingerMoveEvent(Efl.Input.InterfaceFingerMoveEventArgs e)
     {
         var key = "_EFL_EVENT_FINGER_MOVE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -736,9 +811,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Finger pressed (finger id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerDownEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceFingerDownEvt_Args> FingerDownEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerDownEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceFingerDownEventArgs> FingerDownEvent
     {
         add
         {
@@ -749,7 +826,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceFingerDownEvt_Args args = new Efl.Input.IInterfaceFingerDownEvt_Args();
+                        Efl.Input.InterfaceFingerDownEventArgs args = new Efl.Input.InterfaceFingerDownEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -777,8 +854,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FingerDownEvt.</summary>
-    public void OnFingerDownEvt(Efl.Input.IInterfaceFingerDownEvt_Args e)
+
+    /// <summary>Method to raise event FingerDownEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFingerDownEvent(Efl.Input.InterfaceFingerDownEventArgs e)
     {
         var key = "_EFL_EVENT_FINGER_DOWN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -791,9 +870,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Finger released (finger id is known).</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFingerUpEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceFingerUpEvt_Args> FingerUpEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFingerUpEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceFingerUpEventArgs> FingerUpEvent
     {
         add
         {
@@ -804,7 +885,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceFingerUpEvt_Args args = new Efl.Input.IInterfaceFingerUpEvt_Args();
+                        Efl.Input.InterfaceFingerUpEventArgs args = new Efl.Input.InterfaceFingerUpEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Pointer);
                         try
                         {
@@ -832,8 +913,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FingerUpEvt.</summary>
-    public void OnFingerUpEvt(Efl.Input.IInterfaceFingerUpEvt_Args e)
+
+    /// <summary>Method to raise event FingerUpEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFingerUpEvent(Efl.Input.InterfaceFingerUpEventArgs e)
     {
         var key = "_EFL_EVENT_FINGER_UP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -846,9 +929,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Keyboard key press.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceKeyDownEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceKeyDownEvt_Args> KeyDownEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceKeyDownEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceKeyDownEventArgs> KeyDownEvent
     {
         add
         {
@@ -859,7 +944,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceKeyDownEvt_Args args = new Efl.Input.IInterfaceKeyDownEvt_Args();
+                        Efl.Input.InterfaceKeyDownEventArgs args = new Efl.Input.InterfaceKeyDownEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Key);
                         try
                         {
@@ -887,8 +972,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event KeyDownEvt.</summary>
-    public void OnKeyDownEvt(Efl.Input.IInterfaceKeyDownEvt_Args e)
+
+    /// <summary>Method to raise event KeyDownEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnKeyDownEvent(Efl.Input.InterfaceKeyDownEventArgs e)
     {
         var key = "_EFL_EVENT_KEY_DOWN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -901,9 +988,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Keyboard key release.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceKeyUpEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceKeyUpEvt_Args> KeyUpEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceKeyUpEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceKeyUpEventArgs> KeyUpEvent
     {
         add
         {
@@ -914,7 +1003,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceKeyUpEvt_Args args = new Efl.Input.IInterfaceKeyUpEvt_Args();
+                        Efl.Input.InterfaceKeyUpEventArgs args = new Efl.Input.InterfaceKeyUpEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Key);
                         try
                         {
@@ -942,8 +1031,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event KeyUpEvt.</summary>
-    public void OnKeyUpEvt(Efl.Input.IInterfaceKeyUpEvt_Args e)
+
+    /// <summary>Method to raise event KeyUpEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnKeyUpEvent(Efl.Input.InterfaceKeyUpEventArgs e)
     {
         var key = "_EFL_EVENT_KEY_UP";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -956,9 +1047,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>All input events are on hold or resumed.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceHoldEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceHoldEvt_Args> HoldEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceHoldEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceHoldEventArgs> HoldEvent
     {
         add
         {
@@ -969,7 +1062,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceHoldEvt_Args args = new Efl.Input.IInterfaceHoldEvt_Args();
+                        Efl.Input.InterfaceHoldEventArgs args = new Efl.Input.InterfaceHoldEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Hold);
                         try
                         {
@@ -997,8 +1090,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event HoldEvt.</summary>
-    public void OnHoldEvt(Efl.Input.IInterfaceHoldEvt_Args e)
+
+    /// <summary>Method to raise event HoldEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnHoldEvent(Efl.Input.InterfaceHoldEventArgs e)
     {
         var key = "_EFL_EVENT_HOLD";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -1011,9 +1106,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>A focus in event.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFocusInEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceFocusInEvt_Args> FocusInEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFocusInEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceFocusInEventArgs> FocusInEvent
     {
         add
         {
@@ -1024,7 +1121,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceFocusInEvt_Args args = new Efl.Input.IInterfaceFocusInEvt_Args();
+                        Efl.Input.InterfaceFocusInEventArgs args = new Efl.Input.InterfaceFocusInEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -1052,8 +1149,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusInEvt.</summary>
-    public void OnFocusInEvt(Efl.Input.IInterfaceFocusInEvt_Args e)
+
+    /// <summary>Method to raise event FocusInEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusInEvent(Efl.Input.InterfaceFocusInEventArgs e)
     {
         var key = "_EFL_EVENT_FOCUS_IN";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -1066,9 +1165,11 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>A focus out event.</summary>
-    /// <value><see cref="Efl.Input.IInterfaceFocusOutEvt_Args"/></value>
-    public event EventHandler<Efl.Input.IInterfaceFocusOutEvt_Args> FocusOutEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Input.InterfaceFocusOutEventArgs"/></value>
+    public event EventHandler<Efl.Input.InterfaceFocusOutEventArgs> FocusOutEvent
     {
         add
         {
@@ -1079,7 +1180,7 @@ sealed public  class IInterfaceConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Input.IInterfaceFocusOutEvt_Args args = new Efl.Input.IInterfaceFocusOutEvt_Args();
+                        Efl.Input.InterfaceFocusOutEventArgs args = new Efl.Input.InterfaceFocusOutEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Input.Focus);
                         try
                         {
@@ -1107,8 +1208,10 @@ sealed public  class IInterfaceConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FocusOutEvt.</summary>
-    public void OnFocusOutEvt(Efl.Input.IInterfaceFocusOutEvt_Args e)
+
+    /// <summary>Method to raise event FocusOutEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFocusOutEvent(Efl.Input.InterfaceFocusOutEventArgs e)
     {
         var key = "_EFL_EVENT_FOCUS_OUT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Evas, key);
@@ -1121,37 +1224,48 @@ sealed public  class IInterfaceConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Check if input events from a given seat is enabled.
+
+
+#pragma warning disable CS0628
+    /// <summary>Whether input events from a given seat are enabled. If the filter list is empty (no seat is disabled) this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is not in the list.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="seat">The seat to act on.</param>
     /// <returns><c>true</c> to enable events for a seat or <c>false</c> otherwise.</returns>
     public bool GetSeatEventFilter(Efl.Input.Device seat) {
-                                 var _ret_var = Efl.Input.IInterfaceConcrete.NativeMethods.efl_input_seat_event_filter_get_ptr.Value.Delegate(this.NativeHandle,seat);
+        var _ret_var = Efl.Input.InterfaceConcrete.NativeMethods.efl_input_seat_event_filter_get_ptr.Value.Delegate(this.NativeHandle,seat);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Add or remove a given seat to the filter list. If the filter list is empty this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is in the list.
+        return _ret_var;
+    }
+
+    /// <summary>Whether input events from a given seat are enabled. If the filter list is empty (no seat is disabled) this object will report mouse, keyboard and focus events from any seat, otherwise those events will only be reported if the event comes from a seat that is not in the list.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="seat">The seat to act on.</param>
     /// <param name="enable"><c>true</c> to enable events for a seat or <c>false</c> otherwise.</param>
     public void SetSeatEventFilter(Efl.Input.Device seat, bool enable) {
-                                                         Efl.Input.IInterfaceConcrete.NativeMethods.efl_input_seat_event_filter_set_ptr.Value.Delegate(this.NativeHandle,seat, enable);
+        Efl.Input.InterfaceConcrete.NativeMethods.efl_input_seat_event_filter_set_ptr.Value.Delegate(this.NativeHandle,seat, enable);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Input.IInterfaceConcrete.efl_input_interface_interface_get();
+        return Efl.Input.InterfaceConcrete.efl_input_interface_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -1176,13 +1290,24 @@ sealed public  class IInterfaceConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_input_seat_event_filter_set"), func = Marshal.GetFunctionPointerForDelegate(efl_input_seat_event_filter_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Input.IInterfaceConcrete.efl_input_interface_interface_get();
+            return Efl.Input.InterfaceConcrete.efl_input_interface_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -1201,7 +1326,7 @@ sealed public  class IInterfaceConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IInterface)ws.Target).GetSeatEventFilter(seat);
@@ -1212,8 +1337,7 @@ sealed public  class IInterfaceConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1237,7 +1361,7 @@ sealed public  class IInterfaceConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IInterface)ws.Target).SetSeatEventFilter(seat, enable);
@@ -1248,7 +1372,7 @@ sealed public  class IInterfaceConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1263,13 +1387,11 @@ sealed public  class IInterfaceConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_InputIInterfaceConcrete_ExtensionMethods {
-    
+public static class Efl_InputInterfaceConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

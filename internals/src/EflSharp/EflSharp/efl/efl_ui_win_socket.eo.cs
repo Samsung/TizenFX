@@ -35,12 +35,13 @@ public class WinSocket : Efl.Ui.Win
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_win_socket_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="WinSocket"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
-    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
-    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
-    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
+/// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
+/// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
     public WinSocket(Efl.Object parent
             , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_socket_class_get(), parent)
     {
@@ -89,28 +90,32 @@ public class WinSocket : Efl.Ui.Win
     {
     }
 
+
     /// <summary>Create a socket to provide the service for Plug widget.</summary>
     /// <param name="svcname">The name of the service to be advertised. Ensure that it is unique (when combined with <c>svcnum</c>) otherwise creation may fail.</param>
     /// <param name="svcnum">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
     /// <param name="svcsys">A boolean which when true specifies the creation of a system-wide service to which all users can connect, otherwise the service is private to the user id that created it.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool SocketListen(System.String svcname, int svcnum, bool svcsys) {
-                                                                                 var _ret_var = Efl.Ui.WinSocket.NativeMethods.efl_ui_win_socket_listen_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svcname, svcnum, svcsys);
+    public virtual bool SocketListen(System.String svcname, int svcnum, bool svcsys) {
+        var _ret_var = Efl.Ui.WinSocket.NativeMethods.efl_ui_win_socket_listen_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),svcname, svcnum, svcsys);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.WinSocket.efl_ui_win_socket_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Win.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -125,9 +130,20 @@ public class WinSocket : Efl.Ui.Win
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_win_socket_listen"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_win_socket_listen_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -151,7 +167,7 @@ public class WinSocket : Efl.Ui.Win
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((WinSocket)ws.Target).SocketListen(svcname, svcnum, svcsys);
@@ -162,8 +178,7 @@ public class WinSocket : Efl.Ui.Win
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -178,7 +193,6 @@ public class WinSocket : Efl.Ui.Win
 }
 }
 }
-
 }
 
 #if EFL_BETA

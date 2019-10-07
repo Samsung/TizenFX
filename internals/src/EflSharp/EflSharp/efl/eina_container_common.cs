@@ -494,7 +494,7 @@ public class EflObjectElementTraits<T> : IBaseElementTraits<T>
 
 public abstract class PrimitiveElementTraits<T>
 {
-    private Eina_Compare_Cb dlgt = null;
+    private Eina.Callbacks.EinaCompareCb dlgt = null;
 
     public IntPtr ManagedToNativeAlloc(T man)
     {
@@ -571,7 +571,7 @@ public abstract class PrimitiveElementTraits<T>
     {
         if (dlgt == null)
         {
-            dlgt = new Eina_Compare_Cb(PrimitiveCompareCb);
+            dlgt = new Eina.Callbacks.EinaCompareCb(PrimitiveCompareCb);
         }
 
         return Marshal.GetFunctionPointerForDelegate(dlgt);

@@ -13,58 +13,58 @@ namespace Io {
 /// <summary>Generic interface for objects that can write data from a provided memory.
 /// This interface allows external objects to transparently write data to this object and be notified whether more data can be written or if it&apos;s reached capacity.
 /// 
-/// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.
-/// (Since EFL 1.22)</summary>
-[Efl.Io.IWriterConcrete.NativeMethods]
+/// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Io.WriterConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IWriter : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
-bool GetCanWrite();
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <param name="can_write"><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</param>
-void SetCanWrite(bool can_write);
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
+    bool GetCanWrite();
+
     /// <summary>Writes data from a pre-populated buffer.
-/// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
-/// 
-/// You can understand this method as write(2) libc function.
-/// (Since EFL 1.22)</summary>
-/// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
-/// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
-/// <returns>0 on succeed, a mapping of errno otherwise</returns>
-Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining);
-                /// <summary>Notifies can_write property changed.
+    /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
+    /// 
+    /// You can understand this method as write(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
+    /// <param name="remaining">Convenience to output the remaining parts of slice that were not written. If the full slice was written, this will be a slice of zero-length.</param>
+    /// <returns>0 on succeed, a mapping of errno otherwise</returns>
+    Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining);
+
+    /// <summary>Notifies can_write property changed.
     /// If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>true</c> there is data to <see cref="Efl.Io.IWriter.Write"/> without blocking/error. If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>false</c>, <see cref="Efl.Io.IWriter.Write"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
-    event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt;
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.WriterCanWriteChangedEventArgs"/></value>
+    event EventHandler<Efl.Io.WriterCanWriteChangedEventArgs> CanWriteChangedEvent;
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     bool CanWrite {
         get;
-        set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Io.IWriter.CanWriteChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Io.IWriter.CanWriteChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IWriterCanWriteChangedEvt_Args : EventArgs {
+public class WriterCanWriteChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Notifies can_write property changed.</value>
     public bool arg { get; set; }
 }
+
 /// <summary>Generic interface for objects that can write data from a provided memory.
 /// This interface allows external objects to transparently write data to this object and be notified whether more data can be written or if it&apos;s reached capacity.
 /// 
-/// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.
-/// (Since EFL 1.22)</summary>
-sealed public  class IWriterConcrete :
+/// Calls to <see cref="Efl.Io.IWriter.Write"/> may or may not block: that&apos;s not up to this interface to specify. The user can check with event &quot;can_write,changed&quot; or property <see cref="Efl.Io.IWriter.CanWrite"/> to known whenever a write could push more data.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class WriterConcrete :
     Efl.Eo.EoWrapper
     , IWriter
     
@@ -74,7 +74,7 @@ sealed public  class IWriterConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IWriterConcrete))
+            if (((object)this).GetType() == typeof(WriterConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -88,26 +88,27 @@ sealed public  class IWriterConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IWriterConcrete(ConstructingHandle ch) : base(ch)
+    private WriterConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_writer_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IWriter"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IWriterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private WriterConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Notifies can_write property changed.
     /// If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>true</c> there is data to <see cref="Efl.Io.IWriter.Write"/> without blocking/error. If <see cref="Efl.Io.IWriter.CanWrite"/> is <c>false</c>, <see cref="Efl.Io.IWriter.Write"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IWriterCanWriteChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Io.IWriterCanWriteChangedEvt_Args> CanWriteChangedEvt
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IWriter.Write"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.WriterCanWriteChangedEventArgs"/></value>
+    public event EventHandler<Efl.Io.WriterCanWriteChangedEventArgs> CanWriteChangedEvent
     {
         add
         {
@@ -118,7 +119,7 @@ sealed public  class IWriterConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Io.IWriterCanWriteChangedEvt_Args args = new Efl.Io.IWriterCanWriteChangedEvt_Args();
+                        Efl.Io.WriterCanWriteChangedEventArgs args = new Efl.Io.WriterCanWriteChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -146,8 +147,10 @@ sealed public  class IWriterConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CanWriteChangedEvt.</summary>
-    public void OnCanWriteChangedEvt(Efl.Io.IWriterCanWriteChangedEvt_Args e)
+
+    /// <summary>Method to raise event CanWriteChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCanWriteChangedEvent(Efl.Io.WriterCanWriteChangedEventArgs e)
     {
         var key = "_EFL_IO_WRITER_EVENT_CAN_WRITE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -167,53 +170,64 @@ sealed public  class IWriterConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</returns>
     public bool GetCanWrite() {
-         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_can_write_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="can_write"><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</param>
-    public void SetCanWrite(bool can_write) {
-                                 Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate(this.NativeHandle,can_write);
+    protected void SetCanWrite(bool can_write) {
+        Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_can_write_set_ptr.Value.Delegate(this.NativeHandle,can_write);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Writes data from a pre-populated buffer.
     /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
     /// 
-    /// You can understand this method as write(2) libc function.
-    /// (Since EFL 1.22)</summary>
+    /// You can understand this method as write(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="slice">Provides a pre-populated memory to be used up to slice.len. The returned slice will be adapted as length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
-    /// <param name="remaining">Convenience to output the remaining parts of slice that was not written. If the full slice was written, this will be a slice of zero-length.</param>
+    /// <param name="remaining">Convenience to output the remaining parts of slice that were not written. If the full slice was written, this will be a slice of zero-length.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
     public Eina.Error Write(ref  Eina.Slice slice, ref  Eina.Slice remaining) {
-                                                         var _ret_var = Efl.Io.IWriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate(this.NativeHandle,ref slice, ref remaining);
+        var _ret_var = Efl.Io.WriterConcrete.NativeMethods.efl_io_writer_write_ptr.Value.Delegate(this.NativeHandle,ref slice, ref remaining);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IWriter.Write"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be written without blocking or failure, <c>false</c> otherwise</value>
     public bool CanWrite {
         get { return GetCanWrite(); }
-        set { SetCanWrite(value); }
+        protected set { SetCanWrite(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Io.IWriterConcrete.efl_io_writer_interface_get();
+        return Efl.Io.WriterConcrete.efl_io_writer_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -228,16 +242,6 @@ sealed public  class IWriterConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_can_write_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_can_write_get_static_delegate) });
             }
 
-            if (efl_io_writer_can_write_set_static_delegate == null)
-            {
-                efl_io_writer_can_write_set_static_delegate = new efl_io_writer_can_write_set_delegate(can_write_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCanWrite") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_can_write_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_can_write_set_static_delegate) });
-            }
-
             if (efl_io_writer_write_static_delegate == null)
             {
                 efl_io_writer_write_static_delegate = new efl_io_writer_write_delegate(write);
@@ -248,13 +252,24 @@ sealed public  class IWriterConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_writer_write"), func = Marshal.GetFunctionPointerForDelegate(efl_io_writer_write_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Io.IWriterConcrete.efl_io_writer_interface_get();
+            return Efl.Io.WriterConcrete.efl_io_writer_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -273,7 +288,7 @@ sealed public  class IWriterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IWriter)ws.Target).GetCanWrite();
@@ -284,8 +299,7 @@ sealed public  class IWriterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -303,33 +317,6 @@ sealed public  class IWriterConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_io_writer_can_write_set_api_delegate> efl_io_writer_can_write_set_ptr = new Efl.Eo.FunctionWrapper<efl_io_writer_can_write_set_api_delegate>(Module, "efl_io_writer_can_write_set");
 
-        private static void can_write_set(System.IntPtr obj, System.IntPtr pd, bool can_write)
-        {
-            Eina.Log.Debug("function efl_io_writer_can_write_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IWriter)ws.Target).SetCanWrite(can_write);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_io_writer_can_write_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_write);
-            }
-        }
-
-        private static efl_io_writer_can_write_set_delegate efl_io_writer_can_write_set_static_delegate;
-
         
         private delegate Eina.Error efl_io_writer_write_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.Slice slice,  ref  Eina.Slice remaining);
 
@@ -344,7 +331,7 @@ sealed public  class IWriterConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                remaining = default( Eina.Slice);                            Eina.Error _ret_var = default(Eina.Error);
+                remaining = default( Eina.Slice);Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((IWriter)ws.Target).Write(ref slice, ref remaining);
@@ -355,8 +342,7 @@ sealed public  class IWriterConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -371,12 +357,11 @@ sealed public  class IWriterConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_IoIWriterConcrete_ExtensionMethods {
+public static class Efl_IoWriterConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> CanWrite<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IWriter, T>magic = null) where T : Efl.Io.IWriter {
         return new Efl.BindableProperty<bool>("can_write", fac);
     }

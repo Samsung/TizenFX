@@ -34,6 +34,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_panes_part_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="PanesPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public PanesPart(Efl.Object parent= null
@@ -64,40 +65,48 @@ public class PanesPart : Efl.Ui.LayoutPartContent
     {
     }
 
+
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
     /// <returns>If <c>true</c> minimum size is forced</returns>
-    virtual public bool GetHintMinAllow() {
-         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetHintMinAllow() {
+        var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
     /// <param name="allow">If <c>true</c> minimum size is forced</param>
-    virtual public void SetHintMinAllow(bool allow) {
-                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
+    public virtual void SetHintMinAllow(bool allow) {
+        Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_hint_min_allow_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),allow);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Controls the relative minimum size of panes widget&apos;s part.
     /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
     /// <returns>Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</returns>
-    virtual public double GetSplitRatioMin() {
-         var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetSplitRatioMin() {
+        var _ret_var = Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Controls the relative minimum size of panes widget&apos;s part.
     /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
     /// <param name="size">Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</param>
-    virtual public void SetSplitRatioMin(double size) {
-                                 Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size);
+    public virtual void SetSplitRatioMin(double size) {
+        Efl.Ui.PanesPart.NativeMethods.efl_ui_panes_part_split_ratio_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),size);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Allows the user to set size hints to be respected and ignored combined with a minimum size. If this flag is set, the minimum size set by <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is respected forcefully.</summary>
     /// <value>If <c>true</c> minimum size is forced</value>
     public bool HintMinAllow {
         get { return GetHintMinAllow(); }
         set { SetHintMinAllow(value); }
     }
+
     /// <summary>Controls the relative minimum size of panes widget&apos;s part.
     /// If <see cref="Efl.Gfx.IHint.SetHintSizeMin"/> is also used along with <see cref="Efl.Ui.PanesPart.SetSplitRatioMin"/>, maximum value is set as minimum size to part.</summary>
     /// <value>Value between 0.0 and 1.0 representing size proportion of first part&apos;s minimum size.</value>
@@ -105,18 +114,21 @@ public class PanesPart : Efl.Ui.LayoutPartContent
         get { return GetSplitRatioMin(); }
         set { SetSplitRatioMin(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.PanesPart.efl_ui_panes_part_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.LayoutPartContent.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -161,9 +173,20 @@ public class PanesPart : Efl.Ui.LayoutPartContent
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_panes_part_split_ratio_min_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_panes_part_split_ratio_min_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -187,7 +210,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((PanesPart)ws.Target).GetHintMinAllow();
@@ -198,8 +221,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -223,7 +245,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((PanesPart)ws.Target).SetHintMinAllow(allow);
@@ -234,7 +256,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -258,7 +280,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((PanesPart)ws.Target).GetSplitRatioMin();
@@ -269,8 +291,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -294,7 +315,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((PanesPart)ws.Target).SetSplitRatioMin(size);
@@ -305,7 +326,7 @@ public class PanesPart : Efl.Ui.LayoutPartContent
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -320,7 +341,6 @@ public class PanesPart : Efl.Ui.LayoutPartContent
 }
 }
 }
-
 }
 
 #if EFL_BETA

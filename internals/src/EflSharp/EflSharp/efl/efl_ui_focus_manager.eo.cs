@@ -12,185 +12,211 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>Interface for managing focus objects
-/// This interface is built in order to support movement of the focus property in a set of widgets. The movement of the focus property can happen in a tree manner, or a graph manner. The movement is also keeping track of the history of focused elements. The tree interpretation differentiates between logical and non-logical widgets, a logical widget cannot receive focus whereas a non-logical one can.
-/// (Since EFL 1.22)</summary>
-[Efl.Ui.Focus.IManagerConcrete.NativeMethods]
+/// <summary>Interface for managing focus objects.
+/// This interface is built in order to support movement of the focus property in a set of widgets. The movement of the focus property can happen in a tree manner, or a graph manner. The movement is also keeping track of the history of focused elements. The tree interpretation differentiates between logical and regular widgets: Logical widgets (typically containers) cannot receive focus, whereas Regular ones (like buttons) can.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Ui.Focus.ManagerConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IManager : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <returns>Currently focused element.</returns>
-Efl.Ui.Focus.IObject GetManagerFocus();
-    /// <summary>The element which is currently focused by this manager
-/// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-/// (Since EFL 1.22)</summary>
-/// <param name="focus">Currently focused element.</param>
-void SetManagerFocus(Efl.Ui.Focus.IObject focus);
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Currently focused element.</returns>
+    Efl.Ui.Focus.IObject GetManagerFocus();
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="focus">Currently focused element.</param>
+    void SetManagerFocus(Efl.Ui.Focus.IObject focus);
+
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <returns>The redirect manager.</returns>
-Efl.Ui.Focus.IManager GetRedirect();
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The new focus manager.</returns>
+    Efl.Ui.Focus.IManager GetRedirect();
+
     /// <summary>Add another manager to serve the move requests.
-/// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-/// (Since EFL 1.22)</summary>
-/// <param name="redirect">The redirect manager.</param>
-void SetRedirect(Efl.Ui.Focus.IManager redirect);
-    /// <summary>The list of elements which are at the border of the graph.
-/// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-/// (Since EFL 1.22)</summary>
-/// <returns>An iterator over the border objects.</returns>
-Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements();
-    /// <summary>Get all elements that are at the border of the viewport
-/// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
-/// (Since EFL 1.22)</summary>
-/// <param name="viewport">The rectangle defining the viewport.</param>
-/// <returns>The list of border objects.</returns>
-Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport);
-    /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <returns>Will be registered into this manager object.</returns>
-Efl.Ui.Focus.IObject GetRoot();
-    /// <summary>Root node for all logical subtrees.
-/// This property can only be set once.
-/// (Since EFL 1.22)</summary>
-/// <param name="root">Will be registered into this manager object.</param>
-/// <returns>If <c>true</c>, this is the root node</returns>
-bool SetRoot(Efl.Ui.Focus.IObject root);
-    /// <summary>Move the focus in the given direction.
-/// This call flushes all changes. This means all changes between the last flush and now are computed.
-/// (Since EFL 1.22)</summary>
-/// <param name="direction">The direction to move to.</param>
-/// <returns>The element which is now focused.</returns>
-Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction);
-    /// <summary>Return the object in the <c>direction</c> from <c>child</c>.
-/// (Since EFL 1.22)</summary>
-/// <param name="direction">Direction to move focus.</param>
-/// <param name="child">The child to move from. Pass <c>null</c> to indicate the currently focused child.</param>
-/// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
-/// <returns>Object that would receive focus if moved in the given direction.</returns>
-Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical);
-    /// <summary>Return the widget in the direction next.
-/// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared once again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.
-/// (Since EFL 1.22)</summary>
-/// <param name="root">Parent for returned child.</param>
-/// <returns>Child of passed parameter.</returns>
-Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root);
-    /// <summary>This will fetch the data from a registered node.
-/// Be aware this function will trigger a computation of all dirty nodes.
-/// (Since EFL 1.22)
-/// 
-/// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-/// <param name="child">The child object to inspect.</param>
-/// <returns>The list of relations starting from <c>child</c>.</returns>
-Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child);
-    /// <summary>Return the last logical object.
-/// The returned object is the last object that would be returned if you start at the root and move the direction into next.
-/// (Since EFL 1.22)</summary>
-/// <returns>Last object.</returns>
-Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd();
-    /// <summary>Reset the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
-/// You should focus another element immediately after calling this, in order to always have a focused object.
-/// (Since EFL 1.22)</summary>
-void ResetHistory();
-    /// <summary>Remove the uppermost history element, and focus the previous one.
-/// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
-/// (Since EFL 1.22)</summary>
-void PopHistoryStack();
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="redirect">The new focus manager.</param>
+    void SetRedirect(Efl.Ui.Focus.IManager redirect);
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>An iterator over the border objects.</returns>
+    Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements();
+
+    /// <summary>Elements that are at the border of the viewport
+    /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="viewport">The rectangle defining the viewport.</param>
+    /// <returns>An iterator over the viewport border objects.</returns>
+    Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport);
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Object to register as the root of this manager object.</returns>
+    Efl.Ui.Focus.IObject GetRoot();
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="root">Object to register as the root of this manager object.</param>
+    /// <returns><c>true</c> on success, <c>false</c> if it had already been set.</returns>
+    bool SetRoot(Efl.Ui.Focus.IObject root);
+
+    /// <summary>Moves the focus in the given direction to the next regular widget.
+    /// This call flushes all changes. This means all changes since last flush are computed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="direction">The direction to move to.</param>
+    /// <returns>The element which is now focused.</returns>
+    Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction);
+
+    /// <summary>Returns the object in the <c>direction</c> from <c>child</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="direction">Direction to move focus.</param>
+    /// <param name="child">The child to move from. Pass <c>null</c> to indicate the currently focused child.</param>
+    /// <param name="logical">Wether you want to have a logical node as result or a regular. Note that in a <see cref="Efl.Ui.Focus.IManager.Move"/> call logical nodes will not get focus.</param>
+    /// <returns>Object that would receive focus if moved in the given direction.</returns>
+    Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical);
+
+    /// <summary>Returns the widget in the direction next.
+    /// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="root">Parent for returned child.</param>
+    /// <returns>Child of passed parameter.</returns>
+    Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root);
+
+    /// <summary>Fetches the data from a registered node.
+    /// Note: This function triggers a computation of all dirty nodes.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="child">The child object to inspect.</param>
+    /// <returns>The list of relations starting from <c>child</c>.</returns>
+    Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child);
+
+    /// <summary>Returns the last logical object.
+    /// The returned object is the last object that would be returned if you start at the root and move in the &quot;next&quot; direction.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Last object.</returns>
+    Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd();
+
+    /// <summary>Resets the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
+    /// You should focus another element immediately after calling this, in order to always have a focused object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void ResetHistory();
+
+    /// <summary>Removes the uppermost history element, and focuses the previous one.
+    /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void PopHistoryStack();
+
     /// <summary>Called when this manager is set as redirect.
-/// In case that this is called as an result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.
-/// (Since EFL 1.22)</summary>
-/// <param name="direction">The direction in which this should be setup.</param>
-/// <param name="entry">The object that caused this manager to be redirect.</param>
-void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry);
-    /// <summary>This disables the cache invalidation when an object is moved.
-/// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
-/// (Since EFL 1.22)</summary>
-void FreezeDirtyLogic();
-    /// <summary>This enables the cache invalidation when an object is moved.
-/// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
-/// (Since EFL 1.22)</summary>
-void DirtyLogicUnfreeze();
-                                                                            /// <summary>Redirect object has changed, the old manager is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt;
-    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.
-    /// (Since EFL 1.22)</summary>
-    event EventHandler FlushPreEvt;
-    /// <summary>Cached relationship calculation results have been invalidated.
-    /// (Since EFL 1.22)</summary>
-    event EventHandler CoordsDirtyEvt;
-    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt;
-    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt;
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+    /// In case that this is called as a result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="direction">The direction in which this should be setup.</param>
+    /// <param name="entry">The object that caused this manager to be redirect.</param>
+    void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry);
+
+    /// <summary>Disables the cache invalidation when an object is moved.
+    /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widgets in the set do not change and complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void FreezeDirtyLogic();
+
+    /// <summary>Enables the cache invalidation when an object is moved.
+    /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void DirtyLogicUnfreeze();
+
+    /// <summary>Redirect object has changed, the old manager is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerRedirectChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ManagerRedirectChangedEventArgs> RedirectChangedEvent;
+    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    event EventHandler FlushPreEvent;
+    /// <summary>Cached relationship calculation results have been invalidated.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    event EventHandler CoordsDirtyEvent;
+    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs> ManagerFocusChangedEvent;
+    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs> DirtyLogicFreezeChangedEvent;
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Currently focused element.</value>
     Efl.Ui.Focus.IObject ManagerFocus {
         get;
         set;
     }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The new focus manager.</value>
     Efl.Ui.Focus.IManager Redirect {
         get;
         set;
     }
-    /// <summary>The list of elements which are at the border of the graph.
-    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>An iterator over the border objects.</value>
     Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get;
     }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <value>Will be registered into this manager object.</value>
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>Object to register as the root of this manager object.</value>
     Efl.Ui.Focus.IObject Root {
         get;
         set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.RedirectChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.RedirectChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IManagerRedirectChangedEvt_Args : EventArgs {
+public class ManagerRedirectChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Redirect object has changed, the old manager is passed as an event argument.</value>
     public Efl.Ui.Focus.IManager arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.ManagerFocusChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.ManagerFocusChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IManagerManagerFocusChangedEvt_Args : EventArgs {
+public class ManagerManagerFocusChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>The manager_focus property has changed. The previously focused object is passed as an event argument.</value>
     public Efl.Ui.Focus.IObject arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.DirtyLogicFreezeChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.Focus.IManager.DirtyLogicFreezeChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IManagerDirtyLogicFreezeChangedEvt_Args : EventArgs {
+public class ManagerDirtyLogicFreezeChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.</value>
     public bool arg { get; set; }
 }
-/// <summary>Interface for managing focus objects
-/// This interface is built in order to support movement of the focus property in a set of widgets. The movement of the focus property can happen in a tree manner, or a graph manner. The movement is also keeping track of the history of focused elements. The tree interpretation differentiates between logical and non-logical widgets, a logical widget cannot receive focus whereas a non-logical one can.
-/// (Since EFL 1.22)</summary>
-sealed public  class IManagerConcrete :
+
+/// <summary>Interface for managing focus objects.
+/// This interface is built in order to support movement of the focus property in a set of widgets. The movement of the focus property can happen in a tree manner, or a graph manner. The movement is also keeping track of the history of focused elements. The tree interpretation differentiates between logical and regular widgets: Logical widgets (typically containers) cannot receive focus, whereas Regular ones (like buttons) can.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ManagerConcrete :
     Efl.Eo.EoWrapper
     , IManager
     
@@ -200,7 +226,7 @@ sealed public  class IManagerConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IManagerConcrete))
+            if (((object)this).GetType() == typeof(ManagerConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -214,23 +240,24 @@ sealed public  class IManagerConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IManagerConcrete(ConstructingHandle ch) : base(ch)
+    private ManagerConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_manager_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IManager"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IManagerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ManagerConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Redirect object has changed, the old manager is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
+    /// <summary>Redirect object has changed, the old manager is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerRedirectChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerRedirectChangedEventArgs> RedirectChangedEvent
     {
         add
         {
@@ -241,8 +268,8 @@ sealed public  class IManagerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
+                        Efl.Ui.Focus.ManagerRedirectChangedEventArgs args = new Efl.Ui.Focus.ManagerRedirectChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ManagerConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -269,8 +296,10 @@ sealed public  class IManagerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event RedirectChangedEvt.</summary>
-    public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
+
+    /// <summary>Method to raise event RedirectChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRedirectChangedEvent(Efl.Ui.Focus.ManagerRedirectChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -283,9 +312,10 @@ sealed public  class IManagerConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler FlushPreEvt
+
+    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler FlushPreEvent
     {
         add
         {
@@ -323,8 +353,10 @@ sealed public  class IManagerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event FlushPreEvt.</summary>
-    public void OnFlushPreEvt(EventArgs e)
+
+    /// <summary>Method to raise event FlushPreEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFlushPreEvent(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -336,9 +368,10 @@ sealed public  class IManagerConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Cached relationship calculation results have been invalidated.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler CoordsDirtyEvt
+
+    /// <summary>Cached relationship calculation results have been invalidated.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler CoordsDirtyEvent
     {
         add
         {
@@ -376,8 +409,10 @@ sealed public  class IManagerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
-    public void OnCoordsDirtyEvt(EventArgs e)
+
+    /// <summary>Method to raise event CoordsDirtyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCoordsDirtyEvent(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -389,10 +424,11 @@ sealed public  class IManagerConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
+
+    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs> ManagerFocusChangedEvent
     {
         add
         {
@@ -403,8 +439,8 @@ sealed public  class IManagerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
+                        Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs args = new Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ObjectConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -431,8 +467,10 @@ sealed public  class IManagerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
-    public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event ManagerFocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnManagerFocusChangedEvent(Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -445,10 +483,11 @@ sealed public  class IManagerConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
+
+    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs> DirtyLogicFreezeChangedEvent
     {
         add
         {
@@ -459,7 +498,7 @@ sealed public  class IManagerConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs args = new Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -487,8 +526,10 @@ sealed public  class IManagerConcrete :
             }
         }
     }
-    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
-    public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
+
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDirtyLogicFreezeChangedEvent(Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -508,213 +549,251 @@ sealed public  class IManagerConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Currently focused element.</returns>
     public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="focus">Currently focused element.</param>
     public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate(this.NativeHandle,focus);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate(this.NativeHandle,focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The redirect manager.</returns>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The new focus manager.</returns>
     public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="redirect">The redirect manager.</param>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="redirect">The new focus manager.</param>
     public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate(this.NativeHandle,redirect);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate(this.NativeHandle,redirect);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>The list of elements which are at the border of the graph.
-    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>An iterator over the border objects.</returns>
     public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
- }
-    /// <summary>Get all elements that are at the border of the viewport
-    /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
-    /// (Since EFL 1.22)</summary>
+
+    }
+
+    /// <summary>Elements that are at the border of the viewport
+    /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="viewport">The rectangle defining the viewport.</param>
-    /// <returns>The list of border objects.</returns>
+    /// <returns>An iterator over the viewport border objects.</returns>
     public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
-         Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
+        Eina.Rect.NativeStruct _in_viewport = viewport;
+var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
- }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>Will be registered into this manager object.</returns>
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
+
+    }
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Object to register as the root of this manager object.</returns>
     public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="root">Will be registered into this manager object.</param>
-    /// <returns>If <c>true</c>, this is the root node</returns>
+    }
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="root">Object to register as the root of this manager object.</param>
+    /// <returns><c>true</c> on success, <c>false</c> if it had already been set.</returns>
     public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate(this.NativeHandle,root);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate(this.NativeHandle,root);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Move the focus in the given direction.
-    /// This call flushes all changes. This means all changes between the last flush and now are computed.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Moves the focus in the given direction to the next regular widget.
+    /// This call flushes all changes. This means all changes since last flush are computed.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
     public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate(this.NativeHandle,direction);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate(this.NativeHandle,direction);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Return the object in the <c>direction</c> from <c>child</c>.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Returns the object in the <c>direction</c> from <c>child</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="direction">Direction to move focus.</param>
     /// <param name="child">The child to move from. Pass <c>null</c> to indicate the currently focused child.</param>
-    /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
+    /// <param name="logical">Wether you want to have a logical node as result or a regular. Note that in a <see cref="Efl.Ui.Focus.IManager.Move"/> call logical nodes will not get focus.</param>
     /// <returns>Object that would receive focus if moved in the given direction.</returns>
     public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate(this.NativeHandle,direction, child, logical);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate(this.NativeHandle,direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
-    /// <summary>Return the widget in the direction next.
-    /// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared once again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Returns the widget in the direction next.
+    /// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="root">Parent for returned child.</param>
     /// <returns>Child of passed parameter.</returns>
     public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate(this.NativeHandle,root);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate(this.NativeHandle,root);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>This will fetch the data from a registered node.
-    /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)
+        return _ret_var;
+    }
+
+    /// <summary>Fetches the data from a registered node.
+    /// Note: This function triggers a computation of all dirty nodes.
     /// 
     /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="child">The child object to inspect.</param>
     /// <returns>The list of relations starting from <c>child</c>.</returns>
     public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate(this.NativeHandle,child);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate(this.NativeHandle,child);
         Eina.Error.RaiseIfUnhandledException();
-                        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
+        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
         Marshal.FreeHGlobal(_ret_var);
         return __ret_tmp;
- }
-    /// <summary>Return the last logical object.
-    /// The returned object is the last object that would be returned if you start at the root and move the direction into next.
-    /// (Since EFL 1.22)</summary>
+
+    }
+
+    /// <summary>Returns the last logical object.
+    /// The returned object is the last object that would be returned if you start at the root and move in the &quot;next&quot; direction.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Last object.</returns>
     public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Reset the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
-    /// You should focus another element immediately after calling this, in order to always have a focused object.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Resets the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
+    /// You should focus another element immediately after calling this, in order to always have a focused object.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Remove the uppermost history element, and focus the previous one.
-    /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Removes the uppermost history element, and focuses the previous one.
+    /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Called when this manager is set as redirect.
-    /// In case that this is called as an result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.
-    /// (Since EFL 1.22)</summary>
+    /// In case that this is called as a result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
     public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate(this.NativeHandle,direction, entry);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate(this.NativeHandle,direction, entry);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>This disables the cache invalidation when an object is moved.
-    /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Disables the cache invalidation when an object is moved.
+    /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widgets in the set do not change and complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>This enables the cache invalidation when an object is moved.
-    /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Enables the cache invalidation when an object is moved.
+    /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate(this.NativeHandle);
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The new focus manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
-    /// <summary>The list of elements which are at the border of the graph.
-    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <value>Will be registered into this manager object.</value>
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>Object to register as the root of this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.Focus.IManagerConcrete.efl_ui_focus_manager_interface_get();
+        return Efl.Ui.Focus.ManagerConcrete.efl_ui_focus_manager_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -899,13 +978,24 @@ sealed public  class IManagerConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_dirty_logic_unfreeze"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.Focus.IManagerConcrete.efl_ui_focus_manager_interface_get();
+            return Efl.Ui.Focus.ManagerConcrete.efl_ui_focus_manager_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -924,7 +1014,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).GetManagerFocus();
@@ -935,8 +1025,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -960,7 +1049,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IManager)ws.Target).SetManagerFocus(focus);
@@ -971,7 +1060,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -995,7 +1084,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
+                Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).GetRedirect();
@@ -1006,8 +1095,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1031,7 +1119,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IManager)ws.Target).SetRedirect(redirect);
@@ -1042,7 +1130,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1066,7 +1154,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
+                Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).GetBorderElements();
@@ -1077,8 +1165,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {
@@ -1102,8 +1189,8 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Eina.Rect _in_viewport = viewport;
-                            Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
+                Eina.Rect _in_viewport = viewport;
+Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).GetViewportElements(_in_viewport);
@@ -1114,8 +1201,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var.Handle;
-
+                return _ret_var.Handle;
             }
             else
             {
@@ -1139,7 +1225,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).GetRoot();
@@ -1150,8 +1236,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1175,7 +1260,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).SetRoot(root);
@@ -1186,8 +1271,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1211,7 +1295,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).Move(direction);
@@ -1222,8 +1306,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1247,7 +1330,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).MoveRequest(direction, child, logical);
@@ -1258,8 +1341,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1283,7 +1365,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
+                Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).RequestSubchild(root);
@@ -1294,8 +1376,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1319,7 +1400,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
+                Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).Fetch(child);
@@ -1330,8 +1411,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-
+                return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
             }
             else
             {
@@ -1355,7 +1435,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
+                Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
                 try
                 {
                     _ret_var = ((IManager)ws.Target).LogicalEnd();
@@ -1366,8 +1446,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1391,7 +1470,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IManager)ws.Target).ResetHistory();
@@ -1402,7 +1481,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1426,7 +1505,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IManager)ws.Target).PopHistoryStack();
@@ -1437,7 +1516,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1461,7 +1540,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IManager)ws.Target).SetupOnFirstTouch(direction, entry);
@@ -1472,7 +1551,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1496,7 +1575,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IManager)ws.Target).FreezeDirtyLogic();
@@ -1507,7 +1586,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1531,7 +1610,7 @@ sealed public  class IManagerConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((IManager)ws.Target).DirtyLogicUnfreeze();
@@ -1542,7 +1621,7 @@ sealed public  class IManagerConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1557,14 +1636,12 @@ sealed public  class IManagerConcrete :
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_Ui_FocusIManagerConcrete_ExtensionMethods {
+public static class Efl_Ui_FocusManagerConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManager, T>magic = null) where T : Efl.Ui.Focus.IManager {
         return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
     }
@@ -1573,8 +1650,6 @@ public static class Efl_Ui_FocusIManagerConcrete_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Focus.IManager, T>magic = null) where T : Efl.Ui.Focus.IManager {
         return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
     }
@@ -1593,40 +1668,40 @@ namespace Focus {
 [Efl.Eo.BindingEntity]
 public struct Relations
 {
-    /// <summary>List of objects on the right side</summary>
+    /// <summary>List of objects to the right.</summary>
     public Eina.List<Efl.Ui.Focus.IObject> Right;
-    /// <summary>List of objects on the left side</summary>
+    /// <summary>List of objects to the left.</summary>
     public Eina.List<Efl.Ui.Focus.IObject> Left;
-    /// <summary>List of objects above</summary>
+    /// <summary>List of objects above.</summary>
     public Eina.List<Efl.Ui.Focus.IObject> Top;
-    /// <summary>List of objects below</summary>
+    /// <summary>List of objects below.</summary>
     public Eina.List<Efl.Ui.Focus.IObject> Down;
-    /// <summary>Next object</summary>
+    /// <summary>Next object.</summary>
     public Efl.Ui.Focus.IObject Next;
-    /// <summary>Previous object</summary>
+    /// <summary>Previous object.</summary>
     public Efl.Ui.Focus.IObject Prev;
-    /// <summary>Parent object</summary>
+    /// <summary>Parent object.</summary>
     public Efl.Ui.Focus.IObject Parent;
-    /// <summary>Redirect manager</summary>
+    /// <summary>Redirect manager.</summary>
     public Efl.Ui.Focus.IManager Redirect;
-    /// <summary>The node where this is the information from</summary>
+    /// <summary>The node where this information is from.</summary>
     public Efl.Ui.Focus.IObject Node;
-    /// <summary><c>true</c> if this node is only logical</summary>
+    /// <summary><c>true</c> if this is a logical (non-regular) node.</summary>
     public bool Logical;
-    /// <summary>The position in the history stack</summary>
+    /// <summary>The position in the history stack.</summary>
     public int Position_in_history;
     /// <summary>Constructor for Relations.</summary>
-    /// <param name="Right">List of objects on the right side</param>;
-    /// <param name="Left">List of objects on the left side</param>;
-    /// <param name="Top">List of objects above</param>;
-    /// <param name="Down">List of objects below</param>;
-    /// <param name="Next">Next object</param>;
-    /// <param name="Prev">Previous object</param>;
-    /// <param name="Parent">Parent object</param>;
-    /// <param name="Redirect">Redirect manager</param>;
-    /// <param name="Node">The node where this is the information from</param>;
-    /// <param name="Logical"><c>true</c> if this node is only logical</param>;
-    /// <param name="Position_in_history">The position in the history stack</param>;
+    /// <param name="Right">List of objects to the right.</param>
+    /// <param name="Left">List of objects to the left.</param>
+    /// <param name="Top">List of objects above.</param>
+    /// <param name="Down">List of objects below.</param>
+    /// <param name="Next">Next object.</param>
+    /// <param name="Prev">Previous object.</param>
+    /// <param name="Parent">Parent object.</param>
+    /// <param name="Redirect">Redirect manager.</param>
+    /// <param name="Node">The node where this information is from.</param>
+    /// <param name="Logical"><c>true</c> if this is a logical (non-regular) node.</param>
+    /// <param name="Position_in_history">The position in the history stack.</param>
     public Relations(
         Eina.List<Efl.Ui.Focus.IObject> Right = default(Eina.List<Efl.Ui.Focus.IObject>),
         Eina.List<Efl.Ui.Focus.IObject> Left = default(Eina.List<Efl.Ui.Focus.IObject>),
@@ -1716,30 +1791,25 @@ public struct Relations
             _external_struct.Top = new Eina.List<Efl.Ui.Focus.IObject>(_internal_struct.Top, false, false);
             _external_struct.Down = new Eina.List<Efl.Ui.Focus.IObject>(_internal_struct.Down, false, false);
 
-            _external_struct.Next = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Next);
+            _external_struct.Next = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Next);
 
-            _external_struct.Prev = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Prev);
+            _external_struct.Prev = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Prev);
 
-            _external_struct.Parent = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Parent);
+            _external_struct.Parent = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Parent);
 
-            _external_struct.Redirect = (Efl.Ui.Focus.IManagerConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Redirect);
+            _external_struct.Redirect = (Efl.Ui.Focus.ManagerConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Redirect);
 
-            _external_struct.Node = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Node);
+            _external_struct.Node = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Node);
             _external_struct.Logical = _internal_struct.Logical != 0;
             _external_struct.Position_in_history = _internal_struct.Position_in_history;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
 
 namespace Efl {
@@ -1748,19 +1818,19 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>Structure holding the focus object with extra information on logical end
-/// (Since EFL 1.22)</summary>
+/// <summary>Structure holding the focus object with extra information on logical end.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct ManagerLogicalEndDetail
 {
-    /// <summary><c>true</c> if element is registered as regular element in the <see cref="Efl.Ui.Focus.IManager"/> obejct, <c>false</c> otherwise</summary>
+    /// <summary><c>true</c> if element is registered as regular element in the <see cref="Efl.Ui.Focus.IManager"/> object.</summary>
     public bool Is_regular_end;
-    /// <summary>The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/></summary>
+    /// <summary>The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/>.</summary>
     public Efl.Ui.Focus.IObject Element;
     /// <summary>Constructor for ManagerLogicalEndDetail.</summary>
-    /// <param name="Is_regular_end"><c>true</c> if element is registered as regular element in the <see cref="Efl.Ui.Focus.IManager"/> obejct, <c>false</c> otherwise</param>;
-    /// <param name="Element">The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/></param>;
+    /// <param name="Is_regular_end"><c>true</c> if element is registered as regular element in the <see cref="Efl.Ui.Focus.IManager"/> object.</param>
+    /// <param name="Element">The last element of the logical chain in the <see cref="Efl.Ui.Focus.IManager"/>.</param>
     public ManagerLogicalEndDetail(
         bool Is_regular_end = default(bool),
         Efl.Ui.Focus.IObject Element = default(Efl.Ui.Focus.IObject)    )
@@ -1802,19 +1872,14 @@ public struct ManagerLogicalEndDetail
             var _external_struct = new ManagerLogicalEndDetail();
             _external_struct.Is_regular_end = _internal_struct.Is_regular_end != 0;
 
-            _external_struct.Element = (Efl.Ui.Focus.IObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Element);
+            _external_struct.Element = (Efl.Ui.Focus.ObjectConcrete) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Element);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
 

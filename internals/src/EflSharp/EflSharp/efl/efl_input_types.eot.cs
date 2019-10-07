@@ -9,8 +9,8 @@ namespace Efl {
 
 namespace Pointer {
 
-/// <summary>Pointer event type. Represents which kind of event this is.
-/// (Since EFL 1.19)</summary>
+/// <summary>Pointer event type. Represents which kind of event this is.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Action
 {
@@ -33,17 +33,15 @@ Wheel = 7,
 /// <summary>Axis event (pen, stick, ...).</summary>
 Axis = 8,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Pointer {
 
-/// <summary>Pointer flags indicating whether a double or triple click is under way.
-/// (Since EFL 1.19)</summary>
+/// <summary>Pointer flags indicating whether a double or triple click is under way.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Flags
 {
@@ -54,17 +52,15 @@ DoubleClick = 1,
 /// <summary>This mouse button press was the 3rd press of a triple click</summary>
 TripleClick = 2,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Input {
 
-/// <summary>Special flags set during an input event propagation.
-/// (Since EFL 1.19)</summary>
+/// <summary>Special flags set during an input event propagation.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Flags
 {
@@ -75,9 +71,7 @@ Processed = 1,
 /// <summary>This event flag indicates the event occurs while scrolling; for example, DOWN event occurs during scrolling. The event should be used for informational purposes and maybe some indications visually, but not actually perform anything.</summary>
 Scrolling = 2,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -87,8 +81,8 @@ namespace Input {
 /// <summary>How the mouse pointer should be handled by EFL.
 /// In the mode <c>autograb</c>, when a mouse button is pressed down over an object and held down, with the mouse pointer being moved outside of it, the pointer still behaves as being bound to that object, albeit out of its drawing region. When the button is released, the event will be fed to the object, that may check if the final position is over it or not and do something about it.
 /// 
-/// In the mode <c>nograb</c>, the pointer will always be bound to the object right below it.
-/// (Since EFL 1.19)</summary>
+/// In the mode <c>nograb</c>, the pointer will always be bound to the object right below it.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum ObjectPointerMode
 {
@@ -96,21 +90,19 @@ public enum ObjectPointerMode
 AutoGrab = 0,
 /// <summary>Pointer always bound to the object right below it.</summary>
 NoGrab = 1,
-/// <summary>Useful on object with &quot;repeat events&quot; enabled, where mouse/touch up and down events WON&apos;T be repeated to objects and these objects wont be auto-grabbed.
-/// (Since EFL 1.2)</summary>
+/// <summary>Useful on object with &quot;repeat events&quot; enabled, where mouse/touch up and down events WON&apos;T be repeated to objects and these objects wont be auto-grabbed.</summary>
+/// <since_tizen> 6 </since_tizen>
 NoGrabNoRepeatUpdown = 2,
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Input {
 
-/// <summary>Keys for the generic values of all events.
-/// (Since EFL 1.19)</summary>
+/// <summary>Keys for the generic values of all events.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Value
 {
@@ -169,9 +161,7 @@ WheelHorizontal = 25,
 /// <summary>Current position of the slider on the tool. Range: [-1, 1]. Default: 0.</summary>
 Slider = 26,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -181,8 +171,8 @@ namespace Input {
 /// <summary>Key modifiers such as Control, Alt, etc...
 /// This enum may be used as a bitmask with OR operations, depending on the API.
 /// 
-/// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.
-/// (Since EFL 1.20)</summary>
+/// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Modifier
 {
@@ -203,9 +193,7 @@ Hyper = 32,
 /// <summary>Super key modifier (may be &quot;Windows&quot; key)</summary>
 Super = 64,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -215,8 +203,8 @@ namespace Input {
 /// <summary>Key locks such as Num Lock, Scroll Lock and Caps Lock.
 /// This enum may be used as a bitmask with OR operations, depending on the API.
 /// 
-/// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.
-/// (Since EFL 1.20)</summary>
+/// The available keys may vary depending on the physical keyboard layout, or language and keyboard settings, or depending on the platform.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Lock
 {
@@ -231,8 +219,6 @@ Scroll = 4,
 /// <summary>Shift Lock</summary>
 Shift = 8,
 }
-
 }
-
 }
 

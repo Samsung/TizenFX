@@ -35,6 +35,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_surface_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Surface"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Surface(Efl.Object parent= null
@@ -72,22 +73,25 @@ public abstract class Surface : Efl.Canvas.ImageInternal
     {
     }
 
+
     /// <summary>External buffer attached to this native surface.
     /// Set to <c>null</c> to detach this surface from the external buffer.</summary>
     /// <returns>The external buffer, depends on its type.</returns>
-    virtual public System.IntPtr GetNativeBuffer() {
-         var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.IntPtr GetNativeBuffer() {
+        var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Set the buffer. If this fails, this function returns <c>false</c>, and the surface is left without any attached buffer.</summary>
     /// <param name="buffer">The external buffer, depends on its type.</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool SetNativeBuffer(System.IntPtr buffer) {
-                                 var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),buffer);
+    public virtual bool SetNativeBuffer(System.IntPtr buffer) {
+        var _ret_var = Efl.Canvas.Surface.NativeMethods.efl_canvas_surface_native_buffer_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),buffer);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>External buffer attached to this native surface.
     /// Set to <c>null</c> to detach this surface from the external buffer.</summary>
     /// <value>The external buffer, depends on its type.</value>
@@ -95,18 +99,21 @@ public abstract class Surface : Efl.Canvas.ImageInternal
         get { return GetNativeBuffer(); }
         set { SetNativeBuffer(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Surface.efl_canvas_surface_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.ImageInternal.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -131,9 +138,20 @@ public abstract class Surface : Efl.Canvas.ImageInternal
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_surface_native_buffer_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_surface_native_buffer_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -157,7 +175,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.IntPtr _ret_var = default(System.IntPtr);
+                System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
                     _ret_var = ((Surface)ws.Target).GetNativeBuffer();
@@ -168,8 +186,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -193,7 +210,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Surface)ws.Target).SetNativeBuffer(buffer);
@@ -204,8 +221,7 @@ public abstract class Surface : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -220,7 +236,6 @@ public abstract class Surface : Efl.Canvas.ImageInternal
 }
 }
 }
-
 }
 
 #if EFL_BETA

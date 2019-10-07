@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Reflection;
+using System.Collections;
 
 namespace Efl
 {
@@ -26,6 +27,7 @@ public abstract class EoWrapper : IWrapper, IDisposable
     private static Efl.EventCb ownershipUniqueDelegate = new Efl.EventCb(OwnershipUniqueCallback);
     private static Efl.EventCb ownershipSharedDelegate = new Efl.EventCb(OwnershipSharedCallback);
 
+    private Hashtable keyValueHash = null;
 
     /// <summary>Constructor to be used when objects are expected to be constructed from native code.
     /// For a class that inherited from an EFL# class to be properly constructed from native code
@@ -322,6 +324,28 @@ public abstract class EoWrapper : IWrapper, IDisposable
         public IntPtr NativeHandle { get; private set; }
     }
 
+    /// <summary>
+    /// Set a value object associated with a key object.
+    /// </summary>
+    public void SetKeyValue(object key, object val)
+    {
+        if (keyValueHash == null)
+            keyValueHash = new Hashtable();
+
+        keyValueHash.Add(key, val);
+    }
+
+    /// <summary>
+    /// Get a value object associated with a key object.
+    /// </summary>
+    public object GetKeyValue(object key)
+    {
+        if (keyValueHash == null)
+            return null;
+
+        return keyValueHash[key];
+    }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public abstract class NativeMethods : Efl.Eo.NativeClass
@@ -333,7 +357,7 @@ public abstract class EoWrapper : IWrapper, IDisposable
 
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
 
@@ -388,5 +412,16 @@ public abstract class EoWrapper : IWrapper, IDisposable
 }
 
 } // namespace Eo
+
+/// <summary>Concrete realization of Efl.Object.
+///
+/// Some legacy classes (like Evas.Canvas) may be returned by some methods. As these classes are not bound, we
+/// allow minimal interaction with them through <see cref="Efl.Object" />.
+///
+/// But as <see cref="Efl.Object" /> is abstract, whis realized class will allow us to create C# instances of it.</summary>
+internal class ObjectRealized : Efl.Object
+{
+    protected ObjectRealized(Efl.Eo.Globals.WrappingHandle ch) : base(ch) { }
+}
 
 } // namespace Efl

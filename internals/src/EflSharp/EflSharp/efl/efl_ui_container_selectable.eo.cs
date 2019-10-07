@@ -12,35 +12,38 @@ namespace Ui {
 
 /// <summary>Temporare interface, this is here until collection_view lands</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IContainerSelectableConcrete.NativeMethods]
+[Efl.Ui.ContainerSelectableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IContainerSelectable : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Called when selected</summary>
-    /// <value><see cref="Efl.Ui.IContainerSelectableItemSelectedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.IContainerSelectableItemSelectedEvt_Args> ItemSelectedEvt;
+    /// <value><see cref="Efl.Ui.ContainerSelectableItemSelectedEventArgs"/></value>
+    event EventHandler<Efl.Ui.ContainerSelectableItemSelectedEventArgs> ItemSelectedEvent;
     /// <summary>Called when no longer selected</summary>
-    /// <value><see cref="Efl.Ui.IContainerSelectableItemUnselectedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.IContainerSelectableItemUnselectedEvt_Args> ItemUnselectedEvt;
+    /// <value><see cref="Efl.Ui.ContainerSelectableItemUnselectedEventArgs"/></value>
+    event EventHandler<Efl.Ui.ContainerSelectableItemUnselectedEventArgs> ItemUnselectedEvent;
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IContainerSelectable.ItemSelectedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IContainerSelectable.ItemSelectedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IContainerSelectableItemSelectedEvt_Args : EventArgs {
+public class ContainerSelectableItemSelectedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when selected</value>
     public Efl.Object arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IContainerSelectable.ItemUnselectedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.IContainerSelectable.ItemUnselectedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IContainerSelectableItemUnselectedEvt_Args : EventArgs {
+public class ContainerSelectableItemUnselectedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Called when no longer selected</value>
     public Efl.Object arg { get; set; }
 }
+
 /// <summary>Temporare interface, this is here until collection_view lands</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IContainerSelectableConcrete :
+public sealed class ContainerSelectableConcrete :
     Efl.Eo.EoWrapper
     , IContainerSelectable
     
@@ -50,7 +53,7 @@ sealed public  class IContainerSelectableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IContainerSelectableConcrete))
+            if (((object)this).GetType() == typeof(ContainerSelectableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -64,22 +67,23 @@ sealed public  class IContainerSelectableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IContainerSelectableConcrete(ConstructingHandle ch) : base(ch)
+    private ContainerSelectableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_container_selectable_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IContainerSelectable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IContainerSelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ContainerSelectableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Called when selected</summary>
-    /// <value><see cref="Efl.Ui.IContainerSelectableItemSelectedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IContainerSelectableItemSelectedEvt_Args> ItemSelectedEvt
+    /// <value><see cref="Efl.Ui.ContainerSelectableItemSelectedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.ContainerSelectableItemSelectedEventArgs> ItemSelectedEvent
     {
         add
         {
@@ -90,7 +94,7 @@ sealed public  class IContainerSelectableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IContainerSelectableItemSelectedEvt_Args args = new Efl.Ui.IContainerSelectableItemSelectedEvt_Args();
+                        Efl.Ui.ContainerSelectableItemSelectedEventArgs args = new Efl.Ui.ContainerSelectableItemSelectedEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -118,8 +122,10 @@ sealed public  class IContainerSelectableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ItemSelectedEvt.</summary>
-    public void OnItemSelectedEvt(Efl.Ui.IContainerSelectableItemSelectedEvt_Args e)
+
+    /// <summary>Method to raise event ItemSelectedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnItemSelectedEvent(Efl.Ui.ContainerSelectableItemSelectedEventArgs e)
     {
         var key = "_EFL_UI_EVENT_ITEM_SELECTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -132,9 +138,10 @@ sealed public  class IContainerSelectableConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>Called when no longer selected</summary>
-    /// <value><see cref="Efl.Ui.IContainerSelectableItemUnselectedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IContainerSelectableItemUnselectedEvt_Args> ItemUnselectedEvt
+    /// <value><see cref="Efl.Ui.ContainerSelectableItemUnselectedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.ContainerSelectableItemUnselectedEventArgs> ItemUnselectedEvent
     {
         add
         {
@@ -145,7 +152,7 @@ sealed public  class IContainerSelectableConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IContainerSelectableItemUnselectedEvt_Args args = new Efl.Ui.IContainerSelectableItemUnselectedEvt_Args();
+                        Efl.Ui.ContainerSelectableItemUnselectedEventArgs args = new Efl.Ui.ContainerSelectableItemUnselectedEventArgs();
                         args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Object);
                         try
                         {
@@ -173,8 +180,10 @@ sealed public  class IContainerSelectableConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ItemUnselectedEvt.</summary>
-    public void OnItemUnselectedEvt(Efl.Ui.IContainerSelectableItemUnselectedEvt_Args e)
+
+    /// <summary>Method to raise event ItemUnselectedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnItemUnselectedEvent(Efl.Ui.ContainerSelectableItemUnselectedEventArgs e)
     {
         var key = "_EFL_UI_EVENT_ITEM_UNSELECTED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -187,26 +196,42 @@ sealed public  class IContainerSelectableConcrete :
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
+
+#pragma warning disable CS0628
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IContainerSelectableConcrete.efl_ui_container_selectable_interface_get();
+        return Efl.Ui.ContainerSelectableConcrete.efl_ui_container_selectable_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IContainerSelectableConcrete.efl_ui_container_selectable_interface_get();
+            return Efl.Ui.ContainerSelectableConcrete.efl_ui_container_selectable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -216,12 +241,11 @@ sealed public  class IContainerSelectableConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIContainerSelectableConcrete_ExtensionMethods {
+public static class Efl_UiContainerSelectableConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

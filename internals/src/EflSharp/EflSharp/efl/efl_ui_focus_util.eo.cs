@@ -12,7 +12,8 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>EFL UI Focus Util class</summary>
+/// <summary>EFL UI Focus Utility class.
+/// This class contains a series of static methods that simplify common focus management operations. There&apos;s no need to instantiate this class.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Focus.Util.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -36,6 +37,7 @@ public class Util : Efl.Object
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_util_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Util"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Util(Efl.Object parent= null
@@ -66,40 +68,63 @@ public class Util : Efl.Object
     {
     }
 
-    /// <summary>Focus helper method</summary>
-    /// <param name="focus_elem">Focus element</param>
+
+    /// <summary>Sets the focus to the given object.</summary>
+    /// <param name="focus_elem">Object to receive focus.</param>
     public static void Focus(Efl.Ui.Focus.IObject focus_elem) {
-                                 Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_focus_ptr.Value.Delegate(focus_elem);
+        Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_focus_ptr.Value.Delegate(focus_elem);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the highest manager in the redirect property</summary>
+        
+    }
+
+    /// <summary>Gets the highest manager in the redirect chain.</summary>
+    /// <param name="manager">Manager to start looking from.</param>
     public static Efl.Ui.Focus.IManager ActiveManager(Efl.Ui.Focus.IManager manager) {
-                                 var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_active_manager_ptr.Value.Delegate(manager);
+        var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_active_manager_ptr.Value.Delegate(manager);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
+    /// <summary>Returns the complementary (opposite) focus direction.
+    /// The defined opposites are Left-Right, Up-Down and Next-Previous.</summary>
+    /// <param name="dir">Direction to complement.</param>
+    /// <returns>The opposite direction.</returns>
     public static Efl.Ui.Focus.Direction DirectionComplement(Efl.Ui.Focus.Direction dir) {
-                                 var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_direction_complement_ptr.Value.Delegate(dir);
+        var _ret_var = Efl.Ui.Focus.Util.NativeMethods.efl_ui_focus_util_direction_complement_ptr.Value.Delegate(dir);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Focus.Util.efl_ui_focus_util_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -123,7 +148,7 @@ public class Util : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     Util.Focus(focus_elem);
@@ -134,7 +159,7 @@ public class Util : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -156,7 +181,7 @@ public class Util : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
+                Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
                     _ret_var = Util.ActiveManager(manager);
@@ -167,8 +192,7 @@ public class Util : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -190,7 +214,7 @@ public class Util : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.Direction _ret_var = default(Efl.Ui.Focus.Direction);
+                Efl.Ui.Focus.Direction _ret_var = default(Efl.Ui.Focus.Direction);
                 try
                 {
                     _ret_var = Util.DirectionComplement(dir);
@@ -201,8 +225,7 @@ public class Util : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -215,9 +238,7 @@ public class Util : Efl.Object
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

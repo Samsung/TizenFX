@@ -12,6 +12,7 @@ namespace Ui {
 namespace Focus {
 
 /// <summary>Focus directions.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum Direction
 {
@@ -30,11 +31,8 @@ Left = 5,
 /// <summary>last direction</summary>
 Last = 6,
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
@@ -43,8 +41,8 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>Focus Movement Policy.
-/// (Since EFL 1.10)</summary>
+/// <summary>Focus Movement Policy.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum MovePolicy
 {
@@ -55,19 +53,16 @@ MoveIn = 1,
 /// <summary>Move focus by key. Elementary focus is set on key input like Left, Right, Up, Down, Tab, or Shift+Tab.</summary>
 KeyOnly = 2,
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Ui {
 
-/// <summary>Slider&apos;s indicator visibility mode.
-/// (Since EFL 1.13)</summary>
+/// <summary>Slider&apos;s indicator visibility mode.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum SliderIndicatorVisibleMode
 {
@@ -80,9 +75,7 @@ OnFocus = 2,
 /// <summary>Never show the indicator</summary>
 None = 3,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -91,8 +84,8 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>Focus Autoscroll Mode
-/// (Since EFL 1.10)</summary>
+/// <summary>Focus Autoscroll Mode</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum AutoscrollMode
 {
@@ -103,19 +96,16 @@ None = 1,
 /// <summary>Bring in the focused region or item automatically which might invole the scrolling.</summary>
 BringIn = 2,
 }
-
 }
-
 }
-
 }
 
 namespace Efl {
 
 namespace Ui {
 
-/// <summary>Software cursor mode.
-/// (Since EFL 1.7)</summary>
+/// <summary>Software cursor mode.</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum SoftcursorMode
 {
@@ -126,9 +116,7 @@ On = 1,
 /// <summary>Never use a softcursor.</summary>
 Off = 2,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -152,9 +140,7 @@ Left = 4,
 /// <summary>Activate back</summary>
 Back = 5,
 }
-
 }
-
 }
 
 namespace Efl {
@@ -171,8 +157,24 @@ Default = 0,
 /// <summary>No signal is sent to the widget&apos;s theme. Widget&apos;s theme will not change according to the window or screen orientation.</summary>
 Disabled = 1,
 }
-
+}
 }
 
+namespace Efl {
+
+namespace Ui {
+
+/// <summary>Type of multi selectable object.</summary>
+[Efl.Eo.BindingEntity]
+public enum SelectMode
+{
+/// <summary>Only single child is selected. If a child is selected, previous selected child will be unselected.</summary>
+Single = 0,
+/// <summary>Allow multiple selection of children.</summary>
+Multi = 1,
+/// <summary>No child can be selected at all.</summary>
+None = 2,
+}
+}
 }
 

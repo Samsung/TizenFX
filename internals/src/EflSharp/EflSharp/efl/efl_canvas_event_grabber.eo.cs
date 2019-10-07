@@ -41,6 +41,7 @@ public class EventGrabber : Efl.Canvas.Group
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_event_grabber_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="EventGrabber"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public EventGrabber(Efl.Object parent= null
@@ -71,37 +72,44 @@ public class EventGrabber : Efl.Canvas.Group
     {
     }
 
+
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>
     /// <returns>If <c>true</c>, stop updating</returns>
-    virtual public bool GetFreezeWhenVisible() {
-         var _ret_var = Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFreezeWhenVisible() {
+        var _ret_var = Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>
     /// <param name="set">If <c>true</c>, stop updating</param>
-    virtual public void SetFreezeWhenVisible(bool set) {
-                                 Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),set);
+    public virtual void SetFreezeWhenVisible(bool set) {
+        Efl.Canvas.EventGrabber.NativeMethods.efl_canvas_event_grabber_freeze_when_visible_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),set);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Stops the grabber from updating its internal stacking order while visible</summary>
     /// <value>If <c>true</c>, stop updating</value>
     public bool FreezeWhenVisible {
         get { return GetFreezeWhenVisible(); }
         set { SetFreezeWhenVisible(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.EventGrabber.efl_canvas_event_grabber_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Group.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -126,9 +134,20 @@ public class EventGrabber : Efl.Canvas.Group
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_event_grabber_freeze_when_visible_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_event_grabber_freeze_when_visible_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -152,7 +171,7 @@ public class EventGrabber : Efl.Canvas.Group
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((EventGrabber)ws.Target).GetFreezeWhenVisible();
@@ -163,8 +182,7 @@ public class EventGrabber : Efl.Canvas.Group
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -188,7 +206,7 @@ public class EventGrabber : Efl.Canvas.Group
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((EventGrabber)ws.Target).SetFreezeWhenVisible(set);
@@ -199,7 +217,7 @@ public class EventGrabber : Efl.Canvas.Group
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -214,7 +232,6 @@ public class EventGrabber : Efl.Canvas.Group
 }
 }
 }
-
 }
 
 #if EFL_BETA

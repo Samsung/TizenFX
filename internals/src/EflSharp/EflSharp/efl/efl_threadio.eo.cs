@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.ComponentModel;
-/// <param name="kw_event">No description supplied.</param>
+/// <param name="kw_event">Event struct with an <see cref="Efl.LoopHandler"/> as payload.</param>
 [Efl.Eo.BindingEntity]
 public delegate void EflThreadIOCall(Efl.Event kw_event);
 public delegate void EflThreadIOCallInternal(IntPtr data,  Efl.Event.NativeStruct kw_event);
@@ -55,26 +55,27 @@ internal class EflThreadIOCallWrapper : IDisposable
 
     internal void ManagedCb(Efl.Event kw_event)
     {
-                                _cb(_cb_data, kw_event);
-        Eina.Error.RaiseIfUnhandledException();
-                            }
+_cb(_cb_data, kw_event);
+Eina.Error.RaiseIfUnhandledException();
+        
+    }
 
         internal static void Cb(IntPtr cb_data,  Efl.Event.NativeStruct kw_event)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         EflThreadIOCall cb = (EflThreadIOCall)handle.Target;
-                                    
         try {
             cb(kw_event);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                            }
+            }
 }
 
 
-/// <param name="kw_event">No description supplied.</param>
+/// <param name="kw_event">Event struct with an <see cref="Efl.LoopHandler"/> as payload.</param>
+/// <returns>Data that the function executed on the other thread returned.</returns>
 [Efl.Eo.BindingEntity]
 public delegate System.IntPtr EflThreadIOCallSync(Efl.Event kw_event);
 public delegate System.IntPtr EflThreadIOCallSyncInternal(IntPtr data,  Efl.Event.NativeStruct kw_event);
@@ -123,63 +124,78 @@ internal class EflThreadIOCallSyncWrapper : IDisposable
 
     internal System.IntPtr ManagedCb(Efl.Event kw_event)
     {
-                                var _ret_var = _cb(_cb_data, kw_event);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
+var _ret_var = _cb(_cb_data, kw_event);
+Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
     }
 
         internal static System.IntPtr Cb(IntPtr cb_data,  Efl.Event.NativeStruct kw_event)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         EflThreadIOCallSync cb = (EflThreadIOCallSync)handle.Target;
-                                    System.IntPtr _ret_var = default(System.IntPtr);
-        try {
+System.IntPtr _ret_var = default(System.IntPtr);        try {
             _ret_var = cb(kw_event);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                        return _ret_var;
-    }
+        return _ret_var;    }
 }
 
 
 namespace Efl {
 
-/// <summary>No description supplied.</summary>
+/// <summary>This mixin defines input and output pointers to allow exchanging data with another thread. It also defines a mechanism to call methods on that thread.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.IThreadIOConcrete.NativeMethods]
+[Efl.ThreadIOConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IThreadIO : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <returns>No description supplied.</returns>
-System.IntPtr GetIndata();
-    /// <param name="data">No description supplied.</param>
-void SetIndata(System.IntPtr data);
-    /// <returns>No description supplied.</returns>
-System.IntPtr GetOutdata();
-    /// <param name="data">No description supplied.</param>
-void SetOutdata(System.IntPtr data);
-    /// <param name="func">No description supplied.</param>
-void Call(EflThreadIOCall func);
-    /// <param name="func">No description supplied.</param>
-/// <returns>No description supplied.</returns>
-System.IntPtr CallSync(EflThreadIOCallSync func);
-                            /// <value>No description supplied.</value>
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
+    System.IntPtr GetIndata();
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
+    void SetIndata(System.IntPtr data);
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
+    System.IntPtr GetOutdata();
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
+    void SetOutdata(System.IntPtr data);
+
+    /// <summary>Executes a method on a different thread, asynchronously.</summary>
+    /// <param name="func">The method to execute asynchronously.</param>
+    void Call(EflThreadIOCall func);
+
+    /// <summary>Executes a method on a different thread, synchronously. This call will not return until the method finishes and its return value can be recovered.</summary>
+    /// <param name="func">The method to execute synchronously.</param>
+    /// <returns>The return value from the method.</returns>
+    System.IntPtr SyncCall(EflThreadIOCallSync func);
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     System.IntPtr Indata {
         get;
         set;
     }
-    /// <value>No description supplied.</value>
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     System.IntPtr Outdata {
         get;
         set;
     }
+
 }
-/// <summary>No description supplied.</summary>
+
+/// <summary>This mixin defines input and output pointers to allow exchanging data with another thread. It also defines a mechanism to call methods on that thread.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IThreadIOConcrete :
+public sealed class ThreadIOConcrete :
     Efl.Eo.EoWrapper
     , IThreadIO
     
@@ -189,7 +205,7 @@ sealed public  class IThreadIOConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IThreadIOConcrete))
+            if (((object)this).GetType() == typeof(ThreadIOConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -203,77 +219,101 @@ sealed public  class IThreadIOConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IThreadIOConcrete(ConstructingHandle ch) : base(ch)
+    private ThreadIOConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_threadio_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IThreadIO"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IThreadIOConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ThreadIOConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <returns>No description supplied.</returns>
+#pragma warning disable CS0628
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
     public System.IntPtr GetIndata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <param name="data">No description supplied.</param>
+    }
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
     public void SetIndata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate(this.NativeHandle,data);
+        Efl.ThreadIOConcrete.NativeMethods.efl_threadio_indata_set_ptr.Value.Delegate(this.NativeHandle,data);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <returns>No description supplied.</returns>
+        
+    }
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <returns>Data pointer.</returns>
     public System.IntPtr GetOutdata() {
-         var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <param name="data">No description supplied.</param>
+    }
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <param name="data">Data pointer.</param>
     public void SetOutdata(System.IntPtr data) {
-                                 Efl.IThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate(this.NativeHandle,data);
+        Efl.ThreadIOConcrete.NativeMethods.efl_threadio_outdata_set_ptr.Value.Delegate(this.NativeHandle,data);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <param name="func">No description supplied.</param>
+        
+    }
+
+    /// <summary>Executes a method on a different thread, asynchronously.</summary>
+    /// <param name="func">The method to execute asynchronously.</param>
     public void Call(EflThreadIOCall func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        GCHandle func_handle = GCHandle.Alloc(func);
+Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <param name="func">No description supplied.</param>
-    /// <returns>No description supplied.</returns>
-    public System.IntPtr CallSync(EflThreadIOCallSync func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.IThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        
+    }
+
+    /// <summary>Executes a method on a different thread, synchronously. This call will not return until the method finishes and its return value can be recovered.</summary>
+    /// <param name="func">The method to execute synchronously.</param>
+    /// <returns>The return value from the method.</returns>
+    public System.IntPtr SyncCall(EflThreadIOCallSync func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+var _ret_var = Efl.ThreadIOConcrete.NativeMethods.efl_threadio_call_sync_ptr.Value.Delegate(this.NativeHandle,GCHandle.ToIntPtr(func_handle), EflThreadIOCallSyncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <value>No description supplied.</value>
+        return _ret_var;
+    }
+
+    /// <summary>Input data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     public System.IntPtr Indata {
         get { return GetIndata(); }
         set { SetIndata(value); }
     }
-    /// <value>No description supplied.</value>
+
+    /// <summary>Output data pointer for the thread.</summary>
+    /// <value>Data pointer.</value>
     public System.IntPtr Outdata {
         get { return GetOutdata(); }
         set { SetOutdata(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IThreadIOConcrete.efl_threadio_mixin_get();
+        return Efl.ThreadIOConcrete.efl_threadio_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -333,18 +373,29 @@ sealed public  class IThreadIOConcrete :
                 efl_threadio_call_sync_static_delegate = new efl_threadio_call_sync_delegate(call_sync);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "CallSync") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SyncCall") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_threadio_call_sync"), func = Marshal.GetFunctionPointerForDelegate(efl_threadio_call_sync_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IThreadIOConcrete.efl_threadio_mixin_get();
+            return Efl.ThreadIOConcrete.efl_threadio_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -363,7 +414,7 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.IntPtr _ret_var = default(System.IntPtr);
+                System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
                     _ret_var = ((IThreadIO)ws.Target).GetIndata();
@@ -374,8 +425,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -399,7 +449,7 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IThreadIO)ws.Target).SetIndata(data);
@@ -410,7 +460,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -434,7 +484,7 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.IntPtr _ret_var = default(System.IntPtr);
+                System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
                     _ret_var = ((IThreadIO)ws.Target).GetOutdata();
@@ -445,8 +495,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -470,7 +519,7 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IThreadIO)ws.Target).SetOutdata(data);
@@ -481,7 +530,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -505,8 +554,8 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            EflThreadIOCallWrapper func_wrapper = new EflThreadIOCallWrapper(func, func_data, func_free_cb);
-            
+                    EflThreadIOCallWrapper func_wrapper = new EflThreadIOCallWrapper(func, func_data, func_free_cb);
+
                 try
                 {
                     ((IThreadIO)ws.Target).Call(func_wrapper.ManagedCb);
@@ -517,7 +566,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -541,11 +590,11 @@ sealed public  class IThreadIOConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                            EflThreadIOCallSyncWrapper func_wrapper = new EflThreadIOCallSyncWrapper(func, func_data, func_free_cb);
-            System.IntPtr _ret_var = default(System.IntPtr);
+                    EflThreadIOCallSyncWrapper func_wrapper = new EflThreadIOCallSyncWrapper(func, func_data, func_free_cb);
+System.IntPtr _ret_var = default(System.IntPtr);
                 try
                 {
-                    _ret_var = ((IThreadIO)ws.Target).CallSync(func_wrapper.ManagedCb);
+                    _ret_var = ((IThreadIO)ws.Target).SyncCall(func_wrapper.ManagedCb);
                 }
                 catch (Exception e)
                 {
@@ -553,8 +602,7 @@ sealed public  class IThreadIOConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -572,7 +620,7 @@ sealed public  class IThreadIOConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIThreadIOConcrete_ExtensionMethods {
+public static class EflThreadIOConcrete_ExtensionMethods {
     public static Efl.BindableProperty<System.IntPtr> Indata<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.IThreadIO, T>magic = null) where T : Efl.IThreadIO {
         return new Efl.BindableProperty<System.IntPtr>("indata", fac);
     }

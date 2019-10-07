@@ -9,68 +9,6 @@ namespace Efl
         namespace Wearable
         {
             /// <summary>
-            /// CircleProgressBarBar is a part used to set the color of the bar.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            public class CircleProgressBarBar : ICircleColor
-            {
-                IntPtr _handle;
-                public CircleProgressBarBar(IntPtr CircleHandle) { _handle = CircleHandle; }
-
-                /// <summary>
-                /// Sets the color of the bar on the circle progressbar.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void SetColor(int r, int g, int b, int a)
-                {
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_color_set(_handle, r, g, b, a);
-                }
-
-                /// <summary>
-                /// Gets the color of the bar on the circle progressbar.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void GetColor(out int r, out int g, out int b, out int a)
-                {
-                    r = g = b = a = -1;
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_color_get(_handle, out r, out g, out b, out a);
-                }
-            }
-
-            /// <summary>
-            /// CircleProgressBarBarBackground is a part used to set the background color of the bar.
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            public class CircleProgressBarBarBackground : ICircleColor
-            {
-                IntPtr _handle;
-                public CircleProgressBarBarBackground(IntPtr CircleHandle) { _handle = CircleHandle; }
-
-                /// <summary>
-                /// Sets the background color of the bar on the circle progressbar.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void SetColor(int r, int g, int b, int a)
-                {
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_item_color_set(_handle, "bg", r, g, b, a);
-                }
-
-                /// <summary>
-                /// Gets the background color of the bar on the circle progressbar.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public void GetColor(out int r, out int g, out int b, out int a)
-                {
-                    r = g = b = a = -1;
-                    if (_handle != null)
-                        Interop.Eext.eext_circle_object_item_color_get(_handle, "bg", out r, out g, out b, out a);
-                }
-            }
-
-            /// <summary>
             /// The CircleProgressBar is a widget for visually representing the progress status of a given job or task with the circular design.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
@@ -82,32 +20,52 @@ namespace Efl
                 /// Get the handle for the circle widget.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public virtual IntPtr CircleHandle => _handle;
+                public IntPtr CircleHandle => _handle;
 
                 /// <summary>
                 /// Sets or gets the color of the bar.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleProgressBarBar Bar;
+                public Efl.Gfx.Color32 BarColor
+                {
+                    get
+                    {
+                        int r, g, b, a;
+                        Interop.Eext.eext_circle_object_color_get(_handle, out r, out g, out b, out a);
+                        return new Efl.Gfx.Color32((byte)r, (byte)g, (byte)b, (byte)a);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_circle_object_color_set(_handle, value.R, value.G, value.B, value.A);
+                    }
+                }
 
                 /// <summary>
                 /// Sets or gets the background color of the bar.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleProgressBarBarBackground BarBackground;
+                public Efl.Gfx.Color32 BackgroundColor
+                {
+                    get
+                    {
+                        int r, g, b, a;
+                        Interop.Eext.eext_circle_object_item_color_get(_handle, "bg", out r, out g, out b, out a);
+                        return new Efl.Gfx.Color32((byte)r, (byte)g, (byte)b, (byte)a);
+                    }
+                    set
+                    {
+                        Interop.Eext.eext_circle_object_item_color_set(_handle, "bg", value.R, value.G, value.B, value.A);
+                    }
+                }
 
                 /// <summary>
                 /// Creates and initializes a new instance of the CircleProgressBar class.
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new CircleProgressBar will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public CircleProgressBar(Efl.Ui.Widget parent) : base(parent)
+                public CircleProgressBar(Efl.Object parent) : base(parent)
                 {
                     _handle = Interop.Eext.eext_circle_object_progressbar_add(parent.NativeHandle, IntPtr.Zero);
-
-                    Bar = new CircleProgressBarBar(_handle);
-                    BarBackground = new CircleProgressBarBarBackground(_handle);
-
                     elm_layout_content_set(this.NativeHandle, "efl.swallow.vg", CircleHandle);
                 }
 
@@ -120,30 +78,15 @@ namespace Efl
                     return this;
                 }
 
-                /// <summary>
-                /// Sets or gets the disabled state of the circle progressbar.
+                /// <summary>Enables or disables this widget.
+                /// Disabling a widget will disable all its children recursively, but only this widget will be marked as disabled internally.
                 /// </summary>
+                /// <param name="disabled"><c>true</c> if the widget is disabled.<br/>The default value is <c>false</c>.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public bool Disable
+                public override void SetDisabled(bool disabled)
                 {
-                    get => !IsEnable;
-                    set => IsEnable = !value;
-                }
-
-                /// <summary>
-                /// Sets or gets the enabled state of the circle progressbar.
-                /// </summary>
-                /// <since_tizen> 6 </since_tizen>
-                public bool IsEnable
-                {
-                    get
-                    {
-                        return !Interop.Eext.eext_circle_object_disabled_get(CircleHandle);
-                    }
-                    set
-                    {
-                        Interop.Eext.eext_circle_object_disabled_set(CircleHandle, !value);
-                    }
+                    base.SetDisabled(disabled);
+                    Interop.Eext.eext_circle_object_disabled_set(CircleHandle, disabled);
                 }
 
                 /// <summary>

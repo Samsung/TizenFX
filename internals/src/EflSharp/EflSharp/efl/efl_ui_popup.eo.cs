@@ -10,8 +10,18 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>EFL UI popup class</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+/// <summary>A styled container widget which overlays a window&apos;s contents.
+/// The Popup widget is a theme-capable container which can be used for various purposes. Regular contents can be set using the <see cref="Efl.IContent"/> interface, or basic scrollable contents can be set through the <see cref="Efl.Ui.IWidgetScrollableContent"/> mixin API. For contents which should be scrollable but require more fine-grained tuning, it may be necessary for users to set up and provide their own scroller object such as <see cref="Efl.Ui.Scroller"/>.
+/// 
+/// A Popup widget will create an overlay for the window contents. This overlay is an <see cref="Efl.Ui.PopupPartBackwall"/> object, which provides functionality for passing events through to the main window while the Popup is active as well as the ability to set background images for the Popup.
+/// 
+/// By default, a Popup is positioned by the user through the <see cref="Efl.Gfx.IEntity.Position"/> property. This behavior can be altered by using the <see cref="Efl.Ui.Popup.Align"/> and <see cref="Efl.Ui.Popup.Anchor"/> properties. Setting the <see cref="Efl.Gfx.IEntity.Position"/> property directly will unset both the <see cref="Efl.Ui.Popup.Align"/> and <see cref="Efl.Ui.Popup.Anchor"/> properties, and vice versa.
+/// 
+/// By default, a Popup will size itself based on the minimum size of its contents through the <see cref="Efl.Gfx.IHint"/> interface. A Popup will never size itself smaller than the minimum size of its contents, but by manually setting the <see cref="Efl.Gfx.IEntity.Size"/> property or the <see cref="Efl.Gfx.IHint.HintSizeMin"/> property, a larger size can be specified.
+/// 
+/// Users can set a given Popup widget to close automatically after a specified time using the <see cref="Efl.Ui.Popup.ClosingTimeout"/> property.
+/// 
+/// For a Popup with a more specialized purpose, see <see cref="Efl.Ui.AlertPopup"/>.</summary>
 [Efl.Ui.Popup.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager, Efl.Ui.IWidgetScrollableContent, Efl.Ui.Focus.ILayer, Efl.Ui.Focus.IManager
@@ -34,9 +44,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_popup_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Popup"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Popup(Efl.Object parent
             , System.String style = null) : base(efl_ui_popup_class_get(), parent)
     {
@@ -70,8 +81,8 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
     {
     }
 
-    /// <summary>This is called whenever the user clicks back wall of popup.</summary>
-    public event EventHandler BackwallClickedEvt
+    /// <summary>This is called whenever the user clicks the backwall part of the Popup.</summary>
+    public event EventHandler BackwallClickedEvent
     {
         add
         {
@@ -109,8 +120,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event BackwallClickedEvt.</summary>
-    public void OnBackwallClickedEvt(EventArgs e)
+
+    /// <summary>Method to raise event BackwallClickedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnBackwallClickedEvent(EventArgs e)
     {
         var key = "_EFL_UI_POPUP_EVENT_BACKWALL_CLICKED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -122,8 +135,9 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>This is called when popup times out.</summary>
-    public event EventHandler TimeoutEvt
+
+    /// <summary>This is called when Popup times out.</summary>
+    public event EventHandler TimeoutEvent
     {
         add
         {
@@ -161,8 +175,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event TimeoutEvt.</summary>
-    public void OnTimeoutEvt(EventArgs e)
+
+    /// <summary>Method to raise event TimeoutEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnTimeoutEvent(EventArgs e)
     {
         var key = "_EFL_UI_POPUP_EVENT_TIMEOUT";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -174,10 +190,12 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Sent after the content is set or unset using the current content object.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.IContentContentChangedEvt_Args"/></value>
-    public event EventHandler<Efl.IContentContentChangedEvt_Args> ContentChangedEvt
+
+
+    /// <summary>Sent after the content is set or unset using the current content object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.ContentContentChangedEventArgs"/></value>
+    public event EventHandler<Efl.ContentContentChangedEventArgs> ContentChangedEvent
     {
         add
         {
@@ -188,8 +206,8 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.IContentContentChangedEvt_Args args = new Efl.IContentContentChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.IEntityConcrete);
+                        Efl.ContentContentChangedEventArgs args = new Efl.ContentContentChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Gfx.EntityConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -216,8 +234,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event ContentChangedEvt.</summary>
-    public void OnContentChangedEvt(Efl.IContentContentChangedEvt_Args e)
+
+    /// <summary>Method to raise event ContentChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentChangedEvent(Efl.ContentContentChangedEventArgs e)
     {
         var key = "_EFL_CONTENT_EVENT_CONTENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -230,9 +250,11 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
+
     /// <summary>The optimal size for the widget based on scrollable content.</summary>
-    /// <value><see cref="Efl.Ui.IWidgetScrollableContentOptimalSizeCalcEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IWidgetScrollableContentOptimalSizeCalcEvt_Args> OptimalSizeCalcEvt
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.WidgetScrollableContentOptimalSizeCalcEventArgs"/></value>
+    public event EventHandler<Efl.Ui.WidgetScrollableContentOptimalSizeCalcEventArgs> OptimalSizeCalcEvent
     {
         add
         {
@@ -243,7 +265,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IWidgetScrollableContentOptimalSizeCalcEvt_Args args = new Efl.Ui.IWidgetScrollableContentOptimalSizeCalcEvt_Args();
+                        Efl.Ui.WidgetScrollableContentOptimalSizeCalcEventArgs args = new Efl.Ui.WidgetScrollableContentOptimalSizeCalcEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -271,8 +293,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event OptimalSizeCalcEvt.</summary>
-    public void OnOptimalSizeCalcEvt(Efl.Ui.IWidgetScrollableContentOptimalSizeCalcEvt_Args e)
+
+    /// <summary>Method to raise event OptimalSizeCalcEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnOptimalSizeCalcEvent(Efl.Ui.WidgetScrollableContentOptimalSizeCalcEventArgs e)
     {
         var key = "_EFL_UI_WIDGET_SCROLLABLE_CONTENT_EVENT_OPTIMAL_SIZE_CALC";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -293,10 +317,11 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Redirect object has changed, the old manager is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerRedirectChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerRedirectChangedEvt_Args> RedirectChangedEvt
+
+    /// <summary>Redirect object has changed, the old manager is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerRedirectChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerRedirectChangedEventArgs> RedirectChangedEvent
     {
         add
         {
@@ -307,8 +332,8 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerRedirectChangedEvt_Args args = new Efl.Ui.Focus.IManagerRedirectChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IManagerConcrete);
+                        Efl.Ui.Focus.ManagerRedirectChangedEventArgs args = new Efl.Ui.Focus.ManagerRedirectChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ManagerConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -335,8 +360,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event RedirectChangedEvt.</summary>
-    public void OnRedirectChangedEvt(Efl.Ui.Focus.IManagerRedirectChangedEvt_Args e)
+
+    /// <summary>Method to raise event RedirectChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnRedirectChangedEvent(Efl.Ui.Focus.ManagerRedirectChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_REDIRECT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -349,9 +376,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler FlushPreEvt
+
+    /// <summary>After this event, the manager object will calculate relations in the graph. Can be used to add / remove children in a lazy fashion.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler FlushPreEvent
     {
         add
         {
@@ -389,8 +417,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event FlushPreEvt.</summary>
-    public void OnFlushPreEvt(EventArgs e)
+
+    /// <summary>Method to raise event FlushPreEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnFlushPreEvent(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_FLUSH_PRE";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -402,9 +432,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>Cached relationship calculation results have been invalidated.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler CoordsDirtyEvt
+
+    /// <summary>Cached relationship calculation results have been invalidated.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler CoordsDirtyEvent
     {
         add
         {
@@ -442,8 +473,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event CoordsDirtyEvt.</summary>
-    public void OnCoordsDirtyEvt(EventArgs e)
+
+    /// <summary>Method to raise event CoordsDirtyEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCoordsDirtyEvent(EventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_COORDS_DIRTY";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -455,10 +488,11 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args> ManagerFocusChangedEvt
+
+    /// <summary>The manager_focus property has changed. The previously focused object is passed as an event argument.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs> ManagerFocusChangedEvent
     {
         add
         {
@@ -469,8 +503,8 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args args = new Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args();
-                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.IObjectConcrete);
+                        Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs args = new Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs();
+                        args.arg = (Efl.Eo.Globals.CreateWrapperFor(evt.Info) as Efl.Ui.Focus.ObjectConcrete);
                         try
                         {
                             value?.Invoke(obj, args);
@@ -497,8 +531,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event ManagerFocusChangedEvt.</summary>
-    public void OnManagerFocusChangedEvt(Efl.Ui.Focus.IManagerManagerFocusChangedEvt_Args e)
+
+    /// <summary>Method to raise event ManagerFocusChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnManagerFocusChangedEvent(Efl.Ui.Focus.ManagerManagerFocusChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_MANAGER_FOCUS_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -511,10 +547,11 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         IntPtr info = e.arg.NativeHandle;
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, info);
     }
-    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args> DirtyLogicFreezeChangedEvt
+
+    /// <summary>Called when this focus manager is frozen or thawed, even_info being <c>true</c> indicates that it is now frozen, <c>false</c> indicates that it is thawed.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs> DirtyLogicFreezeChangedEvent
     {
         add
         {
@@ -525,7 +562,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args args = new Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args();
+                        Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs args = new Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -553,8 +590,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             }
         }
     }
-    /// <summary>Method to raise event DirtyLogicFreezeChangedEvt.</summary>
-    public void OnDirtyLogicFreezeChangedEvt(Efl.Ui.Focus.IManagerDirtyLogicFreezeChangedEvt_Args e)
+
+    /// <summary>Method to raise event DirtyLogicFreezeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnDirtyLogicFreezeChangedEvent(Efl.Ui.Focus.ManagerDirtyLogicFreezeChangedEventArgs e)
     {
         var key = "_EFL_UI_FOCUS_MANAGER_EVENT_DIRTY_LOGIC_FREEZE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -574,7 +613,8 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>A backwall behind the popup.</summary>
+
+    /// <summary>A backwall behind the Popup.</summary>
     public Efl.Ui.PopupPartBackwall BackwallPart
     {
         get
@@ -582,359 +622,441 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             return GetPart("backwall") as Efl.Ui.PopupPartBackwall;
         }
     }
-    /// <summary>Get the current popup alignment.</summary>
-    /// <returns>Alignment type</returns>
-    virtual public Efl.Ui.PopupAlign GetAlign() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <summary>The align property specifies a Popup&apos;s current positioning relative to its anchor.
+    /// When set, this property will override any user-provided value for the widget&apos;s <see cref="Efl.Gfx.IEntity.Position"/> property.</summary>
+    /// <returns>Alignment of the Popup relative to its anchor. The default is <see cref="Efl.Ui.PopupAlign.None"/>.</returns>
+    public virtual Efl.Ui.PopupAlign GetAlign() {
+        var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Set the popup alignment.</summary>
-    /// <param name="type">Alignment type</param>
-    virtual public void SetAlign(Efl.Ui.PopupAlign type) {
-                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
+    }
+
+    /// <summary>The align property specifies a Popup&apos;s current positioning relative to its anchor.
+    /// When set, this property will override any user-provided value for the widget&apos;s <see cref="Efl.Gfx.IEntity.Position"/> property.</summary>
+    /// <param name="type">Alignment of the Popup relative to its anchor. The default is <see cref="Efl.Ui.PopupAlign.None"/>.</param>
+    public virtual void SetAlign(Efl.Ui.PopupAlign type) {
+        Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),type);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the currently set timeout seconds.</summary>
-    /// <returns>Timeout in seconds</returns>
-    virtual public double GetTimeout() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
-        Eina.Error.RaiseIfUnhandledException();
-        return _ret_var;
- }
-    /// <summary>Set the timeout seconds. After timeout seconds, popup will be deleted automatically.</summary>
-    /// <param name="time">Timeout in seconds</param>
-    virtual public void SetTimeout(double time) {
-                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
-        Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Returns the anchor object which the popup is following.</summary>
-    /// <returns>The object which popup is following.</returns>
-    virtual public Efl.Canvas.Object GetAnchor() {
-         var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_anchor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>The closing_timeout property is the time after which the Popup widget will be automatically deleted.
+    /// The timer is initiated at the time when the popup is shown. If the value is changed prior to the timer expiring, the existing timer will be deleted. If the new value is greater than $0, a new timer will be created.</summary>
+    /// <returns>If greater than $0, the Popup will close automatically after the value in seconds. The default is to not automatically delete the Popup.</returns>
+    public virtual double GetClosingTimeout() {
+        var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_closing_timeout_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Set anchor popup to follow an anchor object. If anchor object is moved or parent window is resized, the anchor popup moves to the new position. If anchor object is set to NULL, the anchor popup stops following the anchor object. When the popup is moved by using gfx_position_set, anchor is set NULL.</summary>
-    /// <param name="anchor">The object which popup is following.</param>
-    virtual public void SetAnchor(Efl.Canvas.Object anchor) {
-                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_anchor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),anchor);
+    }
+
+    /// <summary>The closing_timeout property is the time after which the Popup widget will be automatically deleted.
+    /// The timer is initiated at the time when the popup is shown. If the value is changed prior to the timer expiring, the existing timer will be deleted. If the new value is greater than $0, a new timer will be created.</summary>
+    /// <param name="time">If greater than $0, the Popup will close automatically after the value in seconds. The default is to not automatically delete the Popup.</param>
+    public virtual void SetClosingTimeout(double time) {
+        Efl.Ui.Popup.NativeMethods.efl_ui_popup_closing_timeout_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),time);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Get the align priority of a popup.</summary>
-    /// <param name="first">First align priority</param>
-    /// <param name="second">Second align priority</param>
-    /// <param name="third">Third align priority</param>
-    /// <param name="fourth">Fourth align priority</param>
-    /// <param name="fifth">Fifth align priority</param>
-    virtual public void GetAlignPriority(out Efl.Ui.PopupAlign first, out Efl.Ui.PopupAlign second, out Efl.Ui.PopupAlign third, out Efl.Ui.PopupAlign fourth, out Efl.Ui.PopupAlign fifth) {
-                                                                                                                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_priority_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out first, out second, out third, out fourth, out fifth);
+        
+    }
+
+    /// <summary>The anchor object is the reference object for positioning a Popup using the <see cref="Efl.Ui.Popup.Align"/> and <see cref="Efl.Ui.Popup.GetAlignPriority"/> properties.
+    /// A Popup will recalculate its alignment relative to its anchor and change its position when: - the anchor object is moved (unless the anchor is a window) - the anchor object is resized - the Popup is resized - the parent window is resized
+    /// 
+    /// If <see cref="Efl.Ui.Popup.GetAnchor"/> returns <c>NULL</c>, the anchor is the parent window of the Popup. If the anchor object is set to <c>NULL</c>, the Popup will no longer recalculate its alignment or change its position under any circumstance. If the Popup is moved by using <see cref="Efl.Gfx.IEntity.SetPosition"/>, <c>anchor</c> is set <c>NULL</c>.</summary>
+    /// <returns>The object which Popup is following. By default this is <c>NULL</c>.</returns>
+    public virtual Efl.Canvas.Object GetAnchor() {
+        var _ret_var = Efl.Ui.Popup.NativeMethods.efl_ui_popup_anchor_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
-    /// <summary>Set the align priority of a popup.</summary>
-    /// <param name="first">First align priority</param>
-    /// <param name="second">Second align priority</param>
-    /// <param name="third">Third align priority</param>
-    /// <param name="fourth">Fourth align priority</param>
-    /// <param name="fifth">Fifth align priority</param>
-    virtual public void SetAlignPriority(Efl.Ui.PopupAlign first, Efl.Ui.PopupAlign second, Efl.Ui.PopupAlign third, Efl.Ui.PopupAlign fourth, Efl.Ui.PopupAlign fifth) {
-                                                                                                                                 Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_priority_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),first, second, third, fourth, fifth);
+        return _ret_var;
+    }
+
+    /// <summary>The anchor object is the reference object for positioning a Popup using the <see cref="Efl.Ui.Popup.Align"/> and <see cref="Efl.Ui.Popup.GetAlignPriority"/> properties.
+    /// A Popup will recalculate its alignment relative to its anchor and change its position when: - the anchor object is moved (unless the anchor is a window) - the anchor object is resized - the Popup is resized - the parent window is resized
+    /// 
+    /// If <see cref="Efl.Ui.Popup.GetAnchor"/> returns <c>NULL</c>, the anchor is the parent window of the Popup. If the anchor object is set to <c>NULL</c>, the Popup will no longer recalculate its alignment or change its position under any circumstance. If the Popup is moved by using <see cref="Efl.Gfx.IEntity.SetPosition"/>, <c>anchor</c> is set <c>NULL</c>.</summary>
+    /// <param name="anchor">The object which Popup is following. By default this is <c>NULL</c>.</param>
+    public virtual void SetAnchor(Efl.Canvas.Object anchor) {
+        Efl.Ui.Popup.NativeMethods.efl_ui_popup_anchor_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),anchor);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                         }
+        
+    }
+
+    /// <summary>This is the priority in which alignments will be tested using the anchor object if the value of <see cref="Efl.Ui.Popup.Align"/> is determined to be invalid. If a given alignment would result in the popup being partially or fully outside the visible area of the window, it is deemed invalid, and the next alignment is tested until either the priority list is exhausted or a usable alignment is found.
+    /// An alignment will also be deemed invalid if the popup occludes its anchor object, except if <see cref="Efl.Ui.PopupAlign.Center"/> is specified.</summary>
+    /// <param name="first">First alignment. The default is <see cref="Efl.Ui.PopupAlign.Top"/>.</param>
+    /// <param name="second">Second alignment. The default is <see cref="Efl.Ui.PopupAlign.Left"/>.</param>
+    /// <param name="third">Third alignment. The default is <see cref="Efl.Ui.PopupAlign.Right"/>.</param>
+    /// <param name="fourth">Fourth alignment. The default is <see cref="Efl.Ui.PopupAlign.Bottom"/>.</param>
+    /// <param name="fifth">Fifth alignment. The default is <see cref="Efl.Ui.PopupAlign.Center"/>.</param>
+    public virtual void GetAlignPriority(out Efl.Ui.PopupAlign first, out Efl.Ui.PopupAlign second, out Efl.Ui.PopupAlign third, out Efl.Ui.PopupAlign fourth, out Efl.Ui.PopupAlign fifth) {
+        Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_priority_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out first, out second, out third, out fourth, out fifth);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
+    /// <summary>This is the priority in which alignments will be tested using the anchor object if the value of <see cref="Efl.Ui.Popup.Align"/> is determined to be invalid. If a given alignment would result in the popup being partially or fully outside the visible area of the window, it is deemed invalid, and the next alignment is tested until either the priority list is exhausted or a usable alignment is found.
+    /// An alignment will also be deemed invalid if the popup occludes its anchor object, except if <see cref="Efl.Ui.PopupAlign.Center"/> is specified.</summary>
+    /// <param name="first">First alignment. The default is <see cref="Efl.Ui.PopupAlign.Top"/>.</param>
+    /// <param name="second">Second alignment. The default is <see cref="Efl.Ui.PopupAlign.Left"/>.</param>
+    /// <param name="third">Third alignment. The default is <see cref="Efl.Ui.PopupAlign.Right"/>.</param>
+    /// <param name="fourth">Fourth alignment. The default is <see cref="Efl.Ui.PopupAlign.Bottom"/>.</param>
+    /// <param name="fifth">Fifth alignment. The default is <see cref="Efl.Ui.PopupAlign.Center"/>.</param>
+    public virtual void SetAlignPriority(Efl.Ui.PopupAlign first, Efl.Ui.PopupAlign second, Efl.Ui.PopupAlign third, Efl.Ui.PopupAlign fourth, Efl.Ui.PopupAlign fifth) {
+        Efl.Ui.Popup.NativeMethods.efl_ui_popup_align_priority_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),first, second, third, fourth, fifth);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The sub-object.</returns>
-    virtual public Efl.Gfx.IEntity GetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Gfx.IEntity GetContent() {
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="content">The sub-object.</param>
     /// <returns><c>true</c> if <c>content</c> was successfully swallowed.</returns>
-    virtual public bool SetContent(Efl.Gfx.IEntity content) {
-                                 var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>Unswallowed object</returns>
-    virtual public Efl.Gfx.IEntity UnsetContent() {
-         var _ret_var = Efl.IContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool SetContent(Efl.Gfx.IEntity content) {
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>Remove the sub-object currently set as content of this object and return it. This object becomes empty.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Unswallowed object</returns>
+    public virtual Efl.Gfx.IEntity UnsetContent() {
+        var _ret_var = Efl.ContentConcrete.NativeMethods.efl_content_unset_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>If the widget needs a focus manager, this function will be called.
-    /// It can be used and overriden to inject your own manager or set custom options on the focus manager.
-    /// (Since EFL 1.22)</summary>
+    /// It can be used and overridden to inject your own manager or set custom options on the focus manager.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="root">The logical root object for focus.</param>
     /// <returns>The focus manager.</returns>
-    virtual public Efl.Ui.Focus.IManager FocusManagerCreate(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.IWidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Widgets can call this function during their <see cref="Efl.Canvas.Group.CalculateGroup"/> implementation after the super call to determine whether the internal scroller has performed sizing calculations.
-    /// The optimal_size,calc event will have been emitted during the super call if this method returns <c>true</c>.
-    /// 
-    /// In the case that this returns <c>true</c>, it&apos;s likely that the widget should be completing its internal sizing calculations from the optimal_size,calc callback using
-    /// 
-    /// `efl_canvas_group_calculate(efl_super(ev-&gt;object, EFL_UI_WIDGET_SCROLLABLE_CONTENT_MIXIN));`
-    /// 
-    /// in order to skip the scrollable sizing calc.</summary>
-    /// <returns>Whether the internal scroller has done sizing calcs.</returns>
-    virtual public bool GetScrollableContentDidGroupCalc() {
-         var _ret_var = Efl.Ui.IWidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_did_group_calc_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Efl.Ui.Focus.IManager CreateFocusManager(Efl.Ui.Focus.IObject root) {
+        var _ret_var = Efl.Ui.WidgetFocusManagerConcrete.NativeMethods.efl_ui_widget_focus_manager_create_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>This is the content which will be placed in the internal scroller.</summary>
+    }
+
+    /// <summary>Widgets can call this function during their <see cref="Efl.Canvas.Group.CalculateGroup"/> implementation after the super call to determine whether the internal scroller has already performed sizing calculations.
+    /// If this property is <c>true</c>, the <see cref="Efl.Ui.IWidgetScrollableContent.OptimalSizeCalcEvent"/> event will have been emitted during the super call. In this case it&apos;s likely that the widget should be completing its internal sizing calculations from that event using:
+    /// 
+    /// efl_canvas_group_calculate(efl_super(ev-&gt;object, EFL_UI_WIDGET_SCROLLABLE_CONTENT_MIXIN));
+    /// 
+    /// in order to skip the scrollable sizing calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Whether the internal scroller has already done sizing calculations.</returns>
+    protected virtual bool GetScrollableContentDidGroupCalc() {
+        var _ret_var = Efl.Ui.WidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_did_group_calc_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>This is the content which will be placed in the internal scroller.
+    /// If a <see cref="Efl.Ui.IWidgetScrollableContent.ScrollableText"/> string is set, this property will be <c>NULL</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The content object.</returns>
-    virtual public Efl.Canvas.Object GetScrollableContent() {
-         var _ret_var = Efl.Ui.IWidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Canvas.Object GetScrollableContent() {
+        var _ret_var = Efl.Ui.WidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>This is the content which will be placed in the internal scroller.</summary>
+    }
+
+    /// <summary>This is the content which will be placed in the internal scroller.
+    /// If a <see cref="Efl.Ui.IWidgetScrollableContent.ScrollableText"/> string is set, this property will be <c>NULL</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="content">The content object.</param>
-    /// <returns>True on success</returns>
-    virtual public bool SetScrollableContent(Efl.Canvas.Object content) {
-                                 var _ret_var = Efl.Ui.IWidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
+    /// <returns><c>true</c> on success.</returns>
+    public virtual bool SetScrollableContent(Efl.Canvas.Object content) {
+        var _ret_var = Efl.Ui.WidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_content_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),content);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Retrieves the text string currently being displayed by the given text object.
-    /// Do not free() the return value.
-    /// 
-    /// See also <see cref="Efl.Ui.IWidgetScrollableContent.SetScrollableText"/>.</summary>
+        return _ret_var;
+    }
+
+    /// <summary>The text string to be displayed by the given text object. The text will use <see cref="Efl.TextFormatWrap.Mixed"/> wrapping, and it will be scrollable depending on its size relative to the object&apos;s geometry.
+    /// When reading, do not free the return value.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Text string to display on it.</returns>
-    virtual public System.String GetScrollableText() {
-         var _ret_var = Efl.Ui.IWidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual System.String GetScrollableText() {
+        var _ret_var = Efl.Ui.WidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_text_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Sets the text string to be displayed by the given text object. The text will be scrollable depending on its size relative to the object&apos;s geometry.
-    /// See also <see cref="Efl.Ui.IWidgetScrollableContent.GetScrollableText"/>.</summary>
+    }
+
+    /// <summary>The text string to be displayed by the given text object. The text will use <see cref="Efl.TextFormatWrap.Mixed"/> wrapping, and it will be scrollable depending on its size relative to the object&apos;s geometry.
+    /// When reading, do not free the return value.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="text">Text string to display on it.</param>
-    virtual public void SetScrollableText(System.String text) {
-                                 Efl.Ui.IWidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
+    public virtual void SetScrollableText(System.String text) {
+        Efl.Ui.WidgetScrollableContentConcrete.NativeMethods.efl_ui_widget_scrollable_text_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),text);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Enable property</summary>
-    /// <returns><c>true</c> to set enable the layer <c>false</c> to disable it</returns>
-    virtual public bool GetEnable() {
-         var _ret_var = Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Whether the focus layer is enabled. This can be handled automatically through <see cref="Efl.Gfx.IEntity.Visible"/> and Efl.Ui.Focus.Layer.behaviour.</summary>
+    /// <returns><c>true</c> to set enable.</returns>
+    protected virtual bool GetEnable() {
+        var _ret_var = Efl.Ui.Focus.LayerConcrete.NativeMethods.efl_ui_focus_layer_enable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Enable property</summary>
-    /// <param name="v"><c>true</c> to set enable the layer <c>false</c> to disable it</param>
-    virtual public void SetEnable(bool v) {
-                                 Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
+    }
+
+    /// <summary>Whether the focus layer is enabled. This can be handled automatically through <see cref="Efl.Gfx.IEntity.Visible"/> and Efl.Ui.Focus.Layer.behaviour.</summary>
+    /// <param name="v"><c>true</c> to set enable.</param>
+    protected virtual void SetEnable(bool v) {
+        Efl.Ui.Focus.LayerConcrete.NativeMethods.efl_ui_focus_layer_enable_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),v);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Constructor for setting the behaviour of the layer</summary>
-    /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
-    /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
-    virtual public void GetBehaviour(out bool enable_on_visible, out bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out enable_on_visible, out cycle);
+        
+    }
+
+    /// <summary>Sets the behaviour of the focus layer.</summary>
+    /// <param name="enable_on_visible"><c>true</c> means layer will enable itself once the widget becomes visible</param>
+    /// <param name="cycle">If <c>true</c> the focus will cycle (from last object to first, and vice versa) in the layer.</param>
+    protected virtual void GetBehaviour(out bool enable_on_visible, out bool cycle) {
+        Efl.Ui.Focus.LayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out enable_on_visible, out cycle);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Constructor for setting the behaviour of the layer</summary>
-    /// <param name="enable_on_visible"><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</param>
-    /// <param name="cycle">If <c>true</c> the focus will cycle in the layer, if <c>false</c></param>
-    virtual public void SetBehaviour(bool enable_on_visible, bool cycle) {
-                                                         Efl.Ui.Focus.ILayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable_on_visible, cycle);
+        
+    }
+
+    /// <summary>Sets the behaviour of the focus layer.</summary>
+    /// <param name="enable_on_visible"><c>true</c> means layer will enable itself once the widget becomes visible</param>
+    /// <param name="cycle">If <c>true</c> the focus will cycle (from last object to first, and vice versa) in the layer.</param>
+    protected virtual void SetBehaviour(bool enable_on_visible, bool cycle) {
+        Efl.Ui.Focus.LayerConcrete.NativeMethods.efl_ui_focus_layer_behaviour_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),enable_on_visible, cycle);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Currently focused element.</returns>
-    virtual public Efl.Ui.Focus.IObject GetManagerFocus() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.Focus.IObject GetManagerFocus() {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="focus">Currently focused element.</param>
-    virtual public void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
+    public virtual void SetManagerFocus(Efl.Ui.Focus.IObject focus) {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_focus_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),focus);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>The redirect manager.</returns>
-    virtual public Efl.Ui.Focus.IManager GetRedirect() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The new focus manager.</returns>
+    public virtual Efl.Ui.Focus.IManager GetRedirect() {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="redirect">The redirect manager.</param>
-    virtual public void SetRedirect(Efl.Ui.Focus.IManager redirect) {
-                                 Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="redirect">The new focus manager.</param>
+    public virtual void SetRedirect(Efl.Ui.Focus.IManager redirect) {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_redirect_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),redirect);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>The list of elements which are at the border of the graph.
-    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>An iterator over the border objects.</returns>
-    virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Iterator<Efl.Ui.Focus.IObject> GetBorderElements() {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
- }
-    /// <summary>Get all elements that are at the border of the viewport
-    /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.
-    /// (Since EFL 1.22)</summary>
+
+    }
+
+    /// <summary>Elements that are at the border of the viewport
+    /// Every element returned by this is located inside the viewport rectangle, but has a right, left, down or up neighbor outside the viewport.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="viewport">The rectangle defining the viewport.</param>
-    /// <returns>The list of border objects.</returns>
-    virtual public Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
-         Eina.Rect.NativeStruct _in_viewport = viewport;
-                        var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
+    /// <returns>An iterator over the viewport border objects.</returns>
+    public virtual Eina.Iterator<Efl.Ui.Focus.IObject> GetViewportElements(Eina.Rect viewport) {
+        Eina.Rect.NativeStruct _in_viewport = viewport;
+var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
- }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>Will be registered into this manager object.</returns>
-    virtual public Efl.Ui.Focus.IObject GetRoot() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        return new Eina.Iterator<Efl.Ui.Focus.IObject>(_ret_var, false);
+
+    }
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Object to register as the root of this manager object.</returns>
+    public virtual Efl.Ui.Focus.IObject GetRoot() {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_root_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="root">Will be registered into this manager object.</param>
-    /// <returns>If <c>true</c>, this is the root node</returns>
-    virtual public bool SetRoot(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
+    }
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="root">Object to register as the root of this manager object.</param>
+    /// <returns><c>true</c> on success, <c>false</c> if it had already been set.</returns>
+    public virtual bool SetRoot(Efl.Ui.Focus.IObject root) {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_root_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Move the focus in the given direction.
-    /// This call flushes all changes. This means all changes between the last flush and now are computed.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>Moves the focus in the given direction to the next regular widget.
+    /// This call flushes all changes. This means all changes since last flush are computed.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="direction">The direction to move to.</param>
     /// <returns>The element which is now focused.</returns>
-    virtual public Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Return the object in the <c>direction</c> from <c>child</c>.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="direction">Direction to move focus.</param>
-    /// <param name="child">The child to move from. Pass <c>null</c> to indicate the currently focused child.</param>
-    /// <param name="logical">Wether you want to have a logical node as result or a non-logical. Note, in a <see cref="Efl.Ui.Focus.IManager.Move"/> call no logical node will get focus.</param>
-    /// <returns>Object that would receive focus if moved in the given direction.</returns>
-    virtual public Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
-                                                                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
-        Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
-    /// <summary>Return the widget in the direction next.
-    /// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared once again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.
-    /// (Since EFL 1.22)</summary>
-    /// <param name="root">Parent for returned child.</param>
-    /// <returns>Child of passed parameter.</returns>
-    virtual public Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>This will fetch the data from a registered node.
-    /// Be aware this function will trigger a computation of all dirty nodes.
-    /// (Since EFL 1.22)
-    /// 
-    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
-    /// <param name="child">The child object to inspect.</param>
-    /// <returns>The list of relations starting from <c>child</c>.</returns>
-    virtual public Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
-                                 var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
-        Eina.Error.RaiseIfUnhandledException();
-                        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
-        Marshal.FreeHGlobal(_ret_var);
-        return __ret_tmp;
- }
-    /// <summary>Return the last logical object.
-    /// The returned object is the last object that would be returned if you start at the root and move the direction into next.
-    /// (Since EFL 1.22)</summary>
-    /// <returns>Last object.</returns>
-    virtual public Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
-         var _ret_var = Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.Focus.IObject Move(Efl.Ui.Focus.Direction direction) {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Reset the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
-    /// You should focus another element immediately after calling this, in order to always have a focused object.
-    /// (Since EFL 1.22)</summary>
-    virtual public void ResetHistory() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    }
+
+    /// <summary>Returns the object in the <c>direction</c> from <c>child</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="direction">Direction to move focus.</param>
+    /// <param name="child">The child to move from. Pass <c>null</c> to indicate the currently focused child.</param>
+    /// <param name="logical">Wether you want to have a logical node as result or a regular. Note that in a <see cref="Efl.Ui.Focus.IManager.Move"/> call logical nodes will not get focus.</param>
+    /// <returns>Object that would receive focus if moved in the given direction.</returns>
+    public virtual Efl.Ui.Focus.IObject MoveRequest(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical) {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_request_move_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, child, logical);
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Remove the uppermost history element, and focus the previous one.
-    /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.
-    /// (Since EFL 1.22)</summary>
-    virtual public void PopHistoryStack() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        return _ret_var;
+    }
+
+    /// <summary>Returns the widget in the direction next.
+    /// The returned widget is a child of <c>root</c>. It&apos;s guaranteed that child will not be prepared again, so you can call this function inside a <see cref="Efl.Ui.Focus.IObject.SetupOrder"/> call.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="root">Parent for returned child.</param>
+    /// <returns>Child of passed parameter.</returns>
+    public virtual Efl.Ui.Focus.IObject RequestSubchild(Efl.Ui.Focus.IObject root) {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_request_subchild_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),root);
         Eina.Error.RaiseIfUnhandledException();
-         }
+        return _ret_var;
+    }
+
+    /// <summary>Fetches the data from a registered node.
+    /// Note: This function triggers a computation of all dirty nodes.
+    /// 
+    /// <b>This is a BETA method</b>. It can be modified or removed in the future. Do not use it for product development.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="child">The child object to inspect.</param>
+    /// <returns>The list of relations starting from <c>child</c>.</returns>
+    public virtual Efl.Ui.Focus.Relations Fetch(Efl.Ui.Focus.IObject child) {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_fetch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),child);
+        Eina.Error.RaiseIfUnhandledException();
+        var __ret_tmp = Eina.PrimitiveConversion.PointerToManaged<Efl.Ui.Focus.Relations>(_ret_var);
+        Marshal.FreeHGlobal(_ret_var);
+        return __ret_tmp;
+
+    }
+
+    /// <summary>Returns the last logical object.
+    /// The returned object is the last object that would be returned if you start at the root and move in the &quot;next&quot; direction.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Last object.</returns>
+    public virtual Efl.Ui.Focus.ManagerLogicalEndDetail LogicalEnd() {
+        var _ret_var = Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_logical_end_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Resets the history stack of this manager object. This means the uppermost element will be unfocused, and all other elements will be removed from the remembered list.
+    /// You should focus another element immediately after calling this, in order to always have a focused object.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void ResetHistory() {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_reset_history_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
+    /// <summary>Removes the uppermost history element, and focuses the previous one.
+    /// If there is an element that was focused before, it will be used. Otherwise, the best fitting element from the registered elements will be focused.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void PopHistoryStack() {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
     /// <summary>Called when this manager is set as redirect.
-    /// In case that this is called as an result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.
-    /// (Since EFL 1.22)</summary>
+    /// In case that this is called as a result of a move call, <c>direction</c> and <c>entry</c> will be set to the direction of the move call, and the <c>entry</c> object will be set to the object that had this manager as redirect property.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="direction">The direction in which this should be setup.</param>
     /// <param name="entry">The object that caused this manager to be redirect.</param>
-    virtual public void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
-                                                         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
+    public virtual void SetupOnFirstTouch(Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry) {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),direction, entry);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>This disables the cache invalidation when an object is moved.
-    /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widets in the set do not change and the complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.
-    /// (Since EFL 1.22)</summary>
-    virtual public void FreezeDirtyLogic() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Disables the cache invalidation when an object is moved.
+    /// Even if an object is moved, the focus manager will not recalculate its relations. This can be used when you know that the set of widgets in the focus manager is moved the same way, so the relations between the widgets in the set do not change and complex calculations can be avoided. Use <see cref="Efl.Ui.Focus.IManager.DirtyLogicUnfreeze"/> to re-enable relationship calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void FreezeDirtyLogic() {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>This enables the cache invalidation when an object is moved.
-    /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.
-    /// (Since EFL 1.22)</summary>
-    virtual public void DirtyLogicUnfreeze() {
-         Efl.Ui.Focus.IManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        
+    }
+
+    /// <summary>Enables the cache invalidation when an object is moved.
+    /// This is the counterpart to <see cref="Efl.Ui.Focus.IManager.FreezeDirtyLogic"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public virtual void DirtyLogicUnfreeze() {
+        Efl.Ui.Focus.ManagerConcrete.NativeMethods.efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
-    /// <summary>Get the current popup alignment.</summary>
-    /// <value>Alignment type</value>
+        
+    }
+
+    /// <summary>The align property specifies a Popup&apos;s current positioning relative to its anchor.
+    /// When set, this property will override any user-provided value for the widget&apos;s <see cref="Efl.Gfx.IEntity.Position"/> property.</summary>
+    /// <value>Alignment of the Popup relative to its anchor. The default is <see cref="Efl.Ui.PopupAlign.None"/>.</value>
     public Efl.Ui.PopupAlign Align {
         get { return GetAlign(); }
         set { SetAlign(value); }
     }
-    /// <summary>Get the currently set timeout seconds.</summary>
-    /// <value>Timeout in seconds</value>
-    public double Timeout {
-        get { return GetTimeout(); }
-        set { SetTimeout(value); }
+
+    /// <summary>The closing_timeout property is the time after which the Popup widget will be automatically deleted.
+    /// The timer is initiated at the time when the popup is shown. If the value is changed prior to the timer expiring, the existing timer will be deleted. If the new value is greater than $0, a new timer will be created.</summary>
+    /// <value>If greater than $0, the Popup will close automatically after the value in seconds. The default is to not automatically delete the Popup.</value>
+    public double ClosingTimeout {
+        get { return GetClosingTimeout(); }
+        set { SetClosingTimeout(value); }
     }
-    /// <summary>Returns the anchor object which the popup is following.</summary>
-    /// <value>The object which popup is following.</value>
+
+    /// <summary>The anchor object is the reference object for positioning a Popup using the <see cref="Efl.Ui.Popup.Align"/> and <see cref="Efl.Ui.Popup.GetAlignPriority"/> properties.
+    /// A Popup will recalculate its alignment relative to its anchor and change its position when: - the anchor object is moved (unless the anchor is a window) - the anchor object is resized - the Popup is resized - the parent window is resized
+    /// 
+    /// If <see cref="Efl.Ui.Popup.GetAnchor"/> returns <c>NULL</c>, the anchor is the parent window of the Popup. If the anchor object is set to <c>NULL</c>, the Popup will no longer recalculate its alignment or change its position under any circumstance. If the Popup is moved by using <see cref="Efl.Gfx.IEntity.SetPosition"/>, <c>anchor</c> is set <c>NULL</c>.</summary>
+    /// <value>The object which Popup is following. By default this is <c>NULL</c>.</value>
     public Efl.Canvas.Object Anchor {
         get { return GetAnchor(); }
         set { SetAnchor(value); }
     }
-    /// <summary>Get the align priority of a popup.</summary>
-    /// <value>First align priority</value>
+
+    /// <summary>This is the priority in which alignments will be tested using the anchor object if the value of <see cref="Efl.Ui.Popup.Align"/> is determined to be invalid. If a given alignment would result in the popup being partially or fully outside the visible area of the window, it is deemed invalid, and the next alignment is tested until either the priority list is exhausted or a usable alignment is found.
+    /// An alignment will also be deemed invalid if the popup occludes its anchor object, except if <see cref="Efl.Ui.PopupAlign.Center"/> is specified.</summary>
+    /// <value>First alignment. The default is <see cref="Efl.Ui.PopupAlign.Top"/>.</value>
     public (Efl.Ui.PopupAlign, Efl.Ui.PopupAlign, Efl.Ui.PopupAlign, Efl.Ui.PopupAlign, Efl.Ui.PopupAlign) AlignPriority {
         get {
             Efl.Ui.PopupAlign _out_first = default(Efl.Ui.PopupAlign);
@@ -947,50 +1069,56 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         }
         set { SetAlignPriority( value.Item1,  value.Item2,  value.Item3,  value.Item4,  value.Item5); }
     }
+
     /// <summary>Sub-object currently set as this object&apos;s single content.
-    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).
-    /// (Since EFL 1.22)</summary>
+    /// If it is set multiple times, previous sub-objects are removed first. Therefore, if an invalid <c>content</c> is set the object will become empty (it will have no sub-object).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The sub-object.</value>
     public Efl.Gfx.IEntity Content {
         get { return GetContent(); }
         set { SetContent(value); }
     }
-    /// <summary>Widgets can call this function during their <see cref="Efl.Canvas.Group.CalculateGroup"/> implementation after the super call to determine whether the internal scroller has performed sizing calculations.
-    /// The optimal_size,calc event will have been emitted during the super call if this method returns <c>true</c>.
+
+    /// <summary>Widgets can call this function during their <see cref="Efl.Canvas.Group.CalculateGroup"/> implementation after the super call to determine whether the internal scroller has already performed sizing calculations.
+    /// If this property is <c>true</c>, the <see cref="Efl.Ui.IWidgetScrollableContent.OptimalSizeCalcEvent"/> event will have been emitted during the super call. In this case it&apos;s likely that the widget should be completing its internal sizing calculations from that event using:
     /// 
-    /// In the case that this returns <c>true</c>, it&apos;s likely that the widget should be completing its internal sizing calculations from the optimal_size,calc callback using
+    /// efl_canvas_group_calculate(efl_super(ev-&gt;object, EFL_UI_WIDGET_SCROLLABLE_CONTENT_MIXIN));
     /// 
-    /// `efl_canvas_group_calculate(efl_super(ev-&gt;object, EFL_UI_WIDGET_SCROLLABLE_CONTENT_MIXIN));`
-    /// 
-    /// in order to skip the scrollable sizing calc.</summary>
-    /// <value>Whether the internal scroller has done sizing calcs.</value>
-    public bool ScrollableContentDidGroupCalc {
+    /// in order to skip the scrollable sizing calculation.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>Whether the internal scroller has already done sizing calculations.</value>
+    protected bool ScrollableContentDidGroupCalc {
         get { return GetScrollableContentDidGroupCalc(); }
     }
-    /// <summary>This is the content which will be placed in the internal scroller.</summary>
+
+    /// <summary>This is the content which will be placed in the internal scroller.
+    /// If a <see cref="Efl.Ui.IWidgetScrollableContent.ScrollableText"/> string is set, this property will be <c>NULL</c>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The content object.</value>
     public Efl.Canvas.Object ScrollableContent {
         get { return GetScrollableContent(); }
         set { SetScrollableContent(value); }
     }
-    /// <summary>Retrieves the text string currently being displayed by the given text object.
-    /// Do not free() the return value.
-    /// 
-    /// See also <see cref="Efl.Ui.IWidgetScrollableContent.SetScrollableText"/>.</summary>
+
+    /// <summary>The text string to be displayed by the given text object. The text will use <see cref="Efl.TextFormatWrap.Mixed"/> wrapping, and it will be scrollable depending on its size relative to the object&apos;s geometry.
+    /// When reading, do not free the return value.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Text string to display on it.</value>
     public System.String ScrollableText {
         get { return GetScrollableText(); }
         set { SetScrollableText(value); }
     }
-    /// <summary>Enable property</summary>
-    /// <value><c>true</c> to set enable the layer <c>false</c> to disable it</value>
-    public bool Enable {
+
+    /// <summary>Whether the focus layer is enabled. This can be handled automatically through <see cref="Efl.Gfx.IEntity.Visible"/> and Efl.Ui.Focus.Layer.behaviour.</summary>
+    /// <value><c>true</c> to set enable.</value>
+    protected bool Enable {
         get { return GetEnable(); }
         set { SetEnable(value); }
     }
-    /// <summary>Constructor for setting the behaviour of the layer</summary>
-    /// <value><c>true</c> means layer will set itself once the inheriting widget becomes visible, <c>false</c> means the layer isn&apos;t enabled automatically</value>
-    public (bool, bool) Behaviour {
+
+    /// <summary>Sets the behaviour of the focus layer.</summary>
+    /// <value><c>true</c> means layer will enable itself once the widget becomes visible</value>
+    protected (bool, bool) Behaviour {
         get {
             bool _out_enable_on_visible = default(bool);
             bool _out_cycle = default(bool);
@@ -999,49 +1127,56 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         }
         set { SetBehaviour( value.Item1,  value.Item2); }
     }
-    /// <summary>The element which is currently focused by this manager
-    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next non-logical object is selected instead. If there is no such object, focus does not change.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The element which is currently focused by this manager.
+    /// Use this property to retrieve the object currently being focused, or to set the focus to a new one. When <c>focus</c> is a logical child (which cannot receive focus), the next regular object is selected instead. If there is no such object, focus does not change.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Currently focused element.</value>
     public Efl.Ui.Focus.IObject ManagerFocus {
         get { return GetManagerFocus(); }
         set { SetManagerFocus(value); }
     }
+
     /// <summary>Add another manager to serve the move requests.
-    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.
-    /// (Since EFL 1.22)</summary>
-    /// <value>The redirect manager.</value>
+    /// If this value is set, all move requests are redirected to this manager object. Set it to <c>null</c> once nothing should be redirected anymore.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>The new focus manager.</value>
     public Efl.Ui.Focus.IManager Redirect {
         get { return GetRedirect(); }
         set { SetRedirect(value); }
     }
-    /// <summary>The list of elements which are at the border of the graph.
-    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Elements which are at the border of the graph.
+    /// This means one of the relations right,left or down,up are not set. This call flushes all changes. See <see cref="Efl.Ui.Focus.IManager.Move"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>An iterator over the border objects.</value>
     public Eina.Iterator<Efl.Ui.Focus.IObject> BorderElements {
         get { return GetBorderElements(); }
     }
-    /// <summary>Root node for all logical subtrees.
-    /// This property can only be set once.
-    /// (Since EFL 1.22)</summary>
-    /// <value>Will be registered into this manager object.</value>
+
+    /// <summary>Root node for all logical sub-trees.
+    /// This property can only be set once.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value>Object to register as the root of this manager object.</value>
     public Efl.Ui.Focus.IObject Root {
         get { return GetRoot(); }
         set { SetRoot(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Popup.efl_ui_popup_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.LayoutBase.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -1066,24 +1201,24 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_align_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_align_set_static_delegate) });
             }
 
-            if (efl_ui_popup_timeout_get_static_delegate == null)
+            if (efl_ui_popup_closing_timeout_get_static_delegate == null)
             {
-                efl_ui_popup_timeout_get_static_delegate = new efl_ui_popup_timeout_get_delegate(timeout_get);
+                efl_ui_popup_closing_timeout_get_static_delegate = new efl_ui_popup_closing_timeout_get_delegate(closing_timeout_get);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "GetTimeout") != null)
+            if (methods.FirstOrDefault(m => m.Name == "GetClosingTimeout") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_timeout_get_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_closing_timeout_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_closing_timeout_get_static_delegate) });
             }
 
-            if (efl_ui_popup_timeout_set_static_delegate == null)
+            if (efl_ui_popup_closing_timeout_set_static_delegate == null)
             {
-                efl_ui_popup_timeout_set_static_delegate = new efl_ui_popup_timeout_set_delegate(timeout_set);
+                efl_ui_popup_closing_timeout_set_static_delegate = new efl_ui_popup_closing_timeout_set_delegate(closing_timeout_set);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SetTimeout") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SetClosingTimeout") != null)
             {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_timeout_set_static_delegate) });
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_closing_timeout_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_closing_timeout_set_static_delegate) });
             }
 
             if (efl_ui_popup_anchor_get_static_delegate == null)
@@ -1126,42 +1261,12 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_popup_align_priority_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_popup_align_priority_set_static_delegate) });
             }
 
-            if (efl_content_get_static_delegate == null)
-            {
-                efl_content_get_static_delegate = new efl_content_get_delegate(content_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_content_get_static_delegate) });
-            }
-
-            if (efl_content_set_static_delegate == null)
-            {
-                efl_content_set_static_delegate = new efl_content_set_delegate(content_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_set"), func = Marshal.GetFunctionPointerForDelegate(efl_content_set_static_delegate) });
-            }
-
-            if (efl_content_unset_static_delegate == null)
-            {
-                efl_content_unset_static_delegate = new efl_content_unset_delegate(content_unset);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "UnsetContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_content_unset"), func = Marshal.GetFunctionPointerForDelegate(efl_content_unset_static_delegate) });
-            }
-
             if (efl_ui_widget_focus_manager_create_static_delegate == null)
             {
                 efl_ui_widget_focus_manager_create_static_delegate = new efl_ui_widget_focus_manager_create_delegate(focus_manager_create);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "FocusManagerCreate") != null)
+            if (methods.FirstOrDefault(m => m.Name == "CreateFocusManager") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_focus_manager_create"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_focus_manager_create_static_delegate) });
             }
@@ -1174,46 +1279,6 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             if (methods.FirstOrDefault(m => m.Name == "GetScrollableContentDidGroupCalc") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_scrollable_content_did_group_calc_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_scrollable_content_did_group_calc_get_static_delegate) });
-            }
-
-            if (efl_ui_widget_scrollable_content_get_static_delegate == null)
-            {
-                efl_ui_widget_scrollable_content_get_static_delegate = new efl_ui_widget_scrollable_content_get_delegate(scrollable_content_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetScrollableContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_scrollable_content_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_scrollable_content_get_static_delegate) });
-            }
-
-            if (efl_ui_widget_scrollable_content_set_static_delegate == null)
-            {
-                efl_ui_widget_scrollable_content_set_static_delegate = new efl_ui_widget_scrollable_content_set_delegate(scrollable_content_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetScrollableContent") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_scrollable_content_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_scrollable_content_set_static_delegate) });
-            }
-
-            if (efl_ui_widget_scrollable_text_get_static_delegate == null)
-            {
-                efl_ui_widget_scrollable_text_get_static_delegate = new efl_ui_widget_scrollable_text_get_delegate(scrollable_text_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetScrollableText") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_scrollable_text_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_scrollable_text_get_static_delegate) });
-            }
-
-            if (efl_ui_widget_scrollable_text_set_static_delegate == null)
-            {
-                efl_ui_widget_scrollable_text_set_static_delegate = new efl_ui_widget_scrollable_text_set_delegate(scrollable_text_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetScrollableText") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_widget_scrollable_text_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_widget_scrollable_text_set_static_delegate) });
             }
 
             if (efl_ui_focus_layer_enable_get_static_delegate == null)
@@ -1256,189 +1321,20 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_layer_behaviour_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_layer_behaviour_set_static_delegate) });
             }
 
-            if (efl_ui_focus_manager_focus_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_focus_manager_focus_get_static_delegate = new efl_ui_focus_manager_focus_get_delegate(manager_focus_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetManagerFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_focus_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_focus_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_focus_set_static_delegate == null)
-            {
-                efl_ui_focus_manager_focus_set_static_delegate = new efl_ui_focus_manager_focus_set_delegate(manager_focus_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetManagerFocus") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_focus_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_focus_set_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_redirect_get_static_delegate == null)
-            {
-                efl_ui_focus_manager_redirect_get_static_delegate = new efl_ui_focus_manager_redirect_get_delegate(redirect_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRedirect") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_redirect_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_redirect_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_redirect_set_static_delegate == null)
-            {
-                efl_ui_focus_manager_redirect_set_static_delegate = new efl_ui_focus_manager_redirect_set_delegate(redirect_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetRedirect") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_redirect_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_redirect_set_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_border_elements_get_static_delegate == null)
-            {
-                efl_ui_focus_manager_border_elements_get_static_delegate = new efl_ui_focus_manager_border_elements_get_delegate(border_elements_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetBorderElements") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_border_elements_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_border_elements_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_viewport_elements_get_static_delegate == null)
-            {
-                efl_ui_focus_manager_viewport_elements_get_static_delegate = new efl_ui_focus_manager_viewport_elements_get_delegate(viewport_elements_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetViewportElements") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_viewport_elements_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_viewport_elements_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_root_get_static_delegate == null)
-            {
-                efl_ui_focus_manager_root_get_static_delegate = new efl_ui_focus_manager_root_get_delegate(root_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetRoot") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_root_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_root_get_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_root_set_static_delegate == null)
-            {
-                efl_ui_focus_manager_root_set_static_delegate = new efl_ui_focus_manager_root_set_delegate(root_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetRoot") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_root_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_root_set_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_move_static_delegate == null)
-            {
-                efl_ui_focus_manager_move_static_delegate = new efl_ui_focus_manager_move_delegate(move);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Move") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_move"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_move_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_request_move_static_delegate == null)
-            {
-                efl_ui_focus_manager_request_move_static_delegate = new efl_ui_focus_manager_request_move_delegate(request_move);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "MoveRequest") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_request_move"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_request_move_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_request_subchild_static_delegate == null)
-            {
-                efl_ui_focus_manager_request_subchild_static_delegate = new efl_ui_focus_manager_request_subchild_delegate(request_subchild);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "RequestSubchild") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_request_subchild"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_request_subchild_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_fetch_static_delegate == null)
-            {
-                efl_ui_focus_manager_fetch_static_delegate = new efl_ui_focus_manager_fetch_delegate(fetch);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "Fetch") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_fetch"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_fetch_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_logical_end_static_delegate == null)
-            {
-                efl_ui_focus_manager_logical_end_static_delegate = new efl_ui_focus_manager_logical_end_delegate(logical_end);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "LogicalEnd") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_logical_end"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_logical_end_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_reset_history_static_delegate == null)
-            {
-                efl_ui_focus_manager_reset_history_static_delegate = new efl_ui_focus_manager_reset_history_delegate(reset_history);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "ResetHistory") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_reset_history"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_reset_history_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_pop_history_stack_static_delegate == null)
-            {
-                efl_ui_focus_manager_pop_history_stack_static_delegate = new efl_ui_focus_manager_pop_history_stack_delegate(pop_history_stack);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "PopHistoryStack") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_pop_history_stack"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_pop_history_stack_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_setup_on_first_touch_static_delegate == null)
-            {
-                efl_ui_focus_manager_setup_on_first_touch_static_delegate = new efl_ui_focus_manager_setup_on_first_touch_delegate(setup_on_first_touch);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetupOnFirstTouch") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_setup_on_first_touch"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_setup_on_first_touch_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_dirty_logic_freeze_static_delegate == null)
-            {
-                efl_ui_focus_manager_dirty_logic_freeze_static_delegate = new efl_ui_focus_manager_dirty_logic_freeze_delegate(dirty_logic_freeze);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "FreezeDirtyLogic") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_dirty_logic_freeze"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_dirty_logic_freeze_static_delegate) });
-            }
-
-            if (efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate == null)
-            {
-                efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate = new efl_ui_focus_manager_dirty_logic_unfreeze_delegate(dirty_logic_unfreeze);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "DirtyLogicUnfreeze") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_dirty_logic_unfreeze"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -1462,7 +1358,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.PopupAlign _ret_var = default(Efl.Ui.PopupAlign);
+                Efl.Ui.PopupAlign _ret_var = default(Efl.Ui.PopupAlign);
                 try
                 {
                     _ret_var = ((Popup)ws.Target).GetAlign();
@@ -1473,8 +1369,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1498,7 +1393,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Popup)ws.Target).SetAlign(type);
@@ -1509,7 +1404,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1520,23 +1415,23 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         private static efl_ui_popup_align_set_delegate efl_ui_popup_align_set_static_delegate;
 
         
-        private delegate double efl_ui_popup_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
+        private delegate double efl_ui_popup_closing_timeout_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
         
-        public delegate double efl_ui_popup_timeout_get_api_delegate(System.IntPtr obj);
+        public delegate double efl_ui_popup_closing_timeout_get_api_delegate(System.IntPtr obj);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_popup_timeout_get_api_delegate> efl_ui_popup_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_popup_timeout_get_api_delegate>(Module, "efl_ui_popup_timeout_get");
+        public static Efl.Eo.FunctionWrapper<efl_ui_popup_closing_timeout_get_api_delegate> efl_ui_popup_closing_timeout_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_popup_closing_timeout_get_api_delegate>(Module, "efl_ui_popup_closing_timeout_get");
 
-        private static double timeout_get(System.IntPtr obj, System.IntPtr pd)
+        private static double closing_timeout_get(System.IntPtr obj, System.IntPtr pd)
         {
-            Eina.Log.Debug("function efl_ui_popup_timeout_get was called");
+            Eina.Log.Debug("function efl_ui_popup_closing_timeout_get was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Popup)ws.Target).GetTimeout();
+                    _ret_var = ((Popup)ws.Target).GetClosingTimeout();
                 }
                 catch (Exception e)
                 {
@@ -1544,35 +1439,34 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
-                return efl_ui_popup_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+                return efl_ui_popup_closing_timeout_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
             }
         }
 
-        private static efl_ui_popup_timeout_get_delegate efl_ui_popup_timeout_get_static_delegate;
+        private static efl_ui_popup_closing_timeout_get_delegate efl_ui_popup_closing_timeout_get_static_delegate;
 
         
-        private delegate void efl_ui_popup_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,  double time);
+        private delegate void efl_ui_popup_closing_timeout_set_delegate(System.IntPtr obj, System.IntPtr pd,  double time);
 
         
-        public delegate void efl_ui_popup_timeout_set_api_delegate(System.IntPtr obj,  double time);
+        public delegate void efl_ui_popup_closing_timeout_set_api_delegate(System.IntPtr obj,  double time);
 
-        public static Efl.Eo.FunctionWrapper<efl_ui_popup_timeout_set_api_delegate> efl_ui_popup_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_popup_timeout_set_api_delegate>(Module, "efl_ui_popup_timeout_set");
+        public static Efl.Eo.FunctionWrapper<efl_ui_popup_closing_timeout_set_api_delegate> efl_ui_popup_closing_timeout_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_popup_closing_timeout_set_api_delegate>(Module, "efl_ui_popup_closing_timeout_set");
 
-        private static void timeout_set(System.IntPtr obj, System.IntPtr pd, double time)
+        private static void closing_timeout_set(System.IntPtr obj, System.IntPtr pd, double time)
         {
-            Eina.Log.Debug("function efl_ui_popup_timeout_set was called");
+            Eina.Log.Debug("function efl_ui_popup_closing_timeout_set was called");
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
-                    ((Popup)ws.Target).SetTimeout(time);
+                    ((Popup)ws.Target).SetClosingTimeout(time);
                 }
                 catch (Exception e)
                 {
@@ -1580,15 +1474,15 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
-                efl_ui_popup_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), time);
+                efl_ui_popup_closing_timeout_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), time);
             }
         }
 
-        private static efl_ui_popup_timeout_set_delegate efl_ui_popup_timeout_set_static_delegate;
+        private static efl_ui_popup_closing_timeout_set_delegate efl_ui_popup_closing_timeout_set_static_delegate;
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Canvas.Object efl_ui_popup_anchor_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -1604,7 +1498,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Popup)ws.Target).GetAnchor();
@@ -1615,8 +1509,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1640,7 +1533,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Popup)ws.Target).SetAnchor(anchor);
@@ -1651,7 +1544,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1675,7 +1568,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                first = default(Efl.Ui.PopupAlign);        second = default(Efl.Ui.PopupAlign);        third = default(Efl.Ui.PopupAlign);        fourth = default(Efl.Ui.PopupAlign);        fifth = default(Efl.Ui.PopupAlign);                                                    
+                first = default(Efl.Ui.PopupAlign);second = default(Efl.Ui.PopupAlign);third = default(Efl.Ui.PopupAlign);fourth = default(Efl.Ui.PopupAlign);fifth = default(Efl.Ui.PopupAlign);
                 try
                 {
                     ((Popup)ws.Target).GetAlignPriority(out first, out second, out third, out fourth, out fifth);
@@ -1686,7 +1579,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        
+                
             }
             else
             {
@@ -1710,7 +1603,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                                                    
+                
                 try
                 {
                     ((Popup)ws.Target).SetAlignPriority(first, second, third, fourth, fifth);
@@ -1721,7 +1614,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                        
+                
             }
             else
             {
@@ -1730,114 +1623,6 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         }
 
         private static efl_ui_popup_align_priority_set_delegate efl_ui_popup_align_priority_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Gfx.IEntity efl_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Gfx.IEntity efl_content_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_content_get_api_delegate> efl_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_content_get_api_delegate>(Module, "efl_content_get");
-
-        private static Efl.Gfx.IEntity content_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_content_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetContent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_content_get_delegate efl_content_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_content_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity content);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_content_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Gfx.IEntity content);
-
-        public static Efl.Eo.FunctionWrapper<efl_content_set_api_delegate> efl_content_set_ptr = new Efl.Eo.FunctionWrapper<efl_content_set_api_delegate>(Module, "efl_content_set");
-
-        private static bool content_set(System.IntPtr obj, System.IntPtr pd, Efl.Gfx.IEntity content)
-        {
-            Eina.Log.Debug("function efl_content_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).SetContent(content);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_content_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), content);
-            }
-        }
-
-        private static efl_content_set_delegate efl_content_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Gfx.IEntity efl_content_unset_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Gfx.IEntity efl_content_unset_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate> efl_content_unset_ptr = new Efl.Eo.FunctionWrapper<efl_content_unset_api_delegate>(Module, "efl_content_unset");
-
-        private static Efl.Gfx.IEntity content_unset(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_content_unset was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Gfx.IEntity _ret_var = default(Efl.Gfx.IEntity);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).UnsetContent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_content_unset_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_content_unset_delegate efl_content_unset_static_delegate;
 
         [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
         private delegate Efl.Ui.Focus.IManager efl_ui_widget_focus_manager_create_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject root);
@@ -1853,10 +1638,10 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
+                Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
                 try
                 {
-                    _ret_var = ((Popup)ws.Target).FocusManagerCreate(root);
+                    _ret_var = ((Popup)ws.Target).CreateFocusManager(root);
                 }
                 catch (Exception e)
                 {
@@ -1864,8 +1649,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1889,7 +1673,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Popup)ws.Target).GetScrollableContentDidGroupCalc();
@@ -1900,8 +1684,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1910,149 +1693,6 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
         }
 
         private static efl_ui_widget_scrollable_content_did_group_calc_get_delegate efl_ui_widget_scrollable_content_did_group_calc_get_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Canvas.Object efl_ui_widget_scrollable_content_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Canvas.Object efl_ui_widget_scrollable_content_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_content_get_api_delegate> efl_ui_widget_scrollable_content_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_content_get_api_delegate>(Module, "efl_ui_widget_scrollable_content_get");
-
-        private static Efl.Canvas.Object scrollable_content_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_widget_scrollable_content_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetScrollableContent();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_widget_scrollable_content_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_widget_scrollable_content_get_delegate efl_ui_widget_scrollable_content_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_widget_scrollable_content_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object content);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_widget_scrollable_content_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object content);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_content_set_api_delegate> efl_ui_widget_scrollable_content_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_content_set_api_delegate>(Module, "efl_ui_widget_scrollable_content_set");
-
-        private static bool scrollable_content_set(System.IntPtr obj, System.IntPtr pd, Efl.Canvas.Object content)
-        {
-            Eina.Log.Debug("function efl_ui_widget_scrollable_content_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).SetScrollableContent(content);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_widget_scrollable_content_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), content);
-            }
-        }
-
-        private static efl_ui_widget_scrollable_content_set_delegate efl_ui_widget_scrollable_content_set_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        private delegate System.String efl_ui_widget_scrollable_text_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))]
-        public delegate System.String efl_ui_widget_scrollable_text_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_text_get_api_delegate> efl_ui_widget_scrollable_text_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_text_get_api_delegate>(Module, "efl_ui_widget_scrollable_text_get");
-
-        private static System.String scrollable_text_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_widget_scrollable_text_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            System.String _ret_var = default(System.String);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetScrollableText();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_widget_scrollable_text_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_widget_scrollable_text_get_delegate efl_ui_widget_scrollable_text_get_static_delegate;
-
-        
-        private delegate void efl_ui_widget_scrollable_text_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text);
-
-        
-        public delegate void efl_ui_widget_scrollable_text_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String text);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_text_set_api_delegate> efl_ui_widget_scrollable_text_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_widget_scrollable_text_set_api_delegate>(Module, "efl_ui_widget_scrollable_text_set");
-
-        private static void scrollable_text_set(System.IntPtr obj, System.IntPtr pd, System.String text)
-        {
-            Eina.Log.Debug("function efl_ui_widget_scrollable_text_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Popup)ws.Target).SetScrollableText(text);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_widget_scrollable_text_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), text);
-            }
-        }
-
-        private static efl_ui_widget_scrollable_text_set_delegate efl_ui_widget_scrollable_text_set_static_delegate;
 
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_ui_focus_layer_enable_get_delegate(System.IntPtr obj, System.IntPtr pd);
@@ -2068,7 +1708,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Popup)ws.Target).GetEnable();
@@ -2079,8 +1719,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -2104,7 +1743,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Popup)ws.Target).SetEnable(v);
@@ -2115,7 +1754,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -2139,7 +1778,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        enable_on_visible = default(bool);        cycle = default(bool);                            
+                enable_on_visible = default(bool);cycle = default(bool);
                 try
                 {
                     ((Popup)ws.Target).GetBehaviour(out enable_on_visible, out cycle);
@@ -2150,7 +1789,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2174,7 +1813,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Popup)ws.Target).SetBehaviour(enable_on_visible, cycle);
@@ -2185,7 +1824,7 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -2195,654 +1834,11 @@ public class Popup : Efl.Ui.LayoutBase, Efl.IContent, Efl.Ui.IWidgetFocusManager
 
         private static efl_ui_focus_layer_behaviour_set_delegate efl_ui_focus_layer_behaviour_set_static_delegate;
 
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_focus_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_focus_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_focus_get_api_delegate> efl_ui_focus_manager_focus_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_focus_get_api_delegate>(Module, "efl_ui_focus_manager_focus_get");
-
-        private static Efl.Ui.Focus.IObject manager_focus_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_focus_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetManagerFocus();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_focus_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_focus_get_delegate efl_ui_focus_manager_focus_get_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_focus_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject focus);
-
-        
-        public delegate void efl_ui_focus_manager_focus_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject focus);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_focus_set_api_delegate> efl_ui_focus_manager_focus_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_focus_set_api_delegate>(Module, "efl_ui_focus_manager_focus_set");
-
-        private static void manager_focus_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject focus)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_focus_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Popup)ws.Target).SetManagerFocus(focus);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_focus_manager_focus_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), focus);
-            }
-        }
-
-        private static efl_ui_focus_manager_focus_set_delegate efl_ui_focus_manager_focus_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IManager efl_ui_focus_manager_redirect_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IManager efl_ui_focus_manager_redirect_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_redirect_get_api_delegate> efl_ui_focus_manager_redirect_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_redirect_get_api_delegate>(Module, "efl_ui_focus_manager_redirect_get");
-
-        private static Efl.Ui.Focus.IManager redirect_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_redirect_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.IManager _ret_var = default(Efl.Ui.Focus.IManager);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetRedirect();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_redirect_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_redirect_get_delegate efl_ui_focus_manager_redirect_get_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_redirect_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IManager redirect);
-
-        
-        public delegate void efl_ui_focus_manager_redirect_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IManager redirect);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_redirect_set_api_delegate> efl_ui_focus_manager_redirect_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_redirect_set_api_delegate>(Module, "efl_ui_focus_manager_redirect_set");
-
-        private static void redirect_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IManager redirect)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_redirect_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((Popup)ws.Target).SetRedirect(redirect);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_focus_manager_redirect_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), redirect);
-            }
-        }
-
-        private static efl_ui_focus_manager_redirect_set_delegate efl_ui_focus_manager_redirect_set_static_delegate;
-
-        
-        private delegate System.IntPtr efl_ui_focus_manager_border_elements_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_ui_focus_manager_border_elements_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_border_elements_get_api_delegate> efl_ui_focus_manager_border_elements_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_border_elements_get_api_delegate>(Module, "efl_ui_focus_manager_border_elements_get");
-
-        private static System.IntPtr border_elements_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_border_elements_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetBorderElements();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_border_elements_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_border_elements_get_delegate efl_ui_focus_manager_border_elements_get_static_delegate;
-
-        
-        private delegate System.IntPtr efl_ui_focus_manager_viewport_elements_get_delegate(System.IntPtr obj, System.IntPtr pd,  Eina.Rect.NativeStruct viewport);
-
-        
-        public delegate System.IntPtr efl_ui_focus_manager_viewport_elements_get_api_delegate(System.IntPtr obj,  Eina.Rect.NativeStruct viewport);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_viewport_elements_get_api_delegate> efl_ui_focus_manager_viewport_elements_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_viewport_elements_get_api_delegate>(Module, "efl_ui_focus_manager_viewport_elements_get");
-
-        private static System.IntPtr viewport_elements_get(System.IntPtr obj, System.IntPtr pd, Eina.Rect.NativeStruct viewport)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_viewport_elements_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        Eina.Rect _in_viewport = viewport;
-                            Eina.Iterator<Efl.Ui.Focus.IObject> _ret_var = default(Eina.Iterator<Efl.Ui.Focus.IObject>);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetViewportElements(_in_viewport);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_viewport_elements_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), viewport);
-            }
-        }
-
-        private static efl_ui_focus_manager_viewport_elements_get_delegate efl_ui_focus_manager_viewport_elements_get_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_root_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_root_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_root_get_api_delegate> efl_ui_focus_manager_root_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_root_get_api_delegate>(Module, "efl_ui_focus_manager_root_get");
-
-        private static Efl.Ui.Focus.IObject root_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_root_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).GetRoot();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_root_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_root_get_delegate efl_ui_focus_manager_root_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_ui_focus_manager_root_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject root);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_ui_focus_manager_root_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject root);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_root_set_api_delegate> efl_ui_focus_manager_root_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_root_set_api_delegate>(Module, "efl_ui_focus_manager_root_set");
-
-        private static bool root_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_root_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).SetRoot(root);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_root_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), root);
-            }
-        }
-
-        private static efl_ui_focus_manager_root_set_delegate efl_ui_focus_manager_root_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_move_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Focus.Direction direction);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_move_api_delegate(System.IntPtr obj,  Efl.Ui.Focus.Direction direction);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_move_api_delegate> efl_ui_focus_manager_move_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_move_api_delegate>(Module, "efl_ui_focus_manager_move");
-
-        private static Efl.Ui.Focus.IObject move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_move was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).Move(direction);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_move_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), direction);
-            }
-        }
-
-        private static efl_ui_focus_manager_move_delegate efl_ui_focus_manager_move_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_request_move_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Focus.Direction direction, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject child, [MarshalAs(UnmanagedType.U1)] bool logical);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_request_move_api_delegate(System.IntPtr obj,  Efl.Ui.Focus.Direction direction, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject child, [MarshalAs(UnmanagedType.U1)] bool logical);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_request_move_api_delegate> efl_ui_focus_manager_request_move_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_request_move_api_delegate>(Module, "efl_ui_focus_manager_request_move");
-
-        private static Efl.Ui.Focus.IObject request_move(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject child, bool logical)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_request_move was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).MoveRequest(direction, child, logical);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_request_move_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), direction, child, logical);
-            }
-        }
-
-        private static efl_ui_focus_manager_request_move_delegate efl_ui_focus_manager_request_move_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_request_subchild_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject root);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.Ui.Focus.IObject efl_ui_focus_manager_request_subchild_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject root);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_request_subchild_api_delegate> efl_ui_focus_manager_request_subchild_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_request_subchild_api_delegate>(Module, "efl_ui_focus_manager_request_subchild");
-
-        private static Efl.Ui.Focus.IObject request_subchild(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject root)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_request_subchild was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Efl.Ui.Focus.IObject _ret_var = default(Efl.Ui.Focus.IObject);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).RequestSubchild(root);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_request_subchild_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), root);
-            }
-        }
-
-        private static efl_ui_focus_manager_request_subchild_delegate efl_ui_focus_manager_request_subchild_static_delegate;
-
-        
-        private delegate System.IntPtr efl_ui_focus_manager_fetch_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject child);
-
-        
-        public delegate System.IntPtr efl_ui_focus_manager_fetch_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject child);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_fetch_api_delegate> efl_ui_focus_manager_fetch_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_fetch_api_delegate>(Module, "efl_ui_focus_manager_fetch");
-
-        private static System.IntPtr fetch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.IObject child)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_fetch was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    Efl.Ui.Focus.Relations _ret_var = default(Efl.Ui.Focus.Relations);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).Fetch(child);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        return Eina.PrimitiveConversion.ManagedToPointerAlloc(_ret_var);
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_fetch_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), child);
-            }
-        }
-
-        private static efl_ui_focus_manager_fetch_delegate efl_ui_focus_manager_fetch_static_delegate;
-
-        
-        private delegate Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct efl_ui_focus_manager_logical_end_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct efl_ui_focus_manager_logical_end_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_logical_end_api_delegate> efl_ui_focus_manager_logical_end_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_logical_end_api_delegate>(Module, "efl_ui_focus_manager_logical_end");
-
-        private static Efl.Ui.Focus.ManagerLogicalEndDetail.NativeStruct logical_end(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_logical_end was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.Focus.ManagerLogicalEndDetail _ret_var = default(Efl.Ui.Focus.ManagerLogicalEndDetail);
-                try
-                {
-                    _ret_var = ((Popup)ws.Target).LogicalEnd();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_focus_manager_logical_end_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_logical_end_delegate efl_ui_focus_manager_logical_end_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_reset_history_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_ui_focus_manager_reset_history_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_reset_history_api_delegate> efl_ui_focus_manager_reset_history_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_reset_history_api_delegate>(Module, "efl_ui_focus_manager_reset_history");
-
-        private static void reset_history(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_reset_history was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Popup)ws.Target).ResetHistory();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_manager_reset_history_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_reset_history_delegate efl_ui_focus_manager_reset_history_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_pop_history_stack_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_ui_focus_manager_pop_history_stack_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_pop_history_stack_api_delegate> efl_ui_focus_manager_pop_history_stack_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_pop_history_stack_api_delegate>(Module, "efl_ui_focus_manager_pop_history_stack");
-
-        private static void pop_history_stack(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_pop_history_stack was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Popup)ws.Target).PopHistoryStack();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_manager_pop_history_stack_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_pop_history_stack_delegate efl_ui_focus_manager_pop_history_stack_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_setup_on_first_touch_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.Focus.Direction direction, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject entry);
-
-        
-        public delegate void efl_ui_focus_manager_setup_on_first_touch_api_delegate(System.IntPtr obj,  Efl.Ui.Focus.Direction direction, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Ui.Focus.IObject entry);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_setup_on_first_touch_api_delegate> efl_ui_focus_manager_setup_on_first_touch_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_setup_on_first_touch_api_delegate>(Module, "efl_ui_focus_manager_setup_on_first_touch");
-
-        private static void setup_on_first_touch(System.IntPtr obj, System.IntPtr pd, Efl.Ui.Focus.Direction direction, Efl.Ui.Focus.IObject entry)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_setup_on_first_touch was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Popup)ws.Target).SetupOnFirstTouch(direction, entry);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_focus_manager_setup_on_first_touch_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), direction, entry);
-            }
-        }
-
-        private static efl_ui_focus_manager_setup_on_first_touch_delegate efl_ui_focus_manager_setup_on_first_touch_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_dirty_logic_freeze_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_ui_focus_manager_dirty_logic_freeze_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_dirty_logic_freeze_api_delegate> efl_ui_focus_manager_dirty_logic_freeze_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_dirty_logic_freeze_api_delegate>(Module, "efl_ui_focus_manager_dirty_logic_freeze");
-
-        private static void dirty_logic_freeze(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_freeze was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Popup)ws.Target).FreezeDirtyLogic();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_manager_dirty_logic_freeze_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_dirty_logic_freeze_delegate efl_ui_focus_manager_dirty_logic_freeze_static_delegate;
-
-        
-        private delegate void efl_ui_focus_manager_dirty_logic_unfreeze_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate void efl_ui_focus_manager_dirty_logic_unfreeze_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_focus_manager_dirty_logic_unfreeze_api_delegate> efl_ui_focus_manager_dirty_logic_unfreeze_ptr = new Efl.Eo.FunctionWrapper<efl_ui_focus_manager_dirty_logic_unfreeze_api_delegate>(Module, "efl_ui_focus_manager_dirty_logic_unfreeze");
-
-        private static void dirty_logic_unfreeze(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_focus_manager_dirty_logic_unfreeze was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            
-                try
-                {
-                    ((Popup)ws.Target).DirtyLogicUnfreeze();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        
-            }
-            else
-            {
-                efl_ui_focus_manager_dirty_logic_unfreeze_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_focus_manager_dirty_logic_unfreeze_delegate efl_ui_focus_manager_dirty_logic_unfreeze_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
 
 #if EFL_BETA
@@ -2852,20 +1848,18 @@ public static class Efl_UiPopup_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Ui.PopupAlign>("align", fac);
     }
 
-    public static Efl.BindableProperty<double> Timeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
-        return new Efl.BindableProperty<double>("timeout", fac);
+    public static Efl.BindableProperty<double> ClosingTimeout<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
+        return new Efl.BindableProperty<double>("closing_timeout", fac);
     }
 
     public static Efl.BindableProperty<Efl.Canvas.Object> Anchor<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
         return new Efl.BindableProperty<Efl.Canvas.Object>("anchor", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.Gfx.IEntity> Content<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
         return new Efl.BindableProperty<Efl.Gfx.IEntity>("content", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.Canvas.Object> ScrollableContent<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
         return new Efl.BindableProperty<Efl.Canvas.Object>("scrollable_content", fac);
     }
@@ -2878,7 +1872,6 @@ public static class Efl_UiPopup_ExtensionMethods {
         return new Efl.BindableProperty<bool>("enable", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.Ui.Focus.IObject> ManagerFocus<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
         return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("manager_focus", fac);
     }
@@ -2887,13 +1880,11 @@ public static class Efl_UiPopup_ExtensionMethods {
         return new Efl.BindableProperty<Efl.Ui.Focus.IManager>("redirect", fac);
     }
 
-    
-    
     public static Efl.BindableProperty<Efl.Ui.Focus.IObject> Root<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T>magic = null) where T : Efl.Ui.Popup {
         return new Efl.BindableProperty<Efl.Ui.Focus.IObject>("root", fac);
     }
 
-        public static Efl.BindablePart<Efl.Ui.PopupPartBackwall> BackwallPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T> x=null) where T : Efl.Ui.Popup
+    public static Efl.BindablePart<Efl.Ui.PopupPartBackwall> BackwallPart<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Popup, T> x=null) where T : Efl.Ui.Popup
     {
         return new Efl.BindablePart<Efl.Ui.PopupPartBackwall>("backwall" ,fac);
     }
@@ -2905,25 +1896,23 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Popup alignment type</summary>
+/// <summary>This is the alignment method for positioning Popup widgets.</summary>
 [Efl.Eo.BindingEntity]
 public enum PopupAlign
 {
-/// <summary>Popup not aligned</summary>
+/// <summary>Popup not aligned.</summary>
 None = 0,
-/// <summary>Popup aligned to center</summary>
+/// <summary>Popup is aligned to the center of its anchor object.</summary>
 Center = 1,
-/// <summary>Popup aligned to left</summary>
+/// <summary>Popup&apos;s left edge is aligned to the left side of its anchor object.</summary>
 Left = 2,
-/// <summary>Popup aligned to right</summary>
+/// <summary>Popup&apos;s right edge is aligned to the right side of its anchor object.</summary>
 Right = 3,
-/// <summary>Popup aligned to top</summary>
+/// <summary>Popup&apos;s top is aligned to the top of its anchor object.</summary>
 Top = 4,
-/// <summary>Popup aligned to bottom</summary>
+/// <summary>Popup&apos;s bottom is aligned to the bottom of its anchor object.</summary>
 Bottom = 5,
 }
-
 }
-
 }
 

@@ -12,7 +12,7 @@ namespace Ui {
 
 namespace Spotlight {
 
-/// <summary>Object used by <see cref="Efl.Ui.Spotlight.Container"/> to render an indication of the active widgets&apos;s position among the rest of the container&apos;s widgets.
+/// <summary>Object used by <see cref="Efl.Ui.Spotlight.Container"/> to render an indication of the active widgets&apos; position among the rest of the container&apos;s widgets.
 /// An example would be Android&apos;s little dots in the home screen.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Spotlight.Indicator.NativeMethods]
@@ -37,6 +37,7 @@ public abstract class Indicator : Efl.Object
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_spotlight_indicator_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Indicator"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Indicator(Efl.Object parent= null
@@ -74,52 +75,59 @@ public abstract class Indicator : Efl.Object
     {
     }
 
+
     /// <summary>This method is called the first time an <see cref="Efl.Ui.Spotlight.Indicator"/> is assigned to an <see cref="Efl.Ui.Spotlight.Container"/>, binding them together.
     /// This call can be used to setup the indicator part of the <c>spotlight</c>.
     /// 
     /// The Active View of the container (if there is any) will be informed to the indicator by a later call to <see cref="Efl.Ui.Spotlight.Indicator.UpdatePosition"/>.</summary>
     /// <param name="spotlight">The container to bind this indicator to.</param>
-    virtual public void Bind(Efl.Ui.Spotlight.Container spotlight) {
-                                 Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),spotlight);
+    public virtual void Bind(Efl.Ui.Spotlight.Container spotlight) {
+        Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_bind_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),spotlight);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>A <c>subobj</c> has been added at position <c>index</c> in the bound container.
-    /// The manager should check the container&apos;s <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/> since indices might have shifted due to the insertion of the new object.</summary>
+        
+    }
+
+    /// <summary>A <c>subobj</c> has been added at position <c>index</c> in the bound container.</summary>
     /// <param name="subobj">The new object that has been added to the container.</param>
     /// <param name="index">The index of the new object in the container&apos;s list.</param>
-    virtual public void AddContent(Efl.Gfx.IEntity subobj, int index) {
-                                                         Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_content_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
+    public virtual void AddContent(Efl.Gfx.IEntity subobj, int index) {
+        Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_content_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>The <c>subobj</c> at position <c>index</c> in the bound container has been removed.
-    /// The manager should check the container&apos;s <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/> since indices might have shifted due to the removal of the object.</summary>
+        
+    }
+
+    /// <summary>The <c>subobj</c> at position <c>index</c> in the bound container has been removed.</summary>
     /// <param name="subobj">The object being removed from the container.</param>
     /// <param name="index">The index this object had in the container&apos;s list.</param>
-    virtual public void DelContent(Efl.Gfx.IEntity subobj, int index) {
-                                                         Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_content_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
+    public virtual void DelContent(Efl.Gfx.IEntity subobj, int index) {
+        Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_content_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),subobj, index);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>This method tells the indicator that <see cref="Efl.Ui.Spotlight.Container.ActiveIndex"/> has changed in the bound container.
-    /// <c>position</c> ranges from -1 to the number of views in the bound container (<see cref="Efl.IContainer.ContentCount"/>). Notice this allows moving to a position before the first view or past the last view, which might happen if the view is thumb-scrolled out-of-bounds. Indicators can choose to render these out-of-bounds positions or not.
-    /// 
-    /// Fractional values indicate positions in-between two views and should be respected to obtain a smooth transition.</summary>
+        
+    }
+
+    /// <summary>This method tells the indicator that <see cref="Efl.Ui.Spotlight.Container.ActiveElement"/> has changed in the bound container. <c>position</c> ranges from -1 to the number of views in the bound container (<see cref="Efl.IContainer.ContentCount"/>). Notice this allows moving to a position before the first view or past the last view, which might happen if the view is thumb-scrolled out-of-bounds. Indicators can choose to render these out-of-bounds positions or not.
+    /// Fractional values indicate positions in-between two views and should be respected to obtain smooth transitions.</summary>
     /// <param name="position">The index of the active view, or a value in-between views if a transition is currently playing.</param>
-    virtual public void UpdatePosition(double position) {
-                                 Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_position_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),position);
+    public virtual void UpdatePosition(double position) {
+        Efl.Ui.Spotlight.Indicator.NativeMethods.efl_ui_spotlight_indicator_position_update_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),position);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Spotlight.Indicator.efl_ui_spotlight_indicator_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -164,9 +172,20 @@ public abstract class Indicator : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_indicator_position_update"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_indicator_position_update_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -190,7 +209,7 @@ public abstract class Indicator : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Indicator)ws.Target).Bind(spotlight);
@@ -201,7 +220,7 @@ public abstract class Indicator : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -225,7 +244,7 @@ public abstract class Indicator : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Indicator)ws.Target).AddContent(subobj, index);
@@ -236,7 +255,7 @@ public abstract class Indicator : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -260,7 +279,7 @@ public abstract class Indicator : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Indicator)ws.Target).DelContent(subobj, index);
@@ -271,7 +290,7 @@ public abstract class Indicator : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -295,7 +314,7 @@ public abstract class Indicator : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Indicator)ws.Target).UpdatePosition(position);
@@ -306,7 +325,7 @@ public abstract class Indicator : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -321,9 +340,7 @@ public abstract class Indicator : Efl.Object
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

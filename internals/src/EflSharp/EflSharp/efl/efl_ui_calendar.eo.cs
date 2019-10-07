@@ -35,9 +35,10 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_calendar_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Calendar"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Calendar(Efl.Object parent
             , System.String style = null) : base(efl_ui_calendar_class_get(), parent)
     {
@@ -72,7 +73,7 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
     }
 
     /// <summary>Emitted when the selected date in the calendar is changed</summary>
-    public event EventHandler ChangedEvt
+    public event EventHandler ChangedEvent
     {
         add
         {
@@ -110,8 +111,10 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
             }
         }
     }
-    /// <summary>Method to raise event ChangedEvt.</summary>
-    public void OnChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event ChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_CALENDAR_EVENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -123,103 +126,121 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
     /// <summary>The first day of week to use on calendar widgets.
     /// This is the day that will appear in the left-most column (eg. Monday in France or Sunday in the US).</summary>
     /// <returns>The first day of the week.</returns>
-    virtual public Efl.Ui.CalendarWeekday GetFirstDayOfWeek() {
-         var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_first_day_of_week_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Ui.CalendarWeekday GetFirstDayOfWeek() {
+        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_first_day_of_week_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The first day of week to use on calendar widgets.
     /// This is the day that will appear in the left-most column (eg. Monday in France or Sunday in the US).</summary>
-    /// <param name="day">The first day of the week.</param>
-    virtual public void SetFirstDayOfWeek(Efl.Ui.CalendarWeekday day) {
-                                 Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_first_day_of_week_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),day);
+    /// <param name="day">The first day of the week.<br/>The default value is <see cref="Efl.Ui.CalendarWeekday.Sunday"/>.</param>
+    public virtual void SetFirstDayOfWeek(Efl.Ui.CalendarWeekday day) {
+        Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_first_day_of_week_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),day);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Get the minimum date.
     /// Default value is 1 JAN,1902.</summary>
     /// <returns>Time structure containing the minimum date.</returns>
-    virtual public Efl.Time GetDateMin() {
-         var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Time GetDateMin() {
+        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_min_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Set the minimum date on calendar.
     /// Set the minimum date, changing the displayed month or year if needed. Displayed day also to be disabled if it is smaller than minimum date. If the minimum date is greater than current maximum date, the minimum date would be changed to the maximum date with returning <c>false</c>.</summary>
     /// <param name="min">Time structure containing the minimum date.</param>
     /// <returns><c>true</c>, on success, <c>false</c> otherwise</returns>
-    virtual public bool SetDateMin(Efl.Time min) {
-         Efl.Time.NativeStruct _in_min = min;
-                        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_min);
+    public virtual bool SetDateMin(Efl.Time min) {
+        Efl.Time.NativeStruct _in_min = min;
+var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_min_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_min);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the maximum date.
     /// Default maximum year is -1. Default maximum day and month are 31 and DEC.
     /// 
     /// If the maximum year is a negative value, it will be limited depending on the platform architecture (year 2037 for 32 bits);</summary>
     /// <returns>Time structure containing the maximum date.</returns>
-    virtual public Efl.Time GetDateMax() {
-         var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Time GetDateMax() {
+        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_max_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Set the maximum date on calendar.
     /// Set the maximum date, changing the displayed month or year if needed. Displayed day also to be disabled if it is bigger than maximum date. If the maximum date is less than current minimum date, the maximum date would be changed to the minimum date with returning <c>false</c>.</summary>
     /// <param name="max">Time structure containing the maximum date.</param>
     /// <returns><c>true</c>, on success, <c>false</c> otherwise</returns>
-    virtual public bool SetDateMax(Efl.Time max) {
-         Efl.Time.NativeStruct _in_max = max;
-                        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_max);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>The selected date on calendar.</summary>
-    /// <returns>Time structure containing the selected date.</returns>
-    virtual public Efl.Time GetDate() {
-         var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool SetDateMax(Efl.Time max) {
+        Efl.Time.NativeStruct _in_max = max;
+var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_max_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_max);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>The selected date on calendar.</summary>
+    /// <returns>Time structure containing the selected date.</returns>
+    public virtual Efl.Time GetDate() {
+        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>Set the selected date. If the date is greater than the maximum date, the date would be changed to the maximum date with returning <c>false</c>. In the opposite case with the minimum date, this would give the same result.</summary>
     /// <param name="date">Time structure containing the selected date.</param>
     /// <returns><c>true</c>, on success, <c>false</c> otherwise</returns>
-    virtual public bool SetDate(Efl.Time date) {
-         Efl.Time.NativeStruct _in_date = date;
-                        var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_date);
-        Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
-    /// <returns>User-provided formatting function.</returns>
-    virtual public Efl.Ui.FormatFunc GetFormatFunc() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool SetDate(Efl.Time date) {
+        Efl.Time.NativeStruct _in_date = date;
+var _ret_var = Efl.Ui.Calendar.NativeMethods.efl_ui_calendar_date_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_date);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
+    /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
+    /// <returns>User-provided formatting function.</returns>
+    public virtual Efl.Ui.FormatFunc GetFormatFunc() {
+        var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_func_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
     /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
     /// <param name="func">User-provided formatting function.</param>
-    virtual public void SetFormatFunc(Efl.Ui.FormatFunc func) {
-                         GCHandle func_handle = GCHandle.Alloc(func);
-        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_func_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+    public virtual void SetFormatFunc(Efl.Ui.FormatFunc func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_func_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),GCHandle.ToIntPtr(func_handle), Efl.Ui.FormatFuncWrapper.Cb, Efl.Eo.Globals.free_gchandle);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
     /// <returns>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</returns>
-    virtual public Eina.Accessor<Efl.Ui.FormatValue> GetFormatValues() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Accessor<Efl.Ui.FormatValue> GetFormatValues() {
+        var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_values_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Accessor<Efl.Ui.FormatValue>(_ret_var, false);
- }
+
+    }
+
     /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
     /// <param name="values">Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</param>
-    virtual public void SetFormatValues(Eina.Accessor<Efl.Ui.FormatValue> values) {
-         var _in_values = values.Handle;
-                        Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_values_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_values);
+    public virtual void SetFormatValues(Eina.Accessor<Efl.Ui.FormatValue> values) {
+        var _in_values = values.Handle;
+Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_values_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_values);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>A user-provided, string used to format the numerical value.
     /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
     /// 
@@ -229,11 +250,13 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
     /// 
     /// Pass <c>NULL</c> to disable this mechanism.</summary>
     /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
-    virtual public void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType type) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out kw_string, out type);
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.<br/>The default value is <see cref="Efl.Ui.FormatStringType.Simple"/>.</param>
+    public virtual void GetFormatString(out System.String kw_string, out Efl.Ui.FormatStringType type) {
+        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_string_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out kw_string, out type);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>A user-provided, string used to format the numerical value.
     /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
     /// 
@@ -243,86 +266,104 @@ public class Calendar : Efl.Ui.LayoutBase, Efl.Ui.IFormat, Efl.Ui.Focus.IComposi
     /// 
     /// Pass <c>NULL</c> to disable this mechanism.</summary>
     /// <param name="kw_string">Formatting string containing regular characters and format specifiers.</param>
-    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be traslated.</param>
-    virtual public void SetFormatString(System.String kw_string, Efl.Ui.FormatStringType type) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_string, type);
+    /// <param name="type">Type of formatting string, which controls how the different format specifiers are to be translated.<br/>The default value is <see cref="Efl.Ui.FormatStringType.Simple"/>.</param>
+    public virtual void SetFormatString(System.String kw_string, Efl.Ui.FormatStringType type) {
+        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_string_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),kw_string, type);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Internal method to be used by widgets including this mixin to perform the conversion from the internal numerical value into the text representation (Users of these widgets do not need to call this method).
-    /// <see cref="Efl.Ui.IFormat.GetFormattedValue"/> uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
+    /// Efl.Ui.Format.formatted_value_get uses any user-provided mechanism to perform the conversion, according to their priorities, and implements a simple fallback if all mechanisms fail.</summary>
     /// <param name="str">Output formatted string. Its contents will be overwritten by this method.</param>
     /// <param name="value">The <see cref="Eina.Value"/> to convert to text.</param>
-    virtual public void GetFormattedValue(Eina.Strbuf str, Eina.Value value) {
-                                                         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_formatted_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str, value);
+    protected virtual void GetFormattedValue(Eina.Strbuf str, Eina.Value value) {
+        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_formatted_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),str, value);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Internal method to be used by widgets including this mixin. It can only be used when a <see cref="Efl.Ui.IFormat.GetFormatString"/> has been supplied, and it returns the number of decimal places that the format string will produce for floating point values.
     /// For example, &quot;%.2f&quot; returns 2, and &quot;%d&quot; returns 0;</summary>
     /// <returns>Number of decimal places, or 0 for non-floating point types.</returns>
-    virtual public int GetDecimalPlaces() {
-         var _ret_var = Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_decimal_places_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual int GetDecimalPlaces() {
+        var _ret_var = Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_decimal_places_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Internal method to be implemented by widgets including this mixin.
-    /// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call <see cref="Efl.Ui.IFormat.GetFormattedValue"/> and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
-    virtual public void ApplyFormattedValue() {
-         Efl.Ui.IFormatConcrete.NativeMethods.efl_ui_format_apply_formatted_value_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// The mixin will call this method to signal the widget that the formatting has changed and therefore the current value should be converted and rendered again. Widgets must typically call Efl.Ui.Format.formatted_value_get and display the returned string. This is something they are already doing (whenever the value changes, for example) so there should be no extra code written to implement this method.</summary>
+    protected virtual void ApplyFormattedValue() {
+        Efl.Ui.FormatConcrete.NativeMethods.efl_ui_format_apply_formatted_value_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <returns>The order to use</returns>
-    virtual public Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual Eina.List<Efl.Gfx.IEntity> GetCompositionElements() {
+        var _ret_var = Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.List<Efl.Gfx.IEntity>(_ret_var, true, false);
- }
+
+    }
+
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <param name="logical_order">The order to use</param>
-    virtual public void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
-         var _in_logical_order = logical_order.Handle;
+    protected virtual void SetCompositionElements(Eina.List<Efl.Gfx.IEntity> logical_order) {
+        var _in_logical_order = logical_order.Handle;
 logical_order.Own = false;
-                        Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
+Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_elements_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),_in_logical_order);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <returns><c>true</c> or <c>false</c></returns>
-    virtual public bool GetLogicalMode() {
-         var _ret_var = Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual bool GetLogicalMode() {
+        var _ret_var = Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <param name="logical_mode"><c>true</c> or <c>false</c></param>
-    virtual public void SetLogicalMode(bool logical_mode) {
-                                 Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
+    protected virtual void SetLogicalMode(bool logical_mode) {
+        Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_logical_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),logical_mode);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Mark this widget as dirty, the children can be considered to be changed after that call</summary>
-    virtual public void Dirty() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual void Dirty() {
+        Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_dirty_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>A call to prepare the children of this element, called if marked as dirty
     /// You can use this function to call composition_elements.</summary>
-    virtual public void Prepare() {
-         Efl.Ui.Focus.ICompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    protected virtual void Prepare() {
+        Efl.Ui.Focus.CompositionConcrete.NativeMethods.efl_ui_focus_composition_prepare_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
-         }
+        
+    }
+
     /// <summary>The first day of week to use on calendar widgets.
     /// This is the day that will appear in the left-most column (eg. Monday in France or Sunday in the US).</summary>
     /// <value>The first day of the week.</value>
@@ -330,36 +371,42 @@ logical_order.Own = false;
         get { return GetFirstDayOfWeek(); }
         set { SetFirstDayOfWeek(value); }
     }
+
     /// <summary>Minimum date on calendar.</summary>
     /// <value>Time structure containing the minimum date.</value>
     public Efl.Time DateMin {
         get { return GetDateMin(); }
         set { SetDateMin(value); }
     }
+
     /// <summary>Maximum date on calendar.</summary>
     /// <value>Time structure containing the maximum date.</value>
     public Efl.Time DateMax {
         get { return GetDateMax(); }
         set { SetDateMax(value); }
     }
+
     /// <summary>The selected date on calendar.</summary>
     /// <value>Time structure containing the selected date.</value>
     public Efl.Time Date {
         get { return GetDate(); }
         set { SetDate(value); }
     }
+
     /// <summary>User-provided function which takes care of converting an <see cref="Eina.Value"/> into a text string. The user is then completely in control of how the string is generated, but it is the most cumbersome method to use. If the conversion fails the other mechanisms will be tried, according to their priorities.</summary>
     /// <value>User-provided formatting function.</value>
     public Efl.Ui.FormatFunc FormatFunc {
         get { return GetFormatFunc(); }
         set { SetFormatFunc(value); }
     }
+
     /// <summary>User-provided list of values which are to be rendered using specific text strings. This is more convenient to use than <see cref="Efl.Ui.IFormat.FormatFunc"/> and is perfectly suited for cases where the strings make more sense than the numerical values. For example, weekday names (&quot;Monday&quot;, &quot;Tuesday&quot;, ...) are friendlier than numbers 1 to 7. If a value is not found in the list, the other mechanisms will be tried according to their priorities. List members do not need to be in any particular order. They are sorted internally for performance reasons.</summary>
     /// <value>Accessor over a list of value-text pairs. The method will dispose of the accessor, but not of its contents. For convenience, Eina offers a range of helper methods to obtain accessors from Eina.Array, Eina.List or even plain C arrays.</value>
     public Eina.Accessor<Efl.Ui.FormatValue> FormatValues {
         get { return GetFormatValues(); }
         set { SetFormatValues(value); }
     }
+
     /// <summary>A user-provided, string used to format the numerical value.
     /// For example, &quot;%1.2f meters&quot;, &quot;%.0%%&quot; or &quot;%d items&quot;.
     /// 
@@ -378,37 +425,42 @@ logical_order.Own = false;
         }
         set { SetFormatString( value.Item1,  value.Item2); }
     }
+
     /// <summary>Set the order of elements that will be used for composition
-    /// Elements of the list can be either an Efl.Ui.Widget, an Efl.Ui.Focus.Object or an Efl.Gfx.
+    /// Elements of the list can be either an <see cref="Efl.Ui.Widget"/>, an <see cref="Efl.Ui.Focus.IObject"/> or an <see cref="Efl.Gfx.IEntity"/>.
     /// 
-    /// If the element is an Efl.Gfx.Entity, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.
+    /// If the element is an <see cref="Efl.Ui.Widget"/> nothing is done and the widget is simply part of the order.
     /// 
-    /// If the element is an Efl.Ui.Focus.Object, then the mixin will take care of registering the element.
+    /// If the element is an <see cref="Efl.Ui.Focus.IObject"/>, then the mixin will take care of registering the element.
     /// 
-    /// If the element is a Efl.Ui.Widget nothing is done and the widget is simply part of the order.</summary>
+    /// If the element is an <see cref="Efl.Gfx.IEntity"/>, then the geometry is used as focus geometry, the focus property is redirected to the evas focus property. The mixin will take care of registration.</summary>
     /// <value>The order to use</value>
-    public Eina.List<Efl.Gfx.IEntity> CompositionElements {
+    protected Eina.List<Efl.Gfx.IEntity> CompositionElements {
         get { return GetCompositionElements(); }
         set { SetCompositionElements(value); }
     }
+
     /// <summary>Set to true if all children should be registered as logicals</summary>
     /// <value><c>true</c> or <c>false</c></value>
-    public bool LogicalMode {
+    protected bool LogicalMode {
         get { return GetLogicalMode(); }
         set { SetLogicalMode(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Calendar.efl_ui_calendar_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.LayoutBase.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -491,66 +543,6 @@ logical_order.Own = false;
             if (methods.FirstOrDefault(m => m.Name == "SetDate") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_calendar_date_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_calendar_date_set_static_delegate) });
-            }
-
-            if (efl_ui_format_func_get_static_delegate == null)
-            {
-                efl_ui_format_func_get_static_delegate = new efl_ui_format_func_get_delegate(format_func_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFormatFunc") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_func_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_func_get_static_delegate) });
-            }
-
-            if (efl_ui_format_func_set_static_delegate == null)
-            {
-                efl_ui_format_func_set_static_delegate = new efl_ui_format_func_set_delegate(format_func_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetFormatFunc") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_func_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_func_set_static_delegate) });
-            }
-
-            if (efl_ui_format_values_get_static_delegate == null)
-            {
-                efl_ui_format_values_get_static_delegate = new efl_ui_format_values_get_delegate(format_values_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFormatValues") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_values_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_values_get_static_delegate) });
-            }
-
-            if (efl_ui_format_values_set_static_delegate == null)
-            {
-                efl_ui_format_values_set_static_delegate = new efl_ui_format_values_set_delegate(format_values_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetFormatValues") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_values_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_values_set_static_delegate) });
-            }
-
-            if (efl_ui_format_string_get_static_delegate == null)
-            {
-                efl_ui_format_string_get_static_delegate = new efl_ui_format_string_get_delegate(format_string_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetFormatString") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_string_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_string_get_static_delegate) });
-            }
-
-            if (efl_ui_format_string_set_static_delegate == null)
-            {
-                efl_ui_format_string_set_static_delegate = new efl_ui_format_string_set_delegate(format_string_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetFormatString") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_format_string_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_format_string_set_static_delegate) });
             }
 
             if (efl_ui_format_formatted_value_get_static_delegate == null)
@@ -643,9 +635,20 @@ logical_order.Own = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_composition_prepare"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_composition_prepare_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -669,7 +672,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.CalendarWeekday _ret_var = default(Efl.Ui.CalendarWeekday);
+                Efl.Ui.CalendarWeekday _ret_var = default(Efl.Ui.CalendarWeekday);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetFirstDayOfWeek();
@@ -680,8 +683,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -705,7 +707,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Calendar)ws.Target).SetFirstDayOfWeek(day);
@@ -716,7 +718,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -740,7 +742,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Time _ret_var = default(Efl.Time);
+                Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetDateMin();
@@ -751,8 +753,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -776,8 +777,8 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Efl.Time _in_min = min;
-                            bool _ret_var = default(bool);
+                Efl.Time _in_min = min;
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).SetDateMin(_in_min);
@@ -788,8 +789,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -813,7 +813,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Time _ret_var = default(Efl.Time);
+                Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetDateMax();
@@ -824,8 +824,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -849,8 +848,8 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Efl.Time _in_max = max;
-                            bool _ret_var = default(bool);
+                Efl.Time _in_max = max;
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).SetDateMax(_in_max);
@@ -861,8 +860,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -886,7 +884,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Time _ret_var = default(Efl.Time);
+                Efl.Time _ret_var = default(Efl.Time);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetDate();
@@ -897,8 +895,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -922,8 +919,8 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Efl.Time _in_date = date;
-                            bool _ret_var = default(bool);
+                Efl.Time _in_date = date;
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).SetDate(_in_date);
@@ -934,8 +931,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -944,222 +940,6 @@ logical_order.Own = false;
         }
 
         private static efl_ui_calendar_date_set_delegate efl_ui_calendar_date_set_static_delegate;
-
-        
-        private delegate Efl.Ui.FormatFunc efl_ui_format_func_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.FormatFunc efl_ui_format_func_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_func_get_api_delegate> efl_ui_format_func_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_func_get_api_delegate>(Module, "efl_ui_format_func_get");
-
-        private static Efl.Ui.FormatFunc format_func_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_format_func_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.FormatFunc _ret_var = default(Efl.Ui.FormatFunc);
-                try
-                {
-                    _ret_var = ((Calendar)ws.Target).GetFormatFunc();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_format_func_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_format_func_get_delegate efl_ui_format_func_get_static_delegate;
-
-        
-        private delegate void efl_ui_format_func_set_delegate(System.IntPtr obj, System.IntPtr pd,  IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb);
-
-        
-        public delegate void efl_ui_format_func_set_api_delegate(System.IntPtr obj,  IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_func_set_api_delegate> efl_ui_format_func_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_func_set_api_delegate>(Module, "efl_ui_format_func_set");
-
-        private static void format_func_set(System.IntPtr obj, System.IntPtr pd, IntPtr func_data, Efl.Ui.FormatFuncInternal func, EinaFreeCb func_free_cb)
-        {
-            Eina.Log.Debug("function efl_ui_format_func_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                            Efl.Ui.FormatFuncWrapper func_wrapper = new Efl.Ui.FormatFuncWrapper(func, func_data, func_free_cb);
-            
-                try
-                {
-                    ((Calendar)ws.Target).SetFormatFunc(func_wrapper.ManagedCb);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_format_func_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), func_data, func, func_free_cb);
-            }
-        }
-
-        private static efl_ui_format_func_set_delegate efl_ui_format_func_set_static_delegate;
-
-        
-        private delegate System.IntPtr efl_ui_format_values_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate System.IntPtr efl_ui_format_values_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_values_get_api_delegate> efl_ui_format_values_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_values_get_api_delegate>(Module, "efl_ui_format_values_get");
-
-        private static System.IntPtr format_values_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_format_values_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Eina.Accessor<Efl.Ui.FormatValue> _ret_var = default(Eina.Accessor<Efl.Ui.FormatValue>);
-                try
-                {
-                    _ret_var = ((Calendar)ws.Target).GetFormatValues();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var.Handle;
-
-            }
-            else
-            {
-                return efl_ui_format_values_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_format_values_get_delegate efl_ui_format_values_get_static_delegate;
-
-        
-        private delegate void efl_ui_format_values_set_delegate(System.IntPtr obj, System.IntPtr pd,  System.IntPtr values);
-
-        
-        public delegate void efl_ui_format_values_set_api_delegate(System.IntPtr obj,  System.IntPtr values);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_values_set_api_delegate> efl_ui_format_values_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_values_set_api_delegate>(Module, "efl_ui_format_values_set");
-
-        private static void format_values_set(System.IntPtr obj, System.IntPtr pd, System.IntPtr values)
-        {
-            Eina.Log.Debug("function efl_ui_format_values_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-        var _in_values = new Eina.Accessor<Efl.Ui.FormatValue>(values, false);
-                            
-                try
-                {
-                    ((Calendar)ws.Target).SetFormatValues(_in_values);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_format_values_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), values);
-            }
-        }
-
-        private static efl_ui_format_values_set_delegate efl_ui_format_values_set_static_delegate;
-
-        
-        private delegate void efl_ui_format_string_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String kw_string,  out Efl.Ui.FormatStringType type);
-
-        
-        public delegate void efl_ui_format_string_get_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] out System.String kw_string,  out Efl.Ui.FormatStringType type);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate> efl_ui_format_string_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_get_api_delegate>(Module, "efl_ui_format_string_get");
-
-        private static void format_string_get(System.IntPtr obj, System.IntPtr pd, out System.String kw_string, out Efl.Ui.FormatStringType type)
-        {
-            Eina.Log.Debug("function efl_ui_format_string_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                        System.String _out_kw_string = default(System.String);
-        type = default(Efl.Ui.FormatStringType);                            
-                try
-                {
-                    ((Calendar)ws.Target).GetFormatString(out _out_kw_string, out type);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        kw_string = _out_kw_string;
-                                
-            }
-            else
-            {
-                efl_ui_format_string_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), out kw_string, out type);
-            }
-        }
-
-        private static efl_ui_format_string_get_delegate efl_ui_format_string_get_static_delegate;
-
-        
-        private delegate void efl_ui_format_string_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_string,  Efl.Ui.FormatStringType type);
-
-        
-        public delegate void efl_ui_format_string_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String kw_string,  Efl.Ui.FormatStringType type);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate> efl_ui_format_string_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_format_string_set_api_delegate>(Module, "efl_ui_format_string_set");
-
-        private static void format_string_set(System.IntPtr obj, System.IntPtr pd, System.String kw_string, Efl.Ui.FormatStringType type)
-        {
-            Eina.Log.Debug("function efl_ui_format_string_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                                            
-                try
-                {
-                    ((Calendar)ws.Target).SetFormatString(kw_string, type);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                                        
-            }
-            else
-            {
-                efl_ui_format_string_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), kw_string, type);
-            }
-        }
-
-        private static efl_ui_format_string_set_delegate efl_ui_format_string_set_static_delegate;
 
         
         private delegate void efl_ui_format_formatted_value_get_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StrbufKeepOwnershipMarshaler))] Eina.Strbuf str,  Eina.ValueNative value);
@@ -1175,7 +955,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((Calendar)ws.Target).GetFormattedValue(str, value);
@@ -1186,7 +966,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1210,7 +990,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetDecimalPlaces();
@@ -1221,8 +1001,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1246,7 +1025,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Calendar)ws.Target).ApplyFormattedValue();
@@ -1257,7 +1036,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1281,7 +1060,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
+                Eina.List<Efl.Gfx.IEntity> _ret_var = default(Eina.List<Efl.Gfx.IEntity>);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetCompositionElements();
@@ -1292,8 +1071,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; return _ret_var.Handle;
             }
             else
             {
@@ -1317,8 +1095,8 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        var _in_logical_order = new Eina.List<Efl.Gfx.IEntity>(logical_order, true, false);
-                            
+                var _in_logical_order = new Eina.List<Efl.Gfx.IEntity>(logical_order, true, false);
+
                 try
                 {
                     ((Calendar)ws.Target).SetCompositionElements(_in_logical_order);
@@ -1329,7 +1107,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1353,7 +1131,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Calendar)ws.Target).GetLogicalMode();
@@ -1364,8 +1142,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1389,7 +1166,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Calendar)ws.Target).SetLogicalMode(logical_mode);
@@ -1400,7 +1177,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1424,7 +1201,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Calendar)ws.Target).Dirty();
@@ -1435,7 +1212,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1459,7 +1236,7 @@ logical_order.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            
+                
                 try
                 {
                     ((Calendar)ws.Target).Prepare();
@@ -1470,7 +1247,7 @@ logical_order.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        
+                
             }
             else
             {
@@ -1485,7 +1262,6 @@ logical_order.Own = false;
 }
 }
 }
-
 }
 
 #if EFL_BETA
@@ -1515,7 +1291,6 @@ public static class Efl_UiCalendar_ExtensionMethods {
         return new Efl.BindableProperty<Eina.Accessor<Efl.Ui.FormatValue>>("format_values", fac);
     }
 
-    
     public static Efl.BindableProperty<Eina.List<Efl.Gfx.IEntity>> CompositionElements<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.Calendar, T>magic = null) where T : Efl.Ui.Calendar {
         return new Efl.BindableProperty<Eina.List<Efl.Gfx.IEntity>>("composition_elements", fac);
     }
@@ -1553,8 +1328,6 @@ Saturday = 6,
 /// <summary>Sentinel value to indicate last enum field during iteration</summary>
 Last = 7,
 }
-
 }
-
 }
 

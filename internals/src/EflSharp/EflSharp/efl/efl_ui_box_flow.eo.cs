@@ -10,8 +10,7 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>A custom layout engine for <see cref="Efl.Ui.Box"/>.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
+/// <summary>A Flow Box is a customized type of <see cref="Efl.Ui.Box"/>. It will fill along the axis selected with <see cref="Efl.Ui.ILayoutOrientable.Orientation"/> (which defaults to Horizontal), until items will no longer fit in the available space, at which point it will begin filling items in a new row/column after the current one. This is useful if an application wants to e.g., present a group of items and wrap them onto subsequent lines when the number of items grows too large to fit on the screen. Adding or removing items in the middle re-arrange the rest of the items as expected.</summary>
 [Efl.Ui.BoxFlow.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class BoxFlow : Efl.Ui.Box
@@ -34,9 +33,10 @@ public class BoxFlow : Efl.Ui.Box
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_box_flow_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="BoxFlow"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public BoxFlow(Efl.Object parent
             , System.String style = null) : base(efl_ui_box_flow_class_get(), parent)
     {
@@ -70,22 +70,35 @@ public class BoxFlow : Efl.Ui.Box
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.BoxFlow.efl_ui_box_flow_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Box.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -100,7 +113,6 @@ public class BoxFlow : Efl.Ui.Box
 }
 }
 }
-
 }
 
 #if EFL_BETA

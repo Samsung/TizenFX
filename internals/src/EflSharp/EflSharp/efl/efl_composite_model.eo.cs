@@ -10,7 +10,6 @@ namespace Efl {
 
 /// <summary>Efl model for all composite class which provide a unified API to set source of data.
 /// This class also provide an <see cref="Efl.IModel.GetProperty"/> &quot;child.index&quot; that match the value of <see cref="Efl.CompositeModel.Index"/>.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.CompositeModel.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
@@ -33,10 +32,11 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_composite_model_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="CompositeModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
+/// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+/// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public CompositeModel(Efl.Object parent
             , Efl.IModel model, uint? index = null) : base(efl_composite_model_class_get(), parent)
     {
@@ -75,9 +75,10 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
     {
     }
 
+
     /// <summary>Event dispatched when a new model is set.</summary>
-    /// <value><see cref="Efl.Ui.IViewModelChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.IViewModelChangedEvt_Args> ModelChangedEvt
+    /// <value><see cref="Efl.Ui.ViewModelChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.ViewModelChangedEventArgs> ModelChangedEvent
     {
         add
         {
@@ -88,7 +89,7 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.IViewModelChangedEvt_Args args = new Efl.Ui.IViewModelChangedEvt_Args();
+                        Efl.Ui.ViewModelChangedEventArgs args = new Efl.Ui.ViewModelChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -116,8 +117,10 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
             }
         }
     }
-    /// <summary>Method to raise event ModelChangedEvt.</summary>
-    public void OnModelChangedEvt(Efl.Ui.IViewModelChangedEvt_Args e)
+
+    /// <summary>Method to raise event ModelChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnModelChangedEvent(Efl.Ui.ViewModelChangedEventArgs e)
     {
         var key = "_EFL_UI_VIEW_EVENT_MODEL_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Ecore, key);
@@ -138,34 +141,41 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Position of this object in the parent model.
     /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
     /// <returns>Index of the object in the parent model. The index is unique and starts from zero.</returns>
-    virtual public uint GetIndex() {
-         var _ret_var = Efl.CompositeModel.NativeMethods.efl_composite_model_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual uint GetIndex() {
+        var _ret_var = Efl.CompositeModel.NativeMethods.efl_composite_model_index_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Position of this object in the parent model.
     /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
     /// <param name="index">Index of the object in the parent model. The index is unique and starts from zero.</param>
-    virtual public void SetIndex(uint index) {
-                                 Efl.CompositeModel.NativeMethods.efl_composite_model_index_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
+    public virtual void SetIndex(uint index) {
+        Efl.CompositeModel.NativeMethods.efl_composite_model_index_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),index);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Model that is/will be</summary>
     /// <returns>Efl model</returns>
-    virtual public Efl.IModel GetModel() {
-         var _ret_var = Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.IModel GetModel() {
+        var _ret_var = Efl.Ui.ViewConcrete.NativeMethods.efl_ui_view_model_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Model that is/will be</summary>
     /// <param name="model">Efl model</param>
-    virtual public void SetModel(Efl.IModel model) {
-                                 Efl.Ui.IViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
+    public virtual void SetModel(Efl.IModel model) {
+        Efl.Ui.ViewConcrete.NativeMethods.efl_ui_view_model_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),model);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Position of this object in the parent model.
     /// It can only be set before the object is finalized but after the Model it composes is set (and only if that Model does not provide an index already). It can only be retrieved after the object has been finalized.</summary>
     /// <value>Index of the object in the parent model. The index is unique and starts from zero.</value>
@@ -173,24 +183,28 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
         get { return GetIndex(); }
         set { SetIndex(value); }
     }
+
     /// <summary>Model that is/will be</summary>
     /// <value>Efl model</value>
     public Efl.IModel Model {
         get { return GetModel(); }
         set { SetModel(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.CompositeModel.efl_composite_model_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.LoopModel.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -215,29 +229,20 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_composite_model_index_set"), func = Marshal.GetFunctionPointerForDelegate(efl_composite_model_index_set_static_delegate) });
             }
 
-            if (efl_ui_view_model_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_view_model_get_static_delegate = new efl_ui_view_model_get_delegate(model_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetModel") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_view_model_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_view_model_get_static_delegate) });
-            }
-
-            if (efl_ui_view_model_set_static_delegate == null)
-            {
-                efl_ui_view_model_set_static_delegate = new efl_ui_view_model_set_delegate(model_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetModel") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_view_model_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_view_model_set_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -261,7 +266,7 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            uint _ret_var = default(uint);
+                uint _ret_var = default(uint);
                 try
                 {
                     _ret_var = ((CompositeModel)ws.Target).GetIndex();
@@ -272,8 +277,7 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -297,7 +301,7 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((CompositeModel)ws.Target).SetIndex(index);
@@ -308,7 +312,7 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -317,77 +321,6 @@ public class CompositeModel : Efl.LoopModel, Efl.Ui.IView
         }
 
         private static efl_composite_model_index_set_delegate efl_composite_model_index_set_static_delegate;
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        private delegate Efl.IModel efl_ui_view_model_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]
-        public delegate Efl.IModel efl_ui_view_model_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_view_model_get_api_delegate> efl_ui_view_model_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_view_model_get_api_delegate>(Module, "efl_ui_view_model_get");
-
-        private static Efl.IModel model_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_view_model_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.IModel _ret_var = default(Efl.IModel);
-                try
-                {
-                    _ret_var = ((CompositeModel)ws.Target).GetModel();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_view_model_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_view_model_get_delegate efl_ui_view_model_get_static_delegate;
-
-        
-        private delegate void efl_ui_view_model_set_delegate(System.IntPtr obj, System.IntPtr pd, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel model);
-
-        
-        public delegate void efl_ui_view_model_set_api_delegate(System.IntPtr obj, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.IModel model);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_view_model_set_api_delegate> efl_ui_view_model_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_view_model_set_api_delegate>(Module, "efl_ui_view_model_set");
-
-        private static void model_set(System.IntPtr obj, System.IntPtr pd, Efl.IModel model)
-        {
-            Eina.Log.Debug("function efl_ui_view_model_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((CompositeModel)ws.Target).SetModel(model);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_view_model_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), model);
-            }
-        }
-
-        private static efl_ui_view_model_set_delegate efl_ui_view_model_set_static_delegate;
 
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 

@@ -35,7 +35,7 @@ namespace Efl
 
                         Interop.Eext.eext_object_event_callback_add(obj.NativeHandle, type, cb, IntPtr.Zero);
                         _backButtonEventMap[obj] = cb;
-                        obj.DelEvt += (s, e) => DisableButtonEventHandler(obj, type, true);
+                        obj.DelEvent += (s, e) => DisableButtonEventHandler(obj, type, true);
                     }
                 }
                 else if(type == Interop.Eext.EextCallbackType.EEXT_CALLBACK_MORE)

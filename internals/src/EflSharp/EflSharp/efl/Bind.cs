@@ -4,6 +4,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Linq;
 using System.ComponentModel;
 
@@ -12,6 +13,8 @@ namespace Efl {
 /// <summary>Represents a bindable property as used by <see cref="Efl.Ui.ItemFactory&lt;T&gt;" /> instances.
 ///
 /// <para>It is internally instantiated and returned by generated extension methods.</para>
+///
+/// (Since EFL 1.23)
 /// </summary>
 public class BindableProperty<T>
 {
@@ -37,7 +40,7 @@ public class BindableProperty<T>
     {
         if (this.partName == null)
         {
-            return this.binder.PropertyBind(this.propertyName, modelProperty);
+            return this.binder.BindProperty(this.propertyName, modelProperty);
         }
         else
         {
@@ -48,11 +51,18 @@ public class BindableProperty<T>
                 throw new InvalidOperationException($"Failed to cast binder {binder} to IPart");
             }
 
-            var partBinder = partHolder.GetPart(this.partName) as Efl.Ui.IPropertyBind;
+            // We rely on reflection as GetPart is protected and not generated in IPart.
+            var partMethod = partHolder.GetType().GetMethod("GetPart", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
+            if (partMethod == null)
+            {
+                throw new InvalidOperationException($"Failed to get 'GetPart' method on property binder");
+            }
+
+            var partBinder = partMethod.Invoke(partHolder, new System.Object[] { this.partName }) as Efl.Ui.IPropertyBind;
             if (partBinder != null)
             {
-                return partBinder.PropertyBind(this.propertyName, modelProperty);
+                return partBinder.BindProperty(this.propertyName, modelProperty);
             }
             else
             {
@@ -69,6 +79,8 @@ public class BindableProperty<T>
 /// <summary>Represents bindable parts as used by <see cref="Efl.Ui.ItemFactory&lt;T&gt;" /> instances.
 ///
 /// <para>It is internally instantiated and returned by generated extension methods.</para>
+///
+/// (Since EFL 1.23)
 /// </summary>
 public class BindablePart<T>
 {
@@ -87,6 +99,8 @@ public class BindablePart<T>
 }
 
 /// <summary>Represents bindable factory parts as used by <see cref="Efl.Ui.ItemFactory&lt;T&gt;" /> instances.
+///
+/// (Since EFL 1.23)
 /// </summary>
 public class BindableFactoryPart<T>
 {
@@ -105,8 +119,7 @@ public class BindableFactoryPart<T>
     /// <summary>Binds the given factory to this part.</summary>
     public Eina.Error BindFactory(Efl.Ui.IFactory factory)
     {
-        this.Binder.FactoryBind(this.PartName, factory);
-        return Eina.Error.NO_ERROR;
+        return this.Binder.BindFactory(this.PartName, factory);
     }
 }
 

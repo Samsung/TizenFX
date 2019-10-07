@@ -35,6 +35,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_spotlight_manager_scroll_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="ManagerScroll"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ManagerScroll(Efl.Object parent= null
@@ -65,40 +66,47 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
     {
     }
 
-    /// <summary>Blocking of scrolling
-    /// This function will block scrolling movement (by input of a user). You can disable scrolling movement. The default value is <c>false</c>, where the scrolling movement is allowed.</summary>
-    /// <returns><c>true</c> if block scrolling movement, <c>false</c> otherwise</returns>
-    virtual public bool GetScrollBlock() {
-         var _ret_var = Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+
+    /// <summary>User scrolling forbidden.
+    /// This property blocks scrolling movement by user input.</summary>
+    /// <returns><c>true</c> if user should not be able to scroll.</returns>
+    public virtual bool GetScrollBlock() {
+        var _ret_var = Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Blocking of scrolling
-    /// This function will block scrolling movement (by input of a user). You can disable scrolling movement. The default value is <c>false</c>, where the scrolling movement is allowed.</summary>
-    /// <param name="scroll_block"><c>true</c> if block scrolling movement, <c>false</c> otherwise</param>
-    virtual public void SetScrollBlock(bool scroll_block) {
-                                 Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_block);
+    }
+
+    /// <summary>User scrolling forbidden.
+    /// This property blocks scrolling movement by user input.</summary>
+    /// <param name="scroll_block"><c>true</c> if user should not be able to scroll.<br/>The default value is <c>false</c>.</param>
+    public virtual void SetScrollBlock(bool scroll_block) {
+        Efl.Ui.Spotlight.ManagerScroll.NativeMethods.efl_ui_spotlight_manager_scroll_block_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),scroll_block);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Blocking of scrolling
-    /// This function will block scrolling movement (by input of a user). You can disable scrolling movement. The default value is <c>false</c>, where the scrolling movement is allowed.</summary>
-    /// <value><c>true</c> if block scrolling movement, <c>false</c> otherwise</value>
+        
+    }
+
+    /// <summary>User scrolling forbidden.
+    /// This property blocks scrolling movement by user input.</summary>
+    /// <value><c>true</c> if user should not be able to scroll.</value>
     public bool ScrollBlock {
         get { return GetScrollBlock(); }
         set { SetScrollBlock(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Spotlight.ManagerScroll.efl_ui_spotlight_manager_scroll_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Spotlight.Manager.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -123,9 +131,20 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_spotlight_manager_scroll_block_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_spotlight_manager_scroll_block_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -149,7 +168,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ManagerScroll)ws.Target).GetScrollBlock();
@@ -160,8 +179,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -185,7 +203,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ManagerScroll)ws.Target).SetScrollBlock(scroll_block);
@@ -196,7 +214,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -211,9 +229,7 @@ public class ManagerScroll : Efl.Ui.Spotlight.Manager
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

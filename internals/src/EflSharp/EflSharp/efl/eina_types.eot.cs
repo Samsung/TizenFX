@@ -27,9 +27,7 @@ public struct Unicode
     {
         return value.payload;
     }
-
 }
-
 }
 
 namespace Eina {
@@ -47,14 +45,13 @@ Replace = 1,
 /// <summary>This will only succeed if the extended attribute wasn&apos;t previously set</summary>
 Created = 2,
 }
-
 }
-
 }
 
 namespace Eina {
 
 /// <summary>A rectangle in pixel dimensions.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Rect
@@ -68,10 +65,10 @@ public struct Rect
     /// <summary>Height of the rectangle in pixels.</summary>
     public int H;
     /// <summary>Constructor for Rect.</summary>
-    /// <param name="X">X coordinate of the rectangle, from the top-left corner.</param>;
-    /// <param name="Y">Y coordinate of the rectangle, from the top-left corner.</param>;
-    /// <param name="W">Width of the rectangle in pixels.</param>;
-    /// <param name="H">Height of the rectangle in pixels.</param>;
+    /// <param name="X">X coordinate of the rectangle, from the top-left corner.</param>
+    /// <param name="Y">Y coordinate of the rectangle, from the top-left corner.</param>
+    /// <param name="W">Width of the rectangle in pixels.</param>
+    /// <param name="H">Height of the rectangle in pixels.</param>
     public Rect(
         int X = default(int),
         int Y = default(int),
@@ -127,11 +124,8 @@ public struct Rect
             _external_struct.H = _internal_struct.H;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -139,6 +133,7 @@ public struct Rect
 namespace Eina {
 
 /// <summary>A 2D location in pixels.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Position2D
@@ -148,8 +143,8 @@ public struct Position2D
     /// <summary>Y position in pixels, from the top-left corner.</summary>
     public int Y;
     /// <summary>Constructor for Position2D.</summary>
-    /// <param name="X">X position in pixels, from the top-left corner.</param>;
-    /// <param name="Y">Y position in pixels, from the top-left corner.</param>;
+    /// <param name="X">X position in pixels, from the top-left corner.</param>
+    /// <param name="Y">Y position in pixels, from the top-left corner.</param>
     public Position2D(
         int X = default(int),
         int Y = default(int)    )
@@ -193,11 +188,8 @@ public struct Position2D
             _external_struct.Y = _internal_struct.Y;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -205,6 +197,7 @@ public struct Position2D
 namespace Eina {
 
 /// <summary>A 2D size in pixels.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Size2D
@@ -214,8 +207,8 @@ public struct Size2D
     /// <summary>Y position in pixels, from the top-left corner.</summary>
     public int H;
     /// <summary>Constructor for Size2D.</summary>
-    /// <param name="W">X position in pixels, from the top-left corner.</param>;
-    /// <param name="H">Y position in pixels, from the top-left corner.</param>;
+    /// <param name="W">X position in pixels, from the top-left corner.</param>
+    /// <param name="H">Y position in pixels, from the top-left corner.</param>
     public Size2D(
         int W = default(int),
         int H = default(int)    )
@@ -259,11 +252,8 @@ public struct Size2D
             _external_struct.H = _internal_struct.H;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -271,6 +261,7 @@ public struct Size2D
 namespace Eina {
 
 /// <summary>Eina file data structure</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct File
@@ -305,11 +296,8 @@ public struct File
             var _external_struct = new File();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -317,6 +305,7 @@ public struct File
 namespace Eina {
 
 /// <summary>A simple 2D vector type using floating point values.</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Vector2
@@ -326,8 +315,8 @@ public struct Vector2
     /// <summary>Y coordinate.</summary>
     public double Y;
     /// <summary>Constructor for Vector2.</summary>
-    /// <param name="X">X coordinate.</param>;
-    /// <param name="Y">Y coordinate.</param>;
+    /// <param name="X">X coordinate.</param>
+    /// <param name="Y">Y coordinate.</param>
     public Vector2(
         double X = default(double),
         double Y = default(double)    )
@@ -371,11 +360,8 @@ public struct Vector2
             _external_struct.Y = _internal_struct.Y;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -383,6 +369,7 @@ public struct Vector2
 namespace Eina {
 
 /// <summary>Eina 3x3 Matrix</summary>
+/// <since_tizen> 6 </since_tizen>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct Matrix3
@@ -406,15 +393,15 @@ public struct Matrix3
     /// <summary>ZZ matrix value</summary>
     public double Zz;
     /// <summary>Constructor for Matrix3.</summary>
-    /// <param name="Xx">XX matrix value</param>;
-    /// <param name="Xy">XY matrix value</param>;
-    /// <param name="Xz">XZ matrix value</param>;
-    /// <param name="Yx">YX matrix value</param>;
-    /// <param name="Yy">YY matrix value</param>;
-    /// <param name="Yz">YZ matrix value</param>;
-    /// <param name="Zx">ZX matrix value</param>;
-    /// <param name="Zy">ZY matrix value</param>;
-    /// <param name="Zz">ZZ matrix value</param>;
+    /// <param name="Xx">XX matrix value</param>
+    /// <param name="Xy">XY matrix value</param>
+    /// <param name="Xz">XZ matrix value</param>
+    /// <param name="Yx">YX matrix value</param>
+    /// <param name="Yy">YY matrix value</param>
+    /// <param name="Yz">YZ matrix value</param>
+    /// <param name="Zx">ZX matrix value</param>
+    /// <param name="Zy">ZY matrix value</param>
+    /// <param name="Zz">ZZ matrix value</param>
     public Matrix3(
         double Xx = default(double),
         double Xy = default(double),
@@ -500,11 +487,8 @@ public struct Matrix3
             _external_struct.Zz = _internal_struct.Zz;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -546,11 +530,8 @@ public struct FileDirectInfo
             var _external_struct = new FileDirectInfo();
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
@@ -595,22 +576,22 @@ public struct Stat
     /// <summary>The nano version of the timestmap when the file was created</summary>
     public uint Ctimensec;
     /// <summary>Constructor for Stat.</summary>
-    /// <param name="Dev">The device where this file is located</param>;
-    /// <param name="Ino">The inode</param>;
-    /// <param name="Mode">The mode</param>;
-    /// <param name="Nlink">The link number</param>;
-    /// <param name="Uid">The owner user id</param>;
-    /// <param name="Gid">The owner group id</param>;
-    /// <param name="Rdev">The remote device</param>;
-    /// <param name="Size">The file size in bytes</param>;
-    /// <param name="Blksize">The block size in bytes</param>;
-    /// <param name="Blocks">The number of blocks allocated</param>;
-    /// <param name="Atime">The tilestamp when the file was last accessed</param>;
-    /// <param name="Atimensec">The nano version of the timestmap when the file was last accessed</param>;
-    /// <param name="Mtime">The tilestamp when the file was modified</param>;
-    /// <param name="Mtimensec">The nano version of the timestmap when the file was modified</param>;
-    /// <param name="Ctime">The tilestamp when the file was created</param>;
-    /// <param name="Ctimensec">The nano version of the timestmap when the file was created</param>;
+    /// <param name="Dev">The device where this file is located</param>
+    /// <param name="Ino">The inode</param>
+    /// <param name="Mode">The mode</param>
+    /// <param name="Nlink">The link number</param>
+    /// <param name="Uid">The owner user id</param>
+    /// <param name="Gid">The owner group id</param>
+    /// <param name="Rdev">The remote device</param>
+    /// <param name="Size">The file size in bytes</param>
+    /// <param name="Blksize">The block size in bytes</param>
+    /// <param name="Blocks">The number of blocks allocated</param>
+    /// <param name="Atime">The tilestamp when the file was last accessed</param>
+    /// <param name="Atimensec">The nano version of the timestmap when the file was last accessed</param>
+    /// <param name="Mtime">The tilestamp when the file was modified</param>
+    /// <param name="Mtimensec">The nano version of the timestmap when the file was modified</param>
+    /// <param name="Ctime">The tilestamp when the file was created</param>
+    /// <param name="Ctimensec">The nano version of the timestmap when the file was created</param>
     public Stat(
         uint Dev = default(uint),
         uint Ino = default(uint),
@@ -738,11 +719,8 @@ public struct Stat
             _external_struct.Ctimensec = _internal_struct.Ctimensec;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }

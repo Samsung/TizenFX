@@ -12,89 +12,109 @@ namespace Ui {
 
 namespace PositionManager {
 
-/// <summary>This abstracts the basic placement of items in a not defined form under a viewport.
-/// The interface gets a defined set of elements that is meant to be displayed. The implementation provides a way to calculate the size that is required to display all items. Every time this absolut size of items is changed, content_size,changed is called.</summary>
+/// <summary>This abstracts the basic placement of items in a not-defined form under a viewport.
+/// The interface gets a defined set of elements that is meant to be displayed. The implementation provides a way to calculate the size that is required to display all items. Every time this absolute size of items is changed, <see cref="Efl.Ui.PositionManager.IEntity.ContentSizeChangedEvent"/> is emitted.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.PositionManager.IEntityConcrete.NativeMethods]
+[Efl.Ui.PositionManager.EntityConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IEntity : 
     Efl.Ui.ILayoutOrientable ,
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>This is the position and size of the viewport, where elements are displayed in. Entities outside this viewport will not be shown.</summary>
-void SetViewport(Eina.Rect viewport);
+    void SetViewport(Eina.Rect viewport);
+
     /// <summary>Move the items relative to the viewport.
-/// The items that are managed with this position manager might be bigger than the actual viewport. The positioning of the layer where all items are on is described by these values. 0.0,0.0 means that layer is moved that the top left items are shown, 1.0,1.0 means, that the lower right items are shown.</summary>
-/// <param name="x">X position of the scroller, valid form 0 to 1.0</param>
-/// <param name="y">Y position of the scroller, valid form 0 to 1.0</param>
-void SetScrollPosition(double x, double y);
-    /// <summary>Return the version of Data_Access that is used. This object needs to implement the interface Efl.Ui.Position_Manager.Data_Access_V1 if 1 is returned. 2 if V2 (not available yet) is implemented.</summary>
-/// <param name="max">The maximum version that is available from the data-provider.</param>
-/// <returns>The version that should be used here. 0 is an error.</returns>
-int Version(int max);
-    /// <summary>Return the position and size of item idx
-/// This method returns the size and position of the item at <c>idx</c>. Even if the item is outside the viewport, the returned rectangle must be valid. The result can be used for scrolling calculations.</summary>
-/// <param name="idx">The id for the item</param>
-/// <returns>Position and Size in canvas coordinations</returns>
-Eina.Rect PositionSingleItem(int idx);
+    /// The items that are managed with this position manager might be bigger than the actual viewport. The positioning of the layer where all items are on is described by these values. 0.0,0.0 means that layer is moved that the top left items are shown, 1.0,1.0 means, that the lower right items are shown.</summary>
+    /// <param name="x">X position of the scroller, valid form 0 to 1.0</param>
+    /// <param name="y">Y position of the scroller, valid form 0 to 1.0</param>
+    void SetScrollPosition(double x, double y);
+
+    /// <summary>Returns the version of Data_Access that is used. This object needs to implement the interface <see cref="Efl.Ui.PositionManager.IDataAccessV1"/> if 1 is returned.</summary>
+    /// <param name="max">The maximum version that is available from the data-provider.</param>
+    /// <returns>The version that should be used here. 0 is an error.</returns>
+    int Version(int max);
+
+    /// <summary>Return the position and size of item idx.
+    /// This method returns the size and position of the item at <c>idx</c>. Even if the item is outside the viewport, the returned rectangle must be valid. The result can be used for scrolling calculations.</summary>
+    /// <param name="idx">The id for the item</param>
+    /// <returns>Position and Size in canvas coordinates.</returns>
+    Eina.Rect PositionSingleItem(int idx);
+
     /// <summary>The new item <c>subobj</c> has been added at the <c>added_index</c> field.
-/// The accessor provided through <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> will contain updated Entities.</summary>
-void ItemAdded(int added_index, Efl.Gfx.IEntity subobj);
+    /// The accessor provided through <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> will contain updated Entities.</summary>
+    void ItemAdded(int added_index, Efl.Gfx.IEntity subobj);
+
     /// <summary>The item <c>subobj</c> previously at position <c>removed_index</c> has been removed. The accessor provided through <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> will contain updated Entities.</summary>
-void ItemRemoved(int removed_index, Efl.Gfx.IEntity subobj);
+    void ItemRemoved(int removed_index, Efl.Gfx.IEntity subobj);
+
     /// <summary>The size of the items from <c>start_id</c> to <c>end_id</c> have been changed. The positioning and sizing of all items will be updated</summary>
-/// <param name="start_id">The first item that has a new size</param>
-/// <param name="end_id">The last item that has a new size</param>
-void ItemSizeChanged(int start_id, int end_id);
-    /// <summary>translate the current_id, into a new id which is oriented in the <c>direction</c> of <c>current_id</c>. In case that there is no item, -1 is returned</summary>
-/// <param name="current_id">The id where the direction is oriented at</param>
-/// <param name="direction">The direction where the new id is</param>
-/// <returns>The id of the item in that direction, or -1 if there is no item in that direction</returns>
-int RelativeItem(uint current_id, Efl.Ui.Focus.Direction direction);
-                                    /// <summary>Emitted when the aggregate size of all items has changed. This can be used to resize an enclosing Pan object.</summary>
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args> ContentSizeChangedEvt;
-    /// <summary>Emitted when the minimum size of all items has changed. The minimum size is the size, that this position_manager needs at *least* to display a single item.</summary>
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args> ContentMinSizeChangedEvt;
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args"/></value>
-    event EventHandler<Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args> VisibleRangeChangedEvt;
+    /// <param name="start_id">The first item that has a new size</param>
+    /// <param name="end_id">The last item that has a new size</param>
+    void ItemSizeChanged(int start_id, int end_id);
+
+    /// <summary>The items from <c>start_id</c> to <c>end_id</c> now have their entities ready
+    /// The position manager will reapply the geometry to the elements if they are visible.</summary>
+    /// <param name="start_id">The first item that is available</param>
+    /// <param name="end_id">The last item that is available</param>
+    void EntitiesReady(uint start_id, uint end_id);
+
+    /// <summary>Translates the <c>current_id</c>, into a new id which is oriented in the <c>direction</c> of <c>current_id</c>. In case that there is no item, -1 is returned</summary>
+    /// <param name="current_id">The id where the direction is oriented at</param>
+    /// <param name="direction">The direction where the new id is</param>
+    /// <returns>The id of the item in that direction, or -1 if there is no item in that direction</returns>
+    int RelativeItem(uint current_id, Efl.Ui.Focus.Direction direction);
+
+    /// <summary>Emitted when the aggregate size of all items has changed. This can be used to resize an enclosing Pan object.</summary>
+    /// <value><see cref="Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs> ContentSizeChangedEvent;
+    /// <summary>Emitted when the minimum size of all items has changed. The minimum size is the size that this position_manager needs to display a single item.</summary>
+    /// <value><see cref="Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs> ContentMinSizeChangedEvent;
+    /// <value><see cref="Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs"/></value>
+    event EventHandler<Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs> VisibleRangeChangedEvent;
     /// <summary>This is the position and size of the viewport, where elements are displayed in. Entities outside this viewport will not be shown.</summary>
     Eina.Rect Viewport {
         set;
     }
+
     /// <summary>Move the items relative to the viewport.
     /// The items that are managed with this position manager might be bigger than the actual viewport. The positioning of the layer where all items are on is described by these values. 0.0,0.0 means that layer is moved that the top left items are shown, 1.0,1.0 means, that the lower right items are shown.</summary>
     /// <value>X position of the scroller, valid form 0 to 1.0</value>
     (double, double) ScrollPosition {
         set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.ContentSizeChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.ContentSizeChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntityContentSizeChangedEvt_Args : EventArgs {
+public class EntityContentSizeChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Emitted when the aggregate size of all items has changed. This can be used to resize an enclosing Pan object.</value>
     public Eina.Size2D arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.ContentMinSizeChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.ContentMinSizeChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntityContentMinSizeChangedEvt_Args : EventArgs {
+public class EntityContentMinSizeChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
-    /// <value>Emitted when the minimum size of all items has changed. The minimum size is the size, that this position_manager needs at *least* to display a single item.</value>
+    /// <value>Emitted when the minimum size of all items has changed. The minimum size is the size that this position_manager needs to display a single item.</value>
     public Eina.Size2D arg { get; set; }
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.VisibleRangeChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Ui.PositionManager.IEntity.VisibleRangeChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IEntityVisibleRangeChangedEvt_Args : EventArgs {
+public class EntityVisibleRangeChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value></value>
     public Efl.Ui.PositionManager.RangeUpdate arg { get; set; }
 }
-/// <summary>This abstracts the basic placement of items in a not defined form under a viewport.
-/// The interface gets a defined set of elements that is meant to be displayed. The implementation provides a way to calculate the size that is required to display all items. Every time this absolut size of items is changed, content_size,changed is called.</summary>
+
+/// <summary>This abstracts the basic placement of items in a not-defined form under a viewport.
+/// The interface gets a defined set of elements that is meant to be displayed. The implementation provides a way to calculate the size that is required to display all items. Every time this absolute size of items is changed, <see cref="Efl.Ui.PositionManager.IEntity.ContentSizeChangedEvent"/> is emitted.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IEntityConcrete :
+public sealed class EntityConcrete :
     Efl.Eo.EoWrapper
     , IEntity
     , Efl.Ui.ILayoutOrientable
@@ -104,7 +124,7 @@ sealed public  class IEntityConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IEntityConcrete))
+            if (((object)this).GetType() == typeof(EntityConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -118,22 +138,23 @@ sealed public  class IEntityConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IEntityConcrete(ConstructingHandle ch) : base(ch)
+    private EntityConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_position_manager_entity_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IEntity"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IEntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private EntityConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Emitted when the aggregate size of all items has changed. This can be used to resize an enclosing Pan object.</summary>
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args> ContentSizeChangedEvt
+    /// <value><see cref="Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs> ContentSizeChangedEvent
     {
         add
         {
@@ -144,7 +165,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args args = new Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args();
+                        Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs args = new Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -172,8 +193,10 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ContentSizeChangedEvt.</summary>
-    public void OnContentSizeChangedEvt(Efl.Ui.PositionManager.IEntityContentSizeChangedEvt_Args e)
+
+    /// <summary>Method to raise event ContentSizeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentSizeChangedEvent(Efl.Ui.PositionManager.EntityContentSizeChangedEventArgs e)
     {
         var key = "_EFL_UI_POSITION_MANAGER_ENTITY_EVENT_CONTENT_SIZE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -194,9 +217,10 @@ sealed public  class IEntityConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <summary>Emitted when the minimum size of all items has changed. The minimum size is the size, that this position_manager needs at *least* to display a single item.</summary>
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args> ContentMinSizeChangedEvt
+
+    /// <summary>Emitted when the minimum size of all items has changed. The minimum size is the size that this position_manager needs to display a single item.</summary>
+    /// <value><see cref="Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs> ContentMinSizeChangedEvent
     {
         add
         {
@@ -207,7 +231,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args args = new Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args();
+                        Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs args = new Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -235,8 +259,10 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ContentMinSizeChangedEvt.</summary>
-    public void OnContentMinSizeChangedEvt(Efl.Ui.PositionManager.IEntityContentMinSizeChangedEvt_Args e)
+
+    /// <summary>Method to raise event ContentMinSizeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnContentMinSizeChangedEvent(Efl.Ui.PositionManager.EntityContentMinSizeChangedEventArgs e)
     {
         var key = "_EFL_UI_POSITION_MANAGER_ENTITY_EVENT_CONTENT_MIN_SIZE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -257,8 +283,9 @@ sealed public  class IEntityConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
-    /// <value><see cref="Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args> VisibleRangeChangedEvt
+
+    /// <value><see cref="Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs"/></value>
+    public event EventHandler<Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs> VisibleRangeChangedEvent
     {
         add
         {
@@ -269,7 +296,7 @@ sealed public  class IEntityConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args args = new Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args();
+                        Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs args = new Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs();
                         args.arg =  evt.Info;
                         try
                         {
@@ -297,8 +324,10 @@ sealed public  class IEntityConcrete :
             }
         }
     }
-    /// <summary>Method to raise event VisibleRangeChangedEvt.</summary>
-    public void OnVisibleRangeChangedEvt(Efl.Ui.PositionManager.IEntityVisibleRangeChangedEvt_Args e)
+
+    /// <summary>Method to raise event VisibleRangeChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnVisibleRangeChangedEvent(Efl.Ui.PositionManager.EntityVisibleRangeChangedEventArgs e)
     {
         var key = "_EFL_UI_POSITION_MANAGER_ENTITY_EVENT_VISIBLE_RANGE_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Elementary, key);
@@ -319,93 +348,124 @@ sealed public  class IEntityConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
+
+#pragma warning disable CS0628
     /// <summary>This is the position and size of the viewport, where elements are displayed in. Entities outside this viewport will not be shown.</summary>
     public void SetViewport(Eina.Rect viewport) {
-         Eina.Rect.NativeStruct _in_viewport = viewport;
-                        Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_viewport_set_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
+        Eina.Rect.NativeStruct _in_viewport = viewport;
+Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_viewport_set_ptr.Value.Delegate(this.NativeHandle,_in_viewport);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Move the items relative to the viewport.
     /// The items that are managed with this position manager might be bigger than the actual viewport. The positioning of the layer where all items are on is described by these values. 0.0,0.0 means that layer is moved that the top left items are shown, 1.0,1.0 means, that the lower right items are shown.</summary>
     /// <param name="x">X position of the scroller, valid form 0 to 1.0</param>
     /// <param name="y">Y position of the scroller, valid form 0 to 1.0</param>
     public void SetScrollPosition(double x, double y) {
-                                                         Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_scroll_position_set_ptr.Value.Delegate(this.NativeHandle,x, y);
+        Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_scroll_position_set_ptr.Value.Delegate(this.NativeHandle,x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Return the version of Data_Access that is used. This object needs to implement the interface Efl.Ui.Position_Manager.Data_Access_V1 if 1 is returned. 2 if V2 (not available yet) is implemented.</summary>
+        
+    }
+
+    /// <summary>Returns the version of Data_Access that is used. This object needs to implement the interface <see cref="Efl.Ui.PositionManager.IDataAccessV1"/> if 1 is returned.</summary>
     /// <param name="max">The maximum version that is available from the data-provider.</param>
     /// <returns>The version that should be used here. 0 is an error.</returns>
     public int Version(int max) {
-                                 var _ret_var = Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_version_ptr.Value.Delegate(this.NativeHandle,max);
+        var _ret_var = Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_version_ptr.Value.Delegate(this.NativeHandle,max);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>Return the position and size of item idx
+        return _ret_var;
+    }
+
+    /// <summary>Return the position and size of item idx.
     /// This method returns the size and position of the item at <c>idx</c>. Even if the item is outside the viewport, the returned rectangle must be valid. The result can be used for scrolling calculations.</summary>
     /// <param name="idx">The id for the item</param>
-    /// <returns>Position and Size in canvas coordinations</returns>
+    /// <returns>Position and Size in canvas coordinates.</returns>
     public Eina.Rect PositionSingleItem(int idx) {
-                                 var _ret_var = Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_position_single_item_ptr.Value.Delegate(this.NativeHandle,idx);
+        var _ret_var = Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_position_single_item_ptr.Value.Delegate(this.NativeHandle,idx);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>The new item <c>subobj</c> has been added at the <c>added_index</c> field.
     /// The accessor provided through <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> will contain updated Entities.</summary>
     public void ItemAdded(int added_index, Efl.Gfx.IEntity subobj) {
-                                                         Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_added_ptr.Value.Delegate(this.NativeHandle,added_index, subobj);
+        Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_added_ptr.Value.Delegate(this.NativeHandle,added_index, subobj);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>The item <c>subobj</c> previously at position <c>removed_index</c> has been removed. The accessor provided through <see cref="Efl.Ui.PositionManager.IDataAccessV1.SetDataAccess"/> will contain updated Entities.</summary>
     public void ItemRemoved(int removed_index, Efl.Gfx.IEntity subobj) {
-                                                         Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_removed_ptr.Value.Delegate(this.NativeHandle,removed_index, subobj);
+        Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_removed_ptr.Value.Delegate(this.NativeHandle,removed_index, subobj);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>The size of the items from <c>start_id</c> to <c>end_id</c> have been changed. The positioning and sizing of all items will be updated</summary>
     /// <param name="start_id">The first item that has a new size</param>
     /// <param name="end_id">The last item that has a new size</param>
     public void ItemSizeChanged(int start_id, int end_id) {
-                                                         Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_size_changed_ptr.Value.Delegate(this.NativeHandle,start_id, end_id);
+        Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_item_size_changed_ptr.Value.Delegate(this.NativeHandle,start_id, end_id);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>translate the current_id, into a new id which is oriented in the <c>direction</c> of <c>current_id</c>. In case that there is no item, -1 is returned</summary>
+        
+    }
+
+    /// <summary>The items from <c>start_id</c> to <c>end_id</c> now have their entities ready
+    /// The position manager will reapply the geometry to the elements if they are visible.</summary>
+    /// <param name="start_id">The first item that is available</param>
+    /// <param name="end_id">The last item that is available</param>
+    public void EntitiesReady(uint start_id, uint end_id) {
+        Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_entities_ready_ptr.Value.Delegate(this.NativeHandle,start_id, end_id);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
+    /// <summary>Translates the <c>current_id</c>, into a new id which is oriented in the <c>direction</c> of <c>current_id</c>. In case that there is no item, -1 is returned</summary>
     /// <param name="current_id">The id where the direction is oriented at</param>
     /// <param name="direction">The direction where the new id is</param>
     /// <returns>The id of the item in that direction, or -1 if there is no item in that direction</returns>
     public int RelativeItem(uint current_id, Efl.Ui.Focus.Direction direction) {
-                                                         var _ret_var = Efl.Ui.PositionManager.IEntityConcrete.NativeMethods.efl_ui_position_manager_entity_relative_item_ptr.Value.Delegate(this.NativeHandle,current_id, direction);
+        var _ret_var = Efl.Ui.PositionManager.EntityConcrete.NativeMethods.efl_ui_position_manager_entity_relative_item_ptr.Value.Delegate(this.NativeHandle,current_id, direction);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <returns>Direction of the widget.</returns>
     public Efl.Ui.LayoutOrientation GetOrientation() {
-         var _ret_var = Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
     /// Mirroring as defined in <see cref="Efl.Ui.II18n"/> can invert the <c>horizontal</c> direction: it is <c>ltr</c> by default, but becomes <c>rtl</c> if the object is mirrored.</summary>
     /// <param name="dir">Direction of the widget.</param>
     public void SetOrientation(Efl.Ui.LayoutOrientation dir) {
-                                 Efl.Ui.ILayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
+        Efl.Ui.LayoutOrientableConcrete.NativeMethods.efl_ui_layout_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>This is the position and size of the viewport, where elements are displayed in. Entities outside this viewport will not be shown.</summary>
     public Eina.Rect Viewport {
         set { SetViewport(value); }
     }
+
     /// <summary>Move the items relative to the viewport.
     /// The items that are managed with this position manager might be bigger than the actual viewport. The positioning of the layer where all items are on is described by these values. 0.0,0.0 means that layer is moved that the top left items are shown, 1.0,1.0 means, that the lower right items are shown.</summary>
     /// <value>X position of the scroller, valid form 0 to 1.0</value>
     public (double, double) ScrollPosition {
         set { SetScrollPosition( value.Item1,  value.Item2); }
     }
+
     /// <summary>Control the direction of a given widget.
     /// Use this function to change how your widget is to be disposed: vertically or horizontally or inverted vertically or inverted horizontally.
     /// 
@@ -415,18 +475,22 @@ sealed public  class IEntityConcrete :
         get { return GetOrientation(); }
         set { SetOrientation(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.PositionManager.IEntityConcrete.efl_ui_position_manager_entity_interface_get();
+        return Efl.Ui.PositionManager.EntityConcrete.efl_ui_position_manager_entity_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -501,6 +565,16 @@ sealed public  class IEntityConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_position_manager_entity_item_size_changed"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_position_manager_entity_item_size_changed_static_delegate) });
             }
 
+            if (efl_ui_position_manager_entity_entities_ready_static_delegate == null)
+            {
+                efl_ui_position_manager_entity_entities_ready_static_delegate = new efl_ui_position_manager_entity_entities_ready_delegate(entities_ready);
+            }
+
+            if (methods.FirstOrDefault(m => m.Name == "EntitiesReady") != null)
+            {
+                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_position_manager_entity_entities_ready"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_position_manager_entity_entities_ready_static_delegate) });
+            }
+
             if (efl_ui_position_manager_entity_relative_item_static_delegate == null)
             {
                 efl_ui_position_manager_entity_relative_item_static_delegate = new efl_ui_position_manager_entity_relative_item_delegate(relative_item);
@@ -511,33 +585,24 @@ sealed public  class IEntityConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_position_manager_entity_relative_item"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_position_manager_entity_relative_item_static_delegate) });
             }
 
-            if (efl_ui_layout_orientation_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_ui_layout_orientation_get_static_delegate = new efl_ui_layout_orientation_get_delegate(orientation_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_get_static_delegate) });
-            }
-
-            if (efl_ui_layout_orientation_set_static_delegate == null)
-            {
-                efl_ui_layout_orientation_set_static_delegate = new efl_ui_layout_orientation_set_delegate(orientation_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetOrientation") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_layout_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_layout_orientation_set_static_delegate) });
-            }
-
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.PositionManager.IEntityConcrete.efl_ui_position_manager_entity_interface_get();
+            return Efl.Ui.PositionManager.EntityConcrete.efl_ui_position_manager_entity_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -556,8 +621,8 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Eina.Rect _in_viewport = viewport;
-                            
+                Eina.Rect _in_viewport = viewport;
+
                 try
                 {
                     ((IEntity)ws.Target).SetViewport(_in_viewport);
@@ -568,7 +633,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -592,7 +657,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IEntity)ws.Target).SetScrollPosition(x, y);
@@ -603,7 +668,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -627,7 +692,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((IEntity)ws.Target).Version(max);
@@ -638,8 +703,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -663,7 +727,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((IEntity)ws.Target).PositionSingleItem(idx);
@@ -674,8 +738,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -699,7 +762,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IEntity)ws.Target).ItemAdded(added_index, subobj);
@@ -710,7 +773,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -734,7 +797,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IEntity)ws.Target).ItemRemoved(removed_index, subobj);
@@ -745,7 +808,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -769,7 +832,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IEntity)ws.Target).ItemSizeChanged(start_id, end_id);
@@ -780,7 +843,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -789,6 +852,41 @@ sealed public  class IEntityConcrete :
         }
 
         private static efl_ui_position_manager_entity_item_size_changed_delegate efl_ui_position_manager_entity_item_size_changed_static_delegate;
+
+        
+        private delegate void efl_ui_position_manager_entity_entities_ready_delegate(System.IntPtr obj, System.IntPtr pd,  uint start_id,  uint end_id);
+
+        
+        public delegate void efl_ui_position_manager_entity_entities_ready_api_delegate(System.IntPtr obj,  uint start_id,  uint end_id);
+
+        public static Efl.Eo.FunctionWrapper<efl_ui_position_manager_entity_entities_ready_api_delegate> efl_ui_position_manager_entity_entities_ready_ptr = new Efl.Eo.FunctionWrapper<efl_ui_position_manager_entity_entities_ready_api_delegate>(Module, "efl_ui_position_manager_entity_entities_ready");
+
+        private static void entities_ready(System.IntPtr obj, System.IntPtr pd, uint start_id, uint end_id)
+        {
+            Eina.Log.Debug("function efl_ui_position_manager_entity_entities_ready was called");
+            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
+            if (ws != null)
+            {
+                
+                try
+                {
+                    ((IEntity)ws.Target).EntitiesReady(start_id, end_id);
+                }
+                catch (Exception e)
+                {
+                    Eina.Log.Warning($"Callback error: {e.ToString()}");
+                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+                }
+
+                
+            }
+            else
+            {
+                efl_ui_position_manager_entity_entities_ready_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), start_id, end_id);
+            }
+        }
+
+        private static efl_ui_position_manager_entity_entities_ready_delegate efl_ui_position_manager_entity_entities_ready_static_delegate;
 
         
         private delegate int efl_ui_position_manager_entity_relative_item_delegate(System.IntPtr obj, System.IntPtr pd,  uint current_id,  Efl.Ui.Focus.Direction direction);
@@ -804,7 +902,7 @@ sealed public  class IEntityConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((IEntity)ws.Target).RelativeItem(current_id, direction);
@@ -815,8 +913,7 @@ sealed public  class IEntityConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -826,95 +923,21 @@ sealed public  class IEntityConcrete :
 
         private static efl_ui_position_manager_entity_relative_item_delegate efl_ui_position_manager_entity_relative_item_static_delegate;
 
-        
-        private delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate Efl.Ui.LayoutOrientation efl_ui_layout_orientation_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate> efl_ui_layout_orientation_get_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_get_api_delegate>(Module, "efl_ui_layout_orientation_get");
-
-        private static Efl.Ui.LayoutOrientation orientation_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            Efl.Ui.LayoutOrientation _ret_var = default(Efl.Ui.LayoutOrientation);
-                try
-                {
-                    _ret_var = ((IEntity)ws.Target).GetOrientation();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_ui_layout_orientation_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_ui_layout_orientation_get_delegate efl_ui_layout_orientation_get_static_delegate;
-
-        
-        private delegate void efl_ui_layout_orientation_set_delegate(System.IntPtr obj, System.IntPtr pd,  Efl.Ui.LayoutOrientation dir);
-
-        
-        public delegate void efl_ui_layout_orientation_set_api_delegate(System.IntPtr obj,  Efl.Ui.LayoutOrientation dir);
-
-        public static Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate> efl_ui_layout_orientation_set_ptr = new Efl.Eo.FunctionWrapper<efl_ui_layout_orientation_set_api_delegate>(Module, "efl_ui_layout_orientation_set");
-
-        private static void orientation_set(System.IntPtr obj, System.IntPtr pd, Efl.Ui.LayoutOrientation dir)
-        {
-            Eina.Log.Debug("function efl_ui_layout_orientation_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IEntity)ws.Target).SetOrientation(dir);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_ui_layout_orientation_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), dir);
-            }
-        }
-
-        private static efl_ui_layout_orientation_set_delegate efl_ui_layout_orientation_set_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_Ui_Position_ManagerIEntityConcrete_ExtensionMethods {
+public static class Efl_Ui_Position_ManagerEntityConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Eina.Rect> Viewport<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PositionManager.IEntity, T>magic = null) where T : Efl.Ui.PositionManager.IEntity {
         return new Efl.BindableProperty<Eina.Rect>("viewport", fac);
     }
 
-    
     public static Efl.BindableProperty<Efl.Ui.LayoutOrientation> Orientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.PositionManager.IEntity, T>magic = null) where T : Efl.Ui.PositionManager.IEntity {
         return new Efl.BindableProperty<Efl.Ui.LayoutOrientation>("orientation", fac);
     }
@@ -928,7 +951,7 @@ namespace Ui {
 
 namespace PositionManager {
 
-/// <summary>A struct containing the the updated range of visible items in this position manger.</summary>
+/// <summary>A structure containing the updated range of visible items in this position manger.</summary>
 [StructLayout(LayoutKind.Sequential)]
 [Efl.Eo.BindingEntity]
 public struct RangeUpdate
@@ -938,8 +961,8 @@ public struct RangeUpdate
     /// <summary>The last item that is visible</summary>
     public uint End_id;
     /// <summary>Constructor for RangeUpdate.</summary>
-    /// <param name="Start_id">The first item that is visible</param>;
-    /// <param name="End_id">The last item that is visible</param>;
+    /// <param name="Start_id">The first item that is visible</param>
+    /// <param name="End_id">The last item that is visible</param>
     public RangeUpdate(
         uint Start_id = default(uint),
         uint End_id = default(uint)    )
@@ -983,16 +1006,11 @@ public struct RangeUpdate
             _external_struct.End_id = _internal_struct.End_id;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
-
 }
 

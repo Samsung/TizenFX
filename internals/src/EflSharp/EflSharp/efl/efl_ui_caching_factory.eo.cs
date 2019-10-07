@@ -10,8 +10,8 @@ namespace Efl {
 
 namespace Ui {
 
-/// <summary>Efl Ui Factory that provides object caching.
-/// This factory handles caching of one type of object that must be an <see cref="Efl.Gfx.IEntity"/> with an <see cref="Efl.Ui.IView"/> interface defined. This factory will rely on its parent class <see cref="Efl.Ui.WidgetFactory"/> for creating the subset of class that match <see cref="Efl.Ui.Widget"/> interface. The factory will automatically empties the cache when the application goes into pause.
+/// <summary>Efl UI Factory that provides object caching.
+/// This factory handles caching of one type of object that must be an <see cref="Efl.Gfx.IEntity"/> with an <see cref="Efl.Ui.IView"/> interface defined. This factory will rely on its parent class <see cref="Efl.Ui.WidgetFactory"/> for creating the subset of class that match the <see cref="Efl.Ui.Widget"/> interface. The factory will automatically empties the cache when the application goes into pause.
 /// 
 /// Creating objects is costly and time consuming, keeping a few on hand for when you next will need them helps a lot. This is what this factory caching infrastructure provides. It will create the object from the class defined on it and set the parent and the model as needed for all created items. The View has to release the Item using the release function of the Factory interface for all of this to work properly.
 /// 
@@ -39,9 +39,10 @@ public class CachingFactory : Efl.Ui.WidgetFactory
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_caching_factory_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="CachingFactory"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
+/// <param name="itemClass">Define the class of the item returned by this factory. See <see cref="Efl.Ui.WidgetFactory.SetItemClass" /></param>
     public CachingFactory(Efl.Object parent
             , Type itemClass = null) : base(efl_ui_caching_factory_class_get(), parent)
     {
@@ -75,56 +76,67 @@ public class CachingFactory : Efl.Ui.WidgetFactory
     {
     }
 
-    /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
+
+    /// <summary>Define the maximum size in Bytes that all the objects waiting on standby in the cache can take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <returns>When set to zero, there is no limit on the amount of memory the cache will use.</returns>
-    virtual public uint GetMemoryLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual uint GetMemoryLimit() {
+        var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
+    }
+
+    /// <summary>Define the maximum size in Bytes that all the objects waiting on standby in the cache can take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <param name="limit">When set to zero, there is no limit on the amount of memory the cache will use.</param>
-    virtual public void SetMemoryLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
+    public virtual void SetMemoryLimit(uint limit) {
+        Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_memory_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <returns>When set to zero, there is no limit to the amount of items stored in the cache.</returns>
-    virtual public uint GetItemsLimit() {
-         var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual uint GetItemsLimit() {
+        var _ret_var = Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <param name="limit">When set to zero, there is no limit to the amount of items stored in the cache.</param>
-    virtual public void SetItemsLimit(uint limit) {
-                                 Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
+    public virtual void SetItemsLimit(uint limit) {
+        Efl.Ui.CachingFactory.NativeMethods.efl_ui_caching_factory_items_limit_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),limit);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Define the maxium size in Bytes that all the object waiting on standby in the cache take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
+        
+    }
+
+    /// <summary>Define the maximum size in Bytes that all the objects waiting on standby in the cache can take. They must provide the <see cref="Efl.Cached.IItem"/> interface for an accurate accounting.</summary>
     /// <value>When set to zero, there is no limit on the amount of memory the cache will use.</value>
     public uint MemoryLimit {
         get { return GetMemoryLimit(); }
         set { SetMemoryLimit(value); }
     }
+
     /// <summary>Define how many maximum number of items are waiting on standby in the cache.</summary>
     /// <value>When set to zero, there is no limit to the amount of items stored in the cache.</value>
     public uint ItemsLimit {
         get { return GetItemsLimit(); }
         set { SetItemsLimit(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.CachingFactory.efl_ui_caching_factory_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.WidgetFactory.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -169,9 +181,20 @@ public class CachingFactory : Efl.Ui.WidgetFactory
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_caching_factory_items_limit_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_caching_factory_items_limit_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -195,7 +218,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            uint _ret_var = default(uint);
+                uint _ret_var = default(uint);
                 try
                 {
                     _ret_var = ((CachingFactory)ws.Target).GetMemoryLimit();
@@ -206,8 +229,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -231,7 +253,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((CachingFactory)ws.Target).SetMemoryLimit(limit);
@@ -242,7 +264,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -266,7 +288,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            uint _ret_var = default(uint);
+                uint _ret_var = default(uint);
                 try
                 {
                     _ret_var = ((CachingFactory)ws.Target).GetItemsLimit();
@@ -277,8 +299,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -302,7 +323,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((CachingFactory)ws.Target).SetItemsLimit(limit);
@@ -313,7 +334,7 @@ public class CachingFactory : Efl.Ui.WidgetFactory
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -328,7 +349,6 @@ public class CachingFactory : Efl.Ui.WidgetFactory
 }
 }
 }
-
 }
 
 #if EFL_BETA

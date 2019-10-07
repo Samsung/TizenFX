@@ -12,6 +12,7 @@ namespace Dnd {
 /// <param name="win">The window to create the objects relative to</param>
 /// <param name="drag_obj">The drag object</param>
 /// <param name="off">Offset from the icon position to the cursor</param>
+/// <returns>The drag icon object</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Canvas.Object DragIconCreate(Efl.Canvas.Object win, Efl.Canvas.Object drag_obj, out Eina.Position2D off);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Canvas.Object DragIconCreateInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object win, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object drag_obj,  out Eina.Position2D.NativeStruct off);
@@ -60,31 +61,28 @@ internal class DragIconCreateWrapper : IDisposable
 
     internal Efl.Canvas.Object ManagedCb(Efl.Canvas.Object win,Efl.Canvas.Object drag_obj,out Eina.Position2D off)
     {
-                                                var _out_off = new Eina.Position2D.NativeStruct();
-                                var _ret_var = _cb(_cb_data, win, drag_obj, out _out_off);
-        Eina.Error.RaiseIfUnhandledException();
-                        off = _out_off;
-                                return _ret_var;
+var _out_off = new Eina.Position2D.NativeStruct();
+var _ret_var = _cb(_cb_data, win, drag_obj, out _out_off);
+Eina.Error.RaiseIfUnhandledException();
+off = _out_off;
+        return _ret_var;
     }
 
     [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]    internal static Efl.Canvas.Object Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object win, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object drag_obj,  out Eina.Position2D.NativeStruct off)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         DragIconCreate cb = (DragIconCreate)handle.Target;
-                                                Eina.Position2D _out_off = default(Eina.Position2D);
-                                    Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
-        try {
+Eina.Position2D _out_off = default(Eina.Position2D);
+Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);        try {
             _ret_var = cb(win, drag_obj, out _out_off);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                        off = _out_off;
-                                return _ret_var;
-    }
+off = _out_off;
+        return _ret_var;    }
 }
 }
-
 }
 
 namespace Efl {
@@ -143,25 +141,24 @@ internal class DragDataGetWrapper : IDisposable
 
     internal void ManagedCb(Efl.Canvas.Object obj,out Efl.Ui.SelectionFormat format,ref Eina.RwSlice drag_data,out Efl.Ui.SelectionAction action)
     {
-                                                                                                        _cb(_cb_data, obj, out format, ref drag_data, out action);
-        Eina.Error.RaiseIfUnhandledException();
-                                                                            }
+_cb(_cb_data, obj, out format, ref drag_data, out action);
+Eina.Error.RaiseIfUnhandledException();
+        
+    }
 
         internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  out Efl.Ui.SelectionFormat format,  ref Eina.RwSlice drag_data,  out Efl.Ui.SelectionAction action)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         DragDataGet cb = (DragDataGet)handle.Target;
-                                                format = default(Efl.Ui.SelectionFormat);        drag_data = default(Eina.RwSlice);        action = default(Efl.Ui.SelectionAction);                                            
-        try {
+format = default(Efl.Ui.SelectionFormat);drag_data = default(Eina.RwSlice);action = default(Efl.Ui.SelectionAction);        try {
             cb(obj, out format, ref drag_data, out action);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                                                                            }
+            }
 }
 }
-
 }
 
 namespace Efl {
@@ -171,6 +168,7 @@ namespace Dnd {
 /// <param name="obj">The container object</param>
 /// <param name="pos">The coordinates to get item</param>
 /// <param name="posret">position relative to item (left (-1), middle (0), right (1)</param>
+/// <returns>Object under x,y coordinates or NULL if not found</returns>
 [Efl.Eo.BindingEntity]
 public delegate Efl.Object ItemGet(Efl.Canvas.Object obj, Eina.Position2D pos, out Eina.Position2D posret);
 [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]public delegate Efl.Object ItemGetInternal(IntPtr data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Position2D.NativeStruct pos,  out Eina.Position2D.NativeStruct posret);
@@ -219,33 +217,30 @@ internal class ItemGetWrapper : IDisposable
 
     internal Efl.Object ManagedCb(Efl.Canvas.Object obj,Eina.Position2D pos,out Eina.Position2D posret)
     {
-                Eina.Position2D.NativeStruct _in_pos = pos;
-                                var _out_posret = new Eina.Position2D.NativeStruct();
-                                var _ret_var = _cb(_cb_data, obj, _in_pos, out _out_posret);
-        Eina.Error.RaiseIfUnhandledException();
-                        posret = _out_posret;
-                                return _ret_var;
+Eina.Position2D.NativeStruct _in_pos = pos;
+var _out_posret = new Eina.Position2D.NativeStruct();
+var _ret_var = _cb(_cb_data, obj, _in_pos, out _out_posret);
+Eina.Error.RaiseIfUnhandledException();
+posret = _out_posret;
+        return _ret_var;
     }
 
     [return:MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))]    internal static Efl.Object Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj,  Eina.Position2D.NativeStruct pos,  out Eina.Position2D.NativeStruct posret)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         ItemGet cb = (ItemGet)handle.Target;
-                Eina.Position2D _in_pos = pos;
-                                Eina.Position2D _out_posret = default(Eina.Position2D);
-                                    Efl.Object _ret_var = default(Efl.Object);
-        try {
+Eina.Position2D _in_pos = pos;
+Eina.Position2D _out_posret = default(Eina.Position2D);
+Efl.Object _ret_var = default(Efl.Object);        try {
             _ret_var = cb(obj, _in_pos, out _out_posret);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                        posret = _out_posret;
-                                return _ret_var;
-    }
+posret = _out_posret;
+        return _ret_var;    }
 }
 }
-
 }
 
 namespace Efl {
@@ -301,27 +296,25 @@ internal class DragIconListCreateWrapper : IDisposable
 
     internal Eina.List<Efl.Canvas.Object> ManagedCb(Efl.Canvas.Object obj)
     {
-                                var _ret_var = _cb(_cb_data, obj);
-        Eina.Error.RaiseIfUnhandledException();
-                        return new Eina.List<Efl.Canvas.Object>(_ret_var, false, false);
+var _ret_var = _cb(_cb_data, obj);
+Eina.Error.RaiseIfUnhandledException();
+        return new Eina.List<Efl.Canvas.Object>(_ret_var, false, false);
+
     }
 
         internal static System.IntPtr Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Canvas.Object obj)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         DragIconListCreate cb = (DragIconListCreate)handle.Target;
-                                    Eina.List<Efl.Canvas.Object> _ret_var = default(Eina.List<Efl.Canvas.Object>);
-        try {
+Eina.List<Efl.Canvas.Object> _ret_var = default(Eina.List<Efl.Canvas.Object>);        try {
             _ret_var = cb(obj);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                        return _ret_var.Handle;
-    }
+        return _ret_var.Handle;    }
 }
 }
-
 }
 
 namespace Efl {
@@ -334,7 +327,7 @@ public struct DragAccept
 {
     public bool Accepted;
     /// <summary>Constructor for DragAccept.</summary>
-    /// <param name="Accepted"></param>;
+    /// <param name="Accepted"></param>
     public DragAccept(
         bool Accepted = default(bool)    )
     {
@@ -372,15 +365,11 @@ public struct DragAccept
             _external_struct.Accepted = _internal_struct.Accepted != 0;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -404,10 +393,10 @@ public struct DragPos
     /// <summary>The item object. It is only available for container object.</summary>
     public Efl.Canvas.Object Item;
     /// <summary>Constructor for DragPos.</summary>
-    /// <param name="Pos">Evas Coordinate</param>;
-    /// <param name="Action">The drag action</param>;
-    /// <param name="Format">The drag format</param>;
-    /// <param name="Item">The item object. It is only available for container object.</param>;
+    /// <param name="Pos">Evas Coordinate</param>
+    /// <param name="Action">The drag action</param>
+    /// <param name="Format">The drag format</param>
+    /// <param name="Item">The item object. It is only available for container object.</param>
     public DragPos(
         Eina.Position2D Pos = default(Eina.Position2D),
         Efl.Ui.SelectionAction Action = default(Efl.Ui.SelectionAction),
@@ -464,15 +453,11 @@ public struct DragPos
             _external_struct.Item = (Efl.Canvas.Object) Efl.Eo.Globals.CreateWrapperFor(_internal_struct.Item);
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 
 namespace Efl {
@@ -493,9 +478,9 @@ public struct DragItemContainerDrop
     /// <value>A 2D location in pixels.</value>
     public Eina.Position2D Pos;
     /// <summary>Constructor for DragItemContainerDrop.</summary>
-    /// <param name="Item">The item object</param>;
-    /// <param name="Data">The selection data</param>;
-    /// <param name="Pos">Position relative to item (left (-1), middle (0), right (1)</param>;
+    /// <param name="Item">The item object</param>
+    /// <param name="Data">The selection data</param>
+    /// <param name="Pos">Position relative to item (left (-1), middle (0), right (1)</param>
     public DragItemContainerDrop(
         Efl.Canvas.Object Item = default(Efl.Canvas.Object),
         Efl.Ui.SelectionData Data = default(Efl.Ui.SelectionData),
@@ -546,14 +531,10 @@ public struct DragItemContainerDrop
             _external_struct.Pos = _internal_struct.Pos;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

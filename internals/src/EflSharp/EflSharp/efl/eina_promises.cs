@@ -70,6 +70,8 @@ static internal class PromiseNativeMethods
 /// Promises act as placeholders for a value that may be available in the future.
 ///
 /// With a Promise you can attach futures to it, which will be used to notify of the value being available.
+///
+/// (Since Efl 1.23)
 /// </summary>
 public class Promise : IDisposable
 {

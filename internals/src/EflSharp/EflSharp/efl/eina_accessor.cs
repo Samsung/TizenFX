@@ -18,7 +18,8 @@ internal class AccessorNativeFunctions
         eina_accessor_free(IntPtr accessor);
 }
 
-/// <summary>Accessors provide an uniform way of accessing Eina containers, similar to C++ STL's and C# IEnumerable.</summary>
+/// <summary>Accessors provide an uniform way of accessing Eina containers,
+/// similar to C++ STL's and C# IEnumerable (SINCE EFL 1.23).</summary>
 public class Accessor<T> : IEnumerable<T>, IDisposable
 {
     /// <summary>Pointer to the native accessor.</summary>
@@ -132,7 +133,7 @@ public class Accessor<T> : IEnumerable<T>, IDisposable
     }
 }
 
-///<summary>Accessor for Inlists.</summary>
+///<summary>Accessor for Inlists (SINCE EFL 1.23).</summary>
 public class AccessorInList<T> : Accessor<T>
 {
     /// <summary>Create a new accessor wrapping the given pointer.</summary>
@@ -152,7 +153,7 @@ public class AccessorInList<T> : Accessor<T>
     }
 }
 
-///<summary>Accessor for Inarrays.</summary>
+///<summary>Accessor for Inarrays (SINCE EFL 1.23).</summary>
 public class AccessorInArray<T> : Accessor<T>
 {
     /// <summary>Create a new accessor wrapping the given pointer.</summary>

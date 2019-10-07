@@ -12,40 +12,44 @@ namespace Gfx {
 
 /// <summary>Efl graphics fill interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Gfx.IFillConcrete.NativeMethods]
+[Efl.Gfx.FillConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IFill : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
-/// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
-/// 
-/// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
-/// 
-/// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
-/// <returns><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</returns>
-bool GetFillAuto();
+    /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
+    /// 
+    /// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
+    /// 
+    /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
+    /// <returns><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</returns>
+    bool GetFillAuto();
+
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
-/// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
-/// 
-/// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
-/// 
-/// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
-/// <param name="filled"><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</param>
-void SetFillAuto(bool filled);
+    /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
+    /// 
+    /// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
+    /// 
+    /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
+    /// <param name="filled"><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</param>
+    void SetFillAuto(bool filled);
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
-/// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
-/// 
-/// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
-/// <returns>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</returns>
-Eina.Rect GetFill();
+    /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
+    /// 
+    /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
+    /// <returns>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</returns>
+    Eina.Rect GetFill();
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
-/// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
-/// 
-/// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
-/// <param name="fill">The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</param>
-void SetFill(Eina.Rect fill);
-                    /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
+    /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
+    /// 
+    /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
+    /// <param name="fill">The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</param>
+    void SetFill(Eina.Rect fill);
+
+    /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
     /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
     /// 
     /// This property takes precedence over <see cref="Efl.Gfx.IFill.Fill"/>. If set to <c>false</c>, then <see cref="Efl.Gfx.IFill.Fill"/> should be set.
@@ -56,6 +60,7 @@ void SetFill(Eina.Rect fill);
         get;
         set;
     }
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
     /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
     /// 
@@ -65,10 +70,12 @@ void SetFill(Eina.Rect fill);
         get;
         set;
     }
+
 }
+
 /// <summary>Efl graphics fill interface</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IFillConcrete :
+public sealed class FillConcrete :
     Efl.Eo.EoWrapper
     , IFill
     
@@ -78,7 +85,7 @@ sealed public  class IFillConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IFillConcrete))
+            if (((object)this).GetType() == typeof(FillConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -92,19 +99,21 @@ sealed public  class IFillConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IFillConcrete(ConstructingHandle ch) : base(ch)
+    private FillConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_fill_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IFill"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IFillConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private FillConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
     /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
     /// 
@@ -113,10 +122,11 @@ sealed public  class IFillConcrete :
     /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
     /// <returns><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</returns>
     public bool GetFillAuto() {
-         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Gfx.FillConcrete.NativeMethods.efl_gfx_fill_auto_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
     /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
     /// 
@@ -125,29 +135,34 @@ sealed public  class IFillConcrete :
     /// This flag is <c>true</c> by default (used to be <c>false</c> with the old APIs, and was known as &quot;filled&quot;).</summary>
     /// <param name="filled"><c>true</c> to make the fill property follow object size or <c>false</c> otherwise.</param>
     public void SetFillAuto(bool filled) {
-                                 Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_auto_set_ptr.Value.Delegate(this.NativeHandle,filled);
+        Efl.Gfx.FillConcrete.NativeMethods.efl_gfx_fill_auto_set_ptr.Value.Delegate(this.NativeHandle,filled);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
     /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
     /// 
     /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
     /// <returns>The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</returns>
     public Eina.Rect GetFill() {
-         var _ret_var = Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Gfx.FillConcrete.NativeMethods.efl_gfx_fill_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
     /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
     /// 
     /// Setting this property will reset the <see cref="Efl.Gfx.IFill.FillAuto"/> to <c>false</c>.</summary>
     /// <param name="fill">The top-left corner to start drawing from as well as the size at which the bound image will be displayed.</param>
     public void SetFill(Eina.Rect fill) {
-         Eina.Rect.NativeStruct _in_fill = fill;
-                        Efl.Gfx.IFillConcrete.NativeMethods.efl_gfx_fill_set_ptr.Value.Delegate(this.NativeHandle,_in_fill);
+        Eina.Rect.NativeStruct _in_fill = fill;
+Efl.Gfx.FillConcrete.NativeMethods.efl_gfx_fill_set_ptr.Value.Delegate(this.NativeHandle,_in_fill);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Binds the object&apos;s <see cref="Efl.Gfx.IFill.Fill"/> property to its actual geometry.
     /// If <c>true</c>, then every time the object is resized, it will automatically trigger a call to <see cref="Efl.Gfx.IFill.SetFill"/> with the new size (and 0, 0 as source image&apos;s origin), so the image will cover the whole object&apos;s area.
     /// 
@@ -159,6 +174,7 @@ sealed public  class IFillConcrete :
         get { return GetFillAuto(); }
         set { SetFillAuto(value); }
     }
+
     /// <summary>Specifies how to tile an image to fill its rectangle geometry.
     /// Note that if <c>w</c> or <c>h</c> are smaller than the dimensions of the object, the displayed image will be tiled around the object&apos;s area. To have only one copy of the bound image drawn, <c>x</c> and <c>y</c> must be 0 and <c>w</c> and <c>h</c> need to be the exact width and height of the image object itself, respectively.
     /// 
@@ -168,18 +184,22 @@ sealed public  class IFillConcrete :
         get { return GetFill(); }
         set { SetFill(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IFillConcrete.efl_gfx_fill_interface_get();
+        return Efl.Gfx.FillConcrete.efl_gfx_fill_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -224,13 +244,24 @@ sealed public  class IFillConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_fill_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_fill_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IFillConcrete.efl_gfx_fill_interface_get();
+            return Efl.Gfx.FillConcrete.efl_gfx_fill_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -249,7 +280,7 @@ sealed public  class IFillConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IFill)ws.Target).GetFillAuto();
@@ -260,8 +291,7 @@ sealed public  class IFillConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -285,7 +315,7 @@ sealed public  class IFillConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IFill)ws.Target).SetFillAuto(filled);
@@ -296,7 +326,7 @@ sealed public  class IFillConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -320,7 +350,7 @@ sealed public  class IFillConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Rect _ret_var = default(Eina.Rect);
+                Eina.Rect _ret_var = default(Eina.Rect);
                 try
                 {
                     _ret_var = ((IFill)ws.Target).GetFill();
@@ -331,8 +361,7 @@ sealed public  class IFillConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -356,8 +385,8 @@ sealed public  class IFillConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-        Eina.Rect _in_fill = fill;
-                            
+                Eina.Rect _in_fill = fill;
+
                 try
                 {
                     ((IFill)ws.Target).SetFill(_in_fill);
@@ -368,7 +397,7 @@ sealed public  class IFillConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -383,12 +412,11 @@ sealed public  class IFillConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIFillConcrete_ExtensionMethods {
+public static class Efl_GfxFillConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> FillAuto<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IFill, T>magic = null) where T : Efl.Gfx.IFill {
         return new Efl.BindableProperty<bool>("fill_auto", fac);
     }

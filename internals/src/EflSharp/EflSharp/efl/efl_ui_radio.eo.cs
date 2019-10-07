@@ -16,7 +16,6 @@ namespace Ui {
 /// They are a common way to allow a user to select one option among a list.
 /// 
 /// To handle button grouping, you can either use an <see cref="Efl.Ui.RadioGroupImpl"/> object or use more convenient widgets like <see cref="Efl.Ui.RadioBox"/>.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Radio.NativeMethods]
 [Efl.Eo.BindingEntity]
 public class Radio : Efl.Ui.Check
@@ -39,9 +38,10 @@ public class Radio : Efl.Ui.Check
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_radio_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Radio"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
     public Radio(Efl.Object parent
             , System.String style = null) : base(efl_ui_radio_class_get(), parent)
     {
@@ -75,27 +75,31 @@ public class Radio : Efl.Ui.Check
     {
     }
 
+
     /// <summary>Integer value that this radio button represents.
-    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/> event.
+    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvent"/> event.
     /// 
     /// All non-negative values are legal but keep in mind that 0 is the starting value for all new groups: If no button in the group has this value, then no button in the group is initially selected. -1 is the value that <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> returns when no button is selected and therefore cannot be used.</summary>
     /// <returns>The value to use when this radio button is selected. Any value can be used but 0 and -1 have special meanings as described above.</returns>
-    virtual public int GetStateValue() {
-         var _ret_var = Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual int GetStateValue() {
+        var _ret_var = Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Integer value that this radio button represents.
-    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/> event.
+    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvent"/> event.
     /// 
     /// All non-negative values are legal but keep in mind that 0 is the starting value for all new groups: If no button in the group has this value, then no button in the group is initially selected. -1 is the value that <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> returns when no button is selected and therefore cannot be used.</summary>
     /// <param name="value">The value to use when this radio button is selected. Any value can be used but 0 and -1 have special meanings as described above.</param>
-    virtual public void SetStateValue(int value) {
-                                 Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
+    public virtual void SetStateValue(int value) {
+        Efl.Ui.Radio.NativeMethods.efl_ui_radio_state_value_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Integer value that this radio button represents.
-    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvt"/> event.
+    /// Each radio button in a group must have a unique value. The selected button in a group can then be set or retrieved through the <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> property. This value is also informed through the <see cref="Efl.Ui.IRadioGroup.ValueChangedEvent"/> event.
     /// 
     /// All non-negative values are legal but keep in mind that 0 is the starting value for all new groups: If no button in the group has this value, then no button in the group is initially selected. -1 is the value that <see cref="Efl.Ui.IRadioGroup.SelectedValue"/> returns when no button is selected and therefore cannot be used.</summary>
     /// <value>The value to use when this radio button is selected. Any value can be used but 0 and -1 have special meanings as described above.</value>
@@ -103,18 +107,21 @@ public class Radio : Efl.Ui.Check
         get { return GetStateValue(); }
         set { SetStateValue(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Radio.efl_ui_radio_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Check.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -139,9 +146,20 @@ public class Radio : Efl.Ui.Check
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_radio_state_value_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_radio_state_value_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -165,7 +183,7 @@ public class Radio : Efl.Ui.Check
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Radio)ws.Target).GetStateValue();
@@ -176,8 +194,7 @@ public class Radio : Efl.Ui.Check
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -201,7 +218,7 @@ public class Radio : Efl.Ui.Check
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Radio)ws.Target).SetStateValue(value);
@@ -212,7 +229,7 @@ public class Radio : Efl.Ui.Check
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -227,7 +244,6 @@ public class Radio : Efl.Ui.Check
 }
 }
 }
-
 }
 
 #if EFL_BETA

@@ -8,6 +8,7 @@ using System.ComponentModel;
 namespace Efl {
 
 /// <summary>Bidirectionaltext type</summary>
+/// <since_tizen> 6 </since_tizen>
 [Efl.Eo.BindingEntity]
 public enum TextBidirectionalType
 {
@@ -24,7 +25,6 @@ Inherit = 3,
 /// <summary>internal EVAS_BIDI_DIRECTION_ANY_RTL is not made for public. It should be opened to public when it is accepted to EFL upstream.</summary>
 AnyRtl = 4,
 }
-
 }
 
 namespace Efl {
@@ -48,11 +48,11 @@ public struct TextChangeInfo
     /// <summary><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</summary>
     public bool Merge;
     /// <summary>Constructor for TextChangeInfo.</summary>
-    /// <param name="Content">The content added/removed</param>;
-    /// <param name="Position">The position where it was added/removed</param>;
-    /// <param name="Length">The length of content in characters (not bytes, actual unicode characters)</param>;
-    /// <param name="Insert"><c>true</c> if the content was inserted, <c>false</c> if removei</param>;
-    /// <param name="Merge"><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</param>;
+    /// <param name="Content">The content added/removed</param>
+    /// <param name="Position">The position where it was added/removed</param>
+    /// <param name="Length">The length of content in characters (not bytes, actual unicode characters)</param>
+    /// <param name="Insert"><c>true</c> if the content was inserted, <c>false</c> if removei</param>
+    /// <param name="Merge"><c>true</c> if can be merged with the previous one. Used for example with insertion when something is already selected</param>
     public TextChangeInfo(
         System.String Content = default(System.String),
         uint Position = default(uint),
@@ -114,14 +114,10 @@ public struct TextChangeInfo
             _external_struct.Merge = _internal_struct.Merge != 0;
             return _external_struct;
         }
-
     }
-
     #pragma warning restore CS1591
-
 }
 
 }
-
 }
 

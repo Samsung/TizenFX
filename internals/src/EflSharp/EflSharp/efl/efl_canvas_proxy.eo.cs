@@ -35,6 +35,7 @@ public class Proxy : Efl.Canvas.ImageInternal
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_proxy_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Proxy"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Proxy(Efl.Object parent= null
@@ -65,6 +66,7 @@ public class Proxy : Efl.Canvas.ImageInternal
     {
     }
 
+
     /// <summary>The source object for this proxy.
     /// The proxy object will mirror the rendering contents of a given source object in its drawing region, without affecting that source in any way. The source must be another valid <see cref="Efl.Canvas.Object"/>. Other effects may be applied to the proxy, such as a map (see <see cref="Efl.Gfx.IMapping"/>) to create a reflection of the original object (for example).
     /// 
@@ -74,11 +76,12 @@ public class Proxy : Efl.Canvas.ImageInternal
     /// 
     /// Warning: You cannot set a proxy as another proxy&apos;s source.</summary>
     /// <returns>Source object to use for the proxy.</returns>
-    virtual public Efl.Canvas.Object GetSource() {
-         var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Canvas.Object GetSource() {
+        var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The source object for this proxy.
     /// The proxy object will mirror the rendering contents of a given source object in its drawing region, without affecting that source in any way. The source must be another valid <see cref="Efl.Canvas.Object"/>. Other effects may be applied to the proxy, such as a map (see <see cref="Efl.Gfx.IMapping"/>) to create a reflection of the original object (for example).
     /// 
@@ -89,49 +92,56 @@ public class Proxy : Efl.Canvas.ImageInternal
     /// Warning: You cannot set a proxy as another proxy&apos;s source.</summary>
     /// <param name="src">Source object to use for the proxy.</param>
     /// <returns>Returns <c>true</c> in case of success.</returns>
-    virtual public bool SetSource(Efl.Canvas.Object src) {
-                                 var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),src);
+    public virtual bool SetSource(Efl.Canvas.Object src) {
+        var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),src);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Clip this proxy object with the source object&apos;s clipper.
     /// Use this if you want to overlay an existing object with its proxy, and apply some sort of transformation on it.
     /// 
     /// <c>true</c> means both objects will share the same clip.</summary>
     /// <returns>Whether <c>obj</c> is clipped by the source clipper (<c>true</c>) or not (<c>false</c>).</returns>
-    virtual public bool GetSourceClip() {
-         var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_clip_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetSourceClip() {
+        var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_clip_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Clip this proxy object with the source object&apos;s clipper.
     /// Use this if you want to overlay an existing object with its proxy, and apply some sort of transformation on it.
     /// 
     /// <c>true</c> means both objects will share the same clip.</summary>
     /// <param name="source_clip">Whether <c>obj</c> is clipped by the source clipper (<c>true</c>) or not (<c>false</c>).</param>
-    virtual public void SetSourceClip(bool source_clip) {
-                                 Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_clip_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),source_clip);
+    public virtual void SetSourceClip(bool source_clip) {
+        Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_clip_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),source_clip);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Defines whether the events on this object are repeated to the source.
     /// If <c>source</c> is <c>true</c>, it will make events on <c>obj</c> to also be repeated for the source object (see <see cref="Efl.Canvas.Proxy.SetSource"/>). Even the <c>obj</c> and source geometries are different, the event position will be transformed to the source object&apos;s space.
     /// 
     /// If <c>source</c> is <c>false</c>, events occurring on <c>obj</c> will be processed only on it.</summary>
     /// <returns>Whether this object should pass events (<c>true</c>) or not (<c>false</c>) to its source.</returns>
-    virtual public bool GetSourceEvents() {
-         var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_events_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetSourceEvents() {
+        var _ret_var = Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_events_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Defines whether the events on this object are repeated to the source.
     /// If <c>source</c> is <c>true</c>, it will make events on <c>obj</c> to also be repeated for the source object (see <see cref="Efl.Canvas.Proxy.SetSource"/>). Even the <c>obj</c> and source geometries are different, the event position will be transformed to the source object&apos;s space.
     /// 
     /// If <c>source</c> is <c>false</c>, events occurring on <c>obj</c> will be processed only on it.</summary>
     /// <param name="repeat">Whether this object should pass events (<c>true</c>) or not (<c>false</c>) to its source.</param>
-    virtual public void SetSourceEvents(bool repeat) {
-                                 Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_events_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),repeat);
+    public virtual void SetSourceEvents(bool repeat) {
+        Efl.Canvas.Proxy.NativeMethods.efl_canvas_proxy_source_events_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),repeat);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>The source object for this proxy.
     /// The proxy object will mirror the rendering contents of a given source object in its drawing region, without affecting that source in any way. The source must be another valid <see cref="Efl.Canvas.Object"/>. Other effects may be applied to the proxy, such as a map (see <see cref="Efl.Gfx.IMapping"/>) to create a reflection of the original object (for example).
     /// 
@@ -145,6 +155,7 @@ public class Proxy : Efl.Canvas.ImageInternal
         get { return GetSource(); }
         set { SetSource(value); }
     }
+
     /// <summary>Clip this proxy object with the source object&apos;s clipper.
     /// Use this if you want to overlay an existing object with its proxy, and apply some sort of transformation on it.
     /// 
@@ -154,6 +165,7 @@ public class Proxy : Efl.Canvas.ImageInternal
         get { return GetSourceClip(); }
         set { SetSourceClip(value); }
     }
+
     /// <summary>Defines whether the events on this object are repeated to the source.
     /// If <c>source</c> is <c>true</c>, it will make events on <c>obj</c> to also be repeated for the source object (see <see cref="Efl.Canvas.Proxy.SetSource"/>). Even the <c>obj</c> and source geometries are different, the event position will be transformed to the source object&apos;s space.
     /// 
@@ -163,18 +175,21 @@ public class Proxy : Efl.Canvas.ImageInternal
         get { return GetSourceEvents(); }
         set { SetSourceEvents(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Proxy.efl_canvas_proxy_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.ImageInternal.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -239,9 +254,20 @@ public class Proxy : Efl.Canvas.ImageInternal
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_proxy_source_events_set"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_proxy_source_events_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -265,7 +291,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((Proxy)ws.Target).GetSource();
@@ -276,8 +302,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -301,7 +326,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Proxy)ws.Target).SetSource(src);
@@ -312,8 +337,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -337,7 +361,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Proxy)ws.Target).GetSourceClip();
@@ -348,8 +372,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -373,7 +396,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Proxy)ws.Target).SetSourceClip(source_clip);
@@ -384,7 +407,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -408,7 +431,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Proxy)ws.Target).GetSourceEvents();
@@ -419,8 +442,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -444,7 +466,7 @@ public class Proxy : Efl.Canvas.ImageInternal
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Proxy)ws.Target).SetSourceEvents(repeat);
@@ -455,7 +477,7 @@ public class Proxy : Efl.Canvas.ImageInternal
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -470,7 +492,6 @@ public class Proxy : Efl.Canvas.ImageInternal
 }
 }
 }
-
 }
 
 #if EFL_BETA

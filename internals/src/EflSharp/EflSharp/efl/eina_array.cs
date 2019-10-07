@@ -45,19 +45,22 @@ public static class ArrayNativeFunctions
         eina_array_foreach_custom_export_mono(IntPtr array, IntPtr cb, IntPtr fdata);
 }
 
+/// <summary>A container of contiguous allocated elements (SINCE EFL 1.23).</summary>
 public class Array<T> : IEnumerable<T>, IDisposable
 {
     public static uint DefaultStep = 32;
 
+    /// <summary>Pointer to the native buffer.</summary>
     public IntPtr Handle {get;set;} = IntPtr.Zero;
+    ///<summary>Whether this wrapper owns the native buffer.</summary>
     public bool Own {get;set;}
+    /// <summary>Who is in charge of releasing the resources wrapped by this instance.</summary>
     public bool OwnContent {get;set;}
-
+    /// <summary> Length of the array.</summary>
     public int Length
     {
         get { return Count(); }
     }
-
 
     private void InitNew(uint step)
     {
@@ -90,16 +93,28 @@ public class Array<T> : IEnumerable<T>, IDisposable
         eina_array_data_set_custom_export_mono(Handle, (uint)idx, ele); // TODO: Check bounds ???
     }
 
+    /// <summary>
+    ///   Create a new array.
+    /// </summary>
     public Array()
     {
         InitNew(DefaultStep);
     }
 
+    /// <summary>
+    ///   Create a new array.
+    /// </summary>
+    ///// <param name="step">Step size of the array.</param>
     public Array(uint step)
     {
         InitNew(step);
     }
 
+    /// <summary>
+    ///   Create a new array.
+    /// </summary>
+    ///// <param name="handle">The native handle to be wrapped.</param>
+    ///// <param name="own">Whether this wrapper owns the native handle.</param>
     public Array(IntPtr handle, bool own)
     {
         if (handle == IntPtr.Zero)
@@ -112,6 +127,12 @@ public class Array<T> : IEnumerable<T>, IDisposable
         OwnContent = own;
     }
 
+    /// <summary>
+    ///   Create a new array
+    /// </summary>
+    ///// <param name="handle">The native array to be wrapped.</param>
+    ///// <param name="own">Whether this wrapper owns the native array.</param>
+    ///// <param name="ownContent">For compatibility with other EFL# containers.</param>
     public Array(IntPtr handle, bool own, bool ownContent)
     {
         if (handle == IntPtr.Zero)
@@ -124,11 +145,16 @@ public class Array<T> : IEnumerable<T>, IDisposable
         OwnContent = ownContent;
     }
 
+    /// <summary>
+    ///   Finalizer to be called from the Garbage Collector.
+    /// </summary>
     ~Array()
     {
         Dispose(false);
     }
-
+    /// <summary>Disposes of this wrapper, releasing the native array if owned.</summary>
+    /// <param name="disposing">True if this was called from <see cref="Dispose()"/> public method. False if
+    /// called from the C# finalizer.</param>
     protected virtual void Dispose(bool disposing)
     {
         IntPtr h = Handle;
@@ -160,17 +186,23 @@ public class Array<T> : IEnumerable<T>, IDisposable
         }
     }
 
+    /// <summary>Releases the native resources held by this instance.</summary>
     public void Dispose()
     {
         Dispose(true);
         GC.SuppressFinalize(this);
     }
 
+    /// <summary>Releases the native resources held by this instance.</summary>
     public void Free()
     {
         Dispose();
     }
 
+    /// <summary>
+    ///   Releases the native array.
+    /// </summary>
+    /// <returns>The native array.</returns>
     public IntPtr Release()
     {
         IntPtr h = Handle;
@@ -190,18 +222,28 @@ public class Array<T> : IEnumerable<T>, IDisposable
         }
     }
 
+    /// <summary>
+    ///   Clears an array's elements and deallocates the memory.
+    /// </summary>
     public void Clean()
     {
         FreeElementsIfOwned();
         eina_array_clean_custom_export_mono(Handle);
     }
 
+    /// <summary>
+    ///   Clears an array's elements and deallocates the memory.
+    /// </summary>
     public void Flush()
     {
         FreeElementsIfOwned();
         eina_array_flush(Handle);
     }
 
+    /// <summary>
+    ///   Returns the number of elements in an array.
+    /// </summary>
+    /// <returns>The number of elements.</returns>
     public int Count()
     {
         return (int)eina_array_count_custom_export_mono(Handle);
@@ -219,6 +261,10 @@ public class Array<T> : IEnumerable<T>, IDisposable
         OwnContent = ownContent;
     }
 
+    /// <summary>
+    ///   Inserts the element of the array at the end.
+    /// </summary>
+    ///// <param name="val">The value of the element to be inserted.</param>
     public bool Push(T val)
     {
         IntPtr ele = ManagedToNativeAlloc(val);
@@ -240,6 +286,10 @@ public class Array<T> : IEnumerable<T>, IDisposable
 //         }
 //     }
 
+    /// <summary>
+    ///   Returns the element of the array at the end.
+    /// </summary>
+    /// <returns>The element at the end position.</returns>
     public T Pop()
     {
         IntPtr ele = InternalPop();
@@ -252,17 +302,32 @@ public class Array<T> : IEnumerable<T>, IDisposable
         return r;
     }
 
+    /// <summary>
+    ///   Returns the element of the array at the specified position.
+    /// </summary>
+    ///// <param name="idx">The position of the desired element.</param>
+    /// <returns>The element at the specified position</returns>
     public T DataGet(int idx)
     {
         IntPtr ele = InternalDataGet(idx);
         return NativeToManaged<T>(ele);
     }
 
+    /// <summary>
+    ///   Returns the element of the array at the specified position.
+    /// </summary>
+    ///// <param name="idx">The position of the desired element.</param>
+    /// <returns>The element at the specified position</returns>
     public T At(int idx)
     {
         return DataGet(idx);
     }
 
+    /// <summary>
+    ///  Replaces the element at the specified position.
+    /// </summary>
+    ///// <param name="idx">The position of the desired element.</param>
+    ///// <param name="val">The value of the element to be inserted.</param>
     public void DataSet(int idx, T val)
     {
         IntPtr ele = InternalDataGet(idx); // TODO: check bondaries ??
@@ -287,6 +352,10 @@ public class Array<T> : IEnumerable<T>, IDisposable
         }
     }
 
+    /// <summary>
+    ///   Returns a array containing all of the elements in proper sequence.
+    /// </summary>
+    /// <returns>A array</returns>
     public T[] ToArray()
     {
         int len = Length;
@@ -299,6 +368,9 @@ public class Array<T> : IEnumerable<T>, IDisposable
         return managed;
     }
 
+    /// <summary>
+    ///   Appends all elements at the end of array.
+    /// </summary>
     public bool Append(T[] values)
     {
         foreach (T v in values)
@@ -313,11 +385,13 @@ public class Array<T> : IEnumerable<T>, IDisposable
     }
 
 
+    /// <summary> Gets an Iterator for this Array.</summary>
     public Eina.Iterator<T> GetIterator()
     {
         return new Eina.Iterator<T>(eina_array_iterator_new(Handle), true);
     }
 
+    /// <summary> Gets an Enumerator for this Array.</summary>
     public IEnumerator<T> GetEnumerator()
     {
         int len = Length;
@@ -327,6 +401,7 @@ public class Array<T> : IEnumerable<T>, IDisposable
         }
     }
 
+     /// <summary> Gets an Enumerator for this Array.</summary>
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
         return this.GetEnumerator();

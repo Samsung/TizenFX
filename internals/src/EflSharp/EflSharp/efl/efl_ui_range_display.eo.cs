@@ -12,44 +12,47 @@ namespace Ui {
 
 /// <summary>Interface that contains properties regarding the displaying of a value within a range.
 /// A value range contains a value restricted between specified minimum and maximum limits at all times. This can be used for progressbars, sliders or spinners, for example.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.Ui.IRangeDisplayConcrete.NativeMethods]
+[Efl.Ui.RangeDisplayConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IRangeDisplay : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Control the value (position) of the widget within its valid range.
-/// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
-/// <returns>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</returns>
-double GetRangeValue();
+    /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
+    /// <returns>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</returns>
+    double GetRangeValue();
+
     /// <summary>Control the value (position) of the widget within its valid range.
-/// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
-/// <param name="val">The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</param>
-void SetRangeValue(double val);
+    /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
+    /// <param name="val">The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</param>
+    void SetRangeValue(double val);
+
     /// <summary>Set the minimum and maximum values for given range widget.
-/// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
-/// 
-/// The default minimum and maximum values may be different for each class.
-/// 
-/// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
-/// <param name="min">The minimum value.</param>
-/// <param name="max">The maximum value.</param>
-void GetRangeLimits(out double min, out double max);
+    /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
+    /// 
+    /// The default minimum and maximum values may be different for each class.
+    /// 
+    /// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
+    /// <param name="min">The minimum value.</param>
+    /// <param name="max">The maximum value.</param>
+    void GetRangeLimits(out double min, out double max);
+
     /// <summary>Set the minimum and maximum values for given range widget.
-/// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
-/// 
-/// The default minimum and maximum values may be different for each class.
-/// 
-/// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
-/// <param name="min">The minimum value.</param>
-/// <param name="max">The maximum value.</param>
-void SetRangeLimits(double min, double max);
-                    /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> is getting changed.</summary>
-    event EventHandler ChangedEvt;
+    /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
+    /// 
+    /// The default minimum and maximum values may be different for each class.
+    /// 
+    /// Note: maximum must be greater than minimum, otherwise behavior is undefined.</summary>
+    /// <param name="min">The minimum value.</param>
+    /// <param name="max">The maximum value.</param>
+    void SetRangeLimits(double min, double max);
+
+    /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> is getting changed.</summary>
+    event EventHandler ChangedEvent;
     /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> has reached the minimum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
-    event EventHandler MinReachedEvt;
+    event EventHandler MinReachedEvent;
     /// <summary>Emitted when the <c>range_value</c> has reached the maximum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
-    event EventHandler MaxReachedEvt;
+    event EventHandler MaxReachedEvent;
     /// <summary>Control the value (position) of the widget within its valid range.
     /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
     /// <value>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</value>
@@ -57,6 +60,7 @@ void SetRangeLimits(double min, double max);
         get;
         set;
     }
+
     /// <summary>Set the minimum and maximum values for given range widget.
     /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
     /// 
@@ -68,11 +72,12 @@ void SetRangeLimits(double min, double max);
         get;
         set;
     }
+
 }
+
 /// <summary>Interface that contains properties regarding the displaying of a value within a range.
 /// A value range contains a value restricted between specified minimum and maximum limits at all times. This can be used for progressbars, sliders or spinners, for example.</summary>
-/// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class IRangeDisplayConcrete :
+public sealed class RangeDisplayConcrete :
     Efl.Eo.EoWrapper
     , IRangeDisplay
     
@@ -82,7 +87,7 @@ sealed public  class IRangeDisplayConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IRangeDisplayConcrete))
+            if (((object)this).GetType() == typeof(RangeDisplayConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -96,21 +101,22 @@ sealed public  class IRangeDisplayConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IRangeDisplayConcrete(ConstructingHandle ch) : base(ch)
+    private RangeDisplayConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_ui_range_display_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IRangeDisplay"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IRangeDisplayConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private RangeDisplayConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> is getting changed.</summary>
-    public event EventHandler ChangedEvt
+    public event EventHandler ChangedEvent
     {
         add
         {
@@ -148,8 +154,10 @@ sealed public  class IRangeDisplayConcrete :
             }
         }
     }
-    /// <summary>Method to raise event ChangedEvt.</summary>
-    public void OnChangedEvt(EventArgs e)
+
+    /// <summary>Method to raise event ChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnChangedEvent(EventArgs e)
     {
         var key = "_EFL_UI_RANGE_EVENT_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -161,8 +169,9 @@ sealed public  class IRangeDisplayConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Emitted when the <see cref="Efl.Ui.IRangeDisplay.RangeValue"/> has reached the minimum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
-    public event EventHandler MinReachedEvt
+    public event EventHandler MinReachedEvent
     {
         add
         {
@@ -200,8 +209,10 @@ sealed public  class IRangeDisplayConcrete :
             }
         }
     }
-    /// <summary>Method to raise event MinReachedEvt.</summary>
-    public void OnMinReachedEvt(EventArgs e)
+
+    /// <summary>Method to raise event MinReachedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMinReachedEvent(EventArgs e)
     {
         var key = "_EFL_UI_RANGE_EVENT_MIN_REACHED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -213,8 +224,9 @@ sealed public  class IRangeDisplayConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
     /// <summary>Emitted when the <c>range_value</c> has reached the maximum of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>.</summary>
-    public event EventHandler MaxReachedEvt
+    public event EventHandler MaxReachedEvent
     {
         add
         {
@@ -252,8 +264,10 @@ sealed public  class IRangeDisplayConcrete :
             }
         }
     }
-    /// <summary>Method to raise event MaxReachedEvt.</summary>
-    public void OnMaxReachedEvt(EventArgs e)
+
+    /// <summary>Method to raise event MaxReachedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnMaxReachedEvent(EventArgs e)
     {
         var key = "_EFL_UI_RANGE_EVENT_MAX_REACHED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -265,21 +279,27 @@ sealed public  class IRangeDisplayConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
+
+
+#pragma warning disable CS0628
     /// <summary>Control the value (position) of the widget within its valid range.
     /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
     /// <returns>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</returns>
     public double GetRangeValue() {
-         var _ret_var = Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Ui.RangeDisplayConcrete.NativeMethods.efl_ui_range_value_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Control the value (position) of the widget within its valid range.
     /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
     /// <param name="val">The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</param>
     public void SetRangeValue(double val) {
-                                 Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate(this.NativeHandle,val);
+        Efl.Ui.RangeDisplayConcrete.NativeMethods.efl_ui_range_value_set_ptr.Value.Delegate(this.NativeHandle,val);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Set the minimum and maximum values for given range widget.
     /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
     /// 
@@ -289,9 +309,11 @@ sealed public  class IRangeDisplayConcrete :
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     public void GetRangeLimits(out double min, out double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate(this.NativeHandle,out min, out max);
+        Efl.Ui.RangeDisplayConcrete.NativeMethods.efl_ui_range_limits_get_ptr.Value.Delegate(this.NativeHandle,out min, out max);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Set the minimum and maximum values for given range widget.
     /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
     /// 
@@ -301,9 +323,11 @@ sealed public  class IRangeDisplayConcrete :
     /// <param name="min">The minimum value.</param>
     /// <param name="max">The maximum value.</param>
     public void SetRangeLimits(double min, double max) {
-                                                         Efl.Ui.IRangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate(this.NativeHandle,min, max);
+        Efl.Ui.RangeDisplayConcrete.NativeMethods.efl_ui_range_limits_set_ptr.Value.Delegate(this.NativeHandle,min, max);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Control the value (position) of the widget within its valid range.
     /// Values outside the limits defined in <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/> are ignored and an error is printed.</summary>
     /// <value>The range value (must be within the bounds of <see cref="Efl.Ui.IRangeDisplay.GetRangeLimits"/>).</value>
@@ -311,6 +335,7 @@ sealed public  class IRangeDisplayConcrete :
         get { return GetRangeValue(); }
         set { SetRangeValue(value); }
     }
+
     /// <summary>Set the minimum and maximum values for given range widget.
     /// If the current value is less than <c>min</c>, it will be updated to <c>min</c>. If it is bigger then <c>max</c>, will be updated to <c>max</c>. The resulting value can be obtained with <see cref="Efl.Ui.IRangeDisplay.GetRangeValue"/>.
     /// 
@@ -327,18 +352,22 @@ sealed public  class IRangeDisplayConcrete :
         }
         set { SetRangeLimits( value.Item1,  value.Item2); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Ui.IRangeDisplayConcrete.efl_ui_range_display_interface_get();
+        return Efl.Ui.RangeDisplayConcrete.efl_ui_range_display_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -383,13 +412,24 @@ sealed public  class IRangeDisplayConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_range_limits_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_range_limits_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Ui.IRangeDisplayConcrete.efl_ui_range_display_interface_get();
+            return Efl.Ui.RangeDisplayConcrete.efl_ui_range_display_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -408,7 +448,7 @@ sealed public  class IRangeDisplayConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((IRangeDisplay)ws.Target).GetRangeValue();
@@ -419,8 +459,7 @@ sealed public  class IRangeDisplayConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -444,7 +483,7 @@ sealed public  class IRangeDisplayConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IRangeDisplay)ws.Target).SetRangeValue(val);
@@ -455,7 +494,7 @@ sealed public  class IRangeDisplayConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -479,7 +518,7 @@ sealed public  class IRangeDisplayConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        min = default(double);        max = default(double);                            
+                min = default(double);max = default(double);
                 try
                 {
                     ((IRangeDisplay)ws.Target).GetRangeLimits(out min, out max);
@@ -490,7 +529,7 @@ sealed public  class IRangeDisplayConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -514,7 +553,7 @@ sealed public  class IRangeDisplayConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((IRangeDisplay)ws.Target).SetRangeLimits(min, max);
@@ -525,7 +564,7 @@ sealed public  class IRangeDisplayConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -540,17 +579,15 @@ sealed public  class IRangeDisplayConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_UiIRangeDisplayConcrete_ExtensionMethods {
+public static class Efl_UiRangeDisplayConcrete_ExtensionMethods {
     public static Efl.BindableProperty<double> RangeValue<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Ui.IRangeDisplay, T>magic = null) where T : Efl.Ui.IRangeDisplay {
         return new Efl.BindableProperty<double>("range_value", fac);
     }
 
-    
 }
 #pragma warning restore CS1591
 #endif

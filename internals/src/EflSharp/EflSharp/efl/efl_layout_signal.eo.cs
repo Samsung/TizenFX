@@ -57,22 +57,22 @@ internal class EflLayoutSignalCbWrapper : IDisposable
 
     internal void ManagedCb(Efl.Layout.ISignal kw_object,System.String emission,System.String source)
     {
-                                                                                _cb(_cb_data, kw_object, emission, source);
-        Eina.Error.RaiseIfUnhandledException();
-                                                            }
+_cb(_cb_data, kw_object, emission, source);
+Eina.Error.RaiseIfUnhandledException();
+        
+    }
 
         internal static void Cb(IntPtr cb_data, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.MarshalEo<Efl.Eo.NonOwnTag>))] Efl.Layout.ISignal kw_object, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String emission, [MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef=typeof(Efl.Eo.StringKeepOwnershipMarshaler))] System.String source)
     {
         GCHandle handle = GCHandle.FromIntPtr(cb_data);
         EflLayoutSignalCb cb = (EflLayoutSignalCb)handle.Target;
-                                                                                    
         try {
             cb(kw_object, emission, source);
         } catch (Exception e) {
             Eina.Log.Warning($"Callback error: {e.ToString()}");
             Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
         }
-                                                            }
+            }
 }
 
 
@@ -80,125 +80,24 @@ namespace Efl {
 
 namespace Layout {
 
-/// <summary>Layouts asynchronous messaging and signaling interface.
-/// (Since EFL 1.22)</summary>
-[Efl.Layout.ISignalConcrete.NativeMethods]
+/// <summary>Layouts asynchronous messaging and signaling interface.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Layout.SignalConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ISignal : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Sends an (Edje) message to a given Edje object
-/// This function sends an Edje message to obj and to all of its child objects, if it has any (swallowed objects are one kind of child object). Only a few types are supported: - int, - float/double, - string/stringshare, - arrays of int, float, double or strings.
-/// 
-/// Messages can go both ways, from code to theme, or theme to code.
-/// 
-/// The id argument as a form of code and theme defining a common interface on message communication. One should define the same IDs on both code and EDC declaration, to individualize messages (binding them to a given context).
-/// (Since EFL 1.22)</summary>
-/// <param name="id">A identification number for the message to be sent</param>
-/// <param name="msg">The message&apos;s payload</param>
-void MessageSend(int id, Eina.Value msg);
-    /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
-/// Edje signals are one of the communication interfaces between code and a given Edje object&apos;s theme. With signals, one can communicate two string values at a time, which are: - &quot;emission&quot; value: the name of the signal, in general - &quot;source&quot; value: a name for the signal&apos;s context, in general
-/// 
-/// Signals can go both ways, from code to theme, or theme to code.
-/// 
-/// Though there are those common uses for the two strings, one is free to use them however they like.
-/// 
-/// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
-/// 
-/// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
-/// 
-/// With something like emission = &quot;mouse,down,*&quot;, source = &quot;button.*&quot; where &quot;button.*&quot; is the pattern for the names of parts implementing buttons on an interface, you&apos;d be registering for notifications on events of mouse buttons being pressed down on either of those parts (those events all have the &quot;mouse,down,&quot; common prefix on their names, with a suffix giving the button number). The actual emission and source strings of an event will be passed in as the emission and source parameters of the callback function (e.g. &quot;mouse,down,2&quot; and &quot;button.close&quot;), for each of those events.
-/// 
-/// See also the Edje Data Collection Reference for EDC files.
-/// 
-/// See <see cref="Efl.Layout.ISignal.EmitSignal"/> on how to emit signals from code to a an object See <see cref="Efl.Layout.ISignal.DelSignalCallback"/>.
-/// (Since EFL 1.22)</summary>
-/// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
-/// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-/// <param name="func">The callback function to be executed when the signal is emitted.</param>
-/// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
-    /// <summary>Removes a signal-triggered callback from an object.
-/// This function removes a callback, previously attached to the emission of a signal, from the object  obj. The parameters emission, source and func must match exactly those passed to a previous call to <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
-/// 
-/// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
-/// (Since EFL 1.22)</summary>
-/// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
-/// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-/// <param name="func">The callback function to be executed when the signal is emitted.</param>
-/// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
-    /// <summary>Sends/emits an Edje signal to this layout.
-/// This function sends a signal to the object. An Edje program, at the EDC specification level, can respond to a signal by having declared matching &quot;signal&quot; and &quot;source&quot; fields on its block.
-/// 
-/// See also the Edje Data Collection Reference for EDC files.
-/// 
-/// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/> for more on Edje signals.
-/// (Since EFL 1.22)</summary>
-/// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
-/// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-void EmitSignal(System.String emission, System.String source);
-    /// <summary>Processes an object&apos;s messages and signals queue.
-/// This function goes through the object message queue processing the pending messages for this specific Edje object. Normally they&apos;d be processed only at idle time.
-/// 
-/// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.
-/// (Since EFL 1.22)</summary>
-/// <param name="recurse">Whether to process messages on children objects.</param>
-void SignalProcess(bool recurse);
-                    }
-/// <summary>Layouts asynchronous messaging and signaling interface.
-/// (Since EFL 1.22)</summary>
-sealed public  class ISignalConcrete :
-    Efl.Eo.EoWrapper
-    , ISignal
-    
-{
-    /// <summary>Pointer to the native class description.</summary>
-    public override System.IntPtr NativeClass
-    {
-        get
-        {
-            if (((object)this).GetType() == typeof(ISignalConcrete))
-            {
-                return GetEflClassStatic();
-            }
-            else
-            {
-                return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
-            }
-        }
-    }
-
-    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
-    /// Do not call this constructor directly.</summary>
-    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ISignalConcrete(ConstructingHandle ch) : base(ch)
-    {
-    }
-
-    [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
-        efl_layout_signal_interface_get();
-    /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
-    /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
-    /// <param name="wh">The native pointer to be wrapped.</param>
-    private ISignalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
-    {
-    }
-
-    /// <summary>Sends an (Edje) message to a given Edje object
     /// This function sends an Edje message to obj and to all of its child objects, if it has any (swallowed objects are one kind of child object). Only a few types are supported: - int, - float/double, - string/stringshare, - arrays of int, float, double or strings.
     /// 
     /// Messages can go both ways, from code to theme, or theme to code.
     /// 
-    /// The id argument as a form of code and theme defining a common interface on message communication. One should define the same IDs on both code and EDC declaration, to individualize messages (binding them to a given context).
-    /// (Since EFL 1.22)</summary>
+    /// The id argument as a form of code and theme defining a common interface on message communication. One should define the same IDs on both code and EDC declaration, to individualize messages (binding them to a given context).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="id">A identification number for the message to be sent</param>
     /// <param name="msg">The message&apos;s payload</param>
-    public void MessageSend(int id, Eina.Value msg) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle,id, msg);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
+    void SendMessage(int id, Eina.Value msg);
+
     /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
     /// Edje signals are one of the communication interfaces between code and a given Edje object&apos;s theme. With signals, one can communicate two string values at a time, which are: - &quot;emission&quot; value: the name of the signal, in general - &quot;source&quot; value: a name for the signal&apos;s context, in general
     /// 
@@ -214,68 +113,188 @@ sealed public  class ISignalConcrete :
     /// 
     /// See also the Edje Data Collection Reference for EDC files.
     /// 
-    /// See <see cref="Efl.Layout.ISignal.EmitSignal"/> on how to emit signals from code to a an object See <see cref="Efl.Layout.ISignal.DelSignalCallback"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See <see cref="Efl.Layout.ISignal.EmitSignal"/> on how to emit signals from code to a an object See <see cref="Efl.Layout.ISignal.DelSignalCallback"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
-                                                                         GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
-        Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+    bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
+
     /// <summary>Removes a signal-triggered callback from an object.
     /// This function removes a callback, previously attached to the emission of a signal, from the object  obj. The parameters emission, source and func must match exactly those passed to a previous call to <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
     /// 
-    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
-    /// (Since EFL 1.22)</summary>
+    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
     /// <param name="func">The callback function to be executed when the signal is emitted.</param>
     /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
-    public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
-                                                                         GCHandle func_handle = GCHandle.Alloc(func);
-        var _ret_var = Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
-        Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+    bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func);
+
     /// <summary>Sends/emits an Edje signal to this layout.
     /// This function sends a signal to the object. An Edje program, at the EDC specification level, can respond to a signal by having declared matching &quot;signal&quot; and &quot;source&quot; fields on its block.
     /// 
     /// See also the Edje Data Collection Reference for EDC files.
     /// 
-    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/> for more on Edje signals.
-    /// (Since EFL 1.22)</summary>
+    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/> for more on Edje signals.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
     /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
-    public void EmitSignal(System.String emission, System.String source) {
-                                                         Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle,emission, source);
-        Eina.Error.RaiseIfUnhandledException();
-                                         }
+    void EmitSignal(System.String emission, System.String source);
+
     /// <summary>Processes an object&apos;s messages and signals queue.
     /// This function goes through the object message queue processing the pending messages for this specific Edje object. Normally they&apos;d be processed only at idle time.
     /// 
-    /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.
-    /// (Since EFL 1.22)</summary>
+    /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="recurse">Whether to process messages on children objects.</param>
-    public void SignalProcess(bool recurse) {
-                                 Efl.Layout.ISignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle,recurse);
+    void ProcessSignal(bool recurse);
+
+}
+
+/// <summary>Layouts asynchronous messaging and signaling interface.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class SignalConcrete :
+    Efl.Eo.EoWrapper
+    , ISignal
+    
+{
+    /// <summary>Pointer to the native class description.</summary>
+    public override System.IntPtr NativeClass
+    {
+        get
+        {
+            if (((object)this).GetType() == typeof(SignalConcrete))
+            {
+                return GetEflClassStatic();
+            }
+            else
+            {
+                return Efl.Eo.ClassRegister.klassFromType[((object)this).GetType()];
+            }
+        }
+    }
+
+    /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
+    /// Do not call this constructor directly.</summary>
+    /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
+    private SignalConcrete(ConstructingHandle ch) : base(ch)
+    {
+    }
+
+    [System.Runtime.InteropServices.DllImport(efl.Libs.Edje)] internal static extern System.IntPtr
+        efl_layout_signal_interface_get();
+
+    /// <summary>Initializes a new instance of the <see cref="ISignal"/> class.
+    /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
+    /// <param name="wh">The native pointer to be wrapped.</param>
+    private SignalConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    {
+    }
+
+#pragma warning disable CS0628
+    /// <summary>Sends an (Edje) message to a given Edje object
+    /// This function sends an Edje message to obj and to all of its child objects, if it has any (swallowed objects are one kind of child object). Only a few types are supported: - int, - float/double, - string/stringshare, - arrays of int, float, double or strings.
+    /// 
+    /// Messages can go both ways, from code to theme, or theme to code.
+    /// 
+    /// The id argument as a form of code and theme defining a common interface on message communication. One should define the same IDs on both code and EDC declaration, to individualize messages (binding them to a given context).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="id">A identification number for the message to be sent</param>
+    /// <param name="msg">The message&apos;s payload</param>
+    public void SendMessage(int id, Eina.Value msg) {
+        Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_message_send_ptr.Value.Delegate(this.NativeHandle,id, msg);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
+    /// <summary>Adds a callback for an arriving Edje signal, emitted by a given Edje object.
+    /// Edje signals are one of the communication interfaces between code and a given Edje object&apos;s theme. With signals, one can communicate two string values at a time, which are: - &quot;emission&quot; value: the name of the signal, in general - &quot;source&quot; value: a name for the signal&apos;s context, in general
+    /// 
+    /// Signals can go both ways, from code to theme, or theme to code.
+    /// 
+    /// Though there are those common uses for the two strings, one is free to use them however they like.
+    /// 
+    /// Signal callback registration is powerful, in the way that blobs may be used to match multiple signals at once. All the &quot;*?[" set of <c>fnmatch</c>() operators can be used, both for emission and source.
+    /// 
+    /// Edje has internal signals it will emit, automatically, on various actions taking place on group parts. For example, the mouse cursor being moved, pressed, released, etc., over a given part&apos;s area, all generate individual signals.
+    /// 
+    /// With something like emission = &quot;mouse,down,*&quot;, source = &quot;button.*&quot; where &quot;button.*&quot; is the pattern for the names of parts implementing buttons on an interface, you&apos;d be registering for notifications on events of mouse buttons being pressed down on either of those parts (those events all have the &quot;mouse,down,&quot; common prefix on their names, with a suffix giving the button number). The actual emission and source strings of an event will be passed in as the emission and source parameters of the callback function (e.g. &quot;mouse,down,2&quot; and &quot;button.close&quot;), for each of those events.
+    /// 
+    /// See also the Edje Data Collection Reference for EDC files.
+    /// 
+    /// See <see cref="Efl.Layout.ISignal.EmitSignal"/> on how to emit signals from code to a an object See <see cref="Efl.Layout.ISignal.DelSignalCallback"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
+    /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
+    /// <param name="func">The callback function to be executed when the signal is emitted.</param>
+    /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
+    public bool AddSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+var _ret_var = Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_callback_add_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Removes a signal-triggered callback from an object.
+    /// This function removes a callback, previously attached to the emission of a signal, from the object  obj. The parameters emission, source and func must match exactly those passed to a previous call to <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.
+    /// 
+    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/>.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
+    /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
+    /// <param name="func">The callback function to be executed when the signal is emitted.</param>
+    /// <returns><c>true</c> in case of success, <c>false</c> in case of error.</returns>
+    public bool DelSignalCallback(System.String emission, System.String source, EflLayoutSignalCb func) {
+        GCHandle func_handle = GCHandle.Alloc(func);
+var _ret_var = Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_callback_del_ptr.Value.Delegate(this.NativeHandle,emission, source, GCHandle.ToIntPtr(func_handle), EflLayoutSignalCbWrapper.Cb, Efl.Eo.Globals.free_gchandle);
+        Eina.Error.RaiseIfUnhandledException();
+        return _ret_var;
+    }
+
+    /// <summary>Sends/emits an Edje signal to this layout.
+    /// This function sends a signal to the object. An Edje program, at the EDC specification level, can respond to a signal by having declared matching &quot;signal&quot; and &quot;source&quot; fields on its block.
+    /// 
+    /// See also the Edje Data Collection Reference for EDC files.
+    /// 
+    /// See <see cref="Efl.Layout.ISignal.AddSignalCallback"/> for more on Edje signals.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="emission">The signal&apos;s &quot;emission&quot; string</param>
+    /// <param name="source">The signal&apos;s &quot;source&quot; string</param>
+    public void EmitSignal(System.String emission, System.String source) {
+        Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_emit_ptr.Value.Delegate(this.NativeHandle,emission, source);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
+    /// <summary>Processes an object&apos;s messages and signals queue.
+    /// This function goes through the object message queue processing the pending messages for this specific Edje object. Normally they&apos;d be processed only at idle time.
+    /// 
+    /// If <c>recurse</c> is <c>true</c>, this function will be called recursively on all subobjects.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="recurse">Whether to process messages on children objects.</param>
+    public void ProcessSignal(bool recurse) {
+        Efl.Layout.SignalConcrete.NativeMethods.efl_layout_signal_process_ptr.Value.Delegate(this.NativeHandle,recurse);
+        Eina.Error.RaiseIfUnhandledException();
+        
+    }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
+        return Efl.Layout.SignalConcrete.efl_layout_signal_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Edje);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Edje);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -285,7 +304,7 @@ sealed public  class ISignalConcrete :
                 efl_layout_signal_message_send_static_delegate = new efl_layout_signal_message_send_delegate(message_send);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "MessageSend") != null)
+            if (methods.FirstOrDefault(m => m.Name == "SendMessage") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_message_send"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_message_send_static_delegate) });
             }
@@ -325,18 +344,29 @@ sealed public  class ISignalConcrete :
                 efl_layout_signal_process_static_delegate = new efl_layout_signal_process_delegate(signal_process);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "SignalProcess") != null)
+            if (methods.FirstOrDefault(m => m.Name == "ProcessSignal") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_layout_signal_process"), func = Marshal.GetFunctionPointerForDelegate(efl_layout_signal_process_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Layout.ISignalConcrete.efl_layout_signal_interface_get();
+            return Efl.Layout.SignalConcrete.efl_layout_signal_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -355,10 +385,10 @@ sealed public  class ISignalConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
-                    ((ISignal)ws.Target).MessageSend(id, msg);
+                    ((ISignal)ws.Target).SendMessage(id, msg);
                 }
                 catch (Exception e)
                 {
@@ -366,7 +396,7 @@ sealed public  class ISignalConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -390,8 +420,8 @@ sealed public  class ISignalConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
-            bool _ret_var = default(bool);
+                    EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ISignal)ws.Target).AddSignalCallback(emission, source, func_wrapper.ManagedCb);
@@ -402,8 +432,7 @@ sealed public  class ISignalConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -427,8 +456,8 @@ sealed public  class ISignalConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                            EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
-            bool _ret_var = default(bool);
+                    EflLayoutSignalCbWrapper func_wrapper = new EflLayoutSignalCbWrapper(func, func_data, func_free_cb);
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ISignal)ws.Target).DelSignalCallback(emission, source, func_wrapper.ManagedCb);
@@ -439,8 +468,7 @@ sealed public  class ISignalConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -464,7 +492,7 @@ sealed public  class ISignalConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((ISignal)ws.Target).EmitSignal(emission, source);
@@ -475,7 +503,7 @@ sealed public  class ISignalConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -499,10 +527,10 @@ sealed public  class ISignalConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
-                    ((ISignal)ws.Target).SignalProcess(recurse);
+                    ((ISignal)ws.Target).ProcessSignal(recurse);
                 }
                 catch (Exception e)
                 {
@@ -510,7 +538,7 @@ sealed public  class ISignalConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -525,12 +553,11 @@ sealed public  class ISignalConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_LayoutISignalConcrete_ExtensionMethods {
+public static class Efl_LayoutSignalConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

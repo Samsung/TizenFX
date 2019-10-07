@@ -39,7 +39,7 @@ namespace Efl
                 /// <summary>
                 /// Rotated will be triggered when the bezel of the device is rotated.
                 /// </summary>
-                public static event RotaryEventHandler Rotated
+                public static event RotaryEventHandler RotatedEvent
                 {
                     add
                     {
@@ -158,7 +158,7 @@ namespace Efl
                         };
                         Interop.Eext.eext_rotary_object_event_callback_add(obj.NativeHandle, cb, IntPtr.Zero);
                         s_rotaryObjectEventMap[obj] = cb;
-                        obj.DelEvt += (s, e) => DisableRotaryEventHandler(obj, true);
+                        obj.DelEvent += (s, e) => DisableRotaryEventHandler(obj, true);
                     }
                 }
 

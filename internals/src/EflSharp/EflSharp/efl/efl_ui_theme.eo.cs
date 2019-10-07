@@ -34,6 +34,7 @@ public class Theme : Efl.Object
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_theme_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Theme"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Theme(Efl.Object parent= null
@@ -64,55 +65,68 @@ public class Theme : Efl.Object
     {
     }
 
+
     /// <summary>Gets the default theme handle.</summary>
     /// <returns>The default theme handle</returns>
     public static Efl.Ui.Theme GetDefault() {
-         var _ret_var = Efl.Ui.Theme.NativeMethods.efl_ui_theme_default_get_ptr.Value.Delegate();
+        var _ret_var = Efl.Ui.Theme.NativeMethods.efl_ui_theme_default_get_ptr.Value.Delegate();
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Appends a theme extension to the list of extensions. This is intended when an application needs more styles of widgets or new widget themes that the default does not provide (or may not provide). The application has &quot;extended&quot; usage by coming up with new custom style names for widgets for specific uses, but as these are not &quot;standard&quot;, they are not guaranteed to be provided by a default theme. This means the application is required to provide these extra elements itself in specific Edje files. This call adds one of those Edje files to the theme search path to be searched after the default theme. The use of this call is encouraged when default styles do not meet the needs of the application. Use this call instead of <see cref="Efl.Ui.Theme.AddOverlay"/> for almost all cases.</summary>
     /// <param name="item">The Edje file path to be used</param>
-    virtual public void AddExtension(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
+    public virtual void AddExtension(System.String item) {
+        Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Deletes a theme extension from the list of extensions.</summary>
     /// <param name="item">The Edje file path not to be used</param>
-    virtual public void DelExtension(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
+    public virtual void DelExtension(System.String item) {
+        Efl.Ui.Theme.NativeMethods.efl_ui_theme_extension_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Prepends a theme overlay to the list of overlays. Use this if your application needs to provide some custom overlay theme (An Edje file that replaces some default styles of widgets) where adding new styles, or changing system theme configuration is not possible. Do NOT use this instead of a proper system theme configuration. Use proper configuration files, profiles, environment variables etc. to set a theme so that the theme can be altered by simple configuration by a user. Using this call to achieve that effect is abusing the API and will create lots of trouble.</summary>
     /// <param name="item">The Edje file path to be used</param>
-    virtual public void AddOverlay(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
+    public virtual void AddOverlay(System.String item) {
+        Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Delete a theme overlay from the list of overlays.</summary>
     /// <param name="item">The Edje file path not to be used</param>
-    virtual public void DelOverlay(System.String item) {
-                                 Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
+    public virtual void DelOverlay(System.String item) {
+        Efl.Ui.Theme.NativeMethods.efl_ui_theme_overlay_del_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),item);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>This is the default theme.
     /// All widgets use the default theme implicitly unless a specific theme is set.</summary>
     /// <value>The default theme handle</value>
     public static Efl.Ui.Theme Default {
         get { return GetDefault(); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Theme.efl_ui_theme_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -157,9 +171,20 @@ public class Theme : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_theme_overlay_del"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_theme_overlay_del_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -183,7 +208,7 @@ public class Theme : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Ui.Theme _ret_var = default(Efl.Ui.Theme);
+                Efl.Ui.Theme _ret_var = default(Efl.Ui.Theme);
                 try
                 {
                     _ret_var = Theme.GetDefault();
@@ -194,8 +219,7 @@ public class Theme : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -217,7 +241,7 @@ public class Theme : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Theme)ws.Target).AddExtension(item);
@@ -228,7 +252,7 @@ public class Theme : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -252,7 +276,7 @@ public class Theme : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Theme)ws.Target).DelExtension(item);
@@ -263,7 +287,7 @@ public class Theme : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -287,7 +311,7 @@ public class Theme : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Theme)ws.Target).AddOverlay(item);
@@ -298,7 +322,7 @@ public class Theme : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -322,7 +346,7 @@ public class Theme : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Theme)ws.Target).DelOverlay(item);
@@ -333,7 +357,7 @@ public class Theme : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -348,13 +372,11 @@ public class Theme : Efl.Object
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_UiTheme_ExtensionMethods {
-    
 }
 #pragma warning restore CS1591
 #endif

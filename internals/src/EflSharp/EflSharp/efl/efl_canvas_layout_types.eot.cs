@@ -37,8 +37,8 @@ Table = 9,
 External = 10,
 /// <summary>Proxy type value.</summary>
 Proxy = 11,
-/// <summary>Spacer type value
-/// (Since EFL 1.7.)</summary>
+/// <summary>Spacer type value</summary>
+/// <since_tizen> 6 </since_tizen>
 Spacer = 12,
 /// <summary>Canvas 3D type: mesh node.</summary>
 MeshNode = 13,
@@ -46,18 +46,16 @@ MeshNode = 13,
 Light = 14,
 /// <summary>Canvas 3D type: camera.</summary>
 Camera = 15,
-/// <summary>Snapshot
-/// (Since EFL 1.16.)</summary>
+/// <summary>Snapshot</summary>
+/// <since_tizen> 6 </since_tizen>
 Snapshot = 16,
-/// <summary>Vector
-/// (Since EFL 1.18.)</summary>
+/// <summary>Vector</summary>
+/// <since_tizen> 6 </since_tizen>
 Vector = 17,
 /// <summary>Last type value.</summary>
 Last = 18,
 }
-
 }
-
 }
 
 namespace Edje {
@@ -73,6 +71,5 @@ PreeditEnd = 4,
 User = 5,
 UserExtra = 6,
 }
-
 }
 

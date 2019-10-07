@@ -8,67 +8,76 @@ using System.Threading;
 using System.ComponentModel;
 namespace Efl {
 
-/// <summary>Efl screen interface
-/// (Since EFL 1.22)</summary>
-[Efl.IScreenConcrete.NativeMethods]
+/// <summary>Efl screen interface</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.ScreenConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IScreen : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Get screen size (in pixels) for the screen.
-/// Note that on some display systems this information is not available and a value of 0x0 will be returned.
-/// (Since EFL 1.22)</summary>
-/// <returns>The screen size in pixels.</returns>
-Eina.Size2D GetScreenSizeInPixels();
-    /// <summary>Get screen scaling factor.
-/// This is the factor by which window contents will be scaled on the screen.
-/// 
-/// Note that on some display systems this information is not available and a value of 1.0 will be returned.
-/// (Since EFL 1.22)</summary>
-/// <returns>The screen scaling factor.</returns>
-float GetScreenScaleFactor();
-    /// <summary>Get the rotation of the screen.
-/// Most engines only return multiples of 90.
-/// (Since EFL 1.22)</summary>
-/// <returns>Screen rotation in degrees.</returns>
-int GetScreenRotation();
-    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
-/// (Since EFL 1.22)</summary>
-/// <param name="xdpi">Horizontal DPI.</param>
-/// <param name="ydpi">Vertical DPI.</param>
-void GetScreenDpi(out int xdpi, out int ydpi);
-                    /// <summary>Get screen size (in pixels) for the screen.
-    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.
-    /// (Since EFL 1.22)</summary>
+    /// <summary>Screen size (in pixels) for the screen.
+    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The screen size in pixels.</returns>
+    Eina.Size2D GetScreenSizeInPixels();
+
+    /// <summary>Screen scaling factor.
+    /// This is the factor by which window contents will be scaled on the screen.
+    /// 
+    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>The screen scaling factor.</returns>
+    float GetScreenScaleFactor();
+
+    /// <summary>The rotation of the screen.
+    /// Most engines only return multiples of 90.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>Screen rotation in degrees.</returns>
+    int GetScreenRotation();
+
+    /// <summary>The pixel density in DPI (Dots Per Inch) for the screen that a window is on.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="xdpi">Horizontal DPI.</param>
+    /// <param name="ydpi">Vertical DPI.</param>
+    void GetScreenDpi(out int xdpi, out int ydpi);
+
+    /// <summary>Screen size (in pixels) for the screen.
+    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The screen size in pixels.</value>
     Eina.Size2D ScreenSizeInPixels {
         get;
     }
-    /// <summary>Get screen scaling factor.
+
+    /// <summary>Screen scaling factor.
     /// This is the factor by which window contents will be scaled on the screen.
     /// 
-    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.
-    /// (Since EFL 1.22)</summary>
+    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The screen scaling factor.</value>
     float ScreenScaleFactor {
         get;
     }
-    /// <summary>Get the rotation of the screen.
-    /// Most engines only return multiples of 90.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The rotation of the screen.
+    /// Most engines only return multiples of 90.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Screen rotation in degrees.</value>
     int ScreenRotation {
         get;
     }
-    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The pixel density in DPI (Dots Per Inch) for the screen that a window is on.</summary>
+    /// <since_tizen> 6 </since_tizen>
     (int, int) ScreenDpi {
         get;
     }
+
 }
-/// <summary>Efl screen interface
-/// (Since EFL 1.22)</summary>
-sealed public  class IScreenConcrete :
+
+/// <summary>Efl screen interface</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ScreenConcrete :
     Efl.Eo.EoWrapper
     , IScreen
     
@@ -78,7 +87,7 @@ sealed public  class IScreenConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IScreenConcrete))
+            if (((object)this).GetType() == typeof(ScreenConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -92,81 +101,91 @@ sealed public  class IScreenConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IScreenConcrete(ConstructingHandle ch) : base(ch)
+    private ScreenConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_screen_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IScreen"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IScreenConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ScreenConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Get screen size (in pixels) for the screen.
-    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.
-    /// (Since EFL 1.22)</summary>
+#pragma warning disable CS0628
+    /// <summary>Screen size (in pixels) for the screen.
+    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The screen size in pixels.</returns>
     public Eina.Size2D GetScreenSizeInPixels() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_size_in_pixels_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ScreenConcrete.NativeMethods.efl_screen_size_in_pixels_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Get screen scaling factor.
+    }
+
+    /// <summary>Screen scaling factor.
     /// This is the factor by which window contents will be scaled on the screen.
     /// 
-    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.
-    /// (Since EFL 1.22)</summary>
+    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>The screen scaling factor.</returns>
     public float GetScreenScaleFactor() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_scale_factor_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ScreenConcrete.NativeMethods.efl_screen_scale_factor_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Get the rotation of the screen.
-    /// Most engines only return multiples of 90.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The rotation of the screen.
+    /// Most engines only return multiples of 90.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>Screen rotation in degrees.</returns>
     public int GetScreenRotation() {
-         var _ret_var = Efl.IScreenConcrete.NativeMethods.efl_screen_rotation_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.ScreenConcrete.NativeMethods.efl_screen_rotation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>The pixel density in DPI (Dots Per Inch) for the screen that a window is on.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="xdpi">Horizontal DPI.</param>
     /// <param name="ydpi">Vertical DPI.</param>
     public void GetScreenDpi(out int xdpi, out int ydpi) {
-                                                         Efl.IScreenConcrete.NativeMethods.efl_screen_dpi_get_ptr.Value.Delegate(this.NativeHandle,out xdpi, out ydpi);
+        Efl.ScreenConcrete.NativeMethods.efl_screen_dpi_get_ptr.Value.Delegate(this.NativeHandle,out xdpi, out ydpi);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
-    /// <summary>Get screen size (in pixels) for the screen.
-    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Screen size (in pixels) for the screen.
+    /// Note that on some display systems this information is not available and a value of 0x0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The screen size in pixels.</value>
     public Eina.Size2D ScreenSizeInPixels {
         get { return GetScreenSizeInPixels(); }
     }
-    /// <summary>Get screen scaling factor.
+
+    /// <summary>Screen scaling factor.
     /// This is the factor by which window contents will be scaled on the screen.
     /// 
-    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.
-    /// (Since EFL 1.22)</summary>
+    /// Note that on some display systems this information is not available and a value of 1.0 will be returned.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>The screen scaling factor.</value>
     public float ScreenScaleFactor {
         get { return GetScreenScaleFactor(); }
     }
-    /// <summary>Get the rotation of the screen.
-    /// Most engines only return multiples of 90.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The rotation of the screen.
+    /// Most engines only return multiples of 90.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>Screen rotation in degrees.</value>
     public int ScreenRotation {
         get { return GetScreenRotation(); }
     }
-    /// <summary>Get the pixel density in DPI (Dots Per Inch) for the screen that a window is on.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>The pixel density in DPI (Dots Per Inch) for the screen that a window is on.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public (int, int) ScreenDpi {
         get {
             int _out_xdpi = default(int);
@@ -175,18 +194,22 @@ sealed public  class IScreenConcrete :
             return (_out_xdpi,_out_ydpi);
         }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.IScreenConcrete.efl_screen_interface_get();
+        return Efl.ScreenConcrete.efl_screen_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -231,13 +254,24 @@ sealed public  class IScreenConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_screen_dpi_get"), func = Marshal.GetFunctionPointerForDelegate(efl_screen_dpi_get_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.IScreenConcrete.efl_screen_interface_get();
+            return Efl.ScreenConcrete.efl_screen_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -256,7 +290,7 @@ sealed public  class IScreenConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Size2D _ret_var = default(Eina.Size2D);
+                Eina.Size2D _ret_var = default(Eina.Size2D);
                 try
                 {
                     _ret_var = ((IScreen)ws.Target).GetScreenSizeInPixels();
@@ -267,8 +301,7 @@ sealed public  class IScreenConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -292,7 +325,7 @@ sealed public  class IScreenConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            float _ret_var = default(float);
+                float _ret_var = default(float);
                 try
                 {
                     _ret_var = ((IScreen)ws.Target).GetScreenScaleFactor();
@@ -303,8 +336,7 @@ sealed public  class IScreenConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -328,7 +360,7 @@ sealed public  class IScreenConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((IScreen)ws.Target).GetScreenRotation();
@@ -339,8 +371,7 @@ sealed public  class IScreenConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -364,7 +395,7 @@ sealed public  class IScreenConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        xdpi = default(int);        ydpi = default(int);                            
+                xdpi = default(int);ydpi = default(int);
                 try
                 {
                     ((IScreen)ws.Target).GetScreenDpi(out xdpi, out ydpi);
@@ -375,7 +406,7 @@ sealed public  class IScreenConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -393,11 +424,7 @@ sealed public  class IScreenConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflIScreenConcrete_ExtensionMethods {
-    
-    
-    
-    
+public static class EflScreenConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif

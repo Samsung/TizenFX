@@ -20,10 +20,10 @@ public partial class FunctionInterop
     ///<returns>A function pointer that can be used with delegates.</returns>
     public static IntPtr LoadFunctionPointer(string moduleName, string functionName)
     {
-        NativeModule module = new NativeModule(moduleName);
-        Eina.Log.Debug($"searching {module.Module} for {functionName}");
-        var s = FunctionInterop.dlsym(module.Module, functionName);
-        Eina.Log.Debug($"searching {module.Module} for{functionName}, result {s}");
+        IntPtr module = NativeModule.LoadLibrary(moduleName);
+        Eina.Log.Debug($"searching {module} for {functionName}");
+        var s = FunctionInterop.dlsym(module, functionName);
+        Eina.Log.Debug($"searching {module} for{functionName}, result {s}");
         return s;
     }
 

@@ -37,10 +37,11 @@ public class ContainerModel : Efl.CompositeModel
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Ecore)] internal static extern System.IntPtr
         efl_container_model_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="ContainerModel"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
-    /// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
+/// <param name="model">Model that is/will be See <see cref="Efl.Ui.IView.SetModel" /></param>
+/// <param name="index">Position of this object in the parent model. See <see cref="Efl.CompositeModel.SetIndex" /></param>
     public ContainerModel(Efl.Object parent
             , Efl.IModel model, uint? index = null) : base(efl_container_model_class_get(), parent)
     {
@@ -79,14 +80,16 @@ public class ContainerModel : Efl.CompositeModel
     {
     }
 
+
     /// <summary>Gets the type of the given property.</summary>
     /// <param name="name">Property name</param>
     /// <returns>Property type</returns>
-    virtual public Eina.ValueType GetChildPropertyValueType(System.String name) {
-                                 var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
+    public virtual Eina.ValueType GetChildPropertyValueType(System.String name) {
+        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_value_type_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Adds the given property to child objects and supply the values.
     /// Each item will represent the value of the given property in the respective child within the data model.
     /// 
@@ -97,25 +100,28 @@ public class ContainerModel : Efl.CompositeModel
     /// <param name="type">Property type</param>
     /// <param name="values">Values to be added</param>
     /// <returns><c>true</c> on success, <c>false</c> otherwise</returns>
-    virtual public bool AddChildProperty(System.String name, Eina.ValueType type, Eina.Iterator<System.IntPtr> values) {
-                         var _in_values = values.Handle;
+    public virtual bool AddChildProperty(System.String name, Eina.ValueType type, Eina.Iterator<System.IntPtr> values) {
+        var _in_values = values.Handle;
 values.Own = false;
-                                                        var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, type, _in_values);
+var _ret_var = Efl.ContainerModel.NativeMethods.efl_container_model_child_property_add_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name, type, _in_values);
         Eina.Error.RaiseIfUnhandledException();
-                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.ContainerModel.efl_container_model_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.CompositeModel.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Ecore);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Ecore);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -140,9 +146,20 @@ values.Own = false;
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_container_model_child_property_add"), func = Marshal.GetFunctionPointerForDelegate(efl_container_model_child_property_add_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -166,7 +183,7 @@ values.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.ValueType _ret_var = default(Eina.ValueType);
+                Eina.ValueType _ret_var = default(Eina.ValueType);
                 try
                 {
                     _ret_var = ((ContainerModel)ws.Target).GetChildPropertyValueType(name);
@@ -177,8 +194,7 @@ values.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -202,8 +218,8 @@ values.Own = false;
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                        var _in_values = new Eina.Iterator<System.IntPtr>(values, true);
-                                                            bool _ret_var = default(bool);
+                var _in_values = new Eina.Iterator<System.IntPtr>(values, true);
+bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ContainerModel)ws.Target).AddChildProperty(name, type, _in_values);
@@ -214,8 +230,7 @@ values.Own = false;
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {

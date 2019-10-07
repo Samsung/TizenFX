@@ -34,6 +34,7 @@ public class Animation : Efl.Object, Efl.IPlayable
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_animation_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Animation"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Animation(Efl.Object parent= null
@@ -64,170 +65,204 @@ public class Animation : Efl.Object, Efl.IPlayable
     {
     }
 
+
     /// <summary>Keep final state property</summary>
     /// <returns><c>true</c> to keep final state, <c>false</c> otherwise.</returns>
-    virtual public bool GetFinalStateKeep() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetFinalStateKeep() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Keep final state property</summary>
     /// <param name="keep"><c>true</c> to keep final state, <c>false</c> otherwise.</param>
-    virtual public void SetFinalStateKeep(bool keep) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),keep);
+    public virtual void SetFinalStateKeep(bool keep) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_final_state_keep_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),keep);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Duration property</summary>
     /// <returns>Duration value.</returns>
-    virtual public double GetDuration() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetDuration() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_duration_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Duration property</summary>
     /// <param name="sec">Duration value.</param>
-    virtual public void SetDuration(double sec) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_duration_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
+    public virtual void SetDuration(double sec) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_duration_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Repeat mode property</summary>
-    /// <returns>Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</returns>
-    virtual public Efl.Canvas.AnimationRepeatMode GetRepeatMode() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>Repeat mode.</returns>
+    public virtual Efl.Canvas.AnimationRepeatMode GetRepeatMode() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Repeat mode property</summary>
-    /// <param name="mode">Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</param>
-    virtual public void SetRepeatMode(Efl.Canvas.AnimationRepeatMode mode) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
+    /// <param name="mode">Repeat mode.</param>
+    public virtual void SetRepeatMode(Efl.Canvas.AnimationRepeatMode mode) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_mode_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),mode);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Repeat count property</summary>
-    /// <returns>Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</returns>
-    virtual public int GetRepeatCount() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>Repeat count. -1 repeats animation infinitely.</returns>
+    public virtual int GetRepeatCount() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Repeat count property</summary>
-    /// <param name="count">Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</param>
-    virtual public void SetRepeatCount(int count) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),count);
+    /// <param name="count">Repeat count. -1 repeats animation infinitely.</param>
+    public virtual void SetRepeatCount(int count) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_repeat_count_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),count);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Start delay property</summary>
-    /// <returns>Delay time, in seconds, from when the animation starts until the animation is animated</returns>
-    virtual public double GetStartDelay() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>Delay time, in seconds, from when the animation starts until the animation is animated.</returns>
+    public virtual double GetStartDelay() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Start delay property</summary>
-    /// <param name="sec">Delay time, in seconds, from when the animation starts until the animation is animated</param>
-    virtual public void SetStartDelay(double sec) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
+    /// <param name="sec">Delay time, in seconds, from when the animation starts until the animation is animated.</param>
+    public virtual void SetStartDelay(double sec) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_start_delay_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),sec);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Interpolator property</summary>
-    /// <returns>Interpolator which indicates interpolation function. Efl_Interpolator is required.</returns>
-    virtual public Efl.IInterpolator GetInterpolator() {
-         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    /// <returns>Interpolator which indicates interpolation function.</returns>
+    public virtual Efl.IInterpolator GetInterpolator() {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Interpolator property</summary>
-    /// <param name="interpolator">Interpolator which indicates interpolation function. Efl_Interpolator is required.</param>
-    virtual public void SetInterpolator(Efl.IInterpolator interpolator) {
-                                 Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),interpolator);
+    /// <param name="interpolator">Interpolator which indicates interpolation function.</param>
+    public virtual void SetInterpolator(Efl.IInterpolator interpolator) {
+        Efl.Canvas.Animation.NativeMethods.efl_animation_interpolator_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),interpolator);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <returns>Final applied progress.</returns>
-    virtual public double AnimationApply(double progress, Efl.Canvas.Object target) {
-                                                         var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress, target);
+    public virtual double ApplyAnimation(double progress, Efl.Canvas.Object target) {
+        var _ret_var = Efl.Canvas.Animation.NativeMethods.efl_animation_apply_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),progress, target);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get the length of play for the media file.</summary>
     /// <returns>The length of the stream in seconds.</returns>
-    virtual public double GetLength() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual double GetLength() {
+        var _ret_var = Efl.PlayableConcrete.NativeMethods.efl_playable_length_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    virtual public bool GetPlayable() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    }
+
+    public virtual bool GetPlayable() {
+        var _ret_var = Efl.PlayableConcrete.NativeMethods.efl_playable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Get whether the media file is seekable.</summary>
     /// <returns><c>true</c> if seekable.</returns>
-    virtual public bool GetSeekable() {
-         var _ret_var = Efl.IPlayableConcrete.NativeMethods.efl_playable_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetSeekable() {
+        var _ret_var = Efl.PlayableConcrete.NativeMethods.efl_playable_seekable_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Keep final state property</summary>
     /// <value><c>true</c> to keep final state, <c>false</c> otherwise.</value>
     public bool FinalStateKeep {
         get { return GetFinalStateKeep(); }
         set { SetFinalStateKeep(value); }
     }
+
     /// <summary>Duration property</summary>
     /// <value>Duration value.</value>
     public double Duration {
         get { return GetDuration(); }
         set { SetDuration(value); }
     }
+
     /// <summary>Repeat mode property</summary>
-    /// <value>Repeat mode. EFL_ANIMATION_REPEAT_MODE_RESTART restarts animation when the animation ends and EFL_ANIMATION_REPEAT_MODE_REVERSE reverses animation when the animation ends.</value>
+    /// <value>Repeat mode.</value>
     public Efl.Canvas.AnimationRepeatMode RepeatMode {
         get { return GetRepeatMode(); }
         set { SetRepeatMode(value); }
     }
+
     /// <summary>Repeat count property</summary>
-    /// <value>Repeat count. EFL_ANIMATION_REPEAT_INFINITE repeats animation infinitely.</value>
+    /// <value>Repeat count. -1 repeats animation infinitely.</value>
     public int RepeatCount {
         get { return GetRepeatCount(); }
         set { SetRepeatCount(value); }
     }
+
     /// <summary>Start delay property</summary>
-    /// <value>Delay time, in seconds, from when the animation starts until the animation is animated</value>
+    /// <value>Delay time, in seconds, from when the animation starts until the animation is animated.</value>
     public double StartDelay {
         get { return GetStartDelay(); }
         set { SetStartDelay(value); }
     }
+
     /// <summary>Interpolator property</summary>
-    /// <value>Interpolator which indicates interpolation function. Efl_Interpolator is required.</value>
+    /// <value>Interpolator which indicates interpolation function.</value>
     public Efl.IInterpolator Interpolator {
         get { return GetInterpolator(); }
         set { SetInterpolator(value); }
     }
+
     /// <summary>Get the length of play for the media file.</summary>
     /// <value>The length of the stream in seconds.</value>
     public double Length {
         get { return GetLength(); }
     }
+
     public bool Playable {
         get { return GetPlayable(); }
     }
+
     /// <summary>Get whether the media file is seekable.</summary>
     /// <value><c>true</c> if seekable.</value>
     public bool Seekable {
         get { return GetSeekable(); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Animation.efl_canvas_animation_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -357,44 +392,25 @@ public class Animation : Efl.Object, Efl.IPlayable
                 efl_animation_apply_static_delegate = new efl_animation_apply_delegate(animation_apply);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "AnimationApply") != null)
+            if (methods.FirstOrDefault(m => m.Name == "ApplyAnimation") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_apply"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_apply_static_delegate) });
             }
 
-            if (efl_playable_length_get_static_delegate == null)
+            if (includeInherited)
             {
-                efl_playable_length_get_static_delegate = new efl_playable_length_get_delegate(length_get);
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
             }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetLength") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_playable_length_get"), func = Marshal.GetFunctionPointerForDelegate(efl_playable_length_get_static_delegate) });
-            }
-
-            if (efl_playable_get_static_delegate == null)
-            {
-                efl_playable_get_static_delegate = new efl_playable_get_delegate(playable_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetPlayable") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_playable_get"), func = Marshal.GetFunctionPointerForDelegate(efl_playable_get_static_delegate) });
-            }
-
-            if (efl_playable_seekable_get_static_delegate == null)
-            {
-                efl_playable_seekable_get_static_delegate = new efl_playable_seekable_get_delegate(seekable_get);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "GetSeekable") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_playable_seekable_get"), func = Marshal.GetFunctionPointerForDelegate(efl_playable_seekable_get_static_delegate) });
-            }
-
-            descs.AddRange(base.GetEoOps(type));
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -418,7 +434,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetFinalStateKeep();
@@ -429,8 +445,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -454,7 +469,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetFinalStateKeep(keep);
@@ -465,7 +480,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -489,7 +504,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetDuration();
@@ -500,8 +515,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -525,7 +539,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetDuration(sec);
@@ -536,7 +550,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -560,7 +574,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.AnimationRepeatMode _ret_var = default(Efl.Canvas.AnimationRepeatMode);
+                Efl.Canvas.AnimationRepeatMode _ret_var = default(Efl.Canvas.AnimationRepeatMode);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetRepeatMode();
@@ -571,8 +585,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -596,7 +609,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetRepeatMode(mode);
@@ -607,7 +620,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -631,7 +644,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetRepeatCount();
@@ -642,8 +655,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -667,7 +679,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetRepeatCount(count);
@@ -678,7 +690,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -702,7 +714,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetStartDelay();
@@ -713,8 +725,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -738,7 +749,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetStartDelay(sec);
@@ -749,7 +760,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -773,7 +784,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.IInterpolator _ret_var = default(Efl.IInterpolator);
+                Efl.IInterpolator _ret_var = default(Efl.IInterpolator);
                 try
                 {
                     _ret_var = ((Animation)ws.Target).GetInterpolator();
@@ -784,8 +795,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -809,7 +819,7 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((Animation)ws.Target).SetInterpolator(interpolator);
@@ -820,7 +830,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -844,10 +854,10 @@ public class Animation : Efl.Object, Efl.IPlayable
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
-                    _ret_var = ((Animation)ws.Target).AnimationApply(progress, target);
+                    _ret_var = ((Animation)ws.Target).ApplyAnimation(progress, target);
                 }
                 catch (Exception e)
                 {
@@ -855,8 +865,7 @@ public class Animation : Efl.Object, Efl.IPlayable
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -866,120 +875,11 @@ public class Animation : Efl.Object, Efl.IPlayable
 
         private static efl_animation_apply_delegate efl_animation_apply_static_delegate;
 
-        
-        private delegate double efl_playable_length_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        
-        public delegate double efl_playable_length_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_playable_length_get_api_delegate> efl_playable_length_get_ptr = new Efl.Eo.FunctionWrapper<efl_playable_length_get_api_delegate>(Module, "efl_playable_length_get");
-
-        private static double length_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_playable_length_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            double _ret_var = default(double);
-                try
-                {
-                    _ret_var = ((Animation)ws.Target).GetLength();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_playable_length_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_playable_length_get_delegate efl_playable_length_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_playable_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_playable_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_playable_get_api_delegate> efl_playable_get_ptr = new Efl.Eo.FunctionWrapper<efl_playable_get_api_delegate>(Module, "efl_playable_get");
-
-        private static bool playable_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_playable_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Animation)ws.Target).GetPlayable();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_playable_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_playable_get_delegate efl_playable_get_static_delegate;
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        private delegate bool efl_playable_seekable_get_delegate(System.IntPtr obj, System.IntPtr pd);
-
-        [return: MarshalAs(UnmanagedType.U1)]
-        public delegate bool efl_playable_seekable_get_api_delegate(System.IntPtr obj);
-
-        public static Efl.Eo.FunctionWrapper<efl_playable_seekable_get_api_delegate> efl_playable_seekable_get_ptr = new Efl.Eo.FunctionWrapper<efl_playable_seekable_get_api_delegate>(Module, "efl_playable_seekable_get");
-
-        private static bool seekable_get(System.IntPtr obj, System.IntPtr pd)
-        {
-            Eina.Log.Debug("function efl_playable_seekable_get was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-            bool _ret_var = default(bool);
-                try
-                {
-                    _ret_var = ((Animation)ws.Target).GetSeekable();
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-        return _ret_var;
-
-            }
-            else
-            {
-                return efl_playable_seekable_get_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
-            }
-        }
-
-        private static efl_playable_seekable_get_delegate efl_playable_seekable_get_static_delegate;
-
         #pragma warning restore CA1707, CS1591, SA1300, SA1600
 
 }
 }
 }
-
 }
 
 #if EFL_BETA
@@ -1009,9 +909,6 @@ public static class Efl_CanvasAnimation_ExtensionMethods {
         return new Efl.BindableProperty<Efl.IInterpolator>("interpolator", fac);
     }
 
-    
-    
-    
 }
 #pragma warning restore CS1591
 #endif

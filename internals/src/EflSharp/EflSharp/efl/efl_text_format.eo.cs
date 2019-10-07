@@ -11,119 +11,147 @@ namespace Efl {
 /// <summary>The look and layout of the text
 /// The text format can affect the geometry of the text object, as well as how characters are presented.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextFormatConcrete.NativeMethods]
+[Efl.TextFormatConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextFormat : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
-/// <returns>Ellipsis value</returns>
-double GetEllipsis();
+    /// <returns>Ellipsis value</returns>
+    double GetEllipsis();
+
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
-/// <param name="value">Ellipsis value</param>
-void SetEllipsis(double value);
+    /// <param name="value">Ellipsis value</param>
+    void SetEllipsis(double value);
+
     /// <summary>Wrap mode for use in the text</summary>
-/// <returns>Wrap mode</returns>
-Efl.TextFormatWrap GetWrap();
+    /// <returns>Wrap mode</returns>
+    Efl.TextFormatWrap GetWrap();
+
     /// <summary>Wrap mode for use in the text</summary>
-/// <param name="wrap">Wrap mode</param>
-void SetWrap(Efl.TextFormatWrap wrap);
+    /// <param name="wrap">Wrap mode</param>
+    void SetWrap(Efl.TextFormatWrap wrap);
+
     /// <summary>Multiline is enabled or not</summary>
-/// <returns><c>true</c> if multiline is enabled, <c>false</c> otherwise</returns>
-bool GetMultiline();
+    /// <returns><c>true</c> if multiline is enabled, <c>false</c> otherwise</returns>
+    bool GetMultiline();
+
     /// <summary>Multiline is enabled or not</summary>
-/// <param name="enabled"><c>true</c> if multiline is enabled, <c>false</c> otherwise</param>
-void SetMultiline(bool enabled);
+    /// <param name="enabled"><c>true</c> if multiline is enabled, <c>false</c> otherwise</param>
+    void SetMultiline(bool enabled);
+
     /// <summary>Horizontal alignment of text</summary>
-/// <returns>Alignment type</returns>
-Efl.TextFormatHorizontalAlignmentAutoType GetHalignAutoType();
+    /// <returns>Alignment type</returns>
+    Efl.TextFormatHorizontalAlignmentAutoType GetHalignAutoType();
+
     /// <summary>Horizontal alignment of text</summary>
-/// <param name="value">Alignment type</param>
-void SetHalignAutoType(Efl.TextFormatHorizontalAlignmentAutoType value);
+    /// <param name="value">Alignment type</param>
+    void SetHalignAutoType(Efl.TextFormatHorizontalAlignmentAutoType value);
+
     /// <summary>Horizontal alignment of text</summary>
-/// <returns>Horizontal alignment value</returns>
-double GetHalign();
+    /// <returns>Horizontal alignment value</returns>
+    double GetHalign();
+
     /// <summary>Horizontal alignment of text</summary>
-/// <param name="value">Horizontal alignment value</param>
-void SetHalign(double value);
+    /// <param name="value">Horizontal alignment value</param>
+    void SetHalign(double value);
+
     /// <summary>Vertical alignment of text</summary>
-/// <returns>Vertical alignment value</returns>
-double GetValign();
+    /// <returns>Vertical alignment value</returns>
+    double GetValign();
+
     /// <summary>Vertical alignment of text</summary>
-/// <param name="value">Vertical alignment value</param>
-void SetValign(double value);
+    /// <param name="value">Vertical alignment value</param>
+    void SetValign(double value);
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
-/// <c>value</c> is absolute size.</summary>
-/// <returns>Line gap value</returns>
-double GetLinegap();
+    /// <c>value</c> is absolute size.</summary>
+    /// <returns>Line gap value</returns>
+    double GetLinegap();
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
-/// <c>value</c> is absolute size.</summary>
-/// <param name="value">Line gap value</param>
-void SetLinegap(double value);
+    /// <c>value</c> is absolute size.</summary>
+    /// <param name="value">Line gap value</param>
+    void SetLinegap(double value);
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
-/// The original line gap value is multiplied by <c>value</c>.</summary>
-/// <returns>Relative line gap value</returns>
-double GetLinerelgap();
+    /// The original line gap value is multiplied by <c>value</c>.</summary>
+    /// <returns>Relative line gap value</returns>
+    double GetLinerelgap();
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
-/// The original line gap value is multiplied by <c>value</c>.</summary>
-/// <param name="value">Relative line gap value</param>
-void SetLinerelgap(double value);
+    /// The original line gap value is multiplied by <c>value</c>.</summary>
+    /// <param name="value">Relative line gap value</param>
+    void SetLinerelgap(double value);
+
     /// <summary>Tabstops value</summary>
-/// <returns>Tapstops value</returns>
-int GetTabstops();
+    /// <returns>Tapstops value</returns>
+    int GetTabstops();
+
     /// <summary>Tabstops value</summary>
-/// <param name="value">Tapstops value</param>
-void SetTabstops(int value);
+    /// <param name="value">Tapstops value</param>
+    void SetTabstops(int value);
+
     /// <summary>Whether text is a password</summary>
-/// <returns><c>true</c> if the text is a password, <c>false</c> otherwise</returns>
-bool GetPassword();
+    /// <returns><c>true</c> if the text is a password, <c>false</c> otherwise</returns>
+    bool GetPassword();
+
     /// <summary>Whether text is a password</summary>
-/// <param name="enabled"><c>true</c> if the text is a password, <c>false</c> otherwise</param>
-void SetPassword(bool enabled);
+    /// <param name="enabled"><c>true</c> if the text is a password, <c>false</c> otherwise</param>
+    void SetPassword(bool enabled);
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
-/// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
-/// <returns>Replacement character</returns>
-System.String GetReplacementChar();
+    /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
+    /// <returns>Replacement character</returns>
+    System.String GetReplacementChar();
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
-/// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
-/// <param name="repch">Replacement character</param>
-void SetReplacementChar(System.String repch);
-                                                                                            /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
+    /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
+    /// <param name="repch">Replacement character</param>
+    void SetReplacementChar(System.String repch);
+
+    /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <value>Ellipsis value</value>
     double Ellipsis {
         get;
         set;
     }
+
     /// <summary>Wrap mode for use in the text</summary>
     /// <value>Wrap mode</value>
     Efl.TextFormatWrap Wrap {
         get;
         set;
     }
+
     /// <summary>Multiline is enabled or not</summary>
     /// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
     bool Multiline {
         get;
         set;
     }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Alignment type</value>
     Efl.TextFormatHorizontalAlignmentAutoType HalignAutoType {
         get;
         set;
     }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Horizontal alignment value</value>
     double Halign {
         get;
         set;
     }
+
     /// <summary>Vertical alignment of text</summary>
     /// <value>Vertical alignment value</value>
     double Valign {
         get;
         set;
     }
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <value>Line gap value</value>
@@ -131,6 +159,7 @@ void SetReplacementChar(System.String repch);
         get;
         set;
     }
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <value>Relative line gap value</value>
@@ -138,18 +167,21 @@ void SetReplacementChar(System.String repch);
         get;
         set;
     }
+
     /// <summary>Tabstops value</summary>
     /// <value>Tapstops value</value>
     int Tabstops {
         get;
         set;
     }
+
     /// <summary>Whether text is a password</summary>
     /// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
     bool Password {
         get;
         set;
     }
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <value>Replacement character</value>
@@ -157,11 +189,13 @@ void SetReplacementChar(System.String repch);
         get;
         set;
     }
+
 }
+
 /// <summary>The look and layout of the text
 /// The text format can affect the geometry of the text object, as well as how characters are presented.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextFormatConcrete :
+public sealed class TextFormatConcrete :
     Efl.Eo.EoWrapper
     , ITextFormat
     
@@ -171,7 +205,7 @@ sealed public  class ITextFormatConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextFormatConcrete))
+            if (((object)this).GetType() == typeof(TextFormatConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -185,204 +219,245 @@ sealed public  class ITextFormatConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextFormatConcrete(ConstructingHandle ch) : base(ch)
+    private TextFormatConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_format_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="ITextFormat"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextFormatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextFormatConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <returns>Ellipsis value</returns>
     public double GetEllipsis() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_ellipsis_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <param name="value">Ellipsis value</param>
     public void SetEllipsis(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_ellipsis_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_ellipsis_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Wrap mode for use in the text</summary>
     /// <returns>Wrap mode</returns>
     public Efl.TextFormatWrap GetWrap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_wrap_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Wrap mode for use in the text</summary>
     /// <param name="wrap">Wrap mode</param>
     public void SetWrap(Efl.TextFormatWrap wrap) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_wrap_set_ptr.Value.Delegate(this.NativeHandle,wrap);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_wrap_set_ptr.Value.Delegate(this.NativeHandle,wrap);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Multiline is enabled or not</summary>
     /// <returns><c>true</c> if multiline is enabled, <c>false</c> otherwise</returns>
     public bool GetMultiline() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_multiline_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Multiline is enabled or not</summary>
     /// <param name="enabled"><c>true</c> if multiline is enabled, <c>false</c> otherwise</param>
     public void SetMultiline(bool enabled) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_multiline_set_ptr.Value.Delegate(this.NativeHandle,enabled);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_multiline_set_ptr.Value.Delegate(this.NativeHandle,enabled);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <returns>Alignment type</returns>
     public Efl.TextFormatHorizontalAlignmentAutoType GetHalignAutoType() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_halign_auto_type_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <param name="value">Alignment type</param>
     public void SetHalignAutoType(Efl.TextFormatHorizontalAlignmentAutoType value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_auto_type_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_halign_auto_type_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <returns>Horizontal alignment value</returns>
     public double GetHalign() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_halign_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <param name="value">Horizontal alignment value</param>
     public void SetHalign(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_halign_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_halign_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Vertical alignment of text</summary>
     /// <returns>Vertical alignment value</returns>
     public double GetValign() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_valign_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Vertical alignment of text</summary>
     /// <param name="value">Vertical alignment value</param>
     public void SetValign(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_valign_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_valign_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <returns>Line gap value</returns>
     public double GetLinegap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_linegap_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <param name="value">Line gap value</param>
     public void SetLinegap(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linegap_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_linegap_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <returns>Relative line gap value</returns>
     public double GetLinerelgap() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_linerelgap_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <param name="value">Relative line gap value</param>
     public void SetLinerelgap(double value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_linerelgap_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_linerelgap_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Tabstops value</summary>
     /// <returns>Tapstops value</returns>
     public int GetTabstops() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_tabstops_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Tabstops value</summary>
     /// <param name="value">Tapstops value</param>
     public void SetTabstops(int value) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_tabstops_set_ptr.Value.Delegate(this.NativeHandle,value);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_tabstops_set_ptr.Value.Delegate(this.NativeHandle,value);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Whether text is a password</summary>
     /// <returns><c>true</c> if the text is a password, <c>false</c> otherwise</returns>
     public bool GetPassword() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_password_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_password_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Whether text is a password</summary>
     /// <param name="enabled"><c>true</c> if the text is a password, <c>false</c> otherwise</param>
     public void SetPassword(bool enabled) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_password_set_ptr.Value.Delegate(this.NativeHandle,enabled);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_password_set_ptr.Value.Delegate(this.NativeHandle,enabled);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <returns>Replacement character</returns>
     public System.String GetReplacementChar() {
-         var _ret_var = Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextFormatConcrete.NativeMethods.efl_text_replacement_char_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <param name="repch">Replacement character</param>
     public void SetReplacementChar(System.String repch) {
-                                 Efl.ITextFormatConcrete.NativeMethods.efl_text_replacement_char_set_ptr.Value.Delegate(this.NativeHandle,repch);
+        Efl.TextFormatConcrete.NativeMethods.efl_text_replacement_char_set_ptr.Value.Delegate(this.NativeHandle,repch);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Ellipsis value (number from -1.0 to 1.0)</summary>
     /// <value>Ellipsis value</value>
     public double Ellipsis {
         get { return GetEllipsis(); }
         set { SetEllipsis(value); }
     }
+
     /// <summary>Wrap mode for use in the text</summary>
     /// <value>Wrap mode</value>
     public Efl.TextFormatWrap Wrap {
         get { return GetWrap(); }
         set { SetWrap(value); }
     }
+
     /// <summary>Multiline is enabled or not</summary>
     /// <value><c>true</c> if multiline is enabled, <c>false</c> otherwise</value>
     public bool Multiline {
         get { return GetMultiline(); }
         set { SetMultiline(value); }
     }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Alignment type</value>
     public Efl.TextFormatHorizontalAlignmentAutoType HalignAutoType {
         get { return GetHalignAutoType(); }
         set { SetHalignAutoType(value); }
     }
+
     /// <summary>Horizontal alignment of text</summary>
     /// <value>Horizontal alignment value</value>
     public double Halign {
         get { return GetHalign(); }
         set { SetHalign(value); }
     }
+
     /// <summary>Vertical alignment of text</summary>
     /// <value>Vertical alignment value</value>
     public double Valign {
         get { return GetValign(); }
         set { SetValign(value); }
     }
+
     /// <summary>Minimal line gap (top and bottom) for each line in the text
     /// <c>value</c> is absolute size.</summary>
     /// <value>Line gap value</value>
@@ -390,6 +465,7 @@ sealed public  class ITextFormatConcrete :
         get { return GetLinegap(); }
         set { SetLinegap(value); }
     }
+
     /// <summary>Relative line gap (top and bottom) for each line in the text
     /// The original line gap value is multiplied by <c>value</c>.</summary>
     /// <value>Relative line gap value</value>
@@ -397,18 +473,21 @@ sealed public  class ITextFormatConcrete :
         get { return GetLinerelgap(); }
         set { SetLinerelgap(value); }
     }
+
     /// <summary>Tabstops value</summary>
     /// <value>Tapstops value</value>
     public int Tabstops {
         get { return GetTabstops(); }
         set { SetTabstops(value); }
     }
+
     /// <summary>Whether text is a password</summary>
     /// <value><c>true</c> if the text is a password, <c>false</c> otherwise</value>
     public bool Password {
         get { return GetPassword(); }
         set { SetPassword(value); }
     }
+
     /// <summary>The character used to replace characters that can&apos;t be displayed
     /// Currently only used to replace characters if <see cref="Efl.ITextFormat.Password"/> is enabled.</summary>
     /// <value>Replacement character</value>
@@ -416,18 +495,22 @@ sealed public  class ITextFormatConcrete :
         get { return GetReplacementChar(); }
         set { SetReplacementChar(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextFormatConcrete.efl_text_format_interface_get();
+        return Efl.TextFormatConcrete.efl_text_format_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -652,13 +735,24 @@ sealed public  class ITextFormatConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_replacement_char_set"), func = Marshal.GetFunctionPointerForDelegate(efl_text_replacement_char_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextFormatConcrete.efl_text_format_interface_get();
+            return Efl.TextFormatConcrete.efl_text_format_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -677,7 +771,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetEllipsis();
@@ -688,8 +782,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -713,7 +806,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetEllipsis(value);
@@ -724,7 +817,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -748,7 +841,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.TextFormatWrap _ret_var = default(Efl.TextFormatWrap);
+                Efl.TextFormatWrap _ret_var = default(Efl.TextFormatWrap);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetWrap();
@@ -759,8 +852,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -784,7 +876,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetWrap(wrap);
@@ -795,7 +887,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -819,7 +911,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetMultiline();
@@ -830,8 +922,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -855,7 +946,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetMultiline(enabled);
@@ -866,7 +957,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -890,7 +981,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.TextFormatHorizontalAlignmentAutoType _ret_var = default(Efl.TextFormatHorizontalAlignmentAutoType);
+                Efl.TextFormatHorizontalAlignmentAutoType _ret_var = default(Efl.TextFormatHorizontalAlignmentAutoType);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetHalignAutoType();
@@ -901,8 +992,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -926,7 +1016,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetHalignAutoType(value);
@@ -937,7 +1027,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -961,7 +1051,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetHalign();
@@ -972,8 +1062,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -997,7 +1086,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetHalign(value);
@@ -1008,7 +1097,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1032,7 +1121,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetValign();
@@ -1043,8 +1132,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1068,7 +1156,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetValign(value);
@@ -1079,7 +1167,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1103,7 +1191,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetLinegap();
@@ -1114,8 +1202,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1139,7 +1226,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetLinegap(value);
@@ -1150,7 +1237,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1174,7 +1261,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            double _ret_var = default(double);
+                double _ret_var = default(double);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetLinerelgap();
@@ -1185,8 +1272,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1210,7 +1296,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetLinerelgap(value);
@@ -1221,7 +1307,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1245,7 +1331,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetTabstops();
@@ -1256,8 +1342,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1281,7 +1366,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetTabstops(value);
@@ -1292,7 +1377,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1316,7 +1401,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetPassword();
@@ -1327,8 +1412,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1352,7 +1436,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetPassword(enabled);
@@ -1363,7 +1447,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1387,7 +1471,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((ITextFormat)ws.Target).GetReplacementChar();
@@ -1398,8 +1482,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1423,7 +1506,7 @@ sealed public  class ITextFormatConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextFormat)ws.Target).SetReplacementChar(repch);
@@ -1434,7 +1517,7 @@ sealed public  class ITextFormatConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1452,7 +1535,7 @@ sealed public  class ITextFormatConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextFormatConcrete_ExtensionMethods {
+public static class EflTextFormatConcrete_ExtensionMethods {
     public static Efl.BindableProperty<double> Ellipsis<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.ITextFormat, T>magic = null) where T : Efl.ITextFormat {
         return new Efl.BindableProperty<double>("ellipsis", fac);
     }
@@ -1517,7 +1600,6 @@ Mixed = 3,
 /// <summary>Wrap mode hyphenation</summary>
 Hyphenation = 4,
 }
-
 }
 
 namespace Efl {
@@ -1535,6 +1617,5 @@ Locale = 2,
 /// <summary>Text is places at opposite side of LTR/RTL (bidirectional) settings</summary>
 End = 3,
 }
-
 }
 

@@ -173,7 +173,10 @@ static internal class UnsafeNativeMethods
     internal static extern int eina_value_compare_wrapper(IntPtr handle, IntPtr other);
 
     [DllImport(efl.Libs.Eina, CharSet=CharSet.Ansi)]
-    internal static extern IntPtr eina_value_to_string(IntPtr handle); // We take ownership of the returned string.
+    [return:
+     MarshalAs(UnmanagedType.CustomMarshaler,
+	       MarshalTypeRef=typeof(Efl.Eo.StringPassOwnershipMarshaler))]
+    internal static extern string eina_value_to_string(IntPtr handle); // We take ownership of the returned string.
 
     [DllImport(efl.Libs.CustomExports)]
     [return: MarshalAsAttribute(UnmanagedType.U1)]
@@ -533,7 +536,7 @@ static internal class UnsafeNativeMethods
 }
 }
 
-/// <summary>Struct for passing Values by value to Unmanaged functions.</summary>
+/// <summary>Struct for passing Values by value to Unmanaged functions. (Since EFL 1.23)</summary>
 [StructLayout(LayoutKind.Sequential)]
 public struct ValueNative
 {
@@ -546,7 +549,7 @@ public struct ValueNative
     }
 }
 
-/// <summary>Exception for failures when setting an container item.</summary>
+/// <summary>Exception for failures when setting an container item. (Since EFL 1.23)</summary>
 [Serializable]
 public class SetItemFailedException : Exception
 {
@@ -571,7 +574,7 @@ public class SetItemFailedException : Exception
     }
 }
 
-/// <summary>Exception for methods that must have been called on a container.</summary>
+/// <summary>Exception for methods that must have been called on a container. (Since EFL 1.23)</summary>
 [Serializable]
 public class InvalidValueTypeException: Exception
 {
@@ -597,7 +600,7 @@ public class InvalidValueTypeException: Exception
 }
 
 
-/// <summary>Managed-side Enum to represent Eina_Value_Type constants</summary>
+/// <summary>Managed-side Enum to represent Eina_Value_Type constants. (Since EFL 1.23)</summary>
 public enum ValueType
 {
     /// <summary>Signed 8 bit integer. Same as 'sbyte'</summary>
@@ -725,6 +728,8 @@ static class ValueTypeMethods
 /// use this boxing class as an intermediate at the Marshalling API level (like in
 /// marshall_type_impl.hh in the generator). User-facing API still uses Eina.ValueType
 /// normally.</para>
+///
+/// (Since EFL 1.23)
 /// </summary>
 [EditorBrowsable(EditorBrowsableState.Never)]
 public class ValueTypeBox
@@ -929,6 +934,8 @@ static class ValueTypeBridge
 /// <para>It comes with predefined types for numbers, strings, arrays, lists, hashes,
 /// blobs and structs. It is able to convert between data types, including
 /// to and from strings.</para>
+///
+/// (Since EFL 1.23)
 /// </summary>
 public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
 {
@@ -2611,10 +2618,8 @@ public class Value : IDisposable, IComparable<Value>, IEquatable<Value>
     public override String ToString()
     {
         SanityChecks();
-        IntPtr ptr = eina_value_to_string(this.Handle);
-        String str = Marshal.PtrToStringAnsi(ptr);
-        MemoryNative.Free(ptr);
-        return str;
+        return eina_value_to_string(this.Handle);
+
     }
 
     /// <summary>Empties an optional Eina.Value, freeing what was previously contained.</summary>

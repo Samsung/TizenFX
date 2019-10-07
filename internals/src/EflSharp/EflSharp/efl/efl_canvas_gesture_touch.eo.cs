@@ -10,7 +10,8 @@ namespace Efl {
 
 namespace Canvas {
 
-/// <summary>EFL Gesture Touch class</summary>
+/// <summary>EFL Gesture Touch class
+/// This gesture class defines a method that records touch points and supports properties - first touch point, current touch point, timestamp, multi-touch  and state information.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Canvas.GestureTouch.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -34,6 +35,7 @@ public class GestureTouch : Efl.Object
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_gesture_touch_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="GestureTouch"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public GestureTouch(Efl.Object parent= null
@@ -64,104 +66,121 @@ public class GestureTouch : Efl.Object
     {
     }
 
+
     /// <summary>Returns the first touch point.</summary>
     /// <returns>The start position.</returns>
-    virtual public Eina.Position2D GetStartPoint() {
-         var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_start_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Position2D GetStartPoint() {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_start_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Returns the current touch point.</summary>
     /// <returns>The current position.</returns>
-    virtual public Eina.Position2D GetCurPoint() {
-         var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Position2D GetCurPoint() {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_point_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Returns the timestamp.</summary>
     /// <returns>The timestamp.</returns>
-    virtual public uint GetCurTimestamp() {
-         var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual uint GetCurTimestamp() {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_cur_timestamp_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This property tells if the event is multi touch.</summary>
     /// <returns>returns <c>true</c> if its a multi touch</returns>
-    virtual public bool GetMultiTouch() {
-         var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_multi_touch_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual bool GetMultiTouch() {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_multi_touch_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This property holds the state of the touch event.</summary>
     /// <returns>touch event state</returns>
-    virtual public Efl.Canvas.GestureTouchState GetState() {
-         var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Canvas.GestureTouchState GetState() {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_state_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Touch point record method</summary>
     /// <param name="tool">The finger id</param>
     /// <param name="pos">Position of the event</param>
     /// <param name="timestamp">The timestamp of the event</param>
     /// <param name="action">action of the event</param>
-    virtual public void PointRecord(int tool, Eina.Vector2 pos, uint timestamp, Efl.Pointer.Action action) {
-                 Eina.Vector2.NativeStruct _in_pos = pos;
-                                                                                        Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_point_record_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool, _in_pos, timestamp, action);
+    public virtual void PointRecord(int tool, Eina.Vector2 pos, uint timestamp, Efl.Pointer.Action action) {
+        Eina.Vector2.NativeStruct _in_pos = pos;
+Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_point_record_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool, _in_pos, timestamp, action);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Compute the distance between the last two events</summary>
     /// <param name="tool">The finger id</param>
     /// <returns>The distance vector.</returns>
-    virtual public Eina.Vector2 Delta(int tool) {
-                                 var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_delta_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
+    public virtual Eina.Vector2 Delta(int tool) {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_delta_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Compute the distance between the first touch and the last event.</summary>
     /// <param name="tool">The finger id</param>
     /// <returns>The distance vector.</returns>
-    virtual public Eina.Vector2 Distance(int tool) {
-                                 var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_distance_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
+    public virtual Eina.Vector2 Distance(int tool) {
+        var _ret_var = Efl.Canvas.GestureTouch.NativeMethods.efl_gesture_touch_distance_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),tool);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Returns the first touch point.</summary>
     /// <value>The start position.</value>
     public Eina.Position2D StartPoint {
         get { return GetStartPoint(); }
     }
+
     /// <summary>Returns the current touch point.</summary>
     /// <value>The current position.</value>
     public Eina.Position2D CurPoint {
         get { return GetCurPoint(); }
     }
+
     /// <summary>Returns the timestamp.</summary>
     /// <value>The timestamp.</value>
     public uint CurTimestamp {
         get { return GetCurTimestamp(); }
     }
+
     /// <summary>This property tells if the event is multi touch.</summary>
     /// <value>returns <c>true</c> if its a multi touch</value>
     public bool MultiTouch {
         get { return GetMultiTouch(); }
     }
+
     /// <summary>This property holds the state of the touch event.</summary>
     /// <value>touch event state</value>
     public Efl.Canvas.GestureTouchState State {
         get { return GetState(); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.GestureTouch.efl_canvas_gesture_touch_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Object.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -246,9 +265,20 @@ public class GestureTouch : Efl.Object
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gesture_touch_distance"), func = Marshal.GetFunctionPointerForDelegate(efl_gesture_touch_distance_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -272,7 +302,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Position2D _ret_var = default(Eina.Position2D);
+                Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).GetStartPoint();
@@ -283,8 +313,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -308,7 +337,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Position2D _ret_var = default(Eina.Position2D);
+                Eina.Position2D _ret_var = default(Eina.Position2D);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).GetCurPoint();
@@ -319,8 +348,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -344,7 +372,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            uint _ret_var = default(uint);
+                uint _ret_var = default(uint);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).GetCurTimestamp();
@@ -355,8 +383,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -380,7 +407,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).GetMultiTouch();
@@ -391,8 +418,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -416,7 +442,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.GestureTouchState _ret_var = default(Efl.Canvas.GestureTouchState);
+                Efl.Canvas.GestureTouchState _ret_var = default(Efl.Canvas.GestureTouchState);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).GetState();
@@ -427,8 +453,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -453,7 +478,7 @@ public class GestureTouch : Efl.Object
             if (ws != null)
             {
                 Eina.Vector2 _in_pos = pos;
-                                                                                            
+
                 try
                 {
                     ((GestureTouch)ws.Target).PointRecord(tool, _in_pos, timestamp, action);
@@ -464,7 +489,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -488,7 +513,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Vector2 _ret_var = default(Eina.Vector2);
+                Eina.Vector2 _ret_var = default(Eina.Vector2);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).Delta(tool);
@@ -499,8 +524,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -524,7 +548,7 @@ public class GestureTouch : Efl.Object
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Vector2 _ret_var = default(Eina.Vector2);
+                Eina.Vector2 _ret_var = default(Eina.Vector2);
                 try
                 {
                     _ret_var = ((GestureTouch)ws.Target).Distance(tool);
@@ -535,8 +559,7 @@ public class GestureTouch : Efl.Object
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -551,17 +574,11 @@ public class GestureTouch : Efl.Object
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_CanvasGestureTouch_ExtensionMethods {
-    
-    
-    
-    
-    
 }
 #pragma warning restore CS1591
 #endif

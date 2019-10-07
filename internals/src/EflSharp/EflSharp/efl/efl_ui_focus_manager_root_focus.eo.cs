@@ -12,7 +12,7 @@ namespace Ui {
 
 namespace Focus {
 
-/// <summary>This class ensures that the root is at least focusable, if nothing else is focusable</summary>
+/// <summary>This class ensures that the root is at least focusable, if nothing else is focusable.</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
 [Efl.Ui.Focus.ManagerRootFocus.NativeMethods]
 [Efl.Eo.BindingEntity]
@@ -36,6 +36,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_focus_manager_root_focus_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="ManagerRootFocus"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public ManagerRootFocus(Efl.Object parent= null
@@ -66,37 +67,44 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
     {
     }
 
-    /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
-    /// <returns>Canvas object</returns>
-    virtual public Efl.Canvas.Object GetCanvasObject() {
-         var _ret_var = Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+
+    /// <summary>The default replacement object to use when there is no focusable object inside the manager. You can change this object by setting this value to something else. <c>null</c> means that the same value as <see cref="Efl.Ui.Focus.IManager.Root"/> will be used.</summary>
+    /// <returns>Canvas object.</returns>
+    public virtual Efl.Canvas.Object GetCanvasObject() {
+        var _ret_var = Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
-    /// <param name="canvas_object">Canvas object</param>
-    virtual public void SetCanvasObject(Efl.Canvas.Object canvas_object) {
-                                 Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),canvas_object);
+    }
+
+    /// <summary>The default replacement object to use when there is no focusable object inside the manager. You can change this object by setting this value to something else. <c>null</c> means that the same value as <see cref="Efl.Ui.Focus.IManager.Root"/> will be used.</summary>
+    /// <param name="canvas_object">Canvas object.</param>
+    public virtual void SetCanvasObject(Efl.Canvas.Object canvas_object) {
+        Efl.Ui.Focus.ManagerRootFocus.NativeMethods.efl_ui_focus_manager_root_focus_canvas_object_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),canvas_object);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>The default replacement object for the case that there is no focusable object inside the manager is the root object. However, you can change this by setting this value to something else. <c>null</c> is triggered as the same value as Efl.Ui.Focus.Manager.root.get</summary>
-    /// <value>Canvas object</value>
+        
+    }
+
+    /// <summary>The default replacement object to use when there is no focusable object inside the manager. You can change this object by setting this value to something else. <c>null</c> means that the same value as <see cref="Efl.Ui.Focus.IManager.Root"/> will be used.</summary>
+    /// <value>Canvas object.</value>
     public Efl.Canvas.Object CanvasObject {
         get { return GetCanvasObject(); }
         set { SetCanvasObject(value); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.Focus.ManagerRootFocus.efl_ui_focus_manager_root_focus_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Focus.ManagerCalc.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -121,9 +129,20 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_focus_manager_root_focus_canvas_object_set"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_focus_manager_root_focus_canvas_object_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -147,7 +166,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((ManagerRootFocus)ws.Target).GetCanvasObject();
@@ -158,8 +177,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -183,7 +201,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ManagerRootFocus)ws.Target).SetCanvasObject(canvas_object);
@@ -194,7 +212,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -209,9 +227,7 @@ public class ManagerRootFocus : Efl.Ui.Focus.ManagerCalc
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

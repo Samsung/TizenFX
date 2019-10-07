@@ -22,8 +22,6 @@ Y = 2,
 /// <summary>Draggable in both directions.</summary>
 Xy = 3,
 }
-
 }
-
 }
 

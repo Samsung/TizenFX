@@ -35,12 +35,13 @@ public class WinInlined : Efl.Ui.Win
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_win_inlined_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="WinInlined"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
-    /// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
-    /// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
-    /// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
-    /// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
+/// <param name="style">The widget style to use. See <see cref="Efl.Ui.Widget.SetStyle" /></param>
+/// <param name="winName">The window name. See <see cref="Efl.Ui.Win.SetWinName" /></param>
+/// <param name="winType">The type of the window. See <see cref="Efl.Ui.Win.SetWinType" /></param>
+/// <param name="accelPreference">The hardware acceleration preference for this window. See <see cref="Efl.Ui.Win.SetAccelPreference" /></param>
     public WinInlined(Efl.Object parent
             , System.String style = null, System.String winName = null, Efl.Ui.WinType? winType = null, System.String accelPreference = null) : base(efl_ui_win_inlined_class_get(), parent)
     {
@@ -89,30 +90,35 @@ public class WinInlined : Efl.Ui.Win
     {
     }
 
+
     /// <summary>This property holds the parent object in the parent canvas.</summary>
     /// <returns>An object in the parent canvas.</returns>
-    virtual public Efl.Canvas.Object GetInlinedParent() {
-         var _ret_var = Efl.Ui.WinInlined.NativeMethods.efl_ui_win_inlined_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Efl.Canvas.Object GetInlinedParent() {
+        var _ret_var = Efl.Ui.WinInlined.NativeMethods.efl_ui_win_inlined_parent_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>This property holds the parent object in the parent canvas.</summary>
     /// <value>An object in the parent canvas.</value>
     public Efl.Canvas.Object InlinedParent {
         get { return GetInlinedParent(); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.WinInlined.efl_ui_win_inlined_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.Win.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Elementary);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Elementary);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -127,9 +133,20 @@ public class WinInlined : Efl.Ui.Win
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_ui_win_inlined_parent_get"), func = Marshal.GetFunctionPointerForDelegate(efl_ui_win_inlined_parent_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -153,7 +170,7 @@ public class WinInlined : Efl.Ui.Win
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
+                Efl.Canvas.Object _ret_var = default(Efl.Canvas.Object);
                 try
                 {
                     _ret_var = ((WinInlined)ws.Target).GetInlinedParent();
@@ -164,8 +181,7 @@ public class WinInlined : Efl.Ui.Win
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -180,13 +196,11 @@ public class WinInlined : Efl.Ui.Win
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_UiWinInlined_ExtensionMethods {
-    
 }
 #pragma warning restore CS1591
 #endif

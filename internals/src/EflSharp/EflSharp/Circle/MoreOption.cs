@@ -32,13 +32,13 @@ namespace Efl
                 /// Clicked will be triggered when the user selects the already selected item again or selects a selector.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<MoreOptionItemEventArgs> ClickedEvt;
+                public event EventHandler<MoreOptionItemEventArgs> ClickedEvent;
 
                 /// <summary>
                 /// Selected will be triggered when the user selects an item.
                 /// </summary>
                 /// <since_tizen> 6 </since_tizen>
-                public event EventHandler<MoreOptionItemEventArgs> SelectedEvt;
+                public event EventHandler<MoreOptionItemEventArgs> SelectedEvent;
 
                 private Interop.Evas.SmartCallback smartClicked;
                 private Interop.Evas.SmartCallback smartSelected;
@@ -48,20 +48,20 @@ namespace Efl
                 /// </summary>
                 /// <param name="parent">The Efl.Ui.Widget to which the new MoreOption will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
-                public MoreOption(Efl.Ui.Widget parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_more_option_add(parent.NativeHandle)))
+                public MoreOption(Efl.Object parent) : base(new Efl.Eo.Globals.WrappingHandle(Interop.Eext.eext_more_option_add(parent.NativeHandle)))
                 {
                     smartClicked = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
                         MoreOptionItem clickedItem = FindItemByNativeHandle(e);
                         if (clickedItem != null)
-                            ClickedEvt?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
+                            ClickedEvent?.Invoke(this, new MoreOptionItemEventArgs { item = clickedItem });
                     });
 
                     smartSelected = new Interop.Evas.SmartCallback((d, o, e) =>
                     {
                         MoreOptionItem selectedItem = FindItemByNativeHandle(e);
                         if (selectedItem != null)
-                            SelectedEvt?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
+                            SelectedEvent?.Invoke(this, new MoreOptionItemEventArgs { item = selectedItem });
                     });
 
                     Interop.Evas.evas_object_smart_callback_add(this.NativeHandle, ItemClickedEventName, smartClicked, IntPtr.Zero);

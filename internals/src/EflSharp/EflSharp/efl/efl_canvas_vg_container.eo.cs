@@ -36,6 +36,7 @@ public class Container : Efl.Canvas.Vg.Node
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_vg_container_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="Container"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public Container(Efl.Object parent= null
@@ -66,33 +67,39 @@ public class Container : Efl.Canvas.Vg.Node
     {
     }
 
+
     /// <summary>Get child of container</summary>
     /// <param name="name">Child node name</param>
     /// <returns>Child object</returns>
-    virtual public Efl.Canvas.Vg.Node GetChild(System.String name) {
-                                 var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_child_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
+    public virtual Efl.Canvas.Vg.Node GetChild(System.String name) {
+        var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_child_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),name);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Get all children of container</summary>
     /// <returns>Iterator to children</returns>
-    virtual public Eina.Iterator<Efl.Canvas.Vg.Node> GetChildren() {
-         var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
+    public virtual Eina.Iterator<Efl.Canvas.Vg.Node> GetChildren() {
+        var _ret_var = Efl.Canvas.Vg.Container.NativeMethods.efl_canvas_vg_container_children_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)));
         Eina.Error.RaiseIfUnhandledException();
         return new Eina.Iterator<Efl.Canvas.Vg.Node>(_ret_var, true);
- }
+
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.Vg.Container.efl_canvas_vg_container_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Vg.Node.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -117,9 +124,20 @@ public class Container : Efl.Canvas.Vg.Node
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_canvas_vg_container_children_get"), func = Marshal.GetFunctionPointerForDelegate(efl_canvas_vg_container_children_get_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -143,7 +161,7 @@ public class Container : Efl.Canvas.Vg.Node
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.Canvas.Vg.Node _ret_var = default(Efl.Canvas.Vg.Node);
+                Efl.Canvas.Vg.Node _ret_var = default(Efl.Canvas.Vg.Node);
                 try
                 {
                     _ret_var = ((Container)ws.Target).GetChild(name);
@@ -154,8 +172,7 @@ public class Container : Efl.Canvas.Vg.Node
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -179,7 +196,7 @@ public class Container : Efl.Canvas.Vg.Node
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Eina.Iterator<Efl.Canvas.Vg.Node> _ret_var = default(Eina.Iterator<Efl.Canvas.Vg.Node>);
+                Eina.Iterator<Efl.Canvas.Vg.Node> _ret_var = default(Eina.Iterator<Efl.Canvas.Vg.Node>);
                 try
                 {
                     _ret_var = ((Container)ws.Target).GetChildren();
@@ -190,8 +207,7 @@ public class Container : Efl.Canvas.Vg.Node
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        _ret_var.Own = false; return _ret_var.Handle;
-
+                _ret_var.Own = false; return _ret_var.Handle;
             }
             else
             {
@@ -206,9 +222,7 @@ public class Container : Efl.Canvas.Vg.Node
 }
 }
 }
-
 }
-
 }
 
 #if EFL_BETA

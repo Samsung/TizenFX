@@ -10,61 +10,72 @@ namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Efl Gfx Color mixin class
-/// (Since EFL 1.22)</summary>
-[Efl.Gfx.IColorConcrete.NativeMethods]
+/// <summary>Efl Gfx Color mixin class</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Gfx.ColorConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IColor : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>Retrieves the general/main color of the given Evas object.
-/// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
-/// 
-/// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
-/// 
-/// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
-/// 
-/// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
-/// (Since EFL 1.22)</summary>
-void GetColor(out int r, out int g, out int b, out int a);
-    /// <summary>Sets the general/main color of the given Evas object to the given one.
-/// See also <see cref="Efl.Gfx.IColor.GetColor"/> (for an example)
-/// 
-/// These color values are expected to be premultiplied by alpha.
-/// (Since EFL 1.22)</summary>
-void SetColor(int r, int g, int b, int a);
-    /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-/// (Since EFL 1.22)</summary>
-/// <returns>the hex color code.</returns>
-System.String GetColorCode();
-    /// <summary>Set the color of given Evas object to the given hex color code(#RRGGBBAA). e.g. efl_gfx_color_code_set(obj, &quot;#FFCCAACC&quot;);
-/// (Since EFL 1.22)</summary>
-/// <param name="colorcode">the hex color code.</param>
-void SetColorCode(System.String colorcode);
-                    /// <summary>Retrieves the general/main color of the given Evas object.
-    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
     /// 
-    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
     /// 
     /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
     /// 
-    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
-    /// (Since EFL 1.22)</summary>
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void GetColor(out int r, out int g, out int b, out int a);
+
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    void SetColor(int r, int g, int b, int a);
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns>the hex color code.</returns>
+    System.String GetColorCode();
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="colorcode">the hex color code.</param>
+    void SetColorCode(System.String colorcode);
+
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+    /// 
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     (int, int, int, int) Color {
         get;
         set;
     }
-    /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>the hex color code.</value>
     System.String ColorCode {
         get;
         set;
     }
+
 }
-/// <summary>Efl Gfx Color mixin class
-/// (Since EFL 1.22)</summary>
-sealed public  class IColorConcrete :
+
+/// <summary>Efl Gfx Color mixin class</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ColorConcrete :
     Efl.Eo.EoWrapper
     , IColor
     
@@ -74,7 +85,7 @@ sealed public  class IColorConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IColorConcrete))
+            if (((object)this).GetType() == typeof(ColorConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -88,65 +99,78 @@ sealed public  class IColorConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IColorConcrete(ConstructingHandle ch) : base(ch)
+    private ColorConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_color_mixin_get();
+
     /// <summary>Initializes a new instance of the <see cref="IColor"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IColorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ColorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
-    /// <summary>Retrieves the general/main color of the given Evas object.
-    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+#pragma warning disable CS0628
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
     /// 
-    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
     /// 
     /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
     /// 
-    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
-    /// (Since EFL 1.22)</summary>
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void GetColor(out int r, out int g, out int b, out int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
+        Efl.Gfx.ColorConcrete.NativeMethods.efl_gfx_color_get_ptr.Value.Delegate(this.NativeHandle,out r, out g, out b, out a);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
-    /// <summary>Sets the general/main color of the given Evas object to the given one.
-    /// See also <see cref="Efl.Gfx.IColor.GetColor"/> (for an example)
+        
+    }
+
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
     /// 
-    /// These color values are expected to be premultiplied by alpha.
-    /// (Since EFL 1.22)</summary>
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// 
+    /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
+    /// 
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public void SetColor(int r, int g, int b, int a) {
-                                                                                                         Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
+        Efl.Gfx.ColorConcrete.NativeMethods.efl_gfx_color_set_ptr.Value.Delegate(this.NativeHandle,r, g, b, a);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
-    /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns>the hex color code.</returns>
     public System.String GetColorCode() {
-         var _ret_var = Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Gfx.ColorConcrete.NativeMethods.efl_gfx_color_code_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>Set the color of given Evas object to the given hex color code(#RRGGBBAA). e.g. efl_gfx_color_code_set(obj, &quot;#FFCCAACC&quot;);
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="colorcode">the hex color code.</param>
     public void SetColorCode(System.String colorcode) {
-                                 Efl.Gfx.IColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate(this.NativeHandle,colorcode);
+        Efl.Gfx.ColorConcrete.NativeMethods.efl_gfx_color_code_set_ptr.Value.Delegate(this.NativeHandle,colorcode);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>Retrieves the general/main color of the given Evas object.
-    /// Retrieves the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
+        
+    }
+
+    /// <summary>The general/main color of the given Evas object.
+    /// Represents the main color&apos;s RGB component (and alpha channel) values, which range from 0 to 255. For the alpha channel, which defines the object&apos;s transparency level, 0 means totally transparent, while 255 means opaque. These color values are premultiplied by the alpha value.
     /// 
-    /// Usually youll use this attribute for text and rectangle objects, where the main color is their unique one. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
+    /// Usually you&apos;ll use this attribute for text and rectangle objects, where the main color is the only color. If set for objects which themselves have colors, like the images one, those colors get modulated by this one.
     /// 
     /// All newly created Evas rectangles get the default color values of 255 255 255 255 (opaque white).
     /// 
-    /// Use null pointers on the components you&apos;re not interested in: they&apos;ll be ignored by the function.
-    /// (Since EFL 1.22)</summary>
+    /// When reading this property, use <c>NULL</c> pointers on the components you&apos;re not interested in and they&apos;ll be ignored by the function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     public (int, int, int, int) Color {
         get {
             int _out_r = default(int);
@@ -158,25 +182,30 @@ sealed public  class IColorConcrete :
         }
         set { SetColor( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
-    /// <summary>Get hex color code of given Evas object. This returns a short lived hex color code string.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>Hexadecimal color code of given Evas object (#RRGGBBAA).</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value>the hex color code.</value>
     public System.String ColorCode {
         get { return GetColorCode(); }
         set { SetColorCode(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IColorConcrete.efl_gfx_color_mixin_get();
+        return Efl.Gfx.ColorConcrete.efl_gfx_color_mixin_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -221,13 +250,24 @@ sealed public  class IColorConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_color_code_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_color_code_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IColorConcrete.efl_gfx_color_mixin_get();
+            return Efl.Gfx.ColorConcrete.efl_gfx_color_mixin_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -246,7 +286,7 @@ sealed public  class IColorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        r = default(int);        g = default(int);        b = default(int);        a = default(int);                                            
+                r = default(int);g = default(int);b = default(int);a = default(int);
                 try
                 {
                     ((IColor)ws.Target).GetColor(out r, out g, out b, out a);
@@ -257,7 +297,7 @@ sealed public  class IColorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -281,7 +321,7 @@ sealed public  class IColorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                            
+                
                 try
                 {
                     ((IColor)ws.Target).SetColor(r, g, b, a);
@@ -292,7 +332,7 @@ sealed public  class IColorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -316,7 +356,7 @@ sealed public  class IColorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = ((IColor)ws.Target).GetColorCode();
@@ -327,8 +367,7 @@ sealed public  class IColorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -352,7 +391,7 @@ sealed public  class IColorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IColor)ws.Target).SetColorCode(colorcode);
@@ -363,7 +402,7 @@ sealed public  class IColorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -378,13 +417,11 @@ sealed public  class IColorConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIColorConcrete_ExtensionMethods {
-    
+public static class Efl_GfxColorConcrete_ExtensionMethods {
     public static Efl.BindableProperty<System.String> ColorCode<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IColor, T>magic = null) where T : Efl.Gfx.IColor {
         return new Efl.BindableProperty<System.String>("color_code", fac);
     }

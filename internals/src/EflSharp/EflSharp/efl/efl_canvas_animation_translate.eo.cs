@@ -34,6 +34,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Evas)] internal static extern System.IntPtr
         efl_canvas_animation_translate_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="AnimationTranslate"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AnimationTranslate(Efl.Object parent= null
@@ -64,42 +65,51 @@ public class AnimationTranslate : Efl.Canvas.Animation
     {
     }
 
+
     /// <summary>Translate property</summary>
     /// <param name="from_x">Distance moved along x axis when animation starts</param>
     /// <param name="from_y">Distance moved along y axis when animation starts</param>
     /// <param name="to_x">Distance moved along x axis when animation ends</param>
     /// <param name="to_y">Distance moved along y axis when animation ends</param>
-    virtual public void GetTranslate(out int from_x, out int from_y, out int to_x, out int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
+    public virtual void GetTranslate(out int from_x, out int from_y, out int to_x, out int to_y) {
+        Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Translate property</summary>
     /// <param name="from_x">Distance moved along x axis when animation starts</param>
     /// <param name="from_y">Distance moved along y axis when animation starts</param>
     /// <param name="to_x">Distance moved along x axis when animation ends</param>
     /// <param name="to_y">Distance moved along y axis when animation ends</param>
-    virtual public void SetTranslate(int from_x, int from_y, int to_x, int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
+    public virtual void SetTranslate(int from_x, int from_y, int to_x, int to_y) {
+        Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Translate absolute property</summary>
     /// <param name="from_x">X coordinate when animation starts</param>
     /// <param name="from_y">Y coordinate when animation starts</param>
     /// <param name="to_x">X coordinate when animation ends</param>
     /// <param name="to_y">Y coordinate when animation ends</param>
-    virtual public void GetTranslateAbsolute(out int from_x, out int from_y, out int to_x, out int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
+    public virtual void GetTranslateAbsolute(out int from_x, out int from_y, out int to_x, out int to_y) {
+        Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_get_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),out from_x, out from_y, out to_x, out to_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Translate absolute property</summary>
     /// <param name="from_x">X coordinate when animation starts</param>
     /// <param name="from_y">Y coordinate when animation starts</param>
     /// <param name="to_x">X coordinate when animation ends</param>
     /// <param name="to_y">Y coordinate when animation ends</param>
-    virtual public void SetTranslateAbsolute(int from_x, int from_y, int to_x, int to_y) {
-                                                                                                         Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
+    public virtual void SetTranslateAbsolute(int from_x, int from_y, int to_x, int to_y) {
+        Efl.Canvas.AnimationTranslate.NativeMethods.efl_animation_translate_absolute_set_ptr.Value.Delegate((IsGeneratedBindingClass ? this.NativeHandle : Efl.Eo.Globals.efl_super(this.NativeHandle, this.NativeClass)),from_x, from_y, to_x, to_y);
         Eina.Error.RaiseIfUnhandledException();
-                                                                         }
+        
+    }
+
     /// <summary>Translate property</summary>
     /// <value>Distance moved along x axis when animation starts</value>
     public (int, int, int, int) Translate {
@@ -113,6 +123,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
         }
         set { SetTranslate( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
+
     /// <summary>Translate absolute property</summary>
     /// <value>X coordinate when animation starts</value>
     public (int, int, int, int) TranslateAbsolute {
@@ -126,18 +137,21 @@ public class AnimationTranslate : Efl.Canvas.Animation
         }
         set { SetTranslateAbsolute( value.Item1,  value.Item2,  value.Item3,  value.Item4); }
     }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Canvas.AnimationTranslate.efl_canvas_animation_translate_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Canvas.Animation.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Evas);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Evas);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -182,9 +196,20 @@ public class AnimationTranslate : Efl.Canvas.Animation
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_animation_translate_absolute_set"), func = Marshal.GetFunctionPointerForDelegate(efl_animation_translate_absolute_set_static_delegate) });
             }
 
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -208,7 +233,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        from_x = default(int);        from_y = default(int);        to_x = default(int);        to_y = default(int);                                            
+                from_x = default(int);from_y = default(int);to_x = default(int);to_y = default(int);
                 try
                 {
                     ((AnimationTranslate)ws.Target).GetTranslate(out from_x, out from_y, out to_x, out to_y);
@@ -219,7 +244,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -243,7 +268,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                            
+                
                 try
                 {
                     ((AnimationTranslate)ws.Target).SetTranslate(from_x, from_y, to_x, to_y);
@@ -254,7 +279,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -278,7 +303,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                        from_x = default(int);        from_y = default(int);        to_x = default(int);        to_y = default(int);                                            
+                from_x = default(int);from_y = default(int);to_x = default(int);to_y = default(int);
                 try
                 {
                     ((AnimationTranslate)ws.Target).GetTranslateAbsolute(out from_x, out from_y, out to_x, out to_y);
@@ -289,7 +314,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -313,7 +338,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                            
+                
                 try
                 {
                     ((AnimationTranslate)ws.Target).SetTranslateAbsolute(from_x, from_y, to_x, to_y);
@@ -324,7 +349,7 @@ public class AnimationTranslate : Efl.Canvas.Animation
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                        
+                
             }
             else
             {
@@ -339,14 +364,11 @@ public class AnimationTranslate : Efl.Canvas.Animation
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
 public static class Efl_CanvasAnimationTranslate_ExtensionMethods {
-    
-    
 }
 #pragma warning restore CS1591
 #endif

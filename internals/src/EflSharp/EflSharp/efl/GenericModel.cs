@@ -10,7 +10,10 @@ using Eina;
 
 namespace Efl {
 
-/// <summary>Generic <see cref="Efl.IModel" /> implementation for MVVM models based on <see cref="Efl.UserModel&lt;T&gt;" /></summary>
+/// <summary>Generic <see cref="Efl.IModel" /> implementation for MVVM models based on <see cref="Efl.UserModel&lt;T&gt;" />
+///
+/// (Since EFL 1.23)
+/// </summary>
 public class GenericModel<T> : Efl.Object, Efl.IModel, IDisposable
 {
    private Efl.IModel model;
@@ -126,46 +129,46 @@ public class GenericModel<T> : Efl.Object, Efl.IModel, IDisposable
    }
 
    /// <summary>Event triggered when properties on the wrapped model changes.</summary>
-   public event EventHandler<Efl.IModelPropertiesChangedEvt_Args> PropertiesChangedEvt
+   public event EventHandler<Efl.ModelPropertiesChangedEventArgs> PropertiesChangedEvent
    {
       add {
-          model.PropertiesChangedEvt += value;
+          model.PropertiesChangedEvent += value;
       }
       remove {
-          model.PropertiesChangedEvt -= value;
+          model.PropertiesChangedEvent -= value;
       }
    }
 
    /// <summary>Event triggered when a child is added from the wrapped model.</summary>
-   public event EventHandler<Efl.IModelChildAddedEvt_Args> ChildAddedEvt
+   public event EventHandler<Efl.ModelChildAddedEventArgs> ChildAddedEvent
    {
       add {
-          model.ChildAddedEvt += value;
+          model.ChildAddedEvent += value;
       }
       remove {
-          model.ChildAddedEvt -= value;
+          model.ChildAddedEvent -= value;
       }
    }
 
    /// <summary>Event triggered when a child is removed from the wrapped model.</summary>
-   public event EventHandler<Efl.IModelChildRemovedEvt_Args> ChildRemovedEvt
+   public event EventHandler<Efl.ModelChildRemovedEventArgs> ChildRemovedEvent
    {
       add {
-          model.ChildRemovedEvt += value;
+          model.ChildRemovedEvent += value;
       }
       remove {
-          model.ChildRemovedEvt -= value;
+          model.ChildRemovedEvent -= value;
       }
    }
 
    /// <summary>Event triggered when the number of children changes.</summary>
-   public event EventHandler ChildrenCountChangedEvt
+   public event EventHandler ChildrenCountChangedEvent
    {
       add {
-          model.ChildrenCountChangedEvt += value;
+          model.ChildrenCountChangedEvent += value;
       }
       remove {
-          model.ChildrenCountChangedEvt -= value;
+          model.ChildrenCountChangedEvent -= value;
       }
    }
 }

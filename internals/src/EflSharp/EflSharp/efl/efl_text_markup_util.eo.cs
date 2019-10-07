@@ -32,6 +32,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_markup_util_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="TextMarkupUtil"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public TextMarkupUtil(Efl.Object parent= null
@@ -66,35 +67,50 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
     /// <param name="text">The text (UTF-8) to convert to markup</param>
     /// <returns>The markup representation of given text</returns>
     public static System.String TextToMarkup(System.String text) {
-                                 var _ret_var = Efl.TextMarkupUtil.NativeMethods.efl_text_markup_util_text_to_markup_ptr.Value.Delegate(text);
+        var _ret_var = Efl.TextMarkupUtil.NativeMethods.efl_text_markup_util_text_to_markup_ptr.Value.Delegate(text);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Converts a given (UTF-8) text to a markup-compatible string. This is used mainly to set a plain text with the $.markup_set property.</summary>
     /// <param name="text">The markup-text to convert to text (UTF-8)</param>
     /// <returns>The text representation of given format</returns>
     public static System.String MarkupToText(System.String text) {
-                                 var _ret_var = Efl.TextMarkupUtil.NativeMethods.efl_text_markup_util_markup_to_text_ptr.Value.Delegate(text);
+        var _ret_var = Efl.TextMarkupUtil.NativeMethods.efl_text_markup_util_markup_to_text_ptr.Value.Delegate(text);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.TextMarkupUtil.efl_text_markup_util_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -118,7 +134,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = TextMarkupUtil.TextToMarkup(text);
@@ -129,8 +145,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -152,7 +167,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    System.String _ret_var = default(System.String);
+                System.String _ret_var = default(System.String);
                 try
                 {
                     _ret_var = TextMarkupUtil.MarkupToText(text);
@@ -163,8 +178,7 @@ public class TextMarkupUtil : Efl.Eo.EoWrapper
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {

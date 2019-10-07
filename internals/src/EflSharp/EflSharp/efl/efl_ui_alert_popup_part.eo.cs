@@ -34,6 +34,7 @@ public class AlertPopupPart : Efl.Ui.LayoutPartText
 
     [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
         efl_ui_alert_popup_part_class_get();
+
     /// <summary>Initializes a new instance of the <see cref="AlertPopupPart"/> class.</summary>
     /// <param name="parent">Parent instance.</param>
     public AlertPopupPart(Efl.Object parent= null
@@ -64,22 +65,35 @@ public class AlertPopupPart : Efl.Ui.LayoutPartText
     {
     }
 
+
     private static IntPtr GetEflClassStatic()
     {
         return Efl.Ui.AlertPopupPart.efl_ui_alert_popup_part_class_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Ui.LayoutPartText.NativeMethods
     {
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
-            descs.AddRange(base.GetEoOps(type));
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
+            descs.AddRange(base.GetEoOps(type, false));
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
@@ -94,7 +108,6 @@ public class AlertPopupPart : Efl.Ui.LayoutPartText
 }
 }
 }
-
 }
 
 #if EFL_BETA

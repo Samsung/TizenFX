@@ -13,80 +13,77 @@ namespace Io {
 /// <summary>Generic interface for objects that can read data into a provided memory.
 /// This interface allows external objects to transparently monitor for new data and as it to be read into a provided memory slice.
 /// 
-/// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.
-/// (Since EFL 1.22)</summary>
-[Efl.Io.IReaderConcrete.NativeMethods]
+/// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.</summary>
+/// <since_tizen> 6 </since_tizen>
+[Efl.Io.ReaderConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IReader : 
     Efl.Eo.IWrapper, IDisposable
 {
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <returns><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</returns>
-bool GetCanRead();
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-/// (Since EFL 1.22)</summary>
-/// <param name="can_read"><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</param>
-void SetCanRead(bool can_read);
-    /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <returns><c>true</c> if end of stream, <c>false</c> otherwise</returns>
-bool GetEos();
-    /// <summary>If <c>true</c> will notify end of stream.
-/// (Since EFL 1.22)</summary>
-/// <param name="is_eos"><c>true</c> if end of stream, <c>false</c> otherwise</param>
-void SetEos(bool is_eos);
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</returns>
+    bool GetCanRead();
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <returns><c>true</c> if end of stream, <c>false</c> otherwise</returns>
+    bool GetEos();
+
     /// <summary>Reads data into a pre-allocated buffer.
-/// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is to be defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
-/// 
-/// You can understand this method as read(2) libc function.
-/// (Since EFL 1.22)</summary>
-/// <param name="rw_slice">Provides a pre-allocated memory to be filled up to rw_slice.len. It will be populated and the length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
-/// <returns>0 on succeed, a mapping of errno otherwise</returns>
-Eina.Error Read(ref  Eina.RwSlice rw_slice);
-                        /// <summary>Notifies can_read property changed.
+    /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is to be defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
+    /// 
+    /// You can understand this method as read(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <param name="rw_slice">Provides a pre-allocated memory to be filled up to rw_slice.len. It will be populated and the length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
+    /// <returns>0 on succeed, a mapping of errno otherwise</returns>
+    Eina.Error Read(ref  Eina.RwSlice rw_slice);
+
+    /// <summary>Notifies can_read property changed.
     /// If <see cref="Efl.Io.IReader.CanRead"/> is <c>true</c> there is data to <see cref="Efl.Io.IReader.Read"/> without blocking/error. If <see cref="Efl.Io.IReader.CanRead"/> is <c>false</c>, <see cref="Efl.Io.IReader.Read"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
-    event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt;
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.ReaderCanReadChangedEventArgs"/></value>
+    event EventHandler<Efl.Io.ReaderCanReadChangedEventArgs> CanReadChangedEvent;
     /// <summary>Notifies end of stream, when property is marked as true.
     /// If this is used alongside with an <see cref="Efl.Io.ICloser"/>, then it should be emitted before that call.
     /// 
     /// It should be emitted only once for an object unless it implements <see cref="Efl.Io.IPositioner.Seek"/>.
     /// 
-    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.
-    /// (Since EFL 1.22)</summary>
-    event EventHandler EosEvt;
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    event EventHandler EosEvent;
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     bool CanRead {
         get;
-        set;
     }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     bool Eos {
         get;
-        set;
     }
+
 }
-/// <summary>Event argument wrapper for event <see cref="Efl.Io.IReader.CanReadChangedEvt"/>.</summary>
+
+/// <summary>Event argument wrapper for event <see cref="Efl.Io.IReader.CanReadChangedEvent"/>.</summary>
 [Efl.Eo.BindingEntity]
-public class IReaderCanReadChangedEvt_Args : EventArgs {
+public class ReaderCanReadChangedEventArgs : EventArgs {
     /// <summary>Actual event payload.</summary>
     /// <value>Notifies can_read property changed.</value>
     public bool arg { get; set; }
 }
+
 /// <summary>Generic interface for objects that can read data into a provided memory.
 /// This interface allows external objects to transparently monitor for new data and as it to be read into a provided memory slice.
 /// 
-/// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.
-/// (Since EFL 1.22)</summary>
-sealed public  class IReaderConcrete :
+/// Calls to <see cref="Efl.Io.IReader.Read"/> may or may not block, that&apos;s not up to this interface to specify. The user can check based on <see cref="Efl.Io.IReader.Eos"/> property and signal if the stream reached an end, with event &quot;can_read,changed&quot; or property <see cref="Efl.Io.IReader.CanRead"/> to known whenever a read would have data to return.</summary>
+/// <since_tizen> 6 </since_tizen>
+public sealed class ReaderConcrete :
     Efl.Eo.EoWrapper
     , IReader
     
@@ -96,7 +93,7 @@ sealed public  class IReaderConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IReaderConcrete))
+            if (((object)this).GetType() == typeof(ReaderConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -110,26 +107,27 @@ sealed public  class IReaderConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IReaderConcrete(ConstructingHandle ch) : base(ch)
+    private ReaderConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_io_reader_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IReader"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IReaderConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ReaderConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
     /// <summary>Notifies can_read property changed.
     /// If <see cref="Efl.Io.IReader.CanRead"/> is <c>true</c> there is data to <see cref="Efl.Io.IReader.Read"/> without blocking/error. If <see cref="Efl.Io.IReader.CanRead"/> is <c>false</c>, <see cref="Efl.Io.IReader.Read"/> would either block or fail.
     /// 
-    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.
-    /// (Since EFL 1.22)</summary>
-    /// <value><see cref="Efl.Io.IReaderCanReadChangedEvt_Args"/></value>
-    public event EventHandler<Efl.Io.IReaderCanReadChangedEvt_Args> CanReadChangedEvt
+    /// Note that usually this event is dispatched from inside <see cref="Efl.Io.IReader.Read"/>, thus before it returns.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// <value><see cref="Efl.Io.ReaderCanReadChangedEventArgs"/></value>
+    public event EventHandler<Efl.Io.ReaderCanReadChangedEventArgs> CanReadChangedEvent
     {
         add
         {
@@ -140,7 +138,7 @@ sealed public  class IReaderConcrete :
                     var obj = Efl.Eo.Globals.WrapperSupervisorPtrToManaged(data).Target;
                     if (obj != null)
                     {
-                        Efl.Io.IReaderCanReadChangedEvt_Args args = new Efl.Io.IReaderCanReadChangedEvt_Args();
+                        Efl.Io.ReaderCanReadChangedEventArgs args = new Efl.Io.ReaderCanReadChangedEventArgs();
                         args.arg = Marshal.ReadByte(evt.Info) != 0;
                         try
                         {
@@ -168,8 +166,10 @@ sealed public  class IReaderConcrete :
             }
         }
     }
-    /// <summary>Method to raise event CanReadChangedEvt.</summary>
-    public void OnCanReadChangedEvt(Efl.Io.IReaderCanReadChangedEvt_Args e)
+
+    /// <summary>Method to raise event CanReadChangedEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnCanReadChangedEvent(Efl.Io.ReaderCanReadChangedEventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_CAN_READ_CHANGED";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -189,14 +189,15 @@ sealed public  class IReaderConcrete :
             Marshal.FreeHGlobal(info);
         }
     }
+
     /// <summary>Notifies end of stream, when property is marked as true.
     /// If this is used alongside with an <see cref="Efl.Io.ICloser"/>, then it should be emitted before that call.
     /// 
     /// It should be emitted only once for an object unless it implements <see cref="Efl.Io.IPositioner.Seek"/>.
     /// 
-    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.
-    /// (Since EFL 1.22)</summary>
-    public event EventHandler EosEvt
+    /// The property <see cref="Efl.Io.IReader.CanRead"/> should change to <c>false</c> before this event is dispatched.</summary>
+    /// <since_tizen> 6 </since_tizen>
+    public event EventHandler EosEvent
     {
         add
         {
@@ -234,8 +235,10 @@ sealed public  class IReaderConcrete :
             }
         }
     }
-    /// <summary>Method to raise event EosEvt.</summary>
-    public void OnEosEvt(EventArgs e)
+
+    /// <summary>Method to raise event EosEvent.</summary>
+    /// <param name="e">Event to raise.</param>
+    public void OnEosEvent(EventArgs e)
     {
         var key = "_EFL_IO_READER_EVENT_EOS";
         IntPtr desc = Efl.EventDescription.GetNative(efl.Libs.Efl, key);
@@ -247,74 +250,89 @@ sealed public  class IReaderConcrete :
 
         Efl.Eo.Globals.efl_event_callback_call(this.NativeHandle, desc, IntPtr.Zero);
     }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+
+
+#pragma warning disable CS0628
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</returns>
     public bool GetCanRead() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_can_read_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="can_read"><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</param>
-    public void SetCanRead(bool can_read) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate(this.NativeHandle,can_read);
+    protected void SetCanRead(bool can_read) {
+        Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_can_read_set_ptr.Value.Delegate(this.NativeHandle,can_read);
         Eina.Error.RaiseIfUnhandledException();
-                         }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+        
+    }
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <returns><c>true</c> if end of stream, <c>false</c> otherwise</returns>
     public bool GetEos() {
-         var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_eos_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+    }
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="is_eos"><c>true</c> if end of stream, <c>false</c> otherwise</param>
-    public void SetEos(bool is_eos) {
-                                 Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate(this.NativeHandle,is_eos);
+    protected void SetEos(bool is_eos) {
+        Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_eos_set_ptr.Value.Delegate(this.NativeHandle,is_eos);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Reads data into a pre-allocated buffer.
     /// This operation will be executed immediately and may or may not block the caller thread for some time. The details of blocking behavior is to be defined by the implementation and may be subject to other parameters such as non-blocking flags, maximum timeout or even retry attempts.
     /// 
-    /// You can understand this method as read(2) libc function.
-    /// (Since EFL 1.22)</summary>
+    /// You can understand this method as read(2) libc function.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <param name="rw_slice">Provides a pre-allocated memory to be filled up to rw_slice.len. It will be populated and the length will be set to the actually used amount of bytes, which can be smaller than the request.</param>
     /// <returns>0 on succeed, a mapping of errno otherwise</returns>
     public Eina.Error Read(ref  Eina.RwSlice rw_slice) {
-                                 var _ret_var = Efl.Io.IReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate(this.NativeHandle,ref rw_slice);
+        var _ret_var = Efl.Io.ReaderConcrete.NativeMethods.efl_io_reader_read_ptr.Value.Delegate(this.NativeHandle,ref rw_slice);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
-    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.
-    /// (Since EFL 1.22)</summary>
+        return _ret_var;
+    }
+
+    /// <summary>If <c>true</c> will notify <see cref="Efl.Io.IReader.Read"/> can be called without blocking or failing.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if it can be read without blocking or failing, <c>false</c> otherwise</value>
     public bool CanRead {
         get { return GetCanRead(); }
-        set { SetCanRead(value); }
+        protected set { SetCanRead(value); }
     }
-    /// <summary>If <c>true</c> will notify end of stream.
-    /// (Since EFL 1.22)</summary>
+
+    /// <summary>If <c>true</c> will notify end of stream.</summary>
+    /// <since_tizen> 6 </since_tizen>
     /// <value><c>true</c> if end of stream, <c>false</c> otherwise</value>
     public bool Eos {
         get { return GetEos(); }
-        set { SetEos(value); }
+        protected set { SetEos(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Io.IReaderConcrete.efl_io_reader_interface_get();
+        return Efl.Io.ReaderConcrete.efl_io_reader_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -329,16 +347,6 @@ sealed public  class IReaderConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_can_read_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_can_read_get_static_delegate) });
             }
 
-            if (efl_io_reader_can_read_set_static_delegate == null)
-            {
-                efl_io_reader_can_read_set_static_delegate = new efl_io_reader_can_read_set_delegate(can_read_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetCanRead") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_can_read_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_can_read_set_static_delegate) });
-            }
-
             if (efl_io_reader_eos_get_static_delegate == null)
             {
                 efl_io_reader_eos_get_static_delegate = new efl_io_reader_eos_get_delegate(eos_get);
@@ -347,16 +355,6 @@ sealed public  class IReaderConcrete :
             if (methods.FirstOrDefault(m => m.Name == "GetEos") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_eos_get"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_eos_get_static_delegate) });
-            }
-
-            if (efl_io_reader_eos_set_static_delegate == null)
-            {
-                efl_io_reader_eos_set_static_delegate = new efl_io_reader_eos_set_delegate(eos_set);
-            }
-
-            if (methods.FirstOrDefault(m => m.Name == "SetEos") != null)
-            {
-                descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_eos_set"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_eos_set_static_delegate) });
             }
 
             if (efl_io_reader_read_static_delegate == null)
@@ -369,13 +367,24 @@ sealed public  class IReaderConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_io_reader_read"), func = Marshal.GetFunctionPointerForDelegate(efl_io_reader_read_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Io.IReaderConcrete.efl_io_reader_interface_get();
+            return Efl.Io.ReaderConcrete.efl_io_reader_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -394,7 +403,7 @@ sealed public  class IReaderConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IReader)ws.Target).GetCanRead();
@@ -405,8 +414,7 @@ sealed public  class IReaderConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -424,33 +432,6 @@ sealed public  class IReaderConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_io_reader_can_read_set_api_delegate> efl_io_reader_can_read_set_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_can_read_set_api_delegate>(Module, "efl_io_reader_can_read_set");
 
-        private static void can_read_set(System.IntPtr obj, System.IntPtr pd, bool can_read)
-        {
-            Eina.Log.Debug("function efl_io_reader_can_read_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IReader)ws.Target).SetCanRead(can_read);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_io_reader_can_read_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), can_read);
-            }
-        }
-
-        private static efl_io_reader_can_read_set_delegate efl_io_reader_can_read_set_static_delegate;
-
         [return: MarshalAs(UnmanagedType.U1)]
         private delegate bool efl_io_reader_eos_get_delegate(System.IntPtr obj, System.IntPtr pd);
 
@@ -465,7 +446,7 @@ sealed public  class IReaderConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((IReader)ws.Target).GetEos();
@@ -476,8 +457,7 @@ sealed public  class IReaderConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -495,33 +475,6 @@ sealed public  class IReaderConcrete :
 
         public static Efl.Eo.FunctionWrapper<efl_io_reader_eos_set_api_delegate> efl_io_reader_eos_set_ptr = new Efl.Eo.FunctionWrapper<efl_io_reader_eos_set_api_delegate>(Module, "efl_io_reader_eos_set");
 
-        private static void eos_set(System.IntPtr obj, System.IntPtr pd, bool is_eos)
-        {
-            Eina.Log.Debug("function efl_io_reader_eos_set was called");
-            var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
-            if (ws != null)
-            {
-                                    
-                try
-                {
-                    ((IReader)ws.Target).SetEos(is_eos);
-                }
-                catch (Exception e)
-                {
-                    Eina.Log.Warning($"Callback error: {e.ToString()}");
-                    Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
-                }
-
-                        
-            }
-            else
-            {
-                efl_io_reader_eos_set_ptr.Value.Delegate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)), is_eos);
-            }
-        }
-
-        private static efl_io_reader_eos_set_delegate efl_io_reader_eos_set_static_delegate;
-
         
         private delegate Eina.Error efl_io_reader_read_delegate(System.IntPtr obj, System.IntPtr pd,  ref  Eina.RwSlice rw_slice);
 
@@ -536,7 +489,7 @@ sealed public  class IReaderConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Error _ret_var = default(Eina.Error);
+                Eina.Error _ret_var = default(Eina.Error);
                 try
                 {
                     _ret_var = ((IReader)ws.Target).Read(ref rw_slice);
@@ -547,8 +500,7 @@ sealed public  class IReaderConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -563,12 +515,11 @@ sealed public  class IReaderConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_IoIReaderConcrete_ExtensionMethods {
+public static class Efl_IoReaderConcrete_ExtensionMethods {
     public static Efl.BindableProperty<bool> CanRead<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Io.IReader, T>magic = null) where T : Efl.Io.IReader {
         return new Efl.BindableProperty<bool>("can_read", fac);
     }

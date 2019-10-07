@@ -10,30 +10,36 @@ namespace Efl {
 
 namespace Gfx {
 
-/// <summary>Interface for objects which can be oriented.</summary>
-[Efl.Gfx.IImageOrientableConcrete.NativeMethods]
+/// <summary>Interface for images which can be rotated or flipped (mirrored).
+/// Compare with <see cref="Efl.Ui.ILayoutOrientable"/> which works for layout objects and does not include rotation.</summary>
+[Efl.Gfx.ImageOrientableConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface IImageOrientable : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
-/// This can be used to set the rotation on an image or a window, for instance.</summary>
-/// <returns>The final orientation of the object.</returns>
-Efl.Gfx.ImageOrientation GetImageOrientation();
+    /// This can be used to set the rotation on an image or a window, for instance.</summary>
+    /// <returns>The final orientation of the object.</returns>
+    Efl.Gfx.ImageOrientation GetImageOrientation();
+
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
-/// This can be used to set the rotation on an image or a window, for instance.</summary>
-/// <param name="dir">The final orientation of the object.</param>
-void SetImageOrientation(Efl.Gfx.ImageOrientation dir);
-            /// <summary>Control the orientation (rotation and flipping) of a visual object.
+    /// This can be used to set the rotation on an image or a window, for instance.</summary>
+    /// <param name="dir">The final orientation of the object.<br/>The default value is <see cref="Efl.Gfx.ImageOrientation.None"/>.</param>
+    void SetImageOrientation(Efl.Gfx.ImageOrientation dir);
+
+    /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <value>The final orientation of the object.</value>
     Efl.Gfx.ImageOrientation ImageOrientation {
         get;
         set;
     }
+
 }
-/// <summary>Interface for objects which can be oriented.</summary>
-sealed public  class IImageOrientableConcrete :
+
+/// <summary>Interface for images which can be rotated or flipped (mirrored).
+/// Compare with <see cref="Efl.Ui.ILayoutOrientable"/> which works for layout objects and does not include rotation.</summary>
+public sealed class ImageOrientableConcrete :
     Efl.Eo.EoWrapper
     , IImageOrientable
     
@@ -43,7 +49,7 @@ sealed public  class IImageOrientableConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(IImageOrientableConcrete))
+            if (((object)this).GetType() == typeof(ImageOrientableConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -57,34 +63,39 @@ sealed public  class IImageOrientableConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private IImageOrientableConcrete(ConstructingHandle ch) : base(ch)
+    private ImageOrientableConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_gfx_image_orientable_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="IImageOrientable"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private IImageOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private ImageOrientableConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <returns>The final orientation of the object.</returns>
     public Efl.Gfx.ImageOrientation GetImageOrientation() {
-         var _ret_var = Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_get_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.Gfx.ImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_get_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
-    /// <param name="dir">The final orientation of the object.</param>
+    /// <param name="dir">The final orientation of the object.<br/>The default value is <see cref="Efl.Gfx.ImageOrientation.None"/>.</param>
     public void SetImageOrientation(Efl.Gfx.ImageOrientation dir) {
-                                 Efl.Gfx.IImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
+        Efl.Gfx.ImageOrientableConcrete.NativeMethods.efl_gfx_image_orientation_set_ptr.Value.Delegate(this.NativeHandle,dir);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Control the orientation (rotation and flipping) of a visual object.
     /// This can be used to set the rotation on an image or a window, for instance.</summary>
     /// <value>The final orientation of the object.</value>
@@ -92,18 +103,22 @@ sealed public  class IImageOrientableConcrete :
         get { return GetImageOrientation(); }
         set { SetImageOrientation(value); }
     }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.Gfx.IImageOrientableConcrete.efl_gfx_image_orientable_interface_get();
+        return Efl.Gfx.ImageOrientableConcrete.efl_gfx_image_orientable_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -128,13 +143,24 @@ sealed public  class IImageOrientableConcrete :
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_gfx_image_orientation_set"), func = Marshal.GetFunctionPointerForDelegate(efl_gfx_image_orientation_set_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.Gfx.IImageOrientableConcrete.efl_gfx_image_orientable_interface_get();
+            return Efl.Gfx.ImageOrientableConcrete.efl_gfx_image_orientable_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -153,7 +179,7 @@ sealed public  class IImageOrientableConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.Gfx.ImageOrientation _ret_var = default(Efl.Gfx.ImageOrientation);
+                Efl.Gfx.ImageOrientation _ret_var = default(Efl.Gfx.ImageOrientation);
                 try
                 {
                     _ret_var = ((IImageOrientable)ws.Target).GetImageOrientation();
@@ -164,8 +190,7 @@ sealed public  class IImageOrientableConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -189,7 +214,7 @@ sealed public  class IImageOrientableConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((IImageOrientable)ws.Target).SetImageOrientation(dir);
@@ -200,7 +225,7 @@ sealed public  class IImageOrientableConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -215,12 +240,11 @@ sealed public  class IImageOrientableConcrete :
 }
 }
 }
-
 }
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class Efl_GfxIImageOrientableConcrete_ExtensionMethods {
+public static class Efl_GfxImageOrientableConcrete_ExtensionMethods {
     public static Efl.BindableProperty<Efl.Gfx.ImageOrientation> ImageOrientation<T>(this Efl.Ui.ItemFactory<T> fac, Efl.Csharp.ExtensionTag<Efl.Gfx.IImageOrientable, T>magic = null) where T : Efl.Gfx.IImageOrientable {
         return new Efl.BindableProperty<Efl.Gfx.ImageOrientation>("image_orientation", fac);
     }
@@ -233,7 +257,7 @@ namespace Efl {
 namespace Gfx {
 
 /// <summary>An orientation type, to rotate and flip images.
-/// This is similar to EXIF&apos;s orientation. Directional values (<c>up</c>, <c>down</c>, <c>left</c>, <c>right</c>) indicate the final direction in which the top of the image will be facing (e.g. a picture of a house will have its roof pointing to the right if the <c>right</c> orientation is used). Flipping values (<c>flip_horizontal</c> and <c>flip_vertical</c>) can be additionaly added to produce a mirroring in each axis. Not to be confused with <see cref="Efl.Ui.LayoutOrientation"/> which is meant for widgets, rather than images and canvases. This enum is used to rotate images, videos and the like.</summary>
+/// This is similar to EXIF&apos;s orientation. Directional values (<c>up</c>, <c>down</c>, <c>left</c>, <c>right</c>) indicate the final direction in which the top of the image will be facing (e.g. a picture of a house will have its roof pointing to the right if the <c>right</c> orientation is used). Flipping values (<c>flip_horizontal</c> and <c>flip_vertical</c>) can be additionally added to produce a mirroring in each axis. Not to be confused with <see cref="Efl.Ui.LayoutOrientation"/> which is meant for widgets, rather than images and canvases. This enum is used to rotate images, videos and the like.</summary>
 [Efl.Eo.BindingEntity]
 public enum ImageOrientation
 {
@@ -256,8 +280,6 @@ FlipVertical = 8,
 /// <summary>Bitmask that can be used to isolate flipping values, that is, <c>flip_vertical</c> and <c>flip_horizontal</c>.</summary>
 FlipBitmask = 12,
 }
-
 }
-
 }
 

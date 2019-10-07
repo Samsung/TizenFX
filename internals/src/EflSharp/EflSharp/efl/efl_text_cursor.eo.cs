@@ -10,129 +10,159 @@ namespace Efl {
 
 /// <summary>Cursor API</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-[Efl.ITextCursorConcrete.NativeMethods]
+[Efl.TextCursorConcrete.NativeMethods]
 [Efl.Eo.BindingEntity]
 public interface ITextCursor : 
     Efl.Eo.IWrapper, IDisposable
 {
     /// <summary>The object&apos;s main cursor.</summary>
-/// <param name="get_type">Cursor type</param>
-/// <returns>Text cursor object</returns>
-Efl.TextCursorCursor GetTextCursor(Efl.TextCursorGetType get_type);
+    /// <param name="get_type">Cursor type</param>
+    /// <returns>Text cursor object</returns>
+    Efl.TextCursorCursor GetTextCursor(Efl.TextCursorGetType get_type);
+
     /// <summary>Cursor position</summary>
-/// <param name="cur">Cursor object</param>
-/// <returns>Cursor position</returns>
-int GetCursorPosition(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    /// <returns>Cursor position</returns>
+    int GetCursorPosition(Efl.TextCursorCursor cur);
+
     /// <summary>Cursor position</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="position">Cursor position</param>
-void SetCursorPosition(Efl.TextCursorCursor cur, int position);
+    /// <param name="cur">Cursor object</param>
+    /// <param name="position">Cursor position</param>
+    void SetCursorPosition(Efl.TextCursorCursor cur, int position);
+
     /// <summary>The content of the cursor (the character under the cursor)</summary>
-/// <param name="cur">Cursor object</param>
-/// <returns>The unicode codepoint of the character</returns>
-Eina.Unicode GetCursorContent(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    /// <returns>The unicode codepoint of the character</returns>
+    Eina.Unicode GetCursorContent(Efl.TextCursorCursor cur);
+
     /// <summary>Returns the geometry of two cursors (&quot;split cursor&quot;), if logical cursor is between LTR/RTL text, also considering paragraph direction. Upper cursor is shown for the text of the same direction as paragraph, lower cursor - for opposite.
-/// Split cursor geometry is valid only  in &apos;|&apos; cursor mode. In this case <c>true</c> is returned and <c>cx2</c>, <c>cy2</c>, <c>cw2</c>, <c>ch2</c> are set.</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="ctype">The type of the cursor.</param>
-/// <param name="cx">The x of the cursor (or upper cursor)</param>
-/// <param name="cy">The y of the cursor (or upper cursor)</param>
-/// <param name="cw">The width of the cursor (or upper cursor)</param>
-/// <param name="ch">The height of the cursor (or upper cursor)</param>
-/// <param name="cx2">The x of the lower cursor</param>
-/// <param name="cy2">The y of the lower cursor</param>
-/// <param name="cw2">The width of the lower cursor</param>
-/// <param name="ch2">The height of the lower cursor</param>
-/// <returns><c>true</c> if split cursor, <c>false</c> otherwise.</returns>
-bool GetCursorGeometry(Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2);
+    /// Split cursor geometry is valid only  in &apos;|&apos; cursor mode. In this case <c>true</c> is returned and <c>cx2</c>, <c>cy2</c>, <c>cw2</c>, <c>ch2</c> are set.</summary>
+    /// <param name="cur">Cursor object</param>
+    /// <param name="ctype">The type of the cursor.</param>
+    /// <param name="cx">The x of the cursor (or upper cursor)</param>
+    /// <param name="cy">The y of the cursor (or upper cursor)</param>
+    /// <param name="cw">The width of the cursor (or upper cursor)</param>
+    /// <param name="ch">The height of the cursor (or upper cursor)</param>
+    /// <param name="cx2">The x of the lower cursor</param>
+    /// <param name="cy2">The y of the lower cursor</param>
+    /// <param name="cw2">The width of the lower cursor</param>
+    /// <param name="ch2">The height of the lower cursor</param>
+    /// <returns><c>true</c> if split cursor, <c>false</c> otherwise.</returns>
+    bool GetCursorGeometry(Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2);
+
     /// <summary>Create new cursor</summary>
-/// <returns>Cursor object</returns>
-Efl.TextCursorCursor NewCursor();
+    /// <returns>Cursor object</returns>
+    Efl.TextCursorCursor NewCursor();
+
     /// <summary>Free existing cursor</summary>
-/// <param name="cur">Cursor object</param>
-void CursorFree(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorFree(Efl.TextCursorCursor cur);
+
     /// <summary>Check if two cursors are equal</summary>
-/// <param name="cur1">Cursor 1 object</param>
-/// <param name="cur2">Cursor 2 object</param>
-/// <returns><c>true</c> if cursors are equal, <c>false</c> otherwise</returns>
-bool CursorEqual(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2);
+    /// <param name="cur1">Cursor 1 object</param>
+    /// <param name="cur2">Cursor 2 object</param>
+    /// <returns><c>true</c> if cursors are equal, <c>false</c> otherwise</returns>
+    bool CursorEqual(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2);
+
     /// <summary>Compare two cursors</summary>
-/// <param name="cur1">Cursor 1 object</param>
-/// <param name="cur2">Cursor 2 object</param>
-/// <returns>Difference between cursors</returns>
-int CursorCompare(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2);
+    /// <param name="cur1">Cursor 1 object</param>
+    /// <param name="cur2">Cursor 2 object</param>
+    /// <returns>Difference between cursors</returns>
+    int CursorCompare(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2);
+
     /// <summary>Copy existing cursor</summary>
-/// <param name="dst">Destination cursor</param>
-/// <param name="src">Source cursor</param>
-void CursorCopy(Efl.TextCursorCursor dst, Efl.TextCursorCursor src);
+    /// <param name="dst">Destination cursor</param>
+    /// <param name="src">Source cursor</param>
+    void CopyCursor(Efl.TextCursorCursor dst, Efl.TextCursorCursor src);
+
     /// <summary>Advances to the next character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorCharNext(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorCharNext(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the previous character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorCharPrev(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorCharPrev(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the next grapheme cluster</summary>
-/// <param name="cur">Cursor object</param>
-void CursorClusterNext(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorClusterNext(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the previous grapheme cluster</summary>
-/// <param name="cur">Cursor object</param>
-void CursorClusterPrev(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorClusterPrev(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the first character in this paragraph</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphCharFirst(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphCharFirst(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the last character in this paragraph</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphCharLast(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphCharLast(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current word start</summary>
-/// <param name="cur">Cursor object</param>
-void CursorWordStart(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorWordStart(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current word end</summary>
-/// <param name="cur">Cursor object</param>
-void CursorWordEnd(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorWordEnd(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current line first character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorLineCharFirst(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorLineCharFirst(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current line last character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorLineCharLast(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorLineCharLast(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current paragraph first character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphFirst(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphFirst(Efl.TextCursorCursor cur);
+
     /// <summary>Advance to current paragraph last character</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphLast(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphLast(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the start of the next text node</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphNext(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphNext(Efl.TextCursorCursor cur);
+
     /// <summary>Advances to the end of the previous text node</summary>
-/// <param name="cur">Cursor object</param>
-void CursorParagraphPrev(Efl.TextCursorCursor cur);
+    /// <param name="cur">Cursor object</param>
+    void CursorParagraphPrev(Efl.TextCursorCursor cur);
+
     /// <summary>Jump the cursor by the given number of lines</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="by">Number of lines</param>
-void CursorLineJumpBy(Efl.TextCursorCursor cur, int by);
+    /// <param name="cur">Cursor object</param>
+    /// <param name="by">Number of lines</param>
+    void CursorLineJumpBy(Efl.TextCursorCursor cur, int by);
+
     /// <summary>Set cursor coordinates</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="x">X coord to set by.</param>
-/// <param name="y">Y coord to set by.</param>
-void SetCursorCoord(Efl.TextCursorCursor cur, int x, int y);
+    /// <param name="cur">Cursor object</param>
+    /// <param name="x">X coord to set by.</param>
+    /// <param name="y">Y coord to set by.</param>
+    void SetCursorCoord(Efl.TextCursorCursor cur, int x, int y);
+
     /// <summary>Set cursor coordinates according to grapheme clusters. It does not allow to put a cursor to the middle of a grapheme cluster.</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="x">X coord to set by.</param>
-/// <param name="y">Y coord to set by.</param>
-void SetCursorClusterCoord(Efl.TextCursorCursor cur, int x, int y);
+    /// <param name="cur">Cursor object</param>
+    /// <param name="x">X coord to set by.</param>
+    /// <param name="y">Y coord to set by.</param>
+    void SetCursorClusterCoord(Efl.TextCursorCursor cur, int x, int y);
+
     /// <summary>Adds text to the current cursor position and set the cursor to *after* the start of the text just added.</summary>
-/// <param name="cur">Cursor object</param>
-/// <param name="text">Text to append (UTF-8 format).</param>
-/// <returns>Length of the appended text.</returns>
-int CursorTextInsert(Efl.TextCursorCursor cur, System.String text);
+    /// <param name="cur">Cursor object</param>
+    /// <param name="text">Text to append (UTF-8 format).</param>
+    /// <returns>Length of the appended text.</returns>
+    int InsertCursorText(Efl.TextCursorCursor cur, System.String text);
+
     /// <summary>Deletes a single character from position pointed by given cursor.</summary>
-/// <param name="cur">Cursor object</param>
-void CursorCharDelete(Efl.TextCursorCursor cur);
-                                                                                                                    }
+    /// <param name="cur">Cursor object</param>
+    void DeleteCursorChar(Efl.TextCursorCursor cur);
+
+}
+
 /// <summary>Cursor API</summary>
 /// <remarks>This is a <b>BETA</b> class. It can be modified or removed in the future. Do not use it for product development.</remarks>
-sealed public  class ITextCursorConcrete :
+public sealed class TextCursorConcrete :
     Efl.Eo.EoWrapper
     , ITextCursor
     
@@ -142,7 +172,7 @@ sealed public  class ITextCursorConcrete :
     {
         get
         {
-            if (((object)this).GetType() == typeof(ITextCursorConcrete))
+            if (((object)this).GetType() == typeof(TextCursorConcrete))
             {
                 return GetEflClassStatic();
             }
@@ -156,50 +186,57 @@ sealed public  class ITextCursorConcrete :
     /// <summary>Subclasses should override this constructor if they are expected to be instantiated from native code.
     /// Do not call this constructor directly.</summary>
     /// <param name="ch">Tag struct storing the native handle of the object being constructed.</param>
-    private ITextCursorConcrete(ConstructingHandle ch) : base(ch)
+    private TextCursorConcrete(ConstructingHandle ch) : base(ch)
     {
     }
 
     [System.Runtime.InteropServices.DllImport("libefl.so.1")] internal static extern System.IntPtr
         efl_text_cursor_interface_get();
+
     /// <summary>Initializes a new instance of the <see cref="ITextCursor"/> class.
     /// Internal usage: This is used when interacting with C code and should not be used directly.</summary>
     /// <param name="wh">The native pointer to be wrapped.</param>
-    private ITextCursorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
+    private TextCursorConcrete(Efl.Eo.Globals.WrappingHandle wh) : base(wh)
     {
     }
 
+#pragma warning disable CS0628
     /// <summary>The object&apos;s main cursor.</summary>
     /// <param name="get_type">Cursor type</param>
     /// <returns>Text cursor object</returns>
     public Efl.TextCursorCursor GetTextCursor(Efl.TextCursorGetType get_type) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate(this.NativeHandle,get_type);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_get_ptr.Value.Delegate(this.NativeHandle,get_type);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Cursor position</summary>
     /// <param name="cur">Cursor object</param>
     /// <returns>Cursor position</returns>
     public int GetCursorPosition(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate(this.NativeHandle,cur);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_position_get_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Cursor position</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="position">Cursor position</param>
     public void SetCursorPosition(Efl.TextCursorCursor cur, int position) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate(this.NativeHandle,cur, position);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_position_set_ptr.Value.Delegate(this.NativeHandle,cur, position);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>The content of the cursor (the character under the cursor)</summary>
     /// <param name="cur">Cursor object</param>
     /// <returns>The unicode codepoint of the character</returns>
     public Eina.Unicode GetCursorContent(Efl.TextCursorCursor cur) {
-                                 var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate(this.NativeHandle,cur);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_content_get_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Returns the geometry of two cursors (&quot;split cursor&quot;), if logical cursor is between LTR/RTL text, also considering paragraph direction. Upper cursor is shown for the text of the same direction as paragraph, lower cursor - for opposite.
     /// Split cursor geometry is valid only  in &apos;|&apos; cursor mode. In this case <c>true</c> is returned and <c>cx2</c>, <c>cy2</c>, <c>cw2</c>, <c>ch2</c> are set.</summary>
     /// <param name="cur">Cursor object</param>
@@ -214,182 +251,230 @@ sealed public  class ITextCursorConcrete :
     /// <param name="ch2">The height of the lower cursor</param>
     /// <returns><c>true</c> if split cursor, <c>false</c> otherwise.</returns>
     public bool GetCursorGeometry(Efl.TextCursorCursor cur, Efl.TextCursorType ctype, out int cx, out int cy, out int cw, out int ch, out int cx2, out int cy2, out int cw2, out int ch2) {
-                                                                                                                                                                                                                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate(this.NativeHandle,cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_geometry_get_ptr.Value.Delegate(this.NativeHandle,cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
         Eina.Error.RaiseIfUnhandledException();
-                                                                                                                                                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Create new cursor</summary>
     /// <returns>Cursor object</returns>
     public Efl.TextCursorCursor NewCursor() {
-         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate(this.NativeHandle);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_new_ptr.Value.Delegate(this.NativeHandle);
         Eina.Error.RaiseIfUnhandledException();
         return _ret_var;
- }
+    }
+
     /// <summary>Free existing cursor</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorFree(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_free_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Check if two cursors are equal</summary>
     /// <param name="cur1">Cursor 1 object</param>
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns><c>true</c> if cursors are equal, <c>false</c> otherwise</returns>
     public bool CursorEqual(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate(this.NativeHandle,cur1, cur2);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_equal_ptr.Value.Delegate(this.NativeHandle,cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Compare two cursors</summary>
     /// <param name="cur1">Cursor 1 object</param>
     /// <param name="cur2">Cursor 2 object</param>
     /// <returns>Difference between cursors</returns>
     public int CursorCompare(Efl.TextCursorCursor cur1, Efl.TextCursorCursor cur2) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate(this.NativeHandle,cur1, cur2);
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_compare_ptr.Value.Delegate(this.NativeHandle,cur1, cur2);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Copy existing cursor</summary>
     /// <param name="dst">Destination cursor</param>
     /// <param name="src">Source cursor</param>
-    public void CursorCopy(Efl.TextCursorCursor dst, Efl.TextCursorCursor src) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate(this.NativeHandle,dst, src);
+    public void CopyCursor(Efl.TextCursorCursor dst, Efl.TextCursorCursor src) {
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_copy_ptr.Value.Delegate(this.NativeHandle,dst, src);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Advances to the next character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorCharNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_char_next_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the previous character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorCharPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_char_prev_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the next grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorClusterNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_cluster_next_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the previous grapheme cluster</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorClusterPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_cluster_prev_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the first character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_first_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the last character in this paragraph</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_char_last_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current word start</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorWordStart(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_word_start_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current word end</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorWordEnd(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_word_end_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current line first character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorLineCharFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_line_char_first_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current line last character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorLineCharLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_line_char_last_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current paragraph first character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphFirst(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_first_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advance to current paragraph last character</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphLast(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_last_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the start of the next text node</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphNext(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_next_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Advances to the end of the previous text node</summary>
     /// <param name="cur">Cursor object</param>
     public void CursorParagraphPrev(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate(this.NativeHandle,cur);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_paragraph_prev_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
     /// <summary>Jump the cursor by the given number of lines</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="by">Number of lines</param>
     public void CursorLineJumpBy(Efl.TextCursorCursor cur, int by) {
-                                                         Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate(this.NativeHandle,cur, by);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_line_jump_by_ptr.Value.Delegate(this.NativeHandle,cur, by);
         Eina.Error.RaiseIfUnhandledException();
-                                         }
+        
+    }
+
     /// <summary>Set cursor coordinates</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     public void SetCursorCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate(this.NativeHandle,cur, x, y);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_coord_set_ptr.Value.Delegate(this.NativeHandle,cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Set cursor coordinates according to grapheme clusters. It does not allow to put a cursor to the middle of a grapheme cluster.</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="x">X coord to set by.</param>
     /// <param name="y">Y coord to set by.</param>
     public void SetCursorClusterCoord(Efl.TextCursorCursor cur, int x, int y) {
-                                                                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate(this.NativeHandle,cur, x, y);
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_cluster_coord_set_ptr.Value.Delegate(this.NativeHandle,cur, x, y);
         Eina.Error.RaiseIfUnhandledException();
-                                                         }
+        
+    }
+
     /// <summary>Adds text to the current cursor position and set the cursor to *after* the start of the text just added.</summary>
     /// <param name="cur">Cursor object</param>
     /// <param name="text">Text to append (UTF-8 format).</param>
     /// <returns>Length of the appended text.</returns>
-    public int CursorTextInsert(Efl.TextCursorCursor cur, System.String text) {
-                                                         var _ret_var = Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate(this.NativeHandle,cur, text);
+    public int InsertCursorText(Efl.TextCursorCursor cur, System.String text) {
+        var _ret_var = Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_text_insert_ptr.Value.Delegate(this.NativeHandle,cur, text);
         Eina.Error.RaiseIfUnhandledException();
-                                        return _ret_var;
- }
+        return _ret_var;
+    }
+
     /// <summary>Deletes a single character from position pointed by given cursor.</summary>
     /// <param name="cur">Cursor object</param>
-    public void CursorCharDelete(Efl.TextCursorCursor cur) {
-                                 Efl.ITextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate(this.NativeHandle,cur);
+    public void DeleteCursorChar(Efl.TextCursorCursor cur) {
+        Efl.TextCursorConcrete.NativeMethods.efl_text_cursor_char_delete_ptr.Value.Delegate(this.NativeHandle,cur);
         Eina.Error.RaiseIfUnhandledException();
-                         }
+        
+    }
+
+#pragma warning restore CS0628
     private static IntPtr GetEflClassStatic()
     {
-        return Efl.ITextCursorConcrete.efl_text_cursor_interface_get();
+        return Efl.TextCursorConcrete.efl_text_cursor_interface_get();
     }
+
     /// <summary>Wrapper for native methods and virtual method delegates.
     /// For internal use by generated code only.</summary>
     public new class NativeMethods : Efl.Eo.EoWrapper.NativeMethods
     {
-        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(    efl.Libs.Efl);
+        private static Efl.Eo.NativeModule Module = new Efl.Eo.NativeModule(efl.Libs.Efl);
+
         /// <summary>Gets the list of Eo operations to override.</summary>
         /// <returns>The list of Eo operations to be overload.</returns>
-        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+        public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type, bool includeInherited)
         {
             var descs = new System.Collections.Generic.List<Efl_Op_Description>();
             var methods = Efl.Eo.Globals.GetUserMethods(type);
@@ -489,7 +574,7 @@ sealed public  class ITextCursorConcrete :
                 efl_text_cursor_copy_static_delegate = new efl_text_cursor_copy_delegate(cursor_copy);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "CursorCopy") != null)
+            if (methods.FirstOrDefault(m => m.Name == "CopyCursor") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_cursor_copy"), func = Marshal.GetFunctionPointerForDelegate(efl_text_cursor_copy_static_delegate) });
             }
@@ -669,7 +754,7 @@ sealed public  class ITextCursorConcrete :
                 efl_text_cursor_text_insert_static_delegate = new efl_text_cursor_text_insert_delegate(cursor_text_insert);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "CursorTextInsert") != null)
+            if (methods.FirstOrDefault(m => m.Name == "InsertCursorText") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_cursor_text_insert"), func = Marshal.GetFunctionPointerForDelegate(efl_text_cursor_text_insert_static_delegate) });
             }
@@ -679,18 +764,29 @@ sealed public  class ITextCursorConcrete :
                 efl_text_cursor_char_delete_static_delegate = new efl_text_cursor_char_delete_delegate(cursor_char_delete);
             }
 
-            if (methods.FirstOrDefault(m => m.Name == "CursorCharDelete") != null)
+            if (methods.FirstOrDefault(m => m.Name == "DeleteCursorChar") != null)
             {
                 descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.FunctionInterop.LoadFunctionPointer(Module.Module, "efl_text_cursor_char_delete"), func = Marshal.GetFunctionPointerForDelegate(efl_text_cursor_char_delete_static_delegate) });
             }
 
+            if (includeInherited)
+            {
+                var all_interfaces = type.GetInterfaces();
+                foreach (var iface in all_interfaces)
+                {
+                    var moredescs = ((Efl.Eo.NativeClass)iface.GetCustomAttributes(false)?.FirstOrDefault(attr => attr is Efl.Eo.NativeClass))?.GetEoOps(type, false);
+                    if (moredescs != null)
+                        descs.AddRange(moredescs);
+                }
+            }
             return descs;
         }
+
         /// <summary>Returns the Eo class for the native methods of this class.</summary>
         /// <returns>The native class pointer.</returns>
         public override IntPtr GetEflClass()
         {
-            return Efl.ITextCursorConcrete.efl_text_cursor_interface_get();
+            return Efl.TextCursorConcrete.efl_text_cursor_interface_get();
         }
 
         #pragma warning disable CA1707, CS1591, SA1300, SA1600
@@ -709,7 +805,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
+                Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).GetTextCursor(get_type);
@@ -720,8 +816,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -745,7 +840,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).GetCursorPosition(cur);
@@ -756,8 +851,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -781,7 +875,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((ITextCursor)ws.Target).SetCursorPosition(cur, position);
@@ -792,7 +886,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -816,7 +910,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    Eina.Unicode _ret_var = default(Eina.Unicode);
+                Eina.Unicode _ret_var = default(Eina.Unicode);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).GetCursorContent(cur);
@@ -827,8 +921,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -852,7 +945,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                                        cx = default(int);        cy = default(int);        cw = default(int);        ch = default(int);        cx2 = default(int);        cy2 = default(int);        cw2 = default(int);        ch2 = default(int);                                                                                            bool _ret_var = default(bool);
+                cx = default(int);cy = default(int);cw = default(int);ch = default(int);cx2 = default(int);cy2 = default(int);cw2 = default(int);ch2 = default(int);bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).GetCursorGeometry(cur, ctype, out cx, out cy, out cw, out ch, out cx2, out cy2, out cw2, out ch2);
@@ -863,8 +956,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                                                                                                                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -888,7 +980,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-            Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
+                Efl.TextCursorCursor _ret_var = default(Efl.TextCursorCursor);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).NewCursor();
@@ -899,8 +991,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -924,7 +1015,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorFree(cur);
@@ -935,7 +1026,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -959,7 +1050,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            bool _ret_var = default(bool);
+                bool _ret_var = default(bool);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).CursorEqual(cur1, cur2);
@@ -970,8 +1061,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -995,7 +1085,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
                     _ret_var = ((ITextCursor)ws.Target).CursorCompare(cur1, cur2);
@@ -1006,8 +1096,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1031,10 +1120,10 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
-                    ((ITextCursor)ws.Target).CursorCopy(dst, src);
+                    ((ITextCursor)ws.Target).CopyCursor(dst, src);
                 }
                 catch (Exception e)
                 {
@@ -1042,7 +1131,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1066,7 +1155,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorCharNext(cur);
@@ -1077,7 +1166,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1101,7 +1190,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorCharPrev(cur);
@@ -1112,7 +1201,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1136,7 +1225,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorClusterNext(cur);
@@ -1147,7 +1236,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1171,7 +1260,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorClusterPrev(cur);
@@ -1182,7 +1271,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1206,7 +1295,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphCharFirst(cur);
@@ -1217,7 +1306,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1241,7 +1330,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphCharLast(cur);
@@ -1252,7 +1341,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1276,7 +1365,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorWordStart(cur);
@@ -1287,7 +1376,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1311,7 +1400,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorWordEnd(cur);
@@ -1322,7 +1411,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1346,7 +1435,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorLineCharFirst(cur);
@@ -1357,7 +1446,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1381,7 +1470,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorLineCharLast(cur);
@@ -1392,7 +1481,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1416,7 +1505,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphFirst(cur);
@@ -1427,7 +1516,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1451,7 +1540,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphLast(cur);
@@ -1462,7 +1551,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1486,7 +1575,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphNext(cur);
@@ -1497,7 +1586,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1521,7 +1610,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorParagraphPrev(cur);
@@ -1532,7 +1621,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1556,7 +1645,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            
+                
                 try
                 {
                     ((ITextCursor)ws.Target).CursorLineJumpBy(cur, by);
@@ -1567,7 +1656,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        
+                
             }
             else
             {
@@ -1591,7 +1680,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).SetCursorCoord(cur, x, y);
@@ -1602,7 +1691,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
@@ -1626,7 +1715,7 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                                                    
+                
                 try
                 {
                     ((ITextCursor)ws.Target).SetCursorClusterCoord(cur, x, y);
@@ -1637,7 +1726,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                                        
+                
             }
             else
             {
@@ -1661,10 +1750,10 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                                            int _ret_var = default(int);
+                int _ret_var = default(int);
                 try
                 {
-                    _ret_var = ((ITextCursor)ws.Target).CursorTextInsert(cur, text);
+                    _ret_var = ((ITextCursor)ws.Target).InsertCursorText(cur, text);
                 }
                 catch (Exception e)
                 {
@@ -1672,8 +1761,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                                        return _ret_var;
-
+                return _ret_var;
             }
             else
             {
@@ -1697,10 +1785,10 @@ sealed public  class ITextCursorConcrete :
             var ws = Efl.Eo.Globals.GetWrapperSupervisor(obj);
             if (ws != null)
             {
-                                    
+                
                 try
                 {
-                    ((ITextCursor)ws.Target).CursorCharDelete(cur);
+                    ((ITextCursor)ws.Target).DeleteCursorChar(cur);
                 }
                 catch (Exception e)
                 {
@@ -1708,7 +1796,7 @@ sealed public  class ITextCursorConcrete :
                     Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
                 }
 
-                        
+                
             }
             else
             {
@@ -1726,11 +1814,7 @@ sealed public  class ITextCursorConcrete :
 
 #if EFL_BETA
 #pragma warning disable CS1591
-public static class EflITextCursorConcrete_ExtensionMethods {
-    
-    
-    
-    
+public static class EflTextCursorConcrete_ExtensionMethods {
 }
 #pragma warning restore CS1591
 #endif
@@ -1757,7 +1841,6 @@ User = 6,
 /// <summary>User extra cursor state</summary>
 UserExtra = 7,
 }
-
 }
 
 namespace Efl {
@@ -1771,6 +1854,5 @@ Before = 0,
 /// <summary>Cursor type under</summary>
 Under = 1,
 }
-
 }
 

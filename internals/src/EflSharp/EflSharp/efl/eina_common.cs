@@ -10,7 +10,7 @@ namespace Eina
 namespace Callbacks
 {
 
-public delegate int EinaCompareCb(IntPtr data1, IntPtr data2);
+internal delegate int EinaCompareCb(IntPtr data1, IntPtr data2);
 public delegate void EinaFreeCb(IntPtr data);
 
 }
