@@ -717,7 +717,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public IEnumerable<Rotation> GetDisplayRotationapability()
+        public IEnumerable<Rotation> GetDisplayRotationCapability()
         {
             ThrowIfStopped();
 
