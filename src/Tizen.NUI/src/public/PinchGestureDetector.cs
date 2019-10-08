@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -169,6 +169,11 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (DetectedEventArgs) with real data.
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
 
             if (_pinchGestureEventHandler != null)
