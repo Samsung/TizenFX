@@ -2284,6 +2284,10 @@ namespace Tizen.NUI.Components
             public void PutRecycledView(ViewHolder view)
             {
                 int viewType = view.ItemViewType;
+                if (viewType >= mMaxTypeCount)
+                {
+                    return;
+                }
                 if (mScrap[viewType] == null)
                 {
                     mScrap[viewType] = new List<ViewHolder>();
