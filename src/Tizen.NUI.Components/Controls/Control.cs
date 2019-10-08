@@ -126,13 +126,13 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (attrs.Position2D != null)
+            if (attrs.Position != null)
             {
-                view.Position2D = attrs.Position2D;
+                view.Position = attrs.Position;
             }
-            if (attrs.Size2D != null)
+            if (attrs.Size != null)
             {
-                view.Size2D = attrs.Size2D;
+                view.Size = attrs.Size;
             }
             if (attrs.MinimumSize != null)
             {

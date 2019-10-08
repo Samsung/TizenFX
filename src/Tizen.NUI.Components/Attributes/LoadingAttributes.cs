@@ -48,9 +48,9 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (null != attributes.FPS)
+            if (null != attributes.FrameRate)
             {
-                FPS = attributes.FPS.Clone() as IntSelector;
+                FrameRate = attributes.FrameRate.Clone() as IntSelector;
             }
             if (null != attributes.LoadingSize)
             {
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D LoadingSize
+        public Size LoadingSize
         {
             get;
             set;
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IntSelector FPS
+        public IntSelector FrameRate
         {
             get;
             set;

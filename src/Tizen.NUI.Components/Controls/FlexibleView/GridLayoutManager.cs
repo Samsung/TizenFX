@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
             else
             {
                 // choose the max span we can get. hopefully last one
-                int indexLimit = GetChildCount() - 1;
+                int indexLimit = ChildCount - 1;
                 int pos = anchorInfo.Position;
                 int bestSpan = span;
                 while (pos < indexLimit)
@@ -179,16 +179,16 @@ namespace Tizen.NUI.Components
                 float left, top, width, height;
                 if (mOrientation == VERTICAL)
                 {
-                    width = (GetWidth() - GetPaddingLeft() - GetPaddingRight()) / count;
+                    width = (Width - PaddingLeft - PaddingRight) / count;
                     height = result.Consumed;
                     if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
                     {
-                        left = GetPaddingLeft() + width * i;
+                        left = PaddingLeft + width * i;
                         top = layoutState.Offset;
                     }
                     else
                     {
-                        left = GetPaddingLeft() + width * (count - 1 - i);
+                        left = PaddingLeft + width * (count - 1 - i);
                         top = layoutState.Offset - height;
                     }
                     LayoutChild(holder, left, top, width, height);
@@ -196,15 +196,15 @@ namespace Tizen.NUI.Components
                 else
                 {
                     width = result.Consumed;
-                    height = (GetHeight() - GetPaddingTop() - GetPaddingBottom()) / count;
+                    height = (Height - PaddingTop - PaddingBottom) / count;
                     if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
                     {
-                        top = GetPaddingTop() + height * i;
+                        top = PaddingTop + height * i;
                         left = layoutState.Offset;
                     }
                     else
                     {
-                        top = GetPaddingTop() + height * (count - 1 - i);
+                        top = PaddingTop + height * (count - 1 - i);
                         left = layoutState.Offset - width;
                     }
                     LayoutChild(holder, left, top, width, height);

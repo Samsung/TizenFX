@@ -18,15 +18,13 @@ using System;
 
 namespace Tizen.NUI.Components
 {
-    /**
-    * Helper class for LayoutManagers to abstract measurements depending on the View's orientation.
-    * It is developed to easily support vertical and horizontal orientations in a LayoutManager but
-    * can also be used to abstract calls around view bounds and child measurements with margins and
-    * decorations.
-    *
-    * @see #createHorizontalHelper(RecyclerView.LayoutManager)
-    * @see #createVerticalHelper(RecyclerView.LayoutManager)
-    */
+    // Helper class for LayoutManagers to abstract measurements depending on the View's orientation.
+    // It is developed to easily support vertical and horizontal orientations in a LayoutManager but
+    // can also be used to abstract calls around view bounds and child measurements with margins and
+    // decorations.
+    //
+    // @see #createHorizontalHelper(RecyclerView.LayoutManager)
+    // @see #createVerticalHelper(RecyclerView.LayoutManager)
     internal abstract class OrientationHelper
     {
         public static readonly int HORIZONTAL = 0;
@@ -43,132 +41,105 @@ namespace Tizen.NUI.Components
             mLayoutManager = layoutManager;
         }
 
-        /**
-         * Call this method after onLayout method is complete if state is NOT pre-layout.
-         * This method records information like layout bounds that might be useful in the next layout
-         * calculations.
-         */
+         // Call this method after onLayout method is complete if state is NOT pre-layout.
+         // This method records information like layout bounds that might be useful in the next layout
+         // calculations.
         public void OnLayoutComplete()
         {
             mLastTotalSpace = GetTotalSpace();
         }
 
-        /**
-         * Returns the layout space change between the previous layout pass and current layout pass.
-         * Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
-         * {@link RecyclerView.LayoutManager#onLayoutChildren(RecyclerView.Recycler,
-         * RecyclerView.State)} method.
-         *
-         * @return The difference between the current total space and previous layout's total space.
-         * @see #onLayoutComplete()
-         */
+         // Returns the layout space change between the previous layout pass and current layout pass.
+         // Make sure you call {@link #onLayoutComplete()} at the end of your LayoutManager's
+         // {@link RecyclerView.LayoutManager#onLayoutChildren(RecyclerView.Recycler,
+         // RecyclerView.State)} method.
+         //
+         // @return The difference between the current total space and previous layout's total space.
+         // @see #onLayoutComplete()
         public float GetTotalSpaceChange()
         {
             return INVALID_SIZE == mLastTotalSpace ? 0 : GetTotalSpace() - mLastTotalSpace;
         }
 
-        /**
-         * Returns the start of the view including its decoration and margin.
-         * For example, for the horizontal helper, if a View's left is at pixel 20, has 2px left
-         * decoration and 3px left margin, returned value will be 15px.
-         *
-         * @param view The view element to check
-         * @return The first pixel of the element
-         * @see #getDecoratedEnd(android.view.View)
-         */
+         // Returns the start of the view including its decoration and margin.
+         // For example, for the horizontal helper, if a View's left is at pixel 20, has 2px left
+         // decoration and 3px left margin, returned value will be 15px.
+         //
+         // @param view The view element to check
+         // @return The first pixel of the element
+         // @see #getDecoratedEnd(android.view.View)
         public abstract float GetViewHolderStart(FlexibleView.ViewHolder holder);
 
-        /**
-         * Returns the end of the view including its decoration and margin.
-         * For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
-         * decoration and 3px right margin, returned value will be 205.
-         *
-         * @param view The view element to check
-         * @return The last pixel of the element
-         * @see #getDecoratedStart(android.view.View)
-         */
+         // Returns the end of the view including its decoration and margin.
+         // For example, for the horizontal helper, if a View's right is at pixel 200, has 2px right
+         // decoration and 3px right margin, returned value will be 205.
+         //
+         // @param view The view element to check
+         // @return The last pixel of the element
+         // @see #getDecoratedStart(android.view.View)
         public abstract float GetViewHolderEnd(FlexibleView.ViewHolder holder);
 
-        /**
-         * Returns the space occupied by this View in the current orientation including decorations and
-         * margins.
-         *
-         * @param view The view element to check
-         * @return Total space occupied by this view
-         * @see #getDecoratedMeasurementInOther(View)
-         */
+        // Returns the space occupied by this View in the current orientation including decorations and
+        // margins.
+        //
+        // @param view The view element to check
+        // @return Total space occupied by this view
+        // @see #getDecoratedMeasurementInOther(View)
+
         public abstract float GetViewHolderMeasurement(FlexibleView.ViewHolder holder);
 
-        /**
-         * Returns the space occupied by this View in the perpendicular orientation including
-         * decorations and margins.
-         *
-         * @param view The view element to check
-         * @return Total space occupied by this view in the perpendicular orientation to current one
-         * @see #getDecoratedMeasurement(View)
-         */
+        // Returns the space occupied by this View in the perpendicular orientation including
+        // decorations and margins.
+        //
+        // @param view The view element to check
+        // @return Total space occupied by this view in the perpendicular orientation to current one
+        // @see #getDecoratedMeasurement(View)
         public abstract float GetViewHolderMeasurementInOther(FlexibleView.ViewHolder holder);
 
-        /**
-         * Returns the start position of the layout after the start padding is added.
-         *
-         * @return The very first pixel we can draw.
-         */
+        // Returns the start position of the layout after the start padding is added.
+        //
+        // @return The very first pixel we can draw.
         public abstract float GetStartAfterPadding();
 
-        /**
-         * Returns the end position of the layout after the end padding is removed.
-         *
-         * @return The end boundary for this layout.
-         */
+        // Returns the end position of the layout after the end padding is removed.
+        //
+        // @return The end boundary for this layout.
         public abstract float GetEndAfterPadding();
 
-        /**
-         * Returns the end position of the layout without taking padding into account.
-         *
-         * @return The end boundary for this layout without considering padding.
-         */
+        // Returns the end position of the layout without taking padding into account.
+        //
+        // @return The end boundary for this layout without considering padding.
         public abstract float GetEnd();
 
-        /**
-         * Offsets all children's positions by the given amount.
-         *
-         * @param amount Value to add to each child's layout parameters
-         */
+        // Offsets all children's positions by the given amount.
+        //
+        // @param amount Value to add to each child's layout parameters
         public abstract void OffsetChildren(float amount, bool immediate);
 
-        /**
-         * Returns the total space to layout. This number is the difference between
-         * {@link #getEndAfterPadding()} and {@link #getStartAfterPadding()}.
-         *
-         * @return Total space to layout children
-         */
+        // Returns the total space to layout. This number is the difference between
+        // {@link #getEndAfterPadding()} and {@link #getStartAfterPadding()}.
+        //
+        // @return Total space to layout children
         public abstract float GetTotalSpace();
 
-        /**
-         * Offsets the child in this orientation.
-         *
-         * @param view   View to offset
-         * @param offset offset amount
-         */
+        // Offsets the child in this orientation.
+        //
+        // @param view   View to offset
+        // @param offset offset amount
         internal abstract void OffsetChild(FlexibleView.ViewHolder holder, int offset);
 
-        /**
-         * Returns the padding at the end of the layout. For horizontal helper, this is the right
-         * padding and for vertical helper, this is the bottom padding. This method does not check
-         * whether the layout is RTL or not.
-         *
-         * @return The padding at the end of the layout.
-         */
+        // Returns the padding at the end of the layout. For horizontal helper, this is the right
+        // padding and for vertical helper, this is the bottom padding. This method does not check
+        // whether the layout is RTL or not.
+        //
+        // @return The padding at the end of the layout.
         public abstract float GetEndPadding();
 
-        /**
-         * Creates an OrientationHelper for the given LayoutManager and orientation.
-         *
-         * @param layoutManager LayoutManager to attach to
-         * @param orientation   Desired orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}
-         * @return A new OrientationHelper
-         */
+        // Creates an OrientationHelper for the given LayoutManager and orientation.
+        //
+        // @param layoutManager LayoutManager to attach to
+        // @param orientation   Desired orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}
+        // @return A new OrientationHelper
         public static OrientationHelper CreateOrientationHelper(
                 FlexibleView.LayoutManager layoutManager, int orientation)
         {
@@ -185,23 +156,20 @@ namespace Tizen.NUI.Components
         }
 
 
-        /**
-         * Creates a horizontal OrientationHelper for the given LayoutManager.
-         *
-         * @param layoutManager The LayoutManager to attach to.
-         * @return A new OrientationHelper
-         */
+        // Creates a horizontal OrientationHelper for the given LayoutManager.
+        //
+        // @param layoutManager The LayoutManager to attach to.
+        // @return A new OrientationHelper
         public static OrientationHelper CreateHorizontalHelper(FlexibleView.LayoutManager layoutManager)
         {
             return new HorizontalHelper(layoutManager);
 
         }
-        /**
-        * Creates a vertical OrientationHelper for the given LayoutManager.
-        *
-        * @param layoutManager The LayoutManager to attach to.
-        * @return A new OrientationHelper
-        */
+
+       // Creates a vertical OrientationHelper for the given LayoutManager.
+       //
+       // @param layoutManager The LayoutManager to attach to.
+       // @return A new OrientationHelper
         public static OrientationHelper CreateVerticalHelper(FlexibleView.LayoutManager layoutManager)
         {
             return new VerticalHelper(layoutManager);
@@ -217,12 +185,12 @@ namespace Tizen.NUI.Components
 
         public override float GetEndAfterPadding()
         {
-            return mLayoutManager.GetWidth() - mLayoutManager.GetPaddingRight();
+            return mLayoutManager.Width - mLayoutManager.PaddingRight;
         }
 
         public override float GetEnd()
         {
-            return mLayoutManager.GetWidth();
+            return mLayoutManager.Width;
         }
 
         public override void OffsetChildren(float amount, bool immediate)
@@ -233,7 +201,7 @@ namespace Tizen.NUI.Components
 
         public override float GetStartAfterPadding()
         {
-            return mLayoutManager.GetPaddingLeft();
+            return mLayoutManager.PaddingLeft;
         }
 
         public override float GetViewHolderMeasurement(FlexibleView.ViewHolder holder)
@@ -258,8 +226,8 @@ namespace Tizen.NUI.Components
 
         public override float GetTotalSpace()
         {
-            return mLayoutManager.GetWidth() - mLayoutManager.GetPaddingLeft()
-                    - mLayoutManager.GetPaddingRight();
+            return mLayoutManager.Width - mLayoutManager.PaddingLeft
+                    - mLayoutManager.PaddingRight;
         }
 
         internal override void OffsetChild(FlexibleView.ViewHolder holder, int offset)
@@ -269,7 +237,7 @@ namespace Tizen.NUI.Components
 
         public override float GetEndPadding()
         {
-            return mLayoutManager.GetPaddingRight();
+            return mLayoutManager.PaddingRight;
         }
 
     }
@@ -283,12 +251,12 @@ namespace Tizen.NUI.Components
 
         public override float GetEndAfterPadding()
         {
-            return mLayoutManager.GetHeight() - mLayoutManager.GetPaddingBottom();
+            return mLayoutManager.Height - mLayoutManager.PaddingBottom;
         }
 
         public override float GetEnd()
         {
-            return mLayoutManager.GetHeight();
+            return mLayoutManager.Height;
         }
 
         public override void OffsetChildren(float amount, bool immediate)
@@ -298,7 +266,7 @@ namespace Tizen.NUI.Components
 
         public override float GetStartAfterPadding()
         {
-            return mLayoutManager.GetPaddingTop();
+            return mLayoutManager.PaddingTop;
         }
 
         public override float GetViewHolderMeasurement(FlexibleView.ViewHolder holder)
@@ -323,8 +291,8 @@ namespace Tizen.NUI.Components
 
         public override float GetTotalSpace()
         {
-            return mLayoutManager.GetHeight() - mLayoutManager.GetPaddingTop()
-                    - mLayoutManager.GetPaddingBottom();
+            return mLayoutManager.Height - mLayoutManager.PaddingTop
+                    - mLayoutManager.PaddingBottom;
         }
 
         internal override void OffsetChild(FlexibleView.ViewHolder holder, int offset)
@@ -334,7 +302,7 @@ namespace Tizen.NUI.Components
 
         public override float GetEndPadding()
         {
-            return mLayoutManager.GetPaddingBottom();
+            return mLayoutManager.PaddingBottom;
         }
 
     }
