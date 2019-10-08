@@ -56,7 +56,7 @@ namespace Tizen.Multimedia
         /// <remarks><para>The player lets the hardware decode and render the sound if the audio offload is enabled.
         /// Audio offload can reduce the power consumption, but disable the ability to handle output PCM.
         /// Please check the below list of functions which will not work if offloading is enabled.</para>
-        /// <para>If audio offload is enabled, the following functions will return <see cref="InvalidOperationException"/>: <br/>
+        /// <para>If audio offload is enabled, the following functions will return <see cref="NotAvailableException"/>: <br/>
         /// <see cref="AudioEffect"/><br/>
         /// <see cref="EqualizerBand"/><br/>
         /// <see cref="PlayerTrackInfo"/><br/>
