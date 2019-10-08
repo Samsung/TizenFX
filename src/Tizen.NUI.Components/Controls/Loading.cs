@@ -24,8 +24,6 @@ namespace Tizen.NUI.Components
     /// The Loading class of nui component. It's used to indicate informs users of the ongoing operation.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Loading : Control
     {
         private LoadingAttributes loadingAttrs = null;  // Loading Attributes
@@ -35,8 +33,6 @@ namespace Tizen.NUI.Components
         /// The constructor of Loading
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Loading() : base()
         {
             Initialize();
@@ -70,8 +66,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image resource array.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] ImageArray
         {
             get
@@ -92,18 +86,17 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading size.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D LoadingSize
+        public new Size Size
         {
             get
             {
-                return loadingAttrs.LoadingSize ?? new Size2D(100, 100);
+                return loadingAttrs.Size ?? new Size(100, 100);
             }
             set
             {
-                loadingAttrs.LoadingSize = value;
-                imageVisual.Size = value;
+                loadingAttrs.Size = value;
+                base.Size = value;
+                imageVisual.Size = new Size2D((int)value.Width, (int)value.Height);
             }
         }
 
@@ -111,23 +104,21 @@ namespace Tizen.NUI.Components
         /// Gets or sets FPS of loading.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int FPS
+        public int FrameRate
         {
             get
             {
-                return loadingAttrs?.FPS?.All ?? (int)(1000.0f / 16.6f);
+                return loadingAttrs?.FrameRate?.All ?? (int)(1000.0f / 16.6f);
             }
             set
             {
                 if (value != 0) //It will crash if 0 
                 {
-                    if (null == loadingAttrs.FPS)
+                    if (null == loadingAttrs.FrameRate)
                     {
-                        loadingAttrs.FPS = new IntSelector();
+                        loadingAttrs.FrameRate = new IntSelector();
                     }
-                    loadingAttrs.FPS.All = value;
+                    loadingAttrs.FrameRate.All = value;
                     imageVisual.FrameDelay = 1000.0f / value;
                 }
             }
@@ -149,8 +140,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -216,13 +205,13 @@ namespace Tizen.NUI.Components
             {
                 imageVisual.URLS = new List<string>(loadingAttrs.ImageArray);
             }
-            if (null != loadingAttrs.FPS)
+            if (null != loadingAttrs.FrameRate)
             {
-                imageVisual.FrameDelay = 1000.0f / (float)loadingAttrs.FPS.All;
+                imageVisual.FrameDelay = 1000.0f / (float)loadingAttrs.FrameRate.All;
             }
             if (null != loadingAttrs.LoadingSize)
             {
-                imageVisual.Size = loadingAttrs.LoadingSize;
+                imageVisual.Size = new Size2D((int)loadingAttrs.LoadingSize.Width, (int)loadingAttrs.LoadingSize.Height);
             }
         }
     }

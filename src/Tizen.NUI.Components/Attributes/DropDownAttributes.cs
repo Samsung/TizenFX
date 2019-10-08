@@ -79,9 +79,9 @@ namespace Tizen.NUI.Components
                 ListMargin = new Vector4(attributes.ListMargin.X, attributes.ListMargin.Y, attributes.ListMargin.Z, attributes.ListMargin.W);
             }
 
-            if (attributes.ListSize2D != null)
+            if (attributes.ListSize != null)
             {
-                ListSize2D = new Size2D(attributes.ListSize2D.Width, attributes.ListSize2D.Height);
+                ListSize = new Size(attributes.ListSize.Width, attributes.ListSize.Height);
             }
 
             if (attributes.ListPadding != null)
@@ -196,7 +196,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ListSize2D
+        public Size ListSize
         {
             get;
             set;

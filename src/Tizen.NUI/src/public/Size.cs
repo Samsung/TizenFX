@@ -57,9 +57,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="x">The x (or width) component.</param>
         /// <param name="y">The y (or height) component.</param>
-        /// <param name="z">The z (or depth) component.</param>
+        /// <param name="z">The z (or depth) component(optional).</param>
         /// <since_tizen> 5 </since_tizen>
-        public Size(float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
+        public Size(float x, float y, float z = 0.0f) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
