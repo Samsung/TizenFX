@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
 
             if (attributes.IndicatorSize != null)
             {
-                IndicatorSize = new Size2D(attributes.IndicatorSize.Width, attributes.IndicatorSize.Height);
+                IndicatorSize = new Size(attributes.IndicatorSize.Width, attributes.IndicatorSize.Height);
             }
             if (attributes.IndicatorBackgroundURL != null)
             {
@@ -67,7 +67,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D IndicatorSize
+        public Size IndicatorSize
         {
             get;
             set;
