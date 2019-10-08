@@ -44,14 +44,14 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (attributes.Position2D != null)
+            if (attributes.Position != null)
             {
-                Position2D = new Position2D(attributes.Position2D.X, attributes.Position2D.Y);
+                Position = new Position(attributes.Position.X, attributes.Position.Y, attributes.Position.Z);
             }
 
-            if (attributes.Size2D != null)
+            if (attributes.Size != null)
             {
-                Size2D = new Size2D(attributes.Size2D.Width, attributes.Size2D.Height);
+                Size = new Size(attributes.Size.Width, attributes.Size.Height, attributes.Size.Depth);
             }
 
             if (attributes.BackgroundColor != null)
@@ -109,7 +109,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Position2D Position2D
+        public Position Position
         {
             get;
             set;
@@ -119,7 +119,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D Size2D
+        public Size Size
         {
             get;
             set;
