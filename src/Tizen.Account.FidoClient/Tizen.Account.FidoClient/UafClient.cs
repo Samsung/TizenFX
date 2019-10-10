@@ -192,10 +192,10 @@ namespace Tizen.Account.FidoClient
             {
                 Log.Error(ErrorFactory.LogTag, "Interop callback failed with error code: [" + errorCode + "]");
                 responseCompletionSource.SetException(ErrorFactory.GetException(errorCode));
+                return;
             }
 
             responseCompletionSource.SetResult(new UafResponse() { Response = uafResponseJson });
-            return;
         }
 
             /// <summary>
