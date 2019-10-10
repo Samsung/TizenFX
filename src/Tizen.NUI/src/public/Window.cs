@@ -1974,6 +1974,174 @@ namespace Tizen.NUI
                 WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
             }
 
+            if(transitionEffectSignal != null)
+            {
+                TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+            }
+
+        }
+
+        private void OnTransitionEffect(IntPtr window, int state, int type)
+        {
+            //Tizen.Log.Fatal("NUITEST", $"OnTransitionEffect() called");
+            if (window == global::System.IntPtr.Zero)
+            {
+                //Tizen.Log.Error("NUI", $"OnTransitionEffect() IntPtr window is null!");
+                return;
+            }
+
+            TransitionEffectArgs e = new TransitionEffectArgs();
+
+            e.State = (EffectStates)state;
+            //Tizen.Log.Error("NUITEST", $"e.State={e.State}");
+
+            e.Type = (EffectTypes)type;
+            //Tizen.Log.Error("NUITEST", $"e.Type={e.Type}");
+
+            if (transitionEffectHandler != null)
+            {
+                //Tizen.Log.Fatal("NUITEST", $"Execute transitionEffectHandler(this, e)!!!");
+                transitionEffectHandler(this, e);
+            }
+            return;
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
+
+        private TransitionEffectEventCallbackType transitionEffectEventCallback;
+
+        private event EventHandler<TransitionEffectArgs> transitionEffectHandler;
+
+        /// <summary>
+        /// EffectStates
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectStates
+        {
+            /// <summary>
+            /// None
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Start
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Start = 1,
+            /// <summary>
+            /// End
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            End = 2,
+        }
+
+        /// <summary>
+        /// EffectTypes
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum EffectTypes
+        {
+            /// <summary>
+            /// None
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
+            /// Shown
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Shown = 1,
+            /// <summary>
+            /// Hidden
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Hidden = 2,
+            /// <summary>
+            /// Restacked
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Restacked = 3,
+
+        }
+
+        /// <summary>
+        /// TransitionEffectArgs
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class TransitionEffectArgs : EventArgs
+        {
+            private EffectStates state;
+            /// <summary>
+            /// State
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public EffectStates State
+            {
+                get
+                {
+                    return state;
+                }
+                set
+                {
+                    state = value;
+                }
+            }
+		private EffectTypes type;
+		/// <summary>
+		/// Type
+		/// </summary>
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public EffectTypes Type
+		{
+			get
+			{
+				return type;
+			}
+			set
+			{
+				type = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// EffectStart
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<TransitionEffectArgs> TransitionEffect
+        {
+            add
+            {
+                if (transitionEffectHandler== null)
+                {
+                    transitionEffectEventCallback = OnTransitionEffect;
+                    TransitionEffectEventSignal().Connect(transitionEffectEventCallback);
+                }
+                transitionEffectHandler += value;
+            }
+            remove
+            {
+                transitionEffectHandler -= value;
+                if (transitionEffectHandler == null && TransitionEffectEventSignal().Empty() == false)
+                {
+                    TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+                }
+            }
+        }
+
+        private WindowTransitionEffectSignal transitionEffectSignal;
+        private WindowTransitionEffectSignal TransitionEffectEventSignal()
+        {
+            //Tizen.Log.Fatal("NUITEST", "TransitionEffectEventSignal()!");
+            if (transitionEffectSignal == null)
+            {
+                transitionEffectSignal = new WindowTransitionEffectSignal(this);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                //Tizen.Log.Fatal("NUITEST", $"transitionEffectSignal is null, new here!");
+            }
+            return transitionEffectSignal;
         }
 
     }
