@@ -242,6 +242,11 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="AddDeviceForStreamRouting(AudioDevice)"/>
         /// <seealso cref="RemoveDeviceForStreamRouting(AudioDevice)"/>
+        /// <exception cref="InvalidOperationException">
+        ///     A device has not been set.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamRouting()
