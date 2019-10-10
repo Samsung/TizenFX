@@ -15,8 +15,11 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Tizen.Internals.Errors;
+
 
 namespace Tizen.Account.FidoClient
 {
@@ -29,6 +32,10 @@ namespace Tizen.Account.FidoClient
         private static string _vendorName = null;
         private static int _majorVersion;
         private static int _minorVersion;
+
+        private static int _responseCompletionId = 1;
+        private static Interop.UafClient.FidoUafResponseMessageCallback _UafResponseMessageCallback = UafResponseMessageCallbackHandler;
+        private static IDictionary<IntPtr, TaskCompletionSource<UafResponse>> _taskCompletionMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<UafResponse>>();
 
         static UafClient()
         {
@@ -158,59 +165,64 @@ namespace Tizen.Account.FidoClient
                 throw ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter);
             }
 
-            TaskCompletionSource<UafResponse> tcs = new TaskCompletionSource<UafResponse>();
-            Interop.UafClient.FidoUafResponseMessageCallback cb = (int errorCode, string uafResponseJson, IntPtr userData) =>
+            IntPtr id = IntPtr.Zero;
+            lock (_taskCompletionMap)
             {
-                if (uafMessage == null)
-                {
-                    Log.Error(ErrorFactory.LogTag, "Invalid request or request is null");
-                    tcs.SetException(ErrorFactory.GetException((int)FidoErrorCode.InvalidParameter));
-                }
+                id = (IntPtr)_responseCompletionId++;
+            }
 
-                if (errorCode != (int)FidoErrorCode.None)
-                {
-                    Log.Error(ErrorFactory.LogTag, "Interop callback failed with error code: [" + errorCode + "]");
-                    tcs.SetException(ErrorFactory.GetException(errorCode));
-                }
-
-                tcs.SetResult(new UafResponse() { Response = uafResponseJson });
-            };
-
-            int ret = Interop.UafClient.FidoUafGetResponseMessage(uafMessage.Operation, channelBindng, cb, IntPtr.Zero);
+            TaskCompletionSource<UafResponse> tcsUafResponse = new TaskCompletionSource<UafResponse>();
+            _taskCompletionMap[id] = tcsUafResponse;
+            int ret = Interop.UafClient.FidoUafGetResponseMessage(uafMessage.Operation, channelBindng, _UafResponseMessageCallback, id);
             if (ret != (int)FidoErrorCode.None)
             {
                 Log.Error(ErrorFactory.LogTag, "Interop API failed with error code: [" + ret + "]");
                 throw ErrorFactory.GetException(ret);
             }
 
-            return await tcs.Task;
+            return await tcsUafResponse.Task.ConfigureAwait(false);
         }
 
-        /// <summary>
-        /// Notifies the FIDO client about the server result. FIDO Server sends the result of processing a UAF message to FIDO client.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// <param name="responseCode">The status code received from Server.(StautsOk implies success)</param>
-        /// <param name="response">The FIDO response message sent to server in JSON format</param>
-        /// <privilege>http://tizen.org/privilege/fido.client</privilege>
-        /// <feature>http://tizen.org/feature/fido.uaf</feature>
-        /// <remarks>
-        /// This is especially important for cases when a new registration may be considered by the client to be in a pending state until it is communicated that the server accepted it
-        /// </remarks>
-        /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
-        /// <exception cref="NotSupportedException">FIDO is not supported</exception>
-        /// <example>
-        /// <code>
-        ///     UafResponse response = new UafResponse()
-        ///     {
-        ///         Response = "Responsejson"
-        ///     };
-        ///
-        ///     await UafClient.NotifyResultAsync(UafClient.StautsOk, response);
-        /// </code>
-        /// </example>
-        public static async Task NotifyResultAsync(int responseCode, UafResponse response)
+        private static void UafResponseMessageCallbackHandler(int errorCode, string uafResponseJson, IntPtr userData)
+        {
+            IntPtr responseCompletionId = userData;
+            TaskCompletionSource<UafResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
+            _taskCompletionMap.Remove(responseCompletionId);
+            if (errorCode != (int)FidoErrorCode.None)
+            {
+                Log.Error(ErrorFactory.LogTag, "Interop callback failed with error code: [" + errorCode + "]");
+                responseCompletionSource.SetException(ErrorFactory.GetException(errorCode));
+                return;
+            }
+
+            responseCompletionSource.SetResult(new UafResponse() { Response = uafResponseJson });
+        }
+
+            /// <summary>
+            /// Notifies the FIDO client about the server result. FIDO Server sends the result of processing a UAF message to FIDO client.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// <param name="responseCode">The status code received from Server.(StautsOk implies success)</param>
+            /// <param name="response">The FIDO response message sent to server in JSON format</param>
+            /// <privilege>http://tizen.org/privilege/fido.client</privilege>
+            /// <feature>http://tizen.org/feature/fido.uaf</feature>
+            /// <remarks>
+            /// This is especially important for cases when a new registration may be considered by the client to be in a pending state until it is communicated that the server accepted it
+            /// </remarks>
+            /// <exception cref="ArgumentException"> In case of invalid parameter</exception>
+            /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method</exception>
+            /// <exception cref="NotSupportedException">FIDO is not supported</exception>
+            /// <example>
+            /// <code>
+            ///     UafResponse response = new UafResponse()
+            ///     {
+            ///         Response = "Responsejson"
+            ///     };
+            ///
+            ///     await UafClient.NotifyResultAsync(UafClient.StautsOk, response);
+            /// </code>
+            /// </example>
+            public static async Task NotifyResultAsync(int responseCode, UafResponse response)
         {
             if (response == null)
             {
