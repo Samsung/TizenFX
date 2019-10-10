@@ -34,8 +34,8 @@ namespace Tizen.Network.Connection
         public HandleHolder()
         {
             _tid = Thread.CurrentThread.ManagedThreadId;
-            Log.Info(Globals.LogTag, "PInvoke connection_create for Thread " + _tid);
-            int ret = Interop.Connection.Create(_tid, out Handle);
+            Log.Info(Globals.LogTag, "MOON PInvoke connection_create for Thread " + _tid);
+            int ret = Interop.Connection.Create(out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
@@ -60,7 +60,7 @@ namespace Tizen.Network.Connection
         {
 
             Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
-            Interop.Connection.Destroy(_tid, Handle);
+            Interop.Connection.Destroy(Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
