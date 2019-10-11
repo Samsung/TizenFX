@@ -39,7 +39,7 @@ cmd_build() {
     exit 1
   fi
   PROJECT=$1; shift
-  build /p:Project=$PROJECT
+  build /p:Project=$PROJECT $@
 }
 
 cmd_full_build() {
