@@ -1939,7 +1939,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The mutually exclusive with BACKGROUND_IMAGE and BACKGROUND type Vector4.
+        /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
@@ -1956,7 +1956,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The mutually exclusive with BACKGROUND_COLOR and BACKGROUND type Map.
+        /// The mutually exclusive with "backgroundColor" and "background" type Map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string BackgroundImage
@@ -2592,6 +2592,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the size width of the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float SizeWidth
         {
@@ -2610,6 +2615,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the size height of the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float SizeHeight
         {
@@ -2630,6 +2640,11 @@ namespace Tizen.NUI.BaseComponents
         /// By default, sets the position vector between the parent origin and pivot point (default).<br />
         /// If the position inheritance is disabled, sets the world position.<br />
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position Position
         {
@@ -2648,6 +2663,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the position X of the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float PositionX
         {
@@ -2665,6 +2685,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the position Y of the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float PositionY
         {
@@ -2682,6 +2707,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the position Z of the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float PositionZ
         {
@@ -2714,7 +2744,14 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets the orientation of the view.<br />
         /// The view's orientation is the rotation from its default orientation, and the rotation is centered around its anchor-point.<br />
         /// </summary>
-        /// <remarks>This is an asynchronous method.</remarks>
+        /// <remarks>
+        /// <para>
+        /// This is an asynchronous method.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rotation Orientation
         {
@@ -2746,6 +2783,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the scale factor applied to the view.<br />
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 Scale
         {
@@ -2763,6 +2805,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the scale X factor applied to the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ScaleX
         {
@@ -2780,6 +2827,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the scale Y factor applied to the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ScaleY
         {
@@ -2797,6 +2849,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the scale Z factor applied to the view.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ScaleZ
         {
@@ -2829,8 +2886,13 @@ namespace Tizen.NUI.BaseComponents
         /// Retrieves the visibility flag of the view.
         /// </summary>
         /// <remarks>
+        /// <para>
         /// If the view is not visible, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility values of the children, i.e., the view will only be rendered if all of its parents have visibility set to true.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public bool Visibility
@@ -3314,11 +3376,16 @@ namespace Tizen.NUI.BaseComponents
         /// The views default depth is the minimum of width and height.<br />
         /// </summary>
         /// <remarks>
+        /// <para>
         /// Please note that multi-cascade setting is not possible for this NUI object. <br />
         /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
         /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
         /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size Size
@@ -3579,6 +3646,11 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Color of View. This is an RGBA value.
         /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color Color
