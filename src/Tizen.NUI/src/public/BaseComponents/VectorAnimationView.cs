@@ -38,7 +38,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VectorAnimationViewTBD() : base()
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
+            tlog.Fatal(tag,  $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VectorAnimationViewTBD(float scale) : base(scale)
         {
-            tlog.Fatal(tag, $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
+            tlog.Fatal(tag,  $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] type={type})");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] type={type})");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -72,7 +72,7 @@ namespace Tizen.NUI.BaseComponents
 
             base.Dispose(type);
 
-            tlog.Fatal(tag, $"]VAV END]");
+            tlog.Fatal(tag,  $"]VAV END]");
         }
         #endregion Constructor, Distructor, Dispose
 
@@ -87,18 +87,18 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] ResourceURL SET");
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] ResourceURL SET");
 
                 if (value == mResourceURL)
                 {
-                    tlog.Fatal(tag, $"set same URL! ");
+                    tlog.Fatal(tag,  $"set same URL! ");
                     return;
                 }
                 mResourceURL = (value == null) ? "" : value;
                 URL = mResourceURL;
                 mIsMinMaxSet = false;
                 mTotalFrameNum = TotalFrameNumber;
-                tlog.Fatal(tag, $" [{GetId()}] mResourceURL={mResourceURL}) ]VAV END]");
+                tlog.Fatal(tag,  $" [{GetId()}] mResourceURL={mResourceURL}) ]VAV END]");
             }
             get => mResourceURL;
         }
@@ -116,12 +116,12 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatCount SET");
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] RepeatCount SET");
 
                 mRepeatCount = (value < -1) ? -1 : value;
                 LoopCount = (mRepeatCount < 0) ? mRepeatCount : mRepeatCount + 1;
 
-                tlog.Fatal(tag, $"[{GetId()}] mRepeatCount={mRepeatCount} ]VAV END]");
+                tlog.Fatal(tag,  $"[{GetId()}] mRepeatCount={mRepeatCount} ]VAV END]");
             }
             get => mRepeatCount;
         }
@@ -146,7 +146,7 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] CurrentFrame SET");
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] CurrentFrame SET");
 
                 if (mResourceURL == null || mResourceURL == String.Empty)
                 {
@@ -168,7 +168,7 @@ namespace Tizen.NUI.BaseComponents
                 SetPlayRange(0, mTotalFrameNum - 1);
                 CurrentFrameNumber = mCurrentFrame;
 
-                tlog.Fatal(tag, $" [{GetId()}] mCurrentFrame={mCurrentFrame}) ]VAV END]");
+                tlog.Fatal(tag,  $" [{GetId()}] mCurrentFrame={mCurrentFrame}) ]VAV END]");
             }
             get => mCurrentFrame;
         }
@@ -182,7 +182,7 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                tlog.Fatal(tag, $"[VAV START[ [{GetId()}] RepeatMode SET");
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] RepeatMode SET");
                 mRepeatMode = value;
 
                 switch (mRepeatMode)
@@ -198,7 +198,7 @@ namespace Tizen.NUI.BaseComponents
                         break;
                 }
 
-                tlog.Fatal(tag, $" [{GetId()}] mRepeatMode={mRepeatMode}) ]VAV END]");
+                tlog.Fatal(tag,  $" [{GetId()}] mRepeatMode={mRepeatMode}) ]VAV END]");
             }
             get => mRepeatMode;
         }
@@ -226,7 +226,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinAndMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
 
             mMinFrame = (minFrame) > 0 ? minFrame : 0;
             mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
@@ -247,11 +247,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            //base.Stop();
-            SetPlayRange(mMinFrame, mMaxFrame);
-            //CurrentFrameNumber = mMinFrame;
-
-            tlog.Fatal(tag, $" [{GetId()}] mMinFrame:{mMinFrame}, mMaxFrame:{mMaxFrame}) ]VAV END]");
+            tlog.Fatal(tag,  $" [{GetId()}] mMinFrame:{mMinFrame}, mMaxFrame:{mMaxFrame}) ]VAV END]");
         }
 
         /// <summary>
@@ -261,7 +257,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
@@ -271,11 +267,12 @@ namespace Tizen.NUI.BaseComponents
             if (mIsMinMaxSet)
             {
                 SetPlayRange(mMinFrame, mMaxFrame);
+                CurrentFrameNumber = mMinFrame;
             }
             else
             {
                 SetPlayRange(0, mTotalFrameNum - 1);
-                CurrentFrame = 0;
+                CurrentFrameNumber = 0;
             }
 
             //temporal fix
@@ -285,7 +282,7 @@ namespace Tizen.NUI.BaseComponents
             base.Play();
             AnimationState = AnimationStates.Playing;
 
-            tlog.Fatal(tag, $" [{GetId()}] mIsMinMaxSet={mIsMinMaxSet}) ]VAV END]");
+            tlog.Fatal(tag,  $" [{GetId()}] mIsMinMaxSet={mIsMinMaxSet}) ]VAV END]");
         }
 
         /// <summary>
@@ -295,7 +292,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
 
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
@@ -305,7 +302,7 @@ namespace Tizen.NUI.BaseComponents
             base.Pause();
             AnimationState = AnimationStates.Paused;
 
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            tlog.Fatal(tag,  $" [{GetId()}] ]VAV END]");
         }
 
         /// <summary>
@@ -320,7 +317,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop(EndActions endAction = EndActions.Cancel)
         {
-            tlog.Fatal(tag, $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
 
             if (mResourceURL == null || mResourceURL == String.Empty)
             {
@@ -347,7 +344,7 @@ namespace Tizen.NUI.BaseComponents
                         StopBehavior = StopBehaviorType.LastFrame;
                         break;
                     default:
-                        tlog.Fatal(tag, $" [{GetId()}] no endAction : default set");
+                        tlog.Fatal(tag,  $" [{GetId()}] no endAction : default set");
                         break;
                 }
             }
@@ -361,23 +358,23 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (CurrentFrameNumber != mMaxFrame)
                     {
-                        tlog.Fatal(tag, $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{CurrentFrameNumber}, mMaxFrame:{ mMaxFrame}");
+                        tlog.Fatal(tag,  $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{CurrentFrameNumber}, mMaxFrame:{ mMaxFrame}");
                         CurrentFrameNumber = mMaxFrame;
-                        tlog.Fatal(tag, $"set CurrentFrameNumber({CurrentFrameNumber}) as mMaxFrame({mMaxFrame})!!!");
+                        tlog.Fatal(tag,  $"set CurrentFrameNumber({CurrentFrameNumber}) as mMaxFrame({mMaxFrame})!!!");
                     }
                 }
                 else
                 {
                     if (CurrentFrameNumber != mTotalFrameNum - 1)
                     {
-                        tlog.Fatal(tag, $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{CurrentFrameNumber}, mTotalFrameNum:{ mTotalFrameNum}");
+                        tlog.Fatal(tag,  $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{CurrentFrameNumber}, mTotalFrameNum:{ mTotalFrameNum}");
                         CurrentFrameNumber = mTotalFrameNum - 1;
-                        tlog.Fatal(tag, $"set CurrentFrameNumber({CurrentFrameNumber}) as mTotalFrameNum({mMaxFrame}) - 1 !");
+                        tlog.Fatal(tag,  $"set CurrentFrameNumber({CurrentFrameNumber}) as mTotalFrameNum({mMaxFrame}) - 1 !");
                     }
                 }
             }
 
-            tlog.Fatal(tag, $" [{GetId()}] ]VAV END]");
+            tlog.Fatal(tag,  $" [{GetId()}] ]VAV END]");
         }
         #endregion Method
 
