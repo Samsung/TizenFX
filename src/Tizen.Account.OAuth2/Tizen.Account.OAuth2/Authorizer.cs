@@ -18,6 +18,8 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Collections.Concurrent;
+
 
 namespace Tizen.Account.OAuth2
 {
@@ -32,6 +34,9 @@ namespace Tizen.Account.OAuth2
 
         internal IntPtr _managerHandle;
         private bool _disposed = false;
+        private static int _responseCompletionId = 1;
+        private static IDictionary<IntPtr, TaskCompletionSource<TokenResponse>> _taskResponseMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<TokenResponse>>();
+        private static Interop.Manager.Oauth2RefreshTokenCallback _accessTokenCb = AccessTokenCb;
 
         /// <summary>
         /// Constructor for Authoirzer instances
@@ -98,70 +103,15 @@ namespace Tizen.Account.OAuth2
         {
             int ret = (int)OAuth2Error.None;
             IntPtr error = IntPtr.Zero;
-            TokenResponse response = null;
-            Interop.Manager.Oauth2RefreshTokenCallback accessTokenCb = (IntPtr responseHandle, IntPtr usrData) =>
+            IntPtr id = IntPtr.Zero;
+            lock (_taskResponseMap)
             {
-                Interop.Response.GetError(responseHandle, out error);
-                if (error != IntPtr.Zero)
-                {
-                    Log.Error(ErrorFactory.LogTag, "Error occured");
-                }
-                else
-                {
-                    IntPtr accessToken;
-                    ret = Interop.Response.GetAccessToken(responseHandle, out accessToken);
-                    if (ret != (int)OAuth2Error.None)
-                    {
-                        Log.Error(ErrorFactory.LogTag, "Interop failed");
-                        throw ErrorFactory.GetException(ret);
-                    }
-
-                    IntPtr tokenType;
-                    ret = Interop.Response.GetTokenType(responseHandle, out tokenType);
-                    if (ret != (int)OAuth2Error.None)
-                    {
-                        Log.Error(ErrorFactory.LogTag, "Failed to get token type");
-                    }
-
-                    long expiresIn;
-                    ret = Interop.Response.GetExpiresIn(responseHandle, out expiresIn);
-                    if (ret != (int)OAuth2Error.None)
-                    {
-                        Log.Error(ErrorFactory.LogTag, "Failed to get expires in");
-                    }
-
-                    IntPtr refreshToken;
-                    ret = Interop.Response.GetRefreshToken(responseHandle, out refreshToken);
-                    if (ret != (int)OAuth2Error.None)
-                    {
-                        Log.Error(ErrorFactory.LogTag, "Interop failed");
-                        throw ErrorFactory.GetException(ret);
-                    }
-
-                    IntPtr scope;
-                    ret = Interop.Response.GetScope(responseHandle, out scope);
-                    if (ret != (int)OAuth2Error.None)
-                    {
-                        Log.Error(ErrorFactory.LogTag, "Failed to get scope");
-                    }
-
-                    IEnumerable<string> scopes = (scope == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(scope)?.Split(' ');
-
-                    var token = new AccessToken();
-                    token.Token = (accessToken == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(accessToken);
-                    token.TokenType = (tokenType == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(tokenType);
-                    token.Scope = scopes;
-                    token.ExpiresIn = expiresIn;
-
-                    response = new TokenResponse(responseHandle);
-                    response.AccessToken = token;
-                    response.RefreshToken = (refreshToken == IntPtr.Zero) ? null : new RefreshToken() { Token = Marshal.PtrToStringAnsi(refreshToken) };
-                }
-            };
-
-            ret = Interop.Manager.RefreshAccessToken(_managerHandle, requestHandle, accessTokenCb, IntPtr.Zero);
-            Interop.Request.Destroy(requestHandle);
-            if (ret != (int)OAuth2Error.None || error != IntPtr.Zero)
+                id = (IntPtr)_responseCompletionId++;
+            }
+            TaskCompletionSource<TokenResponse> tcsaccessTokenResponse = new TaskCompletionSource<TokenResponse>();
+            _taskResponseMap[id] = tcsaccessTokenResponse;
+            ret = Interop.Manager.RefreshAccessToken(_managerHandle, requestHandle, _accessTokenCb, id);
+             if (ret != (int)OAuth2Error.None || error != IntPtr.Zero)
             {
                 if (error != IntPtr.Zero)
                 {
@@ -173,8 +123,77 @@ namespace Tizen.Account.OAuth2
                     throw ErrorFactory.GetException(ret);
                 }
             }
+            tcsaccessTokenResponse.Task.ConfigureAwait(true);
+            Interop.Request.Destroy(requestHandle);
+            return tcsaccessTokenResponse.Task.Result;
+        }
 
-            return response;
+        private static void AccessTokenCb(IntPtr responseHandle, IntPtr usrData)
+        {
+            int ret = (int)OAuth2Error.None;
+            IntPtr error = IntPtr.Zero;
+            TokenResponse response = null;
+            IntPtr responseCompletionId = usrData;
+            TaskCompletionSource <TokenResponse> responseCompletionSource = _taskResponseMap[responseCompletionId];
+            _taskResponseMap.Remove(responseCompletionId);
+
+            Interop.Response.GetError(responseHandle, out error);
+            if (error != IntPtr.Zero)
+            {
+                Log.Error(ErrorFactory.LogTag, "Error occured");
+            }
+            else
+            {
+                IntPtr accessToken;
+                ret = Interop.Response.GetAccessToken(responseHandle, out accessToken);
+                if (ret != (int)OAuth2Error.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Interop failed");
+                    throw ErrorFactory.GetException(ret);
+                }
+
+                IntPtr tokenType;
+                ret = Interop.Response.GetTokenType(responseHandle, out tokenType);
+                if (ret != (int)OAuth2Error.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Failed to get token type");
+                }
+
+                long expiresIn;
+                ret = Interop.Response.GetExpiresIn(responseHandle, out expiresIn);
+                if (ret != (int)OAuth2Error.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Failed to get expires in");
+                }
+
+                IntPtr refreshToken;
+                ret = Interop.Response.GetRefreshToken(responseHandle, out refreshToken);
+                if (ret != (int)OAuth2Error.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Interop failed");
+                    throw ErrorFactory.GetException(ret);
+                }
+
+                IntPtr scope;
+                ret = Interop.Response.GetScope(responseHandle, out scope);
+                if (ret != (int)OAuth2Error.None)
+                {
+                    Log.Error(ErrorFactory.LogTag, "Failed to get scope");
+                }
+
+                IEnumerable<string> scopes = (scope == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(scope)?.Split(' ');
+
+                var token = new AccessToken();
+                token.Token = (accessToken == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(accessToken);
+                token.TokenType = (tokenType == IntPtr.Zero) ? null : Marshal.PtrToStringAnsi(tokenType);
+                token.Scope = scopes;
+                token.ExpiresIn = expiresIn;
+
+                response = new TokenResponse(responseHandle);
+                response.AccessToken = token;
+                response.RefreshToken = (refreshToken == IntPtr.Zero) ? null : new RefreshToken() { Token = Marshal.PtrToStringAnsi(refreshToken) };
+                responseCompletionSource.SetResult(response);
+            }
         }
 
         /// <summary>
