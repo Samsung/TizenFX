@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -561,6 +561,11 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (PanGestureEventArgs) with real data
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
             if (_panGestureEventHandler != null)
@@ -568,7 +573,6 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 _panGestureEventHandler(this, e);
             }
-
         }
 
         /// <summary>
