@@ -36,7 +36,7 @@ namespace Tizen.Account.OAuth2
         private bool _disposed = false;
         private static int _responseCompletionId = 1;
         private static IDictionary<IntPtr, TaskCompletionSource<TokenResponse>> _taskResponseMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<TokenResponse>>();
-        static Interop.Manager.Oauth2RefreshTokenCallback _accessTokenCb = AccessTokenCb;
+        private static Interop.Manager.Oauth2RefreshTokenCallback _accessTokenCb = AccessTokenCb;
 
         /// <summary>
         /// Constructor for Authoirzer instances
@@ -112,8 +112,7 @@ namespace Tizen.Account.OAuth2
             TaskCompletionSource<TokenResponse> tcsaccessTokenResponse = new TaskCompletionSource<TokenResponse>();
             _taskResponseMap[id] = tcsaccessTokenResponse;
             ret = Interop.Manager.RefreshAccessToken(_managerHandle, requestHandle, _accessTokenCb, id);
-            Interop.Request.Destroy(requestHandle);
-            if (ret != (int)OAuth2Error.None || error != IntPtr.Zero)
+             if (ret != (int)OAuth2Error.None || error != IntPtr.Zero)
             {
                 if (error != IntPtr.Zero)
                 {
@@ -125,11 +124,12 @@ namespace Tizen.Account.OAuth2
                     throw ErrorFactory.GetException(ret);
                 }
             }
-            tcsaccessTokenResponse.Task.ConfigureAwait(false);
+            tcsaccessTokenResponse.Task.ConfigureAwait(true);
+            Interop.Request.Destroy(requestHandle);
             return tcsaccessTokenResponse.Task.Result;
         }
 
-        static void AccessTokenCb(IntPtr responseHandle, IntPtr usrData)
+        private static void AccessTokenCb(IntPtr responseHandle, IntPtr usrData)
         {
             int ret = (int)OAuth2Error.None;
             IntPtr error = IntPtr.Zero;
