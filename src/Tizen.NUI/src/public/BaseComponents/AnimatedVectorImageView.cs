@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedVectorImageView(float scale = 1.0f, bool shown = true) : base()
         {
-            tlog.Fatal(tag, $"< constructor GetId={GetId()} >");
+            tlog.Fatal(tag,  $"< constructor GetId={GetId()} >");
             currentStates.url = "";
             currentStates.frame = -1;
             currentStates.loopCount = 1;
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            tlog.Fatal(tag, $"<[{GetId()}] type={type}");
+            tlog.Fatal(tag,  $"<[{GetId()}] type={type}");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -79,11 +79,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 VisualEventSignal().Disconnect(visualEventSignalCallback);
                 finishedEventHandler = null;
-                tlog.Fatal(tag, $"disconnect event signal");
+                tlog.Fatal(tag,  $"disconnect event signal");
             }
 
             base.Dispose(type);
-            tlog.Fatal(tag, $"[{GetId()}]>");
+            tlog.Fatal(tag,  $"[{GetId()}]>");
         }
         #endregion Constructor, Distructor, Dispose
 
@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.url = ret;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag, $"<[{GetId()}]SET url={currentStates.url}");
+                tlog.Fatal(tag,  $"<[{GetId()}]SET url={currentStates.url}");
 
                 PropertyMap map = new PropertyMap();
                 map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
@@ -111,12 +111,12 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction))
                     .Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
                 Image = map;
-                tlog.Fatal(tag, $"<[{GetId()}]>");
+                tlog.Fatal(tag,  $"<[{GetId()}]>");
             }
             get
             {
                 string ret = currentStates.url;
-                tlog.Fatal(tag, $"<[{GetId()}] GET");
+                tlog.Fatal(tag,  $"<[{GetId()}] GET");
 
                 PropertyMap map = Image;
                 if (map != null)
@@ -126,12 +126,12 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            tlog.Fatal(tag, $"gotten url={ret} >");
+                            tlog.Fatal(tag,  $"gotten url={ret} >");
                             return ret;
                         }
                     }
                 }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get URL from dali >");
+                Tizen.Log.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get URL from dali >");
                 return ret;
             }
         }
@@ -145,7 +145,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                tlog.Fatal(tag, $"< Get!");
+                tlog.Fatal(tag,  $"< Get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -156,12 +156,12 @@ namespace Tizen.NUI.BaseComponents
                         if (val.Get(out ret))
                         {
                             currentStates.playState = (PlayStateType)ret;
-                            tlog.Fatal(tag, $"gotten play state={ret} >");
+                            tlog.Fatal(tag,  $"gotten play state={ret} >");
                             return currentStates.playState;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
                 return currentStates.playState;
             }
         }
@@ -184,13 +184,13 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            //tlog.Fatal(tag, $"TotalFrameNumber get! ret={ret}");
+                            //tlog.Fatal(tag,  $"TotalFrameNumber get! ret={ret}");
                             currentStates.totalFrame = ret;
                             return ret;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get TotalFrameNumber from dali>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get TotalFrameNumber from dali>");
                 return ret;
             }
         }
@@ -205,7 +205,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 currentStates.frame = value;
-                tlog.Fatal(tag, $"<[{GetId()}]SET frame={currentStates.frame}>");
+                tlog.Fatal(tag,  $"<[{GetId()}]SET frame={currentStates.frame}>");
                 DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
@@ -219,12 +219,12 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            //tlog.Fatal(tag, $"CurrentFrameNumber get! val={ret}");
+                            //tlog.Fatal(tag,  $"CurrentFrameNumber get! val={ret}");
                             return ret;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get CurrentFrameNumber from dali!! ret={ret}>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get CurrentFrameNumber from dali!! ret={ret}>");
                 return ret;
             }
         }
@@ -241,14 +241,14 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.loopMode = (LoopingModeType)value;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag, $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
+                tlog.Fatal(tag,  $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
-                //tlog.Fatal(tag, $"LoopMode get!");
+                //tlog.Fatal(tag,  $"LoopMode get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -258,17 +258,17 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            //tlog.Fatal(tag, $"gotten LoopMode={ret}");
+                            //tlog.Fatal(tag,  $"gotten LoopMode={ret}");
                             if (ret != (int)currentStates.loopMode && ret > 0)
                             {
-                                tlog.Fatal(tag, $" [ERROR][{GetId()}](AnimatedVectorImageView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
+                                tlog.Fatal(tag,  $" [ERROR][{GetId()}](AnimatedVectorImageView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
                             }
                             currentStates.loopMode = (LoopingModeType)ret;
                             return (LoopingModeType)ret;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get loopMode from dali>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get loopMode from dali>");
                 return currentStates.loopMode;
             }
         }
@@ -284,14 +284,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.changed = true;
                 currentStates.loopCount = value;
-                tlog.Fatal(tag, $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
+                tlog.Fatal(tag,  $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
-                //tlog.Fatal(tag, $"LoopCount get!");
+                //tlog.Fatal(tag,  $"LoopCount get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -301,17 +301,17 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            //tlog.Fatal(tag, $"gotten loop count={ret}");
+                            //tlog.Fatal(tag,  $"gotten loop count={ret}");
                             if (ret != currentStates.loopCount && ret > 0)
                             {
-                                tlog.Fatal(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}>");
+                                tlog.Fatal(tag,  $"<[ERROR][{GetId()}](AnimatedVectorImageView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}>");
                             }
                             currentStates.loopCount = ret;
                             return currentStates.loopCount;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}>");
                 return currentStates.loopCount;
             }
         }
@@ -328,14 +328,14 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.stopEndAction = (StopBehaviorType)value;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag, $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
+                tlog.Fatal(tag,  $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             }
             get
             {
-                //tlog.Fatal(tag, $"StopBehavior get!");
+                //tlog.Fatal(tag,  $"StopBehavior get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -345,17 +345,17 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            //tlog.Fatal(tag, $"gotten StopBehavior={ret}");
+                            //tlog.Fatal(tag,  $"gotten StopBehavior={ret}");
                             if (ret != (int)currentStates.stopEndAction)
                             {
-                                tlog.Fatal(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}>");
+                                tlog.Fatal(tag,  $"<[ERROR][{GetId()}](AnimatedVectorImageView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}>");
                             }
                             currentStates.stopEndAction = (StopBehaviorType)ret;
                             return (StopBehaviorType)ret;
                         }
                     }
                 }
-                tlog.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get StopBehavior from dali>");
+                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get StopBehavior from dali>");
                 return currentStates.stopEndAction;
             }
         }
@@ -372,7 +372,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlayRange(int startFrame, int endFrame)
         {
-            tlog.Fatal(tag, $"< [{GetId()}] SetPlayRange({startFrame}, {endFrame})");
+            tlog.Fatal(tag,  $"< [{GetId()}] SetPlayRange({startFrame}, {endFrame})");
 
             currentStates.changed = true;
             currentStates.framePlayRangeMin = startFrame;
@@ -385,7 +385,7 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
             DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            tlog.Fatal(tag, $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
+            tlog.Fatal(tag,  $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
         /// <summary>
@@ -395,10 +395,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            tlog.Fatal(tag, $"<[{GetId()}] Play()");
+            tlog.Fatal(tag,  $"<[{GetId()}] Play()");
             debugPrint();
             base.Play();
-            tlog.Fatal(tag, $"[{GetId()}]>");
+            tlog.Fatal(tag,  $"[{GetId()}]>");
         }
 
         /// <summary>
@@ -408,10 +408,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            tlog.Fatal(tag, $"<[{GetId()}] Pause()>");
+            tlog.Fatal(tag,  $"<[{GetId()}] Pause()>");
             debugPrint();
             base.Pause();
-            tlog.Fatal(tag, $"[{GetId()}]>");
+            tlog.Fatal(tag,  $"[{GetId()}]>");
         }
 
         /// <summary>
@@ -421,10 +421,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Stop()
         {
-            tlog.Fatal(tag, $"<[{GetId()}] Stop()");
+            tlog.Fatal(tag,  $"<[{GetId()}] Stop()");
             debugPrint();
             base.Stop();
-            tlog.Fatal(tag, $"[{GetId()}]>");
+            tlog.Fatal(tag,  $"[{GetId()}]>");
         }
         #endregion Method
 
@@ -441,7 +441,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (finishedEventHandler == null)
                 {
-                    tlog.Fatal(tag, $"<[{GetId()}] Finished eventhandler added>");
+                    tlog.Fatal(tag,  $"<[{GetId()}] Finished eventhandler added>");
                     visualEventSignalCallback = onVisualEventSignal;
                     VisualEventSignal().Connect(visualEventSignalCallback);
                 }
@@ -449,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                tlog.Fatal(tag, $"<[{GetId()}] Finished eventhandler removed>");
+                tlog.Fatal(tag,  $"<[{GetId()}] Finished eventhandler removed>");
                 finishedEventHandler -= value;
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
@@ -653,7 +653,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnFinished()
         {
-            tlog.Fatal(tag, $"<[{GetId()}] OnFinished()>");
+            tlog.Fatal(tag,  $"<[{GetId()}] OnFinished()>");
             finishedEventHandler?.Invoke(this, null);
         }
 
@@ -666,11 +666,11 @@ namespace Tizen.NUI.BaseComponents
                 View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
                 if (v != null)
                 {
-                    tlog.Fatal(tag, $"targetView is not null! name={v.Name}");
+                    tlog.Fatal(tag,  $"targetView is not null! name={v.Name}");
                 }
                 else
                 {
-                    tlog.Fatal(tag, $"target is something created from dali");
+                    tlog.Fatal(tag,  $"target is something created from dali");
                 }
             }
             VisualEventSignalArgs e = new VisualEventSignalArgs();
@@ -678,7 +678,7 @@ namespace Tizen.NUI.BaseComponents
             e.SignalId = signalId;
             visualEventSignalHandler?.Invoke(this, e);
 
-            tlog.Fatal(tag, $"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
+            tlog.Fatal(tag,  $"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -689,10 +689,10 @@ namespace Tizen.NUI.BaseComponents
 
         private void debugPrint()
         {
-            tlog.Fatal(tag, $"===================================");
-            tlog.Fatal(tag, $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
-            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopMode}, LoopCount={LoopCount}, PlayState={PlayState} >");
-            tlog.Fatal(tag, $"===================================");
+            tlog.Fatal(tag,  $"===================================");
+            tlog.Fatal(tag,  $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
+            tlog.Fatal(tag,  $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopMode}, LoopCount={LoopCount}, PlayState={PlayState} >");
+            tlog.Fatal(tag,  $"===================================");
         }
         #endregion Private
     }
