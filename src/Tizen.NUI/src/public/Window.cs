@@ -116,54 +116,49 @@ namespace Tizen.NUI
         };
 
         /// <summary>
-        /// EffectStates
+        /// Enumeration for transition effect's state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectStates
         {
             /// <summary>
-            /// None
+            /// None state.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
-            /// Start
+            /// Transition effect is started.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Start = 1,
+            Start,
             /// <summary>
-            /// End
+            /// Transition effect is ended.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            End = 2,
+            End,
         }
 
         /// <summary>
-        /// EffectTypes
+        /// Enumeration for transition effect's type.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectTypes
         {
             /// <summary>
-            /// None
+            /// None type.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
-            /// Shown
+            /// Window show effect.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Shown = 1,
+            Show,
             /// <summary>
-            /// Hidden
+            /// Window hide effect.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Hidden = 2,
-            /// <summary>
-            /// Restacked
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Restacked = 3,
+            Hide,
         }
 
         /// <summary>
