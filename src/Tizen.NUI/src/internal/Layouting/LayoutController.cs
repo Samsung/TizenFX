@@ -113,21 +113,6 @@ namespace Tizen.NUI
         public bool OverrideCoreAnimation {get;set;} = false;
 
         /// <summary>
-        /// Destructor which adds LayoutController to the Dispose queue.
-        /// </summary>
-        ~LayoutController()
-        {
-        }
-
-        /// <summary>
-        /// Explict Dispose.
-        /// </summary>
-        public void Dispose()
-        {
-           Dispose(DisposeTypes.Explicit);
-        }
-
-        /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
         /// </summary>
         /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
