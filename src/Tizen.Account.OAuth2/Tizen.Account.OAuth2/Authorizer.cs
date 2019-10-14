@@ -123,7 +123,7 @@ namespace Tizen.Account.OAuth2
                     throw ErrorFactory.GetException(ret);
                 }
             }
-            tcsaccessTokenResponse.Task.ConfigureAwait(true);
+            tcsaccessTokenResponse.Task.ConfigureAwait(false);
             Interop.Request.Destroy(requestHandle);
             return tcsaccessTokenResponse.Task.Result;
         }
@@ -151,6 +151,7 @@ namespace Tizen.Account.OAuth2
                 {
                     Log.Error(ErrorFactory.LogTag, "Interop failed");
                     responseCompletionSource.SetException(ErrorFactory.GetException(ret));
+                    return;
                 }
 
                 IntPtr tokenType;
@@ -173,6 +174,7 @@ namespace Tizen.Account.OAuth2
                 {
                     Log.Error(ErrorFactory.LogTag, "Interop failed");
                     responseCompletionSource.SetException(ErrorFactory.GetException(ret));
+                    return;
                 }
 
                 IntPtr scope;
