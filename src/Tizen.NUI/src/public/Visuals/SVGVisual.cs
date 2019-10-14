@@ -1,0 +1,72 @@
+﻿/*
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+namespace Tizen.NUI
+{
+    /// <summary>
+    /// A class encapsulating the property map of the SVG visual.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public class SVGVisual : VisualMap
+    {
+        private string _url = null;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public SVGVisual() : base()
+        {
+        }
+
+        /// <summary>
+        /// The url of the svg resource.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public string URL
+        {
+            get
+            {
+                return _url;
+            }
+            set
+            {
+                _url = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void ComposingPropertyMap()
+        {
+            if (_url != null)
+            {
+                _outputVisualMap = new PropertyMap();
+                _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.SVG));
+                _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
+                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
+                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
+                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
+                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
+            }
+        }
+    }
+}
