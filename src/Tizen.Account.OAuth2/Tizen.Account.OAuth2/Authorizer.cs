@@ -141,6 +141,7 @@ namespace Tizen.Account.OAuth2
             if (error != IntPtr.Zero)
             {
                 Log.Error(ErrorFactory.LogTag, "Error occured");
+                responseCompletionSource.SetException(ErrorFactory.GetException(error));
             }
             else
             {
@@ -149,7 +150,7 @@ namespace Tizen.Account.OAuth2
                 if (ret != (int)OAuth2Error.None)
                 {
                     Log.Error(ErrorFactory.LogTag, "Interop failed");
-                    throw ErrorFactory.GetException(ret);
+                    responseCompletionSource.SetException(ErrorFactory.GetException(ret));
                 }
 
                 IntPtr tokenType;
@@ -171,7 +172,7 @@ namespace Tizen.Account.OAuth2
                 if (ret != (int)OAuth2Error.None)
                 {
                     Log.Error(ErrorFactory.LogTag, "Interop failed");
-                    throw ErrorFactory.GetException(ret);
+                    responseCompletionSource.SetException(ErrorFactory.GetException(ret));
                 }
 
                 IntPtr scope;
