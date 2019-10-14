@@ -18,6 +18,8 @@
 using global::System;
 using global::System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Collections.Generic;
+
 #if (NUI_DEBUG_ON)
 using tlog = Tizen.Log;
 #endif
@@ -111,6 +113,9 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction))
                     .Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
                 Image = map;
+
+                currentStates.contentInfo = null;
+
                 tlog.Fatal(tag,  $"<[{GetId()}]>");
             }
             get
@@ -426,6 +431,53 @@ namespace Tizen.NUI.BaseComponents
             base.Stop();
             tlog.Fatal(tag,  $"[{GetId()}]>");
         }
+
+        /// <summary>
+        /// GetContentInfo()
+        /// </summary>
+        /// <returns>list of Tuple (string of layer name, integer of start frame, integer of end frame)</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<Tuple<string, int, int>> GetContentInfo()
+        {
+            tlog.Fatal(tag, $"<");
+            if(currentStates.contentInfo != null)
+            {
+                return currentStates.contentInfo;
+            }
+
+            PropertyMap imageMap = base.Image;
+            PropertyMap contentMap = new PropertyMap();
+            if (imageMap != null)
+            {
+                PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
+                if (val != null)
+                {
+                    if (val.Get(contentMap))
+                    {
+                        for (uint i = 0; i < contentMap.Count(); i++)
+                        {
+                            string key = contentMap.GetKeyAt(i).StringKey;
+                            PropertyArray arr = new PropertyArray();
+                            contentMap.GetValue(i).Get(arr);
+                            if (arr != null)
+                            {
+                                int startFrame, endFrame;
+                                arr.GetElementAt(0).Get(out startFrame);
+                                arr.GetElementAt(1).Get(out endFrame);
+
+                                tlog.Fatal(tag, $"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
+
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame );
+
+                                currentStates.contentInfo.Add(item);
+                            }
+                        }
+                    }
+                }
+            }
+            tlog.Fatal(tag, $">");
+            return currentStates.contentInfo;
+        }
         #endregion Method
 
 
@@ -626,6 +678,7 @@ namespace Tizen.NUI.BaseComponents
             internal int totalFrame;
             internal float scale;
             internal PlayStateType playState;
+            internal List<Tuple<string, int, int>> contentInfo;
         };
         private states currentStates;
 
