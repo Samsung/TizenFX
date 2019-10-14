@@ -36,20 +36,6 @@ namespace Tizen.NUI
         private string _windowTitle;
         private List<Layer> _childLayers = new List<Layer>();
         private LayoutController localController;
-		
-        /// <summary>
-        /// Creates a new Window.<br />
-        /// This creates an extra window in addition to the default main window<br />
-        /// </summary>
-        /// <param name="windowPosition">The position and size of the Window.</param>
-        /// <param name="isTranslucent">Whether Window is translucent.</param>
-        /// <returns>A new Window.</returns>
-        /// <since_tizen> 6 </since_tizen>
-        public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
-        {
-            this._windowTitle = name;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -61,6 +47,34 @@ namespace Tizen.NUI
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId() );
             }
+        }
+		
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public Window(Rectangle windowPosition = null , bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), "", isTranslucent), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a new Window.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="name">The name for extra window. </param>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
+        /// <returns>A new Window.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.Window_New__SWIG_0(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
+        {
+            this._windowTitle = name;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
