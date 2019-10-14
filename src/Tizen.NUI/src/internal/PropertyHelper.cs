@@ -14,11 +14,10 @@
  * limitations under the License.
  *
  */
+using System.Text;
 
 namespace Tizen.NUI
 {
-    using System.Text;
-
     internal static class PropertyHelper
     {
         ///<summary>

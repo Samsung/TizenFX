@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [TypeConverter(typeof(RelativeVector3TypeConverter))]
-    public class RelativeVector3 : global::System.IDisposable
+    public class RelativeVector3 : Disposable
     {
         /// <summary>
         /// swigCMemOwn
@@ -34,16 +34,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -84,19 +75,6 @@ namespace Tizen.NUI
         public RelativeVector3(RelativeVector4 relativeVector4) : this(Interop.Vector3.new_Vector3__SWIG_4(RelativeVector4.getCPtr(relativeVector4)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~RelativeVector3()
-        {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -251,29 +229,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
         /// The const array subscript operator overload. Should be 0, 1 or 2.
         /// </summary>
         /// <param name="index">The subscript index.</param>
@@ -413,18 +368,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -440,7 +388,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
 
         private RelativeVector3 Add(RelativeVector3 rhs)

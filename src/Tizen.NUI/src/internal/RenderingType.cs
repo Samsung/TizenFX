@@ -17,11 +17,9 @@
 
 namespace Tizen.NUI
 {
-
     internal enum RenderingType
     {
         RENDERING_SHARED_ATLAS,
         RENDERING_VECTOR_BASED
     }
-
 }

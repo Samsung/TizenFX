@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,23 +26,14 @@ namespace Tizen.NUI
     /// An array of property values.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class PropertyArray : global::System.IDisposable
+    public class PropertyArray : Disposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -62,19 +53,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~PropertyArray()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -219,29 +197,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyArray obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -251,18 +206,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -278,7 +226,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -298,25 +246,16 @@ namespace Tizen.NUI
     /// A key type which can be either a std::string or a Property::Index.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class PropertyKey : global::System.IDisposable
+    public class PropertyKey : Disposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
-        /// <summary>
+         /// <summary>
         /// The constructor.
         /// </summary>
         /// <param name="key">The string key.</param>
@@ -340,19 +279,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~PropertyKey()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -427,29 +353,6 @@ namespace Tizen.NUI
                 string ret = Interop.Property.Property_Key_stringKey_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -540,18 +443,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -567,7 +463,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
     }
 
@@ -575,23 +471,14 @@ namespace Tizen.NUI
     /// A map of property values, the key type could be string or Property::Index.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class PropertyMap : global::System.IDisposable
+    public class PropertyMap : Disposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -616,19 +503,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~PropertyMap()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -658,29 +532,6 @@ namespace Tizen.NUI
             get
             {
                 return ValueOfIndex(key);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -896,18 +747,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -923,7 +767,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
     }
 
@@ -931,23 +775,14 @@ namespace Tizen.NUI
     /// A value-type representing a property value.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class PropertyValue : global::System.IDisposable
+    public class PropertyValue : Disposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// Creates a Size2D property value.
@@ -988,6 +823,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
         /// <summary>
         /// The default constructor.
         /// </summary>
@@ -1168,19 +1004,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~PropertyValue()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
         /// An extension to the property value class that allows us to create a
         /// Property value from a C# object, for example, integer, float, or string.<br />
         /// </summary>
@@ -1274,29 +1097,6 @@ namespace Tizen.NUI
             }
             //NUILog.Debug(" got an property value of =" + type.Name);
             return value;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
         }
 
         /// <summary>
@@ -1603,18 +1403,11 @@ namespace Tizen.NUI
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -1630,7 +1423,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
     }
 
@@ -1962,23 +1755,15 @@ namespace Tizen.NUI
         }
     }
 
-    internal class Property : global::System.IDisposable
+    internal class Property : Disposable
     {
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-        /// <summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        protected bool disposed = false;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
 
         /// <summary>
         /// This constructor creates a property instance.
@@ -2032,15 +1817,6 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        ~Property()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
         }
 
         /// <summary>
@@ -2126,42 +1902,16 @@ namespace Tizen.NUI
             }
         }
 
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Property obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
                 return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
             }
 
             //Release your own unmanaged resources here.
@@ -2177,7 +1927,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            disposed = true;
+            base.Dispose(type);
         }
     }
 }

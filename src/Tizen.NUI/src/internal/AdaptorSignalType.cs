@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    /// <summary>
-    /// public class AdaptorSignalType : global::System.IDisposable
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AdaptorSignalType : global::System.IDisposable
+    internal class AdaptorSignalType : Disposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
@@ -49,35 +43,21 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        ~AdaptorSignalType()
-        {
-            Dispose();
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Dispose()
+        protected override void Dispose(DisposeTypes type)
         {
-            lock (this)
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                if (swigCMemOwn)
                 {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.Adaptor.delete_AdaptorSignalType(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                    swigCMemOwn = false;
+                    Interop.Adaptor.delete_AdaptorSignalType(swigCPtr);
                 }
-                global::System.GC.SuppressFinalize(this);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -163,7 +143,5 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
     }
-
 }
