@@ -54,6 +54,9 @@ namespace Tizen.NUI
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
+            "Please use PropertyBuffer(PropertyMap bufferFormat) constructor instead!" +
+            "IntPtr(native integer pointer) is supposed to be not used in Application!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
