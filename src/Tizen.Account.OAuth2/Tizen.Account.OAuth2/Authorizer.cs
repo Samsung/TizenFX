@@ -99,7 +99,7 @@ namespace Tizen.Account.OAuth2
             return await Task.Run(() => GetRefreshToken(requestHandle));
         }
 
-        private TokenResponse GetRefreshToken(IntPtr requestHandle)
+        private async Task<TokenResponse> GetRefreshToken(IntPtr requestHandle)
         {
             int ret = (int)OAuth2Error.None;
             IntPtr error = IntPtr.Zero;
@@ -123,7 +123,7 @@ namespace Tizen.Account.OAuth2
                     throw ErrorFactory.GetException(ret);
                 }
             }
-            tcsaccessTokenResponse.Task.ConfigureAwait(false);
+            await tcsaccessTokenResponse.Task.ConfigureAwait(false);
             Interop.Request.Destroy(requestHandle);
             return tcsaccessTokenResponse.Task.Result;
         }
