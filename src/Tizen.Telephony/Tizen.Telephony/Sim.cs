@@ -130,8 +130,8 @@ namespace Tizen.Telephony
         /// The Integrated Circuit Card Identification number internationally identifies SIM cards.
         /// </summary>
         /// <remarks>
-        /// For avoding the unexpected behavior of old version applications that have http://tizen.org/privilege/telephony privilege. There is an exceptional handling in case of permission denied.
-        /// For an application with API version 6 or higer, if an application doesn't have http://tizen.org/privilege/securesysteminfo privilege, it sets with empty string.
+        /// To avoid the unexpected behavior of old version applications that have http://tizen.org/privilege/telephony privilege. There is an exceptional handling in case of permission denied.
+        /// For an application with API version 6 or higher, if an application doesn't have http://tizen.org/privilege/securesysteminfo privilege, it sets with empty string.
         /// For an application with API version lower than 6. if an application has http://tizen.org/privilege/telephony privilege, it sets with a pseudo value.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
