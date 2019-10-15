@@ -35,7 +35,7 @@ namespace Tizen.Network.Connection
         {
             _tid = Thread.CurrentThread.ManagedThreadId;
             Log.Info(Globals.LogTag, "PInvoke connection_create for Thread " + _tid);
-            int ret = Interop.Connection.Create(_tid, out Handle);
+            int ret = Interop.Connection.Create(out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
@@ -60,7 +60,7 @@ namespace Tizen.Network.Connection
         {
 
             Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
-            Interop.Connection.Destroy(_tid, Handle);
+            Interop.Connection.Destroy(Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
@@ -162,6 +162,7 @@ namespace Tizen.Network.Connection
             {
                 if (_ConnectionTypeChanged != null)
                 {
+                    Log.Debug(Globals.LogTag, "ConnectionTypeChanged event");
                     _ConnectionTypeChanged(null, new ConnectionTypeEventArgs(type));
                 }
             };
@@ -233,6 +234,7 @@ namespace Tizen.Network.Connection
             {
                 if (_EthernetCableStateChanged != null)
                 {
+                    Log.Debug(Globals.LogTag, "EthernetCableStateChanged event");
                     _EthernetCableStateChanged(null, new EthernetCableStateEventArgs(state));
                 }
             };
@@ -314,6 +316,7 @@ namespace Tizen.Network.Connection
 
                     if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
                     {
+                        Log.Debug(Globals.LogTag, "IPAddressChanged event");
                         _IPAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
                     }
                 }
@@ -389,6 +392,7 @@ namespace Tizen.Network.Connection
 
                     if ((string.IsNullOrEmpty(ipv4) == false) || (string.IsNullOrEmpty(ipv6) == false))
                     {
+                        Log.Debug(Globals.LogTag, "ProxyAddressChanged event");
                         _ProxyAddressChanged(null, new AddressEventArgs(ipv4, ipv6));
                     }
                 }

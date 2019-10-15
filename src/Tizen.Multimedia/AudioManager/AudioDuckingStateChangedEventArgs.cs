@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="AudioDucking.DuckingStateChanged"/> event.
+    /// Provides data for the state change event of <see cref="AudioDucking.DuckingStateChanged"/>.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class AudioDuckingStateChangedEventArgs : EventArgs
