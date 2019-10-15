@@ -86,10 +86,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This event is emitted when the screen is touched and when the touch ends.<br />
-        /// If there are multiple touch points, then this will be emitted when the first touch occurs and
-        /// then when the last finger is lifted.<br />
-        /// An interrupted event will also be emitted (if it occurs).<br />
+        /// Emits the event when the screen is touched and when the touch ends.<br />
+        /// If there are multiple touch points then it is emitted when the first touch occurs and
+        /// when the last finger is lifted too.<br />
+        /// Even though incoming events are interrupted, the event occurs.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TouchEventArgs> TouchEvent
@@ -114,7 +114,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This event is emitted when the wheel event is received.
+        /// Emits the event when the wheel event is received.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WheelEventArgs> WheelEvent
@@ -139,7 +139,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This event is emitted when the key event is received.
+        /// Emits the event when the key event is received.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<KeyEventArgs> KeyEvent
@@ -164,7 +164,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This event is emitted when the window resized.
+        /// Emits the event when the window resized.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
