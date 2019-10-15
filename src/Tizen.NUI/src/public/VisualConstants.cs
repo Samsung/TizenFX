@@ -839,6 +839,19 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int LoopingMode = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 9;
+
+        /// <summary>
+        /// @brief The content information the AnimatedVectorImageVisual will use.
+        /// @details Name "contentInfo", Type Property::MAP.
+        /// The map contains the layer name as a key and Property::Array as a value.
+        /// And the array contains 2 integer values which are the frame numbers, the start frame number and the end frame number of the layer.
+        /// @note This property is read-only.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int ContentInfo = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION + 10;
     }
 
     /// <summary>
