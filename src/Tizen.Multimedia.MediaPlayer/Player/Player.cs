@@ -414,7 +414,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         ///     The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
-        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync"/> again.
+        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync()"/> or
+        ///     <see cref="PrepareAsync(CancellationToken)"/> again.
         ///     <para>
         ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         ///     It has no effect if the player is already in the <see cref="PlayerState.Idle"/> state.
@@ -464,7 +465,8 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <seealso cref="Stop"/>
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
@@ -546,7 +548,8 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetSource(MediaSource source)
         {

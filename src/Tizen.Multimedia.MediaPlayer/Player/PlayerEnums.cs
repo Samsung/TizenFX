@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.Threading;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia
@@ -114,7 +115,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Prepared.
         /// </summary>
-        /// <seealso cref="Player.PrepareAsync"/>
+        /// <seealso cref="Player.PrepareAsync()"/>
+        /// <seealso cref="Player.PrepareAsync(CancellationToken)"/>
         Ready,
 
         /// <summary>
@@ -133,7 +135,8 @@ namespace Tizen.Multimedia
         /// Preparation in progress.
         /// </summary>
         /// <remarks>In this state, other methods and properties cannot be set.</remarks>
-        /// <seealso cref="Player.PrepareAsync"/>/>
+        /// <seealso cref="Player.PrepareAsync()"/>
+        /// <seealso cref="Player.PrepareAsync(CancellationToken)"/>
         Preparing,
     }
 
