@@ -399,25 +399,28 @@ namespace Tizen.NUI.Components
             int _positionY = 0;
 
             _textAreaWidth = _textAreaWidth > maxTextAreaWidth ? maxTextAreaWidth : _textAreaWidth;
-            if (LayoutDirection == ViewLayoutDirectionType.LTR)
+            if (textLabels != null)
             {
-                for (int i = 0; i < textLabels?.Length; i++)
+                if (LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    textLabels[i].Position2D = new Position2D(_textPaddingLeft, _textPaddingTop + _positionY);
-                    textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
-                    _positionY += _textLineHeight + _textLineSpace;
+                    for (int i = 0; i < textLabels?.Length; i++)
+                    {
+                        textLabels[i].Position2D = new Position2D(_textPaddingLeft, _textPaddingTop + _positionY);
+                        textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
+                        _positionY += _textLineHeight + _textLineSpace;
+                    }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < textLabels?.Length; i++)
+                else
                 {
-                    textLabels[i].ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
-                    textLabels[i].PivotPoint = Tizen.NUI.PivotPoint.TopRight;
-                    textLabels[i].PositionUsesPivotPoint = true;
-                    textLabels[i].Position2D = new Position2D(-_textPaddingLeft, _textPaddingTop + _positionY);
-                    textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
-                    _positionY += _textLineHeight + _textLineSpace;
+                    for (int i = 0; i < textLabels?.Length; i++)
+                    {
+                        textLabels[i].ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
+                        textLabels[i].PivotPoint = Tizen.NUI.PivotPoint.TopRight;
+                        textLabels[i].PositionUsesPivotPoint = true;
+                        textLabels[i].Position2D = new Position2D(-_textPaddingLeft, _textPaddingTop + _positionY);
+                        textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
+                        _positionY += _textLineHeight + _textLineSpace;
+                    }
                 }
             }
         }

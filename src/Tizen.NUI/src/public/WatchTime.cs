@@ -325,8 +325,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-
-            disposed = true;
+            base.Dispose(type);
         }
     }
 }
