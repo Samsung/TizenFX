@@ -777,14 +777,14 @@ namespace Tizen.NUI.Components
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.End;
                 selectButtonAttributes.TextAttributes.Position.X = textPaddingRight;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight + IconPadding.End;
+                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight + IconPadding?.End;
 
             }
             else if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.Begin;
-                selectButtonAttributes.TextAttributes.Position.X = IconPadding.Start + iconWidth + IconPadding.End + textPaddingLeft;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPadding.Start;
+                selectButtonAttributes.TextAttributes.Position.X = IconPadding?.Start + iconWidth + IconPadding?.End + textPaddingLeft;
+                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPadding?.Start;
             }
 
         }

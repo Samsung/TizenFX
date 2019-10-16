@@ -469,7 +469,7 @@ namespace Tizen.NUI.BaseComponents
 
                                 Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame );
 
-                                currentStates.contentInfo.Add(item);
+                                currentStates.contentInfo?.Add(item);
                             }
                         }
                     }
