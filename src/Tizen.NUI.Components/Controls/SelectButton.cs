@@ -772,20 +772,30 @@ namespace Tizen.NUI.Components
 
             int textPaddingLeft = selectButtonAttributes.TextAttributes.PaddingLeft;
             int textPaddingRight = selectButtonAttributes.TextAttributes.PaddingRight;
-
+            int pos = 0;
             if (LayoutDirection == ViewLayoutDirectionType.RTL)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.End;
                 selectButtonAttributes.TextAttributes.Position.X = textPaddingRight;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight + IconPadding.End;
+				pos = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight;
+                if (IconPadding != null)
+				{
+                    pos += IconPadding.End;
+				}
 
             }
             else if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.Begin;
-                selectButtonAttributes.TextAttributes.Position.X = IconPadding.Start + iconWidth + IconPadding.End + textPaddingLeft;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPadding.Start;
+                selectButtonAttributes.TextAttributes.Position.X = iconWidth + textPaddingLeft;
+                if (IconPadding != null)
+				{
+                    selectButtonAttributes.TextAttributes.Position.X += (IconPadding.Start + IconPadding.End); 
+                    pos = IconPadding.Start;
+				}
             }
+			
+			checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = pos;
 
         }
 

@@ -292,10 +292,13 @@ namespace Tizen.NUI
             for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
                 Layer layer = _window.GetLayer(layerIndex);
-                for (uint i = 0; i < layer.ChildCount; i++)
+                if (layer)
                 {
-                    View view = layer.GetChildAt(i);
-                    FindRootLayouts(view);
+                    for (uint i = 0; i < layer.ChildCount; i++)
+                    {
+                        View view = layer.GetChildAt(i);
+                        FindRootLayouts(view);
+                    }
                 }
             }
 
