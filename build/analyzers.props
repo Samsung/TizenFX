@@ -1,17 +1,14 @@
 <Project>
 
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>$(MSBuildThisFileDirectory)Global.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup >
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.2">
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs">
-      <Link>_TizenFX_GlobalSuppressions.cs</Link>
-      <Visible>False</Visible>
-    </Compile>
   </ItemGroup>
 
 </Project>
