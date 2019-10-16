@@ -14,7 +14,9 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -25,14 +27,25 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ViewAttributes : Attributes
     {
+        static public T CreateView<T>(string style) where T : View, new()
+        {
+            T ret = new T();
+            (Tizen.NUI.Components.StyleManager.Instance.GetAttributes("style") as ViewAttributes).ApplyToView(ret);
+            return ret;
+        }
+
         /// <summary>
         /// Construct ViewAttributes.
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewAttributes() : base() { }
+        public ViewAttributes() : base()
+        {
+            StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
+        }
+
         /// <summary>
-        /// Constructs a ViewAttributes that is a copy of attrs.
+        /// Constructs a ViewAttributes that is a copy of 
         /// </summary>
         /// <param name="attributes">Construct Attributes</param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -103,7 +116,10 @@ namespace Tizen.NUI.Components
             PaddingRight = attributes.PaddingRight;
             PaddingTop = attributes.PaddingTop;
             PaddingBottom = attributes.PaddingBottom;
+
+            StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
         }
+
         /// <summary>
         /// View Position
         /// </summary>
@@ -264,5 +280,89 @@ namespace Tizen.NUI.Components
             return new ViewAttributes(this);
         }
 
+        /// <summary>
+        /// Apply ViewAttributes to View.
+        /// </summary>
+        public virtual void ApplyToView(View view, ControlStates state = ControlStates.Normal)
+        {
+            if (view == null)
+            {
+                return;
+            }
+
+            if (Position != null)
+            {
+                view.Position = Position;
+            }
+            if (Size != null)
+            {
+                view.Size = Size;
+            }
+            if (MinimumSize != null)
+            {
+                view.MinimumSize = MinimumSize;
+            }
+            if (PositionUsesPivotPoint != null)
+            {
+                view.PositionUsesPivotPoint = PositionUsesPivotPoint.Value;
+            }
+            if (ParentOrigin != null)
+            {
+                view.ParentOrigin = ParentOrigin;
+            }
+            if (PivotPoint != null)
+            {
+                view.PivotPoint = PivotPoint;
+            }
+            if (WidthResizePolicy != null)
+            {
+                view.WidthResizePolicy = WidthResizePolicy.Value;
+            }
+            if (HeightResizePolicy != null)
+            {
+                view.HeightResizePolicy = HeightResizePolicy.Value;
+            }
+            if (SizeModeFactor != null)
+            {
+                view.SizeModeFactor = SizeModeFactor;
+            }
+
+            if (!appliedViews.ContainsKey(view))
+            {
+                appliedViews.Add(view, 0);
+                RegisterStateChangeCallback(view);
+            }
+        }
+
+        protected virtual void RegisterStateChangeCallback(View view)
+        {
+            view.FocusGained += (object sender, global::System.EventArgs e) =>
+            {
+                ApplyToView(view, ControlStates.Focused);
+            };
+
+            view.FocusLost += (object sender, global::System.EventArgs e) =>
+            {
+                ApplyToView(view, ControlStates.Normal);
+            };
+        }
+
+        public void DisApplyToView(View view)
+        {
+            if (appliedViews.ContainsKey(view))
+            {
+                appliedViews.Remove(view);
+            }
+        }
+
+        private void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            foreach (KeyValuePair<View, int> keyValuePair in appliedViews)
+            {
+                ApplyToView(keyValuePair.Key);
+            }
+        }
+
+        private Dictionary<View, int> appliedViews = new Dictionary<View, int>();
     }
 }

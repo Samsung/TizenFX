@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -121,16 +122,6 @@ namespace Tizen.NUI.Components
             if (attributes.PointSize != null)
             {
                 PointSize = attributes.PointSize.Clone() as FloatSelector;
-            }
-
-            if (attributes.ShadowOffset != null)
-            {
-                ShadowOffset = attributes.ShadowOffset.Clone() as Vector2Selector;
-            }
-
-            if (attributes.ShadowColor != null)
-            {
-                ShadowColor = attributes.ShadowColor.Clone() as ColorSelector;
             }
 
             if (attributes.OutstrokeColor != null)
@@ -303,26 +294,6 @@ namespace Tizen.NUI.Components
             set;
         }
         /// <summary>
-        /// TextLabel ShadowOffset
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2Selector ShadowOffset
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// TextLabel ShadowColor
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ColorSelector ShadowColor
-        {
-            get;
-            set;
-        }
-        /// <summary>
         /// TextLabel OutstrokeColor
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -350,6 +321,100 @@ namespace Tizen.NUI.Components
         public override Attributes Clone()
         {
             return new TextAttributes(this);
+        }
+
+        /// <summary>
+        /// Apply ViewAttributes to TextControl.
+        /// </summary>
+        public override void ApplyToView(View view, ControlStates state = ControlStates.Normal)
+        {
+            base.ApplyToView(view, state);
+            TextLabel text = view as TextLabel;
+            TextAttributes textAttrs = this;
+
+            if (text != null && textAttrs != null)
+            {
+                if (textAttrs.Text?.GetValue(state) != null)
+                {
+                    text.Text = textAttrs.Text.GetValue(state);
+                }
+                if (textAttrs.TranslatableText?.GetValue(state) != null)
+                {
+                    text.TranslatableText = textAttrs.TranslatableText.GetValue(state);
+                }
+                if (textAttrs.MultiLine != null)
+                {
+                    text.MultiLine = textAttrs.MultiLine.Value;
+                }
+                if (textAttrs.HorizontalAlignment != null)
+                {
+                    text.HorizontalAlignment = textAttrs.HorizontalAlignment.Value;
+                }
+                if (textAttrs.VerticalAlignment != null)
+                {
+                    text.VerticalAlignment = textAttrs.VerticalAlignment.Value;
+                }
+                if (textAttrs.EnableMarkup != null)
+                {
+                    text.EnableMarkup = textAttrs.EnableMarkup.Value;
+                }
+                if (textAttrs.AutoScrollLoopCount != null)
+                {
+                    text.AutoScrollLoopCount = textAttrs.AutoScrollLoopCount.Value;
+                }
+                if (textAttrs.AutoScrollSpeed != null)
+                {
+                    text.AutoScrollSpeed = textAttrs.AutoScrollSpeed.Value;
+                }
+                if (textAttrs.AutoScrollGap != null)
+                {
+                    text.AutoScrollGap = textAttrs.AutoScrollGap.Value;
+                }
+                if (textAttrs.AutoScrollLoopDelay != null)
+                {
+                    text.AutoScrollLoopDelay = textAttrs.AutoScrollLoopDelay.Value;
+                }
+                if (textAttrs.AutoScrollStopMode != null)
+                {
+                    text.AutoScrollStopMode = textAttrs.AutoScrollStopMode.Value;
+                }
+                if (textAttrs.LineSpacing != null)
+                {
+                    text.LineSpacing = textAttrs.LineSpacing.Value;
+                }
+                if (textAttrs.TextColor?.GetValue(state) != null)
+                {
+                    text.TextColor = textAttrs.TextColor.GetValue(state);
+                }
+                if (textAttrs.FontFamily != null)
+                {
+                    text.FontFamily = textAttrs.FontFamily;
+                }
+                if (textAttrs.PointSize?.GetValue(state) != null)
+                {
+                    text.PointSize = textAttrs.PointSize.GetValue(state).Value;
+                }
+
+                int thickness = 0;
+
+                if (textAttrs.OutstrokeThickness?.GetValue(state) != null)
+                {
+                    thickness = textAttrs.OutstrokeThickness.GetValue(state).Value;
+                }
+
+                if (textAttrs.OutstrokeColor?.GetValue(state) != null)
+                {
+                    Color outstrokeColor = textAttrs.OutstrokeColor.GetValue(state);
+                    PropertyMap outlineMap = new PropertyMap();
+                    outlineMap.Add("color", new PropertyValue(new Color(outstrokeColor.R, outstrokeColor.G, outstrokeColor.B, outstrokeColor.A)));
+                    outlineMap.Add("width", new PropertyValue(thickness));
+                    //text.Outline = outlineMap;
+                }
+                else
+                {
+                    //text.Outline = new PropertyMap();
+                }
+            }
         }
     }
 }

@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -27,7 +28,7 @@ namespace Tizen.NUI.Components
     public class TextFieldAttributes : ViewAttributes
     {
         /// <summary>
-        /// Creates a new instance of a TextField.
+        /// Creates a new instance of a TextFieldAttributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -35,9 +36,9 @@ namespace Tizen.NUI.Components
         public TextFieldAttributes() : base() { }
 
         /// <summary>
-        /// Creates a new instance of a TextField with style.
+        /// Construct with specified attribute.
         /// </summary>
-        /// <param name="attributes">Create TextField by special style defined in UX.</param>
+        /// <param name="attributes">The specified TextFieldAttributes.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -314,6 +315,84 @@ namespace Tizen.NUI.Components
         public override Attributes Clone()
         {
             return new TextFieldAttributes(this);
+        }
+
+        /// <summary>
+        /// Apply ViewAttributes to TextField.
+        /// </summary>
+        public override void ApplyToView(View view, ControlStates state)
+        {
+            base.ApplyToView(view, state);
+
+            TextField textField = view as TextField;
+            TextFieldAttributes textFieldAttrs = this;
+            if (textField != null && textFieldAttrs != null)
+            {
+                if (textFieldAttrs.Text?.GetValue(state) != null)
+                {
+                    textField.Text = textFieldAttrs.Text.GetValue(state);
+                }
+                if (textFieldAttrs.PlaceholderText?.GetValue(state) != null)
+                {
+                    textField.PlaceholderText = textFieldAttrs.PlaceholderText.GetValue(state);
+                }
+                if (textFieldAttrs.TranslatablePlaceholderText?.GetValue(state) != null)
+                {
+                    textField.TranslatablePlaceholderText = textFieldAttrs.TranslatablePlaceholderText.GetValue(state);
+                }
+                if (textFieldAttrs.TextColor?.GetValue(state) != null)
+                {
+                    textField.TextColor = textFieldAttrs.TextColor.GetValue(state);
+                }
+                if (textFieldAttrs.PlaceholderTextColor?.GetValue(state) != null)
+                {
+                    textField.PlaceholderTextColor = textFieldAttrs.PlaceholderTextColor.GetValue(state);
+                }
+                if (textFieldAttrs.PrimaryCursorColor?.GetValue(state) != null)
+                {
+                    textField.PrimaryCursorColor = textFieldAttrs.PrimaryCursorColor.GetValue(state);
+                }
+                if (textFieldAttrs.SecondaryCursorColor?.GetValue(state) != null)
+                {
+                    textField.SecondaryCursorColor = textFieldAttrs.SecondaryCursorColor.GetValue(state);
+                }
+                if (textFieldAttrs.PointSize?.GetValue(state) != null)
+                {
+                    textField.PointSize = textFieldAttrs.PointSize.GetValue(state).Value;
+                }
+                if (textFieldAttrs.HorizontalAlignment != null)
+                {
+                    textField.HorizontalAlignment = textFieldAttrs.HorizontalAlignment.Value;
+                }
+                if (textFieldAttrs.VerticalAlignment != null)
+                {
+                    textField.VerticalAlignment = textFieldAttrs.VerticalAlignment.Value;
+                }
+                if (textFieldAttrs.EnableMarkup != null)
+                {
+                    textField.EnableMarkup = textFieldAttrs.EnableMarkup.Value;
+                }
+                if (textFieldAttrs.FontFamily != null)
+                {
+                    textField.FontFamily = textFieldAttrs.FontFamily;
+                }
+                if (textFieldAttrs.EnableCursorBlink != null)
+                {
+                    textField.EnableCursorBlink = textFieldAttrs.EnableCursorBlink.Value;
+                }
+                if (textFieldAttrs.EnableSelection != null)
+                {
+                    textField.EnableSelection = textFieldAttrs.EnableSelection.Value;
+                }
+                if (textFieldAttrs.CursorWidth != null)
+                {
+                    textField.CursorWidth = textFieldAttrs.CursorWidth.Value;
+                }
+                if (textFieldAttrs.EnableEllipsis != null)
+                {
+                    textField.Ellipsis = textFieldAttrs.EnableEllipsis.Value;
+                }
+            }
         }
     }
 }
