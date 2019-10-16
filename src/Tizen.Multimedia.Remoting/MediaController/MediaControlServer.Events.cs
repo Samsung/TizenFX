@@ -23,7 +23,6 @@ namespace Tizen.Multimedia.Remoting
 {
     public static partial class MediaControlServer
     {
-        private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;
         private static Native.PlaybackActionCommandReceivedCallback _playbackActionCommandCallback;
         private static Native.PlaybackPositionCommandReceivedCallback _playbackPositionCommandCallback;
         private static Native.PlaylistCommandReceivedCallback _playlistCommandCallback;
