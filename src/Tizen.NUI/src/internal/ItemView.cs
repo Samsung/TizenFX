@@ -80,54 +80,93 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Property for ItemView. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+        /// </summary>
         [Obsolete("Deprecated in API6; Will be removed in API9.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new class Property
         {
+            /// <summary>
+            /// LAYOUT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int LAYOUT = Interop.ItemView.ItemView_Property_LAYOUT_get();
 
+            /// <summary>
+            /// MINIMUM_SWIPE_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int MINIMUM_SWIPE_SPEED = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
 
+            /// <summary>
+            /// MINIMUM_SWIPE_DISTANCE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int MINIMUM_SWIPE_DISTANCE = Interop.ItemView.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
 
+            /// <summary>
+            /// WHEEL_SCROLL_DISTANCE_STEP. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ItemView.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
 
+            /// <summary>
+            /// SNAP_TO_ITEM_ENABLED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SNAP_TO_ITEM_ENABLED = Interop.ItemView.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
 
+            /// <summary>
+            /// REFRESH_INTERVAL. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int REFRESH_INTERVAL = Interop.ItemView.ItemView_Property_REFRESH_INTERVAL_get();
 
+            /// <summary>
+            /// LAYOUT_POSITION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int LAYOUT_POSITION = Interop.ItemView.ItemView_Property_LAYOUT_POSITION_get();
 
+            /// <summary>
+            /// SCROLL_SPEED. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_SPEED = Interop.ItemView.ItemView_Property_SCROLL_SPEED_get();
 
+            /// <summary>
+            /// OVERSHOOT. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int OVERSHOOT = Interop.ItemView.ItemView_Property_OVERSHOOT_get();
 
+            /// <summary>
+            /// SCROLL_DIRECTION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_DIRECTION = Interop.ItemView.ItemView_Property_SCROLL_DIRECTION_get();
 
+            /// <summary>
+            /// LAYOUT_ORIENTATION. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int LAYOUT_ORIENTATION = Interop.ItemView.ItemView_Property_LAYOUT_ORIENTATION_get();
 
+            /// <summary>
+            /// SCROLL_CONTENT_SIZE. This is internal use only, so not recommended to use. Need to use ItemView's properties.
+            /// </summary>
             [Obsolete("Deprecated in API6; Will be removed in API9.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_CONTENT_SIZE = Interop.ItemView.ItemView_Property_SCROLL_CONTENT_SIZE_get();

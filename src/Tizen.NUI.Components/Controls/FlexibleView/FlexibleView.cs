@@ -597,7 +597,7 @@ namespace Tizen.NUI.Components
 
             float extent = mLayout.ComputeScrollExtent();
             float range = mLayout.ComputeScrollRange();
-            if(range == 0)
+            if (range == 0)
             {
                 return;
             }
@@ -661,7 +661,7 @@ namespace Tizen.NUI.Components
             mAdapter.OnFocusChange(this, mFocusedItemIndex, nextFocusPosition);
 
             mFocusedItemIndex = nextFocusPosition;
- 
+
             ShowScrollBar();
         }
 
@@ -1069,7 +1069,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void NotifyItemMoved(int fromPosition, int toPosition)
             {
-               
+
             }
 
             private void OnItemEvent(object sender, ItemEventArgs e)
@@ -1871,7 +1871,7 @@ namespace Tizen.NUI.Components
                 // Favor the "start" layout direction over the end when bringing one side or the other
                 // of a large rect into view. If we decide to bring in end because start is already
                 // visible, limit the scroll such that start won't go out of bounds.
-                int dx= offScreenLeft != 0 ? offScreenLeft
+                int dx = offScreenLeft != 0 ? offScreenLeft
                             : Math.Min(childLeft - parentLeft, offScreenRight);
 
                 // Favor bringing the top into view over the bottom. If top is already visible and
@@ -1946,11 +1946,19 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            /// <summary>
+            /// FindFirstVisibleItemView
+            /// </summary>
+            /// <returns>ViewHolder</returns>
             protected virtual ViewHolder FindFirstVisibleItemView()
             {
                 return null;
             }
 
+            /// <summary>
+            /// FindLastVisibleItemView
+            /// </summary>
+            /// <returns>ViewHolder</returns>
             protected virtual ViewHolder FindLastVisibleItemView()
             {
                 return null;
@@ -1982,50 +1990,36 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ViewHolder
         {
-            /**
-             * This ViewHolder has been bound to a position; AdapterPosition, mItemId and mItemViewType
-             * are all valid.
-             */
+            // This ViewHolder has been bound to a position; AdapterPosition, mItemId and mItemViewType
+            // are all valid.
             //static readonly int FLAG_BOUND = 1 << 0;
 
-            /**
-             * The data this ViewHolder's view reflects is stale and needs to be rebound
-             * by the adapter. AdapterPosition and mItemId are consistent.
-             */
+            // The data this ViewHolder's view reflects is stale and needs to be rebound
+            // by the adapter. AdapterPosition and mItemId are consistent.
             //static readonly int FLAG_UPDATE = 1 << 1;
 
-            /**
-             * This ViewHolder's data is invalid. The identity implied by AdapterPosition and mItemId
-             * are not to be trusted and may no longer match the item view type.
-             * This ViewHolder must be fully rebound to different data.
-             */
+            // This ViewHolder's data is invalid. The identity implied by AdapterPosition and mItemId
+            // are not to be trusted and may no longer match the item view type.
+            // This ViewHolder must be fully rebound to different data.
             //static readonly int FLAG_INVALID = 1 << 2;
 
-            /**
-             * This ViewHolder points at data that represents an item previously removed from the
-             * data set. Its view may still be used for things like outgoing animations.
-             */
+            // This ViewHolder points at data that represents an item previously removed from the
+            // data set. Its view may still be used for things like outgoing animations.
             //static readonly int FLAG_REMOVED = 1 << 3;
 
-            /**
-             * This ViewHolder should not be recycled. This flag is set via setIsRecyclable()
-             * and is intended to keep views around during animations.
-             */
+            // This ViewHolder should not be recycled. This flag is set via setIsRecyclable()
+            // and is intended to keep views around during animations.
             //static readonly int FLAG_NOT_RECYCLABLE = 1 << 4;
 
-            /**
-             * This ViewHolder is returned from scrap which means we are expecting an addView call
-             * for this itemView. When returned from scrap, ViewHolder stays in the scrap list until
-             * the end of the layout pass and then recycled by RecyclerView if it is not added back to
-             * the RecyclerView.
-             */
+            // This ViewHolder is returned from scrap which means we are expecting an addView call
+            // for this itemView. When returned from scrap, ViewHolder stays in the scrap list until
+            // the end of the layout pass and then recycled by RecyclerView if it is not added back to
+            // the RecyclerView.
             //static readonly int FLAG_RETURNED_FROM_SCRAP = 1 << 5;
 
-            /**
-             * This ViewHolder is fully managed by the LayoutManager. We do not scrap, recycle or remove
-             * it unless LayoutManager is replaced.
-             * It is still fully visible to the LayoutManager.
-             */
+            // This ViewHolder is fully managed by the LayoutManager. We do not scrap, recycle or remove
+            // it unless LayoutManager is replaced.
+            // It is still fully visible to the LayoutManager.
             //static readonly int FLAG_IGNORE = 1 << 7;
 
             private int mFlags;
@@ -2452,7 +2446,7 @@ namespace Tizen.NUI.Components
         private class ChildHelper
         {
             private FlexibleView mFlexibleView;
-            
+
             private List<ViewHolder> mViewList = new List<ViewHolder>();
 
             //private List<ViewHolder> mRemovePendingViews;
@@ -2470,7 +2464,7 @@ namespace Tizen.NUI.Components
 
             public void Clear()
             {
-                foreach(ViewHolder holder in mViewList)
+                foreach (ViewHolder holder in mViewList)
                 {
                     mFlexibleView.Remove(holder.ItemView);
 
@@ -2502,7 +2496,7 @@ namespace Tizen.NUI.Components
                 if (!itemViewTable.ContainsKey(holder.ItemView.ID))
                 {
                     mTapGestureDetector.Attach(holder.ItemView);
-                    holder.ItemView.TouchEvent += OnTouchEvent; 
+                    holder.ItemView.TouchEvent += OnTouchEvent;
                 }
 
                 itemViewTable[holder.ItemView.ID] = holder;
