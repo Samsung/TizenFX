@@ -126,7 +126,6 @@ namespace Tizen.Multimedia.Remoting
             catch
             {
                 Native.Destroy(_handle);
-                _playbackCommandCallback = null;
                 _handle = IntPtr.Zero;
                 _serverName = null;
                 throw;
@@ -169,7 +168,6 @@ namespace Tizen.Multimedia.Remoting
             Native.Destroy(_handle).ThrowIfError("Failed to stop the server.");
 
             _handle = IntPtr.Zero;
-            _playbackCommandCallback = null;
             _isRunning = false;
         }
 
