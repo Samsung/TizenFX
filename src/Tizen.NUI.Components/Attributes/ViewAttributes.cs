@@ -45,7 +45,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Constructs a ViewAttributes that is a copy of 
+        /// Constructs a ViewAttributes that is a copy of Attributes
         /// </summary>
         /// <param name="attributes">Construct Attributes</param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
