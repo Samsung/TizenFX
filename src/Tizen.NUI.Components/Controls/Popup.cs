@@ -750,12 +750,16 @@ namespace Tizen.NUI.Components
             }
             ContentView.RaiseToTop();
 
-            UpdateButton(buttonCount);
-           
-            if (buttonList != null && popupAttributes.ButtonAttributes != null && popupAttributes.ButtonAttributes.Size != null)
+            if (popupAttributes.ButtonAttributes != null && popupAttributes.ButtonAttributes.Size != null)
             {
-                buttonH = (int)popupAttributes.ButtonAttributes.Size.Height;
+                UpdateButton(buttonCount);
+
+                if (buttonList != null)
+                {
+                    buttonH = (int)popupAttributes.ButtonAttributes.Size.Height;
+                }
             }
+
             ContentView.Size2D = new Size2D(Size2D.Width - titleX * 2, Size2D.Height - titleY - titleH - buttonH);
             ContentView.Position2D = new Position2D(titleX, titleY + titleH);
 
