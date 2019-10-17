@@ -17,6 +17,7 @@
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -35,6 +36,17 @@ namespace Tizen.NUI
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        /// <summary>
+        /// The constructor for multi widget class and instance.
+        /// </summary>
+        /// <param name="widgetTypes">List of derived widget class type.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
+        {
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.RegisterWidgetInfo(widgetTypes);
         }
 
         /// <summary>
