@@ -101,7 +101,6 @@ namespace Tizen.Network.Connection
             {
                 if (_ProfileStateChanged != null)
                 {
-                    Log.Debug(Globals.LogTag, "ProfileStateChanged event");
                     _ProfileStateChanged(null, new ProfileStateEventArgs(state));
                 }
             };
