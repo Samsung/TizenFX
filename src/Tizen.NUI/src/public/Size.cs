@@ -305,6 +305,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The type cast operator, Size to Size2D.
+        /// </summary>
+        /// <param name="size">The object of size type.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Size2D(Size size)
+        {
+            return new Size2D(size.Width, size.Height);
+        }
+
+        /// <summary>
         /// The type cast operator, Vector3 to Size type.
         /// </summary>
         /// <param name="vec">The object of Vector3 type.</param>

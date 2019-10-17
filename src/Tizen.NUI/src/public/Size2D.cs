@@ -56,6 +56,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal Size2D(float x, float y) : this(Interop.Vector2.new_Vector2__SWIG_1(x, y), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal delegate void Size2DChangedCallback(int width, int height);
 
         /// <summary>
