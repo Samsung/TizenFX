@@ -42,9 +42,9 @@ namespace Tizen.NUI.Components
         private readonly uint textLineSpace = 4;
         private readonly float textPointSize = 38;
         private readonly int textPaddingLeft = 96;
-        private readonly int textPaddingRight = 96;
+        //private readonly int textPaddingRight = 96;
         private readonly int textPaddingTop = 38;
-        private readonly int textPaddingBottom = 38;
+        //private readonly int textPaddingBottom = 38;
         private readonly uint duration = 3000;
 
         /// <summary>
