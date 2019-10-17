@@ -23,6 +23,7 @@ namespace Tizen.Account.OAuth2
     /// The response containing authroization code from the authorization server.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class AuthorizationResponse : IDisposable
     {
         private bool _disposed = false;
@@ -47,6 +48,7 @@ namespace Tizen.Account.OAuth2
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public void Dispose()
         {
             Dispose(true);
@@ -58,6 +60,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
