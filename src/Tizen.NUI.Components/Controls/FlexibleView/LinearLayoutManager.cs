@@ -244,7 +244,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Scroll horizontally by dy pixels in screen coordinates.
         /// </summary>
-        /// <param name="dy">distance to scroll in pixels. Y increases as scroll position approaches the top.</param>
+        /// <param name="dx">distance to scroll in pixels. Y increases as scroll position approaches the top.</param>
         /// <param name="recycler">Recycler to use for fetching potentially cached views for a position</param>
         /// <param name="immediate">Specify if the scroll need animation</param>
         /// <since_tizen> 6 </since_tizen>
@@ -947,6 +947,10 @@ namespace Tizen.NUI.Components
             mLayoutState.Extra = mOrientationHelper.GetStartAfterPadding();
         }
 
+        /// <summary>
+        /// FindFirstVisibleItemView
+        /// </summary>
+        /// <returns>FlexibleView.ViewHolder</returns>
         protected override FlexibleView.ViewHolder FindFirstVisibleItemView()
         {
             int childCount = ChildCount;
@@ -1007,6 +1011,10 @@ namespace Tizen.NUI.Components
             return null;
         }
 
+        /// <summary>
+        /// FindLastVisibleItemView
+        /// </summary>
+        /// <returns>FlexibleView.ViewHolder</returns>
         protected override FlexibleView.ViewHolder FindLastVisibleItemView()
         {
             int childCount = ChildCount;
