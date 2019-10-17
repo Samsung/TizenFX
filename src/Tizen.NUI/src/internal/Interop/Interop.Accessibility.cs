@@ -29,6 +29,16 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_pause_resume")]
             public static extern void accessibility_pause_resume(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsUp")]
+            public static extern bool accessibility_IsUp(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_Enable")]
+            public static extern void accessibility_Enable(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsScreenReaderEnabled")]
+            public static extern bool accessibility_IsScreenReaderEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         }
     }
 }

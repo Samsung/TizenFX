@@ -67,9 +67,11 @@ namespace Tizen.NUI
         /// <returns>Current enabled status</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool GetStatus()
+        public bool GetStatus()
         {
-            return true;
+            bool ret = Interop.Accessibility.accessibility_IsUp(View.getCPtr(dummy));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -104,6 +106,23 @@ namespace Tizen.NUI
             Interop.Accessibility.accessibility_pause_resume(View.getCPtr(dummy), pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Enable(bool on)
+        {
+            Interop.Accessibility.accessibility_Enable(View.getCPtr(dummy), on);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsScreenReaderEnabled()
+        {
+            var ret = Interop.Accessibility.accessibility_IsScreenReaderEnabled(View.getCPtr(dummy));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
         #endregion Method
 
 
