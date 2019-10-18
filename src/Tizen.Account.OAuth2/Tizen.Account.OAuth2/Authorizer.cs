@@ -27,6 +27,7 @@ namespace Tizen.Account.OAuth2
     /// Also service provider document needs to be referred for using end points and additional parameters.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public abstract class Authorizer : IDisposable
     {
 
@@ -37,6 +38,7 @@ namespace Tizen.Account.OAuth2
         /// Constructor for Authoirzer instances
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public Authorizer()
         {
             int ret = Interop.Manager.Create(out _managerHandle);
@@ -60,6 +62,7 @@ namespace Tizen.Account.OAuth2
         /// Indicates if the current instance is already handling an authorization request
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public bool IsRequestInProgress
         {
             get
@@ -73,6 +76,7 @@ namespace Tizen.Account.OAuth2
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public void Dispose()
         {
             Dispose(true);
@@ -88,6 +92,7 @@ namespace Tizen.Account.OAuth2
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid argumets</exception>
         /// <exception cref="OAuth2Exception">Thrown when method fails due to server error</exception>
+        [Obsolete]
         public virtual async Task<TokenResponse> RefreshAccessTokenAsync(RefreshTokenRequest request)
         {
             IntPtr requestHandle = GetRequestHandle(request);
@@ -182,6 +187,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

@@ -25,12 +25,14 @@ namespace Tizen.Account.OAuth2
     /// The ImplicitGrantAuthorizer is used to obtain access tokens using Implicit Grant flow as described at https://tools.ietf.org/html/rfc6749#section-4.2
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class ImplicitGrantAuthorizer : Authorizer
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public ImplicitGrantAuthorizer()
         {
 
@@ -41,6 +43,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
+        [Obsolete]
         public Task<TokenResponse> GetAccessTokenAsync(TokenRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Obtain token directly from authorization grant ");
@@ -52,6 +55,7 @@ namespace Tizen.Account.OAuth2
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the operation is not supported</exception>
+        [Obsolete]
         public override Task<TokenResponse> RefreshAccessTokenAsync(RefreshTokenRequest request)
         {
             Log.Error(ErrorFactory.LogTag, "Refesh token is not supported in Implicit Grant flow");

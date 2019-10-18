@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 namespace Tizen.Account.OAuth2
 {
     /// <summary>
@@ -21,12 +22,14 @@ namespace Tizen.Account.OAuth2
     /// Please refer https://tools.ietf.org/html/rfc6749#section-4.1.1 for more details
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    //[Obsolete]
     public class CodeGrantAuthorizationRequest : AuthorizationRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public CodeGrantAuthorizationRequest()
         {
 
@@ -36,6 +39,7 @@ namespace Tizen.Account.OAuth2
         /// The response type parameter to authorization server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public override string ResponseType { get; } = "code";
     }
 }
