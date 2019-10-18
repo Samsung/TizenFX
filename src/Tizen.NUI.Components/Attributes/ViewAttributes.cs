@@ -25,12 +25,12 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ViewAttributes : Attributes
+    public class ViewAttributes : Attributes, global::System.IDisposable
     {
         static public T CreateView<T>(string style) where T : View, new()
         {
             T ret = new T();
-            (Tizen.NUI.Components.StyleManager.Instance.GetAttributes("style") as ViewAttributes).ApplyToView(ret);
+            (Tizen.NUI.Components.StyleManager.Instance.GetAttributes(style) as ViewAttributes).ApplyToView(ret);
             return ret;
         }
 
@@ -100,6 +100,11 @@ namespace Tizen.NUI.Components
             if (attributes.MinimumSize != null)
             {
                 MinimumSize = new Size2D(attributes.MinimumSize.Width, attributes.MinimumSize.Height);
+            }
+
+            if (attributes.MaximumSize != null)
+            {
+                MaximumSize = new Size2D(attributes.MaximumSize.Width, attributes.MaximumSize.Height);
             }
 
             if (attributes.SizeModeFactor != null)
@@ -211,6 +216,16 @@ namespace Tizen.NUI.Components
             set;
         }
         /// <summary>
+        /// View MaximumSize
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D MaximumSize
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// View SizeModeFactor
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -302,6 +317,10 @@ namespace Tizen.NUI.Components
             {
                 view.MinimumSize = MinimumSize;
             }
+            if (MaximumSize != null)
+            {
+                view.MaximumSize = MaximumSize;
+            }
             if (PositionUsesPivotPoint != null)
             {
                 view.PositionUsesPivotPoint = PositionUsesPivotPoint.Value;
@@ -336,15 +355,8 @@ namespace Tizen.NUI.Components
 
         protected virtual void RegisterStateChangeCallback(View view)
         {
-            view.FocusGained += (object sender, global::System.EventArgs e) =>
-            {
-                ApplyToView(view, ControlStates.Focused);
-            };
-
-            view.FocusLost += (object sender, global::System.EventArgs e) =>
-            {
-                ApplyToView(view, ControlStates.Normal);
-            };
+            view.FocusGained += FocusGained;
+            view.FocusLost += FocusLost;
         }
 
         public void DisApplyToView(View view)
@@ -352,6 +364,9 @@ namespace Tizen.NUI.Components
             if (appliedViews.ContainsKey(view))
             {
                 appliedViews.Remove(view);
+
+                view.FocusGained -= FocusGained;
+                view.FocusLost -= FocusLost;
             }
         }
 
@@ -363,6 +378,29 @@ namespace Tizen.NUI.Components
             }
         }
 
+        public void Dispose()
+        {
+            StyleManager.Instance.ThemeChangedEvent -= OnThemeChangedEvent;
+        }
+
         private Dictionary<View, int> appliedViews = new Dictionary<View, int>();
+
+        private void FocusGained(object sender, global::System.EventArgs e)
+        {
+            View view = sender as View;
+            if (null != view)
+            {
+                ApplyToView(view, ControlStates.Focused);
+            }
+        }
+
+        private void FocusLost(object sender, global::System.EventArgs e)
+        {
+            View view = sender as View;
+            if (null != view)
+            {
+                ApplyToView(view, ControlStates.Normal);
+            }
+        }
     }
 }
