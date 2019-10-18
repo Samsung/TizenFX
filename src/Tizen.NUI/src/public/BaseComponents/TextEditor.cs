@@ -148,12 +148,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 TextColor
         {
             get
             {
-                return (Vector4)GetValue(TextColorProperty);
+                Vector4 temp = (Vector4)GetValue(TextColorProperty);
+                return new Vector4(OnTextColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -267,12 +271,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.PrimaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PrimaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(PrimaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                return new Vector4(OnPrimaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -284,12 +292,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.SecondaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SecondaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(SecondaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                return new Vector4(OnSecondaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -505,12 +517,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.SelectionHighlightColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SelectionHighlightColor
         {
             get
             {
-                return (Vector4)GetValue(SelectionHighlightColorProperty);
+                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                return new Vector4(OnSelectionHighlightColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -522,12 +538,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.DecorationBoundingBox.X = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle DecorationBoundingBox
         {
             get
             {
-                return (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                return new Rectangle(OnDecorationBoundingBoxChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
@@ -556,12 +576,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.InputColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 InputColor
         {
             get
             {
-                return (Vector4)GetValue(InputColorProperty);
+                Vector4 temp = (Vector4)GetValue(InputColorProperty);
+                return new Vector4(OnInputColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -927,12 +951,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Placeholder text color.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textEditor.PlaceholderTextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color PlaceholderTextColor
         {
             get
             {
-                return (Color)GetValue(PlaceholderTextColorProperty);
+                Color temp = (Color)GetValue(PlaceholderTextColorProperty);
+                return new Color(OnPlaceholderTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -1241,5 +1269,35 @@ namespace Tizen.NUI.BaseComponents
                 Outline = 0x0100
             }
         }
+
+        private void OnDecorationBoundingBoxChanged(int x, int y, int width, int height)
+        {
+            DecorationBoundingBox = new Rectangle(x, y, width, height);
+        }
+        private void OnInputColorChanged(float x, float y, float z, float w)
+        {
+            InputColor = new Vector4(x, y, z, w);
+        }
+        private void OnPlaceholderTextColorChanged(float r, float g, float b, float a)
+        {
+            PlaceholderTextColor = new Color(r, g, b, a);
+        }
+        private void OnPrimaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            PrimaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSecondaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            SecondaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSelectionHighlightColorChanged(float x, float y, float z, float w)
+        {
+            SelectionHighlightColor = new Vector4(x, y, z, w);
+        }
+        private void OnTextColorChanged(float x, float y, float z, float w)
+        {
+            TextColor = new Vector4(x, y, z, w);
+        }
+
     }
 }

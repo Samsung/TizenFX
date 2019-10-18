@@ -77,6 +77,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal RelativeVector4(RelativeVector4ChangedCallback cb, float x, float y, float z, float w) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(x), ValueCheck(y), ValueCheck(z), ValueCheck(w)), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void RelativeVector4ChangedCallback(float x, float y, float z, float w);
+        private RelativeVector4ChangedCallback callback = null;
+
         /// <summary>
         /// The x component.
         /// </summary>
@@ -87,6 +95,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_X_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -106,6 +116,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_Y_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -125,6 +137,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_Z_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -144,6 +158,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_W_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
