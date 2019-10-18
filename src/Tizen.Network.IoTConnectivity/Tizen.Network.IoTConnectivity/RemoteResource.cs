@@ -39,7 +39,7 @@ namespace Tizen.Network.IoTConnectivity
         private ResourceOptions _options;
 
         private static int _responseCompletionId = 1;
-        private static IDictionary<IntPtr, TaskCompletionSource<RemoteResponse>> _taskCompletionMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<RemoteResponse>>();
+        private static ConcurrentDictionary<IntPtr, TaskCompletionSource<RemoteResponse>> _taskCompletionMap = new ConcurrentDictionary<IntPtr, TaskCompletionSource<RemoteResponse>>();
 
         private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _getResultCallback = NativeGetResultCallbackHandler;
         private static Interop.IoTConnectivity.Client.RemoteResource.ResponseCallback _putResultCallback = NativePutResultCallbackHandler;
@@ -423,8 +423,15 @@ namespace Tizen.Network.IoTConnectivity
         private static void NativeGetResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
         {
             IntPtr responseCompletionId = userData;
-            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-            _taskCompletionMap.Remove(responseCompletionId);
+            TaskCompletionSource<RemoteResponse> responseCompletionSource;
+
+            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+
+            if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove Key");
+                return;
+            }
 
             if (responseHandle != IntPtr.Zero)
             {
@@ -479,8 +486,15 @@ namespace Tizen.Network.IoTConnectivity
         private static void NativePutResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
         {
             IntPtr responseCompletionId = userData;
-            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-            _taskCompletionMap.Remove(responseCompletionId);
+            TaskCompletionSource<RemoteResponse> responseCompletionSource;
+
+            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+
+            if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove Key");
+                return;
+            }
 
             if (err == (int)(IoTConnectivityError.Iotivity))
             {
@@ -542,8 +556,15 @@ namespace Tizen.Network.IoTConnectivity
         private static void NativePostResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
         {
             IntPtr responseCompletionId = userData;
-            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-            _taskCompletionMap.Remove(responseCompletionId);
+            TaskCompletionSource<RemoteResponse> responseCompletionSource;
+
+            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+
+            if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove Key");
+                return;
+            }
 
             if (responseHandle != IntPtr.Zero)
             {
@@ -595,8 +616,15 @@ namespace Tizen.Network.IoTConnectivity
         private static void NativeDeleteResultCallbackHandler(IntPtr resource, int err, int requestType, IntPtr responseHandle, IntPtr userData)
         {
             IntPtr responseCompletionId = userData;
-            TaskCompletionSource<RemoteResponse> responseCompletionSource = _taskCompletionMap[responseCompletionId];
-            _taskCompletionMap.Remove(responseCompletionId);
+            TaskCompletionSource<RemoteResponse> responseCompletionSource;
+
+            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+
+            if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
+            {
+                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to remove Key");
+                return;
+            }
 
             if (err == (int)(IoTConnectivityError.Iotivity))
             {
