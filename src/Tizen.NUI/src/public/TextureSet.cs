@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -101,11 +101,7 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = Interop.TextureSet.TextureSet_GetSampler(swigCPtr, index);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Sampler;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            Sampler ret = this.GetInstanceSafely<Sampler>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
