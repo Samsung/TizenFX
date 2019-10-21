@@ -48,113 +48,11 @@ namespace Tizen.NUI
         {
             get
             {
-                switch (_alphaFunction)
-                {
-                    case "LINEAR":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear;
-                    case "REVERSE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse;
-                    case "EASE_IN_SQUARE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare;
-                    case "EASE_OUT_SQUARE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare;
-                    case "EASE_IN":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn;
-                    case "EASE_OUT":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut;
-                    case "EASE_IN_OUT":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut;
-                    case "EASE_IN_SINE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine;
-                    case "EASE_OUT_SINE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine;
-                    case "EASE_IN_OUT_SINE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine;
-                    case "BOUNCE":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce;
-                    case "SIN":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin;
-                    case "EASE_OUT_BACK":
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack;
-                    default:
-                        return Tizen.NUI.AlphaFunction.BuiltinFunctions.Default;
-                }
+                return _alphaFunction.GetValueByDescription<AlphaFunction.BuiltinFunctions>();
             }
             set
             {
-                switch (value)
-                {
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Linear:
-                        {
-                            _alphaFunction = "LINEAR";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Reverse:
-                        {
-                            _alphaFunction = "REVERSE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSquare:
-                        {
-                            _alphaFunction = "EASE_IN_SQUARE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSquare:
-                        {
-                            _alphaFunction = "EASE_OUT_SQUARE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseIn:
-                        {
-                            _alphaFunction = "EASE_IN";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOut:
-                        {
-                            _alphaFunction = "EASE_OUT";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOut:
-                        {
-                            _alphaFunction = "EASE_IN_OUT";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInSine:
-                        {
-                            _alphaFunction = "EASE_IN_SINE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutSine:
-                        {
-                            _alphaFunction = "EASE_OUT_SINE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseInOutSine:
-                        {
-                            _alphaFunction = "EASE_IN_OUT_SINE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Bounce:
-                        {
-                            _alphaFunction = "BOUNCE";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.Sin:
-                        {
-                            _alphaFunction = "SIN";
-                            break;
-                        }
-                    case Tizen.NUI.AlphaFunction.BuiltinFunctions.EaseOutBack:
-                        {
-                            _alphaFunction = "EASE_OUT_BACK";
-                            break;
-                        }
-                    default:
-                        {
-                            _alphaFunction = "DEFAULT";
-                            break;
-                        }
-                }
+                _alphaFunction = value.GetDescription();
             }
         }
 
