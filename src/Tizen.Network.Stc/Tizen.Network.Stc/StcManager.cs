@@ -50,7 +50,12 @@ namespace Tizen.Network.Stc
         /// <returns>True if the handle is released successfully, otherwise false.</returns>
         protected override bool ReleaseHandle()
         {
-            Interop.Stc.Deinitialize(this.handle);
+            int ret = Interop.Stc.Deinitialize(this.handle);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to deinitialize Stc, Error - " + (StcError)ret);
+                return false;
+            }
             this.SetHandle(IntPtr.Zero);
             return true;
         }
@@ -68,9 +73,9 @@ namespace Tizen.Network.Stc
         /// <returns>The instance of the SafeStcHandle.</returns>
         /// <feature>http://tizen.org/feature/network.traffic_control</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static SafeStcHandle GetStcHandle()
         {
@@ -85,10 +90,10 @@ namespace Tizen.Network.Stc
         /// <returns>A list of the NetworkStatistics objects.</returns>
         /// <feature>http://tizen.org/feature/network.traffic_control</feature>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         public static Task<IEnumerable<NetworkStatistics>> GetStatisticsAsync(StatisticsFilter filter)
         {
             return StcManagerImpl.Instance.GetStatisticsAsync(filter);
