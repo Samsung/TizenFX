@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -541,18 +541,7 @@ namespace Tizen.NUI
         public void AnimateBy(View target, string property, object relativeValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
-            }
-
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -578,18 +567,7 @@ namespace Tizen.NUI
         public void AnimateBy(View target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = relativeValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)relativeValue;
-                    relativeValue = (float)num;
-                }
-            }
-
+            relativeValue = AvoidFloatPropertyHasIntegerValue(target, _prop, relativeValue);
             PropertyValue val = PropertyValue.CreateFromObject(relativeValue);
 
             if (alphaFunction != null)
@@ -615,18 +593,7 @@ namespace Tizen.NUI
         public void AnimateTo(View target, string property, object destinationValue, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
-            }
-
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -682,18 +649,7 @@ namespace Tizen.NUI
         public void AnimateTo(View target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)
         {
             Property _prop = PropertyHelper.GetPropertyFromString(target, property);
-
-            PropertyType propertyType = target.GetPropertyType(_prop.propertyIndex);
-            if (propertyType.Equals(PropertyType.Float))
-            {
-                System.Type type = destinationValue.GetType();
-                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
-                {
-                    int num = (int)destinationValue;
-                    destinationValue = (float)num;
-                }
-            }
-
+            destinationValue = AvoidFloatPropertyHasIntegerValue(target, _prop, destinationValue);
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             if (alphaFunction != null)
@@ -1396,6 +1352,21 @@ namespace Tizen.NUI
         private int SecondsToMilliSeconds(float sec)
         {
             return (int)(sec * 1000);
+        }
+
+        private object AvoidFloatPropertyHasIntegerValue(View target, Property property, object value)
+        {
+            PropertyType propertyType = target.GetPropertyType(property.propertyIndex);
+            if (propertyType.Equals(PropertyType.Float))
+            {
+                System.Type type = value.GetType();
+                if (type.Equals(typeof(System.Int32)) || type.Equals(typeof(int)))
+                {
+                    int num = (int)value;
+                    value = (float)num;
+                }
+            }
+            return value;
         }
     }
 }

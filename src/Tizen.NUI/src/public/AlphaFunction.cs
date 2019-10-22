@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -96,58 +98,72 @@ namespace Tizen.NUI
             /// <summary>
             /// Linear.
             /// </summary>
+            [Description("DEFAULT")]
             Default,
             /// <summary>
             /// No transformation.
             /// </summary>
+            [Description("LINEAR")]
             Linear,
             /// <summary>
             /// Reverse linear.
             /// </summary>
+            [Description("REVERSE")]
             Reverse,
             /// <summary>
             /// Speeds up and comes to a sudden stop (square).
             /// </summary>
+            [Description("EASE_IN_SQUARE")]
             EaseInSquare,
             /// <summary>
             /// Sudden start and slows to a gradual stop (square).
             /// </summary>
+            [Description("EASE_OUT_SQUARE")]
             EaseOutSquare,
             /// <summary>
             /// Speeds up and comes to a sudden stop (cubic).
             /// </summary>
+            [Description("EASE_IN")]
             EaseIn,
             /// <summary>
             /// Sudden start and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_OUT")]
             EaseOut,
             /// <summary>
             /// Speeds up and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_IN_OUT")]
             EaseInOut,
             /// <summary>
             /// Speeds up and comes to a sudden stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_SINE")]
             EaseInSine,
             /// <summary>
             /// Sudden start and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_OUT_SINE")]
             EaseOutSine,
             /// <summary>
             /// Speeds up and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_OUT_SINE")]
             EaseInOutSine,
             /// <summary>
             /// Sudden start, loses momentum and returns to start position.
             /// </summary>
+            [Description("BOUNCE")]
             Bounce,
             /// <summary>
             /// Single revolution.
             /// </summary>
+            [Description("SIN")]
             Sin,
             /// <summary>
             /// Sudden start, exceed end position and return to a gradual stop.
             /// </summary>
+            [Description("EASE_OUT_BACK")]
             EaseOutBack,
             /// <summary>
             /// The count of the BuiltinFunctions enum.
