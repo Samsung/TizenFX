@@ -602,7 +602,7 @@ namespace Tizen.NUI.Components
             }
 
             FlexibleView.ViewHolder anchorChild = FindFirstCompleteVisibleItemView();
-            if (anchorChild != null)
+            if (anchorChild == null)
             {
                 return false;
             }
