@@ -145,13 +145,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((States)newValue)
-                {
-                    case States.Normal: { valueToString = "NORMAL"; break; }
-                    case States.Focused: { valueToString = "FOCUSED"; break; }
-                    case States.Disabled: { valueToString = "DISABLED"; break; }
-                    default: { valueToString = "NORMAL"; break; }
-                }
+                valueToString = ((States)newValue).GetDescription<States>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -163,13 +157,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("subState get error!");
             }
-            switch (temp)
-            {
-                case "NORMAL": return States.Normal;
-                case "FOCUSED": return States.Focused;
-                case "DISABLED": return States.Disabled;
-                default: return States.Normal;
-            }
+            return temp.GetValueByDescription<States>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -301,13 +289,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (newValue != null)
             {
-                switch ((HorizontalAlignmentType)newValue)
-                {
-                    case Tizen.NUI.HorizontalAlignmentType.Left: { valueToString = "left"; break; }
-                    case Tizen.NUI.HorizontalAlignmentType.Center: { valueToString = "center"; break; }
-                    case Tizen.NUI.HorizontalAlignmentType.Right: { valueToString = "right"; break; }
-                    default: { valueToString = "left"; break; }
-                }
+                valueToString = ((HorizontalAlignmentType)newValue).GetDescription<HorizontalAlignmentType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -320,13 +302,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("CellHorizontalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "left": return Tizen.NUI.HorizontalAlignmentType.Left;
-                case "center": return Tizen.NUI.HorizontalAlignmentType.Center;
-                case "right": return Tizen.NUI.HorizontalAlignmentType.Right;
-                default: return Tizen.NUI.HorizontalAlignmentType.Left;
-            }
+            return temp.GetValueByDescription<HorizontalAlignmentType>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -337,13 +313,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (newValue != null)
             {
-                switch ((VerticalAlignmentType)newValue)
-                {
-                    case Tizen.NUI.VerticalAlignmentType.Top: { valueToString = "top"; break; }
-                    case Tizen.NUI.VerticalAlignmentType.Center: { valueToString = "center"; break; }
-                    case Tizen.NUI.VerticalAlignmentType.Bottom: { valueToString = "bottom"; break; }
-                    default: { valueToString = "top"; break; }
-                }
+                valueToString = ((VerticalAlignmentType)newValue).GetDescription<VerticalAlignmentType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -356,13 +326,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("CellVerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "top": return Tizen.NUI.VerticalAlignmentType.Top;
-                case "center": return Tizen.NUI.VerticalAlignmentType.Center;
-                case "bottom": return Tizen.NUI.VerticalAlignmentType.Bottom;
-                default: return Tizen.NUI.VerticalAlignmentType.Top;
-            }
+            return temp.GetValueByDescription<VerticalAlignmentType>();
         });
 
         /// <summary>
@@ -893,15 +857,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("DrawMode get error!");
             }
-            switch (temp)
-            {
-                case "NORMAL": return DrawModeType.Normal;
-                case "OVERLAY_2D": return DrawModeType.Overlay2D;
-#pragma warning disable CS0618 // Disable deprecated warning as we do need to use the deprecated API here.
-                case "STENCIL": return DrawModeType.Stencil;
-#pragma warning restore CS0618
-                default: return DrawModeType.Normal;
-            }
+            return temp.GetValueByDescription<DrawModeType>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -938,18 +894,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("WidthResizePolicy get error!");
             }
-            switch (temp)
-            {
-                case "FIXED": return ResizePolicyType.Fixed;
-                case "USE_NATURAL_SIZE": return ResizePolicyType.UseNaturalSize;
-                case "FILL_TO_PARENT": return ResizePolicyType.FillToParent;
-                case "SIZE_RELATIVE_TO_PARENT": return ResizePolicyType.SizeRelativeToParent;
-                case "SIZE_FIXED_OFFSET_FROM_PARENT": return ResizePolicyType.SizeFixedOffsetFromParent;
-                case "FIT_TO_CHILDREN": return ResizePolicyType.FitToChildren;
-                case "DIMENSION_DEPENDENCY": return ResizePolicyType.DimensionDependency;
-                case "USE_ASSIGNED_SIZE": return ResizePolicyType.UseAssignedSize;
-                default: return ResizePolicyType.Fixed;
-            }
+            return temp.GetValueByDescription<ResizePolicyType>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -969,18 +914,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("HeightResizePolicy get error!");
             }
-            switch (temp)
-            {
-                case "FIXED": return ResizePolicyType.Fixed;
-                case "USE_NATURAL_SIZE": return ResizePolicyType.UseNaturalSize;
-                case "FILL_TO_PARENT": return ResizePolicyType.FillToParent;
-                case "SIZE_RELATIVE_TO_PARENT": return ResizePolicyType.SizeRelativeToParent;
-                case "SIZE_FIXED_OFFSET_FROM_PARENT": return ResizePolicyType.SizeFixedOffsetFromParent;
-                case "FIT_TO_CHILDREN": return ResizePolicyType.FitToChildren;
-                case "DIMENSION_DEPENDENCY": return ResizePolicyType.DimensionDependency;
-                case "USE_ASSIGNED_SIZE": return ResizePolicyType.UseAssignedSize;
-                default: return ResizePolicyType.Fixed;
-            }
+            return temp.GetValueByDescription<ResizePolicyType>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -990,13 +924,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((SizeScalePolicyType)newValue)
-                {
-                    case SizeScalePolicyType.UseSizeSet: { valueToString = "USE_SIZE_SET"; break; }
-                    case SizeScalePolicyType.FitWithAspectRatio: { valueToString = "FIT_WITH_ASPECT_RATIO"; break; }
-                    case SizeScalePolicyType.FillWithAspectRatio: { valueToString = "FILL_WITH_ASPECT_RATIO"; break; }
-                    default: { valueToString = "USE_SIZE_SET"; break; }
-                }
+                valueToString = ((SizeScalePolicyType)newValue).GetDescription<SizeScalePolicyType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -1008,13 +936,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("SizeScalePolicy get error!");
             }
-            switch (temp)
-            {
-                case "USE_SIZE_SET": return SizeScalePolicyType.UseSizeSet;
-                case "FIT_WITH_ASPECT_RATIO": return SizeScalePolicyType.FitWithAspectRatio;
-                case "FILL_WITH_ASPECT_RATIO": return SizeScalePolicyType.FillWithAspectRatio;
-                default: return SizeScalePolicyType.UseSizeSet;
-            }
+            return temp.GetValueByDescription<SizeScalePolicyType>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

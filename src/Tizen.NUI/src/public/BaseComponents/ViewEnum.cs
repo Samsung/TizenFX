@@ -81,14 +81,17 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// The normal state.
             /// </summary>
+            [Description("NORMAL")]
             Normal,
             /// <summary>
             /// The focused state.
             /// </summary>
+            [Description("FOCUSED")]
             Focused,
             /// <summary>
             /// The disabled state.
             /// </summary>
+            [Description("DISABLED")]
             Disabled
         }
 
