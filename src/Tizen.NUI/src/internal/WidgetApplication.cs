@@ -26,6 +26,7 @@ namespace Tizen.NUI
         private Dictionary<System.Type, string> _widgetInfo;
         private List<Widget> _widgetList = new List<Widget>();
         private delegate System.IntPtr CreateWidgetFunctionDelegate(ref string widgetName);
+        private List<CreateWidgetFunctionDelegate> _createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
 
         internal WidgetApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -113,6 +114,9 @@ namespace Tizen.NUI
         internal void RegisterWidgetCreatingFunction(ref string widgetName)
         {
             CreateWidgetFunctionDelegate newDelegate = new CreateWidgetFunctionDelegate(WidgetCreateFunction);
+
+            // Keep this delegate until WidgetApplication is terminated
+            _createWidgetFunctionDelegateList.Add(newDelegate);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);
