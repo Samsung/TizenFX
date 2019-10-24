@@ -159,12 +159,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.BackgroundColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
         {
             get
             {
-                return (Color)GetValue(BackgroundColorProperty);
+                Color temp = (Color)GetValue(BackgroundColorProperty);
+                return new Color(OnBackgroundColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -312,12 +316,16 @@ namespace Tizen.NUI.BaseComponents
         /// The Child property of FlexContainer.<br />
         /// The space around the flex item.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.FlexMargin.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 FlexMargin
         {
             get
             {
-                return (Vector4)GetValue(FlexMarginProperty);
+                Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
+                return new Vector4(OnFlexMarginChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -329,12 +337,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The top-left cell this child occupies, if not set, the first available cell is used.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.CellIndex.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 CellIndex
         {
             get
             {
-                return (Vector2)GetValue(CellIndexProperty);
+                Vector2 temp = (Vector2)GetValue(CellIndexProperty);
+                return new Vector2(OnCellIndexChanged, temp.X, temp.Y);
             }
             set
             {
@@ -530,11 +542,6 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// This NUI object (Size2D) typed property can be configured by multiple cascade setting. <br />
         /// For example, this code ( view.Size2D.Width = 100; view.Size2D.Height = 100; ) is equivalent to this ( view.Size2D = new Size2D(100, 100); ). <br />
-        /// Please note that this multi-cascade setting is especially possible for this NUI object (Size2D). <br />
-        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
-        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
-        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimum size is set. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -596,10 +603,6 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// This NUI object (Position2D) typed property can be configured by multiple cascade setting. <br />
         /// For example, this code ( view.Position2D.X = 100; view.Position2D.Y = 100; ) is equivalent to this ( view.Position2D = new Position2D(100, 100); ). <br />
-        /// Please note that this multi-cascade setting is especially possible for this NUI object (Position2D). <br />
-        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
-        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position2D Position2D
@@ -791,6 +794,9 @@ namespace Tizen.NUI.BaseComponents
         /// A view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br />
         /// <pre>The view has been initialized.</pre>
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.PivotPoint.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position PivotPoint
         {
@@ -861,6 +867,7 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Position.X = 1.0f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position Position
@@ -1004,13 +1011,15 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Scale.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 Scale
         {
             get
             {
-                return (Vector3)GetValue(ScaleProperty);
+                Vector3 temp = (Vector3)GetValue(ScaleProperty);
+                return new Vector3(OnScaleChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1273,12 +1282,16 @@ namespace Tizen.NUI.BaseComponents
         /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br />
         /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 SizeModeFactor
         {
             get
             {
-                return (Vector3)GetValue(SizeModeFactorProperty);
+                Vector3 temp = (Vector3)GetValue(SizeModeFactorProperty);
+                return new Vector3(OnSizeModeFactorChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1420,6 +1433,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the padding for use in layout.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.Padding.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Extents Padding
         {
@@ -1432,7 +1448,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Extents)GetValue(PaddingProperty);
+                    Extents temp = (Extents)GetValue(PaddingProperty);
+                    return new Extents(OnPaddingChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
                 }
                 // Two return points to prevent creating a zeroed Extent native object before assignment
             }
@@ -1462,6 +1479,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.MinimumSize.Width = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D MinimumSize
         {
@@ -1488,6 +1508,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the maximum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.MaximumSize.Width = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D MaximumSize
         {
@@ -1564,6 +1587,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated in API5; Will be removed in API8. Please use PivotPoint instead!
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.AnchorPoint.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use PivotPoint instead! " +
             "Like: " +
@@ -1577,7 +1603,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
                 GetProperty(View.Property.ANCHOR_POINT).Get(temp);
-                return temp;
+                return new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1594,15 +1620,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Please note that multi-cascade setting is not possible for this NUI object. <br />
-        /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
-        /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
-        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
-        /// </para>
-        /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Size.Width = 1.0f;) is possible.
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size Size
@@ -1701,6 +1721,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Margin property is supported by Layout algorithms and containers.
         /// Please Set Layout if you want to use Margin property.
+        /// The property cascade chaining set is possible. For example, this (view.Margin.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public Extents Margin
@@ -1715,7 +1736,8 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     // If Layout not set then return margin stored in View.
-                    return (Extents)GetValue(MarginProperty);
+                    Extents temp = (Extents)GetValue(MarginProperty);
+                    return new Extents(OnMarginChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
                 }
                 // Two return points to prevent creating a zeroed Extent native object before assignment
             }
@@ -1826,6 +1848,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated in API5; Will be removed in API8. Please use Padding instead.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1835,7 +1860,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Extents temp = new Extents(0, 0, 0, 0);
                 GetProperty(View.Property.PADDING).Get(temp);
-                return temp;
+                return new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
             }
             set
             {
@@ -1867,18 +1892,21 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Color.X = 0.1f;) is possible.
         /// </remarks>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color Color
         {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(temp);
+                return new Color(OnColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
             set
             {
                 SetColor(value);
-            }
-            get
-            {
-                return GetCurrentColor();
             }
         }
 

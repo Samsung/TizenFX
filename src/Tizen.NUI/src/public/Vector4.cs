@@ -93,6 +93,14 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal Vector4(Vector4ChangedCallback cb, float x, float y, float z, float w) : this(Interop.Vector4.new_Vector4__SWIG_1(x, y, z, w), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void Vector4ChangedCallback(float x, float y, float z, float w);
+        private Vector4ChangedCallback callback = null;
+
         /// <summary>
         /// (1.0f,1.0f,1.0f,1.0f).
         /// </summary>
@@ -178,6 +186,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -197,6 +207,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_r_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -216,6 +228,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_s_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -235,6 +249,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -254,6 +270,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_g_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -273,6 +291,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_t_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -292,6 +312,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -311,6 +333,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_b_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -330,6 +354,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_p_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -349,6 +375,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_W_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -368,6 +396,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_a_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -387,6 +417,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_q_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {

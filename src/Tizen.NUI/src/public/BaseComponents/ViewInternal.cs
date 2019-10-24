@@ -1189,5 +1189,58 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+
+        private void OnScaleChanged(float x, float y, float z)
+        {
+            Scale = new Vector3(x, y, z);
+        }
+
+        private void OnBackgroundColorChanged(float r, float g, float b, float a)
+        {
+            BackgroundColor = new Color(r, g, b, a);
+        }
+
+        private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Padding = new Extents(start, end, top, bottom);
+        }
+
+        private void OnMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Margin = new Extents(start, end, top, bottom);
+        }
+
+        private void OnColorChanged(float r, float g, float b, float a)
+        {
+            Color = new Color(r, g, b, a);
+        }
+
+        private void OnAnchorPointChanged(float x, float y, float z)
+        {
+            AnchorPoint = new Position(x, y, z);
+        }
+
+        private void OnCellIndexChanged(float x, float y)
+        {
+            CellIndex = new Vector2(x, y);
+        }
+
+        private void OnFlexMarginChanged(float x, float y, float z, float w)
+        {
+            FlexMargin = new Vector4(x, y, z, w);
+        }
+
+        private void OnPaddingEXChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            PaddingEX = new Extents(start, end, top, bottom);
+        }
+
+        private void OnSizeModeFactorChanged(float x, float y, float z)
+        {
+            SizeModeFactor = new Vector3(x, y, z);
+        }
+
+
     }
 }

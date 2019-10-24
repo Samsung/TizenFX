@@ -308,12 +308,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
             {
-                return (Color)GetValue(TextColorProperty);
+                Color temp = (Color)GetValue(TextColorProperty);
+                return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -325,12 +329,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PlaceholderTextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PlaceholderTextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PlaceholderTextColor
         {
             get
             {
-                return (Vector4)GetValue(PlaceholderTextColorProperty);
+                Vector4 temp = (Vector4)GetValue(PlaceholderTextColorProperty);
+                return new Vector4(OnPlaceholderTextColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -345,6 +353,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
@@ -355,7 +364,7 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
                 map.Find(TextField.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return shadowOffset;
+                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
             }
             set
             {
@@ -372,6 +381,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
@@ -382,7 +392,7 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector4 shadowColor = new Vector4();
                 map.Find(TextField.Property.SHADOW, "color")?.Get(shadowColor);
-                return shadowColor;
+                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
             }
             set
             {
@@ -396,12 +406,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PrimaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PrimaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(PrimaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                return new Vector4(OnPrimaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -413,12 +427,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SecondaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SecondaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(SecondaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                return new Vector4(OnSecondaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -668,12 +686,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SelectionHighlightColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SelectionHighlightColor
         {
             get
             {
-                return (Vector4)GetValue(SelectionHighlightColorProperty);
+                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                return new Vector4(OnSelectionHighlightColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -685,12 +707,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle DecorationBoundingBox
         {
             get
             {
-                return (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                return new Rectangle(OnDecorationBoundingBoxChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
@@ -719,12 +745,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.InputColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 InputColor
         {
             get
             {
-                return (Vector4)GetValue(InputColorProperty);
+                Vector4 temp = (Vector4)GetValue(InputColorProperty);
+                return new Vector4(OnInputColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -1328,6 +1358,43 @@ namespace Tizen.NUI.BaseComponents
                 Emboss = 0x0040,
                 Outline = 0x0080
             }
+        }
+
+        private void OnDecorationBoundingBoxChanged(int x, int y, int width, int height)
+        {
+            DecorationBoundingBox = new Rectangle(x, y, width, height);
+        }
+        private void OnInputColorChanged(float x, float y, float z, float w)
+        {
+            InputColor = new Vector4(x, y, z, w);
+        }
+        private void OnPlaceholderTextColorChanged(float r, float g, float b, float a)
+        {
+            PlaceholderTextColor = new Vector4(r, g, b, a);
+        }
+        private void OnPrimaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            PrimaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSecondaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            SecondaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSelectionHighlightColorChanged(float x, float y, float z, float w)
+        {
+            SelectionHighlightColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowColorChanged(float x, float y, float z, float w)
+        {
+            ShadowColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowOffsetChanged(float x, float y)
+        {
+            ShadowOffset = new Vector2(x, y);
+        }
+        private void OnTextColorChanged(float r, float g, float b, float a)
+        {
+            TextColor = new Color(r, g, b, a);
         }
     }
 }

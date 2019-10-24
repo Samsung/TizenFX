@@ -491,12 +491,16 @@ namespace Tizen.NUI.BaseComponents
         /// ImageView PixelArea, type Vector4 (Animatable property).<br />
         /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (imageView.PixelArea.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector4 PixelArea
         {
             get
             {
-                return (RelativeVector4)GetValue(PixelAreaProperty);
+                RelativeVector4 temp = (RelativeVector4)GetValue(PixelAreaProperty);
+                return new RelativeVector4(OnPixelAreaChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -511,12 +515,16 @@ namespace Tizen.NUI.BaseComponents
         /// For N-Patch images only.<br />
         /// Optional.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (imageView.Border.X = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle Border
         {
             get
             {
-                return (Rectangle)GetValue(BorderProperty);
+                Rectangle temp = (Rectangle)GetValue(BorderProperty);
+                return new Rectangle(OnBorderChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
@@ -1070,5 +1078,15 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             Npatch = 2,
         }
+
+        private void OnBorderChanged(int x, int y, int width, int height)
+        {
+            Border = new Rectangle(x, y, width, height);
+        }
+        private void OnPixelAreaChanged(float x, float y, float z, float w)
+        {
+            PixelArea = new RelativeVector4(x, y, z, w);
+        }
+
     }
 }

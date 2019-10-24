@@ -91,6 +91,14 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal Vector3(Vector3ChangedCallback cb, float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void Vector3ChangedCallback(float x, float y, float z);
+        private Vector3ChangedCallback callback = null;
+
         /// <summary>
         /// (1.0f,1.0f,1.0f).
         /// </summary>
@@ -221,6 +229,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -240,6 +250,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -259,6 +271,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_r_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -278,6 +292,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -297,6 +313,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -316,6 +334,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_g_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -335,6 +355,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -354,6 +376,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -373,6 +397,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_b_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
