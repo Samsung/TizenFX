@@ -125,13 +125,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((HorizontalAlignment)newValue)
-                {
-                    case HorizontalAlignment.Begin: { valueToString = "BEGIN"; break; }
-                    case HorizontalAlignment.Center: { valueToString = "CENTER"; break; }
-                    case HorizontalAlignment.End: { valueToString = "END"; break; }
-                    default: { valueToString = "BEGIN"; break; }
-                }
+                valueToString = ((HorizontalAlignment)newValue).GetDescription<HorizontalAlignment>();
                 Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -143,13 +137,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("HorizontalAlignment get error!");
             }
-            switch (temp)
-            {
-                case "BEGIN": return HorizontalAlignment.Begin;
-                case "CENTER": return HorizontalAlignment.Center;
-                case "END": return HorizontalAlignment.End;
-                default: return HorizontalAlignment.Begin;
-            }
+            return temp.GetValueByDescription<HorizontalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -159,13 +147,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((VerticalAlignment)newValue)
-                {
-                    case VerticalAlignment.Top: { valueToString = "TOP"; break; }
-                    case VerticalAlignment.Center: { valueToString = "CENTER"; break; }
-                    case VerticalAlignment.Bottom: { valueToString = "BOTTOM"; break; }
-                    default: { valueToString = "BOTTOM"; break; }
-                }
+                valueToString = ((VerticalAlignment)newValue).GetDescription<VerticalAlignment>();
                 Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -178,13 +160,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("VerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "TOP": return VerticalAlignment.Top;
-                case "CENTER": return VerticalAlignment.Center;
-                case "BOTTOM": return VerticalAlignment.Bottom;
-                default: return VerticalAlignment.Bottom;
-            }
+            return temp.GetValueByDescription<VerticalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -443,12 +419,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("AutoScrollStopMode get error!");
             }
-            switch (temp)
-            {
-                case "FINISH_LOOP": return AutoScrollStopMode.FinishLoop;
-                case "IMMEDIATE": return AutoScrollStopMode.Immediate;
-                default: return AutoScrollStopMode.FinishLoop;
-            }
+            return temp.GetValueByDescription<AutoScrollStopMode>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
