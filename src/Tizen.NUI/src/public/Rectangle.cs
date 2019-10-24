@@ -62,6 +62,14 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal Rectangle(RectangleChangedCallback cb, int x, int y, int width, int height) : this(Interop.Rectangle.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
+        private RectangleChangedCallback callback = null;
+
         /// <summary>
         /// The x position of the rectangle.
         /// </summary>
@@ -71,6 +79,8 @@ namespace Tizen.NUI
             set
             {
                 x = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -87,6 +97,8 @@ namespace Tizen.NUI
             set
             {
                 y = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -103,6 +115,8 @@ namespace Tizen.NUI
             set
             {
                 width = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -119,6 +133,8 @@ namespace Tizen.NUI
             set
             {
                 height = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {

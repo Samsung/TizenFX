@@ -73,6 +73,15 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort botton);
+        private ExtentsChangedCallback callback = null;
+
         /// <summary>
         /// The Start extent.
         /// </summary>
@@ -83,6 +92,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -102,6 +113,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -121,6 +134,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_top_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -140,6 +155,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_bottom_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
