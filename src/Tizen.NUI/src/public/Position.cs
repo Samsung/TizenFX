@@ -39,6 +39,12 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <remarks>
+        /// Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br />
+        /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position() : this(Interop.Vector3.new_Vector3__SWIG_0(), true)
         {
@@ -51,6 +57,12 @@ namespace Tizen.NUI
         /// <param name="x">The x component.</param>
         /// <param name="y">The y component.</param>
         /// <param name="z">The z component(optional).</param>
+        /// <remarks>
+        /// Position2D and Position are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Position2D = new Position(10.0f, 10.0f, 10.0f); // be aware that here the z value(10.0f) will be lost. <br />
+        /// view.Position = new Position2D(10, 10); // be aware that here the z value is 0.0f by default. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position(float x, float y, float z = 0.0f) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
         {
@@ -756,6 +768,18 @@ namespace Tizen.NUI
         public static implicit operator Position(Vector3 vec)
         {
             return new Position(vec.X, vec.Y, vec.Z);
+        }
+
+        /// <summary>
+        /// Implicit type cast operator, Position2D to Position
+        /// </summary>
+        /// <param name="position2d">The object of Position2D type.</param>
+        /// <since_tizen> none </since_tizen>
+        /// This will be public opened in tizen_next by ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Position(Position2D position2d)
+        {
+            return new Position(position2d.X, position2d.Y, 0);
         }
 
         /// <summary>
