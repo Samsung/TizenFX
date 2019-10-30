@@ -28,7 +28,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class VectorAnimationViewTBD : AnimatedVectorImageView
+    public class VectorAnimationView : AnimatedVectorImageView
     {
         #region Constructor, Distructor, Dispose
         /// <summary>
@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VectorAnimationViewTBD() : base()
+        public VectorAnimationView() : base()
         {
             tlog.Fatal(tag,  $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
         }
@@ -47,7 +47,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="scale">Set scaling factor for Vector Animation, while creating.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public VectorAnimationViewTBD(float scale) : base(scale)
+        public VectorAnimationView(float scale) : base(scale)
         {
             tlog.Fatal(tag,  $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
         }
