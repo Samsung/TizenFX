@@ -30,7 +30,6 @@ namespace Tizen.NUI.Components
     /// </code>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class RadioButton : SelectButton
     {
         /// <summary>
@@ -38,7 +37,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButton() : base() { }
         /// <summary>
         /// Creates a new instance of a RadioButton with style.
@@ -61,7 +59,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButtonGroup ItemGroup
         {
             get

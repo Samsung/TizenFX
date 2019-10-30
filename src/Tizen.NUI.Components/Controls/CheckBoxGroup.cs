@@ -31,7 +31,6 @@ namespace Tizen.NUI.Components
     /// </code>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class CheckBoxGroup : SelectGroup
     {
         /// <summary>
@@ -39,7 +38,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBoxGroup() : base()
         {
 
@@ -51,7 +49,6 @@ namespace Tizen.NUI.Components
         /// <param name="check">The CheckBox to be added to the CheckBoxGroup</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(CheckBox check)
         {
             base.AddSelection(check);
@@ -64,7 +61,6 @@ namespace Tizen.NUI.Components
         /// <param name="check">The CheckBox to remove from the CheckBoxGroup</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(CheckBox check)
         {
             base.RemoveSelection(check);
@@ -78,7 +74,6 @@ namespace Tizen.NUI.Components
         /// <returns>CheckBox</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox GetItemByIndex(int index)
         {
             return itemGroup[index] as CheckBox;
@@ -90,7 +85,6 @@ namespace Tizen.NUI.Components
         /// <returns>The array of index</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] GetCheckedIndexArray()
         {
             List<int> selectedItemsList = new List<int>();
@@ -112,7 +106,6 @@ namespace Tizen.NUI.Components
         /// <returns>The array of CheckBox</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox[] GetCheckedItemArray()
         {
             List<CheckBox> selectedList = new List<CheckBox>();
@@ -134,7 +127,6 @@ namespace Tizen.NUI.Components
         /// <returns>If all of CheckBoxes are checked, return true. otherwise false</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsCheckedAll()
         {
             foreach (CheckBox cb in itemGroup)
@@ -153,7 +145,6 @@ namespace Tizen.NUI.Components
         /// <param name="state">The boolean state of the check box</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void CheckingAll(bool state)
         {
             foreach (CheckBox cb in itemGroup)

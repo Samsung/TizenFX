@@ -23,7 +23,6 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class GridLayoutManager : LinearLayoutManager
     {
         private static readonly int DEFAULT_SPAN_COUNT = -1;
@@ -37,7 +36,6 @@ namespace Tizen.NUI.Components
         /// <param name="orientation">Layout orientation.Should be HORIZONTAL or VERTICAL</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public GridLayoutManager(int spanCount, int orientation) : base(orientation)
         {
             mSpanCount = spanCount;
@@ -86,7 +84,6 @@ namespace Tizen.NUI.Components
         /// <param name="direction">The direction.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction)
         {
             if (mOrientation == HORIZONTAL)
@@ -211,7 +208,5 @@ namespace Tizen.NUI.Components
                 }
             }
         }
-
-
     }
 }
