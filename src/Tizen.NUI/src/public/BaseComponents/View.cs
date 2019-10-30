@@ -1788,7 +1788,6 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
             get
