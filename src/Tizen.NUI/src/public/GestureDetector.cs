@@ -29,7 +29,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GestureDetector : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Constructor. Creates an uninitialized GestureDetector.
@@ -54,7 +53,6 @@ namespace Tizen.NUI
 
         internal GestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.GestureDetector.GestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -139,33 +137,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// Release swigCPtr.
         /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        /// <param name="swigCPtr">The handle save native pointer.</param>
+       /// <since_tizen> 6 </since_tizen>
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.GestureDetector.delete_GestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.GestureDetector.delete_GestureDetector(swigCPtr);
         }
     }
 }

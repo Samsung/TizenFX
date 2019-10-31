@@ -28,12 +28,10 @@ namespace Tizen.NUI
     public class TTSPlayer : BaseHandle
     {
         private static readonly TTSPlayer instance = TTSPlayer.Get();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private StateChangedEventCallbackType _stateChangedEventCallback;
 
         internal TTSPlayer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TtsPlayer.TtsPlayer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal TTSPlayer() : this(Interop.TtsPlayer.new_TtsPlayer__SWIG_0(), true)

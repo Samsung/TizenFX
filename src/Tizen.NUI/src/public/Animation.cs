@@ -44,7 +44,6 @@ namespace Tizen.NUI
     {
         private static bool? disableAnimation = null;
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
         private System.IntPtr _finishedCallbackOfNative;
@@ -72,7 +71,6 @@ namespace Tizen.NUI
 
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Animation.Animation_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             _animationFinishedEventCallback = OnFinished;
             _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
@@ -1309,21 +1307,12 @@ namespace Tizen.NUI
                 this.Clear();
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Animation.delete_Animation(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Animation.delete_Animation(swigCPtr);
         }
 
         private void OnFinished(IntPtr data)

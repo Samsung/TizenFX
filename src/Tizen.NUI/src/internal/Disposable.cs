@@ -32,13 +32,25 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected bool disposed = false;
         private bool isDisposeQueued = false;
+        /// <summary>
+        /// swigCMemOwn.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        protected bool swigCMemOwn;
+        /// <summary>
+        /// swigCPtr.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Disposable()
+        public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -98,8 +110,25 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    ReleaseSwigCPtr(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
             disposed = true;
+        }
+
+        /// <summary>
+        /// Release swigCPtr.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
         }
     }
 }

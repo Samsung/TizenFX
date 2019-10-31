@@ -194,7 +194,6 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
         private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
 
@@ -213,7 +212,6 @@ namespace Tizen.NUI.UIComponents
 
         internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ProgressBar.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -465,17 +463,12 @@ namespace Tizen.NUI.UIComponents
                 ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ProgressBar.delete_ProgressBar(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ProgressBar.delete_ProgressBar(swigCPtr);
         }
 
         // Callback for ProgressBar ValueChanged signal

@@ -29,11 +29,9 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollViewPagePathEffect : ScrollViewEffect
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewPagePathEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewPagePathEffect obj)
@@ -42,30 +40,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// Release swigCPtr.
         /// </summary>
-        protected override void Dispose(DisposeTypes type)
+        /// <since_tizen> 6 </since_tizen>
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ScrollView.delete_ScrollViewPagePathEffect(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ScrollView.delete_ScrollViewPagePathEffect(swigCPtr);
         }
 
         /// <summary>

@@ -29,21 +29,9 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WidgetViewSignal : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool swigCMemOwn;
-
-        internal WidgetViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal WidgetViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetViewSignal obj)
@@ -58,24 +46,9 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API6, Will be removed in API9, " + 
             "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.WidgetView.delete_WidgetViewSignal(swigCPtr);
         }
 
         /// <summary>

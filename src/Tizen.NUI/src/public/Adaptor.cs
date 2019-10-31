@@ -39,12 +39,7 @@ namespace Tizen.NUI
     /// <since_tizen> 4 </since_tizen>
     public class Adaptor : Disposable
     {
-        /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool swigCMemOwn;
-
         private static readonly Adaptor instance = Adaptor.Get();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private EventHandler<ResizedEventArgs> _resizedEventHandler;
         private ResizedCallbackDelegate _resizedCallbackDelegate;
@@ -52,10 +47,8 @@ namespace Tizen.NUI
         private EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
         private LanguageChangedCallbackDelegate _languageChangedCallbackDelegate;
 
-        internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -360,29 +353,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                swigCMemOwn = false;
-                Interop.Adaptor.delete_Adaptor(swigCPtr);
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+        Interop.Adaptor.delete_Adaptor(swigCPtr);
         }
 
         private void OnResized(IntPtr adaptor)

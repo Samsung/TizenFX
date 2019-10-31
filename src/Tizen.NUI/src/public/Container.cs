@@ -124,17 +124,11 @@ namespace Tizen.NUI
         public abstract UInt32 GetChildCount();
 
         /// <summary>
-        /// Dispose.
+        /// Release swigCPtr.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// <since_tizen> 6 </since_tizen>
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            base.Dispose(type);
         }
 
         internal abstract View FindCurrentChildById(uint id);

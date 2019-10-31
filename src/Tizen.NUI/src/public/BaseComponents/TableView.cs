@@ -118,7 +118,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Creates the default TableView view.
@@ -152,7 +151,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TableView.TableView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -593,28 +591,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.TableView.delete_TableView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.TableView.delete_TableView(swigCPtr);
         }
 
         /// <summary>
@@ -623,12 +602,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class CellPosition : Disposable
         {
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
             /// The constructor.
@@ -685,10 +658,8 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             }
 
             /// <summary>
@@ -842,28 +813,10 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             /// <param name="type">DisposeTypes</param>
             /// <since_tizen> 3 </since_tizen>
-            protected override void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.TableView.delete_TableView_CellPosition(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                base.Dispose(type);
-            }
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+                Interop.TableView.delete_TableView_CellPosition(swigCPtr);
+        }
         }
 
         internal new class Property

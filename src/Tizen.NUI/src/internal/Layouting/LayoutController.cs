@@ -32,8 +32,6 @@ namespace Tizen.NUI
     {
         static bool LayoutDebugController = false; // Debug flag
 
-        private global::System.Runtime.InteropServices.HandleRef unmanagedLayoutController;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void Callback(int id);
 
@@ -51,17 +49,17 @@ namespace Tizen.NUI
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
         /// <param name="window">Window attach this LayoutController to.</param>
         /// </summary>
-        public LayoutController(Window window)
+        public LayoutController(Window window) : this(Interop.LayoutController.LayoutController_New(), true)
         {
-            global::System.IntPtr cPtr = Interop.LayoutController.LayoutController_New();
             _window = window;
-            // Wrap cPtr in a managed handle.
-            unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
             _instance = new Callback(Process);
-            Interop.LayoutController.LayoutController_SetCallback(unmanagedLayoutController, _instance);
+            Interop.LayoutController.LayoutController_SetCallback(swigCPtr, _instance);
 
             _layoutTransitionDataQueue = new List<LayoutData>();
+        }
+
+        internal LayoutController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
         }
 
         /// <summary>
@@ -69,7 +67,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return Interop.LayoutController.LayoutController_GetId(unmanagedLayoutController);
+            return Interop.LayoutController.LayoutController_GetId(swigCPtr);
         }
 
         /// <summary>
@@ -145,10 +143,10 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (unmanagedLayoutController.Handle != global::System.IntPtr.Zero)
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                Interop.LayoutController.delete_LayoutController(unmanagedLayoutController);
-                unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Interop.LayoutController.delete_LayoutController(swigCPtr);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             base.Dispose(type);

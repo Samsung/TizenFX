@@ -303,7 +303,6 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandlerWithReturnType<object, ValueChangedEventArgs, bool> _sliderValueChangedEventHandler;
         private ValueChangedCallbackDelegate _sliderValueChangedCallbackDelegate;
         private EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> _sliderSlidingFinishedEventHandler;
@@ -325,7 +324,6 @@ namespace Tizen.NUI.UIComponents
 
         internal Slider(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Slider.Slider_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal Slider(Slider handle) : this(Interop.Slider.new_Slider__SWIG_1(Slider.getCPtr(handle)), true)
@@ -834,17 +832,12 @@ namespace Tizen.NUI.UIComponents
                 }
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Slider.delete_Slider(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Slider.delete_Slider(swigCPtr);
         }
 
         // Callback for Slider ValueChanged signal

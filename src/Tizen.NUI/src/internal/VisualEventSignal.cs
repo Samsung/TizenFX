@@ -27,27 +27,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.VisualEventSignal.Delete(swigCPtr);
-                }
-                swigCPtr = new HandleRef(null, IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.VisualEventSignal.Delete(swigCPtr);
         }
 
         public bool Empty()
@@ -92,18 +74,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualEventSignal(IntPtr cPtr, bool cMemoryOwn)
+        internal VisualEventSignal(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new HandleRef(this, cPtr);
         }
 
         internal static HandleRef getCPtr(VisualEventSignal obj)
         {
             return (obj == null) ? new HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
-
-        private HandleRef swigCPtr;
-        protected bool swigCMemOwn;
     }
 }

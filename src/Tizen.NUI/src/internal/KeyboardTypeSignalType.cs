@@ -29,21 +29,9 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class KeyboardTypeSignalType : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
-            "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected bool swigCMemOwn;
-
-        internal KeyboardTypeSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal KeyboardTypeSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KeyboardTypeSignalType obj)
@@ -58,28 +46,9 @@ namespace Tizen.NUI
         [Obsolete("Deprecated in API6, Will be removed in API9, " + 
             "Please use InputMethodContext.KeyboardTypeChanged event instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.KeyboardTypeSignalType.delete_KeyboardTypeSignalType(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.KeyboardTypeSignalType.delete_KeyboardTypeSignalType(swigCPtr);
         }
 
         /// <summary>

@@ -32,11 +32,9 @@ namespace Tizen.NUI
         /// Instance of the VisualFactory singleton.
         /// </summary>
         private static VisualFactory instance;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VisualFactory.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal VisualFactory() : this(Interop.VisualFactory.new_VisualFactory__SWIG_0(), true)
