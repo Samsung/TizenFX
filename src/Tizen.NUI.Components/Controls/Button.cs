@@ -40,6 +40,10 @@ namespace Tizen.NUI.Components
         private bool isSelected = false;
         private bool isEnabled = true;
         private bool isPressed = false;
+
+        private Extents iconPadding = null;
+        private Extents textPadding = null;
+
         /// <summary>
         /// Creates a new instance of a Button.
         /// </summary>
@@ -733,24 +737,31 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null == buttonAttributes || null == buttonAttributes.IconAttributes)
-                {
-                    return null;
-                }
-                else
-                {
-                    return new Extents((ushort)buttonAttributes.IconAttributes.PaddingLeft, (ushort)buttonAttributes.IconAttributes.PaddingRight, (ushort)buttonAttributes.IconAttributes.PaddingTop, (ushort)buttonAttributes.IconAttributes.PaddingBottom);
-                }
+                return iconPadding;
             }
             set
             {
                 if (null != value)
                 {
                     CreateIconAttributes();
-                    buttonAttributes.IconAttributes.PaddingLeft = value.Start;
-                    buttonAttributes.IconAttributes.PaddingRight = value.End;
-                    buttonAttributes.IconAttributes.PaddingTop = value.Top;
-                    buttonAttributes.IconAttributes.PaddingBottom = value.Bottom;
+                    buttonAttributes.IconAttributes.Padding.CopyFrom(value);
+
+                    if (null == iconPadding)
+                    {
+                        iconPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        {
+                            buttonAttributes.IconAttributes.Padding.Start = start;
+                            buttonAttributes.IconAttributes.Padding.End = end;
+                            buttonAttributes.IconAttributes.Padding.Top = top;
+                            buttonAttributes.IconAttributes.Padding.Bottom = Bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        iconPadding.CopyFrom(value);
+                    }
+
                     RelayoutRequest();
                 }
             }
@@ -764,24 +775,32 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null == buttonAttributes || null == buttonAttributes.TextAttributes)
-                {
-                    return null;
-                }
-                else
-                {
-                    return new Extents((ushort)buttonAttributes.TextAttributes.PaddingLeft, (ushort)buttonAttributes.TextAttributes.PaddingRight, (ushort)buttonAttributes.TextAttributes.PaddingTop, (ushort)buttonAttributes.TextAttributes.PaddingBottom);
-                }
+                return textPadding;
             }
             set
             {
                 if (null != value)
                 {
                     CreateTextAttributes();
-                    buttonAttributes.TextAttributes.PaddingLeft = value.Start;
-                    buttonAttributes.TextAttributes.PaddingRight = value.End;
-                    buttonAttributes.TextAttributes.PaddingTop = value.Top;
-                    buttonAttributes.TextAttributes.PaddingBottom = value.Bottom;
+
+                    buttonAttributes.TextAttributes.Padding.CopyFrom(value);
+
+                    if (null == textPadding)
+                    {
+                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        {
+                            buttonAttributes.TextAttributes.Padding.Start = start;
+                            buttonAttributes.TextAttributes.Padding.End = end;
+                            buttonAttributes.TextAttributes.Padding.Top = top;
+                            buttonAttributes.TextAttributes.Padding.Bottom = Bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        textPadding.CopyFrom(value);
+                    }
+
                     RelayoutRequest();
                 }
             }
@@ -1088,15 +1107,15 @@ namespace Tizen.NUI.Components
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingLeft = buttonAttributes.TextAttributes.PaddingLeft;
-            int textPaddingRight = buttonAttributes.TextAttributes.PaddingRight;
-            int textPaddingTop = buttonAttributes.TextAttributes.PaddingTop;
-            int textPaddingBottom = buttonAttributes.TextAttributes.PaddingBottom;
+            int textPaddingLeft = buttonAttributes.TextAttributes.Padding.Start;
+            int textPaddingRight = buttonAttributes.TextAttributes.Padding.End;
+            int textPaddingTop = buttonAttributes.TextAttributes.Padding.Top;
+            int textPaddingBottom = buttonAttributes.TextAttributes.Padding.Bottom;
 
-            int iconPaddingLeft = buttonAttributes.IconAttributes.PaddingLeft;
-            int iconPaddingRight = buttonAttributes.IconAttributes.PaddingRight;
-            int iconPaddingTop = buttonAttributes.IconAttributes.PaddingTop;
-            int iconPaddingBottom = buttonAttributes.IconAttributes.PaddingBottom;
+            int iconPaddingLeft = buttonAttributes.IconAttributes.Padding.Start;
+            int iconPaddingRight = buttonAttributes.IconAttributes.Padding.End;
+            int iconPaddingTop = buttonAttributes.IconAttributes.Padding.Top;
+            int iconPaddingBottom = buttonAttributes.IconAttributes.Padding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
@@ -1122,15 +1141,15 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int textPaddingLeft = buttonAttributes.TextAttributes.PaddingLeft;
-            int textPaddingRight = buttonAttributes.TextAttributes.PaddingRight;
-            int textPaddingTop = buttonAttributes.TextAttributes.PaddingTop;
-            int textPaddingBottom = buttonAttributes.TextAttributes.PaddingBottom;
+            int textPaddingLeft = buttonAttributes.TextAttributes.Padding.Top;
+            int textPaddingRight = buttonAttributes.TextAttributes.Padding.End;
+            int textPaddingTop = buttonAttributes.TextAttributes.Padding.Top;
+            int textPaddingBottom = buttonAttributes.TextAttributes.Padding.Bottom;
 
-            int iconPaddingLeft = buttonAttributes.IconAttributes.PaddingLeft;
-            int iconPaddingRight = buttonAttributes.IconAttributes.PaddingRight;
-            int iconPaddingTop = buttonAttributes.IconAttributes.PaddingTop;
-            int iconPaddingBottom = buttonAttributes.IconAttributes.PaddingBottom;
+            int iconPaddingLeft = buttonAttributes.IconAttributes.Padding.Top;
+            int iconPaddingRight = buttonAttributes.IconAttributes.Padding.End;
+            int iconPaddingTop = buttonAttributes.IconAttributes.Padding.Top;
+            int iconPaddingBottom = buttonAttributes.IconAttributes.Padding.Bottom;
 
             switch (IconRelativeOrientation)
             {

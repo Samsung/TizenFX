@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
         private TabAttributes tabAttributes = null;
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
+        private Extents space;
 
         /// <summary>
         /// Creates a new instance of a Tab.
@@ -137,20 +138,30 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if(null == tabAttributes || null == tabAttributes.Space)
-                {
-                    return null;
-                }
-                else
-                {
-                    return new Extents((ushort)tabAttributes.Space.X, (ushort)tabAttributes.Space.Y, (ushort)tabAttributes.Space.Z, (ushort)tabAttributes.Space.W);
-                }
+                return space;
             }
             set
             {
                 if(null != value)
                 {
-                    tabAttributes.Space = new Vector4(value.Start, value.End, value.Top, value.Bottom);
+                    tabAttributes.Space.CopyFrom(value);
+
+                    if (null == space)
+                    {
+                        space = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        {
+                            tabAttributes.Space.Start = start;
+                            tabAttributes.Space.End = end;
+                            tabAttributes.Space.Top = top;
+                            tabAttributes.Space.Bottom = Bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        space.CopyFrom(value);
+                    }
+
                     RelayoutRequest();
                 }
             }
@@ -451,7 +462,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int preX = (int)tabAttributes.Space.X;
+            int preX = (int)tabAttributes.Space.Start;
             int preW = 0;
             int itemSpace = tabAttributes.ItemSpace;
 
@@ -470,7 +481,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)tabAttributes.Space.X - (int)tabAttributes.Space.Y) / totalNum;
+                    preW = (Size2D.Width - (int)tabAttributes.Space.Start - (int)tabAttributes.Space.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
                         itemList[i].Position2D.X = preX;
@@ -482,7 +493,7 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                preX = (int)tabAttributes.Space.Y;
+                preX = (int)tabAttributes.Space.End;
                 if (tabAttributes.UseTextNaturalSize == true)
                 {
                     int w = Size2D.Width;
@@ -497,7 +508,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)tabAttributes.Space.X - (int)tabAttributes.Space.Y) / totalNum;
+                    preW = (Size2D.Width - (int)tabAttributes.Space.Start - (int)tabAttributes.Space.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
                         itemList[i].Position2D.X = preX;
@@ -530,7 +541,7 @@ namespace Tizen.NUI.Components
         private void AddItemByIndex(TabItemData itemData, int index)
         {
             int h = 0;
-            int topSpace = (int)tabAttributes.Space.Z;
+            int topSpace = (int)tabAttributes.Space.Top;
             if (tabAttributes.UnderLineAttributes != null && tabAttributes.UnderLineAttributes.Size != null)
             {
                 h = (int)tabAttributes.UnderLineAttributes.Size.Height;

@@ -39,6 +39,9 @@ namespace Tizen.NUI.Components
         private DropDownItemView touchedView = null;
         private int selectedItemIndex = -1;
 
+        private Extents listMargin = null;
+        private Extents listPadding = null;
+
         /// <summary>
         /// Creates a new instance of a DropDown.
         /// </summary>
@@ -513,11 +516,28 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return dropDownAttributes.ListMargin;
+                return listMargin;
             }
             set
             {
-                dropDownAttributes.ListMargin = new Extents(value.Start, value.End, value.Top, value.Bottom);
+                dropDownAttributes.ListMargin.CopyFrom(value);
+
+                if (null == listMargin)
+                {
+                    listMargin = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                    {
+                        dropDownAttributes.ListMargin.Start = start;
+                        dropDownAttributes.ListMargin.End = end;
+                        dropDownAttributes.ListMargin.Top = top;
+                        dropDownAttributes.ListMargin.Bottom = Bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
+
                 RelayoutRequest();
             }
         }
@@ -588,11 +608,28 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return dropDownAttributes.ListPadding;
+                return listPadding;
             }
             set
             {
-                dropDownAttributes.ListPadding = value;
+                dropDownAttributes.ListPadding.CopyFrom(value);
+
+                if (null == listPadding)
+                {
+                    listPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                    {
+                        dropDownAttributes.ListPadding.Start = start;
+                        dropDownAttributes.ListPadding.End = end;
+                        dropDownAttributes.ListPadding.Top = top;
+                        dropDownAttributes.ListPadding.Bottom = Bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
+
                 RelayoutRequest();
             }
         }
