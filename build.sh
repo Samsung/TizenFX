@@ -7,7 +7,7 @@ OUTDIR=$SCRIPT_DIR/Artifacts
 
 RUN_BUILD="dotnet msbuild $SCRIPT_DIR/build/build.proj /nologo"
 
-VERSION_PREFIX=6.0.0
+VERSION_PREFIX=7.0.0
 
 usage() {
   echo "Usage: $0 [command] [args]"
