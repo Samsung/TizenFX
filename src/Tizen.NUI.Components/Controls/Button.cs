@@ -725,7 +725,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // <summary>
+        /// <summary>
         /// Icon padding in Button, work only when show icon and text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -756,7 +756,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // <summary>
+        /// <summary>
         /// Text padding in Button, work only when show icon and text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

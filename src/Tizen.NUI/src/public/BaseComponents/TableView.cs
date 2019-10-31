@@ -312,11 +312,7 @@ namespace Tizen.NUI.BaseComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.TableView.TableView_RemoveChildAt(swigCPtr, TableView.CellPosition.getCPtr(position));
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(ret);

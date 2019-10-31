@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         {
             if (_enabled)
             {
-                throw new InvalidOperationException("the audio offload is enabled.");
+                throw new NotAvailableException("the audio offload is enabled.");
             }
         }
 

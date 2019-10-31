@@ -377,7 +377,7 @@ namespace Tizen.NUI.Components
             {
                 if (mLayout != null)
                 {
-                    mLayout.StopScroll(false);
+                    mLayout.StopScroll();
                 }
 
                 if (mAdapter != null)
@@ -575,7 +575,7 @@ namespace Tizen.NUI.Components
 
             float extent = mLayout.ComputeScrollExtent();
             float range = mLayout.ComputeScrollRange();
-            if(range == 0)
+            if (range == 0)
             {
                 return;
             }
@@ -595,10 +595,6 @@ namespace Tizen.NUI.Components
             if (offset > range - extent)
             {
                 offset = range - extent;
-            }
-            if (offset < 0)
-            {
-                offset = 0;
             }
             if (mScrollBar.Direction == ScrollBar.DirectionType.Vertical)
             {
@@ -639,7 +635,7 @@ namespace Tizen.NUI.Components
             mAdapter.OnFocusChange(this, mFocusedItemIndex, nextFocusPosition);
 
             mFocusedItemIndex = nextFocusPosition;
- 
+
             ShowScrollBar();
         }
 
@@ -686,17 +682,17 @@ namespace Tizen.NUI.Components
         {
             if (e.PanGesture.State == Gesture.StateType.Started)
             {
-                mLayout.StopScroll(true);
+                mLayout.StopScroll();
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
                 if (mLayout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy((int)e.PanGesture.Displacement.Y, mRecycler, true);
+                    mLayout.ScrollVerticallyBy(e.PanGesture.Displacement.Y, mRecycler, true);
                 }
                 else if (mLayout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy((int)e.PanGesture.Displacement.X, mRecycler, true);
+                    mLayout.ScrollHorizontallyBy(e.PanGesture.Displacement.X, mRecycler, true);
                 }
 
                 ShowScrollBar();
@@ -705,11 +701,11 @@ namespace Tizen.NUI.Components
             {
                 if (mLayout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy((int)e.PanGesture.Velocity.Y * 600, mRecycler, false);
+                    mLayout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600, mRecycler, false);
                 }
                 else if (mLayout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy((int)e.PanGesture.Velocity.X * 600, mRecycler, false);
+                    mLayout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 600, mRecycler, false);
                 }
                 ShowScrollBar(1200, true);
             }
@@ -1023,7 +1019,7 @@ namespace Tizen.NUI.Components
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             public void NotifyItemMoved(int fromPosition, int toPosition)
             {
-               
+
             }
 
             private void OnItemEvent(object sender, ItemEventArgs e)
@@ -1098,8 +1094,6 @@ namespace Tizen.NUI.Components
                 /// </summary>
                 Down
             }
-
-            private readonly int SCROLL_ANIMATION_DURATION = 500;
 
             private FlexibleView mFlexibleView;
             private ChildHelper mChildHelper;
@@ -1335,10 +1329,10 @@ namespace Tizen.NUI.Components
             public void LayoutChild(ViewHolder child, float left, float top, float width, float height)
             {
                 View itemView = child.ItemView;
-                itemView.SizeWidth = (int)(width - itemView.Margin.Start - itemView.Margin.End);
-                itemView.SizeHeight = (int)(height - itemView.Margin.Top - itemView.Margin.Bottom);
-                itemView.PositionX = (int)(left + itemView.Margin.Start);
-                itemView.PositionY = (int)(top + itemView.Margin.Top);
+                itemView.SizeWidth = width - itemView.Margin.Start - itemView.Margin.End;
+                itemView.SizeHeight = height - itemView.Margin.Top - itemView.Margin.Bottom;
+                itemView.PositionX = left + itemView.Margin.Start;
+                itemView.PositionY = top + itemView.Margin.Top;
             }
 
             /// <summary>
@@ -1404,10 +1398,20 @@ namespace Tizen.NUI.Components
                     return;
                 }
 
-                if (dx == 0)
+                if (mScrollAni == null)
                 {
-                    return;
+                    mScrollAni = new Animation();
+                    mScrollAni.Finished += OnScrollAnimationFinished;
                 }
+                else if (mScrollAni.State == Animation.States.Playing)
+                {
+                    //StopScroll();
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
+                }
+                mScrollAni.Duration = 500;
+                mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+
+                mScrollAni.Clear();
 
                 int childCount = mChildHelper.GetChildCount();
                 if (immediate == true)
@@ -1415,60 +1419,15 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        v.ItemView.PositionX = (int)(v.ItemView.PositionX + dx);
+                        v.ItemView.PositionX += dx;
                     }
                 }
                 else
                 {
-                    if (mScrollAni == null)
-                    {
-                        mScrollAni = new Animation();
-                        mScrollAni.Duration = SCROLL_ANIMATION_DURATION;
-                        mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
-                    }
-
-                    // avoid out of boundary of flexibleview. delta value might be used for shadow.
-                    // this must be done before animation clear.
-                    if (childCount > 0)
-                    {
-                        ViewHolder vh = mChildHelper.GetChildAt(0);
-                        if (vh.LayoutPosition == 0)
-                        {
-                            if ((int)(vh.ItemView.PositionX + dx) != 0)
-                            {
-                                dx = (int)(0 - vh.ItemView.PositionX);
-                            }
-                        }
-
-                        vh = mChildHelper.GetChildAt(childCount - 1);
-                        if (vh.LayoutPosition == ItemCount - 1)
-                        {
-                            if ((int)(vh.ItemView.PositionX + dx) != (int)Width)
-                            {
-                                dx = (int)(Width - vh.ItemView.PositionX);
-                            }
-                        }
-                    }
-
-                    // save position before animation clear.
-                    float[] childrenPositon = new float[childCount];
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        childrenPositon[i] = (int)v.ItemView.PositionX;
-                    }
-
-                    mScrollAni.Clear();
-                    mScrollAni.Finished += OnScrollAnimationFinished;
-
-                    for (int i = childCount - 1; i >= 0; i--)
-                    {
-                        ViewHolder v = mChildHelper.GetChildAt(i);
-
-                        // set position again because position might be changed after animation clear.
-                        v.ItemView.PositionX = childrenPositon[i];
-
-                        mScrollAni.AnimateTo(v.ItemView, "PositionX", (int)(v.ItemView.PositionX + dx));
+                        mScrollAni.AnimateTo(v.ItemView, "PositionX", v.ItemView.PositionX + dx);
                     }
                     mScrollAni.Play();
                 }
@@ -1488,10 +1447,20 @@ namespace Tizen.NUI.Components
                     return;
                 }
 
-                if (dy == 0)
+                if (mScrollAni == null)
                 {
-                    return;
+                    mScrollAni = new Animation();
+                    mScrollAni.Finished += OnScrollAnimationFinished;
                 }
+                else if (mScrollAni.State == Animation.States.Playing)
+                {
+                    //StopScroll();
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
+                }
+                mScrollAni.Duration = 500;
+                mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
+
+                mScrollAni.Clear();
 
                 int childCount = mChildHelper.GetChildCount();
                 if (immediate == true)
@@ -1499,60 +1468,15 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        v.ItemView.PositionY = (int)(v.ItemView.PositionY + dy);
+                        v.ItemView.PositionY += dy;
                     }
                 }
                 else
                 {
-                    if (mScrollAni == null)
-                    {
-                        mScrollAni = new Animation();
-                        mScrollAni.Duration = SCROLL_ANIMATION_DURATION;
-                        mScrollAni.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSquare);
-                    }
-
-                    // avoid out of boundary of flexibleview. delta value might be used for shadow.
-                    // this must be done before animation clear.
-                    if (childCount > 0)
-                    {
-                        ViewHolder vh = mChildHelper.GetChildAt(0);
-                        if (vh.LayoutPosition == 0)
-                        {
-                            if ((int)(vh.ItemView.PositionY + dy) != 0)
-                            {
-                                dy = (int)(0 - vh.ItemView.PositionY);
-                            }
-                        }
-
-                        vh = mChildHelper.GetChildAt(childCount - 1);
-                        if (vh.LayoutPosition == ItemCount - 1)
-                        {
-                            if ((int)(vh.ItemView.PositionY + dy) != (int)Height)
-                            {
-                                dy = (int)(Height - vh.ItemView.PositionY);
-                            }
-                        }
-                    }
-
-                    // save position before animation clear.
-                    float[] childPositon = new float[childCount];
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        childPositon[i] = (int)v.ItemView.PositionY;
-                    }
-
-                    mScrollAni.Clear();
-                    mScrollAni.Finished += OnScrollAnimationFinished;
-
-                    for (int i = childCount - 1; i >= 0; i--)
-                    {
-                        ViewHolder v = mChildHelper.GetChildAt(i);
-
-                        // set position again because position might be changed after animation clear.
-                        v.ItemView.PositionY = childPositon[i];
-
-                        mScrollAni.AnimateTo(v.ItemView, "PositionY", (int)(v.ItemView.PositionY + dy));
+                        mScrollAni.AnimateTo(v.ItemView, "PositionY", v.ItemView.PositionY + dy);
                     }
                     mScrollAni.Play();
                 }
@@ -1760,17 +1684,13 @@ namespace Tizen.NUI.Components
                 mChildHelper = recyclerView.mChildHelper;
             }
 
-            internal void StopScroll(bool doSomethingAfterAnimationStopped)
+            internal void StopScroll()
             {
                 if (mScrollAni != null && mScrollAni.State == Animation.States.Playing)
                 {
-                    mScrollAni.Finished -= OnScrollAnimationFinished;
-                    mScrollAni.Stop();
-
-                    if (doSomethingAfterAnimationStopped)
-                    {
-                        OnScrollAnimationFinished(mScrollAni, null);
-                    }
+                    mScrollAni.Stop(Animation.EndActions.StopFinal);
+                    mScrollAni.Clear();
+                    OnScrollAnimationFinished(mScrollAni, null);
                 }
             }
 
@@ -1806,7 +1726,7 @@ namespace Tizen.NUI.Components
                 // Favor the "start" layout direction over the end when bringing one side or the other
                 // of a large rect into view. If we decide to bring in end because start is already
                 // visible, limit the scroll such that start won't go out of bounds.
-                int dx= offScreenLeft != 0 ? offScreenLeft
+                int dx = offScreenLeft != 0 ? offScreenLeft
                             : Math.Min(childLeft - parentLeft, offScreenRight);
 
                 // Favor bringing the top into view over the bottom. If top is already visible and
@@ -1822,50 +1742,7 @@ namespace Tizen.NUI.Components
 
             private void OnScrollAnimationFinished(object sender, EventArgs e)
             {
-                foreach (ViewHolder holder in mPendingRecycleViews)
-                {
-                    holder.PendingRecycle = false;
-                }
-                mPendingRecycleViews.Clear();
-
-                int start = NO_POSITION;
-                ViewHolder firstItemView = FindFirstVisibleItemView();
-                if (firstItemView != null)
-                    start = firstItemView.LayoutPosition;
-                else
-                    start = 0;
-
-                int itemCount = ChildCount;
-
-                int end = NO_POSITION;
-                ViewHolder lastItemView = FindLastVisibleItemView();
-                if (lastItemView != null)
-                    end = lastItemView.LayoutPosition;
-                else
-                    end = itemCount - 1;
-
-                List<ViewHolder> removedViewList = new List<ViewHolder>();
-                for (int i = 0; i < itemCount; i++)
-                {
-                    ViewHolder v = GetChildAt(i);
-
-                    //if item view of holder is visible, it should not be recycled.
-                    if (v.LayoutPosition >= start && v.LayoutPosition <= end)
-                        continue;
-
-                    removedViewList.Add(v);
-                }
-
-                for (int i = 0; i < removedViewList.Count; i++)
-                {
-                    ViewHolder v = removedViewList[i];
-                    v.PendingRecycle = false;
-                    mFlexibleView.mRecycler.RecycleView(v);
-                    mChildHelper.RemoveView(v);
-                }
-
-                // relayout
-                mFlexibleView.OnRelayout(null, null);
+                RecycleChildrenInt(mFlexibleView.mRecycler);
             }
 
             private void AddViewInternal(ViewHolder holder, int index, bool disappearing)
@@ -1879,16 +1756,6 @@ namespace Tizen.NUI.Components
                 {
                     mChildHelper.AddView(holder, index);
                 }
-            }
-
-            protected virtual ViewHolder FindFirstVisibleItemView()
-            {
-                return null;
-            }
-
-            protected virtual ViewHolder FindLastVisibleItemView()
-            {
-                return null;
             }
 
             private void RecycleChildrenInt(FlexibleView.Recycler recycler)
@@ -1916,50 +1783,36 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         public class ViewHolder
         {
-            /**
-             * This ViewHolder has been bound to a position; AdapterPosition, mItemId and mItemViewType
-             * are all valid.
-             */
+            // This ViewHolder has been bound to a position; AdapterPosition, mItemId and mItemViewType
+            // are all valid.
             //static readonly int FLAG_BOUND = 1 << 0;
 
-            /**
-             * The data this ViewHolder's view reflects is stale and needs to be rebound
-             * by the adapter. AdapterPosition and mItemId are consistent.
-             */
+            // The data this ViewHolder's view reflects is stale and needs to be rebound
+            // by the adapter. AdapterPosition and mItemId are consistent.
             //static readonly int FLAG_UPDATE = 1 << 1;
 
-            /**
-             * This ViewHolder's data is invalid. The identity implied by AdapterPosition and mItemId
-             * are not to be trusted and may no longer match the item view type.
-             * This ViewHolder must be fully rebound to different data.
-             */
+            // This ViewHolder's data is invalid. The identity implied by AdapterPosition and mItemId
+            // are not to be trusted and may no longer match the item view type.
+            // This ViewHolder must be fully rebound to different data.
             //static readonly int FLAG_INVALID = 1 << 2;
 
-            /**
-             * This ViewHolder points at data that represents an item previously removed from the
-             * data set. Its view may still be used for things like outgoing animations.
-             */
+            // This ViewHolder points at data that represents an item previously removed from the
+            // data set. Its view may still be used for things like outgoing animations.
             //static readonly int FLAG_REMOVED = 1 << 3;
 
-            /**
-             * This ViewHolder should not be recycled. This flag is set via setIsRecyclable()
-             * and is intended to keep views around during animations.
-             */
+            // This ViewHolder should not be recycled. This flag is set via setIsRecyclable()
+            // and is intended to keep views around during animations.
             //static readonly int FLAG_NOT_RECYCLABLE = 1 << 4;
 
-            /**
-             * This ViewHolder is returned from scrap which means we are expecting an addView call
-             * for this itemView. When returned from scrap, ViewHolder stays in the scrap list until
-             * the end of the layout pass and then recycled by RecyclerView if it is not added back to
-             * the RecyclerView.
-             */
+            // This ViewHolder is returned from scrap which means we are expecting an addView call
+            // for this itemView. When returned from scrap, ViewHolder stays in the scrap list until
+            // the end of the layout pass and then recycled by RecyclerView if it is not added back to
+            // the RecyclerView.
             //static readonly int FLAG_RETURNED_FROM_SCRAP = 1 << 5;
 
-            /**
-             * This ViewHolder is fully managed by the LayoutManager. We do not scrap, recycle or remove
-             * it unless LayoutManager is replaced.
-             * It is still fully visible to the LayoutManager.
-             */
+            // This ViewHolder is fully managed by the LayoutManager. We do not scrap, recycle or remove
+            // it unless LayoutManager is replaced.
+            // It is still fully visible to the LayoutManager.
             //static readonly int FLAG_IGNORE = 1 << 7;
 
             private int mFlags;
@@ -1996,7 +1849,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionX - ItemView.Margin.Start);
+                    return ItemView.PositionX - ItemView.Margin.Start;
                 }
             }
 
@@ -2009,7 +1862,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionX + ItemView.SizeWidth + ItemView.Margin.End);
+                    return ItemView.PositionX + ItemView.SizeWidth + ItemView.Margin.End;
                 }
             }
 
@@ -2022,7 +1875,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionY - ItemView.Margin.Top);
+                    return ItemView.PositionY - ItemView.Margin.Top;
                 }
             }
 
@@ -2035,7 +1888,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionY + ItemView.SizeHeight + ItemView.Margin.Bottom);
+                    return ItemView.PositionY + ItemView.SizeHeight + ItemView.Margin.Bottom;
                 }
             }
 
@@ -2368,7 +2221,7 @@ namespace Tizen.NUI.Components
         private class ChildHelper
         {
             private FlexibleView mFlexibleView;
-            
+
             private List<ViewHolder> mViewList = new List<ViewHolder>();
 
             //private List<ViewHolder> mRemovePendingViews;
@@ -2386,7 +2239,7 @@ namespace Tizen.NUI.Components
 
             public void Clear()
             {
-                foreach(ViewHolder holder in mViewList)
+                foreach (ViewHolder holder in mViewList)
                 {
                     mFlexibleView.Remove(holder.ItemView);
 
@@ -2418,7 +2271,7 @@ namespace Tizen.NUI.Components
                 if (!itemViewTable.ContainsKey(holder.ItemView.ID))
                 {
                     mTapGestureDetector.Attach(holder.ItemView);
-                    holder.ItemView.TouchEvent += OnTouchEvent; 
+                    holder.ItemView.TouchEvent += OnTouchEvent;
                 }
 
                 itemViewTable[holder.ItemView.ID] = holder;

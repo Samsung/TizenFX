@@ -179,15 +179,11 @@ namespace Tizen.NUI
                     }
                     _outputVisualMap.Add(ImageVisualProperty.URL, (new PropertyValue(urlArray)));
                 }
-                if (_batchSize != null) { _outputVisualMap.Add((int)ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
-                if (_cacheSize != null) { _outputVisualMap.Add((int)ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
-                if (_frameDelay != null) { _outputVisualMap.Add((int)ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
-                if (_loopCount != null) { _outputVisualMap.Add((int)ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
-                if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
-                if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
-                if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
-                if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
-                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
+                if (_batchSize != null) { _outputVisualMap.Add(ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
+                if (_cacheSize != null) { _outputVisualMap.Add(ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
+                if (_frameDelay != null) { _outputVisualMap.Add(ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
+                if (_loopCount != null) { _outputVisualMap.Add(ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
+                base.ComposingPropertyMap();
             }
         }
     }

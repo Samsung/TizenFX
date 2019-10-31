@@ -34,9 +34,6 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
         /// <summary>
         /// The constructor.
         /// </summary>
