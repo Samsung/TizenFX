@@ -1810,6 +1810,28 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected abstract int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction);
 
+            /// <summary>
+            /// Retrieves the first visible item view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected virtual ViewHolder FindFirstVisibleItemView()
+            {
+                return null;
+            }
+
+            /// <summary>
+            /// Retrieves the last visible item view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected virtual ViewHolder FindLastVisibleItemView()
+            {
+                return null;
+            }
+
             internal virtual ViewHolder OnFocusSearchFailed(FlexibleView.ViewHolder focused, LayoutManager.Direction direction, Recycler recycler)
             {
                 return null;
@@ -1939,16 +1961,6 @@ namespace Tizen.NUI.Components
                 {
                     mChildHelper.AddView(holder, index);
                 }
-            }
-
-            protected virtual ViewHolder FindFirstVisibleItemView()
-            {
-                return null;
-            }
-
-            protected virtual ViewHolder FindLastVisibleItemView()
-            {
-                return null;
             }
 
             private void RecycleChildrenInt(FlexibleView.Recycler recycler)
