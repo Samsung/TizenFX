@@ -58,6 +58,8 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
 
+        internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
@@ -553,6 +555,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                sizeSetExplicitly = value;  // Store size set by API, will be used in place of NaturalSize if not set.
                 SetValue(Size2DProperty, value);
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
