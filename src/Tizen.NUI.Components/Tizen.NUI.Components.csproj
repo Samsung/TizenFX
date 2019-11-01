@@ -15,8 +15,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Work\Samsung\TizenFX\src\Tizen.Log\Tizen.Log.csproj" />
-    <ProjectReference Include="..\..\..\..\..\Work\Samsung\TizenFX\src\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
 
