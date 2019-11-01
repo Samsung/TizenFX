@@ -341,6 +341,247 @@ namespace Tizen.NUI.Components
                 }
             }
         }
+
+        /// <summary>
+        /// Apply attributes for View, Image or TextLabel.
+        /// </summary>
+        /// <param name="view">View which will be applied attrs</param>
+        /// <param name="attrs">Attributes for View, Image or TextLabel</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void ApplyAttributes(VisualMap visual, VisualAttributes attrs)
+        {
+            if (visual == null || attrs == null)
+            {
+                return;
+            }
+            if (attrs.Size != null)
+            {
+                visual.Size = attrs.Size;
+            }
+            if (attrs.Position != null)
+            {
+                visual.Position = attrs.Position;
+            }
+            if (attrs.RelativeSize != null)
+            {
+                visual.RelativeSize = attrs.RelativeSize;
+            }
+            if (attrs.RelativePosition != null)
+            {
+                visual.RelativePosition = attrs.RelativePosition;
+            }
+            if (attrs.PositionPolicy != null)
+            {
+                visual.PositionPolicy = attrs.PositionPolicy.Value;
+            }
+            if (attrs.PositionPolicyX != null)
+            {
+                visual.PositionPolicyX = attrs.PositionPolicyX.Value;
+            }
+            if (attrs.PositionPolicyY != null)
+            {
+                visual.PositionPolicyY = attrs.PositionPolicyY.Value;
+            }
+            if (attrs.SizePolicy != null)
+            {
+                visual.SizePolicy = attrs.SizePolicy.Value;
+            }
+            if (attrs.SizePolicyWidth != null)
+            {
+                visual.SizePolicyWidth = attrs.SizePolicyWidth.Value;
+            }
+            if (attrs.SizePolicyHeight != null)
+            {
+                visual.SizePolicyHeight = attrs.SizePolicyHeight.Value;
+            }
+            if (attrs.Origin != null)
+            {
+                visual.Origin = attrs.Origin.Value;
+            }
+            if (attrs.AnchorPoint != null)
+            {
+                visual.AnchorPoint = attrs.AnchorPoint.Value;
+            }
+            if (attrs.DepthIndex != null)
+            {
+                visual.DepthIndex = attrs.DepthIndex.Value;
+            }
+
+            ImageVisual image = visual as ImageVisual;
+            ImageVisualAttributes imageAttrs = attrs as ImageVisualAttributes;
+            if (image != null && imageAttrs != null)
+            {
+                if (imageAttrs.ResourceURL?.GetValue(State) != null)
+                {
+                    image.URL = imageAttrs.ResourceURL.GetValue(State);
+                }
+                if (imageAttrs.AlphaMaskURL?.GetValue(State) != null)
+                {
+                    image.AlphaMaskURL = imageAttrs.AlphaMaskURL.GetValue(State);
+                }
+                if (imageAttrs.AuxiliaryImageURL?.GetValue(State) != null)
+                {
+                    image.AuxiliaryImageURL = imageAttrs.AuxiliaryImageURL.GetValue(State);
+                }
+                if (imageAttrs.FittingMode != null)
+                {
+                    image.FittingMode = imageAttrs.FittingMode.Value;
+                }
+                if (imageAttrs.SamplingMode != null)
+                {
+                    image.SamplingMode = imageAttrs.SamplingMode.Value;
+                }
+                if (imageAttrs.DesiredWidth != null)
+                {
+                    image.DesiredWidth = imageAttrs.DesiredWidth.Value;
+                }
+                if (imageAttrs.DesiredHeight != null)
+                {
+                    image.DesiredHeight = imageAttrs.DesiredHeight.Value;
+                }
+                if (imageAttrs.SynchronousLoading != null)
+                {
+                    image.SynchronousLoading = imageAttrs.SynchronousLoading.Value;
+                }
+                if (imageAttrs.BorderOnly != null)
+                {
+                    image.BorderOnly = imageAttrs.BorderOnly.Value;
+                }
+                if (imageAttrs.PixelArea != null)
+                {
+                    image.PixelArea = imageAttrs.PixelArea;
+                }
+                if (imageAttrs.WrapModeU != null)
+                {
+                    image.WrapModeU = imageAttrs.WrapModeU.Value;
+                }
+                if (imageAttrs.WrapModeV != null)
+                {
+                    image.WrapModeV = imageAttrs.WrapModeV.Value;
+                }
+                if (imageAttrs.MaskContentScale != null)
+                {
+                    image.MaskContentScale = imageAttrs.MaskContentScale.Value;
+                }
+                if (imageAttrs.CropToMask != null)
+                {
+                    image.CropToMask = imageAttrs.CropToMask.Value;
+                }
+                if (imageAttrs.AuxiliaryImageAlpha != null)
+                {
+                    image.AuxiliaryImageAlpha = imageAttrs.AuxiliaryImageAlpha.Value;
+                }
+                if (imageAttrs.ReleasePolicy != null)
+                {
+                    image.ReleasePolicy = imageAttrs.ReleasePolicy.Value;
+                }
+                if (imageAttrs.LoadPolicy != null)
+                {
+                    image.LoadPolicy = imageAttrs.LoadPolicy.Value;
+                }
+                if (imageAttrs.OrientationCorrection != null)
+                {
+                    image.OrientationCorrection = imageAttrs.OrientationCorrection.Value;
+                }
+                if (imageAttrs.Atlasing != null)
+                {
+                    image.Atlasing = imageAttrs.Atlasing.Value;
+                }
+            }
+
+            TextVisual text = visual as TextVisual;
+            TextVisualAttributes textAttrs = attrs as TextVisualAttributes;
+            if (text != null && textAttrs != null)
+            {
+                if (textAttrs.Text?.GetValue(State) != null)
+                {
+                    text.Text = textAttrs.Text.GetValue(State);
+                }
+                if (textAttrs.FontStyle != null)
+                {
+                    text.FontStyle = textAttrs.FontStyle;
+                }
+                if (textAttrs.Shadow != null)
+                {
+                    text.Shadow = textAttrs.Shadow;
+                }
+                if (textAttrs.Outline != null)
+                {
+                    text.Outline = textAttrs.Outline;
+                }
+                if (textAttrs.Underline != null)
+                {
+                    text.Underline = textAttrs.Underline;
+                }
+                if (textAttrs.Background != null)
+                {
+                    Background = textAttrs.Background;
+                }
+                if (textAttrs.MultiLine != null)
+                {
+                    text.MultiLine = textAttrs.MultiLine.Value;
+                }
+                if (textAttrs.HorizontalAlignment != null)
+                {
+                    text.HorizontalAlignment = textAttrs.HorizontalAlignment.Value;
+                }
+                if (textAttrs.VerticalAlignment != null)
+                {
+                    text.VerticalAlignment = textAttrs.VerticalAlignment.Value;
+                }
+                if (textAttrs.EnableMarkup != null)
+                {
+                    text.EnableMarkup = textAttrs.EnableMarkup.Value;
+                }
+                if (textAttrs.TextColor?.GetValue(State) != null)
+                {
+                    text.TextColor = textAttrs.TextColor.GetValue(State);
+                }
+                if (textAttrs.FontFamily != null)
+                {
+                    text.FontFamily = textAttrs.FontFamily;
+                }
+                if (textAttrs.PointSize?.GetValue(State) != null)
+                {
+                    text.PointSize = textAttrs.PointSize.GetValue(State).Value;
+                }
+            }
+
+            NPatchVisual nPatchVisual = visual as NPatchVisual;
+            NPatchVisualAttributes nPatchVisualAttrs = attrs as NPatchVisualAttributes;
+            if (nPatchVisual != null && nPatchVisualAttrs != null)
+            {
+                if (nPatchVisualAttrs.ResourceURL?.GetValue(State) != null)
+                {
+                    nPatchVisual.URL = nPatchVisualAttrs.ResourceURL.GetValue(State);
+                }
+                if (nPatchVisualAttrs.Border?.GetValue(State) != null)
+                {
+                    nPatchVisual.Border = nPatchVisualAttrs.Border.GetValue(State);
+                }
+                if (nPatchVisualAttrs.BorderOnly != null)
+                {
+                    nPatchVisual.BorderOnly = nPatchVisualAttrs.BorderOnly.Value;
+                }
+            }
+
+            ColorVisual colorVisual = visual as ColorVisual;
+            ColorVisualAttributes colorVisualAttributes = attrs as ColorVisualAttributes;
+            if (colorVisual != null && colorVisualAttributes != null)
+            {
+                if (colorVisualAttributes.Color?.GetValue(State) != null)
+                {
+                    colorVisual.Color = colorVisualAttributes.Color.GetValue(State);
+                }
+                if (colorVisualAttributes.RenderIfTransparent != null)
+                {
+                    colorVisual.RenderIfTransparent = colorVisualAttributes.RenderIfTransparent.Value;
+                }
+            }
+        }
+
         /// <summary>
         /// Dispose Control and all children on it.
         /// </summary>
@@ -363,6 +604,7 @@ namespace Tizen.NUI.Components
             }
             base.Dispose(type);
         }
+
         /// <summary>
         /// Get attribues, it is abstract function and must be override.
         /// </summary>
@@ -396,6 +638,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
+            base.OnRelayout(size, container);
             OnUpdate();
         }
 
