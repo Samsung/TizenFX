@@ -51,14 +51,14 @@ namespace Tizen.NUI.Components
                 SelectableImageAttributes = attributes.SelectableImageAttributes.Clone() as ImageAttributes;
             }
 
-            if (attributes.selectableImageBackgroundAttributes != null)
+            if (attributes.SelectableImageBackgroundAttributes != null)
             {
-                selectableImageBackgroundAttributes = attributes.selectableImageBackgroundAttributes.Clone() as ImageAttributes;
+                SelectableImageBackgroundAttributes = attributes.SelectableImageBackgroundAttributes.Clone() as ImageAttributes;
             }
 
-            if (attributes.selectableImageShadowAttributes != null)
+            if (attributes.SelectableImageShadowAttributes != null)
             {
-                selectableImageShadowAttributes = attributes.selectableImageShadowAttributes.Clone() as ImageAttributes;
+                SelectableImageShadowAttributes = attributes.SelectableImageShadowAttributes.Clone() as ImageAttributes;
             }
         }
 
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes selectableImageBackgroundAttributes
+        public ImageAttributes SelectableImageBackgroundAttributes
         {
             get;
             set;
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes selectableImageShadowAttributes
+        public ImageAttributes SelectableImageShadowAttributes
         {
             get;
             set;

@@ -1107,16 +1107,25 @@ namespace Tizen.NUI.Components
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
+            int textPaddingStart = buttonAttributes.TextAttributes.Padding.Start;
+            int textPaddingEnd = buttonAttributes.TextAttributes.Padding.End;
+            int textPaddingTop = buttonAttributes.TextAttributes.Padding.Top;
+            int textPaddingBottom = buttonAttributes.TextAttributes.Padding.Bottom;
+
+            int iconPaddingStart = buttonAttributes.IconAttributes.Padding.Start;
+            int iconPaddingEnd = buttonAttributes.IconAttributes.Padding.End;
+            int iconPaddingTop = buttonAttributes.IconAttributes.Padding.Top;
+            int iconPaddingBottom = buttonAttributes.IconAttributes.Padding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                buttonText.SizeWidth = SizeWidth - buttonAttributes.TextAttributes.Padding.Start - buttonAttributes.TextAttributes.Padding.End;
-                buttonText.SizeHeight = SizeHeight - buttonAttributes.TextAttributes.Padding.Top - buttonAttributes.TextAttributes.Padding.Bottom - buttonAttributes.IconAttributes.Padding.Top - buttonAttributes.IconAttributes.Padding.Bottom - buttonIcon.SizeHeight;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - buttonIcon.SizeHeight;
             }
             else
             {
-                buttonText.SizeWidth = SizeWidth - buttonAttributes.TextAttributes.Padding.Start - buttonAttributes.TextAttributes.Padding.End - buttonAttributes.IconAttributes.Padding.Start - buttonAttributes.IconAttributes.Padding.End - buttonIcon.SizeWidth;
-                buttonText.SizeHeight = SizeHeight - buttonAttributes.TextAttributes.Padding.Top - buttonAttributes.TextAttributes.Padding.Bottom;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - buttonIcon.SizeWidth;
+                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
         /// <summary>
@@ -1132,13 +1141,13 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int textPaddingLeft = buttonAttributes.TextAttributes.Padding.Top;
-            int textPaddingRight = buttonAttributes.TextAttributes.Padding.End;
+            int textPaddingStart = buttonAttributes.TextAttributes.Padding.Start;
+            int textPaddingEnd = buttonAttributes.TextAttributes.Padding.End;
             int textPaddingTop = buttonAttributes.TextAttributes.Padding.Top;
             int textPaddingBottom = buttonAttributes.TextAttributes.Padding.Bottom;
 
-            int iconPaddingLeft = buttonAttributes.IconAttributes.Padding.Top;
-            int iconPaddingRight = buttonAttributes.IconAttributes.Padding.End;
+            int iconPaddingStart = buttonAttributes.IconAttributes.Padding.Start;
+            int iconPaddingEnd = buttonAttributes.IconAttributes.Padding.End;
             int iconPaddingTop = buttonAttributes.IconAttributes.Padding.Top;
             int iconPaddingBottom = buttonAttributes.IconAttributes.Padding.Bottom;
 
@@ -1172,24 +1181,24 @@ namespace Tizen.NUI.Components
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonIcon.Position2D = new Position2D(iconPaddingLeft, 0);
+                        buttonIcon.Position2D = new Position2D(iconPaddingStart, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonText.Position2D = new Position2D(-textPaddingRight, 0);
+                        buttonText.Position2D = new Position2D(-textPaddingEnd, 0);
                     }
                     else
                     {
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonIcon.Position2D = new Position2D(-iconPaddingLeft, 0);
+                        buttonIcon.Position2D = new Position2D(-iconPaddingStart, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonText.Position2D = new Position2D(textPaddingRight, 0);
+                        buttonText.Position2D = new Position2D(textPaddingEnd, 0);
                     }
 
                     break;
@@ -1199,24 +1208,24 @@ namespace Tizen.NUI.Components
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonIcon.Position2D = new Position2D(iconPaddingRight, 0);
+                        buttonIcon.Position2D = new Position2D(iconPaddingEnd, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonText.Position2D = new Position2D(-textPaddingLeft, 0);
+                        buttonText.Position2D = new Position2D(-textPaddingStart, 0);
                     }
                     else
                     {
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonIcon.Position2D = new Position2D(-iconPaddingRight, 0);
+                        buttonIcon.Position2D = new Position2D(-iconPaddingEnd, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonText.Position2D = new Position2D(textPaddingLeft, 0);
+                        buttonText.Position2D = new Position2D(textPaddingStart, 0);
                     }
                     break;
                 default:

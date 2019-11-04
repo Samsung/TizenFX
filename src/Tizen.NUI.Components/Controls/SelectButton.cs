@@ -234,18 +234,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageBackgroundAttributes?.ResourceURL?.All;
+                return selectButtonAttributes?.SelectableImageBackgroundAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSelectableImageBackgroundAttributes();
-                    if (selectButtonAttributes.selectableImageBackgroundAttributes.ResourceURL == null)
+                    if (selectButtonAttributes.SelectableImageBackgroundAttributes.ResourceURL == null)
                     {
-                        selectButtonAttributes.selectableImageBackgroundAttributes.ResourceURL = new StringSelector();
+                        selectButtonAttributes.SelectableImageBackgroundAttributes.ResourceURL = new StringSelector();
                     }
-                    selectButtonAttributes.selectableImageBackgroundAttributes.ResourceURL.All = value;
+                    selectButtonAttributes.SelectableImageBackgroundAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -261,14 +261,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageBackgroundAttributes?.ResourceURL;
+                return selectButtonAttributes?.SelectableImageBackgroundAttributes?.ResourceURL;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSelectableImageBackgroundAttributes();
-                    selectButtonAttributes.selectableImageBackgroundAttributes.ResourceURL = value.Clone() as StringSelector;
+                    selectButtonAttributes.SelectableImageBackgroundAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -284,16 +284,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageBackgroundAttributes?.Opacity?.All ?? 0;
+                return selectButtonAttributes?.SelectableImageBackgroundAttributes?.Opacity?.All ?? 0;
             }
             set
             {
                 CreateSelectableImageBackgroundAttributes();
-                if (selectButtonAttributes.selectableImageBackgroundAttributes.Opacity == null)
+                if (selectButtonAttributes.SelectableImageBackgroundAttributes.Opacity == null)
                 {
-                    selectButtonAttributes.selectableImageBackgroundAttributes.Opacity = new FloatSelector();
+                    selectButtonAttributes.SelectableImageBackgroundAttributes.Opacity = new FloatSelector();
                 }
-                selectButtonAttributes.selectableImageBackgroundAttributes.Opacity.All = value;
+                selectButtonAttributes.SelectableImageBackgroundAttributes.Opacity.All = value;
                 RelayoutRequest();
             }
         }
@@ -308,14 +308,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageBackgroundAttributes?.Opacity;
+                return selectButtonAttributes?.SelectableImageBackgroundAttributes?.Opacity;
             }
             set
             {
                 if (value != null)
                 {
                     CreateSelectableImageBackgroundAttributes();
-                    selectButtonAttributes.selectableImageBackgroundAttributes.Opacity = value.Clone() as FloatSelector;
+                    selectButtonAttributes.SelectableImageBackgroundAttributes.Opacity = value.Clone() as FloatSelector;
                     RelayoutRequest();
                 }
             }
@@ -331,18 +331,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageShadowAttributes?.ResourceURL?.All;
+                return selectButtonAttributes?.SelectableImageShadowAttributes?.ResourceURL?.All;
             }
             set
             {
                 if (value != null)
                 {
                     SelectableImageShadowAttributes();
-                    if (selectButtonAttributes.selectableImageShadowAttributes.ResourceURL == null)
+                    if (selectButtonAttributes.SelectableImageShadowAttributes.ResourceURL == null)
                     {
-                        selectButtonAttributes.selectableImageShadowAttributes.ResourceURL = new StringSelector();
+                        selectButtonAttributes.SelectableImageShadowAttributes.ResourceURL = new StringSelector();
                     }
-                    selectButtonAttributes.selectableImageShadowAttributes.ResourceURL.All = value;
+                    selectButtonAttributes.SelectableImageShadowAttributes.ResourceURL.All = value;
                     RelayoutRequest();
                 }
             }
@@ -358,14 +358,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageShadowAttributes?.ResourceURL;
+                return selectButtonAttributes?.SelectableImageShadowAttributes?.ResourceURL;
             }
             set
             {
                 if (value != null)
                 {
                     SelectableImageShadowAttributes();
-                    selectButtonAttributes.selectableImageShadowAttributes.ResourceURL = value.Clone() as StringSelector;
+                    selectButtonAttributes.SelectableImageShadowAttributes.ResourceURL = value.Clone() as StringSelector;
                     RelayoutRequest();
                 }
             }
@@ -381,16 +381,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageShadowAttributes?.Opacity?.All ?? 0;
+                return selectButtonAttributes?.SelectableImageShadowAttributes?.Opacity?.All ?? 0;
             }
             set
             {
                 SelectableImageShadowAttributes();
-                if (selectButtonAttributes.selectableImageShadowAttributes.Opacity == null)
+                if (selectButtonAttributes.SelectableImageShadowAttributes.Opacity == null)
                 {
-                    selectButtonAttributes.selectableImageShadowAttributes.Opacity = new FloatSelector();
+                    selectButtonAttributes.SelectableImageShadowAttributes.Opacity = new FloatSelector();
                 }
-                selectButtonAttributes.selectableImageShadowAttributes.Opacity.All = value;
+                selectButtonAttributes.SelectableImageShadowAttributes.Opacity.All = value;
                 RelayoutRequest();
             }
         }
@@ -405,14 +405,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return selectButtonAttributes?.selectableImageShadowAttributes?.Opacity;
+                return selectButtonAttributes?.SelectableImageShadowAttributes?.Opacity;
             }
             set
             {
                 if (value != null)
                 {
                     SelectableImageShadowAttributes();
-                    selectButtonAttributes.selectableImageShadowAttributes.Opacity = value.Clone() as FloatSelector;
+                    selectButtonAttributes.SelectableImageShadowAttributes.Opacity = value.Clone() as FloatSelector;
                     RelayoutRequest();
                 }
             }
@@ -437,8 +437,8 @@ namespace Tizen.NUI.Components
                 SelectableImageShadowAttributes();
 
                 selectButtonAttributes.SelectableImageAttributes.Padding.CopyFrom(value);
-                selectButtonAttributes.selectableImageBackgroundAttributes.Padding.CopyFrom(value);
-                selectButtonAttributes.selectableImageShadowAttributes.Padding.CopyFrom(value);
+                selectButtonAttributes.SelectableImageBackgroundAttributes.Padding.CopyFrom(value);
+                selectButtonAttributes.SelectableImageShadowAttributes.Padding.CopyFrom(value);
 
                 if (null == selectableImagePadding)
                 {
@@ -449,15 +449,15 @@ namespace Tizen.NUI.Components
                         selectButtonAttributes.SelectableImageAttributes.Padding.Top = top;
                         selectButtonAttributes.SelectableImageAttributes.Padding.Bottom = bottom;
 
-                        selectButtonAttributes.selectableImageBackgroundAttributes.Padding.Start = start;
-                        selectButtonAttributes.selectableImageBackgroundAttributes.Padding.End = end;
-                        selectButtonAttributes.selectableImageBackgroundAttributes.Padding.Top = top;
-                        selectButtonAttributes.selectableImageBackgroundAttributes.Padding.Bottom = bottom;
+                        selectButtonAttributes.SelectableImageBackgroundAttributes.Padding.Start = start;
+                        selectButtonAttributes.SelectableImageBackgroundAttributes.Padding.End = end;
+                        selectButtonAttributes.SelectableImageBackgroundAttributes.Padding.Top = top;
+                        selectButtonAttributes.SelectableImageBackgroundAttributes.Padding.Bottom = bottom;
 
-                        selectButtonAttributes.selectableImageShadowAttributes.Padding.Start = start;
-                        selectButtonAttributes.selectableImageShadowAttributes.Padding.End = end;
-                        selectButtonAttributes.selectableImageShadowAttributes.Padding.Top = top;
-                        selectButtonAttributes.selectableImageShadowAttributes.Padding.Bottom = bottom;
+                        selectButtonAttributes.SelectableImageShadowAttributes.Padding.Start = start;
+                        selectButtonAttributes.SelectableImageShadowAttributes.Padding.End = end;
+                        selectButtonAttributes.SelectableImageShadowAttributes.Padding.Top = top;
+                        selectButtonAttributes.SelectableImageShadowAttributes.Padding.Bottom = bottom;
 
                         RelayoutRequest();
                     }, value.Start, value.End, value.Top, value.Bottom);
@@ -554,7 +554,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (selectButtonAttributes.selectableImageShadowAttributes != null)
+            if (selectButtonAttributes.SelectableImageShadowAttributes != null)
             {
                 if (selectableImageShadow == null)
                 {
@@ -562,7 +562,7 @@ namespace Tizen.NUI.Components
                     selectableImageShadow.Name = "SelectableImageShadow";
                     Add(selectableImageShadow);
                 }
-                ApplyAttributes(selectableImageShadow, selectButtonAttributes.selectableImageShadowAttributes);
+                ApplyAttributes(selectableImageShadow, selectButtonAttributes.SelectableImageShadowAttributes);
             }
             else
             {
@@ -574,7 +574,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            if (selectButtonAttributes.selectableImageBackgroundAttributes != null)
+            if (selectButtonAttributes.SelectableImageBackgroundAttributes != null)
             {
                 if (selectableImageBackground == null)
                 {
@@ -582,7 +582,7 @@ namespace Tizen.NUI.Components
                     selectableImageBackground.Name = "SelectableImageBackground";
                     Add(selectableImageBackground);
                 }
-                ApplyAttributes(selectableImageBackground, selectButtonAttributes.selectableImageBackgroundAttributes);
+                ApplyAttributes(selectableImageBackground, selectButtonAttributes.SelectableImageBackgroundAttributes);
             }
             else
             {
@@ -785,9 +785,9 @@ namespace Tizen.NUI.Components
 
         private void CreateSelectableImageBackgroundAttributes()
         {
-            if (selectButtonAttributes.selectableImageBackgroundAttributes == null)
+            if (selectButtonAttributes.SelectableImageBackgroundAttributes == null)
             {
-                selectButtonAttributes.selectableImageBackgroundAttributes = new ImageAttributes()
+                selectButtonAttributes.SelectableImageBackgroundAttributes = new ImageAttributes()
                 {
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
@@ -798,9 +798,9 @@ namespace Tizen.NUI.Components
 
         private void SelectableImageShadowAttributes()
         {
-            if (selectButtonAttributes.selectableImageShadowAttributes == null)
+            if (selectButtonAttributes.SelectableImageShadowAttributes == null)
             {
-                selectButtonAttributes.selectableImageShadowAttributes = new ImageAttributes()
+                selectButtonAttributes.SelectableImageShadowAttributes = new ImageAttributes()
                 {
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
