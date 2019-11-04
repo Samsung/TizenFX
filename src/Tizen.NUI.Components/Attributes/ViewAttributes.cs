@@ -246,41 +246,11 @@ namespace Tizen.NUI.Components
             set;
         }
         /// <summary>
-        /// View left padding
+        /// View padding
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingLeft
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View right padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingRight
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View top padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingTop
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View bottom padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingBottom
+        public Extents Padding
         {
             get;
             set;
