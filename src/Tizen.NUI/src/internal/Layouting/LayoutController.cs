@@ -229,8 +229,8 @@ namespace Tizen.NUI
 
                 LayoutLength width = new LayoutLength(rootSize.Width);
                 LayoutLength height = new LayoutLength(rootSize.Height);
-                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.AtMost;
-                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.AtMost;
+                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.Unspecified;
+                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.Unspecified;
 
                 if ( root.WidthSpecification >= 0 )
                 {
