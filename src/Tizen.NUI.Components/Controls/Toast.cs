@@ -263,12 +263,12 @@ namespace Tizen.NUI.Components
 
                     if (null == textPadding)
                     {
-                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                         {
                             toastAttributes.TextAttributes.Padding.Start = start;
                             toastAttributes.TextAttributes.Padding.End = end;
                             toastAttributes.TextAttributes.Padding.Top = top;
-                            toastAttributes.TextAttributes.Padding.Bottom = Bottom;
+                            toastAttributes.TextAttributes.Padding.Bottom = bottom;
                             RelayoutRequest();
                         }, value.Start, value.End, value.Top, value.Bottom);
                     }

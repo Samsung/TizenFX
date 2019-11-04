@@ -748,12 +748,12 @@ namespace Tizen.NUI.Components
 
                     if (null == iconPadding)
                     {
-                        iconPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        iconPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                         {
                             buttonAttributes.IconAttributes.Padding.Start = start;
                             buttonAttributes.IconAttributes.Padding.End = end;
                             buttonAttributes.IconAttributes.Padding.Top = top;
-                            buttonAttributes.IconAttributes.Padding.Bottom = Bottom;
+                            buttonAttributes.IconAttributes.Padding.Bottom = bottom;
                             RelayoutRequest();
                         }, value.Start, value.End, value.Top, value.Bottom);
                     }
@@ -787,12 +787,12 @@ namespace Tizen.NUI.Components
 
                     if (null == textPadding)
                     {
-                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                         {
                             buttonAttributes.TextAttributes.Padding.Start = start;
                             buttonAttributes.TextAttributes.Padding.End = end;
                             buttonAttributes.TextAttributes.Padding.Top = top;
-                            buttonAttributes.TextAttributes.Padding.Bottom = Bottom;
+                            buttonAttributes.TextAttributes.Padding.Bottom = bottom;
                             RelayoutRequest();
                         }, value.Start, value.End, value.Top, value.Bottom);
                     }
@@ -1107,25 +1107,16 @@ namespace Tizen.NUI.Components
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingLeft = buttonAttributes.TextAttributes.Padding.Start;
-            int textPaddingRight = buttonAttributes.TextAttributes.Padding.End;
-            int textPaddingTop = buttonAttributes.TextAttributes.Padding.Top;
-            int textPaddingBottom = buttonAttributes.TextAttributes.Padding.Bottom;
-
-            int iconPaddingLeft = buttonAttributes.IconAttributes.Padding.Start;
-            int iconPaddingRight = buttonAttributes.IconAttributes.Padding.End;
-            int iconPaddingTop = buttonAttributes.IconAttributes.Padding.Top;
-            int iconPaddingBottom = buttonAttributes.IconAttributes.Padding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingLeft - textPaddingRight;
-                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - buttonIcon.SizeHeight;
+                buttonText.SizeWidth = SizeWidth - buttonAttributes.TextAttributes.Padding.Start - buttonAttributes.TextAttributes.Padding.End;
+                buttonText.SizeHeight = SizeHeight - buttonAttributes.TextAttributes.Padding.Top - buttonAttributes.TextAttributes.Padding.Bottom - buttonAttributes.IconAttributes.Padding.Top - buttonAttributes.IconAttributes.Padding.Bottom - buttonIcon.SizeHeight;
             }
             else
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingLeft - textPaddingRight - iconPaddingLeft - iconPaddingRight - buttonIcon.SizeWidth;
-                buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
+                buttonText.SizeWidth = SizeWidth - buttonAttributes.TextAttributes.Padding.Start - buttonAttributes.TextAttributes.Padding.End - buttonAttributes.IconAttributes.Padding.Start - buttonAttributes.IconAttributes.Padding.End - buttonIcon.SizeWidth;
+                buttonText.SizeHeight = SizeHeight - buttonAttributes.TextAttributes.Padding.Top - buttonAttributes.TextAttributes.Padding.Bottom;
             }
         }
         /// <summary>

@@ -112,7 +112,7 @@ namespace Tizen.NUI
         /// <param name="top"></param>
         /// <param name="bottom"></param>
         /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
-        public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort Bottom);
+        public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);
         private ExtentsChangedCallback callback = null;
 
         /// <summary>

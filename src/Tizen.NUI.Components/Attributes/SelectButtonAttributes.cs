@@ -46,29 +46,29 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            if (attributes.CheckImageAttributes != null)
+            if (attributes.SelectableImageAttributes != null)
             {
-                CheckImageAttributes = attributes.CheckImageAttributes.Clone() as ImageAttributes;
+                SelectableImageAttributes = attributes.SelectableImageAttributes.Clone() as ImageAttributes;
             }
 
-            if (attributes.CheckBackgroundImageAttributes != null)
+            if (attributes.selectableImageBackgroundAttributes != null)
             {
-                CheckBackgroundImageAttributes = attributes.CheckBackgroundImageAttributes.Clone() as ImageAttributes;
+                selectableImageBackgroundAttributes = attributes.selectableImageBackgroundAttributes.Clone() as ImageAttributes;
             }
 
-            if (attributes.CheckShadowImageAttributes != null)
+            if (attributes.selectableImageShadowAttributes != null)
             {
-                CheckShadowImageAttributes = attributes.CheckShadowImageAttributes.Clone() as ImageAttributes;
+                selectableImageShadowAttributes = attributes.selectableImageShadowAttributes.Clone() as ImageAttributes;
             }
         }
 
         /// <summary>
-        /// Check image's attributes.
+        /// Selectable image's attributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckImageAttributes
+        public ImageAttributes SelectableImageAttributes
         {
             get;
             set;
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckBackgroundImageAttributes
+        public ImageAttributes selectableImageBackgroundAttributes
         {
             get;
             set;
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckShadowImageAttributes
+        public ImageAttributes selectableImageShadowAttributes
         {
             get;
             set;

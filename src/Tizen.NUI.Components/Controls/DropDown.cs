@@ -524,12 +524,12 @@ namespace Tizen.NUI.Components
 
                 if (null == listMargin)
                 {
-                    listMargin = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                    listMargin = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
                         dropDownAttributes.ListMargin.Start = start;
                         dropDownAttributes.ListMargin.End = end;
                         dropDownAttributes.ListMargin.Top = top;
-                        dropDownAttributes.ListMargin.Bottom = Bottom;
+                        dropDownAttributes.ListMargin.Bottom = bottom;
                         RelayoutRequest();
                     }, value.Start, value.End, value.Top, value.Bottom);
                 }
@@ -616,12 +616,12 @@ namespace Tizen.NUI.Components
 
                 if (null == listPadding)
                 {
-                    listPadding = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                    listPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                     {
                         dropDownAttributes.ListPadding.Start = start;
                         dropDownAttributes.ListPadding.End = end;
                         dropDownAttributes.ListPadding.Top = top;
-                        dropDownAttributes.ListPadding.Bottom = Bottom;
+                        dropDownAttributes.ListPadding.Bottom = bottom;
                         RelayoutRequest();
                     }, value.Start, value.End, value.Top, value.Bottom);
                 }

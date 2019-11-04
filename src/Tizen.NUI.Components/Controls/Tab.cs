@@ -148,12 +148,12 @@ namespace Tizen.NUI.Components
 
                     if (null == space)
                     {
-                        space = new Extents((ushort start, ushort end, ushort top, ushort Bottom) =>
+                        space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
                         {
                             tabAttributes.Space.Start = start;
                             tabAttributes.Space.End = end;
                             tabAttributes.Space.Top = top;
-                            tabAttributes.Space.Bottom = Bottom;
+                            tabAttributes.Space.Bottom = bottom;
                             RelayoutRequest();
                         }, value.Start, value.End, value.Top, value.Bottom);
                     }

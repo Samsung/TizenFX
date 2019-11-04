@@ -117,10 +117,7 @@ namespace Tizen.NUI.Components
                 Opacity = attributes.Opacity.Clone() as FloatSelector;
             }
 
-            PaddingLeft = attributes.PaddingLeft;
-            PaddingRight = attributes.PaddingRight;
-            PaddingTop = attributes.PaddingTop;
-            PaddingBottom = attributes.PaddingBottom;
+            Padding = new Extents(attributes.Padding.Start, attributes.Padding.End, attributes.Padding.Top, attributes.Padding.Bottom);
 
             StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
         }
