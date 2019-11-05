@@ -99,7 +99,10 @@ namespace Tizen.NUI.Components
                 Opacity = attributes.Opacity.Clone() as FloatSelector;
             }
 
-            Padding.CopyFrom(attributes.Padding);
+            if( attributes.Padding !=null )
+            {
+                Padding.CopyFrom(attributes.Padding);
+            }
         }
         /// <summary>
         /// View Position

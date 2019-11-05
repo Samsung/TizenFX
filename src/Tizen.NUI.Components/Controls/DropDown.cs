@@ -642,6 +642,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (dropDownAttributes.ListPadding == null)
+                {
+                    dropDownAttributes.ListPadding = new Extents();
+                }
                 dropDownAttributes.ListPadding.CopyFrom(value);
 
                 if (null == listPadding)
