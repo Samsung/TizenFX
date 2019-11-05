@@ -37,6 +37,8 @@ namespace Tizen.NUI.Components
         private NPatchVisual toastBackground = null;
         private Timer timer = null;
 
+        private Extents textPadding = null;
+
         private readonly int maxTextAreaWidth = 808;
         private readonly uint textLineHeight = 56;
         private readonly uint textLineSpace = 4;
@@ -250,24 +252,31 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (null != toastAttributes?.TextAttributes)
-                {
-                    return new Extents((ushort)toastAttributes.TextAttributes.PaddingLeft, (ushort)toastAttributes.TextAttributes.PaddingRight, (ushort)toastAttributes.TextAttributes.PaddingTop, (ushort)toastAttributes.TextAttributes.PaddingBottom);
-                }
-                else
-                {
-                    return null;
-                }
+                return textPadding;
             }
             set
             {
                 if (null != value)
                 {
                     CreateTextAttributes();
-                    toastAttributes.TextAttributes.PaddingLeft = value.Start;
-                    toastAttributes.TextAttributes.PaddingRight = value.End;
-                    toastAttributes.TextAttributes.PaddingTop = value.Top;
-                    toastAttributes.TextAttributes.PaddingBottom = value.Bottom;
+                    toastAttributes.TextAttributes.Padding.CopyFrom(value);
+
+                    if (null == textPadding)
+                    {
+                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                        {
+                            toastAttributes.TextAttributes.Padding.Start = start;
+                            toastAttributes.TextAttributes.Padding.End = end;
+                            toastAttributes.TextAttributes.Padding.Top = top;
+                            toastAttributes.TextAttributes.Padding.Bottom = bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        textPadding.CopyFrom(value);
+                    }
+
                     RelayoutRequest();
                 }
             }
@@ -387,10 +396,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            int _textPaddingLeft = toastAttributes.TextAttributes?.PaddingLeft ?? textPaddingLeft;
-            int _textPaddingRight = toastAttributes.TextAttributes?.PaddingRight ?? _textPaddingLeft;
-            int _textPaddingTop = toastAttributes.TextAttributes?.PaddingTop ?? textPaddingTop;
-            int _textPaddingBottom = toastAttributes.TextAttributes?.PaddingBottom ?? _textPaddingTop;
+            int _textPaddingLeft = toastAttributes.TextAttributes?.Padding.Start ?? textPaddingLeft;
+            int _textPaddingRight = toastAttributes.TextAttributes?.Padding.End ?? _textPaddingLeft;
+            int _textPaddingTop = toastAttributes.TextAttributes?.Padding.Top ?? textPaddingTop;
+            int _textPaddingBottom = toastAttributes.TextAttributes?.Padding.Bottom ?? _textPaddingTop;
 
             int _textAreaWidth = this.Size2D.Width - _textPaddingLeft - _textPaddingRight;
             int _textAreaHeight = this.Size2D.Height - _textPaddingTop - _textPaddingBottom;
