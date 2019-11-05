@@ -40,6 +40,9 @@ namespace Tizen.NUI.Components
         private DropDownItemView touchedView = null;
         private int selectedItemIndex = -1;
 
+        private Extents listMargin = null;
+        private Extents listPadding = null;
+
         /// <summary>
         /// Creates a new instance of a DropDown.
         /// </summary>
@@ -530,77 +533,37 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Left space in list.
+        /// Space in list.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListLeftMargin
+        public Extents ListMargin
         {
             get
             {
-                return (int)dropDownAttributes.ListMargin.X;
+                return listMargin;
             }
             set
             {
-                dropDownAttributes.ListMargin.X = value;
-                RelayoutRequest();
-            }
-        }
+                dropDownAttributes.ListMargin.CopyFrom(value);
 
-        /// <summary>
-        /// Right space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListRigthMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Y;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Y = value;
-                RelayoutRequest();
-            }
-        }
+                if (null == listMargin)
+                {
+                    listMargin = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        dropDownAttributes.ListMargin.Start = start;
+                        dropDownAttributes.ListMargin.End = end;
+                        dropDownAttributes.ListMargin.Top = top;
+                        dropDownAttributes.ListMargin.Bottom = bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
 
-        /// <summary>
-        /// Top space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListTopMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Z;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Z = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Bottom space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListBottomMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.W;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.W = value;
                 RelayoutRequest();
             }
         }
@@ -675,11 +638,28 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return dropDownAttributes.ListPadding;
+                return listPadding;
             }
             set
             {
-                dropDownAttributes.ListPadding = value;
+                dropDownAttributes.ListPadding.CopyFrom(value);
+
+                if (null == listPadding)
+                {
+                    listPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        dropDownAttributes.ListPadding.Start = start;
+                        dropDownAttributes.ListPadding.End = end;
+                        dropDownAttributes.ListPadding.Top = top;
+                        dropDownAttributes.ListPadding.Bottom = bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
+
                 RelayoutRequest();
             }
         }
@@ -851,8 +831,8 @@ namespace Tizen.NUI.Components
                 {
                     if (dropDownAttributes.ListMargin != null)
                     {
-                        listBackgroundImageX = (int)dropDownAttributes.ListMargin.X;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
+                        listBackgroundImageX = (int)dropDownAttributes.ListMargin.Start;
+                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Top;
                     }
                 }
                 else if (dropDownAttributes.ListRelativeOrientation == ListOrientation.Right)
@@ -864,8 +844,8 @@ namespace Tizen.NUI.Components
                         {
                             listWidth = list.Size2D.Width;
                         }
-                        listBackgroundImageX = Size2D.Width - listWidth - (int)dropDownAttributes.ListMargin.Y;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
+                        listBackgroundImageX = Size2D.Width - listWidth - (int)dropDownAttributes.ListMargin.End;
+                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Top;
                     }
                 }
                 listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
@@ -1496,11 +1476,11 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageRightSpace;
+                    return itemDataAttributes.CheckImageGapToBoundary;
                 }
                 set
                 {
-                    itemDataAttributes.CheckImageRightSpace = value;
+                    itemDataAttributes.CheckImageGapToBoundary = value;
                 }
             }
 
