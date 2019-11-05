@@ -99,10 +99,7 @@ namespace Tizen.NUI.Components
                 Opacity = attributes.Opacity.Clone() as FloatSelector;
             }
 
-            PaddingLeft = attributes.PaddingLeft;
-            PaddingRight = attributes.PaddingRight;
-            PaddingTop = attributes.PaddingTop;
-            PaddingBottom = attributes.PaddingBottom;
+            Padding.CopyFrom(attributes.Padding);
         }
         /// <summary>
         /// View Position
@@ -215,41 +212,11 @@ namespace Tizen.NUI.Components
             set;
         }
         /// <summary>
-        /// View left padding
+        /// View padding
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingLeft
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View right padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingRight
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View top padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingTop
-        {
-            get;
-            set;
-        }
-        /// <summary>
-        /// View bottom padding
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int PaddingBottom
+        public Extents Padding
         {
             get;
             set;
