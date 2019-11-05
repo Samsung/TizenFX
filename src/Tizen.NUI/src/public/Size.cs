@@ -37,6 +37,14 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size() : this(Interop.Vector3.new_Vector3__SWIG_0(), true)
         {
@@ -46,11 +54,19 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="x">The x (or width) component.</param>
-        /// <param name="y">The y (or height) component.</param>
-        /// <param name="z">The z (or depth) component(optional).</param>
+        /// <param name="width">The width component.</param>
+        /// <param name="height">The height component.</param>
+        /// <param name="depth">The depth component(optional).</param>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 5 </since_tizen>
-        public Size(float x, float y, float z = 0.0f) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
+        public Size(float width, float height, float depth = 0.0f) : this(Interop.Vector3.new_Vector3__SWIG_1(width, height, depth), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -58,7 +74,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="size2d">Size2D with x (width) and y (height).</param>
+        /// <param name="size2d">Size2D with width and height.</param>
         /// <since_tizen> 5 </since_tizen>
         public Size(Size2D size2d) : this(Interop.Vector3.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
         {
@@ -313,6 +329,19 @@ namespace Tizen.NUI
         {
             return new Size(vec.Width, vec.Height, vec.Depth);
         }
+
+        /// <summary>
+        /// Implicit type cast operator, Size2D to Size
+        /// </summary>
+        /// <param name="size2d">The object of Size2D type.</param>
+        /// <since_tizen> none </since_tizen>
+        /// This will be public opened in tizen_next by ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Size(Size2D size2d)
+        {
+            return new Size(size2d.Width, size2d.Height, 0);
+        }
+        
 
         internal static Size GetSizeFromPtr(global::System.IntPtr cPtr)
         {
