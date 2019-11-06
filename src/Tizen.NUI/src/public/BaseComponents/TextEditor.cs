@@ -1149,6 +1149,8 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             // In order to speed up IME hide, temporarily add

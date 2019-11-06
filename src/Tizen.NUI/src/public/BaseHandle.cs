@@ -44,6 +44,8 @@ namespace Tizen.NUI
         /// swigCPtr.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef swigCPtrCopy;
         private bool _registerMe;
@@ -496,6 +498,8 @@ namespace Tizen.NUI
         /// Release swigCPtr.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
         }

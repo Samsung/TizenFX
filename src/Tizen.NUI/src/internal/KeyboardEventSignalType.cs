@@ -32,10 +32,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.KeyboardEventSignalType.delete_KeyboardEventSignalType(swigCPtr);

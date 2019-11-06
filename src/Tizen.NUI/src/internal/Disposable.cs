@@ -14,9 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -27,26 +25,33 @@ namespace Tizen.NUI
     public class Disposable : global::System.IDisposable
     {
         /// <summary>
-        /// A Flat to check if it is already disposed.
+        /// A Flag to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         protected bool disposed = false;
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// swigCMemOwn.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+
+        /// This will not be public.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool swigCMemOwn;
-        /// <summary>
-        /// swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+
+        /// This will not be public.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        private bool isDisposeQueued = false;
+
         /// <summary>
-        /// Create an instance of BaseHandle.
+        /// Create an instance of Disposable.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        public Disposable()
+        {
+            swigCMemOwn = false;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+        }
+
+        /// This will not be public.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
@@ -127,6 +132,8 @@ namespace Tizen.NUI
         /// Release swigCPtr.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
         }

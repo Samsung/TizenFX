@@ -311,9 +311,8 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.AutofillContainer.delete_AutofillContainer(swigCPtr);

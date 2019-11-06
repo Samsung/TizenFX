@@ -394,10 +394,8 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// To make the FlexContainer instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.FlexContainer.delete_FlexContainer(swigCPtr);

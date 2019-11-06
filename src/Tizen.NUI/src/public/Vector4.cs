@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// A four-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(Vector4TypeConverter))]
+    [Binding.TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : Disposable
     {
 
@@ -640,10 +640,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Vector4.delete_Vector4(swigCPtr);

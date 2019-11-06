@@ -408,11 +408,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <param name="swigCPtr">The handle save native pointer.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Key.delete_Key(swigCPtr);

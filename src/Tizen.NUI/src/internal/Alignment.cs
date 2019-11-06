@@ -51,10 +51,10 @@ namespace Tizen.NUI
             }
  
             /// <since_tizen> 3 </since_tizen>
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
+            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+            {
                 Interop.Alignment.delete_Alignment_Padding(swigCPtr);
-        }
+            }
 
             /// <since_tizen> 3 </since_tizen>
             public Padding() : this(Interop.Alignment.new_Alignment_Padding__SWIG_0(), true)

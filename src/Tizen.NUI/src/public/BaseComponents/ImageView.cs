@@ -923,6 +923,8 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ImageView.delete_ImageView(swigCPtr);

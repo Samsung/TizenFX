@@ -201,10 +201,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -318,7 +315,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -350,10 +347,7 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -385,10 +379,7 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
@@ -420,10 +411,7 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {

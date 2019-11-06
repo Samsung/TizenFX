@@ -1255,10 +1255,8 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Window.delete_Window(swigCPtr);

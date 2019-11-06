@@ -32,10 +32,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.LanguageChangedSignalType.delete_LanguageChangedSignalType(swigCPtr);

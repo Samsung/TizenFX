@@ -27,7 +27,7 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-        Interop.WebView.delete_WebViewPageLoadErrorSignal(swigCPtr);
+            Interop.WebView.delete_WebViewPageLoadErrorSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)

@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -23,10 +23,9 @@ namespace Tizen.NUI
     /// The Rectangle class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RectangleTypeConverter))]
+    [Binding.TypeConverter(typeof(RectangleTypeConverter))]
     public class Rectangle : Disposable
     {
-
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -439,10 +438,8 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Rectangle.delete_Rectangle(swigCPtr);

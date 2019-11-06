@@ -717,6 +717,8 @@ namespace Tizen.NUI.UIComponents
             base.Dispose(type);
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ScrollBar.delete_ScrollBar(swigCPtr);

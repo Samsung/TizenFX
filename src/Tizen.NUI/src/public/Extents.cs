@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// Extents class describing the a collection of uint16_t.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [TypeConverter(typeof(ExtentsTypeConverter))]
+    [Binding.TypeConverter(typeof(ExtentsTypeConverter))]
     public class Extents : Disposable
     {
 
@@ -236,11 +236,8 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <param name="swigCPtr">A handle save native pointer.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Extents.delete_Extents(swigCPtr);

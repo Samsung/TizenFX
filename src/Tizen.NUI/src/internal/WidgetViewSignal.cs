@@ -39,12 +39,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API6, Will be removed in API9, " + 
-            "Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {

@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// Both values (x and y) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RelativeVector2TypeConverter))]
+    [Binding.TypeConverter(typeof(RelativeVector2TypeConverter))]
     public class RelativeVector2 : Disposable
     {
 
@@ -324,10 +324,8 @@ namespace Tizen.NUI
             return value;
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Vector2.delete_Vector2(swigCPtr);

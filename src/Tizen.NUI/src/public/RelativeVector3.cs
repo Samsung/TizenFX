@@ -15,7 +15,7 @@
  *
  */
 
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// All values (x, y, z and w) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RelativeVector3TypeConverter))]
+    [Binding.TypeConverter(typeof(RelativeVector3TypeConverter))]
     public class RelativeVector3 : Disposable
     {
 
@@ -355,10 +355,8 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Vector3.delete_Vector3(swigCPtr);

@@ -123,14 +123,6 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public abstract UInt32 GetChildCount();
 
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-        }
-
         internal abstract View FindCurrentChildById(uint id);
     }
 } // namespace Tizen.NUI

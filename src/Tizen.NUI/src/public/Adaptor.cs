@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -353,9 +354,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-        Interop.Adaptor.delete_Adaptor(swigCPtr);
+            Interop.Adaptor.delete_Adaptor(swigCPtr);
         }
 
         private void OnResized(IntPtr adaptor)
