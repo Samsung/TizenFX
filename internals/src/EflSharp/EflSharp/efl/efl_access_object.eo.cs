@@ -46,7 +46,7 @@ public struct RelationSet
 {
     private Eina.List<Efl.Access.Relation> payload;
 
-    /// <summary>Converts an instance of Eina.List<Efl.Access.Relation> to this struct.</summary>
+    /// <summary>Converts an instance of Eina.List&lt;Efl.Access.Relation&gt; to this struct.</summary>
     /// <param name="value">The value to be converted.</param>
     /// <returns>A struct with the given value.</returns>
     public static implicit operator RelationSet(Eina.List<Efl.Access.Relation> value)
@@ -54,7 +54,7 @@ public struct RelationSet
         return new RelationSet{payload=value};
     }
 
-    /// <summary>Converts an instance of this struct to Eina.List<Efl.Access.Relation>.</summary>
+    /// <summary>Converts an instance of this struct to Eina.List&lt;Efl.Access.Relation&gt;.</summary>
     /// <param name="value">The value to be converted packed in this struct.</param>
     /// <returns>The actual value the alias is wrapping.</returns>
     public static implicit operator Eina.List<Efl.Access.Relation>(RelationSet value)

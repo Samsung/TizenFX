@@ -315,7 +315,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.Texture.delete_Texture(swigCPtr);
+                    Interop.AutofillContainer.delete_AutofillContainer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

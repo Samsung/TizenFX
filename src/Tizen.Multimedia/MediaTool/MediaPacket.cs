@@ -170,7 +170,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the PTS(Presentation Time Stamp) value of the current packet.
+        /// Gets or sets the PTS(Presentation Time Stamp) value of the current packet in nanoseconds.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -201,7 +201,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the DTS(Decoding Time Stamp) value of the current packet.
+        /// Gets or sets the DTS(Decoding Time Stamp) value of the current packet in nanoseconds.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -230,7 +230,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the duration value of the current packet.
+        /// Gets or sets the duration value of the current packet in nanoseconds.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">

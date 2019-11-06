@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -39,6 +40,14 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D() : this(Interop.Vector2.new_Vector2__SWIG_0(), true)
         {
@@ -48,10 +57,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="x">The x (or width) component.</param>
-        /// <param name="y">The y (or height) component.</param>
+        /// <param name="width">The width component.</param>
+        /// <param name="height">The height component.</param>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Size2D(int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
+        public Size2D(int width, int height) : this(Interop.Vector2.new_Vector2__SWIG_1((float)width, (float)height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -205,6 +222,19 @@ namespace Tizen.NUI
         {
             return new Size2D((int)vector2.X, (int)vector2.Y);
         }
+
+        /// <summary>
+        /// Implicit type cast operator, Size to Size2D
+        /// </summary>
+        /// <param name="size">The object of Size type.</param>
+        /// <since_tizen> none </since_tizen>
+        /// This will be public opened in tizen_next by ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Size2D(Size size)
+        {
+            return new Size2D((int)size.Width, (int)size.Height);
+        }
+
 
         /// <summary>
         /// The array subscript operator.

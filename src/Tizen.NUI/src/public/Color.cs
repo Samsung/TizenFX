@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -131,6 +131,15 @@ namespace Tizen.NUI
 			hashDummy = false;
         }
 
+        internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal delegate void ColorChangedCallback(float r, float g, float b, float a);
+        private ColorChangedCallback callback = null;
+
         /// <summary>
         /// The red component.
         /// </summary>
@@ -141,6 +150,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_r_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -160,6 +171,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_g_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -179,6 +192,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_b_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -198,6 +213,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_a_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {

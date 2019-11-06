@@ -89,7 +89,7 @@ namespace Tizen.Network.Stc
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to initialize Stc, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                throw StcErrorFactory.GetStcException(ret);
             }
             return handle;
         }
@@ -107,7 +107,7 @@ namespace Tizen.Network.Stc
                     if (result != (int)StcError.None)
                     {
                         Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
-                        task.SetException(new InvalidOperationException("Error occurs during GetAllStats(), " + (StcError)result));
+                        task.SetException(StcErrorFactory.GetStcException(result));
                     }
 
                     List<NetworkStatistics> statsList = new List<NetworkStatistics>();
@@ -117,7 +117,7 @@ namespace Tizen.Network.Stc
                         if (resultTemp != (int)StcError.None)
                         {
                             Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
-                            task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
+                            task.SetException(StcErrorFactory.GetStcException(resultTemp));
                         }
 
                         Interop.Stc.SafeStatsHandle cloned;
@@ -125,7 +125,7 @@ namespace Tizen.Network.Stc
                         if (retValue != (int)StcError.None)
                         {
                             Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
-                            task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                            task.SetException(StcErrorFactory.GetStcException(retValue));
                         }
 
                         statsList.Add(new NetworkStatistics(cloned));
@@ -136,7 +136,7 @@ namespace Tizen.Network.Stc
                     if(retTemp != (int)StcError.None)
                     {
                         Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
-                        task.SetException(new InvalidOperationException("Error occurs during foreachAllStatus(), " + (StcError)retTemp));
+                        task.SetException(StcErrorFactory.GetStcException(retTemp));
                     }
                     else
                     {
@@ -156,7 +156,7 @@ namespace Tizen.Network.Stc
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
-                    StcErrorFactory.ThrowStcException(ret);
+                    throw StcErrorFactory.GetStcException(ret);
                 }
             }
             return task.Task;

@@ -20,7 +20,7 @@ using System.Diagnostics;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control audio ducking.
+    /// Provides the functionalities to control audio ducking.
     /// </summary>
     /// <seealso cref="AudioManager"/>
     /// <since_tizen> 6 </since_tizen>
@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="AudioDucking"/> class with <see cref="AudioStreamType"/>.
         /// </summary>
-        /// <param name="targetType">The type of sound stream to be affected by this new instance.</param>
+        /// <param name="targetType">The type of sound stream affected by this new instance.</param>
         /// <exception cref="ArgumentException"><paramref name="targetType"/> is invalid.</exception>
         /// <exception cref="InvalidOperationException">Operation failed; internal error.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -85,7 +85,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Activate audio ducking
         /// </summary>
-        /// <param name="duration">The duration(milisecond) for ducking.</param>
+        /// <param name="duration">The duration for ducking in milliseconds.</param>
         /// <param name="ratio">The volume ratio when ducked.</param>
         /// <remarks>To activate ducking, the specified privilege is required.</remarks>
         /// <privilege>http://tizen.org/privilege/volume.set</privilege>

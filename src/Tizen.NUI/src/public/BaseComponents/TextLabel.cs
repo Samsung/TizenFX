@@ -763,12 +763,16 @@ namespace Tizen.NUI.BaseComponents
         /// Animation framework can be used to change the color of the text when not using mark up.<br />
         /// Cannot animate the color when text is auto scrolling.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textLabel.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
             {
-                return (Color)GetValue(TextColorProperty);
+                Color temp = (Color)GetValue(TextColorProperty);
+                return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -784,6 +788,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
@@ -792,7 +797,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector2 shadowOffset = new Vector2();
                 Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return shadowOffset;
+                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
             }
             set
             {
@@ -814,6 +819,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
@@ -822,7 +828,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector4 shadowColor = new Vector4();
                 Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
-                return shadowColor;
+                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
             }
             set
             {
@@ -875,6 +881,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
+        /// The property cascade chaining set is possible. For example, this (textLabel.UnderlineColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this UnderlineColor(Deprecated). Please use Underline instead.")]
         public Vector4 UnderlineColor
@@ -883,7 +890,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector4 underlineColor = new Vector4();
                 Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
-                return underlineColor;
+                return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
             }
             set
             {
@@ -1393,5 +1400,23 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextLabel.TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
             internal static readonly int TEXT_FIT = Interop.TextLabel.TextLabel_Property_TEXT_FIT_get();
         }
+
+        private void OnShadowColorChanged(float x, float y, float z, float w)
+        {
+            ShadowColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowOffsetChanged(float x, float y)
+        {
+            ShadowOffset = new Vector2(x, y);
+        }
+        private void OnTextColorChanged(float r, float g, float b, float a)
+        {
+            TextColor = new Color(r, g, b, a);
+        }
+        private void OnUnderlineColorChanged(float x, float y, float z, float w)
+        {
+            UnderlineColor = new Vector4(x, y, z, w);
+        }
+
     }
 }

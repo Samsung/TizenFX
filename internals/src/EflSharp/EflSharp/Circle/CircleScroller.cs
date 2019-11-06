@@ -169,7 +169,7 @@ namespace Efl
                 /// <summary>
                 /// Creates and initializes a new instance of the CircleScroller class.
                 /// </summary>
-                /// <param name="parent">The Efl.Ui.Widget to which the new CircleScroller will be attached as a child.</par
+                /// <param name="parent">The Efl.Ui.Widget to which the new CircleScroller will be attached as a child.</param>
                 /// <since_tizen> 6 </since_tizen>
                 public CircleScroller(Efl.Ui.Widget parent) : base(parent)
                 {

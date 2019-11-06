@@ -62,6 +62,7 @@ Tizen.Network.Mtp.dll
 Tizen.Network.Nfc.dll                              #mobile #mobile-emul #wearable
 Tizen.Network.Nsd.dll                              #common #mobile #mobile-emul #tv #wearable
 Tizen.Network.Smartcard.dll                        #mobile #mobile-emul #wearable
+Tizen.Network.Stc.dll                              #common #mobile #tv #wearable
 Tizen.Network.WiFi.dll                             #common #mobile #mobile-emul #tv #wearable
 Tizen.Network.WiFiDirect.dll                       #common #mobile #tv #ivi
 Tizen.Nlp.dll                                      #mobile #mobile-emul

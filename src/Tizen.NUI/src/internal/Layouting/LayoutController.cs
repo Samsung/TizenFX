@@ -39,9 +39,6 @@ namespace Tizen.NUI
 
         event Callback _instance;
 
-        // A Flag to check if it is already disposed.
-        private bool disposed = false;
-
         private Window _window;
 
         Animation _coreAnimation;
@@ -111,21 +108,6 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OverrideCoreAnimation {get;set;} = false;
-
-        /// <summary>
-        /// Destructor which adds LayoutController to the Dispose queue.
-        /// </summary>
-        ~LayoutController()
-        {
-        }
-
-        /// <summary>
-        /// Explict Dispose.
-        /// </summary>
-        public void Dispose()
-        {
-           Dispose(DisposeTypes.Explicit);
-        }
 
         /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
@@ -247,8 +229,8 @@ namespace Tizen.NUI
 
                 LayoutLength width = new LayoutLength(rootSize.Width);
                 LayoutLength height = new LayoutLength(rootSize.Height);
-                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.AtMost;
-                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.AtMost;
+                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.Unspecified;
+                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.Unspecified;
 
                 if ( root.WidthSpecification >= 0 )
                 {
@@ -307,10 +289,13 @@ namespace Tizen.NUI
             for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
                 Layer layer = _window.GetLayer(layerIndex);
-                for (uint i = 0; i < layer.ChildCount; i++)
+                if (layer)
                 {
-                    View view = layer.GetChildAt(i);
-                    FindRootLayouts(view);
+                    for (uint i = 0; i < layer.ChildCount; i++)
+                    {
+                        View view = layer.GetChildAt(i);
+                        FindRootLayouts(view);
+                    }
                 }
             }
 

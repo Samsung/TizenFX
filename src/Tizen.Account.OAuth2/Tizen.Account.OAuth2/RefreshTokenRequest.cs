@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Account.OAuth2
 {
     /// <summary>
     /// The class contains request parameters for refreshing an access token.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class RefreshTokenRequest : TokenRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public RefreshTokenRequest()
         {
 
@@ -35,12 +39,14 @@ namespace Tizen.Account.OAuth2
         /// The grant type to be used
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public override string GrantType { get; } = "refresh_token";
 
         /// <summary>
         /// The refresh token issued by authorization server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string RefreshToken { get; set; }
     }
 }

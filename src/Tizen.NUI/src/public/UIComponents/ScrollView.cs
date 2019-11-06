@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,10 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -26,325 +25,18 @@ namespace Tizen.NUI
     /// ScrollView contains views that can be scrolled manually (via touch).
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ScrollView : Scrollable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public partial class ScrollView : Scrollable
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapEnabledProperty = BindableProperty.Create("WrapEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP_ENABLED).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create("PanningEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING_ENABLED).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create("AxisAutoLockEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.AXIS_AUTO_LOCK_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.AXIS_AUTO_LOCK_ENABLED).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create("WheelScrollDistanceStep", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.WHEEL_SCROLL_DISTANCE_STEP, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create("ScrollPosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create("ScrollPrePosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create("ScrollPrePositionMax", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION_MAX, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION_MAX).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootXProperty = BindableProperty.Create("OvershootX", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_X, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_X).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootYProperty = BindableProperty.Create("OvershootY", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_Y, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_Y).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create("ScrollFinal", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_FINAL, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_FINAL).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapProperty = BindableProperty.Create("Wrap", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PanningProperty = BindableProperty.Create("Panning", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollingProperty = BindableProperty.Create("Scrolling", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLLING, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create("ScrollDomainSize", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_SIZE, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_SIZE).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create("ScrollDomainOffset", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_OFFSET, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_OFFSET).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create("ScrollPositionDelta", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION_DELTA, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION_DELTA).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create("StartPagePosition", typeof(Vector3), typeof(ScrollView), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.START_PAGE_POSITION, new Tizen.NUI.PropertyValue((Vector3)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.START_PAGE_POSITION).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create("ScrollMode", typeof(PropertyMap), typeof(ScrollView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_MODE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var scrollView = (ScrollView)bindable;
-            PropertyValue value = Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_MODE);
-            PropertyMap map = new PropertyMap();
-            value.Get(map);
-            return map;
-        });
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        private DaliEventHandler<object, SnapStartedEventArgs> _scrollViewSnapStartedEventHandler;
-        private SnapStartedCallbackDelegate _scrollViewSnapStartedCallbackDelegate;
 
         /// <summary>
         /// Create an instance of ScrollView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollView() : this(Interop.ScrollView.ScrollView_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -355,50 +47,13 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void SnapStartedCallbackDelegate(IntPtr data);
-
-        /// <summary>
-        /// SnapStarted can be used to subscribe or unsubscribe the event handler
-        /// The SnapStarted signal is emitted when the ScrollView has started to snap or flick (it tells the target
-        ///  position, scale, rotation for the snap or flick).
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event DaliEventHandler<object, SnapStartedEventArgs> SnapStarted
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_scrollViewSnapStartedEventHandler == null)
-                    {
-                        _scrollViewSnapStartedEventHandler += value;
-
-                        _scrollViewSnapStartedCallbackDelegate = new SnapStartedCallbackDelegate(OnSnapStarted);
-                        this.SnapStartedSignal().Connect(_scrollViewSnapStartedCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_scrollViewSnapStartedEventHandler != null)
-                    {
-                        this.SnapStartedSignal().Disconnect(_scrollViewSnapStartedCallbackDelegate);
-                    }
-
-                    _scrollViewSnapStartedEventHandler -= value;
-                }
-            }
-        }
-
         /// <summary>
         /// Sets and Gets WrapEnabled property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WrapEnabled
         {
             get
@@ -415,6 +70,9 @@ namespace Tizen.NUI
         /// Sets and Gets PanningEnabled property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PanningEnabled
         {
             get
@@ -431,6 +89,9 @@ namespace Tizen.NUI
         /// Sets and Gets AxisAutoLockEnabled property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AxisAutoLockEnabled
         {
             get
@@ -447,6 +108,9 @@ namespace Tizen.NUI
         /// Sets and Gets WheelScrollDistanceStep property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 WheelScrollDistanceStep
         {
             get
@@ -463,6 +127,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollPosition property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollPosition
         {
             get
@@ -479,6 +146,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollPrePosition property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollPrePosition
         {
             get
@@ -495,6 +165,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollPrePositionMax property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollPrePositionMax
         {
             get
@@ -511,6 +184,9 @@ namespace Tizen.NUI
         /// Sets and Gets OvershootX property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float OvershootX
         {
             get
@@ -527,6 +203,9 @@ namespace Tizen.NUI
         /// Sets and Gets OvershootY property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float OvershootY
         {
             get
@@ -543,6 +222,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollFinal property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollFinal
         {
             get
@@ -559,6 +241,9 @@ namespace Tizen.NUI
         /// Sets and Gets Wrap property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Wrap
         {
             get
@@ -575,6 +260,9 @@ namespace Tizen.NUI
         /// Sets and Gets Panning property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Panning
         {
             get
@@ -591,6 +279,9 @@ namespace Tizen.NUI
         /// Sets and Gets Scrolling property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Scrolling
         {
             get
@@ -607,6 +298,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollDomainSize property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollDomainSize
         {
             get
@@ -623,6 +317,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollDomainOffset property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollDomainOffset
         {
             get
@@ -639,6 +336,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollPositionDelta property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScrollPositionDelta
         {
             get
@@ -655,6 +355,9 @@ namespace Tizen.NUI
         /// Sets and Gets StartPagePosition property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 StartPagePosition
         {
             get
@@ -672,6 +375,9 @@ namespace Tizen.NUI
         /// Sets and Gets ScrollMode property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ScrollMode
         {
             get
@@ -689,6 +395,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Current easing alpha function of the snap animation.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction GetScrollSnapAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(Interop.ScrollView.ScrollView_GetScrollSnapAlphaFunction(swigCPtr), true);
@@ -701,6 +410,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="alpha">Easing alpha function of the snap animation.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSnapAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetScrollSnapAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
@@ -712,6 +424,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Current easing alpha function of the flick animation.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AlphaFunction GetScrollFlickAlphaFunction()
         {
             AlphaFunction ret = new AlphaFunction(Interop.ScrollView.ScrollView_GetScrollFlickAlphaFunction(swigCPtr), true);
@@ -724,6 +439,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="alpha">Easing alpha function of the flick animation.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollFlickAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetScrollFlickAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
@@ -735,6 +453,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The time in seconds for the animation to take.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetScrollSnapDuration()
         {
             float ret = Interop.ScrollView.ScrollView_GetScrollSnapDuration(swigCPtr);
@@ -747,6 +468,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="time">The time in seconds for the animation to take.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSnapDuration(float time)
         {
             Interop.ScrollView.ScrollView_SetScrollSnapDuration(swigCPtr, time);
@@ -758,6 +482,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The time in seconds for the animation to take.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetScrollFlickDuration()
         {
             float ret = Interop.ScrollView.ScrollView_GetScrollFlickDuration(swigCPtr);
@@ -770,6 +497,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="time">The time in seconds for the animation to take.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollFlickDuration(float time)
         {
             Interop.ScrollView.ScrollView_SetScrollFlickDuration(swigCPtr, time);
@@ -781,6 +511,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="sensitive">True to enable scroll, false to disable scrolling.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollSensitive(bool sensitive)
         {
             Interop.ScrollView.ScrollView_SetScrollSensitive(swigCPtr, sensitive);
@@ -793,6 +526,9 @@ namespace Tizen.NUI
         /// <param name="overshootX">The maximum number of horizontally scrolled pixels before overshoot X reaches 1.0f.</param>
         /// <param name="overshootY">The maximum number of vertically scrolled pixels before overshoot X reaches 1.0f.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaxOvershoot(float overshootX, float overshootY)
         {
             Interop.ScrollView.ScrollView_SetMaxOvershoot(swigCPtr, overshootX, overshootY);
@@ -804,6 +540,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="alpha">Easing alpha function of the overshoot snap animation.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSnapOvershootAlphaFunction(AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_SetSnapOvershootAlphaFunction(swigCPtr, AlphaFunction.getCPtr(alpha));
@@ -815,6 +554,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="duration">duration The duration of the overshoot snap animation.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSnapOvershootDuration(float duration)
         {
             Interop.ScrollView.ScrollView_SetSnapOvershootDuration(swigCPtr, duration);
@@ -828,6 +570,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="enable">Enables (true), or disables (false) Actor AutoSnap.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetViewAutoSnap(bool enable)
         {
             Interop.ScrollView.ScrollView_SetActorAutoSnap(swigCPtr, enable);
@@ -840,6 +585,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="enable">Enables (true), or disables (false) Wrap Mode.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetWrapMode(bool enable)
         {
             Interop.ScrollView.ScrollView_SetWrapMode(swigCPtr, enable);
@@ -851,6 +599,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Current scroll update distance.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetScrollUpdateDistance()
         {
             int ret = Interop.ScrollView.ScrollView_GetScrollUpdateDistance(swigCPtr);
@@ -865,6 +616,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="distance">The distance for ScrollView to move before emitting update signal.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollUpdateDistance(int distance)
         {
             Interop.ScrollView.ScrollView_SetScrollUpdateDistance(swigCPtr, distance);
@@ -876,6 +630,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Whether Axis Auto Lock mode has been enabled or not.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetAxisAutoLock()
         {
             bool ret = Interop.ScrollView.ScrollView_GetAxisAutoLock(swigCPtr);
@@ -891,6 +648,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="enable">Enables (true), or disables (false) AxisAutoLock mode.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAxisAutoLock(bool enable)
         {
             Interop.ScrollView.ScrollView_SetAxisAutoLock(swigCPtr, enable);
@@ -902,6 +662,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The gradient, a value between 0.0 and 1.0f.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetAxisAutoLockGradient()
         {
             float ret = Interop.ScrollView.ScrollView_GetAxisAutoLockGradient(swigCPtr);
@@ -915,6 +678,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="gradient">gradient A value between 0.0 and 1.0 (auto-lock for all angles).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAxisAutoLockGradient(float gradient)
         {
             Interop.ScrollView.ScrollView_SetAxisAutoLockGradient(swigCPtr, gradient);
@@ -927,6 +693,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Friction coefficient is returned.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFrictionCoefficient()
         {
             float ret = Interop.ScrollView.ScrollView_GetFrictionCoefficient(swigCPtr);
@@ -939,6 +708,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="friction">Friction coefficient must be greater than 0.0 (default = 1.0).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFrictionCoefficient(float friction)
         {
             Interop.ScrollView.ScrollView_SetFrictionCoefficient(swigCPtr, friction);
@@ -951,6 +723,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The flick speed coefficient is returned.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetFlickSpeedCoefficient()
         {
             float ret = Interop.ScrollView.ScrollView_GetFlickSpeedCoefficient(swigCPtr);
@@ -965,6 +740,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="speed">The flick speed coefficient (default = 1.0).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFlickSpeedCoefficient(float speed)
         {
             Interop.ScrollView.ScrollView_SetFlickSpeedCoefficient(swigCPtr, speed);
@@ -976,6 +754,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Minimum pan distance vector with separate x and y distance.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetMinimumDistanceForFlick()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetMinimumDistanceForFlick(swigCPtr), true);
@@ -989,6 +770,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="distance">The flick speed coefficient (default = 1.0).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumDistanceForFlick(Vector2 distance)
         {
             Interop.ScrollView.ScrollView_SetMinimumDistanceForFlick(swigCPtr, Vector2.getCPtr(distance));
@@ -1000,6 +784,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Minimum pan speed.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMinimumSpeedForFlick()
         {
             float ret = Interop.ScrollView.ScrollView_GetMinimumSpeedForFlick(swigCPtr);
@@ -1012,6 +799,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="speed">The minimum pan speed for a flick.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumSpeedForFlick(float speed)
         {
             Interop.ScrollView.ScrollView_SetMinimumSpeedForFlick(swigCPtr, speed);
@@ -1024,6 +814,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>Maximum flick speed is returned.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float GetMaxFlickSpeed()
         {
             float ret = Interop.ScrollView.ScrollView_GetMaxFlickSpeed(swigCPtr);
@@ -1037,6 +830,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="speed">Maximum flick speed (default = 3.0).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaxFlickSpeed(float speed)
         {
             Interop.ScrollView.ScrollView_SetMaxFlickSpeed(swigCPtr, speed);
@@ -1048,6 +844,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The step of scroll distance(pixel) in X and Y axes.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetWheelScrollDistanceStep()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetWheelScrollDistanceStep(swigCPtr), true);
@@ -1060,6 +859,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="step">step The step of scroll distance(pixel) in X and Y axes.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetWheelScrollDistanceStep(Vector2 step)
         {
             Interop.ScrollView.ScrollView_SetWheelScrollDistanceStep(swigCPtr, Vector2.getCPtr(step));
@@ -1071,6 +873,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The current scroll position.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetCurrentScrollPosition()
         {
             Vector2 ret = new Vector2(Interop.ScrollView.ScrollView_GetCurrentScrollPosition(swigCPtr), true);
@@ -1084,6 +889,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The current scroll position.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetCurrentPage()
         {
             uint ret = Interop.ScrollView.ScrollView_GetCurrentPage(swigCPtr);
@@ -1096,6 +904,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">The position to scroll to.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_0(swigCPtr, Vector2.getCPtr(position));
@@ -1108,6 +919,9 @@ namespace Tizen.NUI
         /// <param name="position">The position to scroll to.</param>
         /// <param name="duration">The duration of the animation in seconds.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_1(swigCPtr, Vector2.getCPtr(position), duration);
@@ -1121,6 +935,9 @@ namespace Tizen.NUI
         /// <param name="duration">The duration of the animation in seconds.</param>
         /// <param name="alpha">The alpha function to use.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_2(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha));
@@ -1135,6 +952,9 @@ namespace Tizen.NUI
         /// <param name="horizontalBias">Whether to bias scrolling to left or right.</param>
         /// <param name="verticalBias">Whether to bias scrolling to top or bottom.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_3(swigCPtr, Vector2.getCPtr(position), duration, (int)horizontalBias, (int)verticalBias);
@@ -1150,6 +970,9 @@ namespace Tizen.NUI
         /// <param name="horizontalBias">Whether to bias scrolling to left or right.</param>
         /// <param name="verticalBias">Whether to bias scrolling to top or bottom.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(Vector2 position, float duration, AlphaFunction alpha, DirectionBias horizontalBias, DirectionBias verticalBias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_4(swigCPtr, Vector2.getCPtr(position), duration, AlphaFunction.getCPtr(alpha), (int)horizontalBias, (int)verticalBias);
@@ -1161,6 +984,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="page">The page to scroll to.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_5(swigCPtr, page);
@@ -1173,6 +999,9 @@ namespace Tizen.NUI
         /// <param name="page">The page to scroll to.</param>
         /// <param name="duration">The duration of the animation in seconds.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_6(swigCPtr, page, duration);
@@ -1186,6 +1015,9 @@ namespace Tizen.NUI
         /// <param name="duration">The duration of the animation in seconds.</param>
         /// <param name="bias">Whether to bias scrolling to left or right.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(uint page, float duration, DirectionBias bias)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_7(swigCPtr, page, duration, (int)bias);
@@ -1197,6 +1029,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="view">The view to center in on (via Scrolling).</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(View view)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_8(swigCPtr, View.getCPtr(view));
@@ -1209,6 +1044,9 @@ namespace Tizen.NUI
         /// <param name="view">The view to center in on (via Scrolling).</param>
         /// <param name="duration">The duration of the animation in seconds.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollTo(View view, float duration)
         {
             Interop.ScrollView.ScrollView_ScrollTo__SWIG_9(swigCPtr, View.getCPtr(view), duration);
@@ -1221,6 +1059,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>True if Snapping necessary.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScrollToSnapPoint()
         {
             bool ret = Interop.ScrollView.ScrollView_ScrollToSnapPoint(swigCPtr);
@@ -1233,6 +1074,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="effect">The effect to apply to scroll view.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyEffect(ScrollViewEffect effect)
         {
             Interop.ScrollView.ScrollView_ApplyEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
@@ -1244,6 +1088,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="effect">The effect to remove.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveEffect(ScrollViewEffect effect)
         {
             Interop.ScrollView.ScrollView_RemoveEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
@@ -1254,6 +1101,9 @@ namespace Tizen.NUI
         /// Remove All Effects from ScrollView.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAllEffects()
         {
             Interop.ScrollView.ScrollView_RemoveAllEffects(swigCPtr);
@@ -1266,6 +1116,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="child">The view to add to this ScrollView.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void BindView(View child)
         {
             Interop.ScrollView.ScrollView_BindActor(swigCPtr, View.getCPtr(child));
@@ -1278,6 +1131,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="child">The view to remove to this ScrollView.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void UnbindView(View child)
         {
             Interop.ScrollView.ScrollView_UnbindActor(swigCPtr, View.getCPtr(child));
@@ -1290,6 +1146,9 @@ namespace Tizen.NUI
         /// <param name="direction">The axis to constrain the scroll-view to.</param>
         /// <param name="threshold">The threshold to apply around the axis.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollingDirection(Radian direction, Radian threshold)
         {
             Interop.ScrollView.ScrollView_SetScrollingDirection__SWIG_0(swigCPtr, Radian.getCPtr(direction), Radian.getCPtr(threshold));
@@ -1301,6 +1160,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="direction">The axis to constrain the scroll-view to.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetScrollingDirection(Radian direction)
         {
             Interop.ScrollView.ScrollView_SetScrollingDirection__SWIG_1(swigCPtr, Radian.getCPtr(direction));
@@ -1312,6 +1174,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="direction">The axis to constrain the scroll-view to.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveScrollingDirection(Radian direction)
         {
             Interop.ScrollView.ScrollView_RemoveScrollingDirection(swigCPtr, Radian.getCPtr(direction));
@@ -1349,18 +1214,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ScrollViewSnapStartedSignal SnapStartedSignal()
-        {
-            ScrollViewSnapStartedSignal ret = new ScrollViewSnapStartedSignal(Interop.ScrollView.ScrollView_SnapStartedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>
         /// <param name="type">the dispose type</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -1390,423 +1251,224 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        // Callback for ScrollView SnapStarted signal
-        private void OnSnapStarted(IntPtr data)
-        {
-            SnapStartedEventArgs e = new SnapStartedEventArgs();
-
-            // Populate all members of "e" (SnapStartedEventArgs) with real data
-            e.SnapEventInfo = SnapEvent.GetSnapEventFromPtr(data);
-
-            if (_scrollViewSnapStartedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _scrollViewSnapStartedEventHandler(this, e);
-            }
-        }
-
         /// <summary>
         /// This should be internal, please do not use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Deprecated in API6; Will be removed in API9.")]
         public new class Property
         {
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int WRAP_ENABLED = Interop.ScrollView.ScrollView_Property_WRAP_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int PANNING_ENABLED = Interop.ScrollView.ScrollView_Property_PANNING_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int AXIS_AUTO_LOCK_ENABLED = Interop.ScrollView.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = Interop.ScrollView.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_MODE = Interop.ScrollView.ScrollView_Property_SCROLL_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION_MAX = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION_MAX_X = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_PRE_POSITION_MAX_Y = Interop.ScrollView.ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_X = Interop.ScrollView.ScrollView_Property_OVERSHOOT_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int OVERSHOOT_Y = Interop.ScrollView.ScrollView_Property_OVERSHOOT_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_FINAL = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_FINAL_X = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_FINAL_Y = Interop.ScrollView.ScrollView_Property_SCROLL_FINAL_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int WRAP = Interop.ScrollView.ScrollView_Property_WRAP_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int PANNING = Interop.ScrollView.ScrollView_Property_PANNING_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLLING = Interop.ScrollView.ScrollView_Property_SCROLLING_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_DOMAIN_SIZE = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_DOMAIN_SIZE_X = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_DOMAIN_SIZE_Y = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_DOMAIN_OFFSET = Interop.ScrollView.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int SCROLL_POSITION_DELTA = Interop.ScrollView.ScrollView_Property_SCROLL_POSITION_DELTA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [Obsolete("Deprecated in API6; Will be removed in API9.")]
             public static readonly int START_PAGE_POSITION = Interop.ScrollView.ScrollView_Property_START_PAGE_POSITION_get();
-        }
-
-        /// <summary>
-        /// Snaps signal event's data.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class SnapEvent : global::System.IDisposable
-        {
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-
-            /// <summary>
-            /// A Flat to check if it is already disposed.
-            /// </summary>
-            /// swigCMemOwn
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-
-            /// <summary>
-            /// Create an instance of SnapEvent.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public SnapEvent() : this(Interop.ScrollView.new_ScrollView_SnapEvent(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            internal SnapEvent(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            /// <summary>
-            /// Dispose
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            ~SnapEvent()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <summary>
-            /// Scroll position.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public Vector2 position
-            {
-                set
-                {
-                    Interop.ScrollView.ScrollView_SnapEvent_position_set(swigCPtr, Vector2.getCPtr(value));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    global::System.IntPtr cPtr = Interop.ScrollView.ScrollView_SnapEvent_position_get(swigCPtr);
-                    Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Scroll duration.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public float duration
-            {
-                set
-                {
-                    Interop.ScrollView.ScrollView_SnapEvent_duration_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    float ret = Interop.ScrollView.ScrollView_SnapEvent_duration_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            internal SnapType type
-            {
-                set
-                {
-                    Interop.ScrollView.ScrollView_SnapEvent_type_set(swigCPtr, (int)value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    SnapType ret = (SnapType)Interop.ScrollView.ScrollView_SnapEvent_type_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Get SnapEvent From Ptr
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Deprecated in API6, Will be removed in API9, " + 
-                "Please use SnapStarted event instead!" +
-                "IntPtr(native integer pointer) is supposed to be not used in Application!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public static SnapEvent GetSnapEventFromPtr(global::System.IntPtr cPtr)
-            {
-                SnapEvent ret = new SnapEvent(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SnapEvent obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            /// <summary>
-            /// Dispose
-            /// </summary>
-            /// <param name="type">the dispose type</param>
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.ScrollView.delete_ScrollView_SnapEvent(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-
-                disposed = true;
-            }
-
-        }
-        /// <summary>
-        /// Event arguments that passed via the SnapStarted signal.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class SnapStartedEventArgs : EventArgs
-        {
-            private Tizen.NUI.ScrollView.SnapEvent _snapEvent;
-
-            /// <summary>
-            /// SnapEventInfo is the SnapEvent information like snap or flick (it tells the target position, scale, rotation for the snap or flick).
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public Tizen.NUI.ScrollView.SnapEvent SnapEventInfo
-            {
-                get
-                {
-                    return _snapEvent;
-                }
-                set
-                {
-                    _snapEvent = value;
-                }
-            }
         }
     }
 }
+

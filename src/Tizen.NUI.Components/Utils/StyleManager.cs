@@ -165,6 +165,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ThemeChangeEventArgs : EventArgs
         {
+            /// <summary>
+            /// CurrentTheme
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string CurrentTheme;
         }
     }

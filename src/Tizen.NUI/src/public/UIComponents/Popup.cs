@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,9 +26,13 @@ namespace Tizen.NUI.UIComponents
     /// The Popup widget provides a configurable popup dialog with a built-in layout of three main fields.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// This will be deprecated
+    [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Popup : View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -45,7 +49,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TITLE).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContentProperty = BindableProperty.Create("Content", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -62,7 +67,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTENT).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FooterProperty = BindableProperty.Create("Footer", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -79,7 +85,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.FOOTER).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisplayStateProperty = BindableProperty.Create("DisplayState", typeof(DisplayStateType), typeof(Popup), DisplayStateType.Hidden, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -140,7 +147,8 @@ namespace Tizen.NUI.UIComponents
                     return DisplayStateType.Hidden;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TouchTransparentProperty = BindableProperty.Create("TouchTransparent", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -157,7 +165,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TOUCH_TRANSPARENT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailVisibilityProperty = BindableProperty.Create("TailVisibility", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -174,7 +183,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_VISIBILITY).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailPositionProperty = BindableProperty.Create("TailPosition", typeof(Vector3), typeof(Popup), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -191,7 +201,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_POSITION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContextualModeProperty = BindableProperty.Create("ContextualMode", typeof(ContextualModeType), typeof(Popup), ContextualModeType.Below, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -259,7 +270,8 @@ namespace Tizen.NUI.UIComponents
                     return ContextualModeType.Below;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnimationDurationProperty = BindableProperty.Create("AnimationDuration", typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -276,7 +288,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_DURATION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnimationModeProperty = BindableProperty.Create("AnimationMode", typeof(AnimationModeType), typeof(Popup), AnimationModeType.Fade, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -337,7 +350,8 @@ namespace Tizen.NUI.UIComponents
                     return AnimationModeType.Fade;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EntryAnimationProperty = BindableProperty.Create("EntryAnimation", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -354,7 +368,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ENTRY_ANIMATION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ExitAnimationProperty = BindableProperty.Create("ExitAnimation", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -371,7 +386,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EXIT_ANIMATION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AutoHideDelayProperty = BindableProperty.Create("AutoHideDelay", typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -388,7 +404,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AUTO_HIDE_DELAY).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackingEnabledProperty = BindableProperty.Create("BackingEnabled", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -405,7 +422,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_ENABLED).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackingColorProperty = BindableProperty.Create("BackingColor", typeof(Vector4), typeof(Popup), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -422,7 +440,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_COLOR).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupBackgroundImageProperty = BindableProperty.Create("PopupBackgroundImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -439,7 +458,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_IMAGE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupBackgroundBorderProperty = BindableProperty.Create("PopupBackgroundBorder", typeof(Rectangle), typeof(Popup), new Rectangle(0,0,0,0), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -456,7 +476,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailUpImageProperty = BindableProperty.Create("TailUpImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -473,7 +494,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_UP_IMAGE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailDownImageProperty = BindableProperty.Create("TailDownImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -490,7 +512,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_DOWN_IMAGE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailLeftImageProperty = BindableProperty.Create("TailLeftImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -507,7 +530,8 @@ namespace Tizen.NUI.UIComponents
             Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_LEFT_IMAGE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailRightImageProperty = BindableProperty.Create("TailRightImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -541,6 +565,9 @@ namespace Tizen.NUI.UIComponents
         /// Creates the popup.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Popup() : this(Interop.Popup.Popup_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -566,6 +593,9 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the user has touched outside the dialog.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
             add
@@ -591,6 +621,9 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the popup starts showing.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ShowingEventArgs> Showing
         {
             add
@@ -616,6 +649,9 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the popup has been fully displayed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ShownEventArgs> Shown
         {
             add
@@ -641,6 +677,9 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the popup starts to hide.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<HidingEventArgs> Hiding
         {
             add
@@ -666,6 +705,9 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the popup has been completely hidden.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<HiddenEventArgs> Hidden
         {
             add
@@ -691,27 +733,42 @@ namespace Tizen.NUI.UIComponents
         /// The display states of the popup.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum DisplayStateType
         {
             /// <summary>
             /// The popup is transitioning in
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Showing,
             /// <summary>
             /// The popup is fully shown
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Shown,
             /// <summary>
             /// The popup is transitioning out
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Hiding,
             /// <summary>
             /// The popup is fully hidden
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Hidden
         }
 
@@ -720,27 +777,42 @@ namespace Tizen.NUI.UIComponents
         /// Choose from a predefined mode or "CUSTOM" to use the ANIMATION_IN and ANIMATION_OUT properties.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum AnimationModeType
         {
             /// <summary>
             /// No animation.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             None,
             /// <summary>
             /// Popup zooms in and out animating the scale property.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Zoom,
             /// <summary>
             /// Popup fades in and out
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Fade,
             /// <summary>
             /// Use the EntryAnimation and ExitAnimation animation properties.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Custom
         }
 
@@ -750,32 +822,50 @@ namespace Tizen.NUI.UIComponents
         /// NON_CONTEXTUAL disables any contextual positioning.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ContextualModeType
         {
             /// <summary>
             /// any contextual positioning
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             NonContextual,
             /// <summary>
             /// Above
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Above,
             /// <summary>
             /// Rright
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Rright,
             /// <summary>
             /// Below
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Below,
             /// <summary>
             /// Left
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be deprecated
+            [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             Left
         }
 
@@ -783,6 +873,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup title.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Title
         {
             get
@@ -799,6 +892,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup content.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Content
         {
             get
@@ -815,6 +911,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup footer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Footer
         {
             get
@@ -831,6 +930,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup display state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DisplayStateType DisplayState
         {
             get
@@ -847,6 +949,9 @@ namespace Tizen.NUI.UIComponents
         /// The touch transparent.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TouchTransparent
         {
             get
@@ -863,6 +968,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup tail visibility.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TailVisibility
         {
             get
@@ -879,6 +987,9 @@ namespace Tizen.NUI.UIComponents
         /// The popup tail position.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 TailPosition
         {
             get
@@ -895,6 +1006,9 @@ namespace Tizen.NUI.UIComponents
         /// The contextual mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ContextualModeType ContextualMode
         {
             get
@@ -911,6 +1025,9 @@ namespace Tizen.NUI.UIComponents
         /// The animation duration.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float AnimationDuration
         {
             get
@@ -927,6 +1044,9 @@ namespace Tizen.NUI.UIComponents
         /// The animation mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimationModeType AnimationMode
         {
             get
@@ -943,6 +1063,9 @@ namespace Tizen.NUI.UIComponents
         /// The entry animation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap EntryAnimation
         {
             get
@@ -959,6 +1082,9 @@ namespace Tizen.NUI.UIComponents
         /// The exit animation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ExitAnimation
         {
             get
@@ -975,6 +1101,9 @@ namespace Tizen.NUI.UIComponents
         /// The auto hide delay.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int AutoHideDelay
         {
             get
@@ -991,6 +1120,9 @@ namespace Tizen.NUI.UIComponents
         /// The backing enabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackingEnabled
         {
             get
@@ -1007,6 +1139,9 @@ namespace Tizen.NUI.UIComponents
         /// The backing color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 BackingColor
         {
             get
@@ -1023,6 +1158,9 @@ namespace Tizen.NUI.UIComponents
         /// The background image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string PopupBackgroundImage
         {
             get
@@ -1039,6 +1177,9 @@ namespace Tizen.NUI.UIComponents
         /// The background border.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle PopupBackgroundBorder
         {
             get
@@ -1055,6 +1196,9 @@ namespace Tizen.NUI.UIComponents
         /// The tail up image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailUpImage
         {
             get
@@ -1071,6 +1215,9 @@ namespace Tizen.NUI.UIComponents
         /// The tail down image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailDownImage
         {
             get
@@ -1087,6 +1234,9 @@ namespace Tizen.NUI.UIComponents
         /// The tail left image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailLeftImage
         {
             get
@@ -1103,6 +1253,9 @@ namespace Tizen.NUI.UIComponents
         /// The tail right image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TailRightImage
         {
             get
@@ -1120,6 +1273,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="titleView">The actor to set the title.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTitle(View titleView)
         {
             Interop.Popup.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
@@ -1131,6 +1287,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="content">The actor to use.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetContent(View content)
         {
             Interop.Popup.Popup_SetContent(swigCPtr, View.getCPtr(content));
@@ -1142,6 +1301,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="footer">The footer actor to be added to this popup.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
         public void SetFooter(View footer)
         {
             Interop.Popup.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
@@ -1166,6 +1328,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="displayState">The desired display state to change to.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
             Interop.Popup.Popup_SetDisplayState(swigCPtr, (int)displayState);
@@ -1181,11 +1346,7 @@ namespace Tizen.NUI.UIComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetTitle(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1194,11 +1355,7 @@ namespace Tizen.NUI.UIComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetContent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1207,11 +1364,7 @@ namespace Tizen.NUI.UIComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetFooter(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1263,6 +1416,9 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -1378,6 +1534,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the OutsideTouchedEvent.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class TouchedOutsideEventArgs : EventArgs
         {
         }
@@ -1386,6 +1545,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the ShowingEventArgs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ShowingEventArgs : EventArgs
         {
         }
@@ -1394,6 +1556,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the ShownEventArgs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ShownEventArgs : EventArgs
         {
         }
@@ -1402,6 +1567,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the HidingEventArgs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class HidingEventArgs : EventArgs
         {
         }
@@ -1410,6 +1578,9 @@ namespace Tizen.NUI.UIComponents
         /// Event arguments that passed via the HiddenEventArgs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API6; Will be removed in API9. Please use Tizen.NUI.Components")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class HiddenEventArgs : EventArgs
         {
         }

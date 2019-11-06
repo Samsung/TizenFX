@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2017 Samsung Electronics Co., Ltd.
+* Copyright (c) 2019 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
@@ -74,6 +74,49 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="cb"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Copy other extents
+        /// </summary>
+        /// <param name="that"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public void CopyFrom(Extents that)
+        {
+            Interop.Extents.Extents_start_set(swigCPtr, that.Start);
+            Interop.Extents.Extents_end_set(swigCPtr, that.End);
+            Interop.Extents.Extents_top_set(swigCPtr, that.Top);
+            Interop.Extents.Extents_bottom_set(swigCPtr, that.End);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="cb"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);
+        private ExtentsChangedCallback callback = null;
+
+        /// <summary>
         /// The Start extent.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -83,6 +126,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_start_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -102,6 +147,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_end_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -121,6 +168,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_top_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -140,6 +189,8 @@ namespace Tizen.NUI
             {
                 Interop.Extents.Extents_bottom_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {

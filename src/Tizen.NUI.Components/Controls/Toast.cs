@@ -26,8 +26,6 @@ namespace Tizen.NUI.Components
     /// A toast will automatically disappear after a certain time.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Toast : Control
     {
         /// <summary>
@@ -39,22 +37,22 @@ namespace Tizen.NUI.Components
         private NPatchVisual toastBackground = null;
         private Timer timer = null;
 
+        private Extents textPadding = null;
+
         private readonly int maxTextAreaWidth = 808;
         private readonly uint textLineHeight = 56;
         private readonly uint textLineSpace = 4;
         private readonly float textPointSize = 38;
         private readonly int textPaddingLeft = 96;
-        private readonly int textPaddingRight = 96;
+        //private readonly int textPaddingRight = 96;
         private readonly int textPaddingTop = 38;
-        private readonly int textPaddingBottom = 38;
+        //private readonly int textPaddingBottom = 38;
         private readonly uint duration = 3000;
 
         /// <summary>
         /// Construct Toast with null.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Toast() : base()
         {
             Initialize();
@@ -88,8 +86,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text array of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] TextArray
         {
             get
@@ -111,8 +107,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text point size in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PointSize
         {
             get
@@ -135,8 +129,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text font family in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string FontFamily
         {
             get
@@ -155,8 +147,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text color in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TextColor
         {
             get
@@ -179,8 +169,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text horizontal alignment in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment TextAlignment
         {
             get
@@ -257,82 +245,40 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets text left padding in toast.
+        /// Gets or sets text padding in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingLeft
+        public Extents TextPadding
         {
             get
             {
-                return toastAttributes.TextAttributes?.PaddingLeft ?? textPaddingLeft;
+                return textPadding;
             }
             set
             {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingLeft = value;
-                RelayoutRequest();
-            }
-        }
+                if (null != value)
+                {
+                    CreateTextAttributes();
+                    toastAttributes.TextAttributes.Padding.CopyFrom(value);
 
-        /// <summary>
-        /// Gets or sets text right padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingRight
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingRight ?? textPaddingRight;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingRight = value;
-                RelayoutRequest();
-            }
-        }
+                    if (null == textPadding)
+                    {
+                        textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                        {
+                            toastAttributes.TextAttributes.Padding.Start = start;
+                            toastAttributes.TextAttributes.Padding.End = end;
+                            toastAttributes.TextAttributes.Padding.Top = top;
+                            toastAttributes.TextAttributes.Padding.Bottom = bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        textPadding.CopyFrom(value);
+                    }
 
-        /// <summary>
-        /// Gets or sets text top padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingTop
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingTop ?? textPaddingTop;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingTop = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets text bottom padding in toast.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingBottom
-        {
-            get
-            {
-                return toastAttributes.TextAttributes?.PaddingBottom ?? textPaddingBottom;
-            }
-            set
-            {
-                CreateTextAttributes();
-                toastAttributes.TextAttributes.PaddingBottom = value;
-                RelayoutRequest();
+                    RelayoutRequest();
+                }
             }
         }
 
@@ -340,8 +286,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text line height in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint TextLineHeight
         {
             get
@@ -359,8 +303,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets text line space in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint TextLineSpace
         {
             get
@@ -378,8 +320,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets duration of toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Duration
         {
             get
@@ -398,8 +338,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">dispose types.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -458,10 +396,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            int _textPaddingLeft = toastAttributes.TextAttributes?.PaddingLeft ?? textPaddingLeft;
-            int _textPaddingRight = toastAttributes.TextAttributes?.PaddingRight ?? _textPaddingLeft;
-            int _textPaddingTop = toastAttributes.TextAttributes?.PaddingTop ?? textPaddingTop;
-            int _textPaddingBottom = toastAttributes.TextAttributes?.PaddingBottom ?? _textPaddingTop;
+            int _textPaddingLeft = toastAttributes.TextAttributes?.Padding.Start ?? textPaddingLeft;
+            int _textPaddingRight = toastAttributes.TextAttributes?.Padding.End ?? _textPaddingLeft;
+            int _textPaddingTop = toastAttributes.TextAttributes?.Padding.Top ?? textPaddingTop;
+            int _textPaddingBottom = toastAttributes.TextAttributes?.Padding.Bottom ?? _textPaddingTop;
 
             int _textAreaWidth = this.Size2D.Width - _textPaddingLeft - _textPaddingRight;
             int _textAreaHeight = this.Size2D.Height - _textPaddingTop - _textPaddingBottom;
@@ -470,25 +408,28 @@ namespace Tizen.NUI.Components
             int _positionY = 0;
 
             _textAreaWidth = _textAreaWidth > maxTextAreaWidth ? maxTextAreaWidth : _textAreaWidth;
-            if (LayoutDirection == ViewLayoutDirectionType.LTR)
+            if (textLabels != null)
             {
-                for (int i = 0; i < textLabels?.Length; i++)
+                if (LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    textLabels[i].Position2D = new Position2D(_textPaddingLeft, _textPaddingTop + _positionY);
-                    textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
-                    _positionY += _textLineHeight + _textLineSpace;
+                    for (int i = 0; i < textLabels?.Length; i++)
+                    {
+                        textLabels[i].Position2D = new Position2D(_textPaddingLeft, _textPaddingTop + _positionY);
+                        textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
+                        _positionY += _textLineHeight + _textLineSpace;
+                    }
                 }
-            }
-            else
-            {
-                for (int i = 0; i < textLabels?.Length; i++)
+                else
                 {
-                    textLabels[i].ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
-                    textLabels[i].PivotPoint = Tizen.NUI.PivotPoint.TopRight;
-                    textLabels[i].PositionUsesPivotPoint = true;
-                    textLabels[i].Position2D = new Position2D(-_textPaddingLeft, _textPaddingTop + _positionY);
-                    textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
-                    _positionY += _textLineHeight + _textLineSpace;
+                    for (int i = 0; i < textLabels?.Length; i++)
+                    {
+                        textLabels[i].ParentOrigin = Tizen.NUI.ParentOrigin.TopRight;
+                        textLabels[i].PivotPoint = Tizen.NUI.PivotPoint.TopRight;
+                        textLabels[i].PositionUsesPivotPoint = true;
+                        textLabels[i].Position2D = new Position2D(-_textPaddingLeft, _textPaddingTop + _positionY);
+                        textLabels[i].Size2D = new Size2D(_textAreaWidth, _textLineHeight);
+                        _positionY += _textLineHeight + _textLineSpace;
+                    }
                 }
             }
         }

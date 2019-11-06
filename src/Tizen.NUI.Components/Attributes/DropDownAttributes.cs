@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
             SpaceBetweenButtonTextAndIcon = 0;
             Space = new Vector4(0, 0, 0, 0);
             ListRelativeOrientation = DropDown.ListOrientation.Left;
-            ListMargin = new Vector4(0, 0, 0, 0);
+            ListMargin = new Extents(0, 0, 0, 0);
             FocusedItemIndex = 0;
         }
         /// <summary>
@@ -76,12 +76,12 @@ namespace Tizen.NUI.Components
 
             if (attributes.ListMargin != null)
             {
-                ListMargin = new Vector4(attributes.ListMargin.X, attributes.ListMargin.Y, attributes.ListMargin.Z, attributes.ListMargin.W);
+                ListMargin = new Extents(attributes.ListMargin.Start, attributes.ListMargin.End, attributes.ListMargin.Top, attributes.ListMargin.Bottom);
             }
 
-            if (attributes.ListSize2D != null)
+            if (attributes.ListSize != null)
             {
-                ListSize2D = new Size2D(attributes.ListSize2D.Width, attributes.ListSize2D.Height);
+                ListSize = new Size(attributes.ListSize.Width, attributes.ListSize.Height);
             }
 
             if (attributes.ListPadding != null)
@@ -172,7 +172,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 ListMargin
+        public Extents ListMargin
         {
             get;
             set;
@@ -196,7 +196,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ListSize2D
+        public Size ListSize
         {
             get;
             set;
@@ -265,7 +265,7 @@ namespace Tizen.NUI.Components
                 CheckImageAttributes = attributes.CheckImageAttributes.Clone() as ImageAttributes;
             }
 
-            CheckImageRightSpace = attributes.CheckImageRightSpace;
+            CheckImageGapToBoundary = attributes.CheckImageGapToBoundary;
             IsSelected = attributes.IsSelected;
         }
 
@@ -306,12 +306,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Right space from check image.
+        /// Gap of Check image to boundary.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImageRightSpace
+        public int CheckImageGapToBoundary
         {
             get;
             set;

@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     public class TextFieldAttributes : ViewAttributes
     {
         /// <summary>
-        /// Creates a new instance of a TextField.
+        /// Creates a new instance of a TextFieldAttributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -35,9 +35,9 @@ namespace Tizen.NUI.Components
         public TextFieldAttributes() : base() { }
 
         /// <summary>
-        /// Creates a new instance of a TextField with style.
+        /// Construct with specified attribute.
         /// </summary>
-        /// <param name="attributes">Create TextField by special style defined in UX.</param>
+        /// <param name="attributes">The specified TextFieldAttributes.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

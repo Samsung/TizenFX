@@ -40,6 +40,9 @@ namespace Tizen.NUI.Components
         private DropDownItemView touchedView = null;
         private int selectedItemIndex = -1;
 
+        private Extents listMargin = null;
+        private Extents listPadding = null;
+
         /// <summary>
         /// Creates a new instance of a DropDown.
         /// </summary>
@@ -382,18 +385,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ButtonIconSize2D
+        public Size ButtonIconSize
         {
             get
             {
-                return dropDownAttributes.ButtonAttributes?.IconAttributes?.Size2D;
+                return dropDownAttributes.ButtonAttributes?.IconAttributes?.Size;
             }
             set
             {
                 if (value != null)
                 {
                     CreateButtonIconAttributes();
-                    dropDownAttributes.ButtonAttributes.IconAttributes.Size2D = value;
+                    dropDownAttributes.ButtonAttributes.IconAttributes.Size = value;
                     RelayoutRequest();
                 }
             }
@@ -530,58 +533,37 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Left space in list.
+        /// Space in list.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListLeftMargin
+        public Extents ListMargin
         {
             get
             {
-                return (int)dropDownAttributes.ListMargin.X;
+                return listMargin;
             }
             set
             {
-                dropDownAttributes.ListMargin.X = value;
-                RelayoutRequest();
-            }
-        }
+                dropDownAttributes.ListMargin.CopyFrom(value);
 
-        /// <summary>
-        /// Right space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListRigthMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Y;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Y = value;
-                RelayoutRequest();
-            }
-        }
+                if (null == listMargin)
+                {
+                    listMargin = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        dropDownAttributes.ListMargin.Start = start;
+                        dropDownAttributes.ListMargin.End = end;
+                        dropDownAttributes.ListMargin.Top = top;
+                        dropDownAttributes.ListMargin.Bottom = bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
 
-        /// <summary>
-        /// Top space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListTopMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Z;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Z = value;
                 RelayoutRequest();
             }
         }
@@ -633,15 +615,15 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ListSize2D
+        public Size ListSize
         {
             get
             {
-                return dropDownAttributes.ListSize2D;
+                return dropDownAttributes.ListSize;
             }
             set
             {
-                dropDownAttributes.ListSize2D = value;
+                dropDownAttributes.ListSize = value;
                 RelayoutRequest();
             }
         }
@@ -656,11 +638,28 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return dropDownAttributes.ListPadding;
+                return listPadding;
             }
             set
             {
-                dropDownAttributes.ListPadding = value;
+                dropDownAttributes.ListPadding.CopyFrom(value);
+
+                if (null == listPadding)
+                {
+                    listPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        dropDownAttributes.ListPadding.Start = start;
+                        dropDownAttributes.ListPadding.End = end;
+                        dropDownAttributes.ListPadding.Top = top;
+                        dropDownAttributes.ListPadding.Bottom = bottom;
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    listMargin.CopyFrom(value);
+                }
+
                 RelayoutRequest();
             }
         }
@@ -802,9 +801,9 @@ namespace Tizen.NUI.Components
                     button.IconURLSelector = dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL;
                     int iconWidth = 0;
                     int buttonTextWidth = 0;
-                    if (dropDownAttributes.ButtonAttributes.IconAttributes.Size2D != null)
+                    if (dropDownAttributes.ButtonAttributes.IconAttributes.Size != null)
                     {
-                        iconWidth = dropDownAttributes.ButtonAttributes.IconAttributes.Size2D.Width;
+                        iconWidth = (int)dropDownAttributes.ButtonAttributes.IconAttributes.Size.Width;
                     }
                     if (buttonText.NaturalSize2D != null)
                     {
@@ -823,7 +822,7 @@ namespace Tizen.NUI.Components
                 }
                 ApplyAttributes(listBackgroundImage, dropDownAttributes.ListBackgroundImageAttributes);
                 list.FocusedItemIndex = dropDownAttributes.FocusedItemIndex;
-                list.Size2D = dropDownAttributes.ListSize2D;
+                list.Size = dropDownAttributes.ListSize;
                 list.Padding = dropDownAttributes.ListPadding;
 
                 int listBackgroundImageX = 0;
@@ -832,8 +831,8 @@ namespace Tizen.NUI.Components
                 {
                     if (dropDownAttributes.ListMargin != null)
                     {
-                        listBackgroundImageX = (int)dropDownAttributes.ListMargin.X;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
+                        listBackgroundImageX = (int)dropDownAttributes.ListMargin.Start;
+                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Top;
                     }
                 }
                 else if (dropDownAttributes.ListRelativeOrientation == ListOrientation.Right)
@@ -845,8 +844,8 @@ namespace Tizen.NUI.Components
                         {
                             listWidth = list.Size2D.Width;
                         }
-                        listBackgroundImageX = Size2D.Width - listWidth - (int)dropDownAttributes.ListMargin.Y;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
+                        listBackgroundImageX = Size2D.Width - listWidth - (int)dropDownAttributes.ListMargin.End;
+                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Top;
                     }
                 }
                 listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
@@ -1110,7 +1109,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
                     WidthResizePolicy = ResizePolicyType.UseNaturalSize,
                     HeightResizePolicy = ResizePolicyType.FillToParent,
-                    Position2D = new Position2D(0, 0),
+                    Position = new Position(0, 0),
                     HorizontalAlignment = HorizontalAlignment.Begin,
                     VerticalAlignment = VerticalAlignment.Center,
                 };
@@ -1230,15 +1229,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D Size2D
+            public Size Size
             {
                 get
                 {
-                    return itemDataAttributes.Size2D;
+                    return itemDataAttributes.Size;
                 }
                 set
                 {
-                    itemDataAttributes.Size2D = value;
+                    itemDataAttributes.Size = value;
                 }
             }
 
@@ -1345,16 +1344,16 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D TextPosition2D
+            public Position TextPosition
             {
                 get
                 {
-                    return itemDataAttributes.TextAttributes?.Position2D;
+                    return itemDataAttributes.TextAttributes?.Position;
                 }
                 set
                 {
                     CreateTextAttributes();
-                    itemDataAttributes.TextAttributes.Position2D = value;
+                    itemDataAttributes.TextAttributes.Position = value;
                 }
             }
 
@@ -1390,16 +1389,16 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D IconSize2D
+            public Size IconSize
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes?.Size2D;
+                    return itemDataAttributes.IconAttributes?.Size;
                 }
                 set
                 {
                     CreateIconAttributes();
-                    itemDataAttributes.IconAttributes.Size2D = value;
+                    itemDataAttributes.IconAttributes.Size = value;
                 }
             }
 
@@ -1409,16 +1408,16 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D IconPosition2D
+            public Position IconPosition
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes.Position2D;
+                    return itemDataAttributes.IconAttributes.Position;
                 }
                 set
                 {
                     CreateIconAttributes();
-                    itemDataAttributes.IconAttributes.Position2D = value;
+                    itemDataAttributes.IconAttributes.Position = value;
                 }
             }
 
@@ -1454,16 +1453,16 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D CheckImageSize2D
+            public Size CheckImageSize
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageAttributes?.Size2D;
+                    return itemDataAttributes.CheckImageAttributes?.Size;
                 }
                 set
                 {
                     CreateCheckImageAttributes();
-                    itemDataAttributes.CheckImageAttributes.Size2D = value;
+                    itemDataAttributes.CheckImageAttributes.Size = value;
                 }
             }
 
@@ -1477,11 +1476,11 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageRightSpace;
+                    return itemDataAttributes.CheckImageGapToBoundary;
                 }
                 set
                 {
-                    itemDataAttributes.CheckImageRightSpace = value;
+                    itemDataAttributes.CheckImageGapToBoundary = value;
                 }
             }
 
@@ -1657,7 +1656,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D TextPosition2D
+            public Position TextPosition
             {
                 get
                 {
@@ -1665,12 +1664,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mText.Position2D;
+                    return mText.Position;
                 }
                 set
                 {
                     CreateText();
-                    mText.Position2D = value;
+                    mText.Position = value;
                 }
             }
 
@@ -1695,7 +1694,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D IconSize2D
+            public Size IconSize
             {
                 get
                 {
@@ -1703,18 +1702,18 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mIcon.Size2D;
+                    return mIcon.Size;
                 }
                 set
                 {
                     CreateIcon();
-                    mIcon.Size2D = value;
+                    mIcon.Size = value;
                 }
             }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D IconPosition2D
+            public Position IconPosition
             {
                 get
                 {
@@ -1722,12 +1721,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mIcon.Position2D;
+                    return mIcon.Position;
                 }
                 set
                 {
                     CreateIcon();
-                    mIcon.Position2D = value;
+                    mIcon.Position = value;
                 }
             }
 
@@ -1752,7 +1751,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D CheckPosition2D
+            public Position CheckPosition
             {
                 get
                 {
@@ -1760,18 +1759,18 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mCheck.Position2D;
+                    return mCheck.Position;
                 }
                 set
                 {
                     CreateCheckImage();
-                    mCheck.Position2D = value;
+                    mCheck.Position = value;
                 }
             }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D CheckImageSize2D
+            public Size CheckImageSize
             {
                 get
                 {
@@ -1779,12 +1778,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mCheck.Size2D;
+                    return mCheck.Size;
                 }
                 set
                 {
                     CreateCheckImage();
-                    mCheck.Size2D = value;
+                    mCheck.Size = value;
                 }
             }
 
@@ -2001,9 +2000,9 @@ namespace Tizen.NUI.Components
                 }
                 DropDownItemView listItemView = holder.ItemView as DropDownItemView;
                 listItemView.Name = "Item" + position;
-                if (listItemData.Size2D != null)
+                if (listItemData.Size != null)
                 {
-                    holder.ItemView.Size2D = listItemData.Size2D;
+                    holder.ItemView.Size = listItemData.Size;
                 }
 
                 if (listItemView != null)
@@ -2014,26 +2013,26 @@ namespace Tizen.NUI.Components
                         listItemView.Text = listItemData.Text;
                         listItemView.PointSize = listItemData.PointSize;
                         listItemView.FontFamily = listItemData.FontFamily;
-                        listItemView.TextPosition2D = listItemData.TextPosition2D;
+                        listItemView.TextPosition = listItemData.TextPosition;
                     }
 
                     if (listItemData.IconResourceUrl != null)
                     {
                         listItemView.IconResourceUrl = listItemData.IconResourceUrl;
-                        listItemView.IconSize2D = listItemData.IconSize2D;
-                        if (listItemView.IconSize2D != null)
+                        listItemView.IconSize = listItemData.IconSize;
+                        if (listItemView.IconSize != null)
                         {
-                            listItemView.IconPosition2D = new Position2D(listItemData.IconPosition2D.X, (listItemView.Size2D.Height - listItemView.IconSize2D.Height) / 2);
+                            listItemView.IconPosition = new Position(listItemData.IconPosition.X, (listItemView.Size2D.Height - listItemView.IconSize.Height) / 2);
                         }
                     }
 
                     if (listItemData.CheckImageResourceUrl != null)
                     {
                         listItemView.CheckResourceUrl = listItemData.CheckImageResourceUrl;
-                        listItemView.CheckImageSize2D = listItemData.CheckImageSize2D;
-                        if (listItemView.CheckImageSize2D != null)
+                        listItemView.CheckImageSize = listItemData.CheckImageSize;
+                        if (listItemView.CheckImageSize != null)
                         {
-                            listItemView.CheckPosition2D = new Position2D(listItemView.Size2D.Width - listItemData.CheckImageRightSpace - listItemView.CheckImageSize2D.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize2D.Height) / 2);
+                            listItemView.CheckPosition = new Position(listItemView.Size2D.Width - listItemData.CheckImageRightSpace - listItemView.CheckImageSize.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize.Height) / 2);
                         }
                     }
 

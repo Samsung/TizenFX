@@ -44,6 +44,8 @@ namespace Tizen.NUI.Components
 
         private SelectButtonAttributes selectButtonAttributes;
 
+        private Extents selectableImagePadding = null;
+
         /// <summary>
         /// Creates a new instance of a SelectButton.
         /// </summary>
@@ -208,16 +210,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D CheckImageSize2D
+        public Size CheckImageSize
         {
             get
             {
-                return selectButtonAttributes?.CheckImageAttributes?.Size2D ?? new Size2D(0, 0);
+                return selectButtonAttributes?.CheckImageAttributes?.Size ?? new Size(0, 0, 0);
             }
             set
             {
                 CreateCheckImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.Size2D = value;
+                selectButtonAttributes.CheckImageAttributes.Size = value;
                 RelayoutRequest();
             }
         }
@@ -422,92 +424,49 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImagePaddingLeft
+        public Extents SelectableImagePadding
         {
             get
             {
-                return selectButtonAttributes?.CheckImageAttributes?.PaddingLeft ?? 0;
+                return selectableImagePadding;
             }
             set
             {
                 CreateCheckImageAttributes();
                 CreateCheckBackgroundImageAttributes();
                 CreateCheckShadowImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.PaddingLeft = value;
-                selectButtonAttributes.CheckBackgroundImageAttributes.PaddingLeft = value;
-                selectButtonAttributes.CheckShadowImageAttributes.PaddingLeft = value;
-                RelayoutRequest();
-            }
-        }
 
-        /// <summary>
-        /// CheckImage right padding in SelectButton.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImagePaddingRight
-        {
-            get
-            {
-                return selectButtonAttributes?.CheckImageAttributes?.PaddingRight ?? 0;
-            }
-            set
-            {
-                CreateCheckImageAttributes();
-                CreateCheckBackgroundImageAttributes();
-                CreateCheckShadowImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.PaddingRight = value;
-                selectButtonAttributes.CheckBackgroundImageAttributes.PaddingRight = value;
-                selectButtonAttributes.CheckShadowImageAttributes.PaddingRight = value;
-                RelayoutRequest();
-            }
-        }
+                selectButtonAttributes.CheckImageAttributes.Padding.CopyFrom(value);
+                selectButtonAttributes.CheckBackgroundImageAttributes.Padding.CopyFrom(value);
+                selectButtonAttributes.CheckShadowImageAttributes.Padding.CopyFrom(value);
 
-        /// <summary>
-        /// CheckImage top padding in SelectButton.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImagePaddingTop
-        {
-            get
-            {
-                return selectButtonAttributes?.CheckImageAttributes?.PaddingTop ?? 0;
-            }
-            set
-            {
-                CreateCheckImageAttributes();
-                CreateCheckBackgroundImageAttributes();
-                CreateCheckShadowImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.PaddingTop = value;
-                selectButtonAttributes.CheckBackgroundImageAttributes.PaddingTop = value;
-                selectButtonAttributes.CheckShadowImageAttributes.PaddingTop = value;
-                RelayoutRequest();
-            }
-        }
+                if (null == selectableImagePadding)
+                {
+                    selectableImagePadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        selectButtonAttributes.CheckImageAttributes.Padding.Start = start;
+                        selectButtonAttributes.CheckImageAttributes.Padding.End = end;
+                        selectButtonAttributes.CheckImageAttributes.Padding.Top = top;
+                        selectButtonAttributes.CheckImageAttributes.Padding.Bottom = bottom;
 
-        /// <summary>
-        /// CheckImage bottom padding in SelectButton.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImagePaddingBottom
-        {
-            get
-            {
-                return selectButtonAttributes?.CheckImageAttributes?.PaddingBottom ?? 0;
-            }
-            set
-            {
-                CreateCheckImageAttributes();
-                CreateCheckBackgroundImageAttributes();
-                CreateCheckShadowImageAttributes();
-                selectButtonAttributes.CheckImageAttributes.PaddingBottom = value;
-                selectButtonAttributes.CheckBackgroundImageAttributes.PaddingBottom = value;
-                selectButtonAttributes.CheckShadowImageAttributes.PaddingBottom = value;
+                        selectButtonAttributes.CheckBackgroundImageAttributes.Padding.Start = start;
+                        selectButtonAttributes.CheckBackgroundImageAttributes.Padding.End = end;
+                        selectButtonAttributes.CheckBackgroundImageAttributes.Padding.Top = top;
+                        selectButtonAttributes.CheckBackgroundImageAttributes.Padding.Bottom = bottom;
+
+                        selectButtonAttributes.CheckShadowImageAttributes.Padding.Start = start;
+                        selectButtonAttributes.CheckShadowImageAttributes.Padding.End = end;
+                        selectButtonAttributes.CheckShadowImageAttributes.Padding.Top = top;
+                        selectButtonAttributes.CheckShadowImageAttributes.Padding.Bottom = bottom;
+
+                        RelayoutRequest();
+                    }, value.Start, value.End, value.Top, value.Bottom);
+                }
+                else
+                {
+                    selectableImagePadding.CopyFrom(value);
+                }
+
                 RelayoutRequest();
             }
         }
@@ -740,19 +699,19 @@ namespace Tizen.NUI.Components
                 selectButtonAttributes.TextAttributes.WidthResizePolicy = ResizePolicyType.Fixed;
                 selectButtonAttributes.TextAttributes.HeightResizePolicy = ResizePolicyType.Fixed;
 
-                int iconWidth = CheckImageSize2D.Width;
+                int iconWidth = (int)CheckImageSize.Width;
 
-                int textPaddingLeft = selectButtonAttributes.TextAttributes.PaddingLeft;
-                int textPaddingRight = selectButtonAttributes.TextAttributes.PaddingRight;
+                int textPaddingLeft = selectButtonAttributes.TextAttributes.Padding.Start;
+                int textPaddingRight = selectButtonAttributes.TextAttributes.Padding.End;
 
-                if(selectButtonAttributes.TextAttributes.Size2D == null)
+                if(selectButtonAttributes.TextAttributes.Size == null)
                 {
-                    selectButtonAttributes.TextAttributes.Size2D = new Size2D(Size2D.Width - iconWidth - CheckImagePaddingLeft - CheckImagePaddingRight - textPaddingLeft - textPaddingRight, Size2D.Height);
+                    selectButtonAttributes.TextAttributes.Size = new Size(Size2D.Width - iconWidth - SelectableImagePadding.Start - SelectableImagePadding.End - textPaddingLeft - textPaddingRight, Size2D.Height);
                 }
                 
-                if(selectButtonAttributes.TextAttributes.Position2D == null)
+                if(selectButtonAttributes.TextAttributes.Position == null)
                 {
-                    selectButtonAttributes.TextAttributes.Position2D = new Position2D(CheckImagePaddingLeft + iconWidth + CheckImagePaddingRight + textPaddingLeft, 0);
+                    selectButtonAttributes.TextAttributes.Position = new Position(SelectableImagePadding.Start + iconWidth + SelectableImagePadding.End + textPaddingLeft, 0);
                 }
                 
                 selectButtonAttributes.TextAttributes.VerticalAlignment = VerticalAlignment.Center;
@@ -768,24 +727,34 @@ namespace Tizen.NUI.Components
 
             UpdateTextAttributes();
 
-            int iconWidth = CheckImageSize2D.Width;
+            int iconWidth = (int)CheckImageSize.Width;
 
-            int textPaddingLeft = selectButtonAttributes.TextAttributes.PaddingLeft;
-            int textPaddingRight = selectButtonAttributes.TextAttributes.PaddingRight;
-
+            int textPaddingLeft = selectButtonAttributes.TextAttributes.Padding.Start;
+            int textPaddingRight = selectButtonAttributes.TextAttributes.Padding.End;
+            int pos = 0;
             if (LayoutDirection == ViewLayoutDirectionType.RTL)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.End;
-                selectButtonAttributes.TextAttributes.Position2D.X = textPaddingRight;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = selectButtonAttributes.TextAttributes.Size2D.Width + textPaddingLeft + textPaddingRight + IconPaddingRight;
+                selectButtonAttributes.TextAttributes.Position.X = textPaddingRight;
+				pos = (int)(selectButtonAttributes.TextAttributes.Size.Width) + textPaddingLeft + textPaddingRight;
+                if (IconPadding != null)
+				{
+                    pos += IconPadding.End;
+				}
 
             }
             else if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
                 selectButtonAttributes.TextAttributes.HorizontalAlignment = HorizontalAlignment.Begin;
-                selectButtonAttributes.TextAttributes.Position2D.X = IconPaddingLeft + iconWidth + IconPaddingRight + textPaddingLeft;
-                checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = IconPaddingLeft;
+                selectButtonAttributes.TextAttributes.Position.X = iconWidth + textPaddingLeft;
+                if (IconPadding != null)
+				{
+                    selectButtonAttributes.TextAttributes.Position.X += (IconPadding.Start + IconPadding.End); 
+                    pos = IconPadding.Start;
+				}
             }
+			
+			checkShadowImage.Position2D.X = checkBackgroundImage.Position2D.X = checkImage.Position2D.X = pos;
 
         }
 

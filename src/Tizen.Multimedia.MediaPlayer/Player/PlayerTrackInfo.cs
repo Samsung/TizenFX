@@ -48,7 +48,7 @@ namespace Tizen.Multimedia
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
+        /// <exception cref="NotAvailableException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
         ///     -or-<br/>
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
@@ -79,13 +79,14 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="index"/> is less than zero.<br/>
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>.
+        /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public string GetLanguageCode(int index)
@@ -134,14 +135,15 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
-        ///     The <see cref="Player"/> that this instance belongs to is not in the valid state.<br/>
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     The <see cref="Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.<br/>
         ///     -or-<br/>
         ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>.
+        /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
         public int Selected
