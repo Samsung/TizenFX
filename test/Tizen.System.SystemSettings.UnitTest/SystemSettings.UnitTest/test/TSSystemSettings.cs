@@ -2036,20 +2036,29 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static void AutomaticTimeUpdate_READ_WRITE()
         {
-            LogUtils.StartTest();
-            /* TEST CODE */
-            bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
-            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: AutomaticTimeUpdate not an instance of bool");
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = true;
-            Assert.IsTrue(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = false;
-            Assert.IsFalse(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
-            LogUtils.WriteOK();
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
+                Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: AutomaticTimeUpdate not an instance of bool");
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = true;
+                Assert.IsTrue(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = false;
+                Assert.IsFalse(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
+                LogUtils.WriteOK();
+            } catch (NotSupportedException) {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/network.telephony)");
+                LogUtils.NotSupport();
+            }
         }
 
         private static bool s_automaticTimeUpdateCallbackCalled = false;
-        private static bool s_automaticTimeUpdateValue = !Tizen.System.SystemSettings.AutomaticTimeUpdate;
+        private static bool s_automaticTimeUpdateValue = false;
         ////[Test]
         //[Category("P1")]
         //[Description("Check if callback to SystemSettings:AutomaticTimeUpdateSettingChanged event is called")]
@@ -2059,26 +2068,36 @@ namespace SystemSettingsUnitTest
         //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
         public static async Task AutomaticTimeUpdateSettingChanged_CHECK_EVENT()
         {
-            LogUtils.StartTest();
-            /* TEST CODE */
-            Tizen.System.SystemSettings.AutomaticTimeUpdateChanged += OnAutomaticTimeUpdateChanged;
-            bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-            await Task.Delay(2000);
-            Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
-            s_automaticTimeUpdateCallbackCalled = false;
-            s_automaticTimeUpdateValue = !s_automaticTimeUpdateValue;
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-            await Task.Delay(2000);
-            Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
-            s_automaticTimeUpdateCallbackCalled = false;
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                s_automaticTimeUpdateValue = !Tizen.System.SystemSettings.AutomaticTimeUpdate;
+                Tizen.System.SystemSettings.AutomaticTimeUpdateChanged += OnAutomaticTimeUpdateChanged;
+                bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+                await Task.Delay(2000);
+                Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_automaticTimeUpdateCallbackCalled = false;
+                s_automaticTimeUpdateValue = !s_automaticTimeUpdateValue;
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+                await Task.Delay(2000);
+                Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_automaticTimeUpdateCallbackCalled = false;
 
-            Tizen.System.SystemSettings.AutomaticTimeUpdateChanged -= OnAutomaticTimeUpdateChanged;
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
-            await Task.Delay(2000);
-            Assert.IsFalse(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
-            Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
-            LogUtils.WriteOK();
+                Tizen.System.SystemSettings.AutomaticTimeUpdateChanged -= OnAutomaticTimeUpdateChanged;
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+                await Task.Delay(2000);
+                Assert.IsFalse(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
+                LogUtils.WriteOK();
+            } catch (NotSupportedException) {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/network.telephony)");
+                LogUtils.NotSupport();
+            }
         }
         private static void OnAutomaticTimeUpdateChanged(object sender, Tizen.System.AutomaticTimeUpdateChangedEventArgs e)
         {
