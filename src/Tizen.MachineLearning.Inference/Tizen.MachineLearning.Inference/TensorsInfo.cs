@@ -39,9 +39,13 @@ namespace Tizen.MachineLearning.Inference
         /// <summary>
         /// Creates a TensorsInfo instance.
         /// </summary>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public TensorsInfo()
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             Log.Info(NNStreamer.TAG, "TensorsInfo is created");
             _infoList = new List<TensorInfo>();
         }
@@ -67,6 +71,8 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public void AddTensorInfo(TensorType type, int[] dimension)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             AddTensorInfo(null, type, dimension);
         }
 
@@ -83,6 +89,8 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public void AddTensorInfo(string name, TensorType type, int[] dimension)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             int idx = _infoList.Count;
             if (idx >= Tensor.SizeLimit) {
                 throw new IndexOutOfRangeException("Max size of the tensors is " + Tensor.SizeLimit);
@@ -93,11 +101,9 @@ namespace Tizen.MachineLearning.Inference
             {
                 NNStreamerError ret = NNStreamerError.None;
 
-                /* Set the number of tensors */
                 ret = Interop.Util.SetTensorsCount(_handle, _infoList.Count);
                 NNStreamer.CheckException(ret, "unable to set the number of tensors");
 
-                /* Set the type and dimension of Tensor */
                 ret = Interop.Util.SetTensorType(_handle, idx, type);
                 NNStreamer.CheckException(ret, "fail to set TensorsInfo type");
 
@@ -118,6 +124,8 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public void SetTensorName(int idx, string name)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             _infoList[idx].Name = name;
 
@@ -135,9 +143,12 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="idx">The index of the tensor.</param>
         /// <returns>The tensor name.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public string GetTensorName(int idx)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             return _infoList[idx].Name;
         }
@@ -154,6 +165,8 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public void SetTensorType(int idx, TensorType type)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             _infoList[idx].Type = type;
 
@@ -172,9 +185,12 @@ namespace Tizen.MachineLearning.Inference
         /// <returns>The tensor type</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public TensorType GetTensorType(int idx)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             return _infoList[idx].Type;
         }
@@ -191,6 +207,8 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public void SetDimension(int idx, int[] dimension)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             _infoList[idx].SetDimension(dimension);
 
@@ -209,9 +227,12 @@ namespace Tizen.MachineLearning.Inference
         /// <returns>The tensor dimension.</returns>
         /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public int[] GetDimension(int idx)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
             return _infoList[idx].Dimension;
         }
@@ -226,9 +247,11 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public TensorsData GetTensorsData()
         {
-            IntPtr tensorsData_h;
+            IntPtr tensorsData_h = IntPtr.Zero;
             TensorsData retTensorData;
             NNStreamerError ret = NNStreamerError.None;
+
+            NNStreamer.CheckNNStreamerSupport();
 
             if (_handle == IntPtr.Zero)
             {
@@ -238,7 +261,6 @@ namespace Tizen.MachineLearning.Inference
 
             ret = Interop.Util.CreateTensorsData(_handle, out tensorsData_h);
             NNStreamer.CheckException(ret, "unable to create the tensorsData object");
-            Log.Info(NNStreamer.TAG, "success to CreateTensorsData()\n");
 
             retTensorData = TensorsData.CreateFromNativeHandle(tensorsData_h);
 
@@ -248,7 +270,7 @@ namespace Tizen.MachineLearning.Inference
         internal IntPtr GetTensorsInfoHandle()
         {
             NNStreamerError ret = NNStreamerError.None;
-            IntPtr ret_handle;
+            IntPtr ret_handle = IntPtr.Zero;
             int idx;
 
             /* Already created */
@@ -314,8 +336,8 @@ namespace Tizen.MachineLearning.Inference
             // release unmanaged objects
             if (_handle != IntPtr.Zero)
             {
-                NNStreamerError ret = NNStreamerError.None;
-                ret = Interop.Util.DestroyTensorsInfo(_handle);
+                NNStreamerError ret = Interop.Util.DestroyTensorsInfo(_handle);
+
                 if (ret != NNStreamerError.None)
                 {
                     Log.Error(NNStreamer.TAG, "failed to destroy TensorsInfo object");

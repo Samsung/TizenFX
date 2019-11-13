@@ -16,6 +16,7 @@
 
 using System;
 using System.IO;
+using Tizen.System;
 
 namespace Tizen.MachineLearning.Inference
 {
@@ -163,6 +164,10 @@ namespace Tizen.MachineLearning.Inference
     {
         internal const string TAG = "ML.Inference";
 
+        internal const string FeatureKey = "http://tizen.org/feature/machine_learning.inference";
+
+        private static int _alreadyChecked = -1;    /* -1: not yet, 0: Not Support, 1: Support */
+
         internal static void CheckException(NNStreamerError error, string msg)
         {
             if (error != NNStreamerError.None)
@@ -170,6 +175,44 @@ namespace Tizen.MachineLearning.Inference
                 Log.Error(NNStreamer.TAG, msg + ": " + error.ToString());
                 throw NNStreamerExceptionFactory.CreateException(error, msg);
             }
+        }
+
+        internal static void CheckNNStreamerSupport()
+        {
+            if (_alreadyChecked == 1)
+                return;
+
+            string msg = "Machine Learning Inference Feature is not supported.";
+            if (_alreadyChecked == 0)
+            {
+                Log.Error(NNStreamer.TAG, msg);
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.NotSupported, msg);
+            }
+
+            /* Feature Key check */
+            bool isSupported = false;
+            bool error = Information.TryGetValue<bool>(FeatureKey, out isSupported);
+            if (!error || !isSupported)
+            {
+                _alreadyChecked = 0;
+
+                Log.Error(NNStreamer.TAG, msg);
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.NotSupported, msg);
+            }
+
+            /* Check required so files */
+            try
+            {
+                Interop.Util.CheckNNFWAvailability(NNFWType.TensorflowLite, HWType.CPU, out isSupported);
+            }
+            catch (DllNotFoundException)
+            {
+                _alreadyChecked = 0;
+                Log.Error(NNStreamer.TAG, msg);
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.NotSupported, msg);
+            }
+
+            _alreadyChecked = 1;
         }
     }
 

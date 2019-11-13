@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.IO;
 
 namespace Tizen.MachineLearning.Inference
 {
@@ -63,11 +64,15 @@ namespace Tizen.MachineLearning.Inference
         public int Count
         {
             get {
+                NNStreamer.CheckNNStreamerSupport();
+
                 if (_count != Tensor.InvalidCount)
                     return _count;
 
                 NNStreamerError ret = NNStreamerError.None;
-                ret = Interop.Util.GetTensorsCount(_handle, out int count);
+                int count = 0;
+
+                ret = Interop.Util.GetTensorsCount(_handle, out count);
                 NNStreamer.CheckException(ret, "unable to get the count of TensorsData");
 
                 _count = count;
@@ -88,6 +93,14 @@ namespace Tizen.MachineLearning.Inference
         {
             NNStreamerError ret = NNStreamerError.None;
 
+            NNStreamer.CheckNNStreamerSupport();
+
+            if (buffer == null)
+            {
+                string msg = "buffer is null";
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
+            }
+
             ret = Interop.Util.SetTensorData(_handle, index, buffer, buffer.Length);
             NNStreamer.CheckException(ret, "unable to set the buffer of TensorsData: " + index.ToString());
         }
@@ -103,15 +116,18 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public byte[] GetTensorData(int index)
         {
-            byte[] retBuffer;
+            byte[] retBuffer = null;
             IntPtr raw_data;
             int size;
-
             NNStreamerError ret = NNStreamerError.None;
+
+            NNStreamer.CheckNNStreamerSupport();
+
             ret = Interop.Util.GetTensorData(_handle, index, out raw_data, out size);
             NNStreamer.CheckException(ret, "unable to get the buffer of TensorsData: " + index.ToString());
 
             retBuffer = Interop.Util.IntPtrToByteArray(raw_data, size);
+
             return retBuffer;
         }
 
@@ -142,8 +158,7 @@ namespace Tizen.MachineLearning.Inference
             // release unmanaged objects
             if (_handle != IntPtr.Zero)
             {
-                NNStreamerError ret = NNStreamerError.None;
-                ret = Interop.Util.DestroyTensorsData(_handle);
+                NNStreamerError ret = Interop.Util.DestroyTensorsData(_handle);
                 if (ret != NNStreamerError.None)
                 {
                     Log.Error(NNStreamer.TAG, "failed to destroy TensorsData object");
