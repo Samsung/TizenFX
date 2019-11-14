@@ -106,7 +106,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cb"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <param name="top"></param>

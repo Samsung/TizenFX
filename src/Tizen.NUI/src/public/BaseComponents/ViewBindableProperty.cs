@@ -1241,13 +1241,17 @@ namespace Tizen.NUI.BaseComponents
         /// MinimumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSizeProperty = BindableProperty.Create("MinimumSize", typeof(Size), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinimumSizeProperty = BindableProperty.Create("MinimumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            Size temp = (Size)newValue;
+            Size2D temp = newValue as Size2D;
             if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(new Vector2(temp.Width, temp.Height)));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+            }
+            else
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] can't set MinimumSizeProperty!");
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1262,13 +1266,17 @@ namespace Tizen.NUI.BaseComponents
         /// MaximumSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaximumSizeProperty = BindableProperty.Create("MaximumSize", typeof(Size), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaximumSizeProperty = BindableProperty.Create("MaximumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            Size temp = (Size)newValue;
+            Size2D temp = newValue as Size2D;
             if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(new Vector2(temp.Width, temp.Height)));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+            }
+            else
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] can't set MaximumSizeProperty!");
             }
         },
         defaultValueCreator: (bindable) =>
