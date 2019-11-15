@@ -255,10 +255,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CubeTransitionEffectSignal obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -338,10 +334,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CubeTransitionWaveEffect obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         internal CubeTransitionWaveEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionWaveEffect.CubeTransitionWaveEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -370,10 +362,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CubeTransitionCrossEffect obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         internal CubeTransitionCrossEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionCrossEffect.CubeTransitionCrossEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -402,10 +390,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CubeTransitionFoldEffect obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         internal CubeTransitionFoldEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CubeTransitionWaveEffect.CubeTransitionWaveEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {

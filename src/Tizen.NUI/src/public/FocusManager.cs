@@ -410,11 +410,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.FocusManager_Get(), true);
