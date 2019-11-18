@@ -436,7 +436,6 @@ namespace Tizen.NUI.UIComponents
             return str;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandlerWithReturnType<object, EventArgs, bool> _clickedEventHandler;
         private ClickedCallbackType _clickedCallback;
         private EventHandlerWithReturnType<object, EventArgs, bool> _pressedEventHandler;
@@ -461,7 +460,6 @@ namespace Tizen.NUI.UIComponents
 
         internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Button_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -1059,17 +1057,14 @@ namespace Tizen.NUI.UIComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Button.delete_Button(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Button.delete_Button(swigCPtr);
         }
 
         private void DisConnectFromSignals()

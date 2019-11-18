@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -24,11 +26,9 @@ namespace Tizen.NUI
     {
 
         private static readonly FontClient instance = FontClient.Get();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FontClient.FontClient_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal FontClient() : this(Interop.FontClient.new_FontClient__SWIG_0(), true)
@@ -395,18 +395,14 @@ namespace Tizen.NUI
 
         internal class GlyphBufferData : Disposable
         {
-            protected bool swigCMemOwn;
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             public GlyphBufferData() : this(Interop.FontClient.new_FontClient_GlyphBufferData(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            internal GlyphBufferData(global::System.IntPtr cPtr, bool cMemoryOwn)
+            internal GlyphBufferData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
             {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             }
 
             /*public byte[] Buffer
@@ -475,27 +471,11 @@ namespace Tizen.NUI
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
             }
 
-            protected override void Dispose(DisposeTypes type)
+            /// This will not be public opened.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
             {
-                if (disposed)
-                {
-                    return;
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //Because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        Interop.FontClient.delete_FontClient_GlyphBufferData(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                base.Dispose(type);
+                Interop.FontClient.delete_FontClient_GlyphBufferData(swigCPtr);
             }
         }
     }

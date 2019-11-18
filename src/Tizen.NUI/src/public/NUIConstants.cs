@@ -112,10 +112,12 @@ namespace Tizen.NUI
         /// <summary>
         /// The default draw-mode.
         /// </summary>
+        [Description("NORMAL")]
         Normal = 0,
         /// <summary>
         /// Draw the actor and its children as an overlay.
         /// </summary>
+        [Description("OVERLAY_2D")]
         Overlay2D = 1,
 
         /// <summary>
@@ -125,6 +127,7 @@ namespace Tizen.NUI
         /// Deprecated.(API Level 6) Not used.
         /// </remarks>
         [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
+        [Description("STENCIL")]
         Stencil = 3
     }
 
@@ -137,35 +140,43 @@ namespace Tizen.NUI
         /// <summary>
         /// Size is fixed as set by SetSize.
         /// </summary>
+        [Description("FIXED")]
         Fixed,
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
         /// <see cref="ViewImpl.GetNaturalSize"/>
+        [Description("USE_NATURAL_SIZE")]
         UseNaturalSize,
         /// <summary>
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
         /// </summary>
+        [Description("FILL_TO_PARENT")]
         FillToParent,
         /// <summary>
         /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
         /// </summary>
+        [Description("SIZE_RELATIVE_TO_PARENT")]
         SizeRelativeToParent,
         /// <summary>
         /// The actors size will be ( ParentSize + SizeRelativeToParentFactor ).
         /// </summary>
+        [Description("SIZE_FIXED_OFFSET_FROM_PARENT")]
         SizeFixedOffsetFromParent,
         /// <summary>
         /// The size will adjust to wrap around all children.
         /// </summary>
+        [Description("FIT_TO_CHILDREN")]
         FitToChildren,
         /// <summary>
         /// One dimension is dependent on the other.
         /// </summary>
+        [Description("DIMENSION_DEPENDENCY")]
         DimensionDependency,
         /// <summary>
         /// The size will be assigned to the actor.
         /// </summary>
+        [Description("USE_ASSIGNED_SIZE")]
         UseAssignedSize
     }
 
@@ -178,14 +189,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Use the size that was set.
         /// </summary>
+        [Description("USE_SIZE_SET")]
         UseSizeSet,
         /// <summary>
         /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
+        [Description("FIT_WITH_ASPECT_RATIO")]
         FitWithAspectRatio,
         /// <summary>
         /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
+        [Description("FILL_WITH_ASPECT_RATIO")]
         FillWithAspectRatio
     }
 
@@ -539,14 +553,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Align horizontally left.
         /// </summary>
+        [Description("left")]
         Left,
         /// <summary>
         /// Align horizontally center.
         /// </summary>
+        [Description("center")]
         Center,
         /// <summary>
         /// Align horizontally right.
         /// </summary>
+        [Description("right")]
         Right
     }
 
@@ -559,14 +576,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Align vertically top.
         /// </summary>
+        [Description("top")]
         Top,
         /// <summary>
         /// Align vertically center.
         /// </summary>
+        [Description("center")]
         Center,
         /// <summary>
         /// Align vertically bottom.
         /// </summary>
+        [Description("bottom")]
         Bottom
     }
 
@@ -648,10 +668,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Stop animation after current loop finished.
         /// </summary>
+        [Description("FINISH_LOOP")]
         FinishLoop,
         /// <summary>
         /// Stop animation immediately and reset position.
         /// </summary>
+        [Description("IMMEDIATE")]
         Immediate
     }
 

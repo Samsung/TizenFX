@@ -19,11 +19,9 @@ namespace Tizen.NUI
 {
     internal class BufferImage : Image
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal BufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.BufferImage.BufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(BufferImage obj)
@@ -31,28 +29,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.BufferImage.delete_BufferImage(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.BufferImage.delete_BufferImage(swigCPtr);
         }
 
         public BufferImage(uint width, uint height, PixelFormat pixelformat) : this(Interop.BufferImage.BufferImage_New__SWIG_0(width, height, (int)pixelformat), true)

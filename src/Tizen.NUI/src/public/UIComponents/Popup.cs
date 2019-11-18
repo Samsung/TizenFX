@@ -549,7 +549,6 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandler<TouchedOutsideEventArgs> _popUpOutsideTouchedEventHandler;
         private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
         private EventHandler<ShowingEventArgs> _popUpShowingEventHandler;
@@ -575,7 +574,6 @@ namespace Tizen.NUI.UIComponents
 
         internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Popup_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -1457,17 +1455,14 @@ namespace Tizen.NUI.UIComponents
                 this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Popup.delete_Popup(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Popup.delete_Popup(swigCPtr);
         }
 
         // Callback for Popup OutsideTouchedSignal

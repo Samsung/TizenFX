@@ -22,11 +22,9 @@ namespace Tizen.NUI
 {
     internal class ConnectionTrackerInterface : SignalObserver
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ConnectionTrackerInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ConnectionTracker.ConnectionTrackerInterface_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ConnectionTrackerInterface obj)
@@ -38,28 +36,9 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ConnectionTracker.delete_ConnectionTrackerInterface(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ConnectionTracker.delete_ConnectionTrackerInterface(swigCPtr);
         }
 
         /// <summary>
