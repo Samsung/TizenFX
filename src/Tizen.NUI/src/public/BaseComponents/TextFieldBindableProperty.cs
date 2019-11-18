@@ -181,13 +181,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("HorizontalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "BEGIN": return HorizontalAlignment.Begin;
-                case "CENTER": return HorizontalAlignment.Center;
-                case "END": return HorizontalAlignment.End;
-                default: return HorizontalAlignment.Begin;
-            }
+            return temp.GetValueByDescription<HorizontalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -208,13 +202,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("VerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "TOP": return VerticalAlignment.Top;
-                case "CENTER": return VerticalAlignment.Center;
-                case "BOTTOM": return VerticalAlignment.Bottom;
-                default: return VerticalAlignment.Bottom;
-            }
+            return temp.GetValueByDescription<VerticalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

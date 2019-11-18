@@ -896,11 +896,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            LayersChildren?.Add(layer);
-            layer.SetWindow(this);
+            Add(layer);
         }
 
         /// <summary>
@@ -910,11 +906,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
-            Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            LayersChildren?.Remove(layer);
-            layer.SetWindow(null);
+            Remove(layer);
         }
 
         /// <summary>

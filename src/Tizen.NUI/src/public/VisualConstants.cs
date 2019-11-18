@@ -63,14 +63,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Texts place at the begin of horizontal direction.
         /// </summary>
+        [Description("BEGIN")]
         Begin,
         /// <summary>
         /// Texts place at the center of horizontal direction.
         /// </summary>
+        [Description("CENTER")]
         Center,
         /// <summary>
         /// Texts place at the end of horizontal direction.
         /// </summary>
+        [Description("END")]
         End
     }
 
@@ -83,14 +86,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Texts place at the top of vertical direction.
         /// </summary>
+        [Description("TOP")]
         Top,
         /// <summary>
         /// Texts place at the center of vertical direction.
         /// </summary>
+        [Description("CENTER")]
         Center,
         /// <summary>
         /// Texts place at the bottom of vertical direction.
         /// </summary>
+        [Description("BOTTOM")]
         Bottom
     }
 
