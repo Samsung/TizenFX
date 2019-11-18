@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Applications.NotificationEx", "Tizen.Applications.NotificationEx.csproj", "{5D2F1D94-3F33-479C-B531-6381FCEE234C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D2F1D94-3F33-479C-B531-6381FCEE234C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D2F1D94-3F33-479C-B531-6381FCEE234C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D2F1D94-3F33-479C-B531-6381FCEE234C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D2F1D94-3F33-479C-B531-6381FCEE234C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CBB4E07-03AF-4A9D-854D-97433D41D556}
+	EndGlobalSection
+EndGlobal
