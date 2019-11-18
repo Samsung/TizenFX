@@ -18,11 +18,9 @@ namespace Tizen.NUI
 
         }
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal FrameCallback(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameCallback.FrameUpdateCallback_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.

@@ -27,7 +27,6 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public class InputMethodContext : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private ActivatedEventCallbackType _activatedEventCallback;
         private EventReceivedEventCallbackType _eventReceivedEventCallback;
@@ -49,7 +48,6 @@ namespace Tizen.NUI
 
         internal InputMethodContext(IntPtr cPtr, bool cMemoryOwn) : base(Interop.InputMethodContext.InputMethodContext_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -783,17 +781,14 @@ namespace Tizen.NUI
                 KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.InputMethodContext.delete_InputMethodContext(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.InputMethodContext.delete_InputMethodContext(swigCPtr);
         }
 
         private void OnActivated(IntPtr data)

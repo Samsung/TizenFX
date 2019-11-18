@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -26,7 +26,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TextureSet : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Create an instance of TextureSet.
@@ -39,7 +38,6 @@ namespace Tizen.NUI
 
         internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextureSet.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -123,32 +121,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.TextureSet.delete_TextureSet(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.TextureSet.delete_TextureSet(swigCPtr);
         }
     }
 }

@@ -29,7 +29,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
@@ -58,7 +57,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             if (!shown)
             {
@@ -1239,19 +1237,16 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    // In order to speed up IME hide, temporarily add
-                    GetInputMethodContext()?.DestroyContext();
-                    Interop.TextField.delete_TextField(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            // In order to speed up IME hide, temporarily add
+            GetInputMethodContext()?.DestroyContext();
+            Interop.TextField.delete_TextField(swigCPtr);
         }
 
         private string SetTranslatable(string textFieldSid)

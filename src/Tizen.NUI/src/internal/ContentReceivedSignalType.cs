@@ -22,16 +22,12 @@ namespace Tizen.NUI
 {
     internal class ContentReceivedSignalType : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// ContentReceivedSignalType
         /// </summary>
-        protected bool swigCMemOwn;
 
-        internal ContentReceivedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal ContentReceivedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ContentReceivedSignalType obj)
@@ -42,27 +38,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ContentReceivedSignalType.delete_ContentReceivedSignalType(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.ContentReceivedSignalType.delete_ContentReceivedSignalType(swigCPtr);
         }
 
         /// <summary>

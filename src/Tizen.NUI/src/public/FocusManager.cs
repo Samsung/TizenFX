@@ -31,7 +31,6 @@ namespace Tizen.NUI
     public class FocusManager : BaseHandle
     {
         private static readonly FocusManager instance = FocusManager.Get();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private CustomAlgorithmInterfaceWrapper _customAlgorithmInterfaceWrapper;
 
         private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> _preFocusChangeEventHandler;
@@ -51,7 +50,6 @@ namespace Tizen.NUI
 
         internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FocusManager.FocusManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal FocusManager() : this(Interop.FocusManager.new_FocusManager(), true)
