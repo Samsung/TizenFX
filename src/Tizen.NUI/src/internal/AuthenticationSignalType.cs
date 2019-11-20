@@ -27,10 +27,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(AuthenticationSignalType obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
 
         /// <summary>
         /// Dispose

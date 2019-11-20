@@ -1201,11 +1201,6 @@ namespace Tizen.NUI
             Interop.ScrollView.ScrollView_SetRulerY(swigCPtr, RulerPtr.getCPtr(ruler));
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal void ApplyConstraintToChildren(SWIGTYPE_p_Dali__Constraint constraint)
         {
             Interop.ScrollView.ScrollView_ApplyConstraintToChildren(swigCPtr, SWIGTYPE_p_Dali__Constraint.getCPtr(constraint));

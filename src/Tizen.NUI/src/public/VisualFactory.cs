@@ -87,11 +87,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VisualFactory obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal VisualBase CreateVisual(Image image)
         {
             VisualBase ret = new VisualBase(Interop.VisualFactory.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);

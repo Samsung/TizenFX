@@ -1335,11 +1335,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
