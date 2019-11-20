@@ -45,7 +45,7 @@ namespace Tizen.NUI
         /// <param name="y">The y component.</param>
         /// <param name="z">The z component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public RelativeVector3(float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(ValueCheck(x), ValueCheck(y), ValueCheck(z)), true)
+        public RelativeVector3(float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector3.Vector3_X_set(swigCPtr, ValueCheck(value));
+                Interop.Vector3.Vector3_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -97,7 +97,7 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector3.Vector3_Y_set(swigCPtr, ValueCheck(value));
+                Interop.Vector3.Vector3_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector3.Vector3_Z_set(swigCPtr, ValueCheck(value));
+                Interop.Vector3.Vector3_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator +(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Add(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator -(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Subtract(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator *(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator *(RelativeVector3 arg1, float arg2)
         {
             RelativeVector3 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator /(RelativeVector3 arg1, RelativeVector3 arg2)
         {
             RelativeVector3 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace Tizen.NUI
         public static RelativeVector3 operator /(RelativeVector3 arg1, float arg2)
         {
             RelativeVector3 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector3(Vector3 vec)
         {
-            return new RelativeVector3(ValueCheck(vec.X), ValueCheck(vec.Y), ValueCheck(vec.Z));
+            return new RelativeVector3(vec.X, vec.Y, vec.Z);
         }
 
         /// <summary>
@@ -285,56 +285,6 @@ namespace Tizen.NUI
             bool ret = Interop.Vector3.Vector3_NotEqualTo(swigCPtr, RelativeVector3.getCPtr(rhs));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal static RelativeVector3 ValueCheck(RelativeVector3 relativeVector3)
-        {
-            if (relativeVector3.X < 0.0f)
-            {
-                relativeVector3.X = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector3.X > 1.0f)
-            {
-                relativeVector3.X = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector3.Y < 0.0f)
-            {
-                relativeVector3.Y = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector3.Y > 1.0f)
-            {
-                relativeVector3.Y = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector3.Z < 0.0f)
-            {
-                relativeVector3.Z = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector3.Z > 1.0f)
-            {
-                relativeVector3.Z = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            return relativeVector3;
-        }
-
-        internal static float ValueCheck(float value)
-        {
-            if (value < 0.0f)
-            {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
         }
 
         /// <summary>
