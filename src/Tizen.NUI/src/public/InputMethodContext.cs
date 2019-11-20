@@ -1174,11 +1174,6 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             }
 
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CallbackData obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
-            }
-
             internal static CallbackData GetCallbackDataFromPtr(IntPtr cPtr)
             {
                 CallbackData ret = new CallbackData(cPtr, false);

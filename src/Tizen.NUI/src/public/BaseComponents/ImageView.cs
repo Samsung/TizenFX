@@ -867,12 +867,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImageView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal void SetImage(string url, Uint16Pair size)
         {
             if(url.Contains(".json"))
