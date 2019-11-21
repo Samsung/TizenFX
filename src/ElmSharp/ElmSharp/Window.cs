@@ -1296,5 +1296,17 @@ namespace ElmSharp
             }
             return (DisplayRotation)orientation;
         }
+
+        static void Preload()
+        {
+            Elementary.Initialize();
+            Elementary.ThemeOverlay();
+            _ = new PreloadedWindow();
+        }
+
+        /// <summary>
+        /// For internal use only
+        /// </summary>
+        internal static Window CreateWindow(string name) => PreloadedWindow.GetInstance() ?? new Window(name);
     }
 }
