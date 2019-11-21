@@ -27,10 +27,10 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr FlexLayout_CalculateLayout( global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, bool jarg4);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetWidth")]
-            public static extern global::System.IntPtr FlexLayout_GetWidth(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern float FlexLayout_GetWidth(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetHeight")]
-            public static extern global::System.IntPtr FlexLayout_GetHeight(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern float FlexLayout_GetHeight(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetNodeFrame")]
             public static extern global::System.IntPtr FlexLayout_GetNodeFrame(global::System.Runtime.InteropServices.HandleRef jarg1, int index);
