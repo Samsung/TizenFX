@@ -32,6 +32,9 @@ namespace Tizen.Applications.NotificationEx
                 case ErrorCode.None:
                     return;
                 case ErrorCode.OutOfMemory:
+                    Log.Error(LogTag, "OutOfMemory : " + errorMessage);
+                    throw new OutOfMemoryException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
+                        $"{errorMessage} - {errorCode}");
                 case ErrorCode.IO:
                 case ErrorCode.InvalidOperation:
                 case ErrorCode.DB:
@@ -40,6 +43,7 @@ namespace Tizen.Applications.NotificationEx
                 case ErrorCode.NotExistID:
                 case ErrorCode.ServiceNotReady:
                 case ErrorCode.MaxExceeded:
+                    Log.Error(LogTag, "InvalidOperation : " + errorMessage);
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");
                 case ErrorCode.InvalidParameter:

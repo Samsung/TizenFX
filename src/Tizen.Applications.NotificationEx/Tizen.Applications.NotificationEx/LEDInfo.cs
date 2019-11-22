@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The LEDInfo class.
+        /// Receives notification items related events from Reporter.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public class LEDInfo
         {
             private Color _color;
@@ -16,6 +35,11 @@ namespace Tizen.Applications.NotificationEx
                 NativeHandle = ptr;
             }
 
+            /// <summary>
+            /// Initializes LEDInfo class.
+            /// </summary>
+            /// <param name="color"> A color of led. It can not be null. </param>            
+            /// <since_tizen> 7 </since_tizen>
             public LEDInfo(Color color)
             {
                 IntPtr handle;
@@ -24,6 +48,10 @@ namespace Tizen.Applications.NotificationEx
                     ErrorFactory.ThrowException(err);
             }
 
+            /// <summary>
+            /// Destructor of the LEDInfo class.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             ~LEDInfo()
             {
                 ErrorCode err = Interop.NotificationEx.LEDInfoDestroy(NativeHandle);
@@ -31,6 +59,10 @@ namespace Tizen.Applications.NotificationEx
                     Log.Error(LogTag, "Fail to destroy LEDInfo");
             }
 
+            /// <summary>
+            /// A turning on LED period.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int OnPeriod
             {
                 get
@@ -45,6 +77,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A turning off LED period.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int OffPeriod
             {
                 get
@@ -59,6 +95,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A LED color.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Color Color
             {
                 get

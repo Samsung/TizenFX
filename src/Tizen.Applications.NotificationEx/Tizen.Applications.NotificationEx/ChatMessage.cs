@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The ChatMessage class.
+        /// Using this class, developers are able to create chat-message style notification items.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public class ChatMessage : AbstractItem
         {
             private Text _text;
@@ -13,6 +32,16 @@ namespace Tizen.Applications.NotificationEx
             private Image _image;
             private Time _time;
 
+            /// <summary>
+            /// Initializes ChatMessage class.
+            /// </summary>
+            /// <param name="id"> An item ID. </param>
+            /// <param name="name"> A message owner's name. </param>
+            /// <param name="text"> A text of message. </param>
+            /// <param name="image"> A image of message. </param>
+            /// <param name="time"> A time that message is created. </param>
+            /// <param name="type"> A message type. </param>
+            /// <since_tizen> 7 </since_tizen>
             public ChatMessage(string id, Text name, Text text, Image image, Time time, ChatMessageType type) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
@@ -26,8 +55,12 @@ namespace Tizen.Applications.NotificationEx
 
             internal ChatMessage(IntPtr ptr) : base(ptr)
             {
-            }            
+            }
 
+            /// <summary>
+            /// A text of chat-message.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Text Text
             {
                 get
@@ -44,6 +77,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A chat-message owner's name.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Text Name
             {
                 get
@@ -60,6 +97,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A image of chat-message.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Image Image
             {
                 get
@@ -76,6 +117,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A time that message is created.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Time Time
             {
                 get
@@ -92,6 +137,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A message type.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public ChatMessageType Type
             {
                 get

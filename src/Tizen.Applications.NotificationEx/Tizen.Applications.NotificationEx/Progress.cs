@@ -1,13 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The Progress class.
+        /// The progress item is proper to display data that has to be updated continuously. eg. Download percentage.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public class Progress : AbstractItem
         {
+            /// <summary>
+            /// Initializes Progress class.
+            /// </summary>
+            /// <param name="id"> An ID of the progress item. </param>
+            /// <param name="min"> A minimum value of the progress item. </param>
+            /// <param name="current"> A current value of the progress item. </param>
+            /// <param name="max"> A maximum value of the progress item. </param>
+            /// <since_tizen> 7 </since_tizen>
             public Progress(string id, float min, float current, float max) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
@@ -23,6 +50,10 @@ namespace Tizen.Applications.NotificationEx
             {
             }
 
+            /// <summary>
+            /// A current value.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public float Current
             {
                 get
@@ -37,6 +68,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A minimum value.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public float Min
             {
                 get
@@ -47,6 +82,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A maximum value.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public float Max
             {
                 get
@@ -57,6 +96,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A type of progress item.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public ProgressType Type
             {
                 get

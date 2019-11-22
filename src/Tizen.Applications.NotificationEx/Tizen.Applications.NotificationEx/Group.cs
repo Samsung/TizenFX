@@ -1,14 +1,40 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The Group class.
+        /// Using this class, developers are able to create notification items which can have other notification items as children.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public class Group : AbstractItem
         {
             private IList<AbstractItem> _children;
+
+            /// <summary>
+            /// Initializes Group class.
+            /// </summary>
+            /// <param name="id"> An ID of the Group item. </param>
+            /// <since_tizen> 7 </since_tizen>
             public Group(string id) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
@@ -24,6 +50,10 @@ namespace Tizen.Applications.NotificationEx
             {
             }
 
+            /// <summary>
+            /// A display direction of children items.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public bool IsVertical
             {
                 get
@@ -38,6 +68,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// An application label.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string AppLabel
             {
                 get
@@ -55,6 +89,10 @@ namespace Tizen.Applications.NotificationEx
                     Children = _children;
             }
 
+            /// <summary>
+            /// The children notification items.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public IList<AbstractItem> Children
             {
                 get
@@ -82,6 +120,11 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// Adds a child notification item.
+            /// </summary>
+            /// <param name="item">A notification item.</param>
+            /// <since_tizen> 7 </since_tizen>
             public void AddChild(AbstractItem item)
             {
                 if (_children == null)
@@ -90,6 +133,11 @@ namespace Tizen.Applications.NotificationEx
                 _children.Add(item);
             }
 
+            /// <summary>
+            /// Removes a child notification item.
+            /// </summary>
+            /// <param name="itemId">A notification item ID.</param>
+            /// <since_tizen> 7 </since_tizen>
             public void RemoveChild(string itemId)
             {
                 if (_children == null)

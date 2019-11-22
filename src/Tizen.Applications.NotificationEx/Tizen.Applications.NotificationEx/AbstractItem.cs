@@ -1,26 +1,47 @@
-﻿using System;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using static Interop.NotificationEx;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The AbstractItem class.
+        /// This class contains base information about notification item.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public abstract class AbstractItem
         {
             private LEDInfo _ledInfo;
-            private IList<string> _receiverGroup;
+            private IList<string> _receiverGroups;
             private AbstractAction _action;
             private Style _style;
-            private const string LogTag = "Tizen.Applications.NotificationEx";
             internal AbstractItem(IntPtr ptr)
             {
                 NativeHandle = ptr;
             }
 
+            /// <summary>
+            /// Destructor of the AbstractItem class.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             ~AbstractItem()
             {
                 Interop.NotificationEx.ItemDestroy(NativeHandle);
@@ -28,6 +49,10 @@ namespace Tizen.Applications.NotificationEx
 
             internal IntPtr NativeHandle { get; set; }
 
+            /// <summary>
+            /// The item ID.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string Id
             {
                 get
@@ -42,6 +67,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The item type.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public ItemType ItemType
             {
                 get
@@ -52,6 +81,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item's action.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public AbstractAction Action
             {
                 get
@@ -88,6 +121,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item's style.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public Style Style
             {
                 get
@@ -112,6 +149,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// Whether the notification item is visible or not.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public bool IsVisible
             {
                 get
@@ -126,6 +167,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// Whether the notification item is enabled or not.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public bool IsEnabled
             {
                 get
@@ -140,28 +185,47 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
-            public void AddReceiver(string receiver)
+            /// <summary>
+            /// Adds notification item receiver group.
+            /// </summary>
+            /// <param name="receiverGroup">The receiver group of the notification item.
+            /// If the reciever group is added to the notification item, 
+            /// only managers which are included in added groups, are able to receive the notification item.
+            /// The manager will be created with specific receiver group. 
+            /// Predefined receiver group is declared in the ReceiverGroup class.
+            /// </param>
+            /// <since_tizen> 7 </since_tizen>
+            public void AddReceiverGroup(string receiverGroup)
             {
-                if (_receiverGroup == null)
-                    _receiverGroup = new List<string>();
-                Interop.NotificationEx.ItemAddReceiver(NativeHandle, receiver);
-                _receiverGroup.Add(receiver);
+                if (_receiverGroups == null)
+                    _receiverGroups = new List<string>();
+                Interop.NotificationEx.ItemAddReceiver(NativeHandle, receiverGroup);
+                _receiverGroups.Add(receiverGroup);
             }
 
-            public void RemoveReceiver(string receiver)
+            /// <summary>
+            /// Removes notification item receiver group.
+            /// </summary>
+            /// <param name="receiverGroup">The receiver group of the notification item. </param>
+            /// <since_tizen> 7 </since_tizen>
+            public void RemoveReceiverGroup(string receiverGroup)
             {
-                if (_receiverGroup == null)
-                    _receiverGroup = new List<string>();
-                Interop.NotificationEx.ItemRemoveReceiver(NativeHandle, receiver);
-                _receiverGroup.Remove(receiver);
+                if (_receiverGroups == null)
+                    _receiverGroups = new List<string>();
+                Interop.NotificationEx.ItemRemoveReceiver(NativeHandle, receiverGroup);
+                _receiverGroups.Remove(receiverGroup);
             }
 
-            public IList<string> ReceiverGroup
+            /// <summary>
+            /// Receiver group list
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
+            public IList<string> ReceiverGroups
             {
                 get
                 {
-                    if (_receiverGroup != null)
-                        return _receiverGroup;
+                    if (_receiverGroups != null)
+                        return _receiverGroups;
 
                     IntPtr ptr;
                     int count;
@@ -172,8 +236,8 @@ namespace Tizen.Applications.NotificationEx
 
                     string[] receiverList = Util.IntPtrToStringArray(ptr, count);
                     Interop.NotificationEx.ItemFreeStringList(ptr, count);
-                    _receiverGroup = receiverList.ToList();
-                    return _receiverGroup;
+                    _receiverGroups = receiverList.ToList();
+                    return _receiverGroups;
                 }
                 set
                 {
@@ -195,17 +259,21 @@ namespace Tizen.Applications.NotificationEx
                     {
                         Interop.NotificationEx.ItemAddReceiver(NativeHandle, group);
                     }
-                    _receiverGroup = value;
+                    _receiverGroups = value;
                 }
             }
 
-            public Policy Policy
+            /// <summary>
+            /// Notification item policy
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
+            public Policies Policies
             {
                 get
                 {
                     int nativePolicy;
                     Interop.NotificationEx.ItemGetPolicy(NativeHandle, out nativePolicy);
-                    return (Policy)nativePolicy;
+                    return (Policies)nativePolicy;
                 }
                 set
                 {
@@ -213,6 +281,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// Notification item channel
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string Channel
             {
                 get
@@ -227,6 +299,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item sender application ID.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string SenderAppId
             {
                 get
@@ -237,6 +313,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item tag.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string Tag
             {
                 get
@@ -251,6 +331,11 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item hide time in second.
+            /// The veiwer of this notification item will hide it after HideTime seconds.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int HideTime
             {
                 get
@@ -263,6 +348,11 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item delete time in second.
+            /// The veiwer of this notification item will delete it after HideTime seconds.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int DeleteTime
             {
                 get
@@ -281,7 +371,11 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
-            public int InsertTime
+            /// <summary>
+            /// The notification item created time in elapsed seconds since 1/1/1970.            
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
+            public int CreatedTime
             {
                 get
                 {
@@ -294,6 +388,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item LED information.            
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public LEDInfo LEDInfo
             {
                 get
@@ -318,6 +416,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item sound path.            
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string SoundPath
             {
                 get
@@ -332,6 +434,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// The notification item vibration path.            
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public string VibrationPath
             {
                 get
@@ -346,6 +452,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// Gets the notification item main type.            
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public MainType GetMainType()
             {
                 int nativeType;
@@ -353,6 +463,19 @@ namespace Tizen.Applications.NotificationEx
                 return (MainType)nativeType;
             }
 
+            /// <summary>
+            /// Sets main item.            
+            /// </summary>
+            /// <remarks>
+            /// The main type Title and Contents are valid for Text item type.
+            /// The main type Icon is valid for Image item type.
+            /// The main type Button is valid for Button item type.
+            /// </remarks>
+            /// <param name="id">The ID of main item.</param>
+            /// <param name="type">The main item type. Only item types which declared in a MainType class are able to have a main item.</param>
+            /// <exception cref="ArgumentException">Thrown when id and type are invalid. 
+            /// The id parameter must be the notification item's ID, which has the valid type for a type parameter.</exception>
+            /// <since_tizen> 7 </since_tizen>
             public void SetMainType(string id, MainType type)
             {
                 ErrorCode err = Interop.NotificationEx.ItemSetMainType(NativeHandle, id, (int)type);
@@ -360,37 +483,39 @@ namespace Tizen.Applications.NotificationEx
                     ErrorFactory.ThrowException(err);
             }
 
+            /// <summary>
+            /// Finds the notification item by ID
+            /// </summary>
+            /// <param name="id">The ID of the notification item.</param>
+            /// <returns>If this function is working successfully, returns an abstract item otherwise null.</returns>
+            /// <since_tizen> 7 </since_tizen>
             public virtual AbstractItem FindById(string id)
             {
                 if (id == Id)
                     return this;
 
                 IntPtr ptr;
-                Interop.NotificationEx.ItemFindById(NativeHandle, id, out ptr);
+                ErrorCode err = Interop.NotificationEx.ItemFindById(NativeHandle, id, out ptr);
+                if (err == ErrorCode.NotExistID)
+                    return null;
 
-                int type;
-                ErrorCode err = Interop.NotificationEx.ItemGetType(ptr, out type);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
-                if (type != 0)
-                    return FactoryManager.CreateItem(ptr);
-
-                return null;
+                return FactoryManager.CreateItem(ptr);
             }
 
+            /// <summary>
+            /// Finds the notification item by main type
+            /// </summary>
+            /// <param name="mainType">A main type.</param>
+            /// <returns>If this function is working successfully, returns an abstract item otherwise null.</returns>
+            /// <since_tizen> 7 </since_tizen>
             public virtual AbstractItem FindByMainType(MainType mainType)
             {
                 IntPtr ptr;
-                Interop.NotificationEx.ItemFindByMainType(NativeHandle, (int)mainType, out ptr);
+                ErrorCode err = Interop.NotificationEx.ItemFindByMainType(NativeHandle, (int)mainType, out ptr);
+                if (err == ErrorCode.NotExistID)
+                    return null;
 
-                int type;
-                ErrorCode err = Interop.NotificationEx.ItemGetType(ptr, out type);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
-                if (type != 0)
-                    return FactoryManager.CreateItem(ptr);
-
-                return null;
+                return FactoryManager.CreateItem(ptr);
             }
 
             internal virtual void Serialize()
@@ -399,8 +524,8 @@ namespace Tizen.Applications.NotificationEx
                     Action = _action;
                 if (_ledInfo != null)
                     LEDInfo = _ledInfo;
-                if (_receiverGroup != null)
-                    ReceiverGroup = _receiverGroup;
+                if (_receiverGroups != null)
+                    ReceiverGroups = _receiverGroups;
                 if (_style != null)
                     Style = _style;
             }

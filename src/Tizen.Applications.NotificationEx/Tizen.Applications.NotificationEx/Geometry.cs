@@ -1,11 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 
 namespace Tizen.Applications.NotificationEx
 {
     public partial class NotificationEx
     {
+        /// <summary>
+        /// The Geometry class.
+        /// Using this class, developers are able to create a notification item's geometry data.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
         public class Geometry
         {
             private const string LogTag = "Tizen.Applications.NotificationEx";
@@ -16,6 +35,14 @@ namespace Tizen.Applications.NotificationEx
                 NativeHandle = ptr;
             }
 
+            /// <summary>
+            /// Initializes Geometry class.
+            /// </summary>
+            /// <param name="x"> A X position of the notification item. </param>
+            /// <param name="y"> A X position of the notification item. </param>
+            /// <param name="width"> A width of the notification item. </param>
+            /// <param name="height"> A height of the notification item. </param>
+            /// <since_tizen> 7 </since_tizen>
             public Geometry(int x, int y, int width, int height)
             {
                 IntPtr handle;
@@ -25,6 +52,10 @@ namespace Tizen.Applications.NotificationEx
                 NativeHandle = handle;
             }
 
+            /// <summary>
+            /// Destructor of the Geometry class.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             ~Geometry()
             {
                 ErrorCode err = Interop.NotificationEx.GeometryDestroy(NativeHandle);
@@ -32,6 +63,10 @@ namespace Tizen.Applications.NotificationEx
                     Log.Error(LogTag, "Fail to destroy geometry : " + err);
             }
 
+            /// <summary>
+            /// A x position of the notification item.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int X
             {
                 get
@@ -42,6 +77,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A y position of the notification item.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int Y
             {
                 get
@@ -52,6 +91,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A width of the notification item.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int Width
             {
                 get
@@ -62,6 +105,10 @@ namespace Tizen.Applications.NotificationEx
                 }
             }
 
+            /// <summary>
+            /// A height of the notification item.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
             public int Height
             {
                 get
