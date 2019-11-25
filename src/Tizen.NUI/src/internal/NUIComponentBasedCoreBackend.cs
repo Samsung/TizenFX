@@ -25,12 +25,24 @@ namespace Tizen.NUI
 {
     class NUIComponentBasedCoreBackend : ICoreBackend
     {
+        private Dictionary<Type, ComponentStateManger> _componentFactories;
+        public Dictionary<Type, ComponentStateManger>  ComponentFactories
+        {
+            set
+            {
+                _componentFactories = value;
+            }
+            get
+            {
+                return _componentFactories;
+            }
+        }
+
         /// <summary>
         /// Application instance to connect event.
         /// </summary>
         protected ComponentApplication _application;
         private string _stylesheet = "";
-//        private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
@@ -103,6 +115,7 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public void Run(string[] args)
         {
+            Tizen.Log.Error("MYLOG", "CoreBackend.Run");
             TizenSynchronizationContext.Initialize();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
@@ -114,23 +127,22 @@ namespace Tizen.NUI
 
             _application.MainLoop();
         }
-		
-        /// <summary>
-        /// The Initialized event callback function.
-        /// </summary>
-        /// <param name="source">The application instance.</param>
-        /// <param name="e">The event argument for Initialized.</param>
+
         private IntPtr OnCreateNative(IntPtr data)
         {
+            Tizen.Log.Error("MYLOG", "CoreBackend.OnCreateNative");
             IntPtr nativeComponentFactoryMap = IntPtr.Zero;
-/*            foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
+            int n = 0;
+            foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
             {
+                Tizen.Log.Error("MYLOG", "num : " + n);
                 nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
+                n++;
             }
-*/
+
             return nativeComponentFactoryMap;
         }
-		
+
         /// <summary>
         /// The Initialized event callback function.
         /// </summary>
@@ -138,6 +150,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
+            Tizen.Log.Error("MYLOG", "CoreBackend.OnInitialized");
             Log.Info("NUI", "NUICorebackend OnCreate Called");
             var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
@@ -150,7 +163,7 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            Log.Info("NUI", "NUICorebackend OnTerminated Called");
+            Log.Error("MYLOG", "NUICorebackend OnTerminated Called");
             var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }

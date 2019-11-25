@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.Applications;
 using Tizen.Applications.ComponentBased;
+using Tizen.Applications.ComponentBased.Common;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -29,6 +30,8 @@ namespace Tizen.NUI
     /// <since_tizen> 6 </since_tizen>
     public class NUIComponentBasedApplication : CoreApplication
     {
+
+        private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
         /// <summary>
         /// Initializes the ComponentBasedApplicationBase class.
         /// </summary>
@@ -43,6 +46,7 @@ namespace Tizen.NUI
             {
                 RegisterComponent(component.Key, component.Value);
             }
+            (Backend as NUIComponentBasedCoreBackend).ComponentFactories = _componentFactories;
         }
 
         /// <summary>
@@ -54,7 +58,6 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
-/*
             if (_componentFactories.ContainsKey(compType))
             {
                 throw new ArgumentException("Already exist type");
@@ -62,21 +65,18 @@ namespace Tizen.NUI
 
             if (typeof(FrameComponent).IsAssignableFrom(compType))
             {
-                Log.Info(LogTag, "Add frame component");
-                _componentFactories.Add(compType, new FrameComponentStateManager(compType, compId, this));
+                _componentFactories.Add(compType, new FrameComponentStateManager(compType, compId, null));
             }
             else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
-                Log.Info(LogTag, "Add service component");
-                _componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, this));
+                _componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, null));
             }
             else
             {
                 throw new ArgumentException("compType must be sub type of FrameComponent or ServiceComponent", "compType");
             }
- */
-
         }
+
 
         /// <summary>
         /// Runs the application's main loop.

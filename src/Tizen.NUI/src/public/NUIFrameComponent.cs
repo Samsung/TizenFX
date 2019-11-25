@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public override IWindowInfo CreateWindowInfo()
         {
-            Window = new Window();
+            Window = ComponentApplication.Instance.GetWindow();
 			NUIWindowInfo = new NUIWindowInfo(Window);
 
 			return NUIWindowInfo;

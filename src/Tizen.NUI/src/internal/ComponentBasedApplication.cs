@@ -63,7 +63,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = zInterop.ComponentApplication.ComponentBasedApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.ComponentApplication.ComponentBasedApplication_New(argc, argvStr, stylesheet);
 
             ComponentApplication ret = new ComponentApplication(widgetIntPtr, false);
 
@@ -164,13 +164,15 @@ namespace Tizen.NUI
 		
 		// Callback for Application InitSignal
 		private IntPtr OnApplicationCreateNative(IntPtr data)
-		{
+        {
+            Tizen.Log.Error("MYLOG", "CBA.OnApplicationCreateNative");
             IntPtr ptr = IntPtr.Zero;
 		
 			if (_applicationCreateNativeEventHandler != null)
 			{
 				ptr = _applicationCreateNativeEventHandler.Invoke(data);
 			}
+            Tizen.Log.Error("MYLOG", "ptr: " + ptr);
 		    return ptr;
 		}
 
