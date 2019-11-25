@@ -461,7 +461,7 @@ namespace Tizen.NUI
         {
             View childOwner = child.Owner;
 
-            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength(padding.Start + padding.End ),

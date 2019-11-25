@@ -1778,8 +1778,18 @@ namespace Tizen.NUI.BaseComponents
                 if (_widthPolicy >= 0)
                 {
                     _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Width = _widthPolicy;
 
+                    if(_heightPolicy>=0) // Policy an exact value
+                    {
+                        Size2D.Width = _widthPolicy;
+                    }
+                    else
+                    {
+                        // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                    }
                 }
                 _layout?.RequestLayout();
             }
@@ -1801,7 +1811,18 @@ namespace Tizen.NUI.BaseComponents
                 if (_heightPolicy >= 0)
                 {
                     _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Height = _heightPolicy;
+
+                    if(_widthPolicy>=0) // Policy an exact value
+                    {
+                        Size2D.Height = _heightPolicy;
+                    }
+                    else
+                    {
+                        // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                    }
 
                 }
                _layout?.RequestLayout();
