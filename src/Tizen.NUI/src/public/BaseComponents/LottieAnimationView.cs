@@ -29,21 +29,29 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// LottieAnimationView renders an animated vector image (Lottie file).
     /// </summary>
-    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 7 </since_tizen>
     public class LottieAnimationView : ImageView
     {
         #region Constructor, Distructor, Dispose
         /// <summary>
-        /// LottieAnimationView
+        /// LottieAnimationView constructor
         /// </summary>
         /// <param name="scale">The factor of scaling image, default : 1.0f</param>
-        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown), default : true</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="shown">false : not displayed (hidden), true : displayed (shown), default : true</param>
+        /// <remarks>
+        /// If shown parameter is false, it is not visible even the LottieAnimationView instance is created.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// LottieAnimationView myLottie = new LottieAnimationView();
+        /// LottieAnimationView myLottie2 = new LottieAnimationView(2.0f);
+        /// LottieAnimationView myLottie3 = new LottieAnimationView(1.0f, false);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7 </since_tizen>
         public LottieAnimationView(float scale = 1.0f, bool shown = true) : base()
         {
-            tlog.Fatal(tag,  $"< constructor GetId={GetId()} >");
+            tlog.Fatal(tag, $"< constructor GetId={GetId()} >");
             currentStates.url = "";
             currentStates.frame = -1;
             currentStates.loopCount = 1;
@@ -70,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            tlog.Fatal(tag,  $"<[{GetId()}] type={type}");
+            tlog.Fatal(tag, $"<[{GetId()}] type={type}");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -81,21 +89,20 @@ namespace Tizen.NUI.BaseComponents
             {
                 VisualEventSignal().Disconnect(visualEventSignalCallback);
                 finishedEventHandler = null;
-                tlog.Fatal(tag,  $"disconnect event signal");
+                tlog.Fatal(tag, $"disconnect event signal");
             }
 
             base.Dispose(type);
-            tlog.Fatal(tag,  $"[{GetId()}]>");
+            tlog.Fatal(tag, $"[{GetId()}]>");
         }
         #endregion Constructor, Distructor, Dispose
 
 
         #region Property
         /// <summary>
-        /// URL
+        /// Set or Get resource URL of Lottie file.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public string URL
         {
             set
@@ -104,7 +111,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.url = ret;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag,  $"<[{GetId()}]SET url={currentStates.url}");
+                tlog.Fatal(tag, $"<[{GetId()}]SET url={currentStates.url}");
 
                 PropertyMap map = new PropertyMap();
                 map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
@@ -116,16 +123,16 @@ namespace Tizen.NUI.BaseComponents
 
                 currentStates.contentInfo = null;
 
-                if(currentStates.scale != 1.0f)
+                if (currentStates.scale != 1.0f)
                 {
                     Scale = new Vector3(currentStates.scale, currentStates.scale, 0.0f);
                 }
-                tlog.Fatal(tag,  $"<[{GetId()}]>");
+                tlog.Fatal(tag, $"<[{GetId()}]>");
             }
             get
             {
                 string ret = currentStates.url;
-                tlog.Fatal(tag,  $"<[{GetId()}] GET");
+                tlog.Fatal(tag, $"<[{GetId()}] GET");
 
                 PropertyMap map = Image;
                 if (map != null)
@@ -135,7 +142,7 @@ namespace Tizen.NUI.BaseComponents
                     {
                         if (val.Get(out ret))
                         {
-                            tlog.Fatal(tag,  $"gotten url={ret} >");
+                            tlog.Fatal(tag, $"gotten url={ret} >");
                             return ret;
                         }
                     }
@@ -146,15 +153,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The playing state
+        /// Get playing state
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public PlayStateType PlayState
         {
             get
             {
-                tlog.Fatal(tag,  $"< Get!");
+                tlog.Fatal(tag, $"< Get!");
                 PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
@@ -165,7 +171,7 @@ namespace Tizen.NUI.BaseComponents
                         if (val.Get(out ret))
                         {
                             currentStates.playState = (PlayStateType)ret;
-                            tlog.Fatal(tag,  $"gotten play state={ret} >");
+                            tlog.Fatal(tag, $"gotten play state={ret} >");
                             return currentStates.playState;
                         }
                     }
@@ -176,10 +182,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The number of total frame
+        /// Get the number of total frame
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public int TotalFrame
         {
             get
@@ -205,16 +210,30 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// CurrentFrameNumber
+        /// Set or Get current frame. When setting a specific frame, it is displayed as a still image.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Giving user set value when getting. If the out ranged frame is set, it is reset as minimum frame or maximum frame.
+        /// </remarks>
+        /// <example>
+        /// Let's say myLottie.json file has 100 frames originally, then it will have 0 ~ 99 range of frame index.
+        /// <code>
+        /// LottieAnimationView myLottie = new LottieAnimationView();
+        /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
+        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// myLottie.CurrentFrame = 200; //display 99 frame
+        /// myLottie.SetMinMaxFrame(10, 20);
+        /// myLottie.CurrentFrame = 15; //display 15 frame
+        /// myLottie.CurrentFrame = 50; //display 20 frame, because the MinMax is set (10,20) above
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7 </since_tizen>
         public int CurrentFrame
         {
             set
             {
                 currentStates.frame = value;
-                tlog.Fatal(tag,  $"<[{GetId()}]SET frame={currentStates.frame}>");
+                tlog.Fatal(tag, $"<[{GetId()}]SET frame={currentStates.frame}>");
                 DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
             }
             get
@@ -239,10 +258,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Loop Mode of animation.
+        /// Set or Get looping mode of Lottie animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public LoopingModeType LoopingMode
         {
             set
@@ -250,7 +268,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.loopMode = (LoopingModeType)value;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag,  $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
+                tlog.Fatal(tag, $"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
@@ -270,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
                             //tlog.Fatal(tag,  $"gotten LoopMode={ret}");
                             if (ret != (int)currentStates.loopMode && ret > 0)
                             {
-                                tlog.Fatal(tag,  $" [ERROR][{GetId()}](LottieAnimationView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
+                                tlog.Fatal(tag, $" [ERROR][{GetId()}](LottieAnimationView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
                             }
                             currentStates.loopMode = (LoopingModeType)ret;
                             return (LoopingModeType)ret;
@@ -283,17 +301,31 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// LoopCount
+        /// Set or Get loop count. 
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Minus value means infinite loop count.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// LottieAnimationView myLottie = new LottieAnimationView();
+        /// myLottie.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "myLottie.json"; //myLottie.json's total frame is 100 (frame: 0~99)
+        /// Window.Instance.GetDefaultLayer().Add(myLottie);
+        /// myLottie.LoopCount = -1; //infinite loop
+        /// myLottie.Play();
+        /// myLottie.Stop(); //it plays continuously unless Stop() is called
+        /// myLottie.LoopCount = 2;
+        /// myLottie.Play(); //it plays only 2 times and stops automatically
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7 </since_tizen>
         public int LoopCount
         {
             set
             {
                 currentStates.changed = true;
                 currentStates.loopCount = value;
-                tlog.Fatal(tag,  $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
+                tlog.Fatal(tag, $"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
@@ -313,7 +345,7 @@ namespace Tizen.NUI.BaseComponents
                             //tlog.Fatal(tag,  $"gotten loop count={ret}");
                             if (ret != currentStates.loopCount && ret > 0)
                             {
-                                tlog.Fatal(tag,  $"<[ERROR][{GetId()}](LottieAnimationView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}>");
+                                tlog.Fatal(tag, $"<[ERROR][{GetId()}](LottieAnimationView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}>");
                             }
                             currentStates.loopCount = ret;
                             return currentStates.loopCount;
@@ -326,10 +358,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Stop Behavior (Stop End Action)
+        /// Set or Get stop behavior.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
         {
             set
@@ -337,7 +368,7 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.stopEndAction = (StopBehaviorType)value;
                 currentStates.changed = true;
 
-                tlog.Fatal(tag,  $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
+                tlog.Fatal(tag, $"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
                 DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
@@ -357,7 +388,7 @@ namespace Tizen.NUI.BaseComponents
                             //tlog.Fatal(tag,  $"gotten StopBehavior={ret}");
                             if (ret != (int)currentStates.stopEndAction)
                             {
-                                tlog.Fatal(tag,  $"<[ERROR][{GetId()}](LottieAnimationView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}>");
+                                tlog.Fatal(tag, $"<[ERROR][{GetId()}](LottieAnimationView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}>");
                             }
                             currentStates.stopEndAction = (StopBehaviorType)ret;
                             return (StopBehaviorType)ret;
@@ -373,15 +404,14 @@ namespace Tizen.NUI.BaseComponents
 
         #region Method
         /// <summary>
-        /// SetMinMaxFrame(int startFrame, int endFrame)
+        /// Set minimum and maximum frame.
         /// </summary>
-        /// <param name="minFrame"></param>
-        /// <param name="maxFrame"></param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="minFrame">minimum frame</param>
+        /// <param name="maxFrame">maximum frame</param>
+        /// <since_tizen> 7 </since_tizen>
         public void SetMinMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag,  $"< [{GetId()}] SetPlayRange({minFrame}, {maxFrame})");
+            tlog.Fatal(tag, $"< [{GetId()}] SetPlayRange({minFrame}, {maxFrame})");
 
             currentStates.changed = true;
             currentStates.framePlayRangeMin = minFrame;
@@ -394,57 +424,54 @@ namespace Tizen.NUI.BaseComponents
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
             DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            tlog.Fatal(tag,  $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
+            tlog.Fatal(tag, $"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
         /// <summary>
         /// Play Animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public new void Play()
         {
-            tlog.Fatal(tag,  $"<[{GetId()}] Play()");
+            tlog.Fatal(tag, $"<[{GetId()}] Play()");
             debugPrint();
             base.Play();
-            tlog.Fatal(tag,  $"[{GetId()}]>");
+            tlog.Fatal(tag, $"[{GetId()}]>");
         }
 
         /// <summary>
         /// Pause Animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public new void Pause()
         {
-            tlog.Fatal(tag,  $"<[{GetId()}] Pause()>");
+            tlog.Fatal(tag, $"<[{GetId()}] Pause()>");
             debugPrint();
             base.Pause();
-            tlog.Fatal(tag,  $"[{GetId()}]>");
+            tlog.Fatal(tag, $"[{GetId()}]>");
         }
 
         /// <summary>
         /// Stop Animation.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public new void Stop()
         {
-            tlog.Fatal(tag,  $"<[{GetId()}] Stop()");
+            tlog.Fatal(tag, $"<[{GetId()}] Stop()");
             debugPrint();
             base.Stop();
-            tlog.Fatal(tag,  $"[{GetId()}]>");
+            tlog.Fatal(tag, $"[{GetId()}]>");
         }
 
         /// <summary>
-        /// GetContentInfo()
+        /// Get the list of layers' information (start frame, end frame) in Lottie file.
         /// </summary>
-        /// <returns>list of Tuple (string of layer name, integer of start frame, integer of end frame)</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>List of Tuple (string of layer name, integer of start frame, integer of end frame)</returns>
+        /// <since_tizen> 7 </since_tizen>
         public List<Tuple<string, int, int>> GetContentInfo()
         {
             tlog.Fatal(tag, $"<");
-            if(currentStates.contentInfo != null)
+            if (currentStates.contentInfo != null)
             {
                 return currentStates.contentInfo;
             }
@@ -471,7 +498,7 @@ namespace Tizen.NUI.BaseComponents
 
                                 tlog.Fatal(tag, $"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
 
-                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame );
+                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
 
                                 currentStates.contentInfo?.Add(item);
                             }
@@ -487,17 +514,16 @@ namespace Tizen.NUI.BaseComponents
 
         #region Event, Enum, Struct, ETC
         /// <summary>
-        /// Animation finished event
+        /// Animation finished event.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public event EventHandler Finished
         {
             add
             {
                 if (finishedEventHandler == null)
                 {
-                    tlog.Fatal(tag,  $"<[{GetId()}] Finished eventhandler added>");
+                    tlog.Fatal(tag, $"<[{GetId()}] Finished eventhandler added>");
                     visualEventSignalCallback = onVisualEventSignal;
                     VisualEventSignal().Connect(visualEventSignalCallback);
                 }
@@ -505,7 +531,7 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                tlog.Fatal(tag,  $"<[{GetId()}] Finished eventhandler removed>");
+                tlog.Fatal(tag, $"<[{GetId()}] Finished eventhandler removed>");
                 finishedEventHandler -= value;
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
@@ -517,81 +543,69 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for what state the vector animation is in
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public enum PlayStateType
         {
             /// <summary>
             /// Invalid
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 7 </since_tizen>
             Invalid = -1,
             /// <summary>
             /// Vector Animation has stopped
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 7 </since_tizen>
             Stopped = 0,
             /// <summary>
             /// The vector animation is playing
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 7 </since_tizen>
             Playing = 1,
             /// <summary>
             /// The vector animation is paused
             /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
+            /// <since_tizen> 7 </since_tizen>
             Paused = 2
         }
 
         /// <summary>
-        /// @brief Enumeration for what to do when the animation is stopped.
+        /// Enumeration for what to do when the animation is stopped.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 7 </since_tizen>
         public enum StopBehaviorType
         {
             /// <summary>
             /// When the animation is stopped, the current frame is shown.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            /// <since_tizen> 7 </since_tizen>
             CurrentFrame,
             /// <summary>
             /// When the animation is stopped, the min frame (first frame) is shown.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            /// <since_tizen> 7 </since_tizen>
             MinimumFrame,
             /// <summary>
             /// When the animation is stopped, the max frame (last frame) is shown.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            /// <since_tizen> 7 </since_tizen>
             MaximumFrame
         }
 
         /// <summary>
-        /// @brief Enumeration for what looping mode is in.
+        /// Enumeration for what looping mode is in.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        /// <since_tizen> 7 </since_tizen>
         public enum LoopingModeType
         {
             /// <summary>
             /// When the animation arrives at the end in looping mode, the animation restarts from the beginning.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            /// <since_tizen> 7 </since_tizen>
             Restart,
             /// <summary>
             /// When the animation arrives at the end in looping mode, the animation reverses direction and runs backwards again.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            /// <since_tizen> 7 </since_tizen>
             AutoReverse
         }
         #endregion Event, Enum, Struct, ETC
@@ -689,7 +703,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnFinished()
         {
-            tlog.Fatal(tag,  $"<[{GetId()}] OnFinished()>");
+            tlog.Fatal(tag, $"<[{GetId()}] OnFinished()>");
             finishedEventHandler?.Invoke(this, null);
         }
 
@@ -702,11 +716,11 @@ namespace Tizen.NUI.BaseComponents
                 View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
                 if (v != null)
                 {
-                    tlog.Fatal(tag,  $"targetView is not null! name={v.Name}");
+                    tlog.Fatal(tag, $"targetView is not null! name={v.Name}");
                 }
                 else
                 {
-                    tlog.Fatal(tag,  $"target is something created from dali");
+                    tlog.Fatal(tag, $"target is something created from dali");
                 }
             }
             VisualEventSignalArgs e = new VisualEventSignalArgs();
@@ -714,7 +728,7 @@ namespace Tizen.NUI.BaseComponents
             e.SignalId = signalId;
             visualEventSignalHandler?.Invoke(this, e);
 
-            tlog.Fatal(tag,  $"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
+            tlog.Fatal(tag, $"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -725,10 +739,10 @@ namespace Tizen.NUI.BaseComponents
 
         private void debugPrint()
         {
-            tlog.Fatal(tag,  $"===================================");
-            tlog.Fatal(tag,  $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
-            tlog.Fatal(tag,  $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopingMode}, LoopCount={LoopCount}, PlayState={PlayState} >");
-            tlog.Fatal(tag,  $"===================================");
+            tlog.Fatal(tag, $"===================================");
+            tlog.Fatal(tag, $"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
+            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopingMode}, LoopCount={LoopCount}, PlayState={PlayState} >");
+            tlog.Fatal(tag, $"===================================");
         }
         #endregion Private
     }
