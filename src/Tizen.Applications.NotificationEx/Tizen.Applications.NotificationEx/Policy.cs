@@ -28,16 +28,16 @@ namespace Tizen.Applications.NotificationEx
         /// <summary>
         /// No specific policy.
         /// </summary>
-        None,
+        None = 0,
 
         /// <summary>
         /// The policy that delete a notification when the device is rebooted.
         /// </summary>
-        OnBootClear,
+        OnBootClear = 1 << 0,
 
         /// <summary>
         /// The policy that display a notification when the sim card is inserted.
         /// </summary>
-        SimMode
+        SimMode = 1 << 1,
     }
 }

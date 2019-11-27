@@ -91,7 +91,7 @@ namespace Tizen.Applications.NotificationEx
             /// Executes action.
             /// </summary>
             /// <param name="item"> An item which action will be executed. </param>
-            /// <exception cref="InvalidOperationException">Thrown when the item prameter is not valid.</exception>
+            /// <exception cref="ArgumentException">Thrown when the item prameter is not valid.</exception>
             /// <since_tizen> 7 </since_tizen>
             public virtual void Execute(AbstractItem item)
             {

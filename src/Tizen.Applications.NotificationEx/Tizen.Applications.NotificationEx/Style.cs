@@ -44,12 +44,10 @@ namespace Tizen.Applications.NotificationEx
             {
                 IntPtr handle;
 
-                ErrorCode err = Interop.NotificationEx.StyleCreate(out handle,
+                Interop.NotificationEx.StyleCreate(out handle,
                     color == null ? IntPtr.Zero : color.NativeHandle,
                     padding == null ? IntPtr.Zero : padding.NativeHandle,
-                    geometry == null ? IntPtr.Zero : geometry.NativeHandle);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                    geometry == null ? IntPtr.Zero : geometry.NativeHandle);                
                 NativeHandle = handle;
             }
 

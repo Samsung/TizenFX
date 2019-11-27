@@ -65,18 +65,39 @@ namespace Tizen.Applications.NotificationEx
 
             private void OnAddNative(IntPtr handle, IntPtr info, IntPtr addedItems, int count, IntPtr userData)
             {
-                IList<AbstractItem> itemList = Util.IntPtrToList(addedItems, count);
-                OnAdd(new EventInfo(info), itemList);
+                try
+                {
+                    IList<AbstractItem> itemList = Util.IntPtrToList(addedItems, count);
+                    OnAdd(new EventInfo(info), itemList);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(LogTag, ex.ToString());
+                }
             }
 
             private void OnUpdateNative(IntPtr handle, IntPtr info, IntPtr updatedItem, IntPtr userData)
             {
-                OnUpdate(new EventInfo(handle), FactoryManager.CreateItem(updatedItem));
+                try
+                {
+                    OnUpdate(new EventInfo(handle), updatedItem == IntPtr.Zero ? null : FactoryManager.CreateItem(updatedItem));
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(LogTag, ex.ToString());
+                }
             }
 
             private void OnDeleteNative(IntPtr handle, IntPtr info, IntPtr deletedItem, IntPtr userData)
             {
-                OnDelete(new EventInfo(handle), FactoryManager.CreateItem(deletedItem));
+                try
+                {
+                    OnDelete(new EventInfo(handle), deletedItem == IntPtr.Zero ? null : FactoryManager.CreateItem(deletedItem));
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(LogTag, ex.ToString());
+                }                
             }
 
             private void OnErrorNative(IntPtr handle, ErrorCode error, int requestId, IntPtr userData)
@@ -177,9 +198,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="item"> A notification item to be updated. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to update notification.</exception>
+            /// <exception cref="ArgumentException">Thrown when the item parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int Update(AbstractItem item)
             {
+                if (item == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 item.Serialize();
                 ErrorCode err = Interop.NotificationEx.ManagerUpdate(_handle, item.NativeHandle, out reqId);
@@ -194,9 +218,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="item"> A notification item to be deleted. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to delete notification.</exception>
+            /// <exception cref="ArgumentException">Thrown when the item parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int Delete(AbstractItem item)
             {
+                if (item == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 ErrorCode err = Interop.NotificationEx.ManagerDelete(_handle, item.NativeHandle, out reqId);
                 if (err != ErrorCode.None)
@@ -225,9 +252,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="item"> A notification item to be hidden. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to delete notification.</exception>
+            /// <exception cref="ArgumentException">Thrown when the item parameter is null.</exception>
             /// <since_tizen> 7 </since_tizen>
             public int Hide(AbstractItem item)
             {
+                if (item == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 item.Serialize();
                 ErrorCode err = Interop.NotificationEx.ManagerHide(_handle, item.NativeHandle, out reqId);
@@ -250,11 +280,10 @@ namespace Tizen.Applications.NotificationEx
             {
                 IntPtr ptr;
                 ErrorCode err = Interop.NotificationEx.ManagerFindByRootID(_handle, rootId, out ptr);
-                if (err == ErrorCode.NotExistID)
-                    return null;
-
                 if (err != ErrorCode.None)
                     ErrorFactory.ThrowException(err);
+                if (ptr == IntPtr.Zero)
+                    return null;
                 return FactoryManager.CreateItem(ptr);
             }
 

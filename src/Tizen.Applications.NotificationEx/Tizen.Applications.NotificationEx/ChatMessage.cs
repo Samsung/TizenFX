@@ -36,16 +36,22 @@ namespace Tizen.Applications.NotificationEx
             /// Initializes ChatMessage class.
             /// </summary>
             /// <param name="id"> An item ID. </param>
-            /// <param name="name"> A message owner's name. </param>
+            /// <param name="name"> A message owner's name. It cannot be null</param>
             /// <param name="text"> A text of message. </param>
             /// <param name="image"> A image of message. </param>
-            /// <param name="time"> A time that message is created. </param>
+            /// <param name="time"> A time that message is created. It cannot be null </param>
             /// <param name="type"> A message type. </param>
+            /// <exception cref="ArgumentException">Thrown when a name or a time parameters are null. 
             /// <since_tizen> 7 </since_tizen>
             public ChatMessage(string id, Text name, Text text, Image image, Time time, ChatMessageType type) : base(((Func<IntPtr>)(delegate ()
             {
+                if (name == null || time == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.ChatMessageCreate(out handle, id, name.NativeHandle, text.NativeHandle, image.NativeHandle, time.NativeHandle, type);
+                ErrorCode err = Interop.NotificationEx.ChatMessageCreate(out handle, id, name.NativeHandle,
+                    (text == null) ? IntPtr.Zero : text.NativeHandle, 
+                    (image == null) ? IntPtr.Zero : image.NativeHandle, 
+                    time.NativeHandle, type);
                 if (err != ErrorCode.None)
                     ErrorFactory.ThrowException(err);
                 return handle;

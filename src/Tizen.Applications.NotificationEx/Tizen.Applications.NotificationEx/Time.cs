@@ -34,9 +34,12 @@ namespace Tizen.Applications.NotificationEx
             /// </summary>
             /// <param name="id"> An ID of this item. </param>
             /// <param name="dateTime"> A time value of Time item. </param>
+            /// <exception cref="ArgumentException">Thrown when the dateTime parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public Time(string id, DateTime dateTime) : base(((Func<IntPtr>)(delegate ()
             {
+                if (dateTime == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 IntPtr handle;
                 Int32 nativeTime = Convert.ToInt32((dateTime - new DateTime(1970, 1, 1)).TotalSeconds);
                 ErrorCode err = Interop.NotificationEx.TimeCreate(out handle, id, nativeTime);
@@ -61,6 +64,7 @@ namespace Tizen.Applications.NotificationEx
             /// <summary>
             /// A time value.
             /// </summary>
+            /// <exception cref="ArgumentException">Thrown when the dateTime value is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public DateTime DateTime
             {
@@ -75,6 +79,8 @@ namespace Tizen.Applications.NotificationEx
                 }
                 private set
                 {
+                    if (value == null)
+                        ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                     Interop.NotificationEx.TimeSetTime(NativeHandle, (int)(value - new DateTime(1970, 1, 1)).TotalSeconds);
                     _time = value;
                 }

@@ -38,9 +38,7 @@ namespace Tizen.Applications.NotificationEx
             public Group(string id) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.GroupCreate(out handle, id);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.GroupCreate(out handle, id);                
                 return handle;
             }))())
             {
@@ -110,12 +108,16 @@ namespace Tizen.Applications.NotificationEx
                     return _children;
                 }
                 set
-                {
+                {                    
                     Interop.NotificationEx.GroupRemoveChildren(NativeHandle);
-                    for (int i = 0; i < value.Count; i++)
+                    if (value != null)
                     {
-                        Interop.NotificationEx.GroupAddChild(NativeHandle, value[i].NativeHandle);
-                    }
+                        for (int i = 0; i < value.Count; i++)
+                        {
+                            if (value[i] != null)
+                                Interop.NotificationEx.GroupAddChild(NativeHandle, value[i].NativeHandle);
+                        }
+                    }                    
                     _children = value;
                 }
             }
@@ -124,9 +126,12 @@ namespace Tizen.Applications.NotificationEx
             /// Adds a child notification item.
             /// </summary>
             /// <param name="item">A notification item.</param>
+            /// <exception cref="ArgumentException">Thrown when the item parameter is invalid. 
             /// <since_tizen> 7 </since_tizen>
             public void AddChild(AbstractItem item)
             {
+                if (item == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 if (_children == null)
                     _children = new List<AbstractItem>();
                 Interop.NotificationEx.GroupAddChild(NativeHandle, item.NativeHandle);

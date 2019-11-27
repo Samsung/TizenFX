@@ -31,15 +31,17 @@ namespace Tizen.Applications.NotificationEx
             /// Initializes Text class.
             /// </summary>
             /// <param name="id"> The ID of this item. </param>
-            /// <param name="contents"> The contents of text item. </param>
+            /// <param name="contents"> The contents of text item. It cannot be null.</param>
             /// <param name="hyperlink"> The hyperlink value of text item. </param>
+            /// <exception cref="ArgumentException">Thrown when the contents argument is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public Text(string id, string contents, string hyperlink) : base(((Func<IntPtr>)(delegate ()
             {
+                if (contents == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
+
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.TextCreate(out handle, id, contents, hyperlink);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.TextCreate(out handle, id, contents, hyperlink);                
                 return handle;
             }))())
             {
@@ -52,6 +54,7 @@ namespace Tizen.Applications.NotificationEx
             /// <summary>
             /// The contents of text item.
             /// </summary>
+            /// <exception cref="ArgumentException">Thrown when the contents value is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public string Contents
             {
@@ -63,6 +66,9 @@ namespace Tizen.Applications.NotificationEx
                 }
                 set
                 {
+                    if (value == null)
+                        ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
+
                     Interop.NotificationEx.TextSetContents(NativeHandle, value);                    
                 }
             }

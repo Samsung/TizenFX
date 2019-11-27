@@ -194,9 +194,12 @@ namespace Tizen.Applications.NotificationEx
             /// The manager will be created with specific receiver group. 
             /// Predefined receiver group is declared in the ReceiverGroup class.
             /// </param>
+            /// <exception cref="ArgumentException">Thrown when the receiverGroup parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public void AddReceiverGroup(string receiverGroup)
             {
+                if (receiverGroup == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 if (_receiverGroups == null)
                     _receiverGroups = new List<string>();
                 Interop.NotificationEx.ItemAddReceiver(NativeHandle, receiverGroup);
@@ -207,9 +210,12 @@ namespace Tizen.Applications.NotificationEx
             /// Removes notification item receiver group.
             /// </summary>
             /// <param name="receiverGroup">The receiver group of the notification item. </param>
+            /// <exception cref="ArgumentException">Thrown when the receiverGroup parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public void RemoveReceiverGroup(string receiverGroup)
             {
+                if (receiverGroup == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 if (_receiverGroups == null)
                     _receiverGroups = new List<string>();
                 Interop.NotificationEx.ItemRemoveReceiver(NativeHandle, receiverGroup);
@@ -255,10 +261,14 @@ namespace Tizen.Applications.NotificationEx
                         }
                     }
 
-                    foreach (var group in value)
+                    if (value != null)
                     {
-                        Interop.NotificationEx.ItemAddReceiver(NativeHandle, group);
-                    }
+                        foreach (var group in value)
+                        {
+                            if (group != null)
+                                Interop.NotificationEx.ItemAddReceiver(NativeHandle, group);
+                        }
+                    }                    
                     _receiverGroups = value;
                 }
             }
@@ -372,10 +382,10 @@ namespace Tizen.Applications.NotificationEx
             }
 
             /// <summary>
-            /// The notification item created time in elapsed seconds since 1/1/1970.            
+            /// The notification item created time.
             /// </summary>
             /// <since_tizen> 7 </since_tizen>
-            public int CreatedTime
+            public DateTime CreatedTime
             {
                 get
                 {
@@ -384,7 +394,7 @@ namespace Tizen.Applications.NotificationEx
                     Interop.NotificationEx.ItemGetInfo(NativeHandle, out info);
                     Interop.NotificationEx.InfoGetTime(info, out insertTime);
 
-                    return insertTime;
+                    return new DateTime(1970, 1, 1).AddSeconds(insertTime);
                 }
             }
 
@@ -473,7 +483,7 @@ namespace Tizen.Applications.NotificationEx
             /// </remarks>
             /// <param name="id">The ID of main item.</param>
             /// <param name="type">The main item type. Only item types which declared in a MainType class are able to have a main item.</param>
-            /// <exception cref="ArgumentException">Thrown when id and type are invalid. 
+            /// <exception cref="ArgumentException">Thrown when id and type are invalid. </exception>
             /// The id parameter must be the notification item's ID, which has the valid type for a type parameter.</exception>
             /// <since_tizen> 7 </since_tizen>
             public void SetMainType(string id, MainType type)
@@ -495,8 +505,8 @@ namespace Tizen.Applications.NotificationEx
                     return this;
 
                 IntPtr ptr;
-                ErrorCode err = Interop.NotificationEx.ItemFindById(NativeHandle, id, out ptr);
-                if (err == ErrorCode.NotExistID)
+                Interop.NotificationEx.ItemFindById(NativeHandle, id, out ptr);
+                if (ptr == IntPtr.Zero)
                     return null;
 
                 return FactoryManager.CreateItem(ptr);
@@ -511,8 +521,8 @@ namespace Tizen.Applications.NotificationEx
             public virtual AbstractItem FindByMainType(MainType mainType)
             {
                 IntPtr ptr;
-                ErrorCode err = Interop.NotificationEx.ItemFindByMainType(NativeHandle, (int)mainType, out ptr);
-                if (err == ErrorCode.NotExistID)
+                Interop.NotificationEx.ItemFindByMainType(NativeHandle, (int)mainType, out ptr);
+                if (ptr == IntPtr.Zero)
                     return null;
 
                 return FactoryManager.CreateItem(ptr);

@@ -45,10 +45,17 @@ namespace Tizen.Applications.NotificationEx
             public Padding(int left, int top, int right, int bottom)
             {
                 IntPtr ptr;
-                ErrorCode err = Interop.NotificationEx.PaddingCreate(out ptr, left, top, right, bottom);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.PaddingCreate(out ptr, left, top, right, bottom);                
                 NativeHandle = ptr;
+            }
+
+            /// <summary>
+            /// Destructor of the Padding class.
+            /// </summary>
+            /// <since_tizen> 7 </since_tizen>
+            ~Padding()
+            {
+                Interop.NotificationEx.PaddingDestroy(NativeHandle);
             }
 
             /// <summary>

@@ -40,9 +40,7 @@ namespace Tizen.Applications.NotificationEx
             public InputSelector(string id) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.InputSelectorCreate(out handle, id);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.InputSelectorCreate(out handle, id);               
                 return handle;
             }))())
             {

@@ -35,9 +35,7 @@ namespace Tizen.Applications.NotificationEx
             public Entry(string id) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.EntryCreate(out handle, id);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.EntryCreate(out handle, id);                
                 return handle;
             }))())
             {

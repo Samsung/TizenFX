@@ -32,9 +32,12 @@ namespace Tizen.Applications.NotificationEx
             /// </summary>
             /// <param name="control"> An AppControl which contains application information to be launched by viewer. </param>
             /// <param name="extra"> An extra data. </param>
+            /// <exception cref="ArgumentException">Thrown when the control value is invalid. </exception>
             /// <since_tizen> 7 </since_tizen>
             public AppControlAction(AppControl control, string extra) : base(((Func<IntPtr>)(delegate ()
             {
+                if (control == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 IntPtr handle;
                 ErrorCode err = Interop.NotificationEx.ActionAppControlCreate(
                     out handle, control.SafeAppControlHandle.DangerousGetHandle(), extra);

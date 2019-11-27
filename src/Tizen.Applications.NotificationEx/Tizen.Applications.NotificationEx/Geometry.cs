@@ -46,9 +46,7 @@ namespace Tizen.Applications.NotificationEx
             public Geometry(int x, int y, int width, int height)
             {
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.GeometryCreate(out handle, x, y, width, height);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.GeometryCreate(out handle, x, y, width, height);                
                 NativeHandle = handle;
             }
 

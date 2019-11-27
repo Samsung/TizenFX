@@ -46,9 +46,7 @@ namespace Tizen.Applications.NotificationEx
             public Color(byte alpha, byte red, byte green, byte blue)
             {
                 IntPtr ptr;
-                ErrorCode err = Interop.NotificationEx.ColorCreate(out ptr, alpha, red, green, blue);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.ColorCreate(out ptr, alpha, red, green, blue);
                 NativeHandle = ptr;
             }
 

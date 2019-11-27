@@ -21,10 +21,15 @@ namespace Tizen.Applications.NotificationEx
     /// </summary>
     /// <remarks>
     /// Developers can designate AbstractItem's main item using the SetMainType method.
+    /// None is special type that can clear main type of specific item.
     /// </remarks>
     /// <since_tizen> 7 </since_tizen>
     public enum MainType
     {
+        /// <summary>
+        /// No main type.
+        /// </summary>
+        None = 1,
         /// <summary>
         /// The main title of the notification item.
         /// </summary>

@@ -66,8 +66,15 @@ namespace Tizen.Applications.NotificationEx
 
             private void OnEventNative(IntPtr handle, IntPtr eventInfo, IntPtr items, int count, IntPtr userData)
             {
-                IList<AbstractItem> list = Util.IntPtrToList(items, count);
-                OnEvent(new EventInfo(eventInfo), list);
+                try
+                {
+                    IList<AbstractItem> list = Util.IntPtrToList(items, count);
+                    OnEvent(new EventInfo(eventInfo), list);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(LogTag, ex.ToString());
+                }
             }
 
             /// <summary>
@@ -100,9 +107,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="info"> A specific event information passed by OnEvent method. </param>
             /// <param name="code"> A error code. </param>
             /// <exception cref="InvalidOperationException">Thrown when fail to send error.</exception>
+            /// <exception cref="ArgumentException">Thrown when the info parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public void SendError(EventInfo info, ErrorCode code)
             {
+                if (info == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 ErrorCode err = Interop.NotificationEx.ReporterSendError(_handle, info.NativeHandle, code);
                 if (err != ErrorCode.None)
                     ErrorFactory.ThrowException(err);
@@ -114,9 +124,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="noti"> A notification to be posted. </param>
             /// <returns>ID of the request.</returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to send notification item.</exception>
+            /// <exception cref="ArgumentException">Thrown when the noti parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int Post(AbstractItem noti)
             {
+                if (noti == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 noti.Serialize();
                 ErrorCode err = Interop.NotificationEx.ReporterPost(_handle, noti.NativeHandle, out reqId);
@@ -131,16 +144,19 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="list"> A notification list to be posted. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to send notification item list.</exception>
+            /// <exception cref="ArgumentException">Thrown when the list parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int PostList(IList<AbstractItem> list)
             {
-                int reqId;
+                if (list == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);                
 
                 for (int i = 0; i < list.Count; i++)
                 {
                     list[i].Serialize();
                 }
                 IntPtr nativeList = Util.ListToIntPtr(list);
+                int reqId;
                 ErrorCode err = Interop.NotificationEx.ReporterPostList(_handle, nativeList, list.Count, out reqId);
                 if (err != ErrorCode.None)
                     ErrorFactory.ThrowException(err);
@@ -155,9 +171,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="noti"> A notification to be updated. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to update notification.</exception>
+            /// <exception cref="ArgumentException">Thrown when the noti parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int Update(AbstractItem noti)
             {
+                if (noti == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 noti.Serialize();
                 ErrorCode err = Interop.NotificationEx.ReporterUpdate(_handle, noti.NativeHandle, out reqId);
@@ -172,9 +191,12 @@ namespace Tizen.Applications.NotificationEx
             /// <param name="noti"> A notification to be deleted. </param>
             /// <returns>ID of the request. </returns>
             /// <exception cref="InvalidOperationException">Thrown when fail to delete notification.</exception>
+            /// <exception cref="ArgumentException">Thrown when the noti parameter is null. </exception>
             /// <since_tizen> 7 </since_tizen>
             public int Delete(AbstractItem noti)
             {
+                if (noti == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
                 int reqId;
                 ErrorCode err = Interop.NotificationEx.ReporterDelete(_handle, noti.NativeHandle, out reqId);
                 if (err != ErrorCode.None)
@@ -211,11 +233,10 @@ namespace Tizen.Applications.NotificationEx
             {
                 IntPtr ptr;
                 ErrorCode err = Interop.NotificationEx.ReporterFindByRootId(_handle, rootId, out ptr);
-                if (err == ErrorCode.NotExistID)
-                    return null;
-
                 if (err != ErrorCode.None)
                     ErrorFactory.ThrowException(err);
+                if (ptr == IntPtr.Zero)
+                    return null;
                 return FactoryManager.CreateItem(ptr);
             }
         }

@@ -38,14 +38,16 @@ namespace Tizen.Applications.NotificationEx
             /// <summary>
             /// Initializes LEDInfo class.
             /// </summary>
-            /// <param name="color"> A color of led. It can not be null. </param>            
+            /// <param name="color"> A color of led. It can not be null. </param>     
+            /// <exception cref="ArgumentException">Thrown when the color parameter is null.
             /// <since_tizen> 7 </since_tizen>
             public LEDInfo(Color color)
             {
+                if (color == null)
+                    ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
+
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.LEDInfoCreate(out handle, color.NativeHandle);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.LEDInfoCreate(out handle, color.NativeHandle);                
             }
 
             /// <summary>

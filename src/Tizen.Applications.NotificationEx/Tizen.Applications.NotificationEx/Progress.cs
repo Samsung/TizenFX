@@ -38,9 +38,7 @@ namespace Tizen.Applications.NotificationEx
             public Progress(string id, float min, float current, float max) : base(((Func<IntPtr>)(delegate ()
             {
                 IntPtr handle;
-                ErrorCode err = Interop.NotificationEx.ProgressCreate(out handle, id, min, current, max);
-                if (err != ErrorCode.None)
-                    ErrorFactory.ThrowException(err);
+                Interop.NotificationEx.ProgressCreate(out handle, id, min, current, max);                
                 return handle;
             }))())
             {
