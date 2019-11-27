@@ -143,5 +143,26 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_native_surface_set(IntPtr obj, IntPtr surface);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_load_scale_down_set(IntPtr obj, int scale);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern int evas_object_image_load_scale_down_get(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_reload(IntPtr obj);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_load_size_set(IntPtr obj, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_load_size_get(IntPtr obj, out int w, out int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_load_dpi_set(IntPtr obj, double dpi);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern double evas_object_image_load_dpi_get(IntPtr obj);
     }
 }
