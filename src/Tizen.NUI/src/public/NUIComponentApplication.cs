@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.ComponentBased;
 using Tizen.Applications.ComponentBased.Common;
@@ -25,28 +26,28 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// The class for supporting multi-components based application model.
+    /// The class for supporting multi-components application model.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public class NUIComponentBasedApplication : CoreApplication
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class NUIComponentApplication : CoreApplication
     {
-
         private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
+
         /// <summary>
-        /// Initializes the ComponentBasedApplicationBase class.
+        /// Initializes the ComponentApplicationBase class.
         /// </summary>
         /// <param name="typeInfo">The component type information.
         /// The key should be a class type of FrameComponent or SubComponent subclass.
         /// The value should be a component id which is declared in tizen-manifest.xml.
         /// </param>
-        /// <since_tizen> 6 </since_tizen>
-        public NUIComponentBasedApplication(IDictionary<Type, string> typeInfo) : base(new NUIComponentBasedCoreBackend())
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIComponentApplication(IDictionary<Type, string> typeInfo) : base(new NUIComponentCoreBackend())
         {
             foreach (var component in typeInfo)
             {
                 RegisterComponent(component.Key, component.Value);
             }
-            (Backend as NUIComponentBasedCoreBackend).ComponentFactories = _componentFactories;
+            (Backend as NUIComponentCoreBackend).ComponentFactories = _componentFactories;
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace Tizen.NUI
         /// <param name="compType">Class type</param>
         /// <param name="compId">Component ID</param>
         /// <exception cref="ArgumentException">Thrown when component type is already added or not sub-class of FrameComponent or ServiceComponent</exception>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterComponent(Type compType, string compId)
         {
             if (_componentFactories.ContainsKey(compType))
@@ -83,7 +84,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
         /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Run(string[] args)
         {
             //Register Callback.
@@ -93,7 +94,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Exits the main loop of the application.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Exit()
         {
             base.Exit();
@@ -102,8 +103,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This method will be called before running main-loop
         /// </summary>
-        /// <param name="args"></param>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This method will be called after exiting main-loop
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnTerminate()
         {
             base.OnTerminate();

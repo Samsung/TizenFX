@@ -7,8 +7,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Window information class for ComponentBasedApplication
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public class NUIWindowInfo : IWindowInfo
+    internal class NUIWindowInfo : IWindowInfo
     {
         private const string LogTag = "Tizen.NUI";
         private Window _win;
@@ -20,7 +19,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="win">The window object of component.</param>
         /// <since_tizen> 6 </since_tizen>
-        public NUIWindowInfo(Window win)
+        internal NUIWindowInfo(Window win)
         {
             _win = win;
         }
@@ -29,7 +28,6 @@ namespace Tizen.NUI
         /// Gets the resource ID of window
         /// </summary>
         /// <returns>The native handle of window</returns>
-        /// <since_tizen> 6 </since_tizen>
         public int ResourceId
         {
             get
@@ -48,7 +46,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {

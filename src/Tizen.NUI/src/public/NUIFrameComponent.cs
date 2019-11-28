@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 using Tizen.Applications;
 using Tizen.Applications.ComponentBased.Common;
@@ -11,15 +12,17 @@ namespace Tizen.NUI
     /// The class for showing UI module
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIFrameComponent : FrameComponent
     {
-        public Window Window
+        internal NUIWindowInfo NUIWindowInfo
         {
             get;
             set;
         }
-		
-        public NUIWindowInfo NUIWindowInfo
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window Window
         {
             get;
             set;
@@ -39,13 +42,13 @@ namespace Tizen.NUI
         /// Overrides this method to create window. It will be called before OnCreate method.
         /// </summary>
         /// <returns>Window object to use</returns>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override IWindowInfo CreateWindowInfo()
         {
             Window = ComponentApplication.Instance.GetWindow();
-			NUIWindowInfo = new NUIWindowInfo(Window);
+            NUIWindowInfo = new NUIWindowInfo(Window);
 
-			return NUIWindowInfo;
+            return NUIWindowInfo;
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="appControl">appcontrol object</param>
         /// <param name="restarted">True if it was restarted</param>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnStart(AppControl appControl, bool restarted)
         {
             base.OnStart(appControl, restarted);
@@ -62,7 +65,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is resumed.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnResume()
         {
             base.OnResume();
@@ -71,7 +74,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is paused.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnPause()
         {
             base.OnPause();
@@ -80,7 +83,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the component is stopped.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnStop()
         {
             base.OnStop();
@@ -89,7 +92,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior when the component is destroyed.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnDestroy()
         {
             base.OnDestroy();

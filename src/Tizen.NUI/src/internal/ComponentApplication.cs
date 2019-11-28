@@ -35,7 +35,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    Interop.ComponentApplication.delete_ComponentBasedApplication(swigCPtr);
+                    Interop.ComponentApplication.delete_ComponentApplication(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -50,7 +50,7 @@ namespace Tizen.NUI
             }
         }
 
-        public static ComponentApplication NewComponentBasedApplication(string[] args, string stylesheet)
+        public static ComponentApplication NewComponentApplication(string[] args, string stylesheet)
         {
             ComponentApplication ret = New(args, stylesheet);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -63,7 +63,7 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = Interop.ComponentApplication.ComponentBasedApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.ComponentApplication.ComponentApplication_New(argc, argvStr, stylesheet);
 
             ComponentApplication ret = new ComponentApplication(widgetIntPtr, false);
 
@@ -72,25 +72,25 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal ComponentApplication(ComponentApplication componentBasedApplication) : this(Interop.ComponentApplication.new_ComponentBasedApplication__SWIG_1(ComponentApplication.getCPtr(componentBasedApplication)), true)
+        internal ComponentApplication(ComponentApplication componentApplication) : this(Interop.ComponentApplication.new_ComponentApplication__SWIG_1(ComponentApplication.getCPtr(componentApplication)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal ComponentApplication Assign(ComponentApplication componentBasedApplication)
+        internal ComponentApplication Assign(ComponentApplication componentApplication)
         {
-            ComponentApplication ret = new ComponentApplication(Interop.ComponentApplication.ComponentBasedApplication_Assign(swigCPtr, ComponentApplication.getCPtr(componentBasedApplication)), false);
+            ComponentApplication ret = new ComponentApplication(Interop.ComponentApplication.ComponentApplication_Assign(swigCPtr, ComponentApplication.getCPtr(componentApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
 		
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate IntPtr NUIComponentBasedApplicationCreatenativeEventCallbackDelegate(IntPtr data);
+        private delegate IntPtr NUIComponentApplicationCreatenativeEventCallbackDelegate(IntPtr data);
 
 		public delegate IntPtr CreateNativeEventHandler(IntPtr data);
 		private CreateNativeEventHandler _applicationCreateNativeEventHandler;
-        private NUIComponentBasedApplicationCreatenativeEventCallbackDelegate _applicationCreateNativeEventCallbackDelegate;
+        private NUIComponentApplicationCreatenativeEventCallbackDelegate _applicationCreateNativeEventCallbackDelegate;
 		
 
         /**
@@ -108,7 +108,7 @@ namespace Tizen.NUI
                     {
                         _applicationCreateNativeEventHandler += value;
 
-                        _applicationCreateNativeEventCallbackDelegate = new NUIComponentBasedApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
+                        _applicationCreateNativeEventCallbackDelegate = new NUIComponentApplicationCreatenativeEventCallbackDelegate(OnApplicationCreateNative);
                         Connect(_applicationCreateNativeEventCallbackDelegate);
                     }
                 }
@@ -165,14 +165,12 @@ namespace Tizen.NUI
 		// Callback for Application InitSignal
 		private IntPtr OnApplicationCreateNative(IntPtr data)
         {
-            Tizen.Log.Error("MYLOG", "CBA.OnApplicationCreateNative");
             IntPtr ptr = IntPtr.Zero;
 		
 			if (_applicationCreateNativeEventHandler != null)
 			{
 				ptr = _applicationCreateNativeEventHandler.Invoke(data);
 			}
-            Tizen.Log.Error("MYLOG", "ptr: " + ptr);
 		    return ptr;
 		}
 

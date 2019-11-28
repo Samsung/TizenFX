@@ -23,7 +23,7 @@ using Tizen.Applications.ComponentBased.Common;
 
 namespace Tizen.NUI
 {
-    class NUIComponentBasedCoreBackend : ICoreBackend
+    class NUIComponentCoreBackend : ICoreBackend
     {
         private Dictionary<Type, ComponentStateManger> _componentFactories;
         public Dictionary<Type, ComponentStateManger>  ComponentFactories
@@ -75,14 +75,14 @@ namespace Tizen.NUI
         /// <summary>
         /// The default Constructor.
         /// </summary>
-        public NUIComponentBasedCoreBackend()
+        public NUIComponentCoreBackend()
         {
         }
 
         /// <summary>
         /// The constructor with stylesheet.
         /// </summary>
-        public NUIComponentBasedCoreBackend(string stylesheet)
+        public NUIComponentCoreBackend(string stylesheet)
         {
             _stylesheet = stylesheet;
         }
@@ -115,11 +115,10 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public void Run(string[] args)
         {
-            Tizen.Log.Error("MYLOG", "CoreBackend.Run");
             TizenSynchronizationContext.Initialize();
 
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
-            _application = ComponentApplication.NewComponentBasedApplication(args, _stylesheet);
+            _application = ComponentApplication.NewComponentApplication(args, _stylesheet);
             
             _application.Initialized += OnInitialized;
             _application.CreateNative += OnCreateNative;
@@ -128,14 +127,17 @@ namespace Tizen.NUI
             _application.MainLoop();
         }
 
+
+        /// <summary>
+        /// Callback for Component Application CreateSignal
+        /// </summary>
+        /// <param name="data">user data</param>
         private IntPtr OnCreateNative(IntPtr data)
         {
-            Tizen.Log.Error("MYLOG", "CoreBackend.OnCreateNative");
             IntPtr nativeComponentFactoryMap = IntPtr.Zero;
             int n = 0;
             foreach (KeyValuePair<Type, ComponentStateManger> entry in _componentFactories)
             {
-                Tizen.Log.Error("MYLOG", "num : " + n);
                 nativeComponentFactoryMap = entry.Value.Bind(nativeComponentFactoryMap);
                 n++;
             }
@@ -150,8 +152,6 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            Tizen.Log.Error("MYLOG", "CoreBackend.OnInitialized");
-            Log.Info("NUI", "NUICorebackend OnCreate Called");
             var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
         }
@@ -163,7 +163,6 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Terminated.</param>
         private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            Log.Error("MYLOG", "NUICorebackend OnTerminated Called");
             var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }

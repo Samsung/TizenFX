@@ -209,8 +209,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get Resource ID of window
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-		public int ResourceID
+        internal int ResourceID
         {
             get
             {
