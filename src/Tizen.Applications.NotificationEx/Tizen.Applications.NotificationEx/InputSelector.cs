@@ -48,6 +48,17 @@ namespace Tizen.Applications.NotificationEx
 
             internal InputSelector(IntPtr ptr) : base(ptr)
             {
+                _contents = new List<string>();
+
+                IntPtr contents;
+                int count;
+                Interop.NotificationEx.InputSelectorGetContents(NativeHandle, out contents, out count);
+                if (count == 0)
+                    return;
+
+                string[] arr = Util.IntPtrToStringArray(contents, count);
+                Interop.NotificationEx.ItemFreeStringList(contents, count);
+                _contents = arr.ToList();
             }
 
             internal override void Serialize()
@@ -78,7 +89,7 @@ namespace Tizen.Applications.NotificationEx
                    
                     string[] arr = Util.IntPtrToStringArray(contents, count);
                     Interop.NotificationEx.ItemFreeStringList(contents, count);
-                    Log.Error(LogTag, "Get Contents #" + count);
+                    Log.Info(LogTag, "Get Contents #" + count);
                     _contents = arr.ToList();
                     return _contents;
                 }
@@ -88,7 +99,7 @@ namespace Tizen.Applications.NotificationEx
                         ErrorFactory.ThrowException(ErrorCode.InvalidParameter);
 
                     Interop.NotificationEx.InputSelectorSetContents(NativeHandle, value.ToArray(), value.Count);
-                    Log.Error(LogTag, "Set Contents");
+                    Log.Info(LogTag, "Set Contents");
                     _contents = value;
                 }
             }

@@ -36,6 +36,16 @@ namespace Tizen.Applications.NotificationEx
             internal AbstractItem(IntPtr ptr)
             {
                 NativeHandle = ptr;
+                IntPtr listPtr;
+                int count;
+
+                Interop.NotificationEx.ItemGetReceiverList(NativeHandle, out listPtr, out count);
+                if (count == 0)
+                    return;
+
+                string[] receiverList = Util.IntPtrToStringArray(listPtr, count);
+                Interop.NotificationEx.ItemFreeStringList(listPtr, count);
+                _receiverGroups = receiverList.ToList();
             }
 
             /// <summary>

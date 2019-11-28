@@ -46,6 +46,13 @@ namespace Tizen.Applications.NotificationEx
 
             internal Group(IntPtr ptr) : base(ptr)
             {
+                _children = new List<AbstractItem>();
+                Interop.NotificationEx.GroupForeachChildCallback callback = (IntPtr handle, IntPtr userData) =>
+                {
+                    _children.Add(FactoryManager.CreateItem(handle));
+                    return 0;
+                };
+                Interop.NotificationEx.GroupForeachChild(NativeHandle, callback, IntPtr.Zero);
             }
 
             /// <summary>
