@@ -8,11 +8,13 @@ namespace Tizen.NUI
     class ComponentApplication : Application
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private List<NUIFrameComponent> _frameComponentList;
         private static ComponentApplication _instance; //singleton
 
         internal ComponentApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            _frameComponentList = new List<NUIFrameComponent>();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ComponentApplication obj)
@@ -174,8 +176,18 @@ namespace Tizen.NUI
 		    return ptr;
 		}
 
-		
+        internal void RegisterFrameComponent(NUIFrameComponent nuiFrameComponent)
+        {
+            _frameComponentList.Add(nuiFrameComponent);
+        }
+
+        internal int GetFrameComponentCount()
+        {
+            return _frameComponentList.Count;
+        }
+
+
     }
 
-	
+
 }

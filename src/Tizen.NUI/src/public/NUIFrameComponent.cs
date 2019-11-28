@@ -29,26 +29,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method to handle behavior when the component is launched.
-        /// </summary>
-        /// <returns>True if a service component is successfully created</returns>
-        /// <since_tizen> 6 </since_tizen>
-        public override bool OnCreate()
-        {
-            return true;
-        }
-
-        /// <summary>
         /// Overrides this method to create window. It will be called before OnCreate method.
         /// </summary>
         /// <returns>Window object to use</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override IWindowInfo CreateWindowInfo()
         {
-            Window = ComponentApplication.Instance.GetWindow();
-            NUIWindowInfo = new NUIWindowInfo(Window);
+            ComponentApplication.Instance.RegisterFrameComponent(this);
+            if(ComponentApplication.Instance.GetFrameComponentCount() == 1)
+            {
+                Window = ComponentApplication.Instance.GetWindow();
+            }
+            else
+            {
+                Window = new Window();
+            }
 
+            NUIWindowInfo = new NUIWindowInfo(Window);
             return NUIWindowInfo;
+        }
+
+        /// <summary>
+        /// Overrides this method to handle behavior when the component is launched.
+        /// </summary>
+        /// <returns>True if a service component is successfully created</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnCreate()
+        {
+            return true;
         }
 
         /// <summary>
