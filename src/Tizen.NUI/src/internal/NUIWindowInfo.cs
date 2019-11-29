@@ -5,7 +5,7 @@ using Tizen.Applications.ComponentBased.Common;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Window information class for ComponentBasedApplication
+    /// Window information class for ComponentApplication
     /// </summary>
     internal class NUIWindowInfo : IWindowInfo
     {

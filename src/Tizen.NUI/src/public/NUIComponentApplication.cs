@@ -34,7 +34,7 @@ namespace Tizen.NUI
         private Dictionary<Type, ComponentStateManger> _componentFactories = new Dictionary<Type, ComponentStateManger>();
 
         /// <summary>
-        /// Initializes the ComponentApplicationBase class.
+        /// Initializes the ComponentApplication class.
         /// </summary>
         /// <param name="typeInfo">The component type information.
         /// The key should be a class type of FrameComponent or SubComponent subclass.
