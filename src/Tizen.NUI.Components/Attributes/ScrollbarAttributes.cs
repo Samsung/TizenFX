@@ -15,75 +15,66 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ScrollBarAttributes is a class which saves Scrollbar's ux data.
+    /// ScrollBarStyle is a class which saves Scrollbar's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ScrollBarAttributes : ViewAttributes
+    public class ScrollBarStyle : ControlStyle
     {
         /// <summary>
-        /// Creates a new instance of a ScrollBarAttributes.
+        /// Creates a new instance of a ScrollBarStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBarAttributes() : base()
+        public ScrollBarStyle() : base()
         {
+            InitSubStyle();
             Direction = ScrollBar.DirectionType.Horizontal;
         }
 
         /// <summary>
-        /// Creates a new instance of a ScrollBarAttributes with attributes.
+        /// Creates a new instance of a ScrollBarStyle with style.
         /// </summary>
-        /// <param name="attributes">Create ScrollBarAttributes by attributes customized by user.</param>
+        /// <param name="style">Create ScrollBarStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollBarAttributes(ScrollBarAttributes attributes) : base(attributes)
+        public ScrollBarStyle(ScrollBarStyle style) : base(style)
         {
-            if(attributes == null)
-            {
-                return;
-            }
+            if (null == style) return;
 
-            if (attributes.TrackImageAttributes != null)
-            {
-                TrackImageAttributes = attributes.TrackImageAttributes.Clone() as ImageAttributes;
-            }
+            InitSubStyle();
 
-            if (attributes.ThumbImageAttributes != null)
-            {
-                ThumbImageAttributes = attributes.ThumbImageAttributes.Clone() as ImageAttributes;
-            }
-
-            Direction = attributes.Direction;
-            Duration = attributes.Duration;
+            this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Get or set track image attributes
+        /// Get or set track image style
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes TrackImageAttributes
+        public ImageViewStyle Track
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set thumb image attributes
+        /// Get or set thumb image style
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes ThumbImageAttributes
+        public ImageViewStyle Thumb
         {
             get;
             set;
@@ -93,7 +84,7 @@ namespace Tizen.NUI.Components
         /// Get or set direction type
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar.DirectionType? Direction
         {
@@ -105,7 +96,7 @@ namespace Tizen.NUI.Components
         /// Get or set duration
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Duration
         {
@@ -117,12 +108,50 @@ namespace Tizen.NUI.Components
         /// Attributes's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new ScrollBarAttributes(this);
+            base.CopyFrom(bindableObject);
+
+            ScrollBarStyle scrollBarStyle = bindableObject as ScrollBarStyle;
+
+            if (null != scrollBarStyle)
+            {
+                if (null != scrollBarStyle.Track)
+                {
+                    Track.CopyFrom(scrollBarStyle.Track);
+                }
+
+                if (null != scrollBarStyle.Thumb)
+                {
+                    Thumb.CopyFrom(scrollBarStyle.Thumb);
+                }
+
+                Direction = scrollBarStyle.Direction;
+                Duration = scrollBarStyle.Duration;
+            }
         }
 
+        private void InitSubStyle()
+        {
+            Track = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent
+            };
+
+            Thumb = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.Fixed,
+                HeightResizePolicy = ResizePolicyType.Fixed
+            };
+        }
     }
 }

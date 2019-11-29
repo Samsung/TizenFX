@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -29,8 +30,8 @@ namespace Tizen.NUI.Components
     public sealed class StyleManager
     {
         private string theme = "default";
-        private Dictionary<string, Dictionary<string, Type>> themeStyleSet = new Dictionary<string, Dictionary<string, Type>>();
-        private Dictionary<string, Type> defaultStyleSet = new Dictionary<string, Type>();
+        private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
+        private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
         private EventHandler<ThemeChangeEventArgs> themeChangeHander;
 
         /// <summary>
@@ -81,7 +82,7 @@ namespace Tizen.NUI.Components
 
             set
             {
-                if(theme != value)
+                if (theme != value)
                 {
                     theme = value;
                     themeChangeHander?.Invoke(null, new ThemeChangeEventArgs { CurrentTheme = theme });
@@ -101,33 +102,35 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterStyle(string style, string theme, Type styleType, bool bDefault = false)
         {
-            if(style == null)
+            if (style == null)
             {
                 throw new InvalidOperationException($"style can't be null");
             }
 
-            if(theme == null || bDefault == true)
+            if (theme == null || bDefault == true)
             {
-                if(defaultStyleSet.ContainsKey(style))
+                if (defaultStyleSet.ContainsKey(style))
                 {
                     throw new InvalidOperationException($"{style}] already be used");
                 }
                 else
                 {
-                    defaultStyleSet.Add(style, styleType);
+                    defaultStyleSet.Add(style, Activator.CreateInstance(styleType) as StyleBase);
                 }
                 return;
             }
 
-            if(themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
+            if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(theme))
             {
                 throw new InvalidOperationException($"{style}] already be used");
             }
-            if(!themeStyleSet.ContainsKey(style))
+
+            if (!themeStyleSet.ContainsKey(style))
             {
-                themeStyleSet.Add(style, new Dictionary<string, Type>());
+                themeStyleSet.Add(style, new Dictionary<string, StyleBase>());
             }
-            themeStyleSet[style].Add(theme, styleType);
+
+            themeStyleSet[style].Add(theme, Activator.CreateInstance(styleType) as StyleBase);
         }
 
         /// <summary>
@@ -137,24 +140,23 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Attributes GetAttributes(string style)
+        public ViewStyle GetAttributes(string style)
         {
-            if(style == null)
+            if (style == null)
             {
                 return null;
             }
-            object obj = null;
 
-            if(themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(Theme))
+            if (themeStyleSet.ContainsKey(style) && themeStyleSet[style].ContainsKey(Theme))
             {
-                obj = Activator.CreateInstance(themeStyleSet[style][Theme]);
+                return (themeStyleSet[style][Theme])?.GetAttributes();
             }
-            else if(defaultStyleSet.ContainsKey(style))
+            else if (defaultStyleSet.ContainsKey(style))
             {
-                obj = Activator.CreateInstance(defaultStyleSet[style]);
+                return (defaultStyleSet[style])?.GetAttributes();
             }
 
-            return (obj as StyleBase)?.GetAttributes();
+            return null;
         }
 
         /// <summary>

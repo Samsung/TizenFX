@@ -20,6 +20,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -33,6 +34,10 @@ namespace Tizen.NUI.BaseComponents
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFieldStyle Style => ViewStyle as TextFieldStyle;
 
         /// <summary>
         /// Creates the TextField control.
@@ -55,9 +60,27 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(shown);
         }
 
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new TextFieldStyle();
+        }
+
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
-
             if (!shown)
             {
                 SetVisible(false);
@@ -92,6 +115,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+        private string translatableText
+        {
+            get
+            {
                 return textFieldTextSid;
             }
             set
@@ -115,6 +149,17 @@ namespace Tizen.NUI.BaseComponents
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string TranslatablePlaceholderText
+        {
+            get
+            {
+                return (string)GetValue(TranslatablePlaceholderTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+            }
+        }
+        private string translatablePlaceholderText
         {
             get
             {
@@ -1352,6 +1397,191 @@ namespace Tizen.NUI.BaseComponents
                 Shadow = 0x0020,
                 Emboss = 0x0040,
                 Outline = 0x0080
+            }
+        }
+
+        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.translatableTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatableTextSelector;
+        });
+        internal static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.translatablePlaceholderTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatablePlaceholderTextSelector;
+        });
+        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.textSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.textSelector;
+        });
+        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.fontFamilySelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.fontFamilySelector;
+        });
+        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.pointSizeSelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.pointSizeSelector;
+        });
+        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.textColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.textColorSelector;
+        });
+        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.placeholderTextColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.placeholderTextColorSelector;
+        });
+        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.primaryCursorColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.primaryCursorColorSelector;
+        });
+
+        private TriggerableSelector<string> _translatableTextSelector;
+        private TriggerableSelector<string> translatableTextSelector
+        {
+            get
+            {
+                if (null == _translatableTextSelector)
+                {
+                    _translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
+                }
+                return _translatableTextSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _translatablePlaceholderTextSelector;
+        private TriggerableSelector<string> translatablePlaceholderTextSelector
+        {
+            get
+            {
+                if (null == _translatablePlaceholderTextSelector)
+                {
+                    _translatablePlaceholderTextSelector = new TriggerableSelector<string>(this, TranslatablePlaceholderTextProperty);
+                }
+                return _translatablePlaceholderTextSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _textSelector;
+        private TriggerableSelector<string> textSelector
+        {
+            get
+            {
+                if (null == _textSelector)
+                {
+                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
+                }
+                return _textSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _fontFamilySelector;
+        private TriggerableSelector<string> fontFamilySelector
+        {
+            get
+            {
+                if (null == _fontFamilySelector)
+                {
+                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
+                }
+                return _fontFamilySelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _textColorSelector;
+        private TriggerableSelector<Color> textColorSelector
+        {
+            get
+            {
+                if (null == _textColorSelector)
+                {
+                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
+                }
+                return _textColorSelector;
+            }
+        }
+
+        private TriggerableSelector<float?> _pointSizeSelector;
+        private TriggerableSelector<float?> pointSizeSelector
+        {
+            get
+            {
+                if (null == _pointSizeSelector)
+                {
+                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
+                }
+                return _pointSizeSelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _placeholderTextColorSelector;
+        private TriggerableSelector<Color> placeholderTextColorSelector
+        {
+            get
+            {
+                if (null == _placeholderTextColorSelector)
+                {
+                    _placeholderTextColorSelector = new TriggerableSelector<Color>(this, PlaceholderTextColorProperty);
+                }
+                return _placeholderTextColorSelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _primaryCursorColorSelector;
+        private TriggerableSelector<Color> primaryCursorColorSelector
+        {
+            get
+            {
+                if (null == _primaryCursorColorSelector)
+                {
+                    _primaryCursorColorSelector = new TriggerableSelector<Color>(this, PrimaryCursorColorProperty);
+                }
+                return _primaryCursorColorSelector;
             }
         }
 
