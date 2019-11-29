@@ -68,7 +68,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextEditor.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
         {
-
             if (!shown)
             {
                 SetVisible(false);

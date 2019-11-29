@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
         /// <param name="attrs"></param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(SelectButtonAttributes attrs) : base(attrs) { }
+        public CheckBox(SelectButtonStyle attrs) : base(attrs) { }
 
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.

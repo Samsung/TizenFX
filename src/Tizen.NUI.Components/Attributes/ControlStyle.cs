@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
@@ -21,112 +22,114 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// SwitchStyle is a class which saves Switch's ux data.
+    /// ButtonAttributes is a class which saves Button's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SwitchStyle : ButtonStyle
+    public class ControlStyle : ViewStyle
     {
         /// <summary>
-        /// Creates a new instance of a SwitchStyle.
+        /// Creates a new instance of a ButtonStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SwitchStyle() : base()
+        public ControlStyle() : base()
         {
-            InitSubStyle();
+            InitSubAttributes();
         }
-
         /// <summary>
-        /// Creates a new instance of a SwitchStyle with style.
+        /// Creates a new instance of a ButtonStyle with style.
         /// </summary>
-        /// <param name="style">Create SwitchStyle by style customized by user.</param>
+        /// <param name="style">Create ButtonStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SwitchStyle(SwitchStyle style) : base(style)
+        public ControlStyle(ControlStyle style) : base(style)
         {
-            if(null == style)
+            if(style == null)
             {
                 return;
             }
 
-            InitSubStyle();
+            InitSubAttributes();
 
-            this.CopyFrom(style);
+            Shadow.CopyFrom(style.Shadow);
+            Background.CopyFrom(style.Background);
         }
 
         /// <summary>
-        /// Thumb image's style.
+        /// Shadow image's Style.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen__6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle Shadow
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// Background image's Style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Thumb
+        public ImageViewStyle Background
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Track image's style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Track
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
 
-            SwitchStyle switchStyle = bindableObject as SwitchStyle;
+            ControlStyle controlStyle = bindableObject as ControlStyle;
 
-            if (null != switchStyle)
+            if (null != controlStyle)
             {
-                if (null != switchStyle.Track)
+                if (null != controlStyle.Shadow)
                 {
-                    Track.CopyFrom(switchStyle.Track);
+                    Shadow.CopyFrom(controlStyle.Shadow);
                 }
 
-                if (null != switchStyle.Thumb)
+                if (null != controlStyle.Background)
                 {
-                    Thumb.CopyFrom(switchStyle.Thumb);
+                    Background.CopyFrom(controlStyle.Background);
                 }
             }
         }
 
-        private void InitSubStyle()
+        private void InitSubAttributes()
         {
-            Track = new ImageViewStyle()
+            Shadow = new ImageViewStyle()
             {
                 PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                PivotPoint = Tizen.NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent
             };
+            Shadow.PropertyChanged += SubStyleCalledEvent;
 
-            Thumb = new ImageViewStyle()
+            Background = new ImageViewStyle()
             {
                 PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
-                WidthResizePolicy = ResizePolicyType.Fixed,
-                HeightResizePolicy = ResizePolicyType.Fixed
+                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                PivotPoint = Tizen.NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent
             };
+            Background.PropertyChanged += SubStyleCalledEvent;
+        }
+
+        private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
+        {
+            OnPropertyChanged();
         }
     }
 }

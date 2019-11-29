@@ -599,7 +599,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public class CellPosition : Disposable
         {
-
             /// <summary>
             /// The constructor.
             /// </summary>

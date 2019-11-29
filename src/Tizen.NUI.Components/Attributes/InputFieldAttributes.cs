@@ -15,6 +15,8 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -24,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class InputFieldAttributes : ViewAttributes
+    public class InputFieldStyle : ControlStyle
     {
         /// <summary>
         /// Creates a new instance of a InputFieldAttributes.
@@ -32,28 +34,36 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public InputFieldAttributes() : base() { }
+        public InputFieldStyle() : base()
+        {
+            BackgroundImageAttributes = new ImageViewStyle();
+            InputBoxAttributes = new TextFieldStyle();
+        }
 
         /// <summary>
-        /// Creates a new instance of a InputFieldAttributes with attributes.
+        /// Creates a new instance of a InputFieldStyle with Style.
         /// </summary>
-        /// <param name="attrs">Create InputFieldAttributes by attributes customized by user.</param>
+        /// <param name="attrs">Create InputFieldStyle by Style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public InputFieldAttributes(InputFieldAttributes attrs) : base(attrs)
+        public InputFieldStyle(InputFieldStyle attrs) : base(attrs)
         {
             if (null == attrs)
             {
                 return;
             }
+
+            BackgroundImageAttributes = new ImageViewStyle();
+            InputBoxAttributes = new TextFieldStyle();
+
             if (null != attrs.BackgroundImageAttributes)
             {
-                BackgroundImageAttributes = attrs.BackgroundImageAttributes.Clone() as ImageAttributes;
+                BackgroundImageAttributes.CopyFrom(attrs.BackgroundImageAttributes);
             }
             if (null != attrs.InputBoxAttributes)
             {
-                InputBoxAttributes = attrs.InputBoxAttributes.Clone() as TextFieldAttributes;
+                InputBoxAttributes.CopyFrom(attrs.InputBoxAttributes);
             }
             if (null != attrs.Space)
             {
@@ -67,7 +77,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes BackgroundImageAttributes
+        public ImageViewStyle BackgroundImageAttributes
         {
             get;
             set;
@@ -79,7 +89,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldAttributes InputBoxAttributes
+        public TextFieldStyle InputBoxAttributes
         {
             get;
             set;
@@ -103,9 +113,24 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new InputFieldAttributes(this);
+            InputFieldStyle inputFieldAttributes = bindableObject as InputFieldStyle;
+
+            if (null != inputFieldAttributes)
+            {
+                Space = inputFieldAttributes.Space;
+
+                if (null != inputFieldAttributes.BackgroundImageAttributes)
+                {
+                    BackgroundImageAttributes.CopyFrom(inputFieldAttributes.BackgroundImageAttributes);
+                }
+
+                if (null != inputFieldAttributes.InputBoxAttributes)
+                {
+                    InputBoxAttributes.CopyFrom(inputFieldAttributes.InputBoxAttributes);
+                }
+            }
         }
     }
 }
