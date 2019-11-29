@@ -15,175 +15,227 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
+using static Tizen.NUI.Components.Slider;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// SliderAttributes is a class which saves Slider's ux data.
+    /// SliderStyle is a class which saves Slider's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SliderAttributes : ViewAttributes
+    public class SliderStyle : ControlStyle
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create("IndicatorType", typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Components.SliderStyle)bindable;
+            if (newValue != null)
+            {
+                instance.privateIndicatorType = (IndicatorType)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (SliderStyle)bindable;
+            return instance.privateIndicatorType;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create("SpaceBetweenTrackAndIndicator", typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (SliderStyle)bindable;
+            if (newValue != null)
+            {
+                instance.privateSpaceBetweenTrackAndIndicator = (uint?)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (SliderStyle)bindable;
+            return instance.privateSpaceBetweenTrackAndIndicator;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create("TrackThickness", typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (SliderStyle)bindable;
+            if (newValue != null)
+            {
+                instance.privateTrackThickness = (uint?)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (SliderStyle)bindable;
+            return instance.privateTrackThickness;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create("TrackPadding", typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (SliderStyle)bindable;
+            if (newValue != null)
+            {
+                instance.trackPadding.CopyFrom((Extents)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (SliderStyle)bindable;
+            return instance.trackPadding;
+        });
         /// <summary>
-        /// Creates a new instance of a SliderAttributes.
+        /// Creates a new instance of a SliderStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SliderAttributes() : base()
+        public SliderStyle() : base()
         {
             IndicatorType = Slider.IndicatorType.None;
+            InitSubStyle();
         }
 
         /// <summary>
-        /// Creates a new instance of a SliderAttributes with attributes.
+        /// Creates a new instance of a SliderStyle with style.
         /// </summary>
-        /// <param name="attributes">Create SliderAttributes by attributes customized by user.</param>
+        /// <param name="style">Create SliderStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SliderAttributes(SliderAttributes attributes) : base(attributes)
+        public SliderStyle(SliderStyle style) : base(style)
         {
-            if(attributes == null)
+            if(style == null)
             {
                 return;
             }
-            if (attributes.BackgroundTrackAttributes != null)
-            {
-                BackgroundTrackAttributes = attributes.BackgroundTrackAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.SlidedTrackAttributes != null)
-            {
-                SlidedTrackAttributes = attributes.SlidedTrackAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.ThumbBackgroundAttributes != null)
-            {
-                ThumbBackgroundAttributes = attributes.ThumbBackgroundAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.ThumbAttributes != null)
-            {
-                ThumbAttributes = attributes.ThumbAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.LowIndicatorImageAttributes != null)
-            {
-                LowIndicatorImageAttributes = attributes.LowIndicatorImageAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.HighIndicatorImageAttributes != null)
-            {
-                HighIndicatorImageAttributes = attributes.HighIndicatorImageAttributes.Clone() as ImageAttributes;
-            }
-            if (attributes.LowIndicatorTextAttributes != null)
-            {
-                LowIndicatorTextAttributes = attributes.LowIndicatorTextAttributes.Clone() as TextAttributes;
-            }
-            if (attributes.HighIndicatorTextAttributes != null)
-            {
-                HighIndicatorTextAttributes = attributes.HighIndicatorTextAttributes.Clone() as TextAttributes;
-            }
-            if (attributes.TrackThickness != null)
-            {
-                TrackThickness = attributes.TrackThickness;
-            }
-            if (attributes.SpaceBetweenTrackAndIndicator != null)
-            {
-                SpaceBetweenTrackAndIndicator = attributes.SpaceBetweenTrackAndIndicator;
-            }
-            IndicatorType = attributes.IndicatorType;
+
+            InitSubStyle();
+
+            this.CopyFrom(style);
+
+            IndicatorType = style.IndicatorType;
         }
 
         /// <summary>
-        /// Get or set background track attributes
+        /// Get or set background track.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes BackgroundTrackAttributes
+        public ImageViewStyle Track
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set slided track attributes
+        /// Get or set slided track.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes SlidedTrackAttributes
+        public ImageViewStyle Progress
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set thumb attributes
+        /// Get or set thumb.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes ThumbAttributes
+        public ImageViewStyle Thumb
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set thumb background attributes
+        /// Get or set thumb background.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes ThumbBackgroundAttributes
+        public ImageViewStyle ThumbBackground
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set low indicator image attributes
+        /// Get or set low indicator image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes LowIndicatorImageAttributes
+        public ImageViewStyle LowIndicatorImage
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set high indicator image attributes
+        /// Get or set high indicator image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes HighIndicatorImageAttributes
+        public ImageViewStyle HighIndicatorImage
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or low indicator text attributes
+        /// Get or set low indicator text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextAttributes LowIndicatorTextAttributes
+        public TextLabelStyle LowIndicator
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set high indicator text attributes
+        /// Get or set high indicator text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextAttributes HighIndicatorTextAttributes
+        public TextLabelStyle HighIndicator
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Get or set Indicator type
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IndicatorType? IndicatorType
+        {
+            get
+            {
+                return (IndicatorType?)GetValue(IndicatorTypeProperty);
+            }
+            set
+            {
+                SetValue(IndicatorTypeProperty, value);
+            }
+        }
+        private IndicatorType? privateIndicatorType
         {
             get;
             set;
@@ -197,6 +249,17 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? TrackThickness
         {
+            get
+            {
+                return (uint?)GetValue(TrackThicknessProperty);
+            }
+            set
+            {
+                SetValue(TrackThicknessProperty, value);
+            }
+        }
+        private uint? privateTrackThickness
+        {
             get;
             set;
         }
@@ -209,20 +272,53 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? SpaceBetweenTrackAndIndicator
         {
+            get
+            {
+                return (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
+            }
+            set
+            {
+                SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+            }
+        }
+        private uint? privateSpaceBetweenTrackAndIndicator
+        {
             get;
             set;
         }
 
         /// <summary>
-        /// Get or set Indicator type
+        /// Get or set space between track and indicator
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Slider.IndicatorType IndicatorType
+        public Extents TrackPadding
         {
-            get;
-            set;
+            get
+            {
+                return (Extents)GetValue(TrackPaddingProperty);
+            }
+            set
+            {
+                SetValue(TrackPaddingProperty, value);
+            }
+        }
+        private Extents _trackPadding;
+        private Extents trackPadding
+        {
+            get
+            {
+                if (null == _trackPadding)
+                {
+                    _trackPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom)=>
+                                        {
+                                            Extents extents = new Extents(start, end, top, bottom);
+                                            _trackPadding.CopyFrom(extents);
+                                        }, 0, 0, 0, 0);
+                }
+                return _trackPadding;
+            }
         }
 
         /// <summary>
@@ -231,9 +327,108 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new SliderAttributes(this);
+            base.CopyFrom(bindableObject);
+
+            SliderStyle sliderAttributes = bindableObject as SliderStyle;
+
+            if (null != sliderAttributes)
+            {
+                if (sliderAttributes.Track != null)
+                {
+                    if (null == Track)
+                    {
+                        Track = new ImageViewStyle();
+                    }
+                    Track.CopyFrom(sliderAttributes.Track);
+                }
+
+                if (sliderAttributes.Progress != null)
+                {
+                    if (null == Progress)
+                    {
+                        Progress = new ImageViewStyle();
+                    }
+                    Progress.CopyFrom(sliderAttributes.Progress);
+                }
+
+                if (sliderAttributes.Thumb != null)
+                {
+                    if (null == Thumb)
+                    {
+                        Thumb = new ImageViewStyle();
+                    }
+                    Thumb.CopyFrom(sliderAttributes.Thumb);
+                }
+
+                if (sliderAttributes.ThumbBackground != null)
+                {
+                    if (null == ThumbBackground)
+                    {
+                        ThumbBackground = new ImageViewStyle();
+                    }
+                    ThumbBackground.CopyFrom(sliderAttributes.ThumbBackground);
+                }
+
+                if (sliderAttributes.LowIndicatorImage != null)
+                {
+                    if (null == LowIndicatorImage)
+                    {
+                        LowIndicatorImage = new ImageViewStyle();
+                    }
+                    LowIndicatorImage.CopyFrom(sliderAttributes.LowIndicatorImage);
+                }
+
+                if (sliderAttributes.HighIndicatorImage != null)
+                {
+                    if (null == HighIndicatorImage)
+                    {
+                        HighIndicatorImage = new ImageViewStyle();
+                    }
+                    HighIndicatorImage.CopyFrom(sliderAttributes.HighIndicatorImage);
+                }
+
+                if (sliderAttributes.LowIndicator != null)
+                {
+                    if (null == LowIndicator)
+                    {
+                        LowIndicator = new TextLabelStyle();
+                    }
+                    LowIndicator.CopyFrom(sliderAttributes.LowIndicator);
+                }
+
+                if (sliderAttributes.HighIndicator != null)
+                {
+                    if (null == HighIndicator)
+                    {
+                        HighIndicator = new TextLabelStyle();
+                    }
+                    HighIndicator.CopyFrom(sliderAttributes.HighIndicator);
+                }
+
+                if (sliderAttributes.TrackThickness != null)
+                {
+                    TrackThickness = sliderAttributes.TrackThickness;
+                }
+
+                if (sliderAttributes.TrackPadding != null)
+                {
+                    TrackPadding = sliderAttributes.TrackPadding;
+                }
+            }
+        }
+
+        private void InitSubStyle()
+        {
+            Track = new ImageViewStyle();
+            Progress = new ImageViewStyle();
+            Thumb = new ImageViewStyle();
+            ThumbBackground = new ImageViewStyle();
+            LowIndicatorImage = new ImageViewStyle();
+            HighIndicatorImage = new ImageViewStyle();
+            LowIndicator = new TextLabelStyle();
+            HighIndicator = new TextLabelStyle();
         }
     }
 }

@@ -112,6 +112,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetType")]
             public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+			
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetResourceID")]
+            public static extern int GetResouceID(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetNotificationLevel")]
             public static extern bool SetNotificationLevel(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);

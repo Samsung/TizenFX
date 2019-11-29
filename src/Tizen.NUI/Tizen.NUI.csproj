@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj" />
     <ProjectReference Include="..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj" />
   </ItemGroup>
 
