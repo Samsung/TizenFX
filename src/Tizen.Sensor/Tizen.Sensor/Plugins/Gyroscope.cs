@@ -118,6 +118,22 @@ namespace Tizen.Sensor
             return count;
         }
 
+        private void GetInitialCount()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading gyroscope data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading gyroscope data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            X = sensorData.values[0];
+            Y = sensorData.values[1];
+            Z = sensorData.values[2];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
@@ -132,6 +148,8 @@ namespace Tizen.Sensor
 
                 DataUpdated?.Invoke(this, new GyroscopeDataUpdatedEventArgs(sensorData.values));
             };
+
+            GetInitialCount();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)

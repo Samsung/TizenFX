@@ -97,6 +97,20 @@ namespace Tizen.Sensor
             return count;
         }
 
+        private void GetInitialCount()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading wrist up gesture detector data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading wrist up gesture detector data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            WristUp = (DetectorState)sensorData.values[0];
+        }
+
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the wrist up gesture detector data.
         /// </summary>
@@ -115,6 +129,8 @@ namespace Tizen.Sensor
 
                 DataUpdated?.Invoke(this, new WristUpGestureDetectorDataUpdatedEventArgs(sensorData.values[0]));
             };
+
+            GetInitialCount();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)

@@ -164,6 +164,25 @@ namespace Tizen.Sensor
             return count;
         }
 
+        private void GetInitialCount()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading uncalibrated magnetometer data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading uncalibrated magnetometer data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            X = sensorData.values[0];
+            Y = sensorData.values[1];
+            Z = sensorData.values[2];
+            BiasX = sensorData.values[3];
+            BiasY = sensorData.values[4];
+            BiasZ = sensorData.values[5];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
@@ -181,6 +200,8 @@ namespace Tizen.Sensor
 
                 DataUpdated?.Invoke(this, new UncalibratedMagnetometerDataUpdatedEventArgs(sensorData.values));
             };
+
+            GetInitialCount();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
