@@ -174,6 +174,65 @@ namespace Tizen.NUI.Binding
             BindingChanging = bindingChanging;
             IsReadOnly = isReadOnly;
             DefaultValueCreator = defaultValueCreator;
+
+            Dictionary<string, BindableProperty> nameToBindableProperty;
+            bindablePropertyOfType.TryGetValue(declaringType, out nameToBindableProperty);
+            if (null == nameToBindableProperty)
+            {
+                nameToBindableProperty = new Dictionary<string, BindableProperty>();
+                bindablePropertyOfType.Add(declaringType, nameToBindableProperty);
+            }
+
+            if (!nameToBindableProperty.ContainsKey(propertyName))
+            {
+                nameToBindableProperty.Add(propertyName, this);
+            }
+            else
+            {
+                nameToBindableProperty[propertyName] = this;
+            }
+
+            if (!baseTypePropertyHasBeenAdded.Contains(declaringType))
+            {
+                AddParentTypeProperty(declaringType.BaseType, nameToBindableProperty);
+                baseTypePropertyHasBeenAdded.Add(declaringType);
+            }
+        }
+
+        private void AddParentTypeProperty(Type type, Dictionary<string, BindableProperty> propertyDict)
+        {
+            if (null != type)
+            {
+                Dictionary<string, BindableProperty> nameToBindableProperty;
+                bindablePropertyOfType.TryGetValue(type, out nameToBindableProperty);
+
+                if (null != nameToBindableProperty)
+                {
+                    foreach (KeyValuePair<string, BindableProperty> keyValuePair in nameToBindableProperty)
+                    {
+                        if (!propertyDict.ContainsKey(keyValuePair.Key))
+                        {
+                            propertyDict.Add(keyValuePair.Key, keyValuePair.Value);
+                        }
+                    }
+                }
+
+                AddParentTypeProperty(type.BaseType, propertyDict);
+            }
+        }
+
+        static internal Dictionary<Type, Dictionary<string, BindableProperty>> bindablePropertyOfType = new Dictionary<Type, Dictionary<string, BindableProperty>>();
+        static private HashSet<Type> baseTypePropertyHasBeenAdded = new HashSet<Type>();
+
+        static internal void GetBindablePropertysOfType(Type type, out Dictionary<string, BindableProperty> dictionary)
+        {
+            dictionary = null;
+
+            while (null != type && null == dictionary)
+            {
+                bindablePropertyOfType.TryGetValue(type, out dictionary);
+                type = type.BaseType;
+            }
         }
 
         /// <summary>

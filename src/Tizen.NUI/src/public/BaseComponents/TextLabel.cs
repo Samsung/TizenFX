@@ -32,6 +32,23 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class TextLabel : View
     {
+        /// <summary>
+        /// StyleNameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                textLabel.translatableText = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.translatableText;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextLabel), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -527,6 +544,10 @@ namespace Tizen.NUI.BaseComponents
         private string textLabelSid = null;
         private bool systemlangTextFlag = false;
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle Style => ViewStyle as TextLabelStyle;
+
         /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
@@ -534,6 +555,12 @@ namespace Tizen.NUI.BaseComponents
         public TextLabel() : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabel(TextLabelStyle viewStyle) : this(Interop.TextLabel.TextLabel_New__SWIG_0(), true, viewStyle)
+        {
         }
 
         /// <summary>
@@ -581,6 +608,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
         internal TextLabel(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextLabel.TextLabel_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -603,6 +640,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+        private string translatableText
+        {
+            get
+            {
+                string temp = (string)GetValue(TranslatableTextProperty);
                 return textLabelSid;
             }
             set
@@ -1347,6 +1396,133 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.Dispose(type);
+        }
+
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new TextLabelStyle();
+        }
+
+        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.TranslatableTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.TranslatableTextSelector;
+        });
+        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.textSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textSelector;
+        });
+        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.fontFamilySelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.fontFamilySelector;
+        });
+        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.pointSizeSelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.pointSizeSelector;
+        });
+        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            textLabel.textColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            return textLabel.textColorSelector;
+        });
+
+        private TriggerableSelector<string> translatableTextSelector;
+        private TriggerableSelector<string> TranslatableTextSelector
+        {
+            get
+            {
+                if (null == translatableTextSelector)
+                {
+                    translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
+                }
+                return translatableTextSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _textSelector;
+        private TriggerableSelector<string> textSelector
+        {
+            get
+            {
+                if (null == _textSelector)
+                {
+                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
+                }
+                return _textSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _fontFamilySelector;
+        private TriggerableSelector<string> fontFamilySelector
+        {
+            get
+            {
+                if (null == _fontFamilySelector)
+                {
+                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
+                }
+                return _fontFamilySelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _textColorSelector;
+        private TriggerableSelector<Color> textColorSelector
+        {
+            get
+            {
+                if (null == _textColorSelector)
+                {
+                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
+                }
+                return _textColorSelector;
+            }
+        }
+
+        private TriggerableSelector<float?> _pointSizeSelector;
+        private TriggerableSelector<float?> pointSizeSelector
+        {
+            get
+            {
+                if (null == _pointSizeSelector)
+                {
+                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
+                }
+                return _pointSizeSelector;
+            }
         }
 
         /// <summary>

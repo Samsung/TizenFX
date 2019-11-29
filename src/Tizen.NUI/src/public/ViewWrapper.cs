@@ -28,9 +28,20 @@ namespace Tizen.NUI
         internal ViewWrapperImpl viewWrapperImpl;
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
         internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : this(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true, viewStyle)
+        {
+            viewWrapperImpl = implementation;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)

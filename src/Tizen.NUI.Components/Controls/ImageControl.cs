@@ -14,116 +14,114 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ToastStyle is a class which saves Toast's ux data.
+    /// The control component is class of image. Temporarily for SelectButton.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ToastStyle : ControlStyle
+    public class ImageControl : Control
     {
         /// <summary>
-        /// Creates a new instance of a ToastStyle.
+        /// Control style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToastStyle() : base()
+        private ImageControlStyle imageControlStyle;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ImageControlStyle Style => imageControlStyle;
+
+        internal ImageView imageView;
+
+        /// <summary>
+        /// Construct an empty Control.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageControl() : base()
         {
-            InitSubStyle();
         }
 
         /// <summary>
-        /// Creates a new instance of a ToastStyle with Style.
+        /// Construct with style.
         /// </summary>
-        /// <param name="Style">Create ToastStyle by Style customized by user.</param>
+        /// <param name="style">Create style customized by user</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToastStyle(ToastStyle style) : base(style)
+        public ImageControl(ImageControlStyle style) : base(style)
         {
-            InitSubStyle();
-            this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Gets or sets background image Style.
+        /// Construct with style
         /// </summary>
+        /// <param name="style">Style to be applied</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Background
+        public ImageControl(string style) : base(style)
         {
-            get;
-            set;
         }
 
-        /// <summary>
-        /// Gets or sets text Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text
+        public override void ApplyStyle(ViewStyle viewStyle)
         {
-            get;
-            set;
-        }
+            base.ApplyStyle(viewStyle);
 
-        /// <summary>
-        /// Gets or sets toast show duration time.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint? Duration
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Style's clone function.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void CopyFrom(BindableObject bindableObject)
-        {
-            base.CopyFrom(bindableObject);
-            ToastStyle toastStyle = bindableObject as ToastStyle;
-            if (toastStyle != null)
+            ImageControlStyle imageControlStyle = viewStyle as ImageControlStyle;
+            if (null != imageControlStyle)
             {
-                if (toastStyle.Background!= null)
+                if (null == imageView)
                 {
-                    Background.CopyFrom(toastStyle.Background);
+                    imageView = new ImageView();
+                    this.Add(imageView);
                 }
-
-                if (toastStyle.Text!= null)
-                {
-                    Text.CopyFrom(toastStyle.Text);
-                }
-                Duration = toastStyle.Duration;
             }
+
+            imageView.ApplyStyle(imageControlStyle.Image);
         }
 
-        private void InitSubStyle()
+        /// <summary>
+        /// Dispose Control and all children on it.
+        /// </summary>
+        /// <param name="type">Dispose type.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
         {
-            if (Background== null)
+            if (disposed)
             {
-                Background= new ImageViewStyle();
+                return;
             }
-       
-            if (Text== null)
+
+            if (imageView != null)
             {
-                Text= new TextLabelStyle();
+                Utility.Dispose(imageView);
             }
+
+            base.Dispose(type);
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            imageControlStyle = new ImageControlStyle();
+            return imageControlStyle;
         }
     }
 }
