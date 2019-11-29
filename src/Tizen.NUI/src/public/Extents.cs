@@ -14,7 +14,7 @@
 * limitations under the License.
 *
 */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -23,17 +23,10 @@ namespace Tizen.NUI
     /// Extents class describing the a collection of uint16_t.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [TypeConverter(typeof(ExtentsTypeConverter))]
+    [Binding.TypeConverter(typeof(ExtentsTypeConverter))]
     public class Extents : Disposable
     {
 
-        /// <summary>
-        /// Extents class
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Constructor.
@@ -67,10 +60,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -106,7 +97,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="cb"></param>
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <param name="top"></param>
@@ -245,32 +235,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// To make a Extents instance be disposed.
-        /// </summary>
-        /// <param name="type">Extents type</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Extents.delete_Extents(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Extents.delete_Extents(swigCPtr);
         }
     }
 }

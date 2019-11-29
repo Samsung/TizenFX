@@ -17,6 +17,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -1026,16 +1027,6 @@ namespace Tizen.NUI.BaseComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.View.delete_View(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             foreach (View view in Children)
             {
                 view.InternalParent = null;
@@ -1047,6 +1038,13 @@ namespace Tizen.NUI.BaseComponents
             viewStyle = null;
 
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.View.delete_View(swigCPtr);
         }
 
         private void DisConnectFromSignals()

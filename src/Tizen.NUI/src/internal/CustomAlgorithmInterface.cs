@@ -22,13 +22,9 @@ namespace Tizen.NUI
 {
     internal class CustomAlgorithmInterface : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        protected bool swigCMemOwn;
 
-        internal CustomAlgorithmInterface(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal CustomAlgorithmInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CustomAlgorithmInterface obj)
@@ -36,28 +32,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.CustomAlgorithmInterface.delete_CustomAlgorithmInterface(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.CustomAlgorithmInterface.delete_CustomAlgorithmInterface(swigCPtr);
         }
 
         public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
@@ -89,10 +66,23 @@ namespace Tizen.NUI
 
         private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction)
         {
-            View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+            if (current == global::System.IntPtr.Zero && proposed == global::System.IntPtr.Zero)
+            {
+                return global::System.IntPtr.Zero;
+            }
 
-            return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
+            try
+            {
+                View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+                View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+
+                return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
+            }
+            catch (global::System.Exception ex)
+            {
+              Tizen.Log.Error("NUI","Registry Error: "+ ex);
+            }
+            return global::System.IntPtr.Zero;
         }
 
         internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);

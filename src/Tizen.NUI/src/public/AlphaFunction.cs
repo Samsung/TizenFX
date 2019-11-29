@@ -28,10 +28,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AlphaFunction : Disposable
     {
-        /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// The constructor.<br />
@@ -78,10 +74,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
@@ -327,31 +321,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// To make the AlphaFunction instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.AlphaFunction.delete_AlphaFunction(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.AlphaFunction.delete_AlphaFunction(swigCPtr);
         }
     }
 }

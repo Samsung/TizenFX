@@ -538,7 +538,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                if (_ptzTypes.Count == 0)
+                if (_ptzTypes == null)
                 {
                     _ptzTypes = GetSupportedPtzTypes();
                 }

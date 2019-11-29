@@ -227,7 +227,6 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private EventHandler<PanFinishedEventArgs> _scrollBarPanFinishedEventHandler;
         private PanFinishedEventCallbackDelegate _scrollBarPanFinishedEventCallbackDelegate;
@@ -267,7 +266,6 @@ namespace Tizen.NUI.UIComponents
 
         internal ScrollBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollBar.ScrollBar_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -716,17 +714,14 @@ namespace Tizen.NUI.UIComponents
                 }
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.ScrollBar.delete_ScrollBar(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ScrollBar.delete_ScrollBar(swigCPtr);
         }
 
         // Callback for ScrollBar PanFinishedSignal

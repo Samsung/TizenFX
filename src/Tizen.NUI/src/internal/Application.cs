@@ -451,13 +451,11 @@ namespace Tizen.NUI
             OnResourcesChanged(changedResources);
         }
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Application_SWIGUpcast(cPtr), cMemoryOwn)
         {
             SetCurrentApplication(this);
 
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             s_current = this;
         }
@@ -533,17 +531,11 @@ namespace Tizen.NUI
                 this.AppControlSignal().Disconnect(_applicationAppControlEventCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Application.delete_Application(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Application.delete_Application(swigCPtr);
         }
 
         /// <since_tizen> 4 </since_tizen>

@@ -130,7 +130,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private FinishedCallbackDelegate _videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> _videoViewFinishedEventHandler;
 
@@ -161,7 +160,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal VideoView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.VideoView.VideoView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -381,17 +379,14 @@ namespace Tizen.NUI.BaseComponents
                 FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.VideoView.delete_VideoView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.VideoView.delete_VideoView(swigCPtr);
         }
 
         // Callback for VideoView Finished signal

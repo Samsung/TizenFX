@@ -13,9 +13,8 @@ namespace SystemSettingsUnitTest
         protected override void OnCreate()
         {
             base.OnCreate();
+            //DisplayString();
             SystemSettingsTests.TestAllAsync();
-
-            //Initialize();
         }
      
         public static void PrintOkFuncName(String str_in)
@@ -30,12 +29,12 @@ namespace SystemSettingsUnitTest
         {
             Window.Instance.KeyEvent += OnKeyEvent;
             TextLabel text = new TextLabel("SystemSettings Unit Test");
-            //text.HorizontalAlignment = HorizontalAlignment.Center;
-            //text.VerticalAlignment = VerticalAlignment.Center;
-            //text.TextColor = Color.Blue;
-            //text.PointSize = 12.0f;
-            //text.HeightResizePolicy = ResizePolicyType.FillToParent;
-            //text.WidthResizePolicy = ResizePolicyType.FillToParent;
+            text.HorizontalAlignment = HorizontalAlignment.Center;
+            text.VerticalAlignment = VerticalAlignment.Center;
+            text.TextColor = Color.Blue;
+            text.PointSize = 12.0f;
+            text.HeightResizePolicy = ResizePolicyType.FillToParent;
+            text.WidthResizePolicy = ResizePolicyType.FillToParent;
             Window.Instance.GetDefaultLayer().Add(text);
 
         }
