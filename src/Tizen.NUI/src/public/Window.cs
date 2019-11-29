@@ -209,6 +209,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Get Resource ID of window
+        /// </summary>
+        internal int ResourceID
+        {
+            get
+            {
+                int ret = Interop.Window.GetResouceID(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a window type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
