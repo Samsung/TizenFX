@@ -197,9 +197,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownStyle() : base()
         {
-            Button = new ButtonStyle();
-            HeaderText = new TextLabelStyle();
-            ListBackgroundImage = new ImageViewStyle();
+            InitSubStyle();
         }
         /// <summary>
         /// Creates a new instance of a DropDownStyle with style.
@@ -215,9 +213,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            Button = new ButtonStyle();
-            HeaderText = new TextLabelStyle();
-            ListBackgroundImage = new ImageViewStyle();
+            InitSubStyle();
 
             CopyFrom(style);
         }
@@ -463,7 +459,20 @@ namespace Tizen.NUI.Components
                 Button.CopyFrom(dropDownStyle.Button);
                 HeaderText.CopyFrom(dropDownStyle.HeaderText);
                 ListBackgroundImage.CopyFrom(dropDownStyle.ListBackgroundImage);
+                Icon.CopyFrom(dropDownStyle.Icon);
+                CheckImage.CopyFrom(dropDownStyle.CheckImage);
+                CheckImageGapToBoundary = dropDownStyle.CheckImageGapToBoundary;
+                IsSelected = dropDownStyle.IsSelected;
             }
+        }
+
+        private void InitSubStyle()
+        {
+            Button = new ButtonStyle();
+            HeaderText = new TextLabelStyle();
+            ListBackgroundImage = new ImageViewStyle();
+            Icon = new ImageViewStyle();
+            CheckImage = new ImageViewStyle();
         }
     }
 
@@ -481,7 +490,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDownItemStyle() : base() { }
+        public DropDownItemStyle() : base()
+        {
+            InitSubStyle();
+        }
+
         /// <summary>
         /// Creates a new instance of a DropDownItemStyle with style.
         /// </summary>
@@ -491,23 +504,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownItemStyle(DropDownItemStyle style) : base(style)
         {
-            if (style.Text!= null)
-            {
-                Text.CopyFrom(style.Text);
-            }
+            if (null == style) return;
 
-            if (style.Icon!= null)
-            {
-                Icon.CopyFrom(style.Icon);
-            }
+            InitSubStyle();
 
-            if (style.CheckImage!= null)
-            {
-                CheckImage.CopyFrom(style.CheckImage);
-            }
-
-            CheckImageGapToBoundary = style.CheckImageGapToBoundary;
-            IsSelected = style.IsSelected;
+            CopyFrom(style);
         }
 
         /// <summary>
@@ -568,6 +569,32 @@ namespace Tizen.NUI.Components
         {
             get;
             set;
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void CopyFrom(BindableObject bindableObject)
+        {
+            base.CopyFrom(bindableObject);
+
+            DropDownItemStyle dropDownItemStyle = bindableObject as DropDownItemStyle;
+
+            if (null != dropDownItemStyle)
+            {
+                Text.CopyFrom(dropDownItemStyle.Text);
+                Icon.CopyFrom(dropDownItemStyle.Icon);
+                CheckImage.CopyFrom(dropDownItemStyle.CheckImage);
+                CheckImageGapToBoundary = dropDownItemStyle.CheckImageGapToBoundary;
+                IsSelected = dropDownItemStyle.IsSelected;
+            }
+        }
+
+
+        private void InitSubStyle()
+        {
+            Text = new TextLabelStyle();
+            Icon = new ImageViewStyle();
+            CheckImage = new ImageViewStyle();
         }
     }
 }
