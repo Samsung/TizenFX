@@ -16,6 +16,8 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -1040,6 +1042,11 @@ namespace Tizen.NUI.BaseComponents
                 view.InternalParent = null;
             }
 
+            simpleBinding?.Dispose();
+            simpleBinding = null;
+
+            viewStyle = null;
+
             base.Dispose(type);
         }
 
@@ -1190,7 +1197,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
         private void OnScaleChanged(float x, float y, float z)
         {
             Scale = new Vector3(x, y, z);
@@ -1240,7 +1246,5 @@ namespace Tizen.NUI.BaseComponents
         {
             SizeModeFactor = new Vector3(x, y, z);
         }
-
-
     }
 }

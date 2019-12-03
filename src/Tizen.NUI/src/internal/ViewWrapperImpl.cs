@@ -343,7 +343,10 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnChildAdd(view);
+                if (null != OnChildAdd)
+                {
+                    OnChildAdd(view);
+                }
             }
         }
 
@@ -431,7 +434,14 @@ namespace Tizen.NUI
 
         private bool DirectorRelayoutDependentOnChildren__SWIG_0(int dimension)
         {
-            return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            if (null == RelayoutDependentOnChildrenDimension)
+            {
+                return false;
+            }
+            else
+            {
+                return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            }
         }
 
         private bool DirectorRelayoutDependentOnChildren__SWIG_1()
@@ -458,7 +468,10 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnControlChildAdd(view);
+                if (null != OnControlChildAdd)
+                {
+                    OnControlChildAdd(view);
+                }
             }
         }
 

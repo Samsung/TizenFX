@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -58,6 +59,22 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
 
+        private ViewStyle viewStyle;
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle ViewStyle
+        {
+            get
+            {
+                if (null == viewStyle)
+                {
+                    ApplyStyle(GetViewStyle());
+                }
+
+                return viewStyle;
+            }
+        }
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
@@ -65,6 +82,13 @@ namespace Tizen.NUI.BaseComponents
         public View() : this(Interop.View.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
+        {
+            this.ViewStyle.CopyFrom(viewStyle);
         }
 
         /// <summary>
@@ -86,6 +110,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+        }
+
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            this.ViewStyle.CopyFrom(viewStyle);
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
@@ -112,6 +142,38 @@ namespace Tizen.NUI.BaseComponents
             if (!shown)
             {
                 SetVisible(false);
+            }
+        }
+
+        internal delegate void ControlStateChangesDelegate(View obj, ControlStates state);
+        internal event ControlStateChangesDelegate ControlStateChangeEvent;
+
+        private ControlStates controlStates;
+        /// <summary>
+        /// Get/Set the control state.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ControlStates ControlState
+        {
+            get
+            {
+                return controlStates;
+            }
+            set
+            {
+                if (controlStates != value)
+                {
+                    controlStates = value;
+
+                    ControlStateChangeEvent?.Invoke(this, value);
+
+                    foreach (View child in Children)
+                    {
+                        child.ControlState = value;
+                    }
+                }
             }
         }
 
@@ -2095,5 +2157,119 @@ namespace Tizen.NUI.BaseComponents
                 LoadTransitions();
             }
         }
+
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ViewStyle GetViewStyle()
+        {
+            viewStyle = new ViewStyle();
+            return viewStyle;
+        }
+
+        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundColorSelector;
+        });
+        private TriggerableSelector<Color> _backgroundColorSelector;
+        private TriggerableSelector<Color> backgroundColorSelector
+        {
+            get
+            {
+                if (null == _backgroundColorSelector)
+                {
+                    _backgroundColorSelector = new TriggerableSelector<Color>(this, BackgroundColorProperty);
+                }
+                return _backgroundColorSelector;
+            }
+        }
+
+        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.opacitySelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.opacitySelector;
+        });
+        private TriggerableSelector<float?> _opacitySelector;
+        private TriggerableSelector<float?> opacitySelector
+        {
+            get
+            {
+                if (null == _opacitySelector)
+                {
+                    _opacitySelector = new TriggerableSelector<float?>(this, OpacityProperty);
+                }
+                return _opacitySelector;
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (null == viewStyle)
+            {
+                return;
+            }
+
+            if (this.viewStyle == viewStyle)
+            {
+                return;
+            }
+
+            if (null != this.viewStyle)
+            {
+                simpleBinding.Clear();
+            }
+
+            this.viewStyle = viewStyle;
+
+            Dictionary<string, BindableProperty> bindablePropertyOfView;
+            Type viewType = GetType();
+
+            Dictionary<string, BindableProperty> bindablePropertyOfStyle;
+            Type styleType = viewStyle.GetType();
+
+            BindableProperty.GetBindablePropertysOfType(viewType, out bindablePropertyOfView);
+            BindableProperty.GetBindablePropertysOfType(styleType, out bindablePropertyOfStyle);
+
+            if (null != bindablePropertyOfView && null != bindablePropertyOfStyle)
+            {
+                foreach (KeyValuePair<string, BindableProperty> keyValuePair in bindablePropertyOfStyle)
+                {
+                    BindableProperty viewProperty;
+                    bindablePropertyOfView.TryGetValue(keyValuePair.Key, out viewProperty);
+
+                    if (null != viewProperty)
+                    {
+                        object value = viewStyle.GetValue(keyValuePair.Value);
+
+                        if (null != value)
+                        {
+                            SetValue(viewProperty, value);
+                        }
+
+                        simpleBinding.Bind(viewStyle, keyValuePair.Value, this, viewProperty, BindingDirection.TwoWay);
+                    }
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private BundledPipe simpleBinding = new BundledPipe();
     }
 }

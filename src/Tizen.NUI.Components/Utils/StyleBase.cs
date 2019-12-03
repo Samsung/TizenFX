@@ -15,6 +15,7 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
@@ -53,9 +54,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal virtual Attributes GetAttributes()
+        protected internal virtual ViewStyle GetAttributes()
         {
-            return Content as Attributes;
+            return Content as ViewStyle;
         }
     }
 }

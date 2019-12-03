@@ -18,6 +18,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -51,6 +52,12 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
+        {
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualView(ViewStyle viewStyle) : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
         {
         }
 

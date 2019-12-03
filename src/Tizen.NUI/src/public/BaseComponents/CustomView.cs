@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,55 +63,22 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="typeName">typename</param>
         /// <param name="behaviour">CustomView Behaviour</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CustomView(string typeName, CustomViewBehaviour behaviour, ViewStyle viewStyle) : base(typeName, new ViewWrapperImpl(behaviour), viewStyle)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Create an instance of customView.
+        /// </summary>
+        /// <param name="typeName">typename</param>
+        /// <param name="behaviour">CustomView Behaviour</param>
+        /// <since_tizen> 3 </since_tizen>
         public CustomView(string typeName, CustomViewBehaviour behaviour) : base(typeName, new ViewWrapperImpl(behaviour))
         {
-            // Registering CustomView virtual functions to viewWrapperImpl delegates.
-            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);
-            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnStageDisconnectionDelegate(OnStageDisconnection);
-            viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
-            viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
-            viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);
-            viewWrapperImpl.OnSizeSet = new ViewWrapperImpl.OnSizeSetDelegate(OnSizeSet);
-            viewWrapperImpl.OnSizeAnimation = new ViewWrapperImpl.OnSizeAnimationDelegate(OnSizeAnimation);
-            viewWrapperImpl.OnTouch = new ViewWrapperImpl.OnTouchDelegate(OnTouch);
-            viewWrapperImpl.OnHover = new ViewWrapperImpl.OnHoverDelegate(OnHover);
-            viewWrapperImpl.OnKey = new ViewWrapperImpl.OnKeyDelegate(OnKey);
-            viewWrapperImpl.OnWheel = new ViewWrapperImpl.OnWheelDelegate(OnWheel);
-            viewWrapperImpl.OnRelayout = new ViewWrapperImpl.OnRelayoutDelegate(OnRelayout);
-            viewWrapperImpl.OnSetResizePolicy = new ViewWrapperImpl.OnSetResizePolicyDelegate(OnSetResizePolicy);
-            viewWrapperImpl.GetNaturalSize = new ViewWrapperImpl.GetNaturalSizeDelegate(GetNaturalSize);
-            viewWrapperImpl.CalculateChildSize = new ViewWrapperImpl.CalculateChildSizeDelegate(CalculateChildSize);
-            viewWrapperImpl.GetHeightForWidth = new ViewWrapperImpl.GetHeightForWidthDelegate(GetHeightForWidth);
-            viewWrapperImpl.GetWidthForHeight = new ViewWrapperImpl.GetWidthForHeightDelegate(GetWidthForHeight);
-            viewWrapperImpl.RelayoutDependentOnChildrenDimension = new ViewWrapperImpl.RelayoutDependentOnChildrenDimensionDelegate(RelayoutDependentOnChildren);
-            viewWrapperImpl.RelayoutDependentOnChildren = new ViewWrapperImpl.RelayoutDependentOnChildrenDelegate(RelayoutDependentOnChildren);
-            viewWrapperImpl.OnCalculateRelayoutSize = new ViewWrapperImpl.OnCalculateRelayoutSizeDelegate(OnCalculateRelayoutSize);
-            viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
-            viewWrapperImpl.OnControlChildAdd = new ViewWrapperImpl.OnControlChildAddDelegate(OnControlChildAdd);
-            viewWrapperImpl.OnControlChildRemove = new ViewWrapperImpl.OnControlChildRemoveDelegate(OnControlChildRemove);
-            viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
-            viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
-            viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
-            viewWrapperImpl.OnAccessibilityTouch = new ViewWrapperImpl.OnAccessibilityTouchDelegate(OnAccessibilityTouch);
-            viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
-            viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
-            viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);
-            viewWrapperImpl.OnFocusLost = new ViewWrapperImpl.OnFocusLostDelegate(OnFocusLost);
-            viewWrapperImpl.GetNextFocusableView = new ViewWrapperImpl.GetNextFocusableViewDelegate(GetNextFocusableView);
-            viewWrapperImpl.OnFocusChangeCommitted = new ViewWrapperImpl.OnFocusChangeCommittedDelegate(OnFocusChangeCommitted);
-            viewWrapperImpl.OnKeyboardEnter = new ViewWrapperImpl.OnKeyboardEnterDelegate(OnKeyboardEnter);
-            viewWrapperImpl.OnPinch = new ViewWrapperImpl.OnPinchDelegate(OnPinch);
-            viewWrapperImpl.OnPan = new ViewWrapperImpl.OnPanDelegate(OnPan);
-            viewWrapperImpl.OnTap = new ViewWrapperImpl.OnTapDelegate(OnTap);
-            viewWrapperImpl.OnLongPress = new ViewWrapperImpl.OnLongPressDelegate(OnLongPress);
-
-            // Make sure CustomView is initialized.
-            OnInitialize();
-
-            // Set the StyleName the name of the View
-            // We have to do this because the StyleManager on Native side can't workout it out
-            // This will also ensure that the style of views/visuals initialized above are applied by the style manager.
-            SetStyleName(this.GetType().Name);
+            Initialize();
         }
 
         /// <summary>
@@ -772,6 +739,57 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnControlChildRemove(View child)
         {
+        }
+
+        private void Initialize()
+        {
+            // Registering CustomView virtual functions to viewWrapperImpl delegates.
+            viewWrapperImpl.OnStageConnection = new ViewWrapperImpl.OnStageConnectionDelegate(OnStageConnection);
+            viewWrapperImpl.OnStageDisconnection = new ViewWrapperImpl.OnStageDisconnectionDelegate(OnStageDisconnection);
+            viewWrapperImpl.OnChildAdd = new ViewWrapperImpl.OnChildAddDelegate(OnChildAdd);
+            viewWrapperImpl.OnChildRemove = new ViewWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
+            viewWrapperImpl.OnPropertySet = new ViewWrapperImpl.OnPropertySetDelegate(OnPropertySet);
+            viewWrapperImpl.OnSizeSet = new ViewWrapperImpl.OnSizeSetDelegate(OnSizeSet);
+            viewWrapperImpl.OnSizeAnimation = new ViewWrapperImpl.OnSizeAnimationDelegate(OnSizeAnimation);
+            viewWrapperImpl.OnTouch = new ViewWrapperImpl.OnTouchDelegate(OnTouch);
+            viewWrapperImpl.OnHover = new ViewWrapperImpl.OnHoverDelegate(OnHover);
+            viewWrapperImpl.OnKey = new ViewWrapperImpl.OnKeyDelegate(OnKey);
+            viewWrapperImpl.OnWheel = new ViewWrapperImpl.OnWheelDelegate(OnWheel);
+            viewWrapperImpl.OnRelayout = new ViewWrapperImpl.OnRelayoutDelegate(OnRelayout);
+            viewWrapperImpl.OnSetResizePolicy = new ViewWrapperImpl.OnSetResizePolicyDelegate(OnSetResizePolicy);
+            viewWrapperImpl.GetNaturalSize = new ViewWrapperImpl.GetNaturalSizeDelegate(GetNaturalSize);
+            viewWrapperImpl.CalculateChildSize = new ViewWrapperImpl.CalculateChildSizeDelegate(CalculateChildSize);
+            viewWrapperImpl.GetHeightForWidth = new ViewWrapperImpl.GetHeightForWidthDelegate(GetHeightForWidth);
+            viewWrapperImpl.GetWidthForHeight = new ViewWrapperImpl.GetWidthForHeightDelegate(GetWidthForHeight);
+            viewWrapperImpl.RelayoutDependentOnChildrenDimension = new ViewWrapperImpl.RelayoutDependentOnChildrenDimensionDelegate(RelayoutDependentOnChildren);
+            viewWrapperImpl.RelayoutDependentOnChildren = new ViewWrapperImpl.RelayoutDependentOnChildrenDelegate(RelayoutDependentOnChildren);
+            viewWrapperImpl.OnCalculateRelayoutSize = new ViewWrapperImpl.OnCalculateRelayoutSizeDelegate(OnCalculateRelayoutSize);
+            viewWrapperImpl.OnLayoutNegotiated = new ViewWrapperImpl.OnLayoutNegotiatedDelegate(OnLayoutNegotiated);
+            viewWrapperImpl.OnControlChildAdd = new ViewWrapperImpl.OnControlChildAddDelegate(OnControlChildAdd);
+            viewWrapperImpl.OnControlChildRemove = new ViewWrapperImpl.OnControlChildRemoveDelegate(OnControlChildRemove);
+            viewWrapperImpl.OnStyleChange = new ViewWrapperImpl.OnStyleChangeDelegate(OnStyleChange);
+            viewWrapperImpl.OnAccessibilityActivated = new ViewWrapperImpl.OnAccessibilityActivatedDelegate(OnAccessibilityActivated);
+            viewWrapperImpl.OnAccessibilityPan = new ViewWrapperImpl.OnAccessibilityPanDelegate(OnAccessibilityPan);
+            viewWrapperImpl.OnAccessibilityTouch = new ViewWrapperImpl.OnAccessibilityTouchDelegate(OnAccessibilityTouch);
+            viewWrapperImpl.OnAccessibilityValueChange = new ViewWrapperImpl.OnAccessibilityValueChangeDelegate(OnAccessibilityValueChange);
+            viewWrapperImpl.OnAccessibilityZoom = new ViewWrapperImpl.OnAccessibilityZoomDelegate(OnAccessibilityZoom);
+            viewWrapperImpl.OnFocusGained = new ViewWrapperImpl.OnFocusGainedDelegate(OnFocusGained);
+            viewWrapperImpl.OnFocusLost = new ViewWrapperImpl.OnFocusLostDelegate(OnFocusLost);
+            viewWrapperImpl.GetNextFocusableView = new ViewWrapperImpl.GetNextFocusableViewDelegate(GetNextFocusableView);
+            viewWrapperImpl.OnFocusChangeCommitted = new ViewWrapperImpl.OnFocusChangeCommittedDelegate(OnFocusChangeCommitted);
+            viewWrapperImpl.OnKeyboardEnter = new ViewWrapperImpl.OnKeyboardEnterDelegate(OnKeyboardEnter);
+            viewWrapperImpl.OnPinch = new ViewWrapperImpl.OnPinchDelegate(OnPinch);
+            viewWrapperImpl.OnPan = new ViewWrapperImpl.OnPanDelegate(OnPan);
+            viewWrapperImpl.OnTap = new ViewWrapperImpl.OnTapDelegate(OnTap);
+            viewWrapperImpl.OnLongPress = new ViewWrapperImpl.OnLongPressDelegate(OnLongPress);
+
+            // Make sure CustomView is initialized.
+            OnInitialize();
+
+            // Set the StyleName the name of the View
+            // We have to do this because the StyleManager on Native side can't workout it out
+            // This will also ensure that the style of views/visuals initialized above are applied by the style manager.
+            SetStyleName(this.GetType().Name);
         }
     }
 }

@@ -15,98 +15,78 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// SelectButtonAttributes is a class which saves SelectButton's ux data.
+    /// SelectButtonStyle is a class which saves SelectButton's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SelectButtonAttributes : ButtonAttributes
+    public class SelectButtonStyle : ButtonStyle
     {
         /// <summary>
-        /// Creates a new instance of a SelectButtonAttributes.
+        /// Creates a new instance of a SelectButtonStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SelectButtonAttributes() : base() { }
-        /// <summary>
-        /// Creates a new instance of a SelectButtonAttributes with attributes.
-        /// </summary>
-        /// <param name="attributes">Create SelectButtonAttributes by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public SelectButtonAttributes(SelectButtonAttributes attributes) : base(attributes)
+        public SelectButtonStyle() : base()
         {
-            if(attributes == null)
+            IsSelectable = true;
+            CreateSubStyles();
+        }
+        /// <summary>
+        /// Creates a new instance of a SelectButtonStyle with style.
+        /// </summary>
+        /// <param name="style">Create SelectButtonStyle by style customized by user.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SelectButtonStyle(SelectButtonStyle style) : base(style)
+        {
+            if (style == null)
             {
                 return;
             }
-            if (attributes.CheckImageAttributes != null)
-            {
-                CheckImageAttributes = attributes.CheckImageAttributes.Clone() as ImageAttributes;
-            }
 
-            if (attributes.CheckBackgroundImageAttributes != null)
-            {
-                CheckBackgroundImageAttributes = attributes.CheckBackgroundImageAttributes.Clone() as ImageAttributes;
-            }
+            CreateSubStyles();
 
-            if (attributes.CheckShadowImageAttributes != null)
-            {
-                CheckShadowImageAttributes = attributes.CheckShadowImageAttributes.Clone() as ImageAttributes;
-            }
+            CopyFrom(style);
         }
 
         /// <summary>
-        /// Check image's attributes.
+        /// Selectable image's attributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckImageAttributes
+        public ImageControlStyle SelectableImage
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Background image's attributes.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckBackgroundImageAttributes
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            get;
-            set;
+            base.CopyFrom(bindableObject);
+
+            SelectButtonStyle selectButtonStyle = bindableObject as SelectButtonStyle;
+
+            if (null != selectButtonStyle && null != selectButtonStyle.SelectableImage)
+            {
+                SelectableImage.CopyFrom(selectButtonStyle.SelectableImage);
+            }
         }
 
-        /// <summary>
-        /// Shadow image's attributes.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes CheckShadowImageAttributes
+        private void CreateSubStyles()
         {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Attributes's clone function.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
-        {
-            return new SelectButtonAttributes(this);
+            SelectableImage = new ImageControlStyle();
         }
     }
 }
