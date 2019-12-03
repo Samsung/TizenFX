@@ -73,13 +73,46 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="cb"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public Extents(ExtentsChangedCallback cb, ushort start, ushort end, ushort top, ushort bottom) : this(Interop.Extents.new_Extents__SWIG_2(start, end, top, bottom), true)
         {
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort botton);
+        /// <summary>
+        /// Copy other extents
+        /// </summary>
+        /// <param name="that"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public void CopyFrom(Extents that)
+        {
+            Interop.Extents.Extents_start_set(swigCPtr, that.Start);
+            Interop.Extents.Extents_end_set(swigCPtr, that.End);
+            Interop.Extents.Extents_top_set(swigCPtr, that.Top);
+            Interop.Extents.Extents_bottom_set(swigCPtr, that.End);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="top"></param>
+        /// <param name="bottom"></param>
+        /// <since_tizen> Only used by Tizen.NUI.Components, will not be opened </since_tizen>
+		[System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        public delegate void ExtentsChangedCallback(ushort start, ushort end, ushort top, ushort bottom);
         private ExtentsChangedCallback callback = null;
 
         /// <summary>

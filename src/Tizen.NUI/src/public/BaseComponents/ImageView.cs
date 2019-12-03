@@ -241,6 +241,10 @@ namespace Tizen.NUI.BaseComponents
         private string _resourceUrl = "";
         private bool _synchronosLoading = false;
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageViewStyle Style => ViewStyle as ImageViewStyle;
+
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
@@ -248,6 +252,12 @@ namespace Tizen.NUI.BaseComponents
         public ImageView() : this(Interop.ImageView.ImageView_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView(ViewStyle viewStyle) : this(Interop.ImageView.ImageView_New__SWIG_0(), true, viewStyle)
+        {
         }
 
         /// <summary>
@@ -293,6 +303,16 @@ namespace Tizen.NUI.BaseComponents
         {
             ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.ImageView.ImageView_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             if (!shown)
             {
@@ -524,7 +544,14 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Rectangle temp = (Rectangle)GetValue(BorderProperty);
-                return new Rectangle(OnBorderChanged, temp.X, temp.Y, temp.Width, temp.Height);
+                if (null == temp)
+                {
+                    return null;
+                }
+                else
+                {
+                    return new Rectangle(OnBorderChanged, temp.X, temp.Y, temp.Width, temp.Height);
+                }
             }
             set
             {
@@ -875,6 +902,17 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new ImageViewStyle();
+        }
+
         internal void SetImage(string url, Uint16Pair size)
         {
             if(url.Contains(".json"))
@@ -899,6 +937,52 @@ namespace Tizen.NUI.BaseComponents
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+        }
+
+        internal static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.resourceUrlSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.resourceUrlSelector;
+        });
+        private TriggerableSelector<string> _resourceUrlSelector;
+        private TriggerableSelector<string> resourceUrlSelector
+        {
+            get
+            {
+                if (null == _resourceUrlSelector)
+                {
+                    _resourceUrlSelector = new TriggerableSelector<string>(this, ResourceUrlProperty);
+                }
+                return _resourceUrlSelector;
+            }
+        }
+
+        internal static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.borderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView.borderSelector;
+        });
+        private TriggerableSelector<Rectangle> _borderSelector;
+        private TriggerableSelector<Rectangle> borderSelector
+        {
+            get
+            {
+                if (null == _borderSelector)
+                {
+                    _borderSelector = new TriggerableSelector<Rectangle>(this, BorderProperty);
+                }
+                return _borderSelector;
+            }
         }
 
         /// <summary>
@@ -1087,6 +1171,5 @@ namespace Tizen.NUI.BaseComponents
         {
             PixelArea = new RelativeVector4(x, y, z, w);
         }
-
     }
 }

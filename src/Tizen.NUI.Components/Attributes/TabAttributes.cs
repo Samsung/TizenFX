@@ -15,64 +15,82 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// TabAttributes is a class which saves Tab's ux data.
+    /// TabStyle is a class which saves Tab's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TabAttributes : ViewAttributes
+    public class TabStyle : ControlStyle
     {
         /// <summary>
-        /// Creates a new instance of a TabAttributes.
+        /// Creates a new instance of a TabStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TabAttributes() : base()
+        public TabStyle() : base()
         {
-            Space = new Vector4(0, 0, 0, 0);
+            ItemPadding = new Extents(0, 0, 0, 0);
             UseTextNaturalSize = false;
             ItemSpace = 0;
+
+            UnderLine = new ViewStyle();
+            Text = new TextLabelStyle();
         }
 
         /// <summary>
-        /// Creates a new instance of a TabAttributes with attributes.
+        /// Creates a new instance of a TabStyle with style.
         /// </summary>
-        /// <param name="attributes">Create TabAttributes by attributes customized by user.</param>
+        /// <param name="style">Create TabStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TabAttributes(TabAttributes attributes) : base(attributes)
+        public TabStyle(TabStyle style) : base(style)
         {
-            if (null == attributes)
+            UnderLine = new ViewStyle();
+            Text = new TextLabelStyle();
+
+            if (null == style)
             {
                 return;
             }
 
-            if (attributes.UnderLineAttributes != null)
+            if (style.UnderLine != null)
             {
-                UnderLineAttributes = attributes.UnderLineAttributes.Clone() as ViewAttributes;
+                UnderLine.CopyFrom(style.UnderLine);
             }
 
-            if (attributes.TextAttributes != null)
+            if (style.Text != null)
             {
-                TextAttributes = attributes.TextAttributes.Clone() as TextAttributes;
+                Text.CopyFrom(style.Text);
             }
 
-            if (attributes.Space != null)
+            if (style.ItemPadding != null)
             {
-                Space = new Vector4(attributes.Space.X, attributes.Space.Y, attributes.Space.Z, attributes.Space.W);
+                ItemPadding = new Extents(style.ItemPadding.Start, style.ItemPadding.End, style.ItemPadding.Top, style.ItemPadding.Bottom);
             }
             else
             {
-                Space = new Vector4(0, 0, 0, 0);
+                ItemPadding = new Extents(0, 0, 0, 0);
             }
-            ItemSpace = attributes.ItemSpace;
-            UseTextNaturalSize = attributes.UseTextNaturalSize;
+            ItemSpace = style.ItemSpace;
+            UseTextNaturalSize = style.UseTextNaturalSize;
+
+            if (null != style.UnderLine)
+            {
+                UnderLine.CopyFrom(style.UnderLine);
+            }
+
+            if (null != style.Text)
+            {
+                Text.CopyFrom(style.Text);
+            }
         }
 
         /// <summary>
@@ -81,7 +99,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewAttributes UnderLineAttributes
+        public ViewStyle UnderLine
         {
             get;
             set;
@@ -93,7 +111,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextAttributes TextAttributes
+        public TextLabelStyle Text
         {
             get;
             set;
@@ -129,7 +147,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 Space
+        public Extents ItemPadding
         {
             get;
             set;
@@ -141,9 +159,31 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new TabAttributes(this);
+            base.CopyFrom(bindableObject);
+            TabStyle tabStyle = bindableObject as TabStyle;
+
+            if (null != tabStyle)
+            {
+                if (null != tabStyle.ItemPadding)
+                {
+                    ItemPadding.CopyFrom(tabStyle.ItemPadding);
+                }
+
+                ItemSpace = tabStyle.ItemSpace;
+                UseTextNaturalSize = tabStyle.UseTextNaturalSize;
+
+                if (null != tabStyle.UnderLine)
+                {
+                    UnderLine.CopyFrom(tabStyle.UnderLine);
+                }
+
+                if (null != tabStyle.Text)
+                {
+                    Text.CopyFrom(tabStyle.Text);
+                }
+            }
         }
     }
 }

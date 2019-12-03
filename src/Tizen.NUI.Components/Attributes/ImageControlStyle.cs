@@ -14,76 +14,88 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The image view attributes class.
+    /// ImageControlStyle is a class which saves Button's ux data.
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageAttributes : ViewAttributes
+    public class ImageControlStyle : ControlStyle
     {
         /// <summary>
-        /// Construct ImageAttributes.
+        /// Creates a new instance of a ImageControlStyle.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes() : base() { }
-        /// <summary>
-        /// Construct with specified attribute.
-        /// </summary>
-        /// <param name="attributes">The specified ImageAttributes.</param>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes(ImageAttributes attributes) : base(attributes)
+        public ImageControlStyle() : base()
         {
-            if (attributes == null)
+            InitSubStyle();
+        }
+        /// <summary>
+        /// Creates a new instance of a ImageControlStyle with style.
+        /// </summary>
+        /// <param name="style">Create ImageControlStyle by style customized by user.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageControlStyle(ImageControlStyle style) : base(style)
+        {
+            if(style == null)
             {
                 return;
             }
 
-            if (attributes.ResourceURL != null)
-            {
-                ResourceURL = attributes.ResourceURL.Clone() as StringSelector;
-            }
+            InitSubStyle();
 
-            if (attributes.Border != null)
-            {
-                Border = attributes.Border.Clone() as RectangleSelector;
-            }
+            Image.CopyFrom(style.Image);
         }
+
         /// <summary>
-        /// Image URL.
+        /// Image's Style.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector ResourceURL
+        public ImageViewStyle Image
         {
             get;
             set;
         }
-        /// <summary>
-        /// Image border.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RectangleSelector Border
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            get;
-            set;
-        }
-        /// <summary>
-        /// Attributes's clone function.
-        /// </summary>
-        /// <returns> Return the attributes clone.</returns>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
-        {
-            return new ImageAttributes(this);
+            base.CopyFrom(bindableObject);
+
+            ImageControlStyle imageControlStyle = bindableObject as ImageControlStyle;
+
+            if (null != imageControlStyle)
+            {
+                if (null != imageControlStyle.Image)
+                {
+                    Image.CopyFrom(imageControlStyle.Image);
+                }
+            }
         }
 
+        private void InitSubStyle()
+        {
+            Image = new ImageViewStyle();
+            Image.PropertyChanged += SubStyleCalledEvent;
+        }
+
+        private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
+        {
+            OnPropertyChanged();
+        }
     }
 }

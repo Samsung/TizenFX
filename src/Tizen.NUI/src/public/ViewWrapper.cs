@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -34,6 +34,12 @@ namespace Tizen.NUI
         }
 
         internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
+        {
+            viewWrapperImpl = implementation;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation, ViewStyle viewStyle) : base(Interop.ViewWrapper.ViewWrapper_SWIGUpcast(Interop.ViewWrapper.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation))), true, viewStyle)
         {
             viewWrapperImpl = implementation;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
