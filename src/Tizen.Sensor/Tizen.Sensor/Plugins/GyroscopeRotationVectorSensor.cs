@@ -132,7 +132,7 @@ namespace Tizen.Sensor
             return count;
         }
 
-        private void GetInitialCount()
+        private void GetInitialData()
         {
             Interop.SensorEventStruct sensorData;
             int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
@@ -167,7 +167,7 @@ namespace Tizen.Sensor
                 DataUpdated?.Invoke(this, new GyroscopeRotationVectorSensorDataUpdatedEventArgs(sensorData.values, sensorData.accuracy));
             };
 
-            GetInitialCount();
+            GetInitialData();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
