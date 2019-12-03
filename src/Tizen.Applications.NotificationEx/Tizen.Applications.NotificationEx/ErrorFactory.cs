@@ -38,11 +38,8 @@ namespace Tizen.Applications.NotificationEx
                 case ErrorCode.IO:
                 case ErrorCode.InvalidOperation:
                 case ErrorCode.DB:
-                case ErrorCode.AlreadyExistID:
-                case ErrorCode.DBus:
+                case ErrorCode.AlreadyExistID:                
                 case ErrorCode.NotExistID:
-                case ErrorCode.ServiceNotReady:
-                case ErrorCode.MaxExceeded:
                     Log.Error(LogTag, "InvalidOperation : " + errorMessage);
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");

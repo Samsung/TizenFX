@@ -63,23 +63,8 @@ namespace Tizen.Applications.NotificationEx
         AlreadyExistID = -0x01140000 | 0x02,
 
         /// <summary>
-        /// DBus error.
-        /// </summary>
-        DBus = -0x01140000 | 0x03,
-
-        /// <summary>
         /// Not exist ID.
         /// </summary>
-        NotExistID = -0x01140000 | 0x04,
-
-        /// <summary>
-        /// The notification service is not ready.
-        /// </summary>
-        ServiceNotReady = -0x01140000 | 0x05,
-
-        /// <summary>
-        /// Max exceeded.
-        /// </summary>
-        MaxExceeded = -0x01140000 | 0x06,
+        NotExistID = -0x01140000 | 0x04
     }
 }
