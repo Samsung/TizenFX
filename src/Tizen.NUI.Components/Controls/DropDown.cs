@@ -157,12 +157,22 @@ namespace Tizen.NUI.Components
         private TextLabel headerText = null;
         private TextLabel buttonText = null;
         private ImageView listBackgroundImage = null;
-        private FlexibleView list = null;
+
+        // Component that scrolls the child added to it.
+        private LayoutScroller layoutScroller = null;
+
+        // The LinearLayout container to house the items in the drop down list.
+        private View dropDownMenuFullList = null;
+
         private DropDownListBridge adapter = new DropDownListBridge();
-        private DropDownItemView touchedView = null;
         private int selectedItemIndex = -1;
 
         private Extents listPadding = null;
+        DropDownItemView selectedItemView = null;
+
+        private bool itemPressed = false;
+
+        private TapGestureDetector tapGestureDetector = null;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -217,7 +227,7 @@ namespace Tizen.NUI.Components
         public event ClickEventHandler<ItemClickEventArgs> ItemClickEvent;
 
         /// <summary>
-        /// List orientation.
+        /// List position in relation to the main button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -312,6 +322,7 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(ListRelativeOrientationProperty, value);
+                RelayoutRequest();
             }
         }
         private ListOrientation privateListRelativeOrientation
@@ -398,7 +409,12 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                SetValue(SelectedItemIndexProperty, value);
+                if (value == selectedItemIndex || adapter == null || value >= adapter.GetItemCount())
+                {
+                    return;
+                }
+
+                SetValue(SelectedItemIndexProperty, value); // UpdatesSelectedItem
             }
         }
         private int privateSelectedItemIndex
@@ -501,7 +517,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddItem(DropDownDataItem itemData)
         {
-            adapter.InsertData(-1, itemData);
+           // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
+           int insertionPosition = adapter.GetItemCount();
+           adapter.InsertData(insertionPosition, itemData);
         }
 
         /// <summary>
@@ -528,6 +546,17 @@ namespace Tizen.NUI.Components
             }
 
             adapter.RemoveData(index);
+
+            if(index < dropDownMenuFullList.ChildCount)
+            {
+                View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
+                if (childToRemove)
+                {
+                    childToRemove.TouchEvent -= ListItemTouchEvent;
+                    dropDownMenuFullList.Remove(childToRemove);
+                    dropDownMenuFullList?.Layout?.RequestLayout();
+                }
+            }
         }
 
         /// <summary>
@@ -562,11 +591,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AttachScrollBar(ScrollBar scrollBar)
         {
-            if (list == null)
+            if (layoutScroller == null)
             {
                 return;
             }
-            list.AttachScrollBar(scrollBar);
+            Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
         /// <summary>
@@ -577,11 +606,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (list == null)
+            if (layoutScroller == null)
             {
                 return;
             }
-            list.DetachScrollBar();
+            Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
         protected override void RegisterDetectionOfSubstyleChanges()
@@ -592,7 +621,7 @@ namespace Tizen.NUI.Components
             Style.HeaderText.PropertyChanged += HeaderTextAttributesPropertyChanged;
             Style.Button.PropertyChanged += ButtonAttributesPropertyChanged;
 
-            Style.Button.Icon.PropertyChanged += IconStylePropertyChanged;
+            Style.Button.Icon.PropertyChanged += IconStylePropertyChanged;;
         }
 
         private void IconStylePropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -680,13 +709,20 @@ namespace Tizen.NUI.Components
                 if (listBackgroundImage == null)
                 {
                     CreateListBackgroundImage();
-                    CreateList();
                 }
 
                 int temp = (int)Style.FocusedItemIndex;
-                list.FocusedItemIndex = temp;
-                list.Size = Style.ListSize;
-                list.Padding = Style.ListPadding;
+
+                if (layoutScroller==null) // layoutScroller used to test of ListContainer Setup invoked already
+                {
+                    SetUpListContainer();
+                }
+
+                listBackgroundImage.Size = Style.ListSize;
+
+                // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
+                layoutScroller.Size = Style.ListSize - new Size((Style.ListPadding.Start + Style.ListPadding.End), (Style.ListPadding.Top + Style.ListPadding.Bottom), 0 );
+                layoutScroller.Position2D = new Position2D(Style.ListPadding.Start,Style.ListPadding.Top);
 
                 int listBackgroundImageX = 0;
                 int listBackgroundImageY = 0;
@@ -703,15 +739,30 @@ namespace Tizen.NUI.Components
                     if (Style.ListMargin != null)
                     {
                         int listWidth = 0;
-                        if (list.Size2D != null)
+                        if (dropDownMenuFullList.Size2D != null)
                         {
-                            listWidth = list.Size2D.Width;
+                            listWidth = dropDownMenuFullList.Size2D.Width;
                         }
                         listBackgroundImageX = Size2D.Width - listWidth - (int)Style.ListMargin.End;
                         listBackgroundImageY = (int)Style.ListMargin.Top;
                     }
                 }
                 listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
+                dropDownMenuFullList?.Layout?.RequestLayout();
+
+                int numberOfItemsToAdd = adapter.GetItemCount();
+
+                if (adapter.AdapterPurge == true)
+                {
+                    adapter.AdapterPurge = false;
+                    for (int i =0; i<numberOfItemsToAdd; i++)
+                    {
+                        AddItemAt(adapter.GetData(i), i);
+                    }
+                }
+
+		        // Set selection icon on View
+                UpdateSelectedItem(selectedItemIndex);
             }
         }
 
@@ -746,14 +797,19 @@ namespace Tizen.NUI.Components
                     Utility.Dispose(button);
                 }
 
-                if (list != null)
+                if (layoutScroller != null)
                 {
+                    if (dropDownMenuFullList != null)
+                    {
+                        Utility.Dispose(dropDownMenuFullList);
+                    }
+
                     if (listBackgroundImage != null)
                     {
                         Utility.Dispose(listBackgroundImage);
                     }
 
-                    Utility.Dispose(list);
+                    Utility.Dispose(layoutScroller);
                 }
             }
 
@@ -771,71 +827,130 @@ namespace Tizen.NUI.Components
             return new DropDownStyle();
         }
 
+        private void AddItemAt(DropDownDataItem itemData,int index)
+        {
+            ViewHolder viewHolder = adapter.OnCreateViewHolder();
+            if (!viewHolder.IsBound)
+            {
+                adapter.BindViewHolder(viewHolder, index);
+                viewHolder.IsBound = true;
+            }
+
+            if (tapGestureDetector == null)
+            {
+                tapGestureDetector = new TapGestureDetector();
+            }
+            View view = viewHolder.ItemView;
+            view.TouchEvent += ListItemTouchEvent;
+            dropDownMenuFullList.Add(view);
+        }
+
         private void OnClickEvent(object sender, ItemClickEventArgs e)
         {
             ItemClickEvent?.Invoke(sender, e);
         }
-
-        private void CreateList()
+        private void CreateHeaderText()
         {
-            list = new FlexibleView();
-            list.Name = "DropDownList";
-            LinearLayoutManager layoutManager = new LinearLayoutManager(LinearLayoutManager.VERTICAL);
-            list.SetLayoutManager(layoutManager);
-            list.SetAdapter(adapter);
-            list.Focusable = true;
-            list.ItemTouchEvent += ListItemTouchEvent;
-            list.ItemClickEvent += ListItemClickEvent;
-            listBackgroundImage.Add(list);
-            listBackgroundImage.Hide();
+            headerText = new TextLabel();
+            headerText.Name = "DropDownHeaderText";
+            Add(headerText);
         }
 
-        private void ListItemClickEvent(object sender, FlexibleView.ItemClickEventArgs e)
+        private void SetUpListContainer()
         {
-            if (e.ClickedView != null)
+            LinearLayout linear = new LinearLayout()
             {
-                UpdateSelectedItem(e.ClickedView.AdapterPosition);
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+            };
 
-                ItemClickEventArgs args = new ItemClickEventArgs();
-                args.Index = e.ClickedView.AdapterPosition;
-                args.Text = (e.ClickedView.ItemView as DropDownItemView)?.Text;
-                OnClickEvent(this, args);
-            }
+            dropDownMenuFullList = new View()
+            {
+                Layout = linear,
+                Name = "DropDownMenuList",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Focusable = true,
+            };
 
+            layoutScroller = new LayoutScroller()
+            {
+                Name = "LayoutScroller",
+            };
+            layoutScroller.AddLayoutToScroll(dropDownMenuFullList);
+
+            listBackgroundImage.Add(layoutScroller);
             listBackgroundImage.Hide();
         }
 
-        private void ListItemTouchEvent(object sender, FlexibleView.ItemTouchEventArgs e)
+        private View GetViewFromIndex(uint index)
+        {
+            if ((index < dropDownMenuFullList.ChildCount) && (index >=0) )
+            {
+                return dropDownMenuFullList.GetChildAt(index);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void SetListItemToSelected(DropDownItemView targetItemView)
+        {
+            // Set the DropDownItemView matching the targetItemView to selected.
+            if (selectedItemView!=targetItemView)
+            {
+                if (selectedItemView!=null)
+                {
+                    // clear selection status of currently selected item view
+                    selectedItemView.IsSelected = false;
+                }
+                // Set target item to selected
+                targetItemView.IsSelected = true;
+                selectedItemView = targetItemView;
+            }
+        }
+
+        private bool ListItemTouchEvent(object sender, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
+            DropDownItemView touchedView = sender as DropDownItemView;;
             switch (state)
             {
                 case PointStateType.Down:
-                    if (e.TouchedView != null)
+                    if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
-                        touchedView = e.TouchedView.ItemView as DropDownItemView;
-                        if (touchedView != null && touchedView.BackgroundColorSelector != null)
-                        {
-                            touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Pressed);
-                        }
+                        touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Pressed);
                     }
+                    itemPressed = true;  // if matched with a Up then a click event.
                     break;
                 case PointStateType.Motion:
                     if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
                         touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Normal);
                     }
+                    itemPressed = false;
                     break;
                 case PointStateType.Up:
                     if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
                         touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Selected);
+
+                        if (itemPressed)  // if Down was previously sent without motion (Scrolling) in-between then a clicked event occurred.
+                        {
+                            // List item clicked
+                            Console.WriteLine("Tapped{0}", touchedView.Name);
+                            SetListItemToSelected(touchedView);
+                            button.Text = touchedView.Text;
+                            button.Show();
+                            listBackgroundImage.Hide();
+                        }
                     }
                     break;
                 default:
                     break;
             }
-        }      
+            return true;
+        }
 
         private void UpdateSelectedItem(int index)
         {
@@ -846,11 +961,9 @@ namespace Tizen.NUI.Components
                 {
                     data.IsSelected = false;
                 }
-                DropDownItemView view = list?.FindViewHolderForAdapterPosition(selectedItemIndex)?.ItemView as DropDownItemView;
-                if (view != null)
-                {
-                    view.IsSelected = false;
-                }
+                DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
+                data.IsSelected = false;
+                SetListItemToSelected(listItemView);
             }
 
             if (index != -1)
@@ -859,16 +972,16 @@ namespace Tizen.NUI.Components
                 if (data != null)
                 {
                     data.IsSelected = true;
-                }
-                DropDownItemView view = list?.FindViewHolderForAdapterPosition(index)?.ItemView as DropDownItemView;
-                if (view != null)
-                {
-                    view.IsSelected = true;
-                    button.Style.Text.Text = view.Text;
+                    DropDownItemView listItemView = dropDownMenuFullList?.GetChildAt((uint)index) as DropDownItemView;
+                    if(listItemView)
+                    {
+                        SetListItemToSelected(listItemView);
+                    }
                 }
             }
 
             selectedItemIndex = index;
+            dropDownMenuFullList?.Layout?.RequestLayout();
         }
 
         private void CreateListBackgroundImage()
@@ -890,7 +1003,10 @@ namespace Tizen.NUI.Components
 
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
+            button.Hide();
             listBackgroundImage.Show();
+            dropDownMenuFullList?.Layout?.RequestLayout();
+            listBackgroundImage.RaiseToTop();
         }
 
         private void CreateHeaderTextAttributes()
@@ -1008,7 +1124,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem()
             {
-                Initalize();
+                Initialize();
             }
 
             /// <summary>
@@ -1029,7 +1145,7 @@ namespace Tizen.NUI.Components
                     }
                     itemDataStyle = attributes as DropDownItemStyle;
                 }
-                Initalize();
+                Initialize();
             }
 
             /// <summary>
@@ -1042,7 +1158,7 @@ namespace Tizen.NUI.Components
             public DropDownDataItem(DropDownItemStyle style)
             {
                 itemDataStyle.CopyFrom(style);
-                Initalize();
+                Initialize();
             }
 
             /// <summary>
@@ -1322,7 +1438,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            private void Initalize()
+            private void Initialize()
             {
                 if (itemDataStyle == null)
                 {
@@ -1716,6 +1832,7 @@ namespace Tizen.NUI.Components
                         PositionUsesPivotPoint = true,
                         ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                         PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        Name = "checkedImage",
                     };
                     Add(mCheck);
                 }
@@ -1727,14 +1844,16 @@ namespace Tizen.NUI.Components
         #region DropDownListBridge
 
         /// <summary>
-        /// DropDownListBridge is bridge to contact item data and item view.
+        /// DropDownListBridge is bridge to connect item data and an item View.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class DropDownListBridge : FlexibleView.Adapter
+        public class DropDownListBridge
         {
-            private List<DropDownDataItem> mDatas = new List<DropDownDataItem>();
+            private List<DropDownDataItem> itemDataList = new List<DropDownDataItem>();
+
+            internal bool AdapterPurge {get;set;} = false;  // Set to true if adapter content changed since last iteration.
 
             /// <summary>
             /// Creates a new instance of a DropDownListBridge.
@@ -1758,10 +1877,10 @@ namespace Tizen.NUI.Components
             {
                 if(position == -1)
                 {
-                    position = mDatas.Count;
+                    position = itemDataList.Count;
                 }
-                mDatas.Insert(position, data);
-                NotifyItemInserted(position);
+                itemDataList.Insert(position, data);
+                AdapterPurge = true;
             }
 
             /// <summary>
@@ -1773,8 +1892,8 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RemoveData(int position)
             {
-                mDatas.RemoveAt(position);
-                NotifyItemRemoved(position);
+                itemDataList.RemoveAt(position);
+                AdapterPurge = true;
             }
 
             /// <summary>
@@ -1786,34 +1905,33 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public DropDownDataItem GetData(int position)
             {
-                return mDatas[position];
+                return itemDataList[position];
             }
 
             /// <summary>
             /// Get view holder by view type.
             /// </summary>
-            /// <param name="viewType">Create item view.</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override FlexibleView.ViewHolder OnCreateViewHolder(int viewType)
+            public ViewHolder OnCreateViewHolder()
             {
-                FlexibleView.ViewHolder viewHolder = new FlexibleView.ViewHolder(new DropDownItemView());
+                ViewHolder viewHolder = new ViewHolder(new DropDownItemView());
 
                 return viewHolder;
             }
 
             /// <summary>
-            /// Binder view holder, it can be override.
+            /// Bind ViewHolder with View.
             /// </summary>
             /// <param name="holder">View holder.</param>
-            /// <param name="position">Position index where will be gotten.</param>
+            /// <param name="position">Position index of source data.</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnBindViewHolder(FlexibleView.ViewHolder holder, int position)
+            public void BindViewHolder(ViewHolder holder, int position)
             {
-                DropDownDataItem listItemData = mDatas[position];
+                DropDownDataItem listItemData = itemDataList[position];
                 if(listItemData == null)
                 {
                     return;
@@ -1822,7 +1940,23 @@ namespace Tizen.NUI.Components
                 listItemView.Name = "Item" + position;
                 if (listItemData.Size != null)
                 {
-                    holder.ItemView.Size = listItemData.Size;
+                    if (listItemData.Size.Width > 0)
+                    {
+                        holder.ItemView.WidthSpecification = (int)listItemData.Size.Width;
+                    }
+                    else
+                    {
+                        holder.ItemView.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    }
+
+                    if (listItemData.Size.Height > 0)
+                    {
+                        holder.ItemView.HeightSpecification = (int)listItemData.Size.Height;
+                    }
+                    else
+                    {
+                        holder.ItemView.HeightSpecification = LayoutParamPolicies.MatchParent;
+                    }
                 }
 
                 if (listItemView != null)
@@ -1857,7 +1991,7 @@ namespace Tizen.NUI.Components
                     }
 
                     listItemView.IsSelected = listItemData.IsSelected;
-                }              
+                }
             }
 
             /// <summary>
@@ -1867,7 +2001,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnDestroyViewHolder(FlexibleView.ViewHolder holder)
+            public void OnDestroyViewHolder(ViewHolder holder)
             {
                 if (holder.ItemView != null)
                 {
@@ -1881,11 +2015,56 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override int GetItemCount()
+            public int GetItemCount()
             {
-                return mDatas.Count;
-            }        
+                return itemDataList.Count;
+            }
         }
         #endregion
+
+        #region ViewHolder
+
+        /// <summary>
+        /// A ViewHolder is a class that holds a View created from DropDownListBridge data.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ViewHolder
+        {
+            /// <summary>
+            /// ViewHolder constructor.
+            /// </summary>
+            /// <param name="itemView">View</param>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ViewHolder(View itemView)
+            {
+                if (itemView == null)
+                {
+                    throw new ArgumentNullException("itemView may not be null");
+                }
+                this.ItemView = itemView;
+            }
+
+            /// <summary>
+            /// Returns the view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public View ItemView { get; }
+
+              internal bool IsBound
+            {
+                get;
+                set;
+            }
+
+        }
+
+        #endregion
+
     }
 }
