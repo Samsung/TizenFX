@@ -237,7 +237,7 @@ namespace Tizen.NUI.Components
                 {
                     Style.Thumb.Size = new Size();
                 }
-                if (thumbImage != null)
+                if (Style.Thumb.Size != null && thumbImage != null)
                 {
                     Style.Thumb.Size.Width = value.Width;
                     Style.Thumb.Size.Height = value.Height;
@@ -264,7 +264,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Track.ResourceUrl = new StringSelector();
                     }
-                    Style.Track.ResourceUrl.All = value;
+                    if (Style.Track.ResourceUrl != null)
+                    {
+                        Style.Track.ResourceUrl.All = value;
+                    }
                 }
                 RelayoutRequest();
             }

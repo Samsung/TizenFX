@@ -193,7 +193,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text.Text.GetValue(ControlState);
+                return Style.Text.Text?.GetValue(ControlState);
             }
             set
             {
@@ -247,7 +247,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Text.TranslatableText = new Selector<string>();
                     }
-                    Style.Text.TranslatableText.All = value;
+                    if (Style.Text.TranslatableText != null)
+                    {
+                        Style.Text.TranslatableText.All = value;
+                    }
                 }
             }
         }
@@ -303,7 +306,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.TextColor = new Selector<Color>();
                 }
-                Style.Text.TextColor.All = value;
+                if (Style.Text.TextColor != null)
+                {
+                    Style.Text.TextColor.All = value;
+                }
             }
         }
         /// <summary>
@@ -339,7 +345,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Icon.ResourceUrl = new Selector<string>();
                     }
-                    Style.Icon.ResourceUrl.All = value;
+                    if (Style.Icon.ResourceUrl != null)
+                    {
+                        Style.Icon.ResourceUrl.All = value;
+                    }
                 }
             }
         }

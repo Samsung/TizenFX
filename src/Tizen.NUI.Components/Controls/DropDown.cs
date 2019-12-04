@@ -553,7 +553,7 @@ namespace Tizen.NUI.Components
                 if (childToRemove)
                 {
                     childToRemove.TouchEvent -= ListItemTouchEvent;
-                    dropDownMenuFullList.Remove(childToRemove);
+                    dropDownMenuFullList?.Remove(childToRemove);
                     dropDownMenuFullList?.Layout?.RequestLayout();
                 }
             }
@@ -962,7 +962,6 @@ namespace Tizen.NUI.Components
                     data.IsSelected = false;
                 }
                 DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
-                data.IsSelected = false;
                 SetListItemToSelected(listItemView);
             }
 
@@ -1198,7 +1197,7 @@ namespace Tizen.NUI.Components
                         itemDataStyle.BackgroundColor = new Selector<Color>();
                     }
 
-                    itemDataStyle.BackgroundColor.Clone(value);
+                    itemDataStyle.BackgroundColor?.Clone(value);
                 }
             }
 
