@@ -20,11 +20,13 @@ using System.Diagnostics;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// [Draft] This class provides a View that can scroll a single View with a layout.
+    /// [Draft] This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
-    internal class LayoutScroller : CustomView
+    /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class LayoutScroller : CustomView
     {
-	static bool LayoutDebugScroller = true; // Debug flag
+	    static bool LayoutDebugScroller = false; // Debug flag
 
         private class ScrollerCustomLayout : LayoutGroup
         {
@@ -140,26 +142,29 @@ namespace Tizen.NUI.Components
             Layout = new ScrollerCustomLayout();
         }
 
+        /// <summary>
+        /// Add the child to scroll.
+        /// </summary>
+        /// <param name="child">View that should be scrolled.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         public void AddLayoutToScroll(View child)
         {
             mScrollingChild = child;
             Add(mScrollingChild);
         }
 
-
         /// <summary>
         /// Scroll vertically by displacement pixels in screen coordinates.
         /// </summary>
         /// <param name="displacement">distance to scroll in pixels. Y increases as scroll position approaches the top.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        public float ScrollVerticallyBy(float displacement)
+        private float ScrollVerticallyBy(float displacement)
         {
             Debug.WriteLineIf( LayoutDebugScroller, "ScrollVerticallyBy displacement:" + displacement);
             return ScrollBy(displacement, false);
         }
 
-        internal void StopScroll()
+        private void StopScroll()
         {
             if (scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
@@ -168,7 +173,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // static constructor registers the control type (for user can add kinds of visuals to it)
+        // static constructor registers the control type
         static LayoutScroller()
         {
             // ViewRegistry registers control type with DALi type registry
@@ -181,7 +186,7 @@ namespace Tizen.NUI.Components
             return new LayoutScroller();
         }
 
-        public void OffsetChildVertically(float displacement, bool animate)
+        private void OffsetChildVertically(float displacement, bool animate)
         {
             float previousTargetPosition = childTargetPosition;
 
@@ -197,14 +202,16 @@ namespace Tizen.NUI.Components
                 {
                     scrollAnimation = new Animation();
                     scrollAnimation.Finished += ScrollAnimationFinished;
-
                 }
-                else if (scrollAnimation.State == Animation.States.Playing)
+                else
                 {
                     scrollAnimation.Stop(Animation.EndActions.StopFinal);
                     scrollAnimation.Clear();
                 }
-                scrollAnimation.Duration = 1000;
+
+                int duration = 325;// (int)(Math.Abs(displacement * 3));
+                Debug.WriteLineIf(LayoutDebugScroller, "OffsetChildVertically Duration:" + duration);
+                scrollAnimation.Duration = duration;
                 scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
                 scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
                 scrollAnimation.Play();
@@ -251,6 +258,37 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        private float CalculateDisplacementFromVelocity(Vector2 velocity)
+        {
+            // Map: flick speed of range (2.0 - 6.0) to flick multiplier of range (0.7 - 1.6) 
+            const float speedMinimum = 2.0f;
+            const float speedMaximum = 6.0f;
+            const float multiplierMinimum = 0.7f;
+            const float multiplierMaximum = 1.6f;
+
+            float flickDisplacement = 0.0f;
+
+            float speed = Math.Min(4.0f,Math.Abs(velocity.Y));
+            float FlickThreshold = 1.2f;
+
+            if (speed > FlickThreshold)
+            {
+                Scrolling = true;
+
+                // Flick length is the length of the scroller.
+                float flickLength = CurrentSize.Height;
+
+                // Calculate multiplier by mapping speed between the multiplier minimum and maximum.
+                float multiplier =( (speed - speedMinimum) / ( (speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum) ) )+ multiplierMinimum;
+
+                // flick displacement is the product of the flick length and multiplier
+                flickDisplacement = ((flickLength * multiplier) * speed) / velocity.Y;  // *speed and /velocity to perserve sign.
+
+                Debug.WriteLineIf(LayoutDebugScroller, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "].");
+            }
+            return flickDisplacement;
+        }
+
         private float ScrollBy(float displacement, bool animate)
         {
             if (GetChildCount() == 0 || displacement == 0)
@@ -287,7 +325,8 @@ namespace Tizen.NUI.Components
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-		ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600);
+                float flickDisplacement = CalculateDisplacementFromVelocity(e.PanGesture.Velocity);
+                OffsetChildVertically(flickDisplacement, true); // Animate scroll.
             }
         }
 
@@ -307,7 +346,6 @@ namespace Tizen.NUI.Components
         {
             Scrolling = false;
         }
-
 
     }
 
