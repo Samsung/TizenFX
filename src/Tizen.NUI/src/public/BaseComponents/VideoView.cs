@@ -154,6 +154,29 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Creates an initialized VideoView.<br />
+        /// If the string is empty, VideoView will not display anything.<br />
+        /// </summary>
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_2(swCodec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized VideoView.<br />
+        /// If the string is empty, VideoView will not display anything.<br />
+        /// </summary>
+        /// <param name="url">The URL of the video resource to display.</param>
+        /// <param name="swCodec">Video rendering by H/W codec if false.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VideoView(string url, bool swCodec) : this(Interop.VideoView.VideoView_New__SWIG_3(url, swCodec), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal VideoView(VideoView videoView) : this(Interop.VideoView.new_VideoView__SWIG_1(VideoView.getCPtr(videoView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
