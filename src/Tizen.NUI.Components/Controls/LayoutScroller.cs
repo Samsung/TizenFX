@@ -199,13 +199,15 @@ namespace Tizen.NUI.Components
                     scrollAnimation.Finished += ScrollAnimationFinished;
 
                 }
-                else if (scrollAnimation.State == Animation.States.Playing)
+                else
                 {
                     scrollAnimation.Stop(Animation.EndActions.StopFinal);
                     scrollAnimation.Clear();
                 }
-                scrollAnimation.Duration = 1000;
-                scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
+
+
+                scrollAnimation.Duration = (int)(Math.Abs(displacement*1.9));
+                scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
                 scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
                 scrollAnimation.Play();
             }
@@ -251,6 +253,25 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        private void ScrollWithVelocity(Vector2 velocity)
+        {
+            float speed = Math.Min(4.0f,Math.Abs(velocity.Y));
+            float FlickThreshold = 1.2f;
+            if (speed > FlickThreshold)
+            {
+                Scrolling = true;
+                Debug.WriteLineIf( LayoutDebugScroller, "ScrollWithVelocity speed " + speed);
+                float flickLength = (mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue())/CurrentSize.Height;
+                float flickDisplacement = flickLength*velocity.Y*speed;
+
+                if (flickDisplacement>800)
+                {
+                    Console.WriteLine("BIG FLICK");
+                }
+                OffsetChildVertically(flickDisplacement, true);
+            }
+        }
+
         private float ScrollBy(float displacement, bool animate)
         {
             if (GetChildCount() == 0 || displacement == 0)
@@ -287,7 +308,7 @@ namespace Tizen.NUI.Components
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-		ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600);
+                ScrollWithVelocity(e.PanGesture.Velocity); // Animate scroll.
             }
         }
 
