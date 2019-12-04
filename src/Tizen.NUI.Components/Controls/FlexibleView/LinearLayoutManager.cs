@@ -33,14 +33,12 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int HORIZONTAL = OrientationHelper.HORIZONTAL;
-        /// <summary>
-        /// Constant value: 1.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly int VERTICAL = OrientationHelper.VERTICAL;
+        public enum Orientation
+        {
+            HORIZONTAL = 0,
+            VERTICAL,
+            MAX
+        }
         /// <summary>
         /// Constant value: -1.
         /// </summary>
@@ -64,7 +62,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int mOrientation;
+        protected Orientation mOrientation;
 
         internal OrientationHelper mOrientationHelper;
 
@@ -91,13 +89,21 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LinearLayoutManager(int orientation)
+        public LinearLayoutManager(Orientation orientation)
         {
             mOrientation = orientation;
-            mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, mOrientation);
+
+            if (Orientation.HORIZONTAL == mOrientation)
+            {
+                mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, OrientationHelper.Direction.HORIZONTAL);
+            }
+            else if (Orientation.VERTICAL == mOrientation)
+            {
+                mOrientationHelper = OrientationHelper.CreateOrientationHelper(this, OrientationHelper.Direction.VERTICAL);
+            }
 
             mLayoutState = new LayoutState();
-            mLayoutState.Offset = mOrientationHelper.GetStartAfterPadding();
+            mLayoutState.PixOffset = mOrientationHelper.GetStartAfterPadding();
         }
 
         /// <summary>
@@ -168,7 +174,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool CanScrollHorizontally()
         {
-            return mOrientation == HORIZONTAL;
+            return mOrientation == Orientation.HORIZONTAL;
         }
 
         /// <summary>
@@ -179,7 +185,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool CanScrollVertically()
         {
-            return mOrientation == VERTICAL;
+            return mOrientation == Orientation.VERTICAL;
         }
 
         /// <summary>
@@ -201,16 +207,14 @@ namespace Tizen.NUI.Components
                 mAnchorInfo.Valid = true;
             }
 
-            int firstLayoutDirection;
+            LayoutState.ItemDirectionType firstLayoutDirection;
             if (mAnchorInfo.LayoutFromEnd)
             {
-                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL
-                        : LayoutState.ITEM_DIRECTION_HEAD;
+                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ItemDirectionType.TAIL : LayoutState.ItemDirectionType.HEAD;
             }
             else
             {
-                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD
-                        : LayoutState.ITEM_DIRECTION_TAIL;
+                firstLayoutDirection = mShouldReverseLayout ? LayoutState.ItemDirectionType.HEAD : LayoutState.ItemDirectionType.TAIL;
             }
             EnsureAnchorReady(recycler, mAnchorInfo, firstLayoutDirection);
             ScrapAttachedViews(recycler);
@@ -222,7 +226,6 @@ namespace Tizen.NUI.Components
                 Cache(recycler, mLayoutState, true);
 
                 UpdateLayoutStateToFillEnd(mAnchorInfo.Position, mAnchorInfo.Coordinate);
-                mLayoutState.CurrentPosition += mLayoutState.ItemDirection;
                 Fill(recycler, mLayoutState, false, true);
                 Cache(recycler, mLayoutState, true);
             }
@@ -233,9 +236,23 @@ namespace Tizen.NUI.Components
                 Cache(recycler, mLayoutState, true);
 
                 UpdateLayoutStateToFillStart(mAnchorInfo.Position, mAnchorInfo.Coordinate);
-                mLayoutState.CurrentPosition += mLayoutState.ItemDirection;
                 Fill(recycler, mLayoutState, false, true);
                 Cache(recycler, mLayoutState, true);
+            }
+
+            switch (mLayoutState.ItemDirection)
+            {
+                case LayoutState.ItemDirectionType.HEAD:
+                    mLayoutState.CurrentPosition--;
+                    break;
+
+                case LayoutState.ItemDirectionType.TAIL:
+                    mLayoutState.CurrentPosition++;
+                    break;
+
+                default:
+                    mLayoutState.CurrentPosition -= 1000;
+                    break;
             }
 
             OnLayoutCompleted();
@@ -252,7 +269,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollHorizontallyBy(float dx, FlexibleView.Recycler recycler, bool immediate)
         {
-            if (mOrientation == VERTICAL)
+            if (mOrientation == Orientation.VERTICAL)
             {
                 return 0;
             }
@@ -270,7 +287,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ScrollVerticallyBy(float dy, FlexibleView.Recycler recycler, bool immediate)
         {
-            if (mOrientation == HORIZONTAL)
+            if (mOrientation == Orientation.HORIZONTAL)
             {
                 return 0;
             }
@@ -395,7 +412,7 @@ namespace Tizen.NUI.Components
             mAnchorInfo.Reset();
         }
 
-        internal virtual void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
+        internal virtual void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, LayoutState.ItemDirectionType itemDirection)
         {
 
         }
@@ -411,7 +428,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction)
         {
-            if (mOrientation == HORIZONTAL)
+            if (mOrientation == Orientation.HORIZONTAL)
             {
                 switch (direction)
                 {
@@ -535,7 +552,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (mShouldReverseLayout == (layoutState.LayoutDirection == LayoutState.LAYOUT_START))
+            if (mShouldReverseLayout == (layoutState.LayoutDirection == LayoutState.Direction.START))
                 AddView(holder);
             else
                 AddView(holder, 0);
@@ -543,18 +560,18 @@ namespace Tizen.NUI.Components
             result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
 
             float left, top, width, height;
-            if (mOrientation == VERTICAL)
+            if (mOrientation == Orientation.VERTICAL)
             {
                 width = Width - PaddingLeft - PaddingRight;
                 height = result.Consumed;
                 left = PaddingLeft;
-                if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+                if (layoutState.LayoutDirection == LayoutState.Direction.END)
                 {
-                    top = layoutState.Offset;
+                    top = layoutState.PixOffset;
                 }
                 else
                 {
-                    top = layoutState.Offset - height;
+                    top = layoutState.PixOffset - height;
                 }
                 LayoutChild(holder, left, top, width, height);
             }
@@ -563,13 +580,13 @@ namespace Tizen.NUI.Components
                 width = result.Consumed;
                 height = Height - PaddingTop - PaddingBottom;
                 top = PaddingTop;
-                if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+                if (layoutState.LayoutDirection == LayoutState.Direction.END)
                 {
-                    left = layoutState.Offset;
+                    left = layoutState.PixOffset;
                 }
                 else
                 {
-                    left = layoutState.Offset - width;
+                    left = layoutState.PixOffset - width;
                 }
                 LayoutChild(holder, left, top, width, height);
             }
@@ -583,19 +600,35 @@ namespace Tizen.NUI.Components
             {
                 return null;
             }
-            int layoutDir = ConvertFocusDirectionToLayoutDirection(direction);
-            if (layoutDir == LayoutState.INVALID_LAYOUT)
+
+            LayoutState.Direction layoutDir = ConvertFocusDirectionToLayoutDirection(direction);
+
+            if (layoutDir == LayoutState.Direction.MAX)
             {
                 return null;
             }
             int maxScroll = (int)(MAX_SCROLL_FACTOR * mOrientationHelper.GetTotalSpace());
-            UpdateLayoutState(layoutDir, maxScroll, false);
+
+            FlexibleView.ViewHolder child;
+            if (layoutDir == LayoutState.Direction.END)
+            {
+                child = GetChildClosestToEnd();
+            }
+            else
+            {
+                child = GetChildClosestToStart();
+            }
+
+            mLayoutState.UpdateState(layoutDir, mOrientationHelper, child, mShouldReverseLayout, maxScroll, false);
+
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
+
             mLayoutState.Recycle = false;
+
             Fill(recycler, mLayoutState, true, true);
 
             FlexibleView.ViewHolder nextFocus;
-            if (layoutDir == LayoutState.LAYOUT_START)
+            if (layoutDir == LayoutState.Direction.START)
             {
                 nextFocus = GetChildAt(0);
             }
@@ -693,24 +726,24 @@ namespace Tizen.NUI.Components
         //                       or 0 for not applicable
         // @return {@link LayoutState#LAYOUT_START} or {@link LayoutState#LAYOUT_END} if focus direction
         // is applicable to current state, {@link LayoutState#INVALID_LAYOUT} otherwise.
-        private int ConvertFocusDirectionToLayoutDirection(FlexibleView.LayoutManager.Direction focusDirection)
+        private LayoutState.Direction ConvertFocusDirectionToLayoutDirection(FlexibleView.LayoutManager.Direction focusDirection)
         {
             switch (focusDirection)
             {
                 case FlexibleView.LayoutManager.Direction.Up:
-                    return mOrientation == VERTICAL ? LayoutState.LAYOUT_START
-                            : LayoutState.INVALID_LAYOUT;
+                    return mOrientation == Orientation.VERTICAL ? LayoutState.Direction.START
+                            : LayoutState.Direction.MAX;
                 case FlexibleView.LayoutManager.Direction.Down:
-                    return mOrientation == VERTICAL ? LayoutState.LAYOUT_END
-                            : LayoutState.INVALID_LAYOUT;
+                    return mOrientation == Orientation.VERTICAL ? LayoutState.Direction.END
+                            : LayoutState.Direction.MAX;
                 case FlexibleView.LayoutManager.Direction.Left:
-                    return mOrientation == HORIZONTAL ? LayoutState.LAYOUT_START
-                            : LayoutState.INVALID_LAYOUT;
+                    return mOrientation == Orientation.HORIZONTAL ? LayoutState.Direction.START
+                            : LayoutState.Direction.MAX;
                 case FlexibleView.LayoutManager.Direction.Right:
-                    return mOrientation == HORIZONTAL ? LayoutState.LAYOUT_END
-                            : LayoutState.INVALID_LAYOUT;
+                    return mOrientation == Orientation.HORIZONTAL ? LayoutState.Direction.END
+                            : LayoutState.Direction.MAX;
                 default:
-                    return LayoutState.INVALID_LAYOUT;
+                    return LayoutState.Direction.MAX;
             }
 
         }
@@ -742,7 +775,21 @@ namespace Tizen.NUI.Components
                 {
                     break;
                 }
-                layoutState.Offset += layoutChunkResult.Consumed * layoutState.LayoutDirection;
+
+                switch (mLayoutState.LayoutDirection)
+                {
+                    case LayoutState.Direction.START:
+                        layoutState.PixOffset -= layoutChunkResult.Consumed;
+                        break;
+
+                    case LayoutState.Direction.END:
+                        layoutState.PixOffset += layoutChunkResult.Consumed;
+                        break;
+
+                    default:
+                        layoutState.PixOffset += layoutChunkResult.Consumed * -1000;
+                        break;
+                }
                 
                 // Consume the available space if:
                 // layoutChunk did not request to be ignored
@@ -782,7 +829,7 @@ namespace Tizen.NUI.Components
 
         private void Cache(FlexibleView.Recycler recycler, LayoutState layoutState, bool immediate, float scrolled = 0)
         {
-            if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+            if (layoutState.LayoutDirection == LayoutState.Direction.END)
             {
                 // get the first child in the direction we are going
                 FlexibleView.ViewHolder child = GetChildClosestToEnd();
@@ -821,7 +868,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            if (layoutState.LayoutDirection == LayoutState.LAYOUT_START)
+            if (layoutState.LayoutDirection == LayoutState.Direction.START)
             {
                 RecycleViewsFromEnd(recycler, layoutState.ScrollingOffset, immediate);
             }
@@ -911,10 +958,20 @@ namespace Tizen.NUI.Components
                 return 0;
             }
             mLayoutState.Recycle = true;
-            int layoutDirection = dy < 0 ? LayoutState.LAYOUT_END : LayoutState.LAYOUT_START;
+            LayoutState.Direction layoutDirection = dy < 0 ? LayoutState.Direction.END : LayoutState.Direction.START;
             float absDy = Math.Abs(dy);
 
-            UpdateLayoutState(layoutDirection, absDy, true);
+            FlexibleView.ViewHolder child;
+            if (layoutDirection == LayoutState.Direction.END)
+            {
+                child = GetChildClosestToEnd();
+            }
+            else
+            {
+                child = GetChildClosestToStart();
+            }
+
+            mLayoutState.UpdateState(layoutDirection, mOrientationHelper, child, mShouldReverseLayout, absDy, true);
 
             float consumed = mLayoutState.ScrollingOffset
                 + Fill(recycler, mLayoutState, false, immediate);
@@ -924,57 +981,28 @@ namespace Tizen.NUI.Components
                 return 0;
             }
 
-            float scrolled = absDy > consumed ? -layoutDirection * consumed : dy;
+            int layoutDirectionOffset;
+            switch (layoutDirection)
+            {
+                case LayoutState.Direction.START:
+                    layoutDirectionOffset = -1;
+                    break;
+
+                case LayoutState.Direction.END:
+                    layoutDirectionOffset = 1;
+                    break;
+
+                default:
+                    layoutDirectionOffset = -1000;
+                    break;
+            }
+
+            float scrolled = absDy > consumed ? -layoutDirectionOffset * consumed : dy;
             Cache(recycler, mLayoutState, immediate, scrolled);
 
             mOrientationHelper.OffsetChildren(scrolled, immediate);
 
             return scrolled;
-        }
-
-        private void UpdateLayoutState(int layoutDirection, float requiredSpace, bool canUseExistingSpace)
-        {
-            mLayoutState.Extra = 0;
-            mLayoutState.LayoutDirection = layoutDirection;
-            float scrollingOffset = 0.0f;
-            if (layoutDirection == LayoutState.LAYOUT_END)
-            {
-                mLayoutState.Extra += mOrientationHelper.GetEndPadding();
-                // get the first child in the direction we are going
-                FlexibleView.ViewHolder child = GetChildClosestToEnd();
-                if (child != null)
-                {
-                    // the direction in which we are traversing children
-                    mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD
-                            : LayoutState.ITEM_DIRECTION_TAIL;
-                    mLayoutState.CurrentPosition = child.LayoutPosition + mLayoutState.ItemDirection;
-                    mLayoutState.Offset = mOrientationHelper.GetViewHolderEnd(child);
-                    // calculate how much we can scroll without adding new children (independent of layout)
-                    scrollingOffset = mOrientationHelper.GetViewHolderEnd(child)
-                            - mOrientationHelper.GetEndAfterPadding();
-                }
-
-            }
-            else
-            {
-                mLayoutState.Extra += mOrientationHelper.GetStartAfterPadding();
-                FlexibleView.ViewHolder child = GetChildClosestToStart();
-                if (child != null)
-                {
-                   mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL
-                           : LayoutState.ITEM_DIRECTION_HEAD;
-                   mLayoutState.CurrentPosition = child.LayoutPosition + mLayoutState.ItemDirection;
-                   mLayoutState.Offset = mOrientationHelper.GetViewHolderStart(child);
-                   scrollingOffset = -mOrientationHelper.GetViewHolderStart(child)
-                           + mOrientationHelper.GetStartAfterPadding();
-                }
-            }
-            mLayoutState.Available = requiredSpace;
-            if (canUseExistingSpace)
-            {
-                mLayoutState.Available -= scrollingOffset;
-            }
-            mLayoutState.ScrollingOffset = scrollingOffset;
         }
 
         // Convenience method to find the child closes to start. Caller should check it has enough
@@ -998,23 +1026,21 @@ namespace Tizen.NUI.Components
         private void UpdateLayoutStateToFillEnd(int itemPosition, float offset)
         {
             mLayoutState.Available = mOrientationHelper.GetEndAfterPadding() - offset;
-            mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_HEAD :
-                    LayoutState.ITEM_DIRECTION_TAIL;
+            mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ItemDirectionType.HEAD : LayoutState.ItemDirectionType.TAIL;
             mLayoutState.CurrentPosition = itemPosition;
-            mLayoutState.LayoutDirection = LayoutState.LAYOUT_END;
-            mLayoutState.Offset = offset;
+            mLayoutState.LayoutDirection = LayoutState.Direction.END;
+            mLayoutState.PixOffset = offset;
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
-            mLayoutState.Extra = mOrientationHelper.GetEndPadding();
+            mLayoutState.Extra = mOrientationHelper.EndPadding;
         }
 
         private void UpdateLayoutStateToFillStart(int itemPosition, float offset)
         {
             mLayoutState.Available = offset - mOrientationHelper.GetStartAfterPadding();
             mLayoutState.CurrentPosition = itemPosition;
-            mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ITEM_DIRECTION_TAIL :
-                    LayoutState.ITEM_DIRECTION_HEAD;
-            mLayoutState.LayoutDirection = LayoutState.LAYOUT_START;
-            mLayoutState.Offset = offset;
+            mLayoutState.ItemDirection = mShouldReverseLayout ? LayoutState.ItemDirectionType.TAIL : LayoutState.ItemDirectionType.HEAD;
+            mLayoutState.LayoutDirection = LayoutState.Direction.START;
+            mLayoutState.PixOffset = offset;
             mLayoutState.ScrollingOffset = LayoutState.SCROLLING_OFFSET_NaN;
             mLayoutState.Extra = mOrientationHelper.GetStartAfterPadding();
         }
@@ -1080,23 +1106,27 @@ namespace Tizen.NUI.Components
         // Helper class that keeps temporary state while {LayoutManager} is filling out the empty space.
         internal class LayoutState
         {
-            public static readonly int LAYOUT_START = -1;
+            public enum Direction
+            {
+                START = 0,
+                END,
+                MAX
+            }
 
-            public static readonly int LAYOUT_END = 1;
+            public enum ItemDirectionType
+            {
+                HEAD = 0,
+                TAIL,
+                MAX
+            }
 
-            public static readonly int INVALID_LAYOUT = -1000;
-
-            public static readonly int ITEM_DIRECTION_HEAD = -1;
-
-            public static readonly int ITEM_DIRECTION_TAIL = 1;
-
-            public static readonly int SCROLLING_OFFSET_NaN = -10000;
+            public static int SCROLLING_OFFSET_NaN = -1000;
 
             // We may not want to recycle children in some cases (e.g. layout)
             public bool Recycle = true;
 
             // Pixel offset where layout should start
-            public float Offset;
+            public float PixOffset;
 
             // Number of pixels that we should fill, in the layout direction.
             public float Available;
@@ -1106,11 +1136,11 @@ namespace Tizen.NUI.Components
 
             // Defines the direction in which the data adapter is traversed.
             // Should be {@link #ITEM_DIRECTION_HEAD} or {@link #ITEM_DIRECTION_TAIL}
-            public int ItemDirection;
+            public ItemDirectionType ItemDirection;
 
             // Defines the direction in which the layout is filled.
             // Should be {@link #LAYOUT_START} or {@link #LAYOUT_END}
-            public int LayoutDirection;
+            public LayoutState.Direction LayoutDirection;
 
             // Used when LayoutState is constructed in a scrolling state.
             // It should be set the amount of scrolling we can make without creating a new view.
@@ -1122,6 +1152,65 @@ namespace Tizen.NUI.Components
             // {@link #mExtra} is not considered to avoid recycling visible children.
             public float Extra = 0;
 
+            public void UpdateState(Direction layoutDirection, OrientationHelper helper, FlexibleView.ViewHolder child, bool canReverse, float space, bool useExistGap)
+            {
+                Extra = 0;
+
+                float scrollingOffset = 0.0f;
+
+                if (layoutDirection == LayoutState.Direction.END)
+                {
+                    Extra += helper.EndPadding;
+
+                    if (child != null)
+                    {
+                        ItemDirection = canReverse ? LayoutState.ItemDirectionType.HEAD : LayoutState.ItemDirectionType.TAIL;
+
+                        PixOffset = helper.GetViewHolderEnd(child);
+
+                        scrollingOffset = helper.GetViewHolderEnd(child) - helper.GetEndAfterPadding();
+                    }
+                }
+                else
+                {
+                    Extra += helper.GetStartAfterPadding();
+
+                    if (child != null)
+                    {
+                        ItemDirection = canReverse ? LayoutState.ItemDirectionType.TAIL : LayoutState.ItemDirectionType.HEAD;
+
+                        PixOffset = helper.GetViewHolderStart(child);
+
+                        scrollingOffset = -helper.GetViewHolderStart(child) + helper.GetStartAfterPadding();
+                    }
+                }
+
+                if (layoutDirection != LayoutState.Direction.MAX && null != child)
+                {
+                    switch (ItemDirection)
+                    {
+                        case ItemDirectionType.HEAD:
+                            CurrentPosition = child.LayoutPosition - 1;
+                            break;
+
+                        case ItemDirectionType.TAIL:
+                            CurrentPosition = child.LayoutPosition + 1;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                Available = space;
+
+                if (useExistGap)
+                {
+                    Available -= scrollingOffset;
+                }
+
+                ScrollingOffset = scrollingOffset;
+            }
 
             // @return true if there are more items in the data adapter
             public bool HasMore(int itemCount)
@@ -1136,7 +1225,20 @@ namespace Tizen.NUI.Components
             public FlexibleView.ViewHolder Next(FlexibleView.Recycler recycler)
             {
                 FlexibleView.ViewHolder itemView = recycler.GetViewForPosition(CurrentPosition);
-                CurrentPosition += ItemDirection;
+
+                switch (ItemDirection)
+                {
+                    case ItemDirectionType.HEAD:
+                        CurrentPosition -= 1;
+                        break;
+
+                    case ItemDirectionType.TAIL:
+                        CurrentPosition += 1;
+                        break;
+
+                    default:
+                        break;
+                }
                 return itemView;
             }
         }
