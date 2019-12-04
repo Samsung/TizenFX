@@ -38,14 +38,14 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GridLayoutManager(int spanCount, int orientation) : base(orientation)
+        public GridLayoutManager(int spanCount, Orientation orientation) : base(orientation)
         {
             mSpanCount = spanCount;
         }
 
-        internal override void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
+        internal override void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, LayoutState.ItemDirectionType itemDirection)
         {
-            bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ITEM_DIRECTION_TAIL);
+            bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ItemDirectionType.TAIL);
             int span = anchorInfo.Position % mSpanCount;
             if (layingOutInPrimaryDirection)
             {
@@ -89,7 +89,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction)
         {
-            if (mOrientation == HORIZONTAL)
+            if (mOrientation == Orientation.HORIZONTAL)
             {
                 switch (direction)
                 {
@@ -157,7 +157,7 @@ namespace Tizen.NUI.Components
             LayoutState layoutState, LayoutChunkResult result)
         {
             bool layingOutInPrimaryDirection =
-                layoutState.ItemDirection == LayoutState.ITEM_DIRECTION_TAIL;
+                layoutState.ItemDirection == LayoutState.ItemDirectionType.TAIL;
 
             int count = mSpanCount;
             for (int i = 0; i < count; i++)
@@ -177,19 +177,19 @@ namespace Tizen.NUI.Components
                 result.Consumed = mOrientationHelper.GetViewHolderMeasurement(holder);
 
                 float left, top, width, height;
-                if (mOrientation == VERTICAL)
+                if (mOrientation == Orientation.VERTICAL)
                 {
                     width = (Width - PaddingLeft - PaddingRight) / count;
                     height = result.Consumed;
-                    if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+                    if (layoutState.LayoutDirection == LayoutState.Direction.END)
                     {
                         left = PaddingLeft + width * i;
-                        top = layoutState.Offset;
+                        top = layoutState.PixOffset;
                     }
                     else
                     {
                         left = PaddingLeft + width * (count - 1 - i);
-                        top = layoutState.Offset - height;
+                        top = layoutState.PixOffset - height;
                     }
                     LayoutChild(holder, left, top, width, height);
                 }
@@ -197,15 +197,15 @@ namespace Tizen.NUI.Components
                 {
                     width = result.Consumed;
                     height = (Height - PaddingTop - PaddingBottom) / count;
-                    if (layoutState.LayoutDirection == LayoutState.LAYOUT_END)
+                    if (layoutState.LayoutDirection == LayoutState.Direction.END)
                     {
                         top = PaddingTop + height * i;
-                        left = layoutState.Offset;
+                        left = layoutState.PixOffset;
                     }
                     else
                     {
                         top = PaddingTop + height * (count - 1 - i);
-                        left = layoutState.Offset - width;
+                        left = layoutState.PixOffset - width;
                     }
                     LayoutChild(holder, left, top, width, height);
                 }
