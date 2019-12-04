@@ -212,7 +212,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Track.ResourceUrl = new StringSelector();
                 }
-                Style.Track.ResourceUrl.All = value;
+                if (Style.Track.ResourceUrl != null)
+                {
+                    Style.Track.ResourceUrl.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -234,7 +237,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Progress.ResourceUrl = new StringSelector();
                 }
-                Style.Progress.ResourceUrl.All = value;
+                if (Style.Progress.ResourceUrl != null)
+                {
+                    Style.Progress.ResourceUrl.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -256,7 +262,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Buffer.ResourceUrl = new StringSelector();
                 }
+                if (Style.Buffer.ResourceUrl != null)
+                {
                 Style.Buffer.ResourceUrl.All = value;
+                }
                 RelayoutRequest();
             }
         }
@@ -278,7 +287,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Track.BackgroundColor = new ColorSelector();
                 }
+                if (Style.Track.BackgroundColor != null)
+                {
                 Style.Track.BackgroundColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -300,7 +312,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Progress.BackgroundColor = new ColorSelector();
                 }
-                Style.Progress.BackgroundColor.All = value;
+                if (null != Style.Progress.BackgroundColor)
+                {
+                    Style.Progress.BackgroundColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -322,7 +337,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Buffer.BackgroundColor = new ColorSelector();
                 }
-                Style.Buffer.BackgroundColor.All = value;
+                if (null != Style.Buffer.BackgroundColor)
+                {
+                    Style.Buffer.BackgroundColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }

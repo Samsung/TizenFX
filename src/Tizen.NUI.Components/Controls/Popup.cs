@@ -95,7 +95,10 @@ namespace Tizen.NUI.Components
                 {
                     instance.Style.Buttons.Text.PointSize = new Selector<float?>();
                 }
-                instance.Style.Buttons.Text.PointSize.All = (float)newValue;
+                if (instance.Style.Buttons.Text.PointSize != null)
+                {
+                    instance.Style.Buttons.Text.PointSize.All = (float)newValue;
+                }
                 instance.UpdateButton();
             }
         },
@@ -133,7 +136,10 @@ namespace Tizen.NUI.Components
                 {
                     instance.Style.Buttons.Text.TextColor = new Selector<Color>();
                 }
-                instance.Style.Buttons.Text.TextColor.All = (Color)newValue;
+                if (instance.Style.Buttons.Text.TextColor != null)
+                {
+                    instance.Style.Buttons.Text.TextColor.All = (Color)newValue;
+                }
                 //instance.UpdateButton();
             }
         },
@@ -188,7 +194,10 @@ namespace Tizen.NUI.Components
                 {
                     instance.Style.Buttons.Background.ResourceUrl = new Selector<string>();
                 }
-                instance.Style.Buttons.Background.ResourceUrl.All = (string)newValue;
+                if (instance.Style.Buttons.Background.ResourceUrl != null)
+                {
+                    instance.Style.Buttons.Background.ResourceUrl.All = (string)newValue;
+                }
                 instance.UpdateButton();
             }
         },
@@ -209,7 +218,10 @@ namespace Tizen.NUI.Components
                 {
                     instance.Style.Buttons.Background.Border = new Selector<Rectangle>();
                 }
-                instance.Style.Buttons.Background.Border.All = (Rectangle)newValue;
+                if (instance.Style.Buttons.Background.Border != null)
+                {
+                    instance.Style.Buttons.Background.Border.All = (Rectangle)newValue;
+                }
                 instance.UpdateButton();
             }
         },
@@ -287,7 +299,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Title.Text = new StringSelector();
                     }
-                    Style.Title.Text.All = value;
+                    if (Style.Title.Text != null)
+                    {
+                        Style.Title.Text.All = value;
+                    }
 
                     //RelayoutRequest();
                 }
@@ -311,7 +326,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Title.PointSize = new FloatSelector();
                 }
-                Style.Title.PointSize.All = value;
+                if (Style.Title.PointSize != null)
+                {
+                    Style.Title.PointSize.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -333,7 +351,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Title.TextColor = new ColorSelector();
                 }
-                Style.Title.TextColor.All = value;
+                if (Style.Title.TextColor != null)
+                {
+                    Style.Title.TextColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -767,7 +788,7 @@ namespace Tizen.NUI.Components
                 btn.ClickEvent += ButtonClickEvent;
 
                 this.Add(btn);
-                buttonList.Add(btn);
+                buttonList?.Add(btn);
             }
 
             int pos = 0;

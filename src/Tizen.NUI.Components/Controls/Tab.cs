@@ -228,7 +228,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.UnderLine.BackgroundColor = new ColorSelector();
                     }
-                    Style.UnderLine.BackgroundColor.All = value;
+                    if (Style.UnderLine.BackgroundColor != null)
+                    {
+                        Style.UnderLine.BackgroundColor.All = value;
+                    }
                     //RelayoutRequest();
                 }
             }
@@ -251,7 +254,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.PointSize = new FloatSelector();
                 }
+                if (Style.Text.PointSize != null)
+                {
                 Style.Text.PointSize.All = value;
+                }
                 //RelayoutRequest();
             }
         }
@@ -291,7 +297,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.TextColor = new ColorSelector();
                 }
-                Style.Text.TextColor.All = value;
+                if (Style.Text.TextColor != null)
+                {
+                    Style.Text.TextColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }

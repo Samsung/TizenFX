@@ -169,7 +169,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.PointSize = new FloatSelector();
                 }
+                if (null != Style.Text.PointSize)
+                {
                 Style.Text.PointSize.All = value;
+                }
             }
         }
 
@@ -206,7 +209,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.TextColor = new ColorSelector();
                 }
-                Style.Text.TextColor.All = value;
+                if (null != Style.Text.TextColor)
+                {
+                    Style.Text.TextColor.All = value;
+                }
                 //RelayoutRequest();
             }
         }

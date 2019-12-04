@@ -140,7 +140,10 @@ namespace Tizen.NUI.Components
                 {
                     inputFieldAttrs.InputBoxAttributes.TextColor = new Selector<Color>();
                 }
-                inputFieldAttrs.InputBoxAttributes.TextColor.All = value;
+                if (null != inputFieldAttrs.InputBoxAttributes.TextColor)
+                {
+                    inputFieldAttrs.InputBoxAttributes.TextColor.All = value;
+                }
                 textField.TextColor = value;
             }
         }
@@ -164,7 +167,10 @@ namespace Tizen.NUI.Components
                 {
                     inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor = new Selector<Color>();
                 }
-                inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor.All = value;
+                if (null != inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor)
+                {
+                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor.All = value;
+                }
                 textField.PlaceholderTextColor = value;
             }
         }
@@ -188,7 +194,10 @@ namespace Tizen.NUI.Components
                 {
                     inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor = new Selector<Color>();
                 }
-                inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor.All = value;
+                if (null != inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor)
+                {
+                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor.All = value;
+                }
                 textField.PrimaryCursorColor = value;
             }
         }
@@ -314,7 +323,10 @@ namespace Tizen.NUI.Components
                     {
                         inputFieldAttrs.BackgroundImageAttributes.ResourceUrl = new Selector<string>();
                     }
-                    inputFieldAttrs.BackgroundImageAttributes.ResourceUrl.All = value;
+                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceUrl != null)
+                    {
+                        inputFieldAttrs.BackgroundImageAttributes.ResourceUrl.All = value;
+                    }
                     RelayoutRequest();
                 }
             }
@@ -341,7 +353,10 @@ namespace Tizen.NUI.Components
                     {
                         inputFieldAttrs.BackgroundImageAttributes.Border = new Selector<Rectangle>();
                     }
-                    inputFieldAttrs.BackgroundImageAttributes.Border.All = value;
+                    if (inputFieldAttrs.BackgroundImageAttributes.Border != null)
+                    {
+                        inputFieldAttrs.BackgroundImageAttributes.Border.All = value;
+                    }
                     RelayoutRequest();
                 }
             }

@@ -91,7 +91,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            imageView.ApplyStyle(imageControlStyle.Image);
+            imageView.ApplyStyle(imageControlStyle?.Image);
         }
 
         /// <summary>

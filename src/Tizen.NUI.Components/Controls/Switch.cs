@@ -95,7 +95,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Track.ResourceUrl = new StringSelector();
                     }
-                    Style.Track.ResourceUrl.All = value;
+                    if (Style.Track.ResourceUrl != null)
+                    {
+                        Style.Track.ResourceUrl.All = value;
+                    }
                 }
             }
         }
@@ -137,7 +140,10 @@ namespace Tizen.NUI.Components
                     {
                         Style.Thumb.ResourceUrl = new StringSelector();
                     }
-                    Style.Thumb.ResourceUrl.All = value;
+                    if (Style.Thumb.ResourceUrl != null)
+                    {
+                        Style.Thumb.ResourceUrl.All = value;
+                    }
                 }
             }
         }
