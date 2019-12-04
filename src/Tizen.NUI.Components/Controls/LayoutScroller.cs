@@ -208,7 +208,10 @@ namespace Tizen.NUI.Components
                     scrollAnimation.Stop(Animation.EndActions.StopFinal);
                     scrollAnimation.Clear();
                 }
-                scrollAnimation.Duration = 1000;
+
+                int duration = 325;
+                Debug.WriteLineIf(LayoutDebugScroller, "OffsetChildVertically Duration:" + duration);
+                scrollAnimation.Duration = duration;
                 scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
                 scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
                 scrollAnimation.Play();
@@ -255,6 +258,37 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        private float CalculateDisplacementFromVelocity(Vector2 velocity)
+        {
+            // Map: flick speed of range (2.0 - 6.0) to flick multiplier of range (0.7 - 1.6) 
+            const float speedMinimum = 2.0f;
+            const float speedMaximum = 6.0f;
+            const float multiplierMinimum = 0.7f;
+            const float multiplierMaximum = 1.6f;
+
+            float flickDisplacement = 0.0f;
+
+            float speed = Math.Min(4.0f,Math.Abs(velocity.Y));
+            float FlickThreshold = 1.2f;
+
+            if (speed > FlickThreshold)
+            {
+                Scrolling = true;
+
+                // Flick length is the length of the scroller.
+                float flickLength = CurrentSize.Height;
+
+                // Calculate multiplier by mapping speed between the multiplier minimum and maximum.
+                float multiplier =( (speed - speedMinimum) / ( (speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum) ) )+ multiplierMinimum;
+
+                // flick displacement is the product of the flick length and multiplier
+                flickDisplacement = ((flickLength * multiplier) * speed) / velocity.Y;  // *speed and /velocity to perserve sign.
+
+                Debug.WriteLineIf(LayoutDebugScroller, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "].");
+            }
+            return flickDisplacement;
+        }
+
         private float ScrollBy(float displacement, bool animate)
         {
             if (GetChildCount() == 0 || displacement == 0)
@@ -291,7 +325,8 @@ namespace Tizen.NUI.Components
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
-		        ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600);
+                float flickDisplacement = CalculateDisplacementFromVelocity(e.PanGesture.Velocity);
+                OffsetChildVertically(flickDisplacement, true); // Animate scroll.
             }
         }
 
