@@ -98,7 +98,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial wrist up gesture detector data.
+        /// Read wrist up gesture detector data synchronously.
         /// </summary>
         protected override void ReadData()
         {

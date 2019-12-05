@@ -94,7 +94,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial stationary activity detector data.
+        /// Read stationary activity detector data synchronously.
         /// </summary>
         protected override void ReadData()
         {

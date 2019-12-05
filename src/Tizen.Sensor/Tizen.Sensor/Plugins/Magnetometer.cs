@@ -144,7 +144,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial magnetometer data.
+        /// Read magnetometer data synchronously.
         /// </summary>
         protected override void ReadData()
         {

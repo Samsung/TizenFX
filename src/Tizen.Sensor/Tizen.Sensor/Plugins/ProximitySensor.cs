@@ -105,7 +105,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial proximity sensor data.
+        /// Read proximity sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

@@ -106,7 +106,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial pressure sensor data.
+        /// Read pressure sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

@@ -118,7 +118,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial accelerometer data.
+        /// Read accelerometer data synchronously.
         /// </summary>
         protected override void ReadData()
         {

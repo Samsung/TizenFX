@@ -110,7 +110,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial pick up gesture detector data.
+        /// Read pick up gesture detector data synchronously.
         /// </summary>
         protected override void ReadData()
         {

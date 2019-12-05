@@ -105,7 +105,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial light sensor data.
+        /// Read light sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

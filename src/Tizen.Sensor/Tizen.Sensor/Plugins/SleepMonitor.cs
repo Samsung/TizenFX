@@ -109,7 +109,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial sleep monitor data.
+        /// Read sleep monitor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

@@ -170,7 +170,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial magnetometer rotation vector sensor data.
+        /// Read magnetometer rotation vector sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

@@ -140,7 +140,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial uncalibrated gyroscope data.
+        /// Read uncalibrated gyroscope data synchronously.
         /// </summary>
         protected override void ReadData()
         {

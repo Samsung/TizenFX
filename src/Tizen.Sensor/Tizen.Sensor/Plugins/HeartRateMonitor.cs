@@ -107,7 +107,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial heart rate monitor data.
+        /// Read heart rate monitor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

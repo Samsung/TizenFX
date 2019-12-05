@@ -106,7 +106,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial temperature sensor data.
+        /// Read temperature sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

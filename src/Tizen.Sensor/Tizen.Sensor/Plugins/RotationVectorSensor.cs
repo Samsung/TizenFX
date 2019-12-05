@@ -158,7 +158,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial rotation vector sensor data.
+        /// Read rotation vector sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

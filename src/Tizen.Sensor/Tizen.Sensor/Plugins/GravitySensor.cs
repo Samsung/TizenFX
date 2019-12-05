@@ -144,7 +144,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial gravity sensor data.
+        /// Read gravity sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

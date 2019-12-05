@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         private IntPtr _listenerHandle = IntPtr.Zero;
 
         /// <summary>
-        /// Read initial sensor data.
+        /// Read a sensor data synchronously.
         /// </summary>
         protected virtual void ReadData() { }
         internal abstract SensorType GetSensorType();

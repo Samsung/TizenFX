@@ -105,7 +105,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial humidity sensor data.
+        /// Read humidity sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

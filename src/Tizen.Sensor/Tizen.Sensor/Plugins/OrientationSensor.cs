@@ -144,7 +144,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial orientation sensor data.
+        /// Read orientation sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

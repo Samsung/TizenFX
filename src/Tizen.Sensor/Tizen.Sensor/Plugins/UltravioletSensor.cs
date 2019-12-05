@@ -106,7 +106,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial ultraviolet sensor data.
+        /// Read ultraviolet sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

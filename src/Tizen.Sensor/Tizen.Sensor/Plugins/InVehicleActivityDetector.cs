@@ -94,7 +94,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial in-vehicle activity detector data.
+        /// Read in-vehicle activity detector data synchronously.
         /// </summary>
         protected override void ReadData()
         {

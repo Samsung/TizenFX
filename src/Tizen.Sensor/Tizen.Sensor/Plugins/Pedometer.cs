@@ -157,7 +157,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial pedometer sensor data.
+        /// Read pedometer sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

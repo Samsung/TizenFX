@@ -144,7 +144,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial linear acceleration sensor data.
+        /// Read linear acceleration sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {

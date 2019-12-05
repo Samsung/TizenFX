@@ -98,7 +98,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial face down gesture detector data.
+        /// Read face down gesture detector data synchronously.
         /// </summary>
         protected override void ReadData()
         {

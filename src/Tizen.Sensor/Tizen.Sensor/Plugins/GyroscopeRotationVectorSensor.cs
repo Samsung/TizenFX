@@ -133,7 +133,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Read initial gyroscope rotation vector sensor data.
+        /// Read gyroscope rotation vector sensor data synchronously.
         /// </summary>
         protected override void ReadData()
         {
