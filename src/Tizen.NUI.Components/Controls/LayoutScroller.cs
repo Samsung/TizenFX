@@ -236,8 +236,8 @@ namespace Tizen.NUI.Components
                     scrollDistance = Math.Abs(childCurrentPosition - childTargetPosition);
                 }
 
-                int duration = 325 + (int)((scrollDistance * FlickAnimationDurationModifier) / multiplier);
-                Debug.WriteLineIf(LayoutDebugScroller, "Scroll Animation Duration:" + duration + " Distance:"+ scrollDistance + " Multiplier:" + multiplier);
+                int duration = 325 + (int)((scrollDistance * FlickAnimationDurationModifier));
+                Debug.WriteLineIf(LayoutDebugScroller, "Scroll Animation Duration:" + duration + " Distance:"+ scrollDistance);
                 scrollAnimation.Duration = duration;
                 scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
                 scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
@@ -312,7 +312,8 @@ namespace Tizen.NUI.Components
                 // flick displacement is the product of the flick length and multiplier
                 flickDisplacement = ((flickLength * multiplier) * speed) / velocity.Y;  // *speed and /velocity to perserve sign.
 
-                Debug.WriteLineIf(LayoutDebugScroller, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "].");
+                Debug.WriteLineIf(LayoutDebugScroller, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "] multiplier:"
+                                                        + multiplier);
             }
             return flickDisplacement;
         }
