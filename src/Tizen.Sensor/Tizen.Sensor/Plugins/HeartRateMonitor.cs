@@ -106,7 +106,10 @@ namespace Tizen.Sensor
             return count;
         }
 
-        private void GetInitialData()
+        /// <summary>
+        /// Read initial heart rate monitor data.
+        /// </summary>
+        protected override void ReadData()
         {
             Interop.SensorEventStruct sensorData;
             int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
@@ -132,8 +135,6 @@ namespace Tizen.Sensor
 
                 DataUpdated?.Invoke(this, new HeartRateMonitorDataUpdatedEventArgs((int)sensorData.values[0]));
             };
-
-            GetInitialData();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)

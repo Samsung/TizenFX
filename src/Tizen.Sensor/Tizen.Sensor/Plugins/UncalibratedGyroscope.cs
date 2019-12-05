@@ -139,7 +139,10 @@ namespace Tizen.Sensor
             return count;
         }
 
-        private void GetInitialData()
+        /// <summary>
+        /// Read initial uncalibrated gyroscope data.
+        /// </summary>
+        protected override void ReadData()
         {
             Interop.SensorEventStruct sensorData;
             int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
@@ -175,8 +178,6 @@ namespace Tizen.Sensor
 
                 DataUpdated?.Invoke(this, new UncalibratedGyroscopeDataUpdatedEventArgs(sensorData.values));
             };
-
-            GetInitialData();
 
             int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)

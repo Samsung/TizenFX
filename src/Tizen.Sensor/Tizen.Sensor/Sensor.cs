@@ -47,6 +47,10 @@ namespace Tizen.Sensor
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
 
+        /// <summary>
+        /// Read initial sensor data.
+        /// </summary>
+        protected virtual void ReadData() { }
         internal abstract SensorType GetSensorType();
         internal abstract void EventListenStart();
         internal abstract void EventListenStop();
@@ -326,6 +330,7 @@ namespace Tizen.Sensor
                     Log.Error(Globals.LogTag, "Error starting sensor");
                     throw SensorErrorFactory.CheckAndThrowException(error, "Unable to Start Sensor Listener");
                 }
+                ReadData();
                 EventListenStart();
                 _isSensing = true;
                 Log.Info(Globals.LogTag, "Sensor started");
