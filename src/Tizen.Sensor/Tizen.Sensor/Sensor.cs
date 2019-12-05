@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Read a sensor data synchronously.
         /// </summary>
-        protected virtual void ReadData() { }
+        protected abstract void ReadData();
         internal abstract SensorType GetSensorType();
         internal abstract void EventListenStart();
         internal abstract void EventListenStop();
