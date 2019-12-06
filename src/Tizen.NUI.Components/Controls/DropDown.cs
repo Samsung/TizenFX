@@ -547,9 +547,9 @@ namespace Tizen.NUI.Components
 
             adapter.RemoveData(index);
 
-            if(index < dropDownMenuFullList.ChildCount)
+            if(index < dropDownMenuFullList?.ChildCount)
             {
-                View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
+                View childToRemove = dropDownMenuFullList?.GetChildAt((uint)index);
                 if (childToRemove)
                 {
                     childToRemove.TouchEvent -= ListItemTouchEvent;
