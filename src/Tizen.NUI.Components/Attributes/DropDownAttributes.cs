@@ -29,68 +29,11 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DropDownStyle : ControlStyle
     {
+        private Extents listMargin = new Extents(0, 0, 0, 0);
+        private Extents listPadding = new Extents(0, 0, 0, 0);
         private int spaceBetweenButtonTextAndIcon = 0;
-
-        private Extents _space;
-        private Extents space
-        {
-            get
-            {
-                if (null == _space)
-                {
-                    _space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                    {
-                        Extents extents = new Extents(start, end, top, bottom);
-                        _space.CopyFrom(extents);
-                    }, 0, 0, 0, 0);
-                }
-
-                return _space;
-            }
-        }
-
         private ListOrientation? listRelativeOrientation = ListOrientation.Left;
-
-        private bool isListMarginSetted = false;
-        private Extents _listMargin;
-        private Extents listMargin
-        {
-            get
-            {
-                if (null == _listMargin)
-                {
-                    _listMargin = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                    {
-                        Extents extents = new Extents(start, end, top, bottom);
-                        _listMargin.CopyFrom(extents);
-                    }, 0, 0, 0, 0);
-                }
-
-                return _listMargin;
-            }
-        }
-
-        private int focusedItemIndex = 0;
         private int selectedItemIndex = 0;
-        private Size listSize;
-
-        private Extents _listPadding;
-        private Extents listPadding
-        {
-            get
-            {
-                if (null == _listPadding)
-                {
-                    _listPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                    {
-                        Extents extents = new Extents(start, end, top, bottom);
-                        _listPadding.CopyFrom(extents);
-                    }, 0, 0, 0, 0);
-                }
-
-                return _listPadding;
-            }
-        }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -103,18 +46,6 @@ namespace Tizen.NUI.Components
         {
             var dropDownStyle = (DropDownStyle)bindable;
             return dropDownStyle.spaceBetweenButtonTextAndIcon;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceProperty = BindableProperty.Create("Space", typeof(Extents), typeof(DropDownStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            dropDownStyle.space.CopyFrom((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            return dropDownStyle.space;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -142,18 +73,6 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusedItemIndexProperty = BindableProperty.Create("FocusedItemIndex", typeof(int), typeof(DropDownStyle), 0, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            dropDownStyle.focusedItemIndex = (int)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            return dropDownStyle.focusedItemIndex;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectedItemIndexProperty = BindableProperty.Create("SelectedItemIndex", typeof(int), typeof(DropDownStyle), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var dropDownStyle = (DropDownStyle)bindable;
@@ -166,22 +85,13 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ListSizeProperty = BindableProperty.Create("ListSize", typeof(Size), typeof(DropDownStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            dropDownStyle.listSize = (Size)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var dropDownStyle = (DropDownStyle)bindable;
-            return dropDownStyle.listSize;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create("ListPadding", typeof(Extents), typeof(DropDownStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var dropDownStyle = (DropDownStyle)bindable;
-            dropDownStyle.listPadding.CopyFrom((Extents)newValue);
+            if (null != newValue)
+            {
+                dropDownStyle.listPadding.CopyFrom((Extents)newValue);
+            }
         },
         defaultValueCreator: (bindable) =>
         {
@@ -195,12 +105,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDownStyle() : base()
-        {
-            Button = new ButtonStyle();
-            HeaderText = new TextLabelStyle();
-            ListBackgroundImage = new ImageViewStyle();
-        }
+        public DropDownStyle() : base() { }
+
         /// <summary>
         /// Creates a new instance of a DropDownStyle with style.
         /// </summary>
@@ -210,16 +116,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownStyle(DropDownStyle style) : base(style)
         {
-            if(style == null)
-            {
-                return;
-            }
+            if(null == style) return;
 
-            Button = new ButtonStyle();
-            HeaderText = new TextLabelStyle();
-            ListBackgroundImage = new ImageViewStyle();
-
-            CopyFrom(style);
+            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -228,11 +127,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ButtonStyle Button
-        {
-            get;
-            set;
-        }
+        public ButtonStyle Button { get; set; } = new ButtonStyle();
 
         /// <summary>
         /// Header text's Style.
@@ -240,11 +135,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle HeaderText
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle HeaderText { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// List background image's Style.
@@ -252,11 +143,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle ListBackgroundImage
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle ListBackgroundImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Space between button text and button icon.
@@ -266,30 +153,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SpaceBetweenButtonTextAndIcon
         {
-            get
-            {
-                int temp = (int)GetValue(SpaceBetweenButtonTextAndIconProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SpaceBetweenButtonTextAndIconProperty, value);
-            }
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents Space
-        {
-            get
-            {
-                Extents temp = (Extents)GetValue(SpaceProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SpaceProperty, value);
-            }
+            get => (int)GetValue(SpaceBetweenButtonTextAndIconProperty);
+            set => SetValue(SpaceBetweenButtonTextAndIconProperty, value);
         }
 
         /// <summary>
@@ -300,15 +165,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ListOrientation? ListRelativeOrientation
         {
-            get
-            {
-                ListOrientation? temp = (ListOrientation?)GetValue(ListRelativeOrientationProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ListRelativeOrientationProperty, value);
-            }
+            get => (ListOrientation?)GetValue(ListRelativeOrientationProperty);
+            set => SetValue(ListRelativeOrientationProperty, value);
         }
 
         /// <summary>
@@ -321,66 +179,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                Extents temp = (Extents)GetValue(ListMarginProperty);
-                return temp;
+                Extents tmp = (Extents)GetValue(ListMarginProperty);
+                return new Extents((ushort start, ushort end, ushort top, ushort bottom) => { ListMargin = new Extents(start, end, top, bottom); }, tmp.Start, tmp.End, tmp.Top, tmp.Bottom);
             }
-            set
-            {
-                SetValue(ListMarginProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Focused item index.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int FocusedItemIndex
-        {
-            get
-            {
-                int temp = (int)GetValue(FocusedItemIndexProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(FocusedItemIndexProperty, value);
-            }
+            set => SetValue(ListMarginProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedItemIndex
         {
-            get
-            {
-                int temp = (int)GetValue(SelectedItemIndexProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SelectedItemIndexProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// List size.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size ListSize
-        {
-            get
-            {
-                Size temp = (Size)GetValue(ListSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ListSizeProperty, value);
-            }
+            get => (int)GetValue(SelectedItemIndexProperty);
+            set => SetValue(SelectedItemIndexProperty, value);
         }
 
         /// <summary>
@@ -393,61 +203,10 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                Extents temp = (Extents)GetValue(ListPaddingProperty);
-                return temp;
+                Extents tmp = (Extents)GetValue(ListPaddingProperty);
+                return new Extents((ushort start, ushort end, ushort top, ushort bottom) => { ListPadding = new Extents(start, end, top, bottom); }, tmp.Start, tmp.End, tmp.Top, tmp.Bottom);
             }
-            set
-            {
-                SetValue(ListPaddingProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Icon's Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Icon
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Check image's Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle CheckImage
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gap of Check image to boundary.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImageGapToBoundary
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Flag to decide item is selected or not.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsSelected
-        {
-            get;
-            set;
+            set => SetValue(ListPaddingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -463,6 +222,11 @@ namespace Tizen.NUI.Components
                 Button.CopyFrom(dropDownStyle.Button);
                 HeaderText.CopyFrom(dropDownStyle.HeaderText);
                 ListBackgroundImage.CopyFrom(dropDownStyle.ListBackgroundImage);
+                SpaceBetweenButtonTextAndIcon = dropDownStyle.SpaceBetweenButtonTextAndIcon;
+                ListRelativeOrientation = dropDownStyle.ListRelativeOrientation;
+                ListMargin.CopyFrom(dropDownStyle.ListMargin);
+                SelectedItemIndex = dropDownStyle.SelectedItemIndex;
+                ListPadding.CopyFrom(dropDownStyle.ListPadding);
             }
         }
     }
@@ -482,6 +246,7 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownItemStyle() : base() { }
+
         /// <summary>
         /// Creates a new instance of a DropDownItemStyle with style.
         /// </summary>
@@ -491,23 +256,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DropDownItemStyle(DropDownItemStyle style) : base(style)
         {
-            if (style.Text!= null)
-            {
-                Text.CopyFrom(style.Text);
-            }
+            if(null == style) return;
 
-            if (style.Icon!= null)
-            {
-                Icon.CopyFrom(style.Icon);
-            }
-
-            if (style.CheckImage!= null)
-            {
-                CheckImage.CopyFrom(style.CheckImage);
-            }
-
-            CheckImageGapToBoundary = style.CheckImageGapToBoundary;
-            IsSelected = style.IsSelected;
+            this.CopyFrom(style);
         }
 
         /// <summary>
@@ -516,11 +267,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle Text { get; set; } = new TextLabelStyle();
 
         /// <summary>
         /// Icon's Style.
@@ -528,11 +275,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Icon
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Icon { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Check image's Style.
@@ -540,11 +283,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle CheckImage
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle CheckImage { get; set; } = new ImageViewStyle();
 
         /// <summary>
         /// Gap of Check image to boundary.
@@ -552,11 +291,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CheckImageGapToBoundary
-        {
-            get;
-            set;
-        }
+        public int CheckImageGapToBoundary { get; set; }
 
         /// <summary>
         /// Flag to decide item is selected or not.
@@ -564,10 +299,24 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsSelected
+        public bool IsSelected { get; set; }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            get;
-            set;
+            base.CopyFrom(bindableObject);
+
+            DropDownItemStyle dropDownItemStyle = bindableObject as DropDownItemStyle;
+
+            if (null != dropDownItemStyle)
+            {
+                Text.CopyFrom(dropDownItemStyle.Text);
+                Icon.CopyFrom(dropDownItemStyle.Icon);
+                CheckImage.CopyFrom(dropDownItemStyle.CheckImage);
+                CheckImageGapToBoundary = dropDownItemStyle.CheckImageGapToBoundary;
+                IsSelected = dropDownItemStyle.IsSelected;
+            }
         }
     }
 }
