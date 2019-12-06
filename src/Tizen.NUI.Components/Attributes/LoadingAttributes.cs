@@ -15,60 +15,50 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// LoadingAttributes is a class which saves Loading's ux data.
+    /// LoadingStyle is a class which saves Loading's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LoadingAttributes : ViewAttributes
+    public class LoadingStyle : ControlStyle
     {
         /// <summary>
-        /// Creates a new instance of a LoadingAttributes.
+        /// Creates a new instance of a LoadingStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LoadingAttributes() : base() { }
+        public LoadingStyle() : base() { }
 
         /// <summary>
-        /// Creates a new instance of a LoadingAttributes with attributes.
+        /// Creates a new instance of a LoadingStyle with style.
         /// </summary>
-        /// <param name="attributes">Create LoadingAttributes by attributes customized by user.</param>
+        /// <param name="style">Create LoadingStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LoadingAttributes(LoadingAttributes attributes) : base(attributes)
+        public LoadingStyle(LoadingStyle style) : base(style)
         {
-            if(null == attributes)
+            if(null == style)
             {
                 return;
             }
-
-            if (null != attributes.FPS)
-            {
-                FPS = attributes.FPS.Clone() as IntSelector;
-            }
-            if (null != attributes.LoadingSize)
-            {
-                LoadingSize = attributes.LoadingSize;
-            }
-            if (null != attributes.ImageArray)
-            {
-                ImageArray = attributes.ImageArray;
-            }
+            this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Gets or sets loading image resource array.
+        /// Gets or sets loading image resources.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] ImageArray
+        public string[] Images
         {
             get;
             set;
@@ -78,9 +68,9 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading image size.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D LoadingSize
+        public Size LoadingSize
         {
             get;
             set;
@@ -90,23 +80,41 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading frame per second.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IntSelector FPS
+        public Selector<int?> FrameRate
         {
             get;
             set;
-        }
+        } = new Selector<int?>();
 
         /// <summary>
         /// Attributes's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new LoadingAttributes(this);
+            base.CopyFrom(bindableObject);
+
+            LoadingStyle loadingStyle = bindableObject as LoadingStyle;
+
+            if (null != loadingStyle)
+            {
+                if (null != loadingStyle.FrameRate)
+                {
+                    FrameRate.Clone(loadingStyle.FrameRate);
+                }
+                if (null != loadingStyle.LoadingSize)
+                {
+                    LoadingSize = loadingStyle.LoadingSize;
+                }
+                if (null != loadingStyle.Images)
+                {
+                    Images = loadingStyle.Images;
+                }
+            }
         }
     }
 }

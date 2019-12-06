@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -24,16 +24,9 @@ namespace Tizen.NUI
     /// A two-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(Vector2TypeConverter))]
+    [Binding.TypeConverter(typeof(Vector2TypeConverter))]
     public class Vector2 : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -85,11 +78,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector2(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Vector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
+
+        internal Vector2(Vector2ChangedCallback cb, float x, float y) : this(Interop.Vector2.new_Vector2__SWIG_1(x, y), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void Vector2ChangedCallback(float x, float y);
+        private Vector2ChangedCallback callback = null;
 
         /// <summary>
         /// (1.0f,1.0f).
@@ -191,6 +190,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector2.Vector2_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {
@@ -210,6 +211,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector2.Vector2_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {
@@ -229,6 +232,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector2.Vector2_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {
@@ -248,6 +253,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector2.Vector2_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {
@@ -448,32 +455,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector2.delete_Vector2(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Vector2.delete_Vector2(swigCPtr);
         }
 
         private Vector2 Add(Vector2 rhs)

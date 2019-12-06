@@ -123,20 +123,6 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public abstract UInt32 GetChildCount();
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            base.Dispose(type);
-        }
-
         internal abstract View FindCurrentChildById(uint id);
     }
 } // namespace Tizen.NUI

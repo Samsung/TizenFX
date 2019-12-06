@@ -28,7 +28,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AutofillContainer : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private AuthenticationEventCallbackType _authenticationCallback;
         private ListEventCallbackType _listCallback;
@@ -110,7 +109,6 @@ namespace Tizen.NUI
 
         internal AutofillContainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AutofillContainer.AutofillContainer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
 
@@ -310,17 +308,14 @@ namespace Tizen.NUI
                 }
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Texture.delete_Texture(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.AutofillContainer.delete_AutofillContainer(swigCPtr);
         }
 
         private void OnServiceEvent(IntPtr autofillContainer)

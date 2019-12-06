@@ -30,7 +30,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
@@ -52,7 +51,6 @@ namespace Tizen.NUI
 
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 
             pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadStarted(swigCPtr));
             pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadFinished(swigCPtr));
@@ -99,21 +97,15 @@ namespace Tizen.NUI
                 pageLoadErrorSignal.Dispose();
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.WebView.delete_WebView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        /// <param name="swigCPtr"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.WebView.delete_WebView(swigCPtr);
         }
 
         private void OnPageLoadStarted(IntPtr data, string pageUrl)

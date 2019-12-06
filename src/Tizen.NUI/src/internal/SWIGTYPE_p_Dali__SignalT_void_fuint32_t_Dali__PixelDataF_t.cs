@@ -23,10 +23,5 @@ namespace Tizen.NUI
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SWIGTYPE_p_Dali__SignalT_void_fuint32_t_Dali__PixelDataF_t obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
     }
 }

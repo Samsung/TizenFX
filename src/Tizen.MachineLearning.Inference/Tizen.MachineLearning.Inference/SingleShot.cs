@@ -43,6 +43,14 @@ namespace Tizen.MachineLearning.Inference
         /// <since_tizen> 6 </since_tizen>
         public SingleShot(string modelAbsPath, TensorsInfo inTensorsInfo, TensorsInfo outTensorsInfo)
         {
+            NNStreamer.CheckNNStreamerSupport();
+
+            if (inTensorsInfo == null || outTensorsInfo == null)
+            {
+                string msg = "TensorsInfo is null";
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
+            }
+
             CreateSingleShot(modelAbsPath, inTensorsInfo, outTensorsInfo);
         }
 
@@ -79,8 +87,14 @@ namespace Tizen.MachineLearning.Inference
         public TensorsData Invoke(TensorsData inTensorsData)
         {
             TensorsData out_data;
-            IntPtr out_ptr;
+            IntPtr out_ptr = IntPtr.Zero;
             NNStreamerError ret = NNStreamerError.None;
+
+            if (inTensorsData == null)
+            {
+                string msg = "TensorsData is null";
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
+            }
 
             ret = Interop.SingleShot.InvokeSingle(_handle, inTensorsData.Handle, out out_ptr);
             NNStreamer.CheckException(ret, "fail to invoke the single inference engine");

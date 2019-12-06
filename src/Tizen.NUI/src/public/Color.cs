@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,13 +82,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly Color Transparent = new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private readonly bool hashDummy;
 
         /// <summary>
@@ -124,12 +117,19 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Color(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
 			hashDummy = false;
         }
+
+        internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal delegate void ColorChangedCallback(float r, float g, float b, float a);
+        private ColorChangedCallback callback = null;
 
         /// <summary>
         /// The red component.
@@ -141,6 +141,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_r_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -160,6 +162,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_g_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -179,6 +183,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_b_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -198,6 +204,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector4.Vector4_a_set(swigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(R, G, B, A);
             }
             get
             {
@@ -450,31 +458,11 @@ namespace Tizen.NUI
             return arr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector4.delete_Vector4(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Vector4.delete_Vector4(swigCPtr);
         }
 
         private Color Add(Color rhs)

@@ -15,81 +15,118 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// SwitchAttributes is a class which saves Switch's ux data.
+    /// SwitchStyle is a class which saves Switch's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class SwitchAttributes : ButtonAttributes
+    public class SwitchStyle : ButtonStyle
     {
         /// <summary>
-        /// Creates a new instance of a SwitchAttributes.
+        /// Creates a new instance of a SwitchStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public SwitchAttributes() : base() { }
-        /// <summary>
-        /// Creates a new instance of a SwitchAttributes with attributes.
-        /// </summary>
-        /// <param name="attributes">Create SwitchAttributes by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public SwitchAttributes(SwitchAttributes attributes) : base(attributes)
+        public SwitchStyle() : base()
         {
-            if(attributes == null)
+            InitSubStyle();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a SwitchStyle with style.
+        /// </summary>
+        /// <param name="style">Create SwitchStyle by style customized by user.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SwitchStyle(SwitchStyle style) : base(style)
+        {
+            if(null == style)
             {
                 return;
             }
-            if (attributes.SwitchHandlerImageAttributes != null)
-            {
-                SwitchHandlerImageAttributes = attributes.SwitchHandlerImageAttributes.Clone() as ImageAttributes;
-            }
 
-            if (attributes.SwitchBackgroundImageAttributes != null)
-            {
-                SwitchBackgroundImageAttributes = attributes.SwitchBackgroundImageAttributes.Clone() as ImageAttributes;
-            }
+            InitSubStyle();
+
+            this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Handler image's attributes.
+        /// Thumb image's style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes SwitchHandlerImageAttributes
+        public ImageViewStyle Thumb
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Background image's attributes.
+        /// Track image's style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes SwitchBackgroundImageAttributes
+        public ImageViewStyle Track
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new SwitchAttributes(this);
+            base.CopyFrom(bindableObject);
+
+            SwitchStyle switchStyle = bindableObject as SwitchStyle;
+
+            if (null != switchStyle)
+            {
+                if (null != switchStyle.Track)
+                {
+                    Track.CopyFrom(switchStyle.Track);
+                }
+
+                if (null != switchStyle.Thumb)
+                {
+                    Thumb.CopyFrom(switchStyle.Thumb);
+                }
+            }
+        }
+
+        private void InitSubStyle()
+        {
+            Track = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent
+            };
+
+            Thumb = new ImageViewStyle()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                WidthResizePolicy = ResizePolicyType.Fixed,
+                HeightResizePolicy = ResizePolicyType.Fixed
+            };
         }
     }
 }

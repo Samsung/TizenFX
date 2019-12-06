@@ -16,6 +16,7 @@
  */
 using System;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 using System.ComponentModel;
 
 namespace Tizen.NUI.Components
@@ -24,22 +25,109 @@ namespace Tizen.NUI.Components
     /// The Progress class of nui component. It's used to show the ongoing status with a long narrow bar.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Progress : Control
     {
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ProgressAttributes progressAttrs = null;
+        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create("MaxValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Progress)bindable;
+            if (newValue != null)
+            {
+                instance.maxValue = (float)newValue;
+                instance.UpdateValue();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Progress)bindable;
+            return instance.maxValue;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MinValueProperty = BindableProperty.Create("MinValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Progress)bindable;
+            if (newValue != null)
+            {
+                instance.minValue = (float)newValue;
+                instance.UpdateValue();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Progress)bindable;
+            return instance.minValue;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("currentValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Progress)bindable;
+            if (newValue != null)
+            {
+                if ((float)newValue > instance.maxValue || (float)newValue < instance.minValue)
+                {
+                    return;
+                }
+                instance.currentValue = (float)newValue;
+                instance.UpdateValue();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Progress)bindable;
+            return instance.currentValue;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BufferValueProperty = BindableProperty.Create("bufferValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Progress)bindable;
+            if (newValue != null)
+            {
+                if ((float)newValue > instance.maxValue || (float)newValue < instance.minValue)
+                {
+                    return;
+                }
+                instance.bufferValue = (float)newValue;
+                instance.UpdateValue();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Progress)bindable;
+            return instance.bufferValue;
+        });
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ProgressStateProperty = BindableProperty.Create("state", typeof(ProgressStatusType), typeof(Progress), ProgressStatusType.Indeterminate, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Progress)bindable;
+            if (newValue != null)
+            {
+                instance.state = (ProgressStatusType)newValue;
+                instance.UpdateStates();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Progress)bindable;
+            return instance.state;
+        });
+
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected ProgressStatusType state = ProgressStatusType.Indeterminate;
 
         private const float round = 0.5f;
-        private ImageView trackObj = null;
-        private ImageView progressObj = null;
-        private ImageView bufferObj = null;
-        private ImageView loadingObj = null;
+        private ImageView trackImage = null;
+        private ImageView progressImage = null;
+        private ImageView bufferImage = null;
         private float maxValue = 100;
         private float minValue = 0;
         private float currentValue = 0;
@@ -49,8 +137,6 @@ namespace Tizen.NUI.Components
         /// The constructor of Progress
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Progress() : base()
         {
             Initialize();
@@ -71,11 +157,11 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Progress class with specific Attributes.
         /// </summary>
-        /// <param name="attributes">The Attributes object to initialize the Progress.</param>
+        /// <param name="progressStyle">The Attributes object to initialize the Progress.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Progress(ProgressAttributes attributes) : base(attributes)
+        public Progress(ProgressStyle progressStyle) : base(progressStyle)
         {
             Initialize();
         }
@@ -84,56 +170,50 @@ namespace Tizen.NUI.Components
         /// The status type of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ProgressStatusType
         {
             /// <summary>
             /// Show TrackImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Buffering,
 
             /// <summary>
             /// Show ProgressImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Determinate,
 
             /// <summary>
             /// Show LoadingImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Indeterminate
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ProgressStyle Style => ViewStyle as ProgressStyle;
 
         /// <summary>
         /// The property to get/set Track image object URL of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TrackImageURL
         {
             get
             {
-                return progressAttrs.TrackImageAttributes?.ResourceURL?.All;
+                return Style.Track?.ResourceUrl?.All;
             }
             set
             {
-                CreateTrackImageAttributes();
-                if (progressAttrs.TrackImageAttributes.ResourceURL == null)
+                //CreateTrackImageAttributes();
+                if (Style.Track.ResourceUrl == null)
                 {
-                    progressAttrs.TrackImageAttributes.ResourceURL = new StringSelector();
+                    Style.Track.ResourceUrl = new StringSelector();
                 }
-                progressAttrs.TrackImageAttributes.ResourceURL.All = value;
-                RelayoutRequest();
+                Style.Track.ResourceUrl.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -141,23 +221,21 @@ namespace Tizen.NUI.Components
         /// The property to get/set Progress object image URL of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ProgressImageURL
         {
             get
             {
-                return progressAttrs.ProgressImageAttributes?.ResourceURL?.All;
+                return Style.Progress?.ResourceUrl?.All;
             }
             set
             {
-                CreateProgressImageAttributes();
-                if (progressAttrs.ProgressImageAttributes.ResourceURL == null)
+                //CreateProgressImageAttributes();
+                if (Style.Progress.ResourceUrl == null)
                 {
-                    progressAttrs.ProgressImageAttributes.ResourceURL = new StringSelector();
+                    Style.Progress.ResourceUrl = new StringSelector();
                 }
-                progressAttrs.ProgressImageAttributes.ResourceURL.All = value;
-                RelayoutRequest();
+                Style.Progress.ResourceUrl.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -165,22 +243,20 @@ namespace Tizen.NUI.Components
         /// The property to get/set Buffer object image resource URL of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string BufferImageURL
         {
             get
             {
-                return progressAttrs.BufferImageAttributes?.ResourceURL?.All;
+                return Style.Buffer?.ResourceUrl?.All;
             }
             set
             {
-                CreateBufferImageAttributes();
-                if (progressAttrs.BufferImageAttributes.ResourceURL == null)
+                //CreateBufferImageAttributes();
+                if (Style.Buffer.ResourceUrl == null)
                 {
-                    progressAttrs.BufferImageAttributes.ResourceURL = new StringSelector();
+                    Style.Buffer.ResourceUrl = new StringSelector();
                 }
-                progressAttrs.BufferImageAttributes.ResourceURL.All = value;
+                Style.Buffer.ResourceUrl.All = value;
                 RelayoutRequest();
             }
         }
@@ -189,23 +265,21 @@ namespace Tizen.NUI.Components
         /// The property to get/set Track object color of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
             get
             {
-                return progressAttrs.TrackImageAttributes?.BackgroundColor?.All;
+                return Style.Track?.BackgroundColor?.All;
             }
             set
             {
-                CreateTrackImageAttributes();
-                if (progressAttrs.TrackImageAttributes.BackgroundColor == null)
+                //CreateTrackImageAttributes();
+                if (Style.Track.BackgroundColor == null)
                 {
-                    progressAttrs.TrackImageAttributes.BackgroundColor = new ColorSelector();
+                    Style.Track.BackgroundColor = new ColorSelector();
                 }
-                progressAttrs.TrackImageAttributes.BackgroundColor.All = value;
-                RelayoutRequest();
+                Style.Track.BackgroundColor.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -213,23 +287,21 @@ namespace Tizen.NUI.Components
         /// The property to get/set Progress object color of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ProgressColor
         {
             get
             {
-                return progressAttrs.ProgressImageAttributes?.BackgroundColor?.All;
+                return Style.Progress?.BackgroundColor?.All;
             }
             set
             {
-                CreateProgressImageAttributes();
-                if (null == progressAttrs.ProgressImageAttributes.BackgroundColor)
+                //CreateProgressImageAttributes();
+                if (null == Style.Progress.BackgroundColor)
                 {
-                    progressAttrs.ProgressImageAttributes.BackgroundColor = new ColorSelector();
+                    Style.Progress.BackgroundColor = new ColorSelector();
                 }
-                progressAttrs.ProgressImageAttributes.BackgroundColor.All = value;
-                RelayoutRequest();
+                Style.Progress.BackgroundColor.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -237,23 +309,21 @@ namespace Tizen.NUI.Components
         /// The property to get/set Buffer object color of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BufferColor
         {
             get
             {
-                return progressAttrs.BufferImageAttributes?.BackgroundColor?.All;
+                return Style.Buffer?.BackgroundColor?.All;
             }
             set
             {
-                CreateBufferImageAttributes();
-                if (null == progressAttrs.BufferImageAttributes.BackgroundColor)
+                //CreateBufferImageAttributes();
+                if (null == Style.Buffer.BackgroundColor)
                 {
-                    progressAttrs.BufferImageAttributes.BackgroundColor = new ColorSelector();
+                    Style.Buffer.BackgroundColor = new ColorSelector();
                 }
-                progressAttrs.BufferImageAttributes.BackgroundColor.All = value;
-                RelayoutRequest();
+                Style.Buffer.BackgroundColor.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -261,18 +331,15 @@ namespace Tizen.NUI.Components
         /// The property to get/set the maximum value of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
             get
             {
-                return maxValue;
+                return (float)GetValue(MaxValueProperty);
             }
             set
             {
-                maxValue = value;
-                UpdateValue();
+                SetValue(MaxValueProperty, value);
             }
         }
 
@@ -280,18 +347,15 @@ namespace Tizen.NUI.Components
         /// The property to get/set the minim value of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
             get
             {
-                return minValue;
+                return (float)GetValue(MinValueProperty);
             }
             set
             {
-                minValue = value;
-                UpdateValue();
+                SetValue(MinValueProperty, value);
             }
         }
 
@@ -299,22 +363,15 @@ namespace Tizen.NUI.Components
         /// The property to get/set the current value of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
             get
             {
-                return currentValue;
+                return (float)GetValue(CurrentValueProperty);
             }
             set
             {
-                if (value > maxValue || value < minValue)
-                {
-                    return;
-                }
-                currentValue = value;
-                UpdateValue();
+                SetValue(CurrentValueProperty, value);
             }
         }
 
@@ -322,22 +379,15 @@ namespace Tizen.NUI.Components
         /// The property to get/set the buffer value of the Progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float BufferValue
         {
             get
             {
-                return bufferValue;
+                return (float)GetValue(BufferValueProperty);
             }
             set
             {
-                if (value > maxValue || value < minValue)
-                {
-                    return;
-                }
-                bufferValue = value;
-                UpdateValue();
+                SetValue(BufferValueProperty, value);
             }
         }
 
@@ -345,18 +395,15 @@ namespace Tizen.NUI.Components
         /// Gets or sets state of progress.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ProgressStatusType ProgressState
         {
             get
             {
-                return state;
+                return (ProgressStatusType)GetValue(ProgressStateProperty);
             }
             set
             {
-                state = value;
-                UpdateStates();
+                SetValue(ProgressStateProperty, value);
             }
         }
 
@@ -365,8 +412,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -379,34 +424,13 @@ namespace Tizen.NUI.Components
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                Utility.Dispose(trackObj);
-                Utility.Dispose(progressObj);
-                Utility.Dispose(bufferObj);
-                Utility.Dispose(loadingObj);
+                Utility.Dispose(trackImage);
+                Utility.Dispose(progressImage);
+                Utility.Dispose(bufferImage);
             }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            //Unreference this from if a static instance refer to this. 
 
             //You must call base.Dispose(type) just before exit.
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// The method to update Attributes.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-            ApplyAttributes(this, progressAttrs);
-            ApplyAttributes(trackObj, progressAttrs.TrackImageAttributes);
-            ApplyAttributes(progressObj, progressAttrs.ProgressImageAttributes);
-            ApplyAttributes(loadingObj, progressAttrs.LoadingImageAttributes);
-            ApplyAttributes(bufferObj, progressAttrs.BufferImageAttributes);
         }
 
         /// <summary>
@@ -419,10 +443,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ProgressAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as ProgressAttributes;
-            if (null != tempAttributes)
+            ProgressStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ProgressStyle;
+            if (null != tempStyle)
             {
-                attributes = progressAttrs = tempAttributes;
+                Style.CopyFrom(tempStyle);
                 RelayoutRequest();
             }
         }
@@ -446,7 +470,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void UpdateValue()
         {
-            if (null == trackObj || null == progressObj)
+            if (null == trackImage || null == progressImage)
             {
                 return;
             }
@@ -460,8 +484,8 @@ namespace Tizen.NUI.Components
             float height = this.SizeHeight;
             float progressRatio = (float)(currentValue - minValue) / (float)(maxValue - minValue);
             float progressWidth = width * progressRatio;
-            progressObj.Size2D = new Size2D((int)(progressWidth + round), (int)height); //Add const round to reach Math.Round function.
-            if (null != bufferObj)
+            progressImage.Size2D = new Size2D((int)(progressWidth + round), (int)height); //Add const round to reach Math.Round function.
+            if (null != bufferImage)
             {
                 if (bufferValue < minValue || bufferValue > maxValue)
                 {
@@ -470,7 +494,7 @@ namespace Tizen.NUI.Components
 
                 float bufferRatio = (float)(bufferValue - minValue) / (float)(maxValue - minValue);
                 float bufferWidth = width * bufferRatio;
-                bufferObj.Size2D = new Size2D((int)(bufferWidth + round), (int)height); //Add const round to reach Math.Round function.
+                bufferImage.Size2D = new Size2D((int)(bufferWidth + round), (int)height); //Add const round to reach Math.Round function.
             }
         }
 
@@ -480,9 +504,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new ProgressAttributes();
+            return new ProgressStyle();
         }
 
         /// <summary>
@@ -494,61 +518,52 @@ namespace Tizen.NUI.Components
         {
             if (state == ProgressStatusType.Buffering)
             {
-                bufferObj.Show();
-                loadingObj.Hide();
-                progressObj.Hide();
+                bufferImage.Show();
+                progressImage.Hide();
             }
             else if (state == ProgressStatusType.Determinate)
             {
-                bufferObj.Hide();
-                loadingObj.Hide();
-                progressObj.Show();
+                bufferImage.Hide();
+                progressImage.Show();
                 UpdateValue();
             }
             else
             {
-                bufferObj.Hide();
-                loadingObj.Show();
-                progressObj.Hide();
+                bufferImage.Hide();
+                progressImage.Hide();
             }
         }
 
         private void Initialize()
         {
-            progressAttrs = attributes as ProgressAttributes;
-            if (null == progressAttrs)
-            {
-                throw new Exception("Progress attribute parse error.");
-            }
-
             // create necessary components
             InitializeTrack();
             InitializeBuffer();
             InitializeProgress();
-            InitializeLoading();
         }
 
         private void InitializeTrack()
         {
-            if (null == trackObj)
+            if (null == trackImage)
             {
-                trackObj = new ImageView
+                trackImage = new ImageView
                 {
                     WidthResizePolicy = ResizePolicyType.FillToParent,
                     HeightResizePolicy = ResizePolicyType.FillToParent,
                     PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft
+                    ParentOrigin = NUI.ParentOrigin.TopLeft,
+                    PivotPoint = NUI.PivotPoint.TopLeft
                 };
-                Add(trackObj);
+                Add(trackImage);
+                trackImage.ApplyStyle(Style.Track);
             }
         }
 
         private void InitializeProgress()
         {
-            if (null == progressObj)
+            if (null == progressImage)
             {
-                progressObj = new ImageView
+                progressImage = new ImageView
                 {
                     WidthResizePolicy = ResizePolicyType.FillToParent,
                     HeightResizePolicy = ResizePolicyType.FillToParent,
@@ -556,15 +571,16 @@ namespace Tizen.NUI.Components
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
-                Add(progressObj);
+                Add(progressImage);
+                progressImage.ApplyStyle(Style.Progress);
             }
         }
 
         private void InitializeBuffer()
         {
-            if (null == bufferObj)
+            if (null == bufferImage)
             {
-                bufferObj = new ImageView
+                bufferImage = new ImageView
                 {
                     WidthResizePolicy = ResizePolicyType.FillToParent,
                     HeightResizePolicy = ResizePolicyType.FillToParent,
@@ -572,47 +588,8 @@ namespace Tizen.NUI.Components
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                     PivotPoint = Tizen.NUI.PivotPoint.TopLeft
                 };
-                Add(bufferObj);
-            }
-        }
-
-        private void InitializeLoading()
-        {
-            if (null == loadingObj)
-            {
-                loadingObj = new ImageView
-                {
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft
-                };
-                Add(loadingObj);
-            }
-        }
-
-        private void CreateTrackImageAttributes()
-        {
-            if (null == progressAttrs.TrackImageAttributes)
-            {
-                progressAttrs.TrackImageAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateProgressImageAttributes()
-        {
-            if (null == progressAttrs.ProgressImageAttributes)
-            {
-                progressAttrs.ProgressImageAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateBufferImageAttributes()
-        {
-            if (null == progressAttrs.BufferImageAttributes)
-            {
-                progressAttrs.BufferImageAttributes = new ImageAttributes();
+                Add(bufferImage);
+                bufferImage.ApplyStyle(Style.Buffer);
             }
         }
     }

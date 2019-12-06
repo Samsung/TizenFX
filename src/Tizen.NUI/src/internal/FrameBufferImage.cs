@@ -19,11 +19,9 @@ namespace Tizen.NUI
 {
     internal class FrameBufferImage : Image
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal FrameBufferImage(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FrameBufferImage.FrameBufferImage_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FrameBufferImage obj)
@@ -31,27 +29,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.FrameBufferImage.delete_FrameBufferImage(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.FrameBufferImage.delete_FrameBufferImage(swigCPtr);
         }
 
         public FrameBufferImage(uint width, uint height, PixelFormat pixelFormat, RenderBufferFormat bufferFormat) : this(Interop.FrameBufferImage.FrameBufferImage_New__SWIG_0(width, height, (int)pixelFormat, (int)bufferFormat), true)

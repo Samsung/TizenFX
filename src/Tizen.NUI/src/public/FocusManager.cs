@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,6 @@ namespace Tizen.NUI
     public class FocusManager : BaseHandle
     {
         private static readonly FocusManager instance = FocusManager.Get();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private CustomAlgorithmInterfaceWrapper _customAlgorithmInterfaceWrapper;
 
         private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> _preFocusChangeEventHandler;
@@ -51,7 +50,6 @@ namespace Tizen.NUI
 
         internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FocusManager.FocusManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal FocusManager() : this(Interop.FocusManager.new_FocusManager(), true)
@@ -312,11 +310,7 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.FocusManager_GetCurrentFocusActor(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
 
@@ -390,11 +384,7 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
 
@@ -418,11 +408,6 @@ namespace Tizen.NUI
                 Interop.NDalic.SetCustomAlgorithm(swigCPtr, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         internal static FocusManager Get()
@@ -455,11 +440,7 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.FocusManager_GetFocusIndicatorActor(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             return ret;
         }
 

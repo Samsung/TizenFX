@@ -17,6 +17,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -25,33 +26,89 @@ namespace Tizen.NUI.Components
     /// Button may contain text or an icon.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Button : Control
     {
-        private ImageView backgroundImage;
-        private ImageView shadowImage;
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create("IconRelativeOrientation", typeof(IconOrientation?), typeof(Tizen.NUI.Components.Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            if (newValue != null)
+            {
+                instance.privateIconRelativeOrientation = (IconOrientation?)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            return instance.privateIconRelativeOrientation;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create("IsEnabled", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            if (newValue != null)
+            {
+                instance.privateIsEnabled = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            return instance.privateIsEnabled;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create("IsSelected", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            if (newValue != null)
+            {
+                instance.privateIsSelected = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            return instance.privateIsSelected;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create("IsSelectable", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            if (newValue != null)
+            {
+                instance.privateIsSelectable = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Components.Button)bindable;
+            return instance.privateIsSelectable;
+        });
+
         private ImageView overlayImage;
 
         private TextLabel buttonText;
         private ImageView buttonIcon;
 
-        private ButtonAttributes buttonAttributes;
-        private EventHandler<StateChangeEventArgs> stateChangeHander;
+        private EventHandler<StateChangedEventArgs> stateChangeHander;
 
         private bool isSelected = false;
         private bool isEnabled = true;
         private bool isPressed = false;
+
         /// <summary>
         /// Creates a new instance of a Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Button() : base()
         {
             Initialize();
         }
+
         /// <summary>
         /// Creates a new instance of a Button with style.
         /// </summary>
@@ -63,31 +120,29 @@ namespace Tizen.NUI.Components
         {
             Initialize();
         }
+
         /// <summary>
         /// Creates a new instance of a Button with attributes.
         /// </summary>
-        /// <param name="attributes">Create Button by attributes customized by user.</param>
+        /// <param name="controlStyle">Create Button by attributes customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Button(ButtonAttributes attributes) : base(attributes)
+        public Button(ButtonStyle controlStyle) : base(controlStyle)
         {
             Initialize();
         }
+
         /// <summary>
         /// An event for the button clicked signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ClickEventArgs> ClickEvent;
         /// <summary>
         /// An event for the button state changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<StateChangeEventArgs> StateChangedEvent
+        public event EventHandler<StateChangedEventArgs> StateChangedEvent
         {
             add
             {
@@ -102,373 +157,189 @@ namespace Tizen.NUI.Components
         /// Icon orientation.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum IconOrientation
         {
             /// <summary>
             /// Top.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Top,
             /// <summary>
             /// Bottom.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Bottom,
             /// <summary>
             /// Left.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Left,
             /// <summary>
             /// Right.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Right,
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ButtonStyle Style => ViewStyle as ButtonStyle;
+
         /// <summary>
-        /// Flag to decide Button can be selected or not.
+        /// The text of Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsSelectable
-        {
-            get
-            {
-                return buttonAttributes?.IsSelectable ?? false;
-            }
-            set
-            {
-                buttonAttributes.IsSelectable = value;
-            }
-        }
-        /// <summary>
-        /// Background image's resource url in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BackgroundImageURL
-        {
-            get
-            {
-                return buttonAttributes?.BackgroundImageAttributes?.ResourceURL?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateBackgroundAttributes();
-                    if (buttonAttributes.BackgroundImageAttributes.ResourceURL == null)
-                    {
-                        buttonAttributes.BackgroundImageAttributes.ResourceURL = new StringSelector();
-                    }
-                    buttonAttributes.BackgroundImageAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Background image's border in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle BackgroundImageBorder
-        {
-            get
-            {
-                return buttonAttributes?.BackgroundImageAttributes?.Border?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateBackgroundAttributes();
-                    if (buttonAttributes.BackgroundImageAttributes.Border == null)
-                    {
-                        buttonAttributes.BackgroundImageAttributes.Border = new RectangleSelector();
-                    }
-                    buttonAttributes.BackgroundImageAttributes.Border.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Shadow image's resource url in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ShadowImageURL
-        {
-            get
-            {
-                return buttonAttributes?.ShadowImageAttributes?.ResourceURL?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateShadowAttributes();
-                    if (buttonAttributes.ShadowImageAttributes.ResourceURL == null)
-                    {
-                        buttonAttributes.ShadowImageAttributes.ResourceURL = new StringSelector();
-                    }
-                    buttonAttributes.ShadowImageAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Shadow image's border in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ShadowImageBorder
-        {
-            get
-            {
-                return buttonAttributes?.ShadowImageAttributes?.Border?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateShadowAttributes();
-                    if (buttonAttributes.ShadowImageAttributes.Border == null)
-                    {
-                        buttonAttributes.ShadowImageAttributes.Border = new RectangleSelector();
-                    }
-                    buttonAttributes.ShadowImageAttributes.Border.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Overlay image's resource url in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string OverlayImageURL
-        {
-            get
-            {
-                return buttonAttributes?.OverlayImageAttributes?.ResourceURL?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateOverlayAttributes();
-                    if (buttonAttributes.OverlayImageAttributes.ResourceURL == null)
-                    {
-                        buttonAttributes.OverlayImageAttributes.ResourceURL = new StringSelector();
-                    }
-                    buttonAttributes.OverlayImageAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Overlay image's border in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle OverlayImageBorder
-        {
-            get
-            {
-                return buttonAttributes?.OverlayImageAttributes?.Border?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateOverlayAttributes();
-                    if (buttonAttributes.OverlayImageAttributes.Border == null)
-                    {
-                        buttonAttributes.OverlayImageAttributes.Border = new RectangleSelector();
-                    }
-                    buttonAttributes.OverlayImageAttributes.Border.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Text string in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Text
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.Text?.All;
+                return Style.Text.Text.GetValue(ControlState);
             }
             set
             {
-                if (value != null)
-                {
-                    CreateTextAttributes();
-                    if(buttonAttributes.TextAttributes.Text == null)
-                    {
-                        buttonAttributes.TextAttributes.Text = new StringSelector();
-                    }
-                    buttonAttributes.TextAttributes.Text.All = value;
-
-                    RelayoutRequest();
-                }
+                Style.Text.Text = value;
             }
         }
+
+        /// <summary>
+        /// Flag to decide Button can be selected or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsSelectable
+        {
+            get
+            {
+                return (bool)GetValue(IsSelectableProperty);
+            }
+            set
+            {
+                SetValue(IsSelectableProperty, value);
+            }
+        }
+
+        private bool privateIsSelectable
+        {
+            get
+            {
+                return Style?.IsSelectable ?? false;
+            }
+            set
+            {
+                Style.IsSelectable = value;
+            }
+        }
+
         /// <summary>
         /// Translate text string in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TranslatableText
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.TranslatableText?.All;
+                return Style?.Text?.TranslatableText?.All;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateTextAttributes();
-                    if (buttonAttributes.TextAttributes.TranslatableText == null)
+                    if (Style.Text.TranslatableText == null)
                     {
-                        buttonAttributes.TextAttributes.TranslatableText = new StringSelector();
+                        Style.Text.TranslatableText = new Selector<string>();
                     }
-                    buttonAttributes.TextAttributes.TranslatableText.All = value;
-
-                    RelayoutRequest();
+                    Style.Text.TranslatableText.All = value;
                 }
             }
         }
+
         /// <summary>
         /// Text point size in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PointSize
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.PointSize?.All ?? 0;
+                return Style?.Text?.PointSize?.All ?? 0;
             }
             set
             {
-                CreateTextAttributes();
-                if (buttonAttributes.TextAttributes.PointSize == null)
+                if (Style.Text.PointSize == null)
                 {
-                    buttonAttributes.TextAttributes.PointSize = new FloatSelector();
+                    Style.Text.PointSize = new Selector<float?>();
                 }
-                buttonAttributes.TextAttributes.PointSize.All = value;
-                RelayoutRequest();
+                Style.Text.PointSize.All = value;
             }
         }
+
         /// <summary>
         /// Text font family in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string FontFamily
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.FontFamily;
+                return Style?.Text?.FontFamily.All;
             }
             set
             {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.FontFamily = value;
-                RelayoutRequest();
+                Style.Text.FontFamily = value;
             }
         }
         /// <summary>
         /// Text color in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TextColor
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.TextColor?.All;
+                return Style?.Text?.TextColor?.All;
             }
             set
             {
-                CreateTextAttributes();
-                if (buttonAttributes.TextAttributes.TextColor == null)
+                if (Style.Text.TextColor == null)
                 {
-                    buttonAttributes.TextAttributes.TextColor = new ColorSelector();
+                    Style.Text.TextColor = new Selector<Color>();
                 }
-                buttonAttributes.TextAttributes.TextColor.All = value;
-                RelayoutRequest();
+                Style.Text.TextColor.All = value;
             }
         }
         /// <summary>
         /// Text horizontal alignment in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment TextAlignment
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.HorizontalAlignment = value;
-                RelayoutRequest();
+                Style.Text.HorizontalAlignment = value;
             }
         }
         /// <summary>
         /// Icon image's resource url in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string IconURL
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.ResourceURL?.All;
+                return Style?.Icon?.ResourceUrl?.All;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateIconAttributes();
-                    if (buttonAttributes.IconAttributes.ResourceURL == null)
+                    if (Style.Icon.ResourceUrl == null)
                     {
-                        buttonAttributes.IconAttributes.ResourceURL = new StringSelector();
+                        Style.Icon.ResourceUrl = new Selector<string>();
                     }
-                    buttonAttributes.IconAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
+                    Style.Icon.ResourceUrl.All = value;
                 }
             }
         }
@@ -476,21 +347,17 @@ namespace Tizen.NUI.Components
         /// Text string selector in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public StringSelector TextSelector
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.Text;
+                return (StringSelector)Style?.Text?.Text;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateTextAttributes();
-                    buttonAttributes.TextAttributes.Text = value.Clone() as StringSelector;
-                    RelayoutRequest();
+                    Style.Text.Text = value.Clone() as StringSelector;
                 }
             }
         }
@@ -498,229 +365,94 @@ namespace Tizen.NUI.Components
         /// Translateable text string selector in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public StringSelector TranslatableTextSelector
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.TranslatableText;
+                return (StringSelector)Style?.Text?.TranslatableText;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateTextAttributes();
-                    buttonAttributes.TextAttributes.TranslatableText = value.Clone() as StringSelector;
-                    RelayoutRequest();
+                    Style.Text.TranslatableText = value.Clone() as StringSelector;
                 }
             }
         }
+
         /// <summary>
         /// Text color selector in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ColorSelector TextColorSelector
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.TextColor;
+                return (ColorSelector)Style?.Text?.TextColor;
             }
             set
             {
                 if(value != null)
                 {
-                    CreateTextAttributes();
-                    buttonAttributes.TextAttributes.TextColor = value.Clone() as ColorSelector;
-                    RelayoutRequest();
+                    Style.Text.TextColor = value.Clone() as ColorSelector;
                 }
             }
         }
+
         /// <summary>
         /// Text font size selector in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public FloatSelector PointSizeSelector
         {
             get
             {
-                return buttonAttributes?.TextAttributes?.PointSize;
+                return (FloatSelector)Style?.Text?.PointSize;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateTextAttributes();
-                    buttonAttributes.TextAttributes.PointSize = value.Clone() as FloatSelector;
-                    RelayoutRequest();
+                    Style.Text.PointSize = value.Clone() as FloatSelector;
                 }
             }
         }
+
         /// <summary>
         /// Icon image's resource url selector in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public StringSelector IconURLSelector
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.ResourceURL;
+                return (StringSelector)Style?.Icon?.ResourceUrl;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateIconAttributes();
-                    buttonAttributes.IconAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
+                    Style.Icon.ResourceUrl = value.Clone() as StringSelector;
                 }
             }
         }
-        /// <summary>
-        /// Background image's resource url selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector BackgroundImageURLSelector
-        {
-            get
-            {
-                return buttonAttributes?.BackgroundImageAttributes?.ResourceURL;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateBackgroundAttributes();
-                    buttonAttributes.BackgroundImageAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Background image's border selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RectangleSelector BackgroundImageBorderSelector
-        {
-            get
-            {
-                return buttonAttributes?.BackgroundImageAttributes?.Border;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateBackgroundAttributes();
-                    buttonAttributes.BackgroundImageAttributes.Border = value.Clone() as RectangleSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Shadow image's resource url selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector ShadowImageURLSelector
-        {
-            get
-            {
-                return buttonAttributes?.ShadowImageAttributes?.ResourceURL;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateShadowAttributes();
-                    buttonAttributes.ShadowImageAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Shadow image's border selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RectangleSelector ShadowImageBorderSelector
-        {
-            get
-            {
-                return buttonAttributes?.ShadowImageAttributes?.Border;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateShadowAttributes();
-                    buttonAttributes.ShadowImageAttributes.Border = value.Clone() as RectangleSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Overlay image's resource url selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector OverlayImageURLSelector
-        {
-            get
-            {
-                return buttonAttributes?.OverlayImageAttributes?.ResourceURL;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateOverlayAttributes();
-                    buttonAttributes.OverlayImageAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-        /// <summary>
-        /// Overlay image's border selector in Button.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public RectangleSelector OverlayImageBorderSelector
-        {
-            get
-            {
-                return buttonAttributes?.OverlayImageAttributes?.Border;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateOverlayAttributes();
-                    buttonAttributes.OverlayImageAttributes.Border = value.Clone() as RectangleSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
+
         /// <summary>
         /// Flag to decide selected state in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsSelected
+        {
+            get
+            {
+                return (bool)GetValue(IsSelectedProperty);
+            }
+            set
+            {
+                SetValue(IsSelectedProperty, value);
+            }
+        }
+        private bool privateIsSelected
         {
             get
             {
@@ -736,9 +468,18 @@ namespace Tizen.NUI.Components
         /// Flag to decide enable or disable in Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsEnabledProperty, value);
+            }
+        }
+        private bool privateIsEnabled
         {
             get
             {
@@ -761,184 +502,72 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return buttonAttributes?.IconRelativeOrientation;
+                return (IconOrientation?)GetValue(IconRelativeOrientationProperty);
             }
             set
             {
-                if(buttonAttributes != null && buttonAttributes.IconRelativeOrientation != value)
+                SetValue(IconRelativeOrientationProperty, value);
+            }
+        }
+        private IconOrientation? privateIconRelativeOrientation
+        {
+            get
+            {
+                return Style?.IconRelativeOrientation;
+            }
+            set
+            {
+                if(Style != null && Style.IconRelativeOrientation != value)
                 {
-                    buttonAttributes.IconRelativeOrientation = value;
-                    RelayoutRequest();
+                    Style.IconRelativeOrientation = value;
+                    UpdateUIContent();
                 }
             }
         }
 
         /// <summary>
-        /// Icon left padding in Button, work only when show icon and text.
+        /// Icon padding in Button, work only when show icon and text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IconPaddingLeft
+        public Extents IconPadding
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.PaddingLeft ?? 0;
+                return Style.Icon.Padding;
             }
             set
             {
-                CreateIconAttributes();
-                buttonAttributes.IconAttributes.PaddingLeft = value;
-                RelayoutRequest();
+                if (null != value)
+                {
+                    Style.Icon.Padding.CopyFrom(value);
+                }
             }
         }
 
         /// <summary>
-        /// Icon right padding in Button, work only when show icon and text.
+        /// Text padding in Button, work only when show icon and text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IconPaddingRight
+        public Extents TextPadding
         {
             get
             {
-                return buttonAttributes?.IconAttributes?.PaddingRight ?? 0;
+                return Style.Text.Padding;
             }
             set
             {
-                CreateIconAttributes();
-                buttonAttributes.IconAttributes.PaddingRight = value;
-                RelayoutRequest();
+                if (null != value)
+                {
+                    Style.Text.Padding.CopyFrom(value);
+                }
             }
         }
 
-        /// <summary>
-        /// Icon top padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IconPaddingTop
-        {
-            get
-            {
-                return buttonAttributes?.IconAttributes?.PaddingTop ?? 0;
-            }
-            set
-            {
-                CreateIconAttributes();
-                buttonAttributes.IconAttributes.PaddingTop = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Icon bottom padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IconPaddingBottom
-        {
-            get
-            {
-                return buttonAttributes?.IconAttributes?.PaddingBottom ?? 0;
-            }
-            set
-            {
-                CreateIconAttributes();
-                buttonAttributes.IconAttributes.PaddingBottom = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Text left padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingLeft
-        {
-            get
-            {
-                return buttonAttributes?.TextAttributes?.PaddingLeft ?? 0;
-            }
-            set
-            {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.PaddingLeft = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Text right padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingRight
-        {
-            get
-            {
-                return buttonAttributes?.TextAttributes?.PaddingRight ?? 0;
-            }
-            set
-            {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.PaddingRight = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Text top padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingTop
-        {
-            get
-            {
-                return buttonAttributes?.TextAttributes?.PaddingTop ?? 0;
-            }
-            set
-            {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.PaddingTop = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Text bottom padding in Button, work only when show icon and text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TextPaddingBottom
-        {
-            get
-            {
-                return buttonAttributes?.TextAttributes?.PaddingBottom ?? 0;
-            }
-            set
-            {
-                CreateTextAttributes();
-                buttonAttributes.TextAttributes.PaddingBottom = value;
-                RelayoutRequest();
-            }
-        }
         /// <summary>
         /// Dispose Button and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -961,14 +590,6 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(overlayImage);
                 }
-                if (backgroundImage != null)
-                {
-                    Utility.Dispose(backgroundImage);
-                }
-                if (shadowImage != null)
-                {
-                    Utility.Dispose(shadowImage);
-                }
             }
 
             base.Dispose(type);
@@ -979,8 +600,6 @@ namespace Tizen.NUI.Components
         /// <param name="key">The key event.</param>
         /// <returns>True if the key event should be consumed.</returns>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
             if (key.State == Key.StateType.Down)
@@ -1001,7 +620,7 @@ namespace Tizen.NUI.Components
                 if (key.KeyPressedName == "Return")
                 {
                     isPressed = false;
-                    if (buttonAttributes.IsSelectable != null && buttonAttributes.IsSelectable == true)
+                    if (Style.IsSelectable != null && Style.IsSelectable == true)
                     {
                         isSelected = !isSelected;
                     }
@@ -1010,6 +629,7 @@ namespace Tizen.NUI.Components
             }
             return base.OnKey(key);
         }
+
         /// <summary>
         /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.
         /// </summary>
@@ -1032,6 +652,7 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
             UpdateState();
         }
+
         /// <summary>
         /// Tap gesture event callback.
         /// </summary>
@@ -1049,7 +670,6 @@ namespace Tizen.NUI.Components
                 base.OnTapGestureDetected(source, e);
             }
         }
-
         /// <summary>
         /// Called after a touch event is received by the owning view.<br />
         /// CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br />
@@ -1062,7 +682,7 @@ namespace Tizen.NUI.Components
         public override bool OnTouch(Touch touch)
         {
             PointStateType state = touch.GetState(0);
-      
+
             switch(state)
             {
                 case PointStateType.Down:
@@ -1075,7 +695,7 @@ namespace Tizen.NUI.Components
                     return true;
                 case PointStateType.Up:
                     isPressed = false;
-                    if (buttonAttributes.IsSelectable != null && buttonAttributes.IsSelectable == true)
+                    if (Style.IsSelectable != null && Style.IsSelectable == true)
                     {
                         isSelected = !isSelected;
                     }
@@ -1086,55 +706,18 @@ namespace Tizen.NUI.Components
             }
             return base.OnTouch(touch);
         }
-        /// <summary>
-        /// Get Button attribues.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
-        {
-            return new ButtonAttributes();
-        }
-        /// <summary>
-        /// Update Button by attributes.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-            if (buttonAttributes.ShadowImageAttributes != null)
-            {
-                if(shadowImage == null)
-                {
-                    shadowImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-                    this.Add(shadowImage);
-                }
-                ApplyAttributes(shadowImage, buttonAttributes.ShadowImageAttributes);
-            }
 
-            if (buttonAttributes.BackgroundImageAttributes != null)
-            {
-                if(backgroundImage == null)
-                {
-                    backgroundImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent
-                    };
-                    this.Add(backgroundImage);
-                }
-                ApplyAttributes(backgroundImage, buttonAttributes.BackgroundImageAttributes);
-            }
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
 
-            if (buttonAttributes.OverlayImageAttributes != null)
+            ButtonStyle buttonStyle = viewStyle as ButtonStyle;
+
+            if (null != buttonStyle)
             {
-                if(overlayImage == null)
+                if (null == overlayImage)
                 {
                     overlayImage = new ImageView()
                     {
@@ -1143,34 +726,35 @@ namespace Tizen.NUI.Components
                     };
                     this.Add(overlayImage);
                 }
-                ApplyAttributes(overlayImage, buttonAttributes.OverlayImageAttributes);
-            }
 
-            if (buttonAttributes.TextAttributes != null)
-            {
-                if(buttonText == null)
+                if (null == buttonText)
                 {
                     buttonText = new TextLabel();
                     this.Add(buttonText);
                 }
-                ApplyAttributes(buttonText, buttonAttributes.TextAttributes);
-            }
 
-            if (buttonAttributes.IconAttributes != null)
-            {
-                if(buttonIcon == null)
+                if (null == buttonIcon)
                 {
                     buttonIcon = new ImageView();
                     buttonIcon.Relayout += OnIconRelayout;
                     this.Add(buttonIcon);
                 }
-                ApplyAttributes(buttonIcon, buttonAttributes.IconAttributes);
+
+                overlayImage.ApplyStyle(buttonStyle.Overlay);
+                buttonText.ApplyStyle(buttonStyle.Text);
+                buttonIcon.ApplyStyle(buttonStyle.Icon);
             }
+        }
 
-            MeasureText();
-            LayoutChild();
-
-            Sensitive = isEnabled ? true : false;
+        /// <summary>
+        /// Get Button attribues.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new ButtonStyle();
         }
 
         /// <summary>
@@ -1181,7 +765,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
-            ControlStates sourceState = State;
+            ControlStates sourceState = ControlState;
             ControlStates targetState;
 
             if(isEnabled)
@@ -1192,13 +776,14 @@ namespace Tizen.NUI.Components
             {
                 targetState = IsSelected ? ControlStates.DisabledSelected : (IsFocused ? ControlStates.DisabledFocused : ControlStates.Disabled);
             }
+
             if(sourceState != targetState)
             {
-                State = targetState;
+                ControlState = targetState;
 
                 OnUpdate();
 
-                StateChangeEventArgs e = new StateChangeEventArgs
+                StateChangedEventArgs e = new StateChangedEventArgs
                 {
                     PreviousState = sourceState,
                     CurrentState = targetState
@@ -1206,19 +791,14 @@ namespace Tizen.NUI.Components
                 stateChangeHander?.Invoke(this, e);
             }
         }
+
         /// <summary>
         /// It is hijack by using protected, attributes copy problem when class inherited from Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
-            buttonAttributes = attributes as ButtonAttributes;
-            if (buttonAttributes == null)
-            {
-                throw new Exception("Button attribute parse error.");
-            }
-
-            ApplyAttributes(this, buttonAttributes);
+            UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
         }
 
@@ -1230,30 +810,30 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureText()
         {
-            if (buttonAttributes.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
+            if (Style.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
             {
                 return;
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingLeft = buttonAttributes.TextAttributes.PaddingLeft;
-            int textPaddingRight = buttonAttributes.TextAttributes.PaddingRight;
-            int textPaddingTop = buttonAttributes.TextAttributes.PaddingTop;
-            int textPaddingBottom = buttonAttributes.TextAttributes.PaddingBottom;
+            int textPaddingStart = Style.Text.Padding.Start;
+            int textPaddingEnd = Style.Text.Padding.End;
+            int textPaddingTop = Style.Text.Padding.Top;
+            int textPaddingBottom = Style.Text.Padding.Bottom;
 
-            int iconPaddingLeft = buttonAttributes.IconAttributes.PaddingLeft;
-            int iconPaddingRight = buttonAttributes.IconAttributes.PaddingRight;
-            int iconPaddingTop = buttonAttributes.IconAttributes.PaddingTop;
-            int iconPaddingBottom = buttonAttributes.IconAttributes.PaddingBottom;
+            int iconPaddingStart = Style.Icon.Padding.Start;
+            int iconPaddingEnd = Style.Icon.Padding.End;
+            int iconPaddingTop = Style.Icon.Padding.Top;
+            int iconPaddingBottom = Style.Icon.Padding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingLeft - textPaddingRight;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd;
                 buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom - iconPaddingTop - iconPaddingBottom - buttonIcon.SizeHeight;
             }
             else
             {
-                buttonText.SizeWidth = SizeWidth - textPaddingLeft - textPaddingRight - iconPaddingLeft - iconPaddingRight - buttonIcon.SizeWidth;
+                buttonText.SizeWidth = SizeWidth - textPaddingStart - textPaddingEnd - iconPaddingStart - iconPaddingEnd - buttonIcon.SizeWidth;
                 buttonText.SizeHeight = SizeHeight - textPaddingTop - textPaddingBottom;
             }
         }
@@ -1265,20 +845,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (buttonAttributes.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
+            if (Style.IconRelativeOrientation == null || buttonIcon == null || buttonText == null)
             {
                 return;
             }
 
-            int textPaddingLeft = buttonAttributes.TextAttributes.PaddingLeft;
-            int textPaddingRight = buttonAttributes.TextAttributes.PaddingRight;
-            int textPaddingTop = buttonAttributes.TextAttributes.PaddingTop;
-            int textPaddingBottom = buttonAttributes.TextAttributes.PaddingBottom;
+            int textPaddingStart = Style.Text.Padding.Start;
+            int textPaddingEnd = Style.Text.Padding.End;
+            int textPaddingTop = Style.Text.Padding.Top;
+            int textPaddingBottom = Style.Text.Padding.Bottom;
 
-            int iconPaddingLeft = buttonAttributes.IconAttributes.PaddingLeft;
-            int iconPaddingRight = buttonAttributes.IconAttributes.PaddingRight;
-            int iconPaddingTop = buttonAttributes.IconAttributes.PaddingTop;
-            int iconPaddingBottom = buttonAttributes.IconAttributes.PaddingBottom;
+            int iconPaddingStart = Style.Icon.Padding.Start;
+            int iconPaddingEnd = Style.Icon.Padding.End;
+            int iconPaddingTop = Style.Icon.Padding.Top;
+            int iconPaddingBottom = Style.Icon.Padding.Bottom;
 
             switch (IconRelativeOrientation)
             {
@@ -1310,24 +890,24 @@ namespace Tizen.NUI.Components
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonIcon.Position2D = new Position2D(iconPaddingLeft, 0);
+                        buttonIcon.Position2D = new Position2D(iconPaddingStart, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonText.Position2D = new Position2D(-textPaddingRight, 0);
+                        buttonText.Position2D = new Position2D(-textPaddingEnd, 0);
                     }
                     else
                     {
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonIcon.Position2D = new Position2D(-iconPaddingLeft, 0);
+                        buttonIcon.Position2D = new Position2D(-iconPaddingStart, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonText.Position2D = new Position2D(textPaddingRight, 0);
+                        buttonText.Position2D = new Position2D(textPaddingEnd, 0);
                     }
 
                     break;
@@ -1337,24 +917,24 @@ namespace Tizen.NUI.Components
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonIcon.Position2D = new Position2D(iconPaddingRight, 0);
+                        buttonIcon.Position2D = new Position2D(iconPaddingEnd, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonText.Position2D = new Position2D(-textPaddingLeft, 0);
+                        buttonText.Position2D = new Position2D(-textPaddingStart, 0);
                     }
                     else
                     {
                         buttonIcon.PositionUsesPivotPoint = true;
                         buttonIcon.ParentOrigin = NUI.ParentOrigin.CenterRight;
                         buttonIcon.PivotPoint = NUI.PivotPoint.CenterRight;
-                        buttonIcon.Position2D = new Position2D(-iconPaddingRight, 0);
+                        buttonIcon.Position2D = new Position2D(-iconPaddingEnd, 0);
 
                         buttonText.PositionUsesPivotPoint = true;
                         buttonText.ParentOrigin = NUI.ParentOrigin.CenterLeft;
                         buttonText.PivotPoint = NUI.PivotPoint.CenterLeft;
-                        buttonText.Position2D = new Position2D(textPaddingLeft, 0);
+                        buttonText.Position2D = new Position2D(textPaddingStart, 0);
                     }
                     break;
                 default:
@@ -1369,12 +949,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ButtonAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as ButtonAttributes;
-            if(tempAttributes != null)
+            ButtonStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as ButtonStyle;
+            if (tempAttributes != null)
             {
-                attributes = buttonAttributes = tempAttributes;
-                RelayoutRequest();
+                Style.CopyFrom(tempAttributes);
+                UpdateUIContent();
             }
+        }
+
+        private void UpdateUIContent()
+        {
+            MeasureText();
+            LayoutChild();
+
+            Sensitive = isEnabled;
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
@@ -1394,88 +982,10 @@ namespace Tizen.NUI.Components
             LayoutChild();
         }
 
-        private void CreateBackgroundAttributes()
-        {
-            if (buttonAttributes.BackgroundImageAttributes == null)
-            {
-                buttonAttributes.BackgroundImageAttributes = new ImageAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent
-                };
-            }
-        }
-
-        private void CreateShadowAttributes()
-        {
-            if (buttonAttributes.ShadowImageAttributes == null)
-            {
-                buttonAttributes.ShadowImageAttributes = new ImageAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent
-                };
-            }
-        }
-
-        private void CreateOverlayAttributes()
-        {
-            if (buttonAttributes.OverlayImageAttributes == null)
-            {
-                buttonAttributes.OverlayImageAttributes = new ImageAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent
-                };
-            }
-        }
-
-        private void CreateTextAttributes()
-        {
-            if (buttonAttributes.TextAttributes == null)
-            {
-                buttonAttributes.TextAttributes = new TextAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center
-                };
-            }
-        }
-
-        private void CreateIconAttributes()
-        {
-            if (buttonAttributes.IconAttributes == null)
-            {
-                buttonAttributes.IconAttributes = new ImageAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                };
-            }
-        }
         /// <summary>
         /// ClickEventArgs is a class to record button click event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ClickEventArgs : EventArgs
         {
         }
@@ -1483,19 +993,13 @@ namespace Tizen.NUI.Components
         /// StateChangeEventArgs is a class to record button state change event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class StateChangeEventArgs : EventArgs
+        public class StateChangedEventArgs : EventArgs
         {
             /// <summary> previous state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStates PreviousState;
             /// <summary> current state of Button </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStates CurrentState;
         }
 

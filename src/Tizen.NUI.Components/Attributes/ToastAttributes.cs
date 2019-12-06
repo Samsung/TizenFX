@@ -15,94 +15,62 @@
  *
  */
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ToastAttributes is a class which saves Toast's ux data.
+    /// ToastStyle is a class which saves Toast's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ToastAttributes : ViewAttributes
+    public class ToastStyle : ControlStyle
     {
         /// <summary>
-        /// Creates a new instance of a ToastAttributes.
+        /// Creates a new instance of a ToastStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToastAttributes() : base() { }
-
-        /// <summary>
-        /// Creates a new instance of a ToastAttributes with attributes.
-        /// </summary>
-        /// <param name="attributes">Create ToastAttributes by attributes customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToastAttributes(ToastAttributes attributes) : base(attributes)
+        public ToastStyle() : base()
         {
-            if(null == attributes)
-            {
-                return;
-            }
-            if(null != attributes.BackgroundImageAttributes)
-            {
-                BackgroundImageAttributes = attributes.BackgroundImageAttributes.Clone() as ImageAttributes;
-            }
-            if(null != attributes.TextAttributes)
-            {
-                TextAttributes = attributes.TextAttributes.Clone() as TextAttributes;
-            }
-            TextLineHeight = attributes.TextLineHeight;
-            TextLineSpace = attributes.TextLineSpace;
-            Duration = attributes.Duration;
+            InitSubStyle();
         }
 
         /// <summary>
-        /// Gets or sets background image attributes.
+        /// Creates a new instance of a ToastStyle with Style.
+        /// </summary>
+        /// <param name="Style">Create ToastStyle by Style customized by user.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ToastStyle(ToastStyle style) : base(style)
+        {
+            InitSubStyle();
+            this.CopyFrom(style);
+        }
+
+        /// <summary>
+        /// Gets or sets background image Style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageAttributes BackgroundImageAttributes
+        public ImageViewStyle Background
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets text attributes.
+        /// Gets or sets text Style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextAttributes TextAttributes
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets toast text line height.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint? TextLineHeight
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets toast text line space.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint? TextLineSpace
+        public TextLabelStyle Text
         {
             get;
             set;
@@ -121,14 +89,41 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override Attributes Clone()
+        public override void CopyFrom(BindableObject bindableObject)
         {
-            return new ToastAttributes(this);
+            base.CopyFrom(bindableObject);
+            ToastStyle toastStyle = bindableObject as ToastStyle;
+            if (toastStyle != null)
+            {
+                if (toastStyle.Background!= null)
+                {
+                    Background.CopyFrom(toastStyle.Background);
+                }
+
+                if (toastStyle.Text!= null)
+                {
+                    Text.CopyFrom(toastStyle.Text);
+                }
+                Duration = toastStyle.Duration;
+            }
+        }
+
+        private void InitSubStyle()
+        {
+            if (Background== null)
+            {
+                Background= new ImageViewStyle();
+            }
+       
+            if (Text== null)
+            {
+                Text= new TextLabelStyle();
+            }
         }
     }
 }

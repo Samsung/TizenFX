@@ -49,7 +49,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
+        /// <exception cref="NotAvailableException">
         ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <since_tizen> 3 </since_tizen>
@@ -79,10 +79,10 @@ namespace Tizen.Multimedia
         /// Clears the equalizer effect.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
         /// </exception>
-        /// <exception cref="NotAvailableException"><see cref="IsAvailable"/> returns false. (Since tizen 6.0)</exception>
         /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
@@ -100,10 +100,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the number of items.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
         /// </exception>
-        /// <exception cref="NotAvailableException"><see cref="IsAvailable"/> returns false. (Since tizen 6.0)</exception>
         /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
         public int Count
@@ -125,10 +125,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the range of band level in dB.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     <see cref="IsAvailable"/> returns false. (Since tizen 6.0)
         /// </exception>
-        /// <exception cref="NotAvailableException"><seealso cref="IsAvailable"/> returns false. (Since tizen 6.0)</exception>
         /// <seealso cref="IsAvailable"/>
         /// <since_tizen> 3 </since_tizen>
         public Range BandLevelRange
@@ -150,12 +150,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the value whether the AudioEffect is available or not.
         /// </summary>
-        /// <remarks>This function returns the availability of the audio effect function group and
-        /// it could be unavailable depending on the platform capabilities.</remarks>
-        /// <exception cref="InvalidOperationException">
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// <remarks>This function returns the availability of the <see cref="AudioEffect"/>.
+        /// It could be unavailable depending on the platform capabilities.<br/>
+        /// If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>,
+        /// the <see cref="IsAvailable"/> returns false.(Since tizen 6.0)</remarks>
+        /// <exception cref="NotAvailableException">
+        ///     Depending on the audio codec type, the function is not available. (Since tizen 6.0)
         /// </exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <seealso cref="Player.AudioOffload"/>
         /// <seealso cref="Player.AudioCodecType"/>
         /// <since_tizen> 3 </since_tizen>
         public bool IsAvailable

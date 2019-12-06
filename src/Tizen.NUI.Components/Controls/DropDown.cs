@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -29,16 +30,109 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DropDown : Control
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create("ListPadding", typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DropDown)bindable;
+            if (newValue != null)
+            {
+                instance.listPadding.CopyFrom((Extents)newValue);
+                instance.UpdateDropDown();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DropDown)bindable;
+            return instance.listPadding;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SelectedItemIndexProperty = BindableProperty.Create("SelectedItemIndex", typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DropDown)bindable;
+            if (newValue != null)
+            {
+                int selectedItemIndex = (int)newValue;
+                if (selectedItemIndex == instance.selectedItemIndex || instance.adapter == null || selectedItemIndex >= instance.adapter.GetItemCount())
+                {
+                    return;
+                }
+                instance.UpdateSelectedItem(selectedItemIndex);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DropDown)bindable;
+            return instance.selectedItemIndex;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ListMarginProperty = BindableProperty.Create("ListMargin", typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DropDown)bindable;
+            if (newValue != null)
+            {
+                instance.listMargin.CopyFrom((Extents)newValue);
+                instance.UpdateDropDown();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DropDown)bindable;
+            return instance.listMargin;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ListRelativeOrientationProperty = BindableProperty.Create("ListRelativeOrientation", typeof(ListOrientation), typeof(DropDown), ListOrientation.Left, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DropDown)bindable;
+            if (newValue != null)
+            {
+                instance.listRelativeOrientation = (ListOrientation)newValue;
+                instance.UpdateDropDown();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DropDown)bindable;
+            return instance.listRelativeOrientation;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SpaceBetweenButtonTextAndIconProperty = BindableProperty.Create("SpaceBetweenButtonTextAndIcon", typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DropDown)bindable;
+            if (newValue != null)
+            {
+                instance.spaceBetweenButtonTextAndIcon = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DropDown)bindable;
+            return instance.spaceBetweenButtonTextAndIcon;
+        });
+
         #region DropDown
         private Button button = null;
         private TextLabel headerText = null;
         private TextLabel buttonText = null;
         private ImageView listBackgroundImage = null;
-        private FlexibleView list = null;
+        // Component that scrolls the child added to it.
+        private LayoutScroller layoutScroller = null;
+        // The LinearLayout container to house the items in the drop down list.
+        private View dropDownMenuFullList = null;
         private DropDownListBridge adapter = new DropDownListBridge();
-        private DropDownAttributes dropDownAttributes = null;
-        private DropDownItemView touchedView = null;
+        private DropDownItemView selectedItemView = null;
+        private TapGestureDetector tapGestureDetector = null;
+
+        private Extents listMargin = new Extents(0, 0, 0, 0);
+        private Extents listPadding = new Extents(0, 0, 0, 0);
+        private ListOrientation listRelativeOrientation = ListOrientation.Left;
         private int selectedItemIndex = -1;
+        private int spaceBetweenButtonTextAndIcon = 0;
+        private bool itemPressed = false;
 
         /// <summary>
         /// Creates a new instance of a DropDown.
@@ -46,10 +140,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown() : base()
-        {
-            Initialize();
-        }
+        public DropDown() : base() { }
+
         /// <summary>
         /// Creates a new instance of a DropDown with style.
         /// </summary>
@@ -57,10 +149,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown(string style) : base(style)
-        {
-            Initialize();
-        }
+        public DropDown(string style) : base(style) { }
+
         /// <summary>
         /// Creates a new instance of a DropDown with attributes.
         /// </summary>
@@ -68,9 +158,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DropDown(DropDownAttributes attributes) : base(attributes)
+        public DropDown(DropDownStyle attributes) : base(attributes)
         {
-            Initialize();
         }
 
         /// <summary>
@@ -90,7 +179,7 @@ namespace Tizen.NUI.Components
         public event ClickEventHandler<ItemClickEventArgs> ItemClickEvent;
 
         /// <summary>
-        /// List orientation.
+        /// List position in relation to the main button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -113,401 +202,19 @@ namespace Tizen.NUI.Components
             Right,
         }
 
-        /// <summary>
-        /// Header text string in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string HeaderText
-        {
-            get
-            {
-                return dropDownAttributes.HeaderTextAttributes?.Text.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateHeaderTextAttributes();
-                    if (dropDownAttributes.HeaderTextAttributes.Text == null)
-                    {
-                        dropDownAttributes.HeaderTextAttributes.Text = new StringSelector();
-                    }
-                    dropDownAttributes.HeaderTextAttributes.Text.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Header text point size in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float HeaderTextPointSize
-        {
-            get
-            {
-                return dropDownAttributes.HeaderTextAttributes?.PointSize?.All ?? 0;
-            }
-            set
-            {
-                CreateHeaderTextAttributes();
-                if (dropDownAttributes.HeaderTextAttributes.PointSize == null)
-                {
-                    dropDownAttributes.HeaderTextAttributes.PointSize = new FloatSelector();
-                }
-                dropDownAttributes.HeaderTextAttributes.PointSize.All = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Header text font family in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string HeaderTextFontFamily
-        {
-            get
-            {
-                return dropDownAttributes.HeaderTextAttributes?.FontFamily;
-            }
-            set
-            {
-                CreateHeaderTextAttributes();
-                dropDownAttributes.HeaderTextAttributes.FontFamily = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Header text color in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color HeaderTextColor
-        {
-            get
-            {
-                return dropDownAttributes.HeaderTextAttributes?.TextColor?.All;
-            }
-            set
-            {
-                CreateHeaderTextAttributes();
-                if (dropDownAttributes.HeaderTextAttributes.TextColor == null)
-                {
-                    dropDownAttributes.HeaderTextAttributes.TextColor = new ColorSelector();
-                }
-                dropDownAttributes.HeaderTextAttributes.TextColor.All = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Header text color selector in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ColorSelector HeaderTextColorSelector
-        {
-            get
-            {
-                return dropDownAttributes.HeaderTextAttributes?.TextColor;
-            }
-            set
-            {
-                CreateHeaderTextAttributes();
-                if (value != null)
-                {
-                    dropDownAttributes.HeaderTextAttributes.TextColor = value.Clone() as ColorSelector;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Button text string in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ButtonText
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.TextAttributes?.Text.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateButtonTextAttributes();
-                    if (dropDownAttributes.ButtonAttributes.TextAttributes.Text == null)
-                    {
-                        dropDownAttributes.ButtonAttributes.TextAttributes.Text = new StringSelector();
-                    }
-                    dropDownAttributes.ButtonAttributes.TextAttributes.Text.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Button text point size in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float ButtonTextPointSize
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.TextAttributes?.PointSize?.All ?? 0;
-            }
-            set
-            {
-                CreateButtonTextAttributes();
-                if (dropDownAttributes.ButtonAttributes.TextAttributes.PointSize == null)
-                {
-                    dropDownAttributes.ButtonAttributes.TextAttributes.PointSize = new FloatSelector();
-                }
-                dropDownAttributes.ButtonAttributes.TextAttributes.PointSize.All = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Button text font family in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ButtonTextFontFamily
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.TextAttributes?.FontFamily;
-            }
-            set
-            {
-                CreateButtonTextAttributes();
-                dropDownAttributes.ButtonAttributes.TextAttributes.FontFamily = value;                
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Button text color in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color ButtonTextColor
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.TextAttributes?.TextColor?.All;
-            }
-            set
-            {
-                CreateButtonTextAttributes();
-                if (dropDownAttributes.ButtonAttributes.TextAttributes.TextColor == null)
-                {
-                    dropDownAttributes.ButtonAttributes.TextAttributes.TextColor = new ColorSelector();
-                }
-                dropDownAttributes.ButtonAttributes.TextAttributes.TextColor.All = value;               
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Button text color selector in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ColorSelector ButtonTextColorSelector
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.TextAttributes?.TextColor;
-            }
-            set
-            {
-                CreateButtonTextAttributes();
-                if (value != null)
-                {
-                    dropDownAttributes.ButtonAttributes.TextAttributes.TextColor = value.Clone() as ColorSelector;                    
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Button icon image's resource url in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ButtonIconImageURL
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.IconAttributes?.ResourceURL.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateButtonIconAttributes();
-                    if (dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL == null)
-                    {
-                        dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL = new StringSelector();
-                    }
-                    dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Button icon image's size in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ButtonIconSize2D
-        {
-            get
-            {
-                return dropDownAttributes.ButtonAttributes?.IconAttributes?.Size2D;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateButtonIconAttributes();
-                    dropDownAttributes.ButtonAttributes.IconAttributes.Size2D = value;
-                    RelayoutRequest();
-                }
-            }
-        }
+        public new DropDownStyle Style => ViewStyle as DropDownStyle;
 
         /// <summary>
         /// Space between button text and button icon in DropDown.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SpaceBetweenButtonTextAndIcon
         {
-            get
-            {
-                return dropDownAttributes.SpaceBetweenButtonTextAndIcon;
-            }
-            set
-            {
-                dropDownAttributes.SpaceBetweenButtonTextAndIcon = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Left space in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int LeftSpace
-        {
-            get
-            {
-                return (int)dropDownAttributes.Space.X;
-            }
-            set
-            {
-                dropDownAttributes.Space.X = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Right space in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int RightSpace
-        {
-            get
-            {
-                return (int)dropDownAttributes.Space.Y;
-            }
-            set
-            {
-                dropDownAttributes.Space.Y = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// List background image's resource url in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ListBackgroundImageURL
-        {
-            get
-            {
-                return dropDownAttributes.ListBackgroundImageAttributes?.ResourceURL?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateListBackgroundAttributes();
-                    if (dropDownAttributes.ListBackgroundImageAttributes.ResourceURL == null)
-                    {
-                        dropDownAttributes.ListBackgroundImageAttributes.ResourceURL = new StringSelector();
-                    }
-                    dropDownAttributes.ListBackgroundImageAttributes.ResourceURL.All = value;
-                    RelayoutRequest();
-                }
-            }
-        }
-
-        /// <summary>
-        /// List background image's border in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ListBackgroundImageBorder
-        {
-            get
-            {
-                return dropDownAttributes.ListBackgroundImageAttributes?.Border?.All;
-            }
-            set
-            {
-                if (value != null)
-                {
-                    CreateListBackgroundAttributes();
-                    if (dropDownAttributes.ListBackgroundImageAttributes.Border == null)
-                    {
-                        dropDownAttributes.ListBackgroundImageAttributes.Border = new RectangleSelector();
-                    }
-                    dropDownAttributes.ListBackgroundImageAttributes.Border.All = value;
-                    RelayoutRequest();
-                }
-            }
+            get => (int)GetValue(SpaceBetweenButtonTextAndIconProperty);
+            set => SetValue(SpaceBetweenButtonTextAndIconProperty, value);
         }
 
         /// <summary>
@@ -515,94 +222,25 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ListOrientation ListRelativeOrientation
         {
-            get
-            {
-                return dropDownAttributes.ListRelativeOrientation;
-            }
-            set
-            {
-                dropDownAttributes.ListRelativeOrientation = value;
-                RelayoutRequest();
-            }
+            get => (ListOrientation)GetValue(ListRelativeOrientationProperty);
+            set => SetValue(ListRelativeOrientationProperty, value);
         }
 
         /// <summary>
-        /// Left space in list.
+        /// Space in list.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListLeftMargin
+        public Extents ListMargin
         {
             get
             {
-                return (int)dropDownAttributes.ListMargin.X;
+                Extents tmp = (Extents)GetValue(ListMarginProperty);
+                return new Extents((ushort start, ushort end, ushort top, ushort bottom) => { ListMargin = new Extents(start, end, top, bottom); }, tmp.Start, tmp.End, tmp.Top, tmp.Bottom);
             }
-            set
-            {
-                dropDownAttributes.ListMargin.X = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Right space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListRigthMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Y;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Y = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Top space in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ListTopMargin
-        {
-            get
-            {
-                return (int)dropDownAttributes.ListMargin.Z;
-            }
-            set
-            {
-                dropDownAttributes.ListMargin.Z = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Focused item index in list.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int FocusedItemIndex
-        {
-            get
-            {
-                return dropDownAttributes.FocusedItemIndex;
-            }
-            set
-            {
-                dropDownAttributes.FocusedItemIndex = value;
-                RelayoutRequest();
-            }
+            set => SetValue(ListMarginProperty, value);
         }
 
         /// <summary>
@@ -610,40 +248,10 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedItemIndex
         {
-            get
-            {
-                return selectedItemIndex;
-            }
-            set
-            {
-                if (value == selectedItemIndex || adapter == null || value >= adapter.GetItemCount())
-                {
-                    return;
-                }
-                UpdateSelectedItem(value);
-            }
-        }
-
-        /// <summary>
-        /// List size in DropDown.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ListSize2D
-        {
-            get
-            {
-                return dropDownAttributes.ListSize2D;
-            }
-            set
-            {
-                dropDownAttributes.ListSize2D = value;
-                RelayoutRequest();
-            }
+            get => (int)GetValue(SelectedItemIndexProperty);
+            set => SetValue(SelectedItemIndexProperty, value);
         }
 
         /// <summary>
@@ -651,18 +259,14 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ListPadding
         {
             get
             {
-                return dropDownAttributes.ListPadding;
+                Extents tmp = (Extents)GetValue(ListPaddingProperty);
+                return new Extents((ushort start, ushort end, ushort top, ushort bottom) => { ListPadding = new Extents(start, end, top, bottom); }, tmp.Start, tmp.End, tmp.Top, tmp.Bottom);
             }
-            set
-            {
-                dropDownAttributes.ListPadding = value;
-                RelayoutRequest();
-            }
+            set => SetValue(ListPaddingProperty, value);
         }
 
         /// <summary>
@@ -672,9 +276,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddItem(DropDownItemData itemData)
+        public void AddItem(DropDownDataItem itemData)
         {
-            adapter.InsertData(-1, itemData);
+           // Add item to adaptor, will be added to list via AddItemAt during OnUpdate()
+           int insertionPosition = adapter.GetItemCount();
+           adapter.InsertData(insertionPosition, itemData);
         }
 
         /// <summary>
@@ -701,6 +307,17 @@ namespace Tizen.NUI.Components
             }
 
             adapter.RemoveData(index);
+
+            if(index < dropDownMenuFullList.ChildCount)
+            {
+                View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
+                if (childToRemove)
+                {
+                    childToRemove.TouchEvent -= ListItemTouchEvent;
+                    dropDownMenuFullList.Remove(childToRemove);
+                    dropDownMenuFullList?.Layout?.RequestLayout();
+                }
+            }
         }
 
         /// <summary>
@@ -711,7 +328,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void InsertItem(DropDownItemData item, int index)
+        public void InsertItem(DropDownDataItem item, int index)
         {
             if (index < 0 || index >= adapter.GetItemCount())
             {
@@ -735,11 +352,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AttachScrollBar(ScrollBar scrollBar)
         {
-            if (list == null)
+            if (layoutScroller == null)
             {
                 return;
             }
-            list.AttachScrollBar(scrollBar);
+            Tizen.Log.Error("DropDown","Feature unsupported");
         }
 
         /// <summary>
@@ -750,11 +367,35 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (list == null)
+            if (layoutScroller == null)
             {
                 return;
             }
-            list.DetachScrollBar();
+            Tizen.Log.Error("DropDown","Feature unsupported");
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            DropDownStyle dropDownStyle = viewStyle as DropDownStyle;
+            if (null != dropDownStyle)
+            {
+                CreateHeaderText();
+                CreateButtonText();
+                CreateButton();
+
+                CreateListBackgroundImage();
+                if (null == layoutScroller) // layoutScroller used to test of ListContainer Setup invoked already
+                {
+                    SetUpListContainer();
+                }
+                button.ApplyStyle(Style.Button);
+                headerText.ApplyStyle(Style.HeaderText);
+                listBackgroundImage.ApplyStyle(Style.ListBackgroundImage);
+            }
         }
 
         /// <summary>
@@ -763,94 +404,60 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void UpdateDropDown()
+        {
+            if (null == layoutScroller || null == listBackgroundImage || null == dropDownMenuFullList) return;
+            if (null == Style.ListBackgroundImage.Size) return;
+            // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
+            layoutScroller.Size = Style.ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
+            layoutScroller.Position2D = new Position2D(listPadding.Start, listPadding.Top);
+
+            int listBackgroundImageX = 0;
+            int listBackgroundImageY = 0;
+            if (listRelativeOrientation == ListOrientation.Left)
+            {
+                listBackgroundImageX = (int)listMargin.Start;
+                listBackgroundImageY = (int)listMargin.Top;
+            }
+            else if (listRelativeOrientation == ListOrientation.Right)
+            {
+                int listWidth = 0;
+                if (dropDownMenuFullList.Size2D != null)
+                {
+                    listWidth = dropDownMenuFullList.Size2D.Width;
+                }
+                listBackgroundImageX = Size2D.Width - listWidth - (int)listMargin.End;
+                listBackgroundImageY = (int)listMargin.Top;
+            }
+            listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
+            dropDownMenuFullList?.Layout?.RequestLayout();
+        }
+
         protected override void OnUpdate()
         {
-            if (dropDownAttributes.HeaderTextAttributes != null)
+            float iconWidth = 0;
+            float buttonTextWidth = 0;
+            if (null != buttonText)
             {
-                if (headerText == null)
-                {
-                    CreateHeaderText();
-                }
-                ApplyAttributes(headerText, dropDownAttributes.HeaderTextAttributes);
+                buttonText.Text = Style.Button.Text.Text.All;
+                buttonText.PointSize = Style.Button.Text.PointSize?.All ?? 20;
+                buttonTextWidth = buttonText.NaturalSize.Width;
             }
+            iconWidth = Style.Button.Icon.Size?.Width ?? 48;
+            button.SizeWidth = iconWidth + Style.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
 
+            int numberOfItemsToAdd = adapter.GetItemCount();
 
-            if (dropDownAttributes.ButtonAttributes != null)
+            if (adapter.AdapterPurge == true)
             {
-                if (button == null)
+                adapter.AdapterPurge = false;
+                for (int i = 0; i < numberOfItemsToAdd; i++)
                 {
-                    CreateButton();
-                }
-                if (dropDownAttributes.Space != null)
-                {
-                    button.Position2D.X = (int)dropDownAttributes.Space.X;
-                }
-
-                if (dropDownAttributes.ButtonAttributes.TextAttributes != null)
-                {
-                    ApplyAttributes(buttonText, dropDownAttributes.ButtonAttributes.TextAttributes);
-                    button.TextSelector = dropDownAttributes.ButtonAttributes.TextAttributes.Text;
-                    if (dropDownAttributes.ButtonAttributes.TextAttributes.PointSize != null)
-                    {
-                        button.PointSize = dropDownAttributes.ButtonAttributes.TextAttributes.PointSize.All.Value;
-                    }
-                    button.FontFamily = dropDownAttributes.ButtonAttributes.TextAttributes.FontFamily;
-                    button.TextColorSelector = dropDownAttributes.ButtonAttributes.TextAttributes.TextColor;
-                }
-                if (dropDownAttributes.ButtonAttributes.IconAttributes != null)
-                {
-                    button.IconURLSelector = dropDownAttributes.ButtonAttributes.IconAttributes.ResourceURL;
-                    int iconWidth = 0;
-                    int buttonTextWidth = 0;
-                    if (dropDownAttributes.ButtonAttributes.IconAttributes.Size2D != null)
-                    {
-                        iconWidth = dropDownAttributes.ButtonAttributes.IconAttributes.Size2D.Width;
-                    }
-                    if (buttonText.NaturalSize2D != null)
-                    {
-                        buttonTextWidth = buttonText.NaturalSize2D.Width;
-                    }
-                    button.SizeWidth = iconWidth + dropDownAttributes.SpaceBetweenButtonTextAndIcon + buttonTextWidth;
+                    AddItemAt(adapter.GetData(i), i);
                 }
             }
-
-            if (dropDownAttributes.ListBackgroundImageAttributes != null)
-            {
-                if (listBackgroundImage == null)
-                {
-                    CreateListBackgroundImage();
-                    CreateList();
-                }
-                ApplyAttributes(listBackgroundImage, dropDownAttributes.ListBackgroundImageAttributes);
-                list.FocusedItemIndex = dropDownAttributes.FocusedItemIndex;
-                list.Size2D = dropDownAttributes.ListSize2D;
-                list.Padding = dropDownAttributes.ListPadding;
-
-                int listBackgroundImageX = 0;
-                int listBackgroundImageY = 0;
-                if (dropDownAttributes.ListRelativeOrientation == ListOrientation.Left)
-                {
-                    if (dropDownAttributes.ListMargin != null)
-                    {
-                        listBackgroundImageX = (int)dropDownAttributes.ListMargin.X;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
-                    }
-                }
-                else if (dropDownAttributes.ListRelativeOrientation == ListOrientation.Right)
-                {
-                    if (dropDownAttributes.ListMargin != null)
-                    {
-                        int listWidth = 0;
-                        if (list.Size2D != null)
-                        {
-                            listWidth = list.Size2D.Width;
-                        }
-                        listBackgroundImageX = Size2D.Width - listWidth - (int)dropDownAttributes.ListMargin.Y;
-                        listBackgroundImageY = (int)dropDownAttributes.ListMargin.Z;
-                    }
-                }
-                listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
-            }
+            // Set selection icon on View
+            UpdateSelectedItem(selectedItemIndex);
         }
 
         /// <summary>
@@ -869,30 +476,12 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (headerText != null)
-                {
-                    Utility.Dispose(headerText);
-                }
-
-                if (buttonText != null)
-                {
-                    Utility.Dispose(buttonText);
-                }
-
-                if (button != null)
-                {
-                    Utility.Dispose(button);
-                }
-
-                if (list != null)
-                {
-                    if (listBackgroundImage != null)
-                    {
-                        Utility.Dispose(listBackgroundImage);
-                    }
-
-                    Utility.Dispose(list);
-                }
+                Utility.Dispose(headerText);
+                Utility.Dispose(buttonText);
+                Utility.Dispose(button);
+                Utility.Dispose(layoutScroller);
+                Utility.Dispose(dropDownMenuFullList);
+                Utility.Dispose(listBackgroundImage);
             }
 
             base.Dispose(type);
@@ -904,19 +493,27 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new DropDownAttributes();
+            return new DropDownStyle();
         }
 
-        private void Initialize()
+        private void AddItemAt(DropDownDataItem itemData,int index)
         {
-            dropDownAttributes = attributes as DropDownAttributes;
-            if (dropDownAttributes == null)
+            ViewHolder viewHolder = adapter.OnCreateViewHolder();
+            if (!viewHolder.IsBound)
             {
-                throw new Exception("DropDown attribute parse error.");
+                adapter.BindViewHolder(viewHolder, index);
+                viewHolder.IsBound = true;
             }
-            ApplyAttributes(this, dropDownAttributes);                  
+
+            if (tapGestureDetector == null)
+            {
+                tapGestureDetector = new TapGestureDetector();
+            }
+            View view = viewHolder.ItemView;
+            view.TouchEvent += ListItemTouchEvent;
+            dropDownMenuFullList.Add(view);
         }
 
         private void OnClickEvent(object sender, ItemClickEventArgs e)
@@ -926,224 +523,202 @@ namespace Tizen.NUI.Components
 
         private void CreateHeaderText()
         {
-            headerText = new TextLabel();
-            headerText.Name = "DropDownHeaderText";
-            Add(headerText);
+            if (null == headerText)
+            {
+                headerText = new TextLabel()
+                {
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    ParentOrigin = NUI.ParentOrigin.Center,
+                    PivotPoint = NUI.ParentOrigin.Center,
+                    PositionUsesPivotPoint = true,
+                };
+                headerText.Name = "DropDownHeaderText";
+                Add(headerText);
+            }
+        }
+
+        private void CreateButtonText()
+        {
+            if (null == buttonText)
+            {
+                buttonText = new TextLabel();
+            }
         }
 
         private void CreateButton()
         {
-            button = new Button()
+            if (null == button)
             {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                IconRelativeOrientation = Button.IconOrientation.Right,
-            };
-            button.Name = "DropDownButton";
-            button.ClickEvent += ButtonClickEvent;
-            Add(button);
-
-            buttonText = new TextLabel()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-            };
-            buttonText.Name = "DropDownButtonText";
-            Add(buttonText);
-            buttonText.Hide();
-        }
-
-        private void CreateList()
-        {
-            list = new FlexibleView();
-            list.Name = "DropDownList";
-            LinearLayoutManager layoutManager = new LinearLayoutManager(LinearLayoutManager.VERTICAL);
-            list.SetLayoutManager(layoutManager);
-            list.SetAdapter(adapter);
-            list.Focusable = true;
-            list.ItemTouchEvent += ListItemTouchEvent;
-            list.ItemClickEvent += ListItemClickEvent;
-            listBackgroundImage.Add(list);
-            listBackgroundImage.Hide();
-        }
-
-        private void ListItemClickEvent(object sender, FlexibleView.ItemClickEventArgs e)
-        {
-            if (e.ClickedView != null)
-            {
-                UpdateSelectedItem(e.ClickedView.AdapterPosition);
-
-                ItemClickEventArgs args = new ItemClickEventArgs();
-                args.Index = e.ClickedView.AdapterPosition;
-                args.Text = (e.ClickedView.ItemView as DropDownItemView)?.Text;
-                OnClickEvent(this, args);
+                button = new Button()
+                {
+                    ParentOrigin = NUI.ParentOrigin.CenterLeft,
+                    PivotPoint = NUI.PivotPoint.CenterLeft,
+                    PositionUsesPivotPoint = true,
+                    HeightResizePolicy = ResizePolicyType.FitToChildren,
+                    IconRelativeOrientation = Button.IconOrientation.Right,
+                };
+                button.Name = "DropDownButton";
+                button.ClickEvent += ButtonClickEvent;
+                Add(button);
             }
+        }
 
+        private void CreateListBackgroundImage()
+        {
+            if (null == listBackgroundImage)
+            {
+                listBackgroundImage = new ImageView
+                {
+                    Name = "ListBackgroundImage",
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
+                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                    WidthResizePolicy = ResizePolicyType.FitToChildren,
+                    HeightResizePolicy = ResizePolicyType.FitToChildren,
+                };
+                Add(listBackgroundImage);
+            }
+        }
+
+        private void SetUpListContainer()
+        {
+            LinearLayout linear = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+            };
+
+            dropDownMenuFullList = new View()
+            {
+                Layout = linear,
+                Name = "DropDownMenuList",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Focusable = true,
+            };
+
+            layoutScroller = new LayoutScroller()
+            {
+                Name = "LayoutScroller",
+            };
+            layoutScroller.AddLayoutToScroll(dropDownMenuFullList);
+
+            listBackgroundImage.Add(layoutScroller);
             listBackgroundImage.Hide();
         }
 
-        private void ListItemTouchEvent(object sender, FlexibleView.ItemTouchEventArgs e)
+        private View GetViewFromIndex(uint index)
+        {
+            if ((index < dropDownMenuFullList.ChildCount) && (index >=0) )
+            {
+                return dropDownMenuFullList.GetChildAt(index);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        private void SetListItemToSelected(DropDownItemView targetItemView)
+        {
+            // Set the DropDownItemView matching the targetItemView to selected.
+            if (selectedItemView!=targetItemView)
+            {
+                if (selectedItemView!=null)
+                {
+                    // clear selection status of currently selected item view
+                    selectedItemView.IsSelected = false;
+                }
+                // Set target item to selected
+                targetItemView.IsSelected = true;
+                selectedItemView = targetItemView;
+            }
+        }
+
+        private bool ListItemTouchEvent(object sender, TouchEventArgs e)
         {
             PointStateType state = e.Touch.GetState(0);
+            DropDownItemView touchedView = sender as DropDownItemView;;
             switch (state)
             {
                 case PointStateType.Down:
-                    if (e.TouchedView != null)
+                    if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
-                        touchedView = e.TouchedView.ItemView as DropDownItemView;
-                        if (touchedView != null && touchedView.BackgroundColorSelector != null)
-                        {
-                            touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Pressed);
-                        }
+                        touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Pressed);
                     }
+                    itemPressed = true;  // if matched with a Up then a click event.
                     break;
                 case PointStateType.Motion:
                     if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
                         touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Normal);
                     }
+                    itemPressed = false;
                     break;
                 case PointStateType.Up:
                     if (touchedView != null && touchedView.BackgroundColorSelector != null)
                     {
                         touchedView.BackgroundColor = touchedView.BackgroundColorSelector.GetValue(ControlStates.Selected);
+
+                        if (itemPressed)  // if Down was previously sent without motion (Scrolling) in-between then a clicked event occurred.
+                        {
+                            // List item clicked
+                            Console.WriteLine("Tapped{0}", touchedView.Name);
+                            SetListItemToSelected(touchedView);
+                            button.Text = touchedView.Text;
+                            button.Show();
+                            listBackgroundImage.Hide();
+                        }
                     }
                     break;
                 default:
                     break;
             }
-        }      
+            return true;
+        }
 
         private void UpdateSelectedItem(int index)
         {
             if (selectedItemIndex != -1)
             {
-                DropDownItemData data = adapter.GetData(selectedItemIndex);
+                DropDownDataItem data = adapter.GetData(selectedItemIndex);
                 if(data != null)
                 {
                     data.IsSelected = false;
                 }
-                DropDownItemView view = list?.FindViewHolderForAdapterPosition(selectedItemIndex)?.ItemView as DropDownItemView;
-                if (view != null)
-                {
-                    view.IsSelected = false;
-                }
+                DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
+                data.IsSelected = false;
+                SetListItemToSelected(listItemView);
             }
 
             if (index != -1)
             {
-                DropDownItemData data = adapter.GetData(index);
+                DropDownDataItem data = adapter.GetData(index);
                 if (data != null)
                 {
                     data.IsSelected = true;
-                }
-                DropDownItemView view = list?.FindViewHolderForAdapterPosition(index)?.ItemView as DropDownItemView;
-                if (view != null)
-                {
-                    view.IsSelected = true;
-                    button.Text = view.Text;
+                    DropDownItemView listItemView = dropDownMenuFullList?.GetChildAt((uint)index) as DropDownItemView;
+                    if(listItemView)
+                    {
+                        SetListItemToSelected(listItemView);
+                    }
                 }
             }
 
             selectedItemIndex = index;
-        }
-
-        private void CreateListBackgroundImage()
-        {
-            listBackgroundImage = new ImageView
-            {
-                Name = "ListBackgroundImage",
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                WidthResizePolicy = ResizePolicyType.FitToChildren,
-                HeightResizePolicy = ResizePolicyType.FitToChildren,
-            };
-            Add(listBackgroundImage);
+            dropDownMenuFullList?.Layout?.RequestLayout();
         }
 
         private void ButtonClickEvent(object sender, Button.ClickEventArgs e)
         {
+            button.Hide();
             listBackgroundImage.Show();
+            dropDownMenuFullList?.Layout?.RequestLayout();
+            listBackgroundImage.RaiseToTop();
         }
 
-        private void CreateHeaderTextAttributes()
-        {
-            if (dropDownAttributes.HeaderTextAttributes == null)
-            {
-                dropDownAttributes.HeaderTextAttributes = new TextAttributes()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                };
-            }
-        }
-
-        private void CreateButtonAttributes()
-        {
-            if (dropDownAttributes.ButtonAttributes == null)
-            {
-                dropDownAttributes.ButtonAttributes = new ButtonAttributes();
-            }
-        }
-
-        private void CreateButtonTextAttributes()
-        {
-            CreateButtonAttributes();
-
-            if (dropDownAttributes.ButtonAttributes.TextAttributes == null)
-            {
-                dropDownAttributes.ButtonAttributes.TextAttributes = new TextAttributes
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    Position2D = new Position2D(0, 0),
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                    VerticalAlignment = VerticalAlignment.Center,
-                };
-            }
-        }
-
-        private void CreateButtonIconAttributes()
-        {
-            CreateButtonAttributes();
-
-            if (dropDownAttributes.ButtonAttributes.IconAttributes == null)
-            {
-                dropDownAttributes.ButtonAttributes.IconAttributes = new ImageAttributes
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.CenterRight,
-                    PivotPoint = Tizen.NUI.PivotPoint.CenterRight,
-                };
-            }
-        }
-
-        private void CreateListBackgroundAttributes()
-        {
-            if (dropDownAttributes.ListBackgroundImageAttributes == null)
-            {
-                dropDownAttributes.ListBackgroundImageAttributes = new ImageAttributes
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                };
-            }
-        }
         #endregion
 
         #region ItemClickEventArgs
@@ -1168,16 +743,16 @@ namespace Tizen.NUI.Components
         }
         #endregion
 
-        #region DropDownItemData
+        #region DropDownDataItem
         /// <summary>
-        /// DropDownItemData is a class to record all data which will be applied to DropDown item.
+        /// DropDownDataItem is a class to record all data which will be applied to DropDown item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class DropDownItemData
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        public class DropDownDataItem
         {
-            private DropDownItemAttributes itemDataAttributes = new DropDownItemAttributes();
+            private DropDownItemStyle itemDataStyle = new DropDownItemStyle();
 
             /// <summary>
             /// Creates a new instance of a DropDownItemData.
@@ -1185,9 +760,9 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownItemData()
+            public DropDownDataItem()
             {
-                Initalize();
+                Initialize();
             }
 
             /// <summary>
@@ -1197,31 +772,31 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownItemData(string style)
+            public DropDownDataItem(string style)
             {
                 if(style != null)
                 {
-                    Attributes attributes = StyleManager.Instance.GetAttributes(style);
+                    ViewStyle attributes = StyleManager.Instance.GetAttributes(style);
                     if(attributes == null)
                     {
                         throw new InvalidOperationException($"There is no style {style}");
                     }
-                    itemDataAttributes = attributes as DropDownItemAttributes;
+                    itemDataStyle = attributes as DropDownItemStyle;
                 }
-                Initalize();
+                Initialize();
             }
 
             /// <summary>
-            /// Creates a new instance of a DropDownItemData with attributes.
+            /// Creates a new instance of a DropDownItemData with style.
             /// </summary>
-            /// <param name="attributes">Create DropDownItemData by attributes customized by user.</param>
+            /// <param name="style">Create DropDownItemData by style customized by user.</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownItemData(DropDownItemAttributes attributes)
+            public DropDownDataItem(DropDownItemStyle style)
             {
-                itemDataAttributes = attributes.Clone() as DropDownItemAttributes;
-                Initalize();
+                itemDataStyle.CopyFrom(style);
+                Initialize();
             }
 
             /// <summary>
@@ -1230,15 +805,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D Size2D
+            public Size Size
             {
                 get
                 {
-                    return itemDataAttributes.Size2D;
+                    return itemDataStyle.Size;
                 }
                 set
                 {
-                    itemDataAttributes.Size2D = value;
+                    itemDataStyle.Size = value;
                 }
             }
 
@@ -1248,23 +823,20 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ColorSelector BackgroundColorSelector
+            public Selector<Color> BackgroundColorSelector
             {
                 get
                 {
-                    return itemDataAttributes.BackgroundColor;
+                    return itemDataStyle.BackgroundColor;
                 }
                 set
                 {
-                    if (itemDataAttributes.BackgroundColor == null)
+                    if (null == itemDataStyle.BackgroundColor)
                     {
-                        itemDataAttributes.BackgroundColor = value.Clone() as ColorSelector;
+                        itemDataStyle.BackgroundColor = new Selector<Color>();
                     }
-                    else
-                    {
-                        itemDataAttributes.BackgroundColor = value.Clone();
-                    }
-                    
+
+                    itemDataStyle.BackgroundColor.Clone(value);
                 }
             }
 
@@ -1278,18 +850,17 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.TextAttributes?.Text?.All;
+                    return itemDataStyle.Text?.Text?.All;
                 }
                 set
                 {
-                    CreateTextAttributes();
-                    if (itemDataAttributes.TextAttributes.Text == null)
+                    if (null == itemDataStyle.Text.Text)
                     {
-                        itemDataAttributes.TextAttributes.Text = new StringSelector { All = value };
+                        itemDataStyle.Text.Text = new Selector<string> { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.TextAttributes.Text.All = value;
+                        itemDataStyle.Text.Text = value;
                     }
                 }
             }
@@ -1304,18 +875,17 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.TextAttributes?.PointSize?.All ?? 0;
+                    return itemDataStyle.Text?.PointSize?.All ?? 0;
                 }
                 set
                 {
-                    CreateTextAttributes();
-                    if (itemDataAttributes.TextAttributes.PointSize == null)
+                    if (null == itemDataStyle.Text.PointSize)
                     {
-                        itemDataAttributes.TextAttributes.PointSize = new FloatSelector { All = value };
+                        itemDataStyle.Text.PointSize = new Selector<float?> { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.TextAttributes.PointSize.All = value;
+                        itemDataStyle.Text.PointSize = value;
                     }
                 }
             }
@@ -1330,12 +900,18 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.TextAttributes?.FontFamily;
+                    return itemDataStyle.Text.FontFamily?.All;
                 }
                 set
                 {
-                    CreateTextAttributes();
-                    itemDataAttributes.TextAttributes.FontFamily = value;
+                    if (null == itemDataStyle.Text.FontFamily)
+                    {
+                        itemDataStyle.Text.FontFamily = new Selector<string> { All = value };
+                    }
+                    else
+                    {
+                        itemDataStyle.Text.FontFamily = value;
+                    }
                 }
             }
 
@@ -1345,16 +921,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D TextPosition2D
+            public Position TextPosition
             {
                 get
                 {
-                    return itemDataAttributes.TextAttributes?.Position2D;
+                    return itemDataStyle.Text?.Position;
                 }
                 set
                 {
-                    CreateTextAttributes();
-                    itemDataAttributes.TextAttributes.Position2D = value;
+                    itemDataStyle.Text.Position = value;
                 }
             }
 
@@ -1368,18 +943,17 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes?.ResourceURL?.All;
+                    return itemDataStyle.Icon?.ResourceUrl?.All;
                 }
                 set
                 {
-                    CreateIconAttributes();
-                    if (itemDataAttributes.IconAttributes.ResourceURL == null)
+                    if (null == itemDataStyle.Icon.ResourceUrl)
                     {
-                        itemDataAttributes.IconAttributes.ResourceURL = new StringSelector { All = value };
+                        itemDataStyle.Icon.ResourceUrl = new Selector<string> { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.IconAttributes.ResourceURL.All = value;
+                        itemDataStyle.Icon.ResourceUrl = value;
                     }
                 }
             }
@@ -1390,16 +964,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D IconSize2D
+            public Size IconSize
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes?.Size2D;
+                    return itemDataStyle.Icon?.Size;
                 }
                 set
                 {
-                    CreateIconAttributes();
-                    itemDataAttributes.IconAttributes.Size2D = value;
+                    itemDataStyle.Icon.Size = value;
                 }
             }
 
@@ -1409,16 +982,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D IconPosition2D
+            public Position IconPosition
             {
                 get
                 {
-                    return itemDataAttributes.IconAttributes.Position2D;
+                    return itemDataStyle.Icon.Position;
                 }
                 set
                 {
-                    CreateIconAttributes();
-                    itemDataAttributes.IconAttributes.Position2D = value;
+                    itemDataStyle.Icon.Position = value;
                 }
             }
 
@@ -1432,18 +1004,17 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageAttributes?.ResourceURL?.All;
+                    return itemDataStyle.CheckImage?.ResourceUrl?.All;
                 }
                 set
                 {
-                    CreateCheckImageAttributes();
-                    if (itemDataAttributes.CheckImageAttributes.ResourceURL == null)
+                    if (null == itemDataStyle.CheckImage.ResourceUrl)
                     {
-                        itemDataAttributes.CheckImageAttributes.ResourceURL = new StringSelector { All = value };
+                        itemDataStyle.CheckImage.ResourceUrl = new Selector<string> { All = value };
                     }
                     else
                     {
-                        itemDataAttributes.CheckImageAttributes.ResourceURL.All = value;
+                        itemDataStyle.CheckImage.ResourceUrl = value;
                     }
                 }
             }
@@ -1454,16 +1025,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D CheckImageSize2D
+            public Size CheckImageSize
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageAttributes?.Size2D;
+                    return itemDataStyle.CheckImage?.Size;
                 }
                 set
                 {
-                    CreateCheckImageAttributes();
-                    itemDataAttributes.CheckImageAttributes.Size2D = value;
+                    itemDataStyle.CheckImage.Size = value;
                 }
             }
 
@@ -1473,15 +1043,15 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public int CheckImageRightSpace
+            public int CheckImageGapToBoundary
             {
                 get
                 {
-                    return itemDataAttributes.CheckImageRightSpace;
+                    return itemDataStyle.CheckImageGapToBoundary;
                 }
                 set
                 {
-                    itemDataAttributes.CheckImageRightSpace = value;
+                    itemDataStyle.CheckImageGapToBoundary = value;
                 }
             }
 
@@ -1495,62 +1065,19 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return itemDataAttributes.IsSelected;
+                    return itemDataStyle.IsSelected;
                 }
                 set
                 {
-                    itemDataAttributes.IsSelected = value;
+                    itemDataStyle.IsSelected = value;
                 }
             }
 
-            private void Initalize()
+            private void Initialize()
             {
-                if (itemDataAttributes == null)
+                if (itemDataStyle == null)
                 {
-                    throw new Exception("Button attribute parse error.");
-                }
-            }
-
-            private void CreateTextAttributes()
-            {
-                if(itemDataAttributes.TextAttributes == null)
-                {
-                    itemDataAttributes.TextAttributes = new TextAttributes
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                        WidthResizePolicy = ResizePolicyType.UseNaturalSize,
-                        HeightResizePolicy = ResizePolicyType.FillToParent,
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Begin,
-                    };
-                }
-            }
-
-            private void CreateIconAttributes()
-            {
-                if (itemDataAttributes.IconAttributes == null)
-                {
-                    itemDataAttributes.IconAttributes = new ImageAttributes
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    };
-                }
-            }
-
-            private void CreateCheckImageAttributes()
-            {
-                if (itemDataAttributes.CheckImageAttributes == null)
-                {
-                    itemDataAttributes.CheckImageAttributes = new ImageAttributes
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
-                    };
+                    throw new Exception("DropDownDataItem style parse error.");
                 }
             }
         }
@@ -1567,17 +1094,11 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownItemView() : base()
-            {
-            }
+            public DropDownItemView() : base() { }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public ColorSelector BackgroundColorSelector
-            {
-                get;
-                set;
-            }
+            public Selector<Color> BackgroundColorSelector { get; set; }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1619,7 +1140,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public float PointSize
+            public float? PointSize
             {
                 get
                 {
@@ -1632,7 +1153,7 @@ namespace Tizen.NUI.Components
                 set
                 {
                     CreateText();
-                    mText.PointSize = value;
+                    mText.PointSize = (float)value;
                 }
             }
 
@@ -1657,7 +1178,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D TextPosition2D
+            public Position TextPosition
             {
                 get
                 {
@@ -1665,12 +1186,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mText.Position2D;
+                    return mText.Position;
                 }
                 set
                 {
                     CreateText();
-                    mText.Position2D = value;
+                    mText.Position = value;
                 }
             }
 
@@ -1695,7 +1216,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D IconSize2D
+            public Size IconSize
             {
                 get
                 {
@@ -1703,18 +1224,18 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mIcon.Size2D;
+                    return mIcon.Size;
                 }
                 set
                 {
                     CreateIcon();
-                    mIcon.Size2D = value;
+                    mIcon.Size = value;
                 }
             }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D IconPosition2D
+            public Position IconPosition
             {
                 get
                 {
@@ -1722,12 +1243,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mIcon.Position2D;
+                    return mIcon.Position;
                 }
                 set
                 {
                     CreateIcon();
-                    mIcon.Position2D = value;
+                    mIcon.Position = value;
                 }
             }
 
@@ -1752,7 +1273,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Position2D CheckPosition2D
+            public Position CheckPosition
             {
                 get
                 {
@@ -1760,18 +1281,18 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mCheck.Position2D;
+                    return mCheck.Position;
                 }
                 set
                 {
                     CreateCheckImage();
-                    mCheck.Position2D = value;
+                    mCheck.Position = value;
                 }
             }
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Size2D CheckImageSize2D
+            public Size CheckImageSize
             {
                 get
                 {
@@ -1779,12 +1300,12 @@ namespace Tizen.NUI.Components
                     {
                         return null;
                     }
-                    return mCheck.Size2D;
+                    return mCheck.Size;
                 }
                 set
                 {
                     CreateCheckImage();
-                    mCheck.Size2D = value;
+                    mCheck.Size = value;
                 }
             }
 
@@ -1851,7 +1372,7 @@ namespace Tizen.NUI.Components
 
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            protected override Attributes GetAttributes()
+            protected override ViewStyle GetViewStyle()
             {
                 return null;
             }
@@ -1897,6 +1418,7 @@ namespace Tizen.NUI.Components
                         PositionUsesPivotPoint = true,
                         ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
                         PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                        Name = "checkedImage",
                     };
                     Add(mCheck);
                 }
@@ -1908,14 +1430,16 @@ namespace Tizen.NUI.Components
         #region DropDownListBridge
 
         /// <summary>
-        /// DropDownListBridge is bridge to contact item data and item view.
+        /// DropDownListBridge is bridge to connect item data and an item View.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public class DropDownListBridge : FlexibleView.Adapter
+        public class DropDownListBridge
         {
-            private List<DropDownItemData> mDatas = new List<DropDownItemData>();
+            private List<DropDownDataItem> itemDataList = new List<DropDownDataItem>();
+
+            internal bool AdapterPurge {get;set;} = false;  // Set to true if adapter content changed since last iteration.
 
             /// <summary>
             /// Creates a new instance of a DropDownListBridge.
@@ -1923,9 +1447,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownListBridge()
-            {
-            }
+            public DropDownListBridge() { }
 
             /// <summary>
             /// Insert data. The inserted data will be added to the special position by index automatically.
@@ -1935,14 +1457,14 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public void InsertData(int position, DropDownItemData data)
+            public void InsertData(int position, DropDownDataItem data)
             {
                 if(position == -1)
                 {
-                    position = mDatas.Count;
+                    position = itemDataList.Count;
                 }
-                mDatas.Insert(position, data);
-                NotifyItemInserted(position);
+                itemDataList.Insert(position, data);
+                AdapterPurge = true;
             }
 
             /// <summary>
@@ -1954,8 +1476,8 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RemoveData(int position)
             {
-                mDatas.RemoveAt(position);
-                NotifyItemRemoved(position);
+                itemDataList.RemoveAt(position);
+                AdapterPurge = true;
             }
 
             /// <summary>
@@ -1965,45 +1487,60 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public DropDownItemData GetData(int position)
+            public DropDownDataItem GetData(int position)
             {
-                return mDatas[position];
+                return itemDataList[position];
             }
 
             /// <summary>
             /// Get view holder by view type.
             /// </summary>
-            /// <param name="viewType">Create item view.</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override FlexibleView.ViewHolder OnCreateViewHolder(int viewType)
+            public ViewHolder OnCreateViewHolder()
             {
-                FlexibleView.ViewHolder viewHolder = new FlexibleView.ViewHolder(new DropDownItemView());
+                ViewHolder viewHolder = new ViewHolder(new DropDownItemView());
 
                 return viewHolder;
             }
 
             /// <summary>
-            /// Binder view holder, it can be override.
+            /// Bind ViewHolder with View.
             /// </summary>
             /// <param name="holder">View holder.</param>
-            /// <param name="position">Position index where will be gotten.</param>
+            /// <param name="position">Position index of source data.</param>
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnBindViewHolder(FlexibleView.ViewHolder holder, int position)
+            public void BindViewHolder(ViewHolder holder, int position)
             {
-                DropDownItemData listItemData = mDatas[position];
+                DropDownDataItem listItemData = itemDataList[position];
                 if(listItemData == null)
                 {
                     return;
                 }
                 DropDownItemView listItemView = holder.ItemView as DropDownItemView;
                 listItemView.Name = "Item" + position;
-                if (listItemData.Size2D != null)
+                if (listItemData.Size != null)
                 {
-                    holder.ItemView.Size2D = listItemData.Size2D;
+                    if (listItemData.Size.Width > 0)
+                    {
+                        holder.ItemView.WidthSpecification = (int)listItemData.Size.Width;
+                    }
+                    else
+                    {
+                        holder.ItemView.WidthSpecification = LayoutParamPolicies.MatchParent;
+                    }
+
+                    if (listItemData.Size.Height > 0)
+                    {
+                        holder.ItemView.HeightSpecification = (int)listItemData.Size.Height;
+                    }
+                    else
+                    {
+                        holder.ItemView.HeightSpecification = LayoutParamPolicies.MatchParent;
+                    }
                 }
 
                 if (listItemView != null)
@@ -2014,31 +1551,31 @@ namespace Tizen.NUI.Components
                         listItemView.Text = listItemData.Text;
                         listItemView.PointSize = listItemData.PointSize;
                         listItemView.FontFamily = listItemData.FontFamily;
-                        listItemView.TextPosition2D = listItemData.TextPosition2D;
+                        listItemView.TextPosition = listItemData.TextPosition;
                     }
 
                     if (listItemData.IconResourceUrl != null)
                     {
                         listItemView.IconResourceUrl = listItemData.IconResourceUrl;
-                        listItemView.IconSize2D = listItemData.IconSize2D;
-                        if (listItemView.IconSize2D != null)
+                        listItemView.IconSize = listItemData.IconSize;
+                        if (listItemView.IconSize != null)
                         {
-                            listItemView.IconPosition2D = new Position2D(listItemData.IconPosition2D.X, (listItemView.Size2D.Height - listItemView.IconSize2D.Height) / 2);
+                            listItemView.IconPosition = new Position(listItemData.IconPosition.X, (listItemView.Size2D.Height - listItemView.IconSize.Height) / 2);
                         }
                     }
 
                     if (listItemData.CheckImageResourceUrl != null)
                     {
                         listItemView.CheckResourceUrl = listItemData.CheckImageResourceUrl;
-                        listItemView.CheckImageSize2D = listItemData.CheckImageSize2D;
-                        if (listItemView.CheckImageSize2D != null)
+                        listItemView.CheckImageSize = listItemData.CheckImageSize;
+                        if (listItemView.CheckImageSize != null)
                         {
-                            listItemView.CheckPosition2D = new Position2D(listItemView.Size2D.Width - listItemData.CheckImageRightSpace - listItemView.CheckImageSize2D.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize2D.Height) / 2);
+                            listItemView.CheckPosition = new Position(listItemView.Size2D.Width - listItemData.CheckImageGapToBoundary - listItemView.CheckImageSize.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize.Height) / 2);
                         }
                     }
 
                     listItemView.IsSelected = listItemData.IsSelected;
-                }              
+                }
             }
 
             /// <summary>
@@ -2048,7 +1585,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override void OnDestroyViewHolder(FlexibleView.ViewHolder holder)
+            public void OnDestroyViewHolder(ViewHolder holder)
             {
                 if (holder.ItemView != null)
                 {
@@ -2062,11 +1599,51 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public override int GetItemCount()
+            public int GetItemCount()
             {
-                return mDatas.Count;
-            }        
+                return itemDataList.Count;
+            }
         }
+
+        #endregion
+
+        #region ViewHolder
+
+        /// <summary>
+        /// A ViewHolder is a class that holds a View created from DropDownListBridge data.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ViewHolder
+        {
+            /// <summary>
+            /// ViewHolder constructor.
+            /// </summary>
+            /// <param name="itemView">View</param>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public ViewHolder(View itemView)
+            {
+                if (itemView == null)
+                {
+                    throw new ArgumentNullException("itemView may not be null");
+                }
+                this.ItemView = itemView;
+            }
+
+            /// <summary>
+            /// Returns the view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public View ItemView { get; }
+
+            internal bool IsBound { get; set; }
+        }
+
         #endregion
     }
 }

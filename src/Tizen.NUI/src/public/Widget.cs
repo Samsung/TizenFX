@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -26,7 +27,6 @@ namespace Tizen.NUI
     public class Widget : BaseHandle
     {
         internal WidgetImpl widgetImpl;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Creates a Widget handle.
@@ -52,7 +52,6 @@ namespace Tizen.NUI
 
         internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -154,29 +153,11 @@ namespace Tizen.NUI
         {
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Widget.delete_Widget(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.Widget.delete_Widget(swigCPtr);
         }
 
         private void OnWidgetInstanceCreated(object sender, WidgetImpl.WIdgetInstanceOnCreateArgs e)

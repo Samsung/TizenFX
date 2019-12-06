@@ -21,15 +21,14 @@ namespace Tizen.NUI
 {
     internal class WidgetApplication : Application
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private static WidgetApplication _instance; //singleton
         private Dictionary<System.Type, string> _widgetInfo;
         private List<Widget> _widgetList = new List<Widget>();
         private delegate System.IntPtr CreateWidgetFunctionDelegate(ref string widgetName);
+        private List<CreateWidgetFunctionDelegate> _createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
 
         internal WidgetApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetApplication obj)
@@ -37,26 +36,9 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.WidgetApplication.delete_WidgetApplication(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.WidgetApplication.delete_WidgetApplication(swigCPtr);
         }
 
         public new static WidgetApplication Instance
@@ -113,6 +95,9 @@ namespace Tizen.NUI
         internal void RegisterWidgetCreatingFunction(ref string widgetName)
         {
             CreateWidgetFunctionDelegate newDelegate = new CreateWidgetFunctionDelegate(WidgetCreateFunction);
+
+            // Keep this delegate until WidgetApplication is terminated
+            _createWidgetFunctionDelegateList.Add(newDelegate);
 
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);

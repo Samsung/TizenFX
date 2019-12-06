@@ -17,6 +17,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -24,19 +26,69 @@ namespace Tizen.NUI.Components
     /// The Loading class of nui component. It's used to indicate informs users of the ongoing operation.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Loading : Control
     {
-        private LoadingAttributes loadingAttrs = null;  // Loading Attributes
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImagesProperty = BindableProperty.Create("Images", typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                instance.Style.Images = (string[])newValue;
+                instance.imageVisual.URLS = new List<string>((string[])newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Loading)bindable;
+            return instance.Style.Images;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static readonly BindableProperty SizeProperty = BindableProperty.Create("Size", typeof(Size), typeof(Loading), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                Size size = (Size)newValue;
+                instance.Style.Size = size;
+                //insbase.Size = value;
+                instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Loading)bindable;
+            return instance.Style.Size;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FrameRateProperty = BindableProperty.Create("FrameRate", typeof(int), typeof(Loading), (int)(1000/16.6f), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                int frameRate = (int)newValue;
+                if (0 != frameRate) //It will crash if 0 
+                {
+                    instance.Style.FrameRate.All = frameRate;
+                    instance.imageVisual.FrameDelay = 1000.0f / frameRate;
+                }
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Loading)bindable;
+            return instance.Style.FrameRate?.All ?? (int)(1000/16.6f);
+        });
+
         private AnimatedImageVisual imageVisual = null;
 
         /// <summary>
-        /// The constructor of Loading
+        /// The constructor of Loading.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Loading() : base()
         {
             Initialize();
@@ -47,7 +99,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">The string to initialize the Loading.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Loading(string style) : base(style)
         {
@@ -55,36 +107,52 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The constructor of the Loading class with specific Attributes.
+        /// The constructor of the Loading class with specific style.
         /// </summary>
-        /// <param name="attributes">The Attributes object to initialize the Loading.</param>
+        /// <param name="style">The style object to initialize the Loading.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Loading(LoadingAttributes attributes) : base(attributes)
+        public Loading(LoadingStyle style) : base(style)
         {
             Initialize();
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new LoadingStyle Style => ViewStyle as LoadingStyle;
 
         /// <summary>
         /// Gets or sets loading image resource array.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] ImageArray
         {
             get
             {
-                return loadingAttrs.ImageArray;
+                return Images;
             }
             set
             {
-                if (null != value)
-                {
-                    loadingAttrs.ImageArray = value;
-                    imageVisual.URLS = new List<string>(value);
-                }
+                Images = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets loading image resources.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string[] Images
+        {
+            get
+            {
+                return (string[])GetValue(ImagesProperty);
+            }
+            set
+            {
+                SetValue(ImagesProperty, value);
             }
         }
 
@@ -92,56 +160,43 @@ namespace Tizen.NUI.Components
         /// Gets or sets loading size.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D LoadingSize
+        public new Size Size
         {
             get
             {
-                return loadingAttrs.LoadingSize ?? new Size2D(100, 100);
+                return (Size)GetValue(SizeProperty);
             }
             set
             {
-                loadingAttrs.LoadingSize = value;
-                imageVisual.Size = value;
+                SetValue(SizeProperty, value); 
             }
         }
 
         /// <summary>
-        /// Gets or sets FPS of loading.
+        /// Gets or sets frame rate of loading.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int FPS
+        public int FrameRate
         {
             get
             {
-                return loadingAttrs?.FPS?.All ?? (int)(1000.0f / 16.6f);
+                return (int)GetValue(FrameRateProperty);
             }
             set
             {
-                if (value != 0) //It will crash if 0 
-                {
-                    if (null == loadingAttrs.FPS)
-                    {
-                        loadingAttrs.FPS = new IntSelector();
-                    }
-                    loadingAttrs.FPS.All = value;
-                    imageVisual.FrameDelay = 1000.0f / value;
-                }
+                SetValue(FrameRateProperty, value);
             }
         }
 
         /// <summary>
-        /// Get Loading attribues.
+        /// Get Loading style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new LoadingAttributes();
+            return new LoadingStyle();
         }
 
         /// <summary>
@@ -149,8 +204,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -166,34 +219,12 @@ namespace Tizen.NUI.Components
                 RemoveVisual("loadingImageVisual");
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            //Unreference this from if a static instance refer to this. 
-
             //You must call base.Dispose(type) just before exit.
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// Update Loading by attributes.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-        }
-
         private void Initialize()
         {
-            loadingAttrs = attributes as LoadingAttributes;
-            if (null == loadingAttrs)
-            {
-                throw new Exception("Loading attribute parse error.");
-            }
-            ApplyAttributes(this, loadingAttrs);
-
             imageVisual = new AnimatedImageVisual()
             {
                 URLS = new List<string>(),
@@ -212,17 +243,17 @@ namespace Tizen.NUI.Components
 
         private void UpdateVisual()
         {
-            if (null != loadingAttrs.ImageArray)
+            if (null != Style.Images)
             {
-                imageVisual.URLS = new List<string>(loadingAttrs.ImageArray);
+                imageVisual.URLS = new List<string>(Style.Images);
             }
-            if (null != loadingAttrs.FPS)
+            if (null != Style.FrameRate?.All && 0 != Style.FrameRate.All.Value)
             {
-                imageVisual.FrameDelay = 1000.0f / (float)loadingAttrs.FPS.All;
+                imageVisual.FrameDelay = 1000.0f / (float)Style.FrameRate.All.Value;
             }
-            if (null != loadingAttrs.LoadingSize)
+            if (null != Style.LoadingSize)
             {
-                imageVisual.Size = loadingAttrs.LoadingSize;
+                imageVisual.Size = new Size2D((int)Style.LoadingSize.Width, (int)Style.LoadingSize.Height);
             }
         }
     }

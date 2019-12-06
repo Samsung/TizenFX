@@ -229,15 +229,18 @@ namespace Tizen.NUI
             TransitionList transitionListMatchingCondition;
             if (targetTransitionList.TryGetValue(condition, out transitionListMatchingCondition))
             {
-                for (var index=0; index < transitionListMatchingCondition?.Count; index++ )
+                if (transitionListMatchingCondition != null)
                 {
-                    if (transitionListMatchingCondition[index].AnimatableProperty == transition.AnimatableProperty)
+                    for (var index = 0; index < transitionListMatchingCondition.Count; index++ )
                     {
-                        if (explicitlySet)
+                        if (transitionListMatchingCondition[index].AnimatableProperty == transition.AnimatableProperty)
                         {
-                            transitionListMatchingCondition[index] = transition;
-                            replaced = true;
-                            continue;
+                            if (explicitlySet)
+                            {
+                                transitionListMatchingCondition[index] = transition;
+                                replaced = true;
+                                continue;
+                            }
                         }
                     }
                 }

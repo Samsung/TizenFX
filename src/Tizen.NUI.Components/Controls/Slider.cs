@@ -17,6 +17,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -24,8 +25,6 @@ namespace Tizen.NUI.Components
     /// A slider lets users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Slider : Control
     {
         // the background track image object
@@ -44,8 +43,6 @@ namespace Tizen.NUI.Components
         private TextLabel lowIndicatorText = null;
         // the high indicator text object
         private TextLabel highIndicatorText = null;
-        // the attributes of the slider
-        private SliderAttributes sliderAttrs = null;
         // the direction type
         private DirectionType direction = DirectionType.Horizontal;
         // the indicator type
@@ -58,14 +55,31 @@ namespace Tizen.NUI.Components
         // the current value
         private float? curValue = null;
         // the size of the low indicator
-        private Size2D lowIndicatorSize = null;
+        private Size lowIndicatorSize = null;
         // the size of the high indicator
-        private Size2D highIndicatorSize = null;
+        private Size highIndicatorSize = null;
         // the track thickness value
         private uint? trackThickness = null;
         // the value of the space between track and indicator object
-        private uint? spaceBetweenTrackAndIndicator = null;
-        
+        private Extents _spaceBetweenTrackAndIndicator = null;
+        private Extents spaceBetweenTrackAndIndicator
+        {
+            get
+            {
+                if (null == _spaceBetweenTrackAndIndicator)
+                {
+                    _spaceBetweenTrackAndIndicator = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        Extents extents = new Extents(start, end, top, bottom);
+                        _spaceBetweenTrackAndIndicator.CopyFrom(extents);
+                    }, 0, 0, 0, 0);
+                }
+
+                return _spaceBetweenTrackAndIndicator;
+            }
+        }
+
+
         private PanGestureDetector panGestureDetector = null;
         private float currentSlidedOffset;
         private EventHandler<ValueChangedArgs> valueChangedHandler;
@@ -75,12 +89,71 @@ namespace Tizen.NUI.Components
         bool isFocused = false;
         bool isPressed = false;
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create("IndicatorType", typeof(IndicatorType), typeof(Slider), IndicatorType.None, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Slider)bindable;
+            if (newValue != null)
+            {
+                instance.privateIndicatorType = (IndicatorType)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Slider)bindable;
+            return instance.privateIndicatorType;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create("SpaceBetweenTrackAndIndicator", typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Slider)bindable;
+            if (newValue != null)
+            {
+                instance.privateSpaceBetweenTrackAndIndicator = (uint)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Slider)bindable;
+            return instance.privateSpaceBetweenTrackAndIndicator;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create("TrackThickness", typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Slider)bindable;
+            if (newValue != null)
+            {
+                instance.privateTrackThickness = (uint)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Slider)bindable;
+            return instance.privateTrackThickness;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create("TrackPadding", typeof(Extents), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Slider)bindable;
+            if (newValue != null)
+            {
+                instance.privateTrackPadding.CopyFrom((Extents)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Slider)bindable;
+            return instance.privateTrackPadding;
+        });
+
         /// <summary>
         /// The constructor of the Slider class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Slider() 
         {
             Initialize();
@@ -99,13 +172,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The constructor of the Slider class with specific Attributes.
+        /// The constructor of the Slider class with specific style.
         /// </summary>
-        /// <param name="attributes">The Attributes object to initialize the Slider</param>
+        /// <param name="style">The style object to initialize the Slider</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Slider(SliderAttributes attributes) : base(attributes)
+        public Slider(SliderStyle style) : base(style)
         {
             Initialize();
         }
@@ -114,8 +187,6 @@ namespace Tizen.NUI.Components
         /// The value changed event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ValueChangedArgs> ValueChangedEvent
         {
             add
@@ -132,8 +203,6 @@ namespace Tizen.NUI.Components
         /// The sliding finished event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SlidingFinishedArgs> SlidingFinishedEvent
         {
             add
@@ -150,8 +219,6 @@ namespace Tizen.NUI.Components
         /// The state changed event handler.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<StateChangedArgs> StateChangedEvent
         {
             add
@@ -168,24 +235,18 @@ namespace Tizen.NUI.Components
         /// The direction type of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum DirectionType
         {
             /// <summary>
             /// The Horizontal type.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Horizontal,
 
             /// <summary>
             /// The Vertical type.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Vertical
         }
 
@@ -193,35 +254,29 @@ namespace Tizen.NUI.Components
         /// The indicator type of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum IndicatorType
         {
             /// <summary> Only contains slider bar.</summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             None,
 
             /// <summary> Contains slider bar, IndicatorImage.</summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Image,
 
             /// <summary> Contains slider bar, IndicatorText.</summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             Text
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new SliderStyle Style => ViewStyle as SliderStyle;
 
         /// <summary>
         /// Gets or sets the direction type of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public DirectionType Direction
         {
             get
@@ -246,9 +301,18 @@ namespace Tizen.NUI.Components
         /// Gets or sets the indicator type, arrow or sign.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public IndicatorType Indicator
+        {
+            get
+            {
+                return (IndicatorType)GetValue(IndicatorTypeProperty);
+            }
+            set
+            {
+                SetValue(IndicatorTypeProperty, value);
+            }
+        }
+        private IndicatorType privateIndicatorType
         {
             get
             {
@@ -272,8 +336,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets the minimum value of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinValue
         {
             get
@@ -291,8 +353,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets the maximum value of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float MaxValue
         {
             get
@@ -310,8 +370,6 @@ namespace Tizen.NUI.Components
         /// Gets or sets the current value of slider.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float CurrentValue
         {
             get
@@ -329,42 +387,15 @@ namespace Tizen.NUI.Components
         /// Gets or sets the size of the thumb image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D ThumbSize
+        public Size ThumbSize
         {
             get
             {
-                return sliderAttrs.ThumbAttributes?.Size2D;
+                return Style.Thumb?.Size;
             }
             set
             {
-                CreateThumbAttributes();
-                sliderAttrs.ThumbAttributes.Size2D = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the resource url selector of the thumb image background object.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StringSelector ThumbImageBackgroundURLSelector
-        {
-            get
-            {
-                return sliderAttrs.ThumbBackgroundAttributes?.ResourceURL;
-            }
-            set
-            {
-                CreateThumbBackgroundAttributes();
-                if (value != null)
-                {
-                    sliderAttrs.ThumbBackgroundAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
-                }
+                Style.Thumb.Size = value;
             }
         }
 
@@ -372,23 +403,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url of the thumb image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ThumbImageURL
         {
             get
             {
-                return sliderAttrs.ThumbAttributes?.ResourceURL?.All;
+                return Style.Thumb?.ResourceUrl?.All;
             }
             set
             {
-                CreateThumbAttributes();
-                if (sliderAttrs.ThumbAttributes.ResourceURL == null)
+                if (Style.Thumb.ResourceUrl == null)
                 {
-                    sliderAttrs.ThumbAttributes.ResourceURL = new StringSelector(); 
+                    Style.Thumb.ResourceUrl = new StringSelector(); 
                 }
-                sliderAttrs.ThumbAttributes.ResourceURL.All = value;
-                RelayoutRequest();
+                Style.Thumb.ResourceUrl.All = value;
             }
         }
 
@@ -396,21 +423,17 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url selector of the thumb image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public StringSelector ThumbImageURLSelector
         {
             get
             {
-                return sliderAttrs.ThumbAttributes?.ResourceURL;
+                return (StringSelector)Style.Thumb?.ResourceUrl;
             }
             set
             {
-                CreateThumbAttributes();
                 if (value != null)
                 {
-                    sliderAttrs.ThumbAttributes.ResourceURL = value.Clone() as StringSelector;
-                    RelayoutRequest();
+                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
                 }
             }
         }
@@ -419,23 +442,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the color of the background track image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BgTrackColor
         {
             get
             {
-                return sliderAttrs.BackgroundTrackAttributes?.BackgroundColor?.All;
+                return Style.Track?.BackgroundColor?.All;
             }
             set
             {
-                CreateBackgroundTrackAttributes();
-                if (sliderAttrs.BackgroundTrackAttributes.BackgroundColor == null)
+                if (Style.Track.BackgroundColor == null)
                 {
-                    sliderAttrs.BackgroundTrackAttributes.BackgroundColor = new ColorSelector();
+                    Style.Track.BackgroundColor = new ColorSelector();
                 }
-                sliderAttrs.BackgroundTrackAttributes.BackgroundColor.All = value;
-                RelayoutRequest();
+                Style.Track.BackgroundColor.All = value;
             }
         }
 
@@ -443,23 +462,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the color of the slided track image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color SlidedTrackColor
         {
             get
             {
-                return sliderAttrs.SlidedTrackAttributes?.BackgroundColor?.All;
+                return Style.Progress?.BackgroundColor?.All;
             }
             set
             {
-                CreateSlidedTrackAttributes();
-                if (sliderAttrs.SlidedTrackAttributes.BackgroundColor == null)
+                if (Style.Progress.BackgroundColor == null)
                 {
-                    sliderAttrs.SlidedTrackAttributes.BackgroundColor = new ColorSelector();
+                    Style.Progress.BackgroundColor = new ColorSelector();
                 }
-                sliderAttrs.SlidedTrackAttributes.BackgroundColor.All = value;
-                RelayoutRequest();
+                Style.Progress.BackgroundColor.All = value;
             }
         }
 
@@ -467,9 +482,18 @@ namespace Tizen.NUI.Components
         /// Gets or sets the thickness value of the track.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint TrackThickness
+        {
+            get
+            {
+                return (uint)GetValue(TrackThicknessProperty);
+            }
+            set
+            {
+                SetValue(TrackThicknessProperty, value);
+            }
+        }
+        private uint privateTrackThickness
         {
             get
             {
@@ -507,23 +531,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url of the low indicator image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LowIndicatorImageURL
         {
             get
             {
-                return sliderAttrs.LowIndicatorImageAttributes?.ResourceURL?.All;
+                return Style.LowIndicatorImage?.ResourceUrl?.All;
             }
             set
             {
-                CreateLowIndicatorImageAttributes();
-                if (sliderAttrs.LowIndicatorImageAttributes.ResourceURL == null)
+                if (Style.LowIndicatorImage.ResourceUrl == null)
                 {
-                    sliderAttrs.LowIndicatorImageAttributes.ResourceURL = new StringSelector();
+                    Style.LowIndicatorImage.ResourceUrl = new StringSelector();
                 }
-                sliderAttrs.LowIndicatorImageAttributes.ResourceURL.All = value;
-                RelayoutRequest();
+                Style.LowIndicatorImage.ResourceUrl.All = value;
             }
         }
 
@@ -531,23 +551,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the resource url of the high indicator image object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string HighIndicatorImageURL
         {
             get
             {
-                return sliderAttrs.HighIndicatorImageAttributes?.ResourceURL?.All;
+                return Style.HighIndicatorImage?.ResourceUrl?.All;
             }
             set
             {
-                CreateHighIndicatorImageAttributes();
-                if (sliderAttrs.HighIndicatorImageAttributes.ResourceURL == null)
+                if (Style.HighIndicatorImage.ResourceUrl == null)
                 {
-                    sliderAttrs.HighIndicatorImageAttributes.ResourceURL = new StringSelector();
+                    Style.HighIndicatorImage.ResourceUrl = new StringSelector();
                 }
-                sliderAttrs.HighIndicatorImageAttributes.ResourceURL.All = value;
-                RelayoutRequest();
+                Style.HighIndicatorImage.ResourceUrl.All = value;
             }
         }
 
@@ -555,23 +571,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text content of the low indicator text object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string LowIndicatorTextContent
         {
             get
             {
-                return sliderAttrs.LowIndicatorTextAttributes?.Text?.All;
+                return Style.LowIndicator?.Text?.All;
             }
             set
             {
-                CreateLowIndicatorTextAttributes();
-                if (sliderAttrs.LowIndicatorTextAttributes.Text == null)
+                if (Style.LowIndicator.Text == null)
                 {
-                    sliderAttrs.LowIndicatorTextAttributes.Text = new StringSelector();
+                    Style.LowIndicator.Text = new StringSelector();
                 }
-                sliderAttrs.LowIndicatorTextAttributes.Text.All = value;
-                RelayoutRequest();
+                Style.LowIndicator.Text.All = value;
             }
         }
 
@@ -579,23 +591,19 @@ namespace Tizen.NUI.Components
         /// Gets or sets the text content of the high indicator text object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string HighIndicatorTextContent
         {
             get
             {
-                return sliderAttrs.HighIndicatorTextAttributes?.Text?.All;
+                return Style.HighIndicator?.Text?.All;
             }
             set
             {
-                CreateHighIndicatorTextAttributes();
-                if (sliderAttrs.HighIndicatorTextAttributes.Text == null)
+                if (Style.HighIndicator.Text == null)
                 {
-                    sliderAttrs.HighIndicatorTextAttributes.Text = new StringSelector();
+                    Style.HighIndicator.Text = new StringSelector();
                 }
-                sliderAttrs.HighIndicatorTextAttributes.Text.All = value;
-                RelayoutRequest();
+                Style.HighIndicator.Text.All = value;
             }
         }
 
@@ -603,9 +611,7 @@ namespace Tizen.NUI.Components
         /// Gets or sets the size of the low indicator object(image or text).
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D LowIndicatorSize
+        public Size LowIndicatorSize
         {
             get
             {
@@ -625,21 +631,15 @@ namespace Tizen.NUI.Components
         /// Gets or sets the size of the high indicator object(image or text).
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D HighIndicatorSize
+        public Size HighIndicatorSize
         {
             get
             {
-                return highIndicatorSize;
+                return Style.HighIndicator.Size;
             }
             set
             {
-                highIndicatorSize = value;
-                UpdateHighIndicatorSize();
-                UpdateBgTrackSize();
-                UpdateBgTrackPosition();
-                UpdateValue();
+                Style.HighIndicator.Size = value;
             }
         }
 
@@ -647,17 +647,56 @@ namespace Tizen.NUI.Components
         /// Gets or sets the value of the space between track and indicator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint SpaceBetweenTrackAndIndicator
         {
             get
             {
-                return spaceBetweenTrackAndIndicator.Value;
+                return (uint)GetValue(SpaceBetweenTrackAndIndicatorProperty);
             }
             set
             {
-                spaceBetweenTrackAndIndicator = value;
+                SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
+            }
+        }
+        private uint privateSpaceBetweenTrackAndIndicator
+        {
+            get
+            {
+                return TrackPadding.Start;
+            }
+            set
+            {
+                ushort val = (ushort)value;
+                TrackPadding = new Extents(val, val, val, val);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the value of the space between track and indicator.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents TrackPadding
+        {
+            get
+            {
+                return (Extents)GetValue(TrackPaddingProperty);
+            }
+            set
+            {
+                SetValue(TrackPaddingProperty, value);
+            }
+        }
+        private Extents privateTrackPadding
+        {
+            get
+            {
+                return spaceBetweenTrackAndIndicator;
+            }
+            set
+            {
+                spaceBetweenTrackAndIndicator.CopyFrom(value);
                 UpdateComponentByIndicatorTypeChanged();
                 UpdateBgTrackSize();
                 UpdateBgTrackPosition();
@@ -697,9 +736,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new SliderAttributes();
+            return new SliderStyle();
         }
 
         /// <summary>
@@ -707,8 +746,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -758,7 +795,157 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
-            if (sliderAttrs.BackgroundTrackAttributes != null && bgTrackImage == null)
+            RelayoutBaseComponent();
+
+            UpdateComponentByIndicatorTypeChanged();
+            UpdateBgTrackSize();
+            UpdateBgTrackPosition();
+            UpdateLowIndicatorSize();
+            UpdateValue();
+        }
+
+        /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <param name="sender">serder object</param>
+        /// <param name="e">ThemeChangeEventArgs</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            SliderStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SliderStyle;
+            if (tempAttributes != null)
+            {
+                Style.CopyFrom(tempAttributes);
+                RelayoutRequest();
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            SliderStyle sliderStyle = viewStyle as SliderStyle;
+
+            if (null != sliderStyle.Progress)
+            {
+                CreateSlidedTrackAttributes();
+            }
+
+            if (null != sliderStyle.LowIndicator)
+            {
+                CreateLowIndicatorTextAttributes();
+            }
+
+            if (null != sliderStyle.HighIndicator)
+            {
+                CreateHighIndicatorTextAttributes();
+            }
+
+            if (null != sliderStyle.Track)
+            {
+                CreateBackgroundTrackAttributes();
+            }
+
+            if (null != sliderStyle.Thumb)
+            {
+                CreateThumbAttributes();
+            }
+
+            if (null != sliderStyle.ThumbBackground)
+            {
+                CreateThumbBackgroundAttributes();
+            }
+        }
+
+        private void Initialize()
+        {
+            currentSlidedOffset = 0;
+            isFocused = false;
+            isPressed = false;
+            LayoutDirectionChanged += OnLayoutDirectionChanged;
+        }
+
+        private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
+        {
+            RelayoutRequest();
+        }
+
+        private void CreateSlidedTrackAttributes()
+        {
+            if (null == slidedTrackImage)
+            {
+                slidedTrackImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed
+                };
+
+                if (bgTrackImage != null)
+                {
+                    bgTrackImage.Add(slidedTrackImage);
+                }
+
+                if (null != bgThumbImage)
+                {
+                    slidedTrackImage.Add(bgThumbImage);
+                }
+            }
+
+            if (null == Style.Progress)
+            {
+                Style.Progress = new ImageViewStyle();
+            }
+
+            slidedTrackImage.ApplyStyle(Style.Progress);
+        }
+
+        private void CreateLowIndicatorTextAttributes()
+        {
+            if (null == lowIndicatorText)
+            {
+                lowIndicatorText = new TextLabel()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed
+                };
+                this.Add(lowIndicatorText);
+            }
+
+            if (null == Style.LowIndicator)
+            {
+                Style.LowIndicator = new TextLabelStyle();
+            }
+
+            lowIndicatorText.ApplyStyle(Style.LowIndicator);
+        }
+
+        private void CreateHighIndicatorTextAttributes()
+        {
+            if (null == highIndicatorText)
+            {
+                highIndicatorText = new TextLabel()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed
+                };
+                this.Add(highIndicatorText);
+            }
+
+            if (null == Style.HighIndicator)
+            {
+                Style.HighIndicator = new TextLabelStyle();
+            }
+
+            highIndicatorText.ApplyStyle(Style.HighIndicator);
+        }
+
+        private void CreateBackgroundTrackAttributes()
+        {
+            if (null == bgTrackImage)
             {
                 bgTrackImage = new ImageView()
                 {
@@ -769,33 +956,26 @@ namespace Tizen.NUI.Components
                     PositionUsesPivotPoint = true
                 };
                 this.Add(bgTrackImage);
-                bgTrackImage.TouchEvent += OnTouchEventForBgTrack;
-            }
-            if (sliderAttrs.SlidedTrackAttributes != null && slidedTrackImage == null)
-            {
-                slidedTrackImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                if (bgTrackImage != null)
+
+                if (null != slidedTrackImage)
                 {
                     bgTrackImage.Add(slidedTrackImage);
                 }
+
+                bgTrackImage.TouchEvent += OnTouchEventForBgTrack;
             }
-            if (sliderAttrs.ThumbBackgroundAttributes != null && bgThumbImage == null)
+
+            if (null == Style.Track)
             {
-                bgThumbImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                if (slidedTrackImage != null)
-                {
-                    slidedTrackImage.Add(bgThumbImage);
-                }
+                Style.Track = new ImageViewStyle();
             }
-            if (sliderAttrs.ThumbAttributes != null && thumbImage == null)
+
+            bgTrackImage.ApplyStyle(Style.Track);
+        }
+
+        private void CreateThumbAttributes()
+        {
+            if (null == thumbImage)
             {
                 thumbImage = new ImageView()
                 {
@@ -815,163 +995,42 @@ namespace Tizen.NUI.Components
                 panGestureDetector.Attach(thumbImage);
                 panGestureDetector.Detected += OnPanGestureDetected;
             }
-            if (sliderAttrs.LowIndicatorImageAttributes != null && lowIndicatorImage == null)
+
+            if (null == Style.Thumb)
             {
-                lowIndicatorImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                this.Add(lowIndicatorImage);
-            }
-            if (sliderAttrs.HighIndicatorImageAttributes != null && highIndicatorImage == null)
-            {
-                highIndicatorImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                this.Add(highIndicatorImage);
-            }
-            if (sliderAttrs.LowIndicatorTextAttributes != null && lowIndicatorText == null)
-            {
-                lowIndicatorText = new TextLabel()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                this.Add(lowIndicatorText);
-            }
-            if (sliderAttrs.HighIndicatorTextAttributes != null && highIndicatorText == null)
-            {
-                highIndicatorText = new TextLabel()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-                this.Add(highIndicatorText);
+                Style.Thumb= new ImageViewStyle();
             }
 
-            ApplyAttributes(bgTrackImage, sliderAttrs.BackgroundTrackAttributes);
-            ApplyAttributes(slidedTrackImage, sliderAttrs.SlidedTrackAttributes);
-            ApplyAttributes(bgThumbImage, sliderAttrs.ThumbBackgroundAttributes);
-            ApplyAttributes(thumbImage, sliderAttrs.ThumbAttributes);
-            ApplyAttributes(lowIndicatorImage, sliderAttrs.LowIndicatorImageAttributes);
-            ApplyAttributes(highIndicatorImage, sliderAttrs.HighIndicatorImageAttributes);
-            ApplyAttributes(lowIndicatorText, sliderAttrs.LowIndicatorTextAttributes);
-            ApplyAttributes(highIndicatorText, sliderAttrs.HighIndicatorTextAttributes);
-
-            RelayoutBaseComponent();
-
-            UpdateComponentByIndicatorTypeChanged();
-            UpdateBgTrackSize();
-            UpdateBgTrackPosition();
-            UpdateLowIndicatorSize();
-            UpdateHighIndicatorSize();
-            UpdateValue();
-        }
-
-        /// <summary>
-        /// Theme change callback when theme is changed, this callback will be trigger.
-        /// </summary>
-        /// <param name="sender">serder object</param>
-        /// <param name="e">ThemeChangeEventArgs</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
-        {
-            SliderAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as SliderAttributes;
-            if (tempAttributes != null)
-            {
-                attributes = sliderAttrs = tempAttributes;
-                RelayoutRequest();
-            }
-        }
-
-        private void Initialize()
-        {
-            sliderAttrs = attributes as SliderAttributes;
-            if (null == sliderAttrs)
-            {
-                throw new Exception("Fail to get the slider attributes.");
-            }
-
-            ApplyAttributes(this, sliderAttrs);
-
-            currentSlidedOffset = 0;
-            isFocused = false;
-            isPressed = false;
-            LayoutDirectionChanged += OnLayoutDirectionChanged;
-        }
-
-        private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
-        {
-            RelayoutRequest();
-        }
-
-        private void CreateSlidedTrackAttributes()
-        {
-            if (null == sliderAttrs.SlidedTrackAttributes)
-            {
-                sliderAttrs.SlidedTrackAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateLowIndicatorImageAttributes()
-        {
-            if (null == sliderAttrs.LowIndicatorImageAttributes)
-            {
-                sliderAttrs.LowIndicatorImageAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateLowIndicatorTextAttributes()
-        {
-            if (null == sliderAttrs.LowIndicatorTextAttributes)
-            {
-                sliderAttrs.LowIndicatorTextAttributes = new TextAttributes();
-            }
-        }
-
-        private void CreateHighIndicatorTextAttributes()
-        {
-            if (null == sliderAttrs.HighIndicatorTextAttributes)
-            {
-                sliderAttrs.HighIndicatorTextAttributes = new TextAttributes();
-            }
-        }
-
-        private void CreateHighIndicatorImageAttributes()
-        {
-            if (null == sliderAttrs.HighIndicatorImageAttributes)
-            {
-                sliderAttrs.HighIndicatorImageAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateBackgroundTrackAttributes()
-        {
-            if (null == sliderAttrs.BackgroundTrackAttributes)
-            {
-                sliderAttrs.BackgroundTrackAttributes = new ImageAttributes();
-            }
-        }
-
-        private void CreateThumbAttributes()
-        {
-            if (null == sliderAttrs.ThumbAttributes)
-            {
-                sliderAttrs.ThumbAttributes = new ImageAttributes();
-            }
+            thumbImage.ApplyStyle(Style.Thumb);
         }
 
         private void CreateThumbBackgroundAttributes()
         {
-            if (null == sliderAttrs.ThumbBackgroundAttributes)
+            if (null == bgThumbImage)
             {
-                sliderAttrs.ThumbBackgroundAttributes = new ImageAttributes();
+                bgThumbImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed
+                };
+
+                if (slidedTrackImage != null)
+                {
+                    slidedTrackImage.Add(bgThumbImage);
+                }
+
+                if (null != thumbImage)
+                {
+                    bgThumbImage.Add(thumbImage);
+                }
             }
+
+            if (null == Style.ThumbBackground)
+            {
+                Style.ThumbBackground= new ImageViewStyle();
+            }
+
+            bgThumbImage.ApplyStyle(Style.ThumbBackground);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -1132,37 +1191,37 @@ namespace Tizen.NUI.Components
             }
             else if (type == IndicatorType.Image)
             {// <lowIndicatorImage> <spaceBetweenTrackAndIndicator> <bgTrack> <spaceBetweenTrackAndIndicator> <highIndicatorImage>
-                Size2D lowIndicatorImageSize = LowIndicatorImageSize();
-                Size2D highIndicatorImageSize = HighIndicatorImageSize();
+                Size lowIndicatorImageSize = LowIndicatorImageSize();
+                Size highIndicatorImageSize = HighIndicatorImageSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : (curSpace + lowIndicatorImageSize.Width));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : (curSpace + highIndicatorImageSize.Width));
+                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Width)));
+                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Width)));
                     bgTrackLength = this.Size2D.Width - lowIndicatorSpace - highIndicatorSpace;
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : (curSpace + lowIndicatorImageSize.Height));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : (curSpace + highIndicatorImageSize.Height));
+                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Height)));
+                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Height)));
                     bgTrackLength = this.Size2D.Height - lowIndicatorSpace - highIndicatorSpace;
                 }
             }
             else if (type == IndicatorType.Text)
             {// <lowIndicatorText> <spaceBetweenTrackAndIndicator> <bgTrack> <spaceBetweenTrackAndIndicator> <highIndicatorText>
-                Size2D lowIndicatorTextSize = LowIndicatorTextSize();
-                Size2D highIndicatorTextSize = HighIndicatorTextSize();
+                Size lowIndicatorTextSize = LowIndicatorTextSize();
+                Size highIndicatorTextSize = HighIndicatorTextSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : (curSpace + lowIndicatorTextSize.Width));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : (curSpace + highIndicatorTextSize.Width));
+                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Width)));
+                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Width)));
                     bgTrackLength = this.Size2D.Width - lowIndicatorSpace - highIndicatorSpace;
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : (curSpace + lowIndicatorTextSize.Height));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : (curSpace + highIndicatorTextSize.Height));
+                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Height)));
+                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Height)));
                     bgTrackLength = this.Size2D.Height - lowIndicatorSpace - highIndicatorSpace;
                 }
             }
@@ -1175,48 +1234,22 @@ namespace Tizen.NUI.Components
             {
                 if (lowIndicatorImage != null)
                 {
-                    lowIndicatorImage.Size2D = lowIndicatorSize;
+                    lowIndicatorImage.Size = lowIndicatorSize;
                 }
                 if (lowIndicatorText != null)
                 {
-                    lowIndicatorText.Size2D = lowIndicatorSize;
+                    lowIndicatorText.Size = lowIndicatorSize;
                 }
             }
             else
             {
-                if (lowIndicatorImage != null && sliderAttrs != null && sliderAttrs.LowIndicatorImageAttributes != null && sliderAttrs.LowIndicatorImageAttributes.Size2D != null)
+                if (lowIndicatorImage != null && Style != null && Style.LowIndicatorImage!= null && Style.LowIndicatorImage.Size != null)
                 {
-                    lowIndicatorImage.Size2D = sliderAttrs.LowIndicatorImageAttributes.Size2D;
+                    lowIndicatorImage.Size = Style.LowIndicatorImage.Size;
                 }
-                if (lowIndicatorText != null && sliderAttrs != null && sliderAttrs.LowIndicatorTextAttributes != null && sliderAttrs.LowIndicatorTextAttributes.Size2D != null)
+                if (lowIndicatorText != null && Style != null && Style.LowIndicator!= null && Style.LowIndicator.Size != null)
                 {
-                    lowIndicatorText.Size2D = sliderAttrs.LowIndicatorTextAttributes.Size2D;
-                }
-            }
-        }
-
-        private void UpdateHighIndicatorSize()
-        {
-            if (highIndicatorSize != null)
-            {
-                if (highIndicatorImage != null)
-                {
-                    highIndicatorImage.Size2D = highIndicatorSize;
-                }
-                if (highIndicatorText != null)
-                {
-                    highIndicatorText.Size2D = highIndicatorSize;
-                }
-            }
-            else
-            {
-                if (highIndicatorImage != null && sliderAttrs != null && sliderAttrs.HighIndicatorImageAttributes != null && sliderAttrs.HighIndicatorImageAttributes.Size2D != null)
-                {
-                    highIndicatorImage.Size2D = sliderAttrs.HighIndicatorImageAttributes.Size2D;
-                }
-                if (highIndicatorText != null && sliderAttrs != null && sliderAttrs.HighIndicatorTextAttributes != null && sliderAttrs.HighIndicatorTextAttributes.Size2D != null)
-                {
-                    highIndicatorText.Size2D = sliderAttrs.HighIndicatorTextAttributes.Size2D;
+                    lowIndicatorText.Size = Style.LowIndicator.Size;
                 }
             }
         }
@@ -1253,37 +1286,37 @@ namespace Tizen.NUI.Components
             }
             else if (type == IndicatorType.Image)
             {
-                Size2D lowIndicatorImageSize = LowIndicatorImageSize();
-                Size2D highIndicatorImageSize = HighIndicatorImageSize();
+                Size lowIndicatorImageSize = LowIndicatorImageSize();
+                Size highIndicatorImageSize = HighIndicatorImageSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : (curSpace + lowIndicatorImageSize.Width));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : (curSpace + highIndicatorImageSize.Width));
+                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Width)));
+                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Width)));
                     bgTrackImage.Position2D = new Position2D(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2, 0);
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : (curSpace + lowIndicatorImageSize.Height));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : (curSpace + highIndicatorImageSize.Height));
+                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Height)));
+                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Height)));
                     bgTrackImage.Position2D = new Position2D(0, lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2);
                 }
             }
             else if (type == IndicatorType.Text)
             {
-                Size2D lowIndicatorTextSize = LowIndicatorTextSize();
-                Size2D highIndicatorTextSize = HighIndicatorTextSize();
+                Size lowIndicatorTextSize = LowIndicatorTextSize();
+                Size highIndicatorTextSize = HighIndicatorTextSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : (curSpace + lowIndicatorTextSize.Width));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : (curSpace + highIndicatorTextSize.Width));
+                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Width)));
+                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Width)));
                     bgTrackImage.Position2D = new Position2D(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2, 0);
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : (curSpace + lowIndicatorTextSize.Height));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : (curSpace + highIndicatorTextSize.Height));
+                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Height)));
+                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Height)));
                     bgTrackImage.Position2D = new Position2D(0, -(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2));
                 }
             }
@@ -1330,9 +1363,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.TrackThickness != null)
+                if (Style != null && Style.TrackThickness != null)
                 {
-                    curTrackThickness = sliderAttrs.TrackThickness.Value;
+                    curTrackThickness = Style.TrackThickness.Value;
                 }
             }
             return curTrackThickness;
@@ -1343,13 +1376,13 @@ namespace Tizen.NUI.Components
             uint curSpace = 0;
             if (spaceBetweenTrackAndIndicator != null)
             {
-                curSpace = spaceBetweenTrackAndIndicator.Value;
+                curSpace = spaceBetweenTrackAndIndicator.Start;
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.SpaceBetweenTrackAndIndicator != null)
+                if (Style != null && Style.TrackPadding != null)
                 {
-                    curSpace = sliderAttrs.SpaceBetweenTrackAndIndicator.Value;
+                    curSpace = Style.TrackPadding.Start;
                 }
             }
             return curSpace;
@@ -1358,76 +1391,76 @@ namespace Tizen.NUI.Components
         private IndicatorType CurrentIndicatorType()
         {
             IndicatorType type = IndicatorType.None;
-            if (sliderAttrs != null)
+            if (Style != null)
             {
-                type = sliderAttrs.IndicatorType;
+                type = (IndicatorType)Style.IndicatorType;
             }
             return type;
         }
 
-        private Size2D LowIndicatorImageSize()
+        private Size LowIndicatorImageSize()
         {
-            Size2D size = new Size2D(0, 0);
+            Size size = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
                 size = lowIndicatorSize;
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.LowIndicatorImageAttributes != null && sliderAttrs.LowIndicatorImageAttributes.Size2D != null)
+                if (Style != null && Style.LowIndicatorImage!= null && Style.LowIndicatorImage.Size != null)
                 {
-                    size = sliderAttrs.LowIndicatorImageAttributes.Size2D;
+                    size = Style.LowIndicatorImage.Size;
                 }
             }
             return size;
         }
 
-        private Size2D HighIndicatorImageSize()
+        private Size HighIndicatorImageSize()
         {
-            Size2D size = new Size2D(0, 0);
+            Size size = new Size(0, 0);
             if (highIndicatorSize != null)
             {
                 size = highIndicatorSize;
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.HighIndicatorImageAttributes != null && sliderAttrs.HighIndicatorImageAttributes.Size2D != null)
+                if (Style != null && Style.HighIndicatorImage!= null && Style.HighIndicatorImage.Size != null)
                 {
-                    size = sliderAttrs.HighIndicatorImageAttributes.Size2D;
+                    size = Style.HighIndicatorImage.Size;
                 }
             }
             return size;
         }
 
-        private Size2D LowIndicatorTextSize()
+        private Size LowIndicatorTextSize()
         {
-            Size2D size = new Size2D(0, 0);
+            Size size = new Size(0, 0);
             if (lowIndicatorSize != null)
             {
                 size = lowIndicatorSize;
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.LowIndicatorTextAttributes != null && sliderAttrs.LowIndicatorTextAttributes.Size2D != null)
+                if (Style != null && Style.LowIndicator!= null && Style.LowIndicator.Size != null)
                 {
-                    size = sliderAttrs.LowIndicatorTextAttributes.Size2D;
+                    size = Style.LowIndicator.Size;
                 }
             }
             return size;
         }
 
-        private Size2D HighIndicatorTextSize()
+        private Size HighIndicatorTextSize()
         {
-            Size2D size = new Size2D(0, 0);
+            Size size = new Size(0, 0);
             if (highIndicatorSize != null)
             {
                 size = highIndicatorSize;
             }
             else
             {
-                if (sliderAttrs != null && sliderAttrs.HighIndicatorTextAttributes != null && sliderAttrs.HighIndicatorTextAttributes.Size2D != null)
+                if (Style != null && Style.HighIndicator!= null && Style.HighIndicator.Size != null)
                 {
-                    size = sliderAttrs.HighIndicatorTextAttributes.Size2D;
+                    size = Style.HighIndicator.Size;
                 }
             }
             return size;
@@ -1522,7 +1555,7 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            if (thumbImage == null || sliderAttrs == null)
+            if (thumbImage == null || Style == null)
             {
                 return;
             }
@@ -1531,39 +1564,33 @@ namespace Tizen.NUI.Components
 
             if (!isFocused && !isPressed)
             {
-                State = ControlStates.Normal;
-                ApplyAttributes(bgThumbImage, sliderAttrs.ThumbBackgroundAttributes);
-                ApplyAttributes(thumbImage, sliderAttrs.ThumbAttributes);
+                ControlState = ControlStates.Normal;
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = ControlStates.Normal;
+                    args.CurrentState = (ControlStates)ControlStates.Normal;
                     stateChangedHandler(this, args);
                 }
             }
             else if (isPressed)
             {
-                State = ControlStates.Pressed;
-                ApplyAttributes(bgThumbImage, sliderAttrs.ThumbBackgroundAttributes);
-                ApplyAttributes(thumbImage, sliderAttrs.ThumbAttributes);
+                ControlState = ControlStates.Pressed;
 
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = ControlStates.Pressed;
+                    args.CurrentState = (ControlStates)ControlStates.Pressed;
                     stateChangedHandler(this, args);
                 }
             }
             else if (!isPressed && isFocused)
             {
-                State = ControlStates.Focused;
-                ApplyAttributes(bgThumbImage, sliderAttrs.ThumbBackgroundAttributes);
-                ApplyAttributes(thumbImage, sliderAttrs.ThumbAttributes);
+                ControlState = ControlStates.Focused;
 
                 if (stateChangedHandler != null)
                 {
                     StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = ControlStates.Focused;
+                    args.CurrentState = (ControlStates)ControlStates.Focused;
                     stateChangedHandler(this, args);
                 }
             }
@@ -1635,16 +1662,12 @@ namespace Tizen.NUI.Components
         /// Value Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ValueChangedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public float CurrentValue;
         }
 
@@ -1652,16 +1675,12 @@ namespace Tizen.NUI.Components
         /// Value Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class SlidingFinishedArgs : EventArgs
         {
             /// <summary>
             /// Curren value
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public float CurrentValue;
         }
 
@@ -1669,16 +1688,12 @@ namespace Tizen.NUI.Components
         /// State Changed event data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class StateChangedArgs : EventArgs
         {
             /// <summary>
             /// Curent state
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlStates CurrentState;
         }
     }

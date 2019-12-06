@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PanGestureDetector : GestureDetector
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
         private DetectedCallbackDelegate _panGestureCallbackDelegate;
@@ -57,7 +56,6 @@ namespace Tizen.NUI
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PanGestureDetector.PanGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
 
@@ -525,34 +523,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.PanGestureDetector.delete_PanGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.PanGestureDetector.delete_PanGestureDetector(swigCPtr);
         }
 
         private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
@@ -561,6 +536,11 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (PanGestureEventArgs) with real data
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
             if (_panGestureEventHandler != null)
@@ -568,7 +548,6 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 _panGestureEventHandler(this, e);
             }
-
         }
 
         /// <summary>

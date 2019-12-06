@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PinchGestureDetector : GestureDetector
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
         private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
@@ -57,7 +56,6 @@ namespace Tizen.NUI
 
         internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -133,34 +131,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //Because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.PinchGesture.delete_PinchGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.PinchGesture.delete_PinchGestureDetector(swigCPtr);
         }
 
         private void OnPinchGestureDetected(IntPtr actor, IntPtr pinchGesture)
@@ -169,6 +144,11 @@ namespace Tizen.NUI
 
             // Populate all members of "e" (DetectedEventArgs) with real data.
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            if (null == e.View)
+            {
+                e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
+            }
+
             e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
 
             if (_pinchGestureEventHandler != null)

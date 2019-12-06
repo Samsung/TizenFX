@@ -414,7 +414,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         ///     The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
-        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync"/> again.
+        ///     If you want to use the player again, you have to set a source and call <see cref="PrepareAsync()"/> or
+        ///     <see cref="PrepareAsync(CancellationToken)"/> again.
         ///     <para>
         ///     The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         ///     It has no effect if the player is already in the <see cref="PlayerState.Idle"/> state.
@@ -464,7 +465,8 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <seealso cref="Stop"/>
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
@@ -546,7 +548,8 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     It is not able to assign the source to the player.
         ///     </exception>
-        /// <seealso cref="PrepareAsync"/>
+        /// <seealso cref="PrepareAsync()"/>
+        /// <seealso cref="PrepareAsync(CancellationToken)"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetSource(MediaSource source)
         {
@@ -762,8 +765,6 @@ namespace Tizen.Multimedia
         ///     The player is not in the valid state.<br/>
         ///     -or-<br/>
         ///     Streaming playback.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="rate"/> is less than -5.0.<br/>
@@ -772,6 +773,10 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="rate"/> is zero.
         /// </exception>
+        /// <exception cref="NotAvailableException">
+        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        /// </exception>
+        /// <seealso cref="AudioOffload"/>
         /// <since_tizen> 3 </since_tizen>
         public void SetPlaybackRate(float rate)
         {
@@ -974,12 +979,14 @@ namespace Tizen.Multimedia
         ///     Operation failed; internal error.
         ///     -or-<br/>
         ///     The player is not in the valid state.
-        ///     -or-<br/>
-        ///     If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
         ///     </exception>
-        /// <exception cref="NotAvailableException">The function is not available depending on the audio codec type. (Since tizen 6.0)</exception>
+        /// <exception cref="NotAvailableException">If audio offload is enabled by calling <see cref="AudioOffload.IsEnabled"/>. (Since tizen 6.0)
+        ///     -or-<br/>
+        ///     The function is not available depending on the audio codec type. (Since tizen 6.0)
+        /// </exception>
         /// <seealso cref="PlayerAudioExtractOption"/>
         /// <seealso cref="DisableExportingAudioData"/>
+        /// <seealso cref="AudioOffload"/>
         /// <seealso cref="AudioCodecType"/>
         /// <since_tizen> 6 </since_tizen>
         public void EnableExportingAudioData(AudioMediaFormat format, PlayerAudioExtractOption option)

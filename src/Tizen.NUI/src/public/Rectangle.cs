@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -23,17 +23,9 @@ namespace Tizen.NUI
     /// The Rectangle class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RectangleTypeConverter))]
+    [Binding.TypeConverter(typeof(RectangleTypeConverter))]
     public class Rectangle : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -56,11 +48,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Rectangle(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
+
+        internal Rectangle(RectangleChangedCallback cb, int x, int y, int width, int height) : this(Interop.Rectangle.new_Rectangle__SWIG_1(x, y, width, height), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
+        private RectangleChangedCallback callback = null;
 
         /// <summary>
         /// The x position of the rectangle.
@@ -71,6 +69,8 @@ namespace Tizen.NUI
             set
             {
                 x = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -87,6 +87,8 @@ namespace Tizen.NUI
             set
             {
                 y = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -103,6 +105,8 @@ namespace Tizen.NUI
             set
             {
                 width = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -119,6 +123,8 @@ namespace Tizen.NUI
             set
             {
                 height = (value);
+
+                callback?.Invoke(X, Y, Width, Height);
             }
             get
             {
@@ -432,31 +438,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Rectangle.delete_Rectangle(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
+            Interop.Rectangle.delete_Rectangle(swigCPtr);
         }
     }
 }

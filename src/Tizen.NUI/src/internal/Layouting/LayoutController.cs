@@ -32,15 +32,10 @@ namespace Tizen.NUI
     {
         static bool LayoutDebugController = false; // Debug flag
 
-        private global::System.Runtime.InteropServices.HandleRef unmanagedLayoutController;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void Callback(int id);
 
         event Callback _instance;
-
-        // A Flag to check if it is already disposed.
-        private bool disposed = false;
 
         private Window _window;
 
@@ -54,17 +49,17 @@ namespace Tizen.NUI
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
         /// <param name="window">Window attach this LayoutController to.</param>
         /// </summary>
-        public LayoutController(Window window)
+        public LayoutController(Window window) : this(Interop.LayoutController.LayoutController_New(), true)
         {
-            global::System.IntPtr cPtr = Interop.LayoutController.LayoutController_New();
             _window = window;
-            // Wrap cPtr in a managed handle.
-            unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
             _instance = new Callback(Process);
-            Interop.LayoutController.LayoutController_SetCallback(unmanagedLayoutController, _instance);
+            Interop.LayoutController.LayoutController_SetCallback(swigCPtr, _instance);
 
             _layoutTransitionDataQueue = new List<LayoutData>();
+        }
+
+        internal LayoutController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
         }
 
         /// <summary>
@@ -72,7 +67,7 @@ namespace Tizen.NUI
         /// </summary>
         public int GetId()
         {
-            return Interop.LayoutController.LayoutController_GetId(unmanagedLayoutController);
+            return Interop.LayoutController.LayoutController_GetId(swigCPtr);
         }
 
         /// <summary>
@@ -113,21 +108,6 @@ namespace Tizen.NUI
         public bool OverrideCoreAnimation {get;set;} = false;
 
         /// <summary>
-        /// Destructor which adds LayoutController to the Dispose queue.
-        /// </summary>
-        ~LayoutController()
-        {
-        }
-
-        /// <summary>
-        /// Explict Dispose.
-        /// </summary>
-        public void Dispose()
-        {
-           Dispose(DisposeTypes.Explicit);
-        }
-
-        /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
         /// </summary>
         /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
@@ -163,10 +143,10 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (unmanagedLayoutController.Handle != global::System.IntPtr.Zero)
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                Interop.LayoutController.delete_LayoutController(unmanagedLayoutController);
-                unmanagedLayoutController = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Interop.LayoutController.delete_LayoutController(swigCPtr);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             base.Dispose(type);
@@ -201,6 +181,7 @@ namespace Tizen.NUI
         {
             if (rootNode.Layout != null)
             {
+                Debug.WriteLineIf( LayoutDebugController, "LayoutController Root found:" + rootNode.Name);
                 // rootNode has a layout, ensure all children have default layouts or layout items.
                 AutomaticallyAssignLayouts(rootNode);
                 // rootNode has a layout, start measuring and layouting from here.
@@ -247,8 +228,8 @@ namespace Tizen.NUI
 
                 LayoutLength width = new LayoutLength(rootSize.Width);
                 LayoutLength height = new LayoutLength(rootSize.Height);
-                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.AtMost;
-                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.AtMost;
+                MeasureSpecification.ModeType widthMode = MeasureSpecification.ModeType.Unspecified;
+                MeasureSpecification.ModeType heightMode = MeasureSpecification.ModeType.Unspecified;
 
                 if ( root.WidthSpecification >= 0 )
                 {
@@ -307,10 +288,13 @@ namespace Tizen.NUI
             for (uint layerIndex = 0; layerIndex < numberOfLayers; layerIndex++)
             {
                 Layer layer = _window.GetLayer(layerIndex);
-                for (uint i = 0; i < layer.ChildCount; i++)
+                if (layer)
                 {
-                    View view = layer.GetChildAt(i);
-                    FindRootLayouts(view);
+                    for (uint i = 0; i < layer.ChildCount; i++)
+                    {
+                        View view = layer.GetChildAt(i);
+                        FindRootLayouts(view);
+                    }
                 }
             }
 

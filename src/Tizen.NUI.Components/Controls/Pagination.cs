@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Pagination: Control
     {
-        private PaginationAttributes paginationAttributes;
+        private PaginationStyle paginationStyle;
 
         private VisualView container;
 
@@ -62,12 +62,12 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Creates a new instance of a Pagination using attributes.
+        /// Creates a new instance of a Pagination using style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Pagination(PaginationAttributes attributes) : base(attributes)
+        public Pagination(PaginationStyle style) : base(style)
         {
             Initialize();
         }
@@ -78,20 +78,20 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D IndicatorSize
+        public Size IndicatorSize
         {
             get
             {
-                return paginationAttributes?.IndicatorSize;
+                return paginationStyle?.IndicatorSize;
             }
             set
             {
-                if (value == null || paginationAttributes == null)
+                if (value == null || paginationStyle == null)
                 {
                     return;
                 }
-                paginationAttributes.IndicatorSize = value;
-                RelayoutRequest();
+                paginationStyle.IndicatorSize = value;
+                UpdateVisual();
             }
         }
 
@@ -101,43 +101,20 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string IndicatorBackgroundURL
+        public Selector<string> IndicatorImageURL
         {
             get
             {
-                return paginationAttributes?.IndicatorBackgroundURL;
+                return paginationStyle?.IndicatorImageURL;
             }
             set
             {
-                if (value == null || paginationAttributes == null)
+                if (value == null || paginationStyle == null)
                 {
                     return;
                 }
-                paginationAttributes.IndicatorBackgroundURL = value;
-                RelayoutRequest();
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the resource of the select indicator.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string IndicatorSelectURL
-        {
-            get
-            {
-                return paginationAttributes?.IndicatorSelectURL;
-            }
-            set
-            {
-                if (value == null || paginationAttributes == null)
-                {
-                    return;
-                }
-                paginationAttributes.IndicatorSelectURL = value;
-                RelayoutRequest();
+                paginationStyle.IndicatorImageURL = value;
+                UpdateVisual();
             }
         }
 
@@ -151,16 +128,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)paginationAttributes?.IndicatorSpacing;
+                return (int)paginationStyle?.IndicatorSpacing;
             }
             set
             {
-                if (paginationAttributes == null)
+                if (paginationStyle == null)
                 {
                     return;
                 }
-                paginationAttributes.IndicatorSpacing = value;
-                RelayoutRequest();
+                paginationStyle.IndicatorSpacing = value;
+                UpdateVisual();
             }
         }
 
@@ -198,11 +175,12 @@ namespace Tizen.NUI.Components
                         container.RemoveVisual("Indicator" + i);
                     }
                     indicatorList.RemoveRange(value, indicatorCount - value);
-                    if(value <= 0)
-                    {
-                        container.RemoveVisual("SelectIndicator");
-                    }
-                    else if(selectedIndex >= value)
+                    //if(value <= 0)
+                    //{
+                    //    container.RemoveVisual("SelectIndicator");
+                    //}
+                    //else 
+                    if (selectedIndex >= value)
                     {
                         selectedIndex = 0;
                         SelectIn(indicatorList[selectedIndex]);
@@ -251,13 +229,13 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Position2D GetIndicatorPosition(int index)
+        public Position GetIndicatorPosition(int index)
         {
             if (index < 0 || index >= indicatorList.Count)
             {
                 return null;
             }
-            return new Vector2(indicatorList[index].Position.X + container.PositionX, indicatorList[index].Position.Y + container.PositionY);
+            return new Position(indicatorList[index].Position.X + container.PositionX, indicatorList[index].Position.Y + container.PositionY);
         }
 
         /// <summary>
@@ -269,7 +247,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void SelectOut(VisualMap selectOutIndicator)
         {
-
+            ImageVisual visual = selectOutIndicator as ImageVisual;
+            visual.URL = paginationStyle.IndicatorImageURL.Normal;
         }
 
         /// <summary>
@@ -281,7 +260,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void SelectIn(VisualMap selectInIndicator)
         {
-            selectIndicator.Position = selectInIndicator.Position;
+            //selectIndicator.Position = selectInIndicator.Position;
+            ImageVisual visual = selectInIndicator as ImageVisual;
+            visual.URL = paginationStyle.IndicatorImageURL.Selected;
         }
 
         /// <summary>
@@ -290,9 +271,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new PaginationAttributes();
+            return new PaginationStyle();
         }
 
         /// <summary>
@@ -322,33 +303,10 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
-        /// <summary>
-        /// you can override it to update your own resources.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-
-            for (int i = 0; i < indicatorList.Count; i++)
-            {
-                ImageVisual indicator = indicatorList[i];
-                indicator.URL = paginationAttributes.IndicatorBackgroundURL;
-                indicator.Size = paginationAttributes.IndicatorSize;
-                indicator.Position = new Position2D((int)(paginationAttributes.IndicatorSize.Width + paginationAttributes.IndicatorSpacing) * i, 0);
-            }
-
-            selectIndicator.URL = paginationAttributes.IndicatorSelectURL;
-            selectIndicator.Size = paginationAttributes.IndicatorSize;
-
-            //UpdateContainer();
-        }
-
         private void Initialize()
         {
-            paginationAttributes = attributes as PaginationAttributes;
-            if (paginationAttributes == null)
+            paginationStyle = Style as PaginationStyle;
+            if (paginationStyle == null)
             {
                 throw new Exception("Pagination attributes is null.");
             }
@@ -363,45 +321,63 @@ namespace Tizen.NUI.Components
             };
             this.Add(container);
 
-            selectIndicator = new ImageVisual()
-            {
-                URL = " "
-            };
-            container.AddVisual("SelectIndicator", selectIndicator);
+            //selectIndicator = new ImageVisual()
+            //{
+            //    URL = " "
+            //};
+            //container.AddVisual("SelectIndicator", selectIndicator);
         }
 
         private void CreateIndicator()
         {
-            if (paginationAttributes == null)
+            if (paginationStyle == null)
             {
                 return;
             }
             ImageVisual indicator = new ImageVisual
             {
-                URL = paginationAttributes.IndicatorBackgroundURL,
-                Size = paginationAttributes.IndicatorSize
+                URL = paginationStyle.IndicatorImageURL.Normal,
+                Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height)
             };
-            indicator.Position = new Position2D((int)(paginationAttributes.IndicatorSize.Width + paginationAttributes.IndicatorSpacing) * indicatorList.Count, 0);
+            indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count, 0);
             container.AddVisual("Indicator" + indicatorList.Count, indicator);
             indicatorList.Add(indicator);
         }
 
         private void UpdateContainer()
         {
-            if (paginationAttributes == null)
+            if (paginationStyle == null)
             {
                 return;
             }
             if (indicatorList.Count > 0)
             {
-                container.SizeWidth = (paginationAttributes.IndicatorSize.Width + paginationAttributes.IndicatorSpacing) * indicatorList.Count - paginationAttributes.IndicatorSpacing;
+                container.SizeWidth = (paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * indicatorList.Count - paginationStyle.IndicatorSpacing;
             }
             else
             {
                 container.SizeWidth = 0;
             }
-            container.SizeHeight = paginationAttributes.IndicatorSize.Height;
+            container.SizeHeight = paginationStyle.IndicatorSize.Height;
             container.PositionX = (int)((this.SizeWidth - container.SizeWidth) / 2);
+        }
+
+        private void UpdateVisual()
+        {
+            if (null == paginationStyle.IndicatorSize) return;
+            if (null == paginationStyle.IndicatorImageURL) return;
+            if (indicatorCount < 0) return;
+
+            for (int i = 0; i < indicatorList.Count; i++)
+            {
+                ImageVisual indicator = indicatorList[i];
+                indicator.URL = paginationStyle.IndicatorImageURL.Normal;
+                indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
+                indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
+            }
+
+            //selectIndicator.URL = paginationStyle.IndicatorSelectURL;
+            //selectIndicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
         }
     }
 }

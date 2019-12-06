@@ -26,24 +26,20 @@ namespace Tizen.NUI.Components
     /// User can handle Tab by adding/inserting/deleting TabItem.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Tab : Control
     {
         private const int aniTime = 100; // will be defined in const file later
         private List<TabItem> itemList = new List<TabItem>();
         private int curIndex = 0;
         private View underline = null;
-        private TabAttributes tabAttributes = null;
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
+        private Extents space;
 
         /// <summary>
         /// Creates a new instance of a Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Tab() : base()
         {
             Initialize();
@@ -62,13 +58,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Creates a new instance of a Tab with attributes.
+        /// Creates a new instance of a Tab with style.
         /// </summary>
-        /// <param name="attributes">Create Tab by attributes customized by user.</param>
+        /// <param name="style">Create Tab by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tab(TabAttributes attributes) : base(attributes)
+        public Tab(TabStyle style) : base(style)
         {
             Initialize();
         }
@@ -77,16 +73,16 @@ namespace Tizen.NUI.Components
         /// An event for the item changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        public event EventHandler<ItemChangedEventArgs> ItemChangedEvent;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ItemChangeEventArgs> ItemChangedEvent;
+        public new TabStyle Style => ViewStyle as TabStyle;
 
         /// <summary>
         /// Selected item's index in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int SelectedItemIndex
         {
             get
@@ -107,17 +103,15 @@ namespace Tizen.NUI.Components
         /// If true, TabItem's width will be equal as text's natural width, if false, it will be decided by Tab's width and tab item count.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsNatureTextWidth
+        public bool UseTextNaturalSize
         {
             get
             {
-                return tabAttributes.IsNatureTextWidth;
+                return Style.UseTextNaturalSize;
             }
             set
             {
-                tabAttributes.IsNatureTextWidth = value;
+                Style.UseTextNaturalSize = value;
                 RelayoutRequest();
             }
         }
@@ -126,94 +120,71 @@ namespace Tizen.NUI.Components
         /// Gap between items.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ItemGap
+        public int ItemSpace
         {
             get
             {
-                return tabAttributes.ItemGap;
+                return Style.ItemSpace;
             }
             set
             {
-                tabAttributes.ItemGap = value;
+                Style.ItemSpace = value;
                 RelayoutRequest();
             }
         }
 
         /// <summary>
-        /// Left space in Tab.
+        /// Space in Tab. Sequence as Left, Right, Top, Bottom
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int LeftSpace
+        public Extents Space
         {
             get
             {
-                return (int)tabAttributes.Space.X;
+                return ItemPadding;
             }
             set
             {
-                tabAttributes.Space.X = value;
-                RelayoutRequest();
+                ItemPadding = value;
             }
         }
 
         /// <summary>
-        /// Bottom space in Tab.
+        /// Item paddings in Tab. Sequence as Left, Right, Top, Bottom
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int BottomSpace
+        public Extents ItemPadding
         {
             get
             {
-                return (int)tabAttributes.Space.W;
+                return space;
             }
             set
             {
-                tabAttributes.Space.W = value;
-                RelayoutRequest();
-            }
-        }
+                if(null != value)
+                {
+                    Style.ItemPadding.CopyFrom(value);
 
-        /// <summary>
-        /// Right space in Tab.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int RightSpace
-        {
-            get
-            {
-                return (int)tabAttributes.Space.Y;
-            }
-            set
-            {
-                tabAttributes.Space.Y = value;
-                RelayoutRequest();
-            }
-        }
+                    if (null == space)
+                    {
+                        space = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                        {
+                            Style.ItemPadding.Start = start;
+                            Style.ItemPadding.End = end;
+                            Style.ItemPadding.Top = top;
+                            Style.ItemPadding.Bottom = bottom;
+                            RelayoutRequest();
+                        }, value.Start, value.End, value.Top, value.Bottom);
+                    }
+                    else
+                    {
+                        space.CopyFrom(value);
+                    }
 
-        /// <summary>
-        /// Top space in Tab.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TopSpace
-        {
-            get
-            {
-                return (int)tabAttributes.Space.Z;
-            }
-            set
-            {
-                tabAttributes.Space.Z = value;
-                RelayoutRequest();
+                    RelayoutRequest();
+                }
             }
         }
 
@@ -221,21 +192,19 @@ namespace Tizen.NUI.Components
         /// UnderLine view's size in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D UnderLineSize2D
+        public Size UnderLineSize
         {
             get
             {
-                return tabAttributes.UnderLineAttributes?.Size2D;
+                return Style.UnderLine?.Size;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateUnderLineAttributes();
-                    tabAttributes.UnderLineAttributes.Size2D = value;
-                    RelayoutRequest();
+                    //CreateUnderLineAttributes();
+                    Style.UnderLine.Size = value;
+                    //RelayoutRequest();
                 }
             }
         }
@@ -244,25 +213,23 @@ namespace Tizen.NUI.Components
         /// UnderLine view's background in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color UnderLineBackgroundColor
         {
             get
             {
-                return tabAttributes.UnderLineAttributes?.BackgroundColor?.All;
+                return Style.UnderLine?.BackgroundColor?.All;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateUnderLineAttributes();
-                    if (tabAttributes.UnderLineAttributes.BackgroundColor == null)
+                    //CreateUnderLineAttributes();
+                    if (Style.UnderLine.BackgroundColor == null)
                     {
-                        tabAttributes.UnderLineAttributes.BackgroundColor = new ColorSelector();
+                        Style.UnderLine.BackgroundColor = new ColorSelector();
                     }
-                    tabAttributes.UnderLineAttributes.BackgroundColor.All = value;
-                    RelayoutRequest();
+                    Style.UnderLine.BackgroundColor.All = value;
+                    //RelayoutRequest();
                 }
             }
         }
@@ -271,23 +238,21 @@ namespace Tizen.NUI.Components
         /// Text point size in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float PointSize
         {
             get
             {
-                return tabAttributes.TextAttributes?.PointSize?.All ?? 0;
+                return Style.Text?.PointSize?.All ?? 0;
             }
             set
             {
-                CreateTextAttributes();
-                if (tabAttributes.TextAttributes.PointSize == null)
+                //CreateTextAttributes();
+                if (Style.Text.PointSize == null)
                 {
-                    tabAttributes.TextAttributes.PointSize = new FloatSelector();
+                    Style.Text.PointSize = new FloatSelector();
                 }
-                tabAttributes.TextAttributes.PointSize.All = value;
-                RelayoutRequest();
+                Style.Text.PointSize.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -295,19 +260,17 @@ namespace Tizen.NUI.Components
         /// Text font family in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string FontFamily
         {
             get
             {
-                return tabAttributes.TextAttributes?.FontFamily;
+                return Style.Text?.FontFamily.All;
             }
             set
             {
-                CreateTextAttributes();
-                tabAttributes.TextAttributes.FontFamily = value;
-                RelayoutRequest();
+                //CreateTextAttributes();
+                Style.Text.FontFamily.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -315,23 +278,21 @@ namespace Tizen.NUI.Components
         /// Text color in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TextColor
         {
             get
             {
-                return tabAttributes.TextAttributes?.TextColor?.All;
+                return Style.Text?.TextColor?.All;
             }
             set
             {
-                CreateTextAttributes();
-                if (tabAttributes.TextAttributes.TextColor == null)
+                //CreateTextAttributes();
+                if (Style.Text.TextColor == null)
                 {
-                    tabAttributes.TextAttributes.TextColor = new ColorSelector();
+                    Style.Text.TextColor = new ColorSelector();
                 }
-                tabAttributes.TextAttributes.TextColor.All = value;
-                RelayoutRequest();
+                Style.Text.TextColor.All = value;
+                //RelayoutRequest();
             }
         }
 
@@ -339,21 +300,19 @@ namespace Tizen.NUI.Components
         /// Text color selector in Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ColorSelector TextColorSelector
         {
             get
             {
-                return tabAttributes.TextAttributes.TextColor;
+                return (ColorSelector)Style.Text.TextColor;
             }
             set
             {
                 if (value != null)
                 {
-                    CreateTextAttributes();
-                    tabAttributes.TextAttributes.TextColor = value.Clone() as ColorSelector;
-                    RelayoutRequest();
+                    //CreateTextAttributes();
+                    Style.Text.TextColor = value.Clone() as ColorSelector;
+                    //RelayoutRequest();
                 }
             }
         }
@@ -363,8 +322,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="itemData">Item data which will apply to tab item view.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddItem(TabItemData itemData)
         {
             AddItemByIndex(itemData, itemList.Count);
@@ -376,8 +333,6 @@ namespace Tizen.NUI.Components
         /// <param name="itemData">Item data which will apply to tab item view.</param>
         /// <param name="index">Position index where will be inserted.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void InsertItem(TabItemData itemData, int index)
         {
             AddItemByIndex(itemData, index);
@@ -388,8 +343,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="itemIndex">Position index where will be deleted.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteItem(int itemIndex)
         {
             if(itemList == null || itemIndex < 0 || itemIndex >= itemList.Count)
@@ -409,13 +362,37 @@ namespace Tizen.NUI.Components
             UpdateItems();
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            TabStyle tabStyle = viewStyle as TabStyle;
+
+            if (null != tabStyle)
+            {
+                if (null == underline)
+                {
+                    underline = new View()
+                    {
+                        PositionUsesPivotPoint = true,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
+                    };
+                    Add(underline);
+                    CreateUnderLineAnimation();
+                }
+
+                underline.ApplyStyle(Style.UnderLine);
+            }
+        }
+
         /// <summary>
         /// Dispose Tab and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -459,30 +436,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
-            if (tabAttributes.UnderLineAttributes != null)
-            {
-                if (underline == null)
-                {
-                    underline = new View()
-                    {
-                        PositionUsesPivotPoint = true,
-                        ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                        PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                    };
-                    Add(underline);
-                    CreateUnderLineAnimation();
-                }
-                ApplyAttributes(underline, tabAttributes.UnderLineAttributes);
-            }
-
-            if (tabAttributes.TextAttributes != null)
-            {
-                if (curIndex >= 0 && curIndex < itemList.Count)
-                {
-                    itemList[curIndex].UpdateItemText(tabAttributes.TextAttributes);
-                }
-            }
-
             LayoutChild();
         }
 
@@ -492,9 +445,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new TabAttributes();
+            return new TabStyle();
         }
 
         /// <summary>
@@ -505,12 +458,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as TabAttributes;
+            TabStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as TabStyle;
             if (tempAttributes != null)
             {
-                tempAttributes.IsNatureTextWidth = tabAttributes.IsNatureTextWidth; // keep IsNatureTextWidth as original
-                attributes = tabAttributes = tempAttributes;
-                RelayoutRequest();
+                Style.CopyFrom(tempAttributes);
             }
         }
 
@@ -522,68 +473,69 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChild()
         {
-            if (tabAttributes == null || itemList == null)
+            if (itemList == null)
             {
                 return;
             }
+
             int totalNum = itemList.Count;
             if (totalNum == 0)
             {
                 return;
             }
 
-            int preX = (int)tabAttributes.Space.X;
+            int preX = (int)Style.ItemPadding.Start;
             int preW = 0;
-            int itemGap = tabAttributes.ItemGap;
+            int itemSpace = Style.ItemSpace;
 
             if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
-                if (tabAttributes.IsNatureTextWidth == true)
+                if (Style.UseTextNaturalSize == true)
                 {
                     for (int i = 0; i < totalNum; i++)
                     {
-                        preW = itemList[i].TextItem.NaturalSize2D.Width;
+                        preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
                         itemList[i].Position2D.X = preX;
                         itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemGap;
+                        preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)tabAttributes.Space.X - (int)tabAttributes.Space.Y) / totalNum;
+                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
                     for (int i = 0; i < totalNum; i++)
                     {
                         itemList[i].Position2D.X = preX;
                         itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemGap;
+                        preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
             }
             else
             {
-                preX = (int)tabAttributes.Space.Y;
-                if (tabAttributes.IsNatureTextWidth == true)
+                preX = (int)Style.ItemPadding.End;
+                if (Style.UseTextNaturalSize == true)
                 {
                     int w = Size2D.Width;
                     for (int i = 0; i < totalNum; i++)
                     {
-                        preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
+                        preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
                         itemList[i].Position2D.X = w - preW - preX;
                         itemList[i].Size2D.Width = preW;
-                        preX = w - itemList[i].Position2D.X + itemGap;
+                        preX = w - itemList[i].Position2D.X + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
                 else
                 {
-                    preW = (Size2D.Width - (int)tabAttributes.Space.X - (int)tabAttributes.Space.Y) / totalNum;
+                    preW = (Size2D.Width - (int)Style.ItemPadding.Start - (int)Style.ItemPadding.End) / totalNum;
                     for (int i = totalNum - 1; i >= 0; i--)
                     {
                         itemList[i].Position2D.X = preX;
                         itemList[i].Size2D.Width = preW;
-                        preX = itemList[i].Position2D.X + preW + itemGap;
+                        preX = itemList[i].Position2D.X + preW + itemSpace;
                         itemList[i].Index = i;
                     }
                 }
@@ -593,13 +545,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            tabAttributes = attributes as TabAttributes;
-            if (tabAttributes == null)
-            {
-                throw new Exception("Tab attribute parse error.");
-            }
-
-            ApplyAttributes(this, tabAttributes);
             LayoutDirectionChanged += OnLayoutDirectionChanged;
         }
 
@@ -611,20 +556,22 @@ namespace Tizen.NUI.Components
         private void AddItemByIndex(TabItemData itemData, int index)
         {
             int h = 0;
-            int topSpace = (int)tabAttributes.Space.Z;
-            if (tabAttributes.UnderLineAttributes != null && tabAttributes.UnderLineAttributes.Size2D != null)
+            int topSpace = (int)Style.ItemPadding.Top;
+            if (Style.UnderLine != null && Style.UnderLine.Size != null)
             {
-                h = tabAttributes.UnderLineAttributes.Size2D.Height;
+                h = (int)Style.UnderLine.Size.Height;
             }
+
             Tab.TabItem item = new TabItem();
-            ApplyAttributes(item.TextItem, tabAttributes.TextAttributes);
-            item.TextItem.Text = itemData.Text;
+            item.TextItem.ApplyStyle(Style.Text);
+
+            item.Text = itemData.Text;
             item.Size2D.Height = Size2D.Height - h - topSpace;
             item.Position2D.Y = topSpace;
             item.TouchEvent += ItemTouchEvent;
             Add(item);
 
-            if(index >= itemList.Count)
+            if (index >= itemList.Count)
             {
                 itemList.Add(item);
             }
@@ -641,8 +588,7 @@ namespace Tizen.NUI.Components
             LayoutChild();
             if (itemList != null && curIndex >= 0 && curIndex < itemList.Count)
             {
-                itemList[curIndex].State = ControlStates.Selected;
-                itemList[curIndex].UpdateItemText(tabAttributes.TextAttributes);
+                itemList[curIndex].ControlState = ControlStates.Selected;
                 UpdateUnderLinePos();
             }
             else
@@ -656,30 +602,13 @@ namespace Tizen.NUI.Components
 
         private void CreateUnderLineAttributes()
         {
-            if (tabAttributes.UnderLineAttributes == null)
+            if (Style.UnderLine == null)
             {
-                tabAttributes.UnderLineAttributes = new ViewAttributes()
+                Style.UnderLine = new ViewStyle()
                 {
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
                     PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                };
-            }
-        }
-
-        private void CreateTextAttributes()
-        {
-            if (tabAttributes.TextAttributes == null)
-            {
-                tabAttributes.TextAttributes = new TextAttributes()
-                {
-                    PositionUsesPivotPoint =  true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                    PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    WidthResizePolicy =  ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent
                 };
             }
         }
@@ -694,16 +623,16 @@ namespace Tizen.NUI.Components
         
         private void UpdateUnderLinePos()
         {
-            if (underline == null || tabAttributes.UnderLineAttributes == null || tabAttributes.UnderLineAttributes.Size2D == null
+            if (underline == null || Style.UnderLine == null || Style.UnderLine.Size == null
                 || itemList == null || itemList.Count <= 0)
             {
                 return;
             }
 
-            tabAttributes.UnderLineAttributes.Size2D.Width = itemList[curIndex].Size2D.Width;
+            Style.UnderLine.Size.Width = itemList[curIndex].Size2D.Width;
 
-            underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, tabAttributes.UnderLineAttributes.Size2D.Height);
-            underline.BackgroundColor = tabAttributes.UnderLineAttributes.BackgroundColor.All;
+            underline.Size2D = new Size2D(itemList[curIndex].Size2D.Width, (int)Style.UnderLine.Size.Height);
+            underline.BackgroundColor = Style.UnderLine.BackgroundColor.All;
             if (isNeedAnimation)
             {
                 CreateUnderLineAnimation();
@@ -731,18 +660,16 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            ItemChangeEventArgs e = new ItemChangeEventArgs
+            ItemChangedEventArgs e = new ItemChangedEventArgs
             {
                 PreviousIndex = curIndex,
                 CurrentIndex = item.Index
             };
             ItemChangedEvent?.Invoke(this, e);
 
-            itemList[curIndex].State = ControlStates.Normal;
-            itemList[curIndex].UpdateItemText(tabAttributes.TextAttributes);
+            itemList[curIndex].ControlState = ControlStates.Normal;
             curIndex = item.Index;
-            itemList[curIndex].State = ControlStates.Selected;
-            itemList[curIndex].UpdateItemText(tabAttributes.TextAttributes);
+            itemList[curIndex].ControlState = ControlStates.Selected;
 
             UpdateUnderLinePos();
         }
@@ -763,7 +690,7 @@ namespace Tizen.NUI.Components
             return true;
         }
 
-        internal class TabItem : Control
+        internal class TabItem : View
         {
             public TabItem() : base()
             {
@@ -780,6 +707,12 @@ namespace Tizen.NUI.Components
                 Add(TextItem);
             }
 
+            internal int Index
+            {
+                get;
+                set;
+            }
+
             public string Text
             {
                 get
@@ -792,46 +725,10 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            internal int Index
-            {
-                get;
-                set;
-            }
-
             internal TextLabel TextItem
             {
                 get;
                 set;
-            }
-
-            protected override void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    if (TextItem != null)
-                    {
-                        Remove(TextItem);
-                        TextItem.Dispose();
-                        TextItem = null;
-                    }
-                }
-
-                base.Dispose(type);
-            }
-
-            protected override Attributes GetAttributes()
-            {
-                return null;
-            }
-
-            internal void UpdateItemText(TextAttributes attrs)
-            {
-                ApplyAttributes(TextItem, attrs);
             }
         }
 
@@ -839,16 +736,12 @@ namespace Tizen.NUI.Components
         /// TabItemData is a class to record all data which will be applied to Tab item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class TabItemData
         {
             /// <summary>
             /// Text string in tab item view.
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public string Text
             {
                 get;
@@ -857,22 +750,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// ItemChangeEventArgs is a class to record item change event arguments which will sent to user.
+        /// ItemChangedEventArgs is a class to record item change event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ItemChangeEventArgs : EventArgs
+        public class ItemChangedEventArgs : EventArgs
         {
             /// <summary> Previous selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public int PreviousIndex;
             /// <summary> Current selected index of Tab </summary>
             /// <since_tizen> 6 </since_tizen>
-            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public int CurrentIndex;
         }
     }

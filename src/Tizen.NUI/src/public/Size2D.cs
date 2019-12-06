@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
  * limitations under the License.
  *
  */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -26,19 +27,20 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
     public class Size2D : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private Size2DChangedCallback callback = null;
 
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D() : this(Interop.Vector2.new_Vector2__SWIG_0(), true)
         {
@@ -48,10 +50,18 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <param name="x">The x (or width) component.</param>
-        /// <param name="y">The y (or height) component.</param>
+        /// <param name="width">The width component.</param>
+        /// <param name="height">The height component.</param>
+        /// <remarks>
+        /// Size2D and Size are implicitly converted to each other, so these are compatible and can be replaced without any type casting. <br />
+        /// For example, the followings are possible. <br />
+        /// view.Size2D = new Size(10.0f, 10.0f, 10.0f); // be aware that here the depth value(10.0f) will be lost. <br />
+        /// view.Size = new Size2D(10, 10); // be aware that here the depth value is 0.0f by default. <br />
+        /// view.MinimumSize = new Size(10, 10, 0); <br />
+        /// Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public Size2D(int x, int y) : this(Interop.Vector2.new_Vector2__SWIG_1((float)x, (float)y), true)
+        public Size2D(int width, int height) : this(Interop.Vector2.new_Vector2__SWIG_1((float)width, (float)height), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -207,6 +217,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicit type cast operator, Size to Size2D
+        /// </summary>
+        /// <param name="size">The object of Size type.</param>
+        /// <since_tizen> none </since_tizen>
+        /// This will be public opened in tizen_next by ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Size2D(Size size)
+        {
+            return new Size2D((int)size.Width, (int)size.Height);
+        }
+
+
+        /// <summary>
         /// The array subscript operator.
         /// </summary>
         /// <param name="index">The subscript index.</param>
@@ -297,37 +320,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector2.delete_Vector2(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Vector2.delete_Vector2(swigCPtr);
         }
 
         private Size2D Add(Size2D rhs)

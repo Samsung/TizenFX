@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,6 @@ namespace Tizen.NUI
 {
     internal sealed class ViewWrapperImpl : ViewImpl
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnStageConnectionDelegate(int depth);
         /// <since_tizen> 3 </since_tizen>
@@ -140,7 +139,6 @@ namespace Tizen.NUI
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ViewWrapperImpl.ViewWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapperImpl obj)
@@ -148,27 +146,8 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
         }
 
         public ViewWrapperImpl(CustomViewBehaviour behaviourFlags) : this(Interop.ViewWrapperImpl.new_ViewWrapperImpl((int)behaviourFlags), true)
@@ -247,11 +226,7 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = Interop.ViewWrapperImpl.ViewWrapperImpl_GetVisual(swigCPtr, index);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            VisualBase ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as VisualBase;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            VisualBase ret = this.GetInstanceSafely<VisualBase>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -347,7 +322,10 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnChildAdd(view);
+                if (null != OnChildAdd)
+                {
+                    OnChildAdd(view);
+                }
             }
         }
 
@@ -435,7 +413,14 @@ namespace Tizen.NUI
 
         private bool DirectorRelayoutDependentOnChildren__SWIG_0(int dimension)
         {
-            return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            if (null == RelayoutDependentOnChildrenDimension)
+            {
+                return false;
+            }
+            else
+            {
+                return RelayoutDependentOnChildrenDimension((DimensionType)dimension);
+            }
         }
 
         private bool DirectorRelayoutDependentOnChildren__SWIG_1()
@@ -462,7 +447,10 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
             if (view)
             {
-                OnControlChildAdd(view);
+                if (null != OnControlChildAdd)
+                {
+                    OnControlChildAdd(view);
+                }
             }
         }
 

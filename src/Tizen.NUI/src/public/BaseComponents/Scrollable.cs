@@ -199,7 +199,6 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private DaliEventHandler<object, StartedEventArgs> _scrollableStartedEventHandler;
         private StartedCallbackDelegate _scrollableStartedCallbackDelegate;
         private DaliEventHandler<object, UpdatedEventArgs> _scrollableUpdatedEventHandler;
@@ -218,7 +217,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal Scrollable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Scrollable.Scrollable_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -506,11 +504,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Scrollable obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal ScrollableSignal ScrollStartedSignal()
         {
             ScrollableSignal ret = new ScrollableSignal(Interop.Scrollable.Scrollable_ScrollStartedSignal(swigCPtr), false);
@@ -552,17 +545,14 @@ namespace Tizen.NUI.BaseComponents
                 DisConnectFromSignals();
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Scrollable.delete_Scrollable(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Scrollable.delete_Scrollable(swigCPtr);
         }
 
         private void DisConnectFromSignals()

@@ -16,7 +16,6 @@
  */
 
 using global::System;
-using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 #if (NUI_DEBUG_ON)
 using tlog = Tizen.Log;
@@ -25,40 +24,38 @@ using tlog = Tizen.Log;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// AnimatedVectorImageView renders an animated vector image
+    /// AnimatedVectorImageView is a class for displaying a vector resource.
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AnimatedVectorImageView : ImageView
+    public class AnimatedVectorImageView : LottieAnimationView
     {
         #region Constructor, Distructor, Dispose
         /// <summary>
-        /// AnimatedVectorImageView
+        /// Construct VectorAnimationView.
         /// </summary>
-        /// <param name="scale">The factor of scaling image, default : 1.0f</param>
-        /// <param name="shown">false : Not displayed (hidden), true : displayed (shown), default : true</param>
-        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AnimatedVectorImageView(float scale = 1.0f, bool shown = true) : base()
+        public AnimatedVectorImageView() : base()
         {
-            tlog.Fatal(tag, $"  <<< AnimatedVectorImageView() constructor GetId={GetId()} >>>");
-            currentStates.url = "";
-            currentStates.frame = -1;
-            currentStates.loopCount = 0;
-            currentStates.loopMode = LoopingModeType.Restart;
-            currentStates.stopEndAction = StopBehaviorType.CurrentFrame;
-            currentStates.framePlayRangeMin = -1;
-            currentStates.framePlayRangeMax = -1;
-            currentStates.changed = false;
-            currentStates.totalFrame = -1;
-            currentStates.scale = scale;
-            SetVisible(shown);
+            tlog.Fatal(tag,  $"[VAV START[ constuctor objId={GetId()} ]VAV END]");
         }
 
         /// <summary>
-        /// Dispose(DisposeTypes type)
+        /// Construct VectorAnimationView.
         /// </summary>
-        /// <param name="type"></param>
+        /// <param name="scale">Set scaling factor for Vector Animation, while creating.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimatedVectorImageView(float scale) : base(scale)
+        {
+            tlog.Fatal(tag,  $"[VAV START[ constuctor scale={scale}) objId={GetId()} ]VAV END]");
+        }
+
+        /// <summary>
+        /// You can override it to clean-up your own resources
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -67,321 +64,190 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-
-            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Dispose(type={type})!");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] type={type})");
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            //disconnect event signal
-            if (finishedEventHandler != null && visualEventSignalCallback != null)
-            {
-                VisualEventSignal().Disconnect(visualEventSignalCallback);
-                finishedEventHandler = null;
-                tlog.Fatal(tag, $"disconnect event signal");
-            }
-
             base.Dispose(type);
-            tlog.Fatal(tag, $"  [{GetId()}]AnimatedVectorImageView.Dispose(type={type}) >>>");
+
+            tlog.Fatal(tag,  $"]VAV END]");
         }
         #endregion Constructor, Distructor, Dispose
 
 
         #region Property
         /// <summary>
-        /// URL
+        /// Set Resource URL
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string URL
+        public string ResourceURL
         {
             set
             {
-                string ret = (value == null ? "" : value);
-                currentStates.url = ret;
-                currentStates.changed = true;
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] ResourceURL SET");
 
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.URL SET url={currentStates.url} >>>");
-
-                PropertyMap map = new PropertyMap();
-                map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
-                    .Add(ImageVisualProperty.URL, new PropertyValue(currentStates.url))
-                    .Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount))
-                    .Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction))
-                    .Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                Image = map;
-            }
-            get
-            {
-                string ret = currentStates.url;
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.URL GET");
-
-                PropertyMap map = Image;
-                if (map != null)
+                if (value == mResourceURL)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.URL);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            tlog.Fatal(tag, $"  gotten url={ret} >>>");
-                            return ret;
-                        }
-                    }
+                    tlog.Fatal(tag,  $"set same URL! ");
+                    return;
                 }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get URL from dali >>>");
-                return ret;
+                mResourceURL = (value == null) ? "" : value;
+                URL = mResourceURL;
+                mIsMinMaxSet = false;
+                mTotalFrameNum = base.TotalFrame;
+                tlog.Fatal(tag,  $" [{GetId()}] mResourceURL={mResourceURL}) ]VAV END]");
             }
+            get => mResourceURL;
         }
 
         /// <summary>
-        /// The playing state
+        /// RepeatCount of animation.
+        /// The repeat count is 0 by default.
+        /// If the RepeatCount is 0, the animation is never repeated.
+        /// If the RepeatCount is greater than 0, the repeat mode will be taken into account.
+        /// If RepeatCount is -1, animation is infinite loops.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PlayStateType PlayState
-        {
-            get
-            {
-                var ret = -1;
-                PropertyMap map = Image;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find((int)DevelVisual.Type.AnimatedVectorImage);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            return (PlayStateType)ret;
-                        }
-                    }
-                }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get PlayState from dali");
-                return (PlayStateType)ret;
-            }
-        }
-
-        /// <summary>
-        /// The number of total frame
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TotalFrameNumber
-        {
-            get
-            {
-                int ret = -1;
-                PropertyMap map = Image;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            //tlog.Fatal(tag, $"TotalFrameNumber get! ret={ret}");
-                            currentStates.totalFrame = ret;
-                            return ret;
-                        }
-                    }
-                }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get TotalFrameNumber from dali");
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// CurrentFrameNumber
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int CurrentFrameNumber
+        public int RepeatCount
         {
             set
             {
-                currentStates.frame = value;
-                tlog.Fatal(tag, $"   <<< [{GetId()}]AnimatedVectorImageView.CurrentFrameNumber SET frame={currentStates.frame} >>>");
-                DoAction(vectorImageVisualIndex, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] RepeatCount SET");
+
+                mRepeatCount = (value < -1) ? -1 : value;
+                LoopCount = (mRepeatCount < 0) ? mRepeatCount : mRepeatCount + 1;
+
+                tlog.Fatal(tag,  $"[{GetId()}] mRepeatCount={mRepeatCount} ]VAV END]");
             }
-            get
-            {
-                int ret = 0;
-                PropertyMap map = Image;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            //tlog.Fatal(tag, $"CurrentFrameNumber get! val={ret}");
-                            return ret;
-                        }
-                    }
-                }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get CurrentFrameNumber from dali!! ret={ret}");
-                return ret;
-            }
+            get => mRepeatCount;
         }
 
         /// <summary>
-        /// Loop Mode of animation.
+        /// TotalFrame of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public LoopingModeType LoopMode
+        public new int TotalFrame
         {
-            set
-            {
-                currentStates.loopMode = (LoopingModeType)value;
-                currentStates.changed = true;
-
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.LoopMode SET loopMode={currentStates.loopMode} >>>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            }
-            get
-            {
-                //tlog.Fatal(tag, $"LoopMode get!");
-                PropertyMap map = base.Image;
-                var ret = 0;
-                if (map != null)
-                {
-                    PropertyValue val = map.Find(ImageVisualProperty.LoopingMode);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            //tlog.Fatal(tag, $"gotten LoopMode={ret}");
-                            if (ret != (int)currentStates.loopMode && ret > 0)
-                            {
-                                tlog.Fatal(tag, $" [ERROR][{GetId()}](AnimatedVectorImageView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
-                            }
-                            currentStates.loopMode = (LoopingModeType)ret;
-                            return (LoopingModeType)ret;
-                        }
-                    }
-                }
-                tlog.Error(tag, $"  [ERROR][{GetId()}](AnimatedVectorImageView) Fail to get loopMode from dali");
-                return currentStates.loopMode;
-            }
+            get => mTotalFrameNum;
         }
 
         /// <summary>
-        /// LoopCount
+        /// CurrentFrame of animation.
         /// </summary>
+        /// <returns> Returns user set value for the current frame. Cannot provide actual playing current frame. </returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int LoopCount
+        public new int CurrentFrame
         {
             set
             {
-                currentStates.changed = true;
-                currentStates.loopCount = value;
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.LoopCount SET currentStates.loopCount={currentStates.loopCount} >>>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            }
-            get
-            {
-                //tlog.Fatal(tag, $"LoopCount get!");
-                PropertyMap map = base.Image;
-                var ret = 0;
-                if (map != null)
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] CurrentFrame SET");
+
+                if (mResourceURL == null || mResourceURL == String.Empty)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.LoopCount);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            //tlog.Fatal(tag, $"gotten loop count={ret}");
-                            if (ret != currentStates.loopCount && ret > 0)
-                            {
-                                tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}");
-                            }
-                            currentStates.loopCount = ret;
-                            return currentStates.loopCount;
-                        }
-                    }
+                    throw new InvalidOperationException("Resource Url not yet Set");
                 }
-                tlog.Error(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get LoopCount from dali  currentStates.loopCount={currentStates.loopCount}");
-                return currentStates.loopCount;
+
+                if (value < 0)
+                {
+                    value = 0;
+                }
+                else if (value >= mTotalFrameNum)
+                {
+                    value = mTotalFrameNum - 1;
+                }
+
+                mCurrentFrame = value;
+                AnimationState = AnimationStates.Paused;
+
+                SetMinMaxFrame(0, mTotalFrameNum - 1);
+                base.CurrentFrame = mCurrentFrame;
+
+                tlog.Fatal(tag,  $" [{GetId()}] mCurrentFrame={mCurrentFrame}) ]VAV END]");
             }
+            get => mCurrentFrame;
         }
 
         /// <summary>
-        /// Stop Behavior (Stop End Action)
+        /// RepeatMode of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public StopBehaviorType StopBehavior
+        public RepeatModes RepeatMode
         {
             set
             {
-                currentStates.stopEndAction = (StopBehaviorType)value;
-                currentStates.changed = true;
+                tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] RepeatMode SET");
+                mRepeatMode = value;
 
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.StopBehavior SET val={currentStates.stopEndAction} >>>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            }
-            get
-            {
-                //tlog.Fatal(tag, $"StopBehavior get!");
-                PropertyMap map = base.Image;
-                var ret = 0;
-                if (map != null)
+                switch (mRepeatMode)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.StopBehavior);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            //tlog.Fatal(tag, $"gotten StopBehavior={ret}");
-                            if (ret != (int)currentStates.stopEndAction)
-                            {
-                                tlog.Fatal(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}");
-                            }
-                            currentStates.stopEndAction = (StopBehaviorType)ret;
-                            return (StopBehaviorType)ret;
-                        }
-                    }
+                    case RepeatModes.Restart:
+                        LoopingMode = LoopingModeType.Restart;
+                        break;
+                    case RepeatModes.Reverse:
+                        LoopingMode = LoopingModeType.AutoReverse;
+                        break;
+                    default:
+                        LoopingMode = LoopingModeType.Restart;
+                        break;
                 }
-                tlog.Error(tag, $"[ERROR][{GetId()}](AnimatedVectorImageView) Fail to get StopBehavior from dali");
-                return currentStates.stopEndAction;
+
+                tlog.Fatal(tag,  $" [{GetId()}] mRepeatMode={mRepeatMode}) ]VAV END]");
             }
+            get => mRepeatMode;
+        }
+
+        /// <summary>
+        /// Get state of animation.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimationStates AnimationState
+        {
+            private set;
+            get;
         }
         #endregion Property
 
 
         #region Method
         /// <summary>
-        /// SetPlayRange(int startFrame, int endFrame)
+        /// Set minimum frame and maximum frame
         /// </summary>
-        /// <param name="startFrame"></param>
-        /// <param name="endFrame"></param>
+        /// <param name="minFrame">minimum frame.</param>
+        /// <param name="maxFrame">maximum frame.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetPlayRange(int startFrame, int endFrame)
+        public void SetMinAndMaxFrame(int minFrame, int maxFrame)
         {
-            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.SetPlayRange({startFrame}, {endFrame})");
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] SetMinAndMaxFrame({minFrame}, {maxFrame})");
 
-            currentStates.changed = true;
-            currentStates.framePlayRangeMin = startFrame;
-            currentStates.framePlayRangeMax = endFrame;
+            mMinFrame = (minFrame) > 0 ? minFrame : 0;
+            mMaxFrame = (maxFrame) > 0 ? maxFrame : 0;
+            mIsMinMaxSet = true;
 
-            PropertyArray array = new PropertyArray();
-            array.PushBack(new PropertyValue(currentStates.framePlayRangeMin));
-            array.PushBack(new PropertyValue(currentStates.framePlayRangeMax));
+            if (mMinFrame >= mTotalFrameNum)
+            {
+                mMinFrame = mTotalFrameNum - 1;
+            }
 
-            PropertyMap map = new PropertyMap();
-            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
-            tlog.Fatal(tag, $"  [{GetId()}](AnimatedVectorImageView) currentStates=({currentStates.framePlayRangeMin}, {currentStates.framePlayRangeMax}) >>>");
+            if (mMaxFrame >= mTotalFrameNum)
+            {
+                mMaxFrame = mTotalFrameNum - 1;
+            }
+
+            if (mMinFrame > mMaxFrame)
+            {
+                return;
+            }
+
+            tlog.Fatal(tag,  $" [{GetId()}] mMinFrame:{mMinFrame}, mMaxFrame:{mMaxFrame}) ]VAV END]");
         }
 
         /// <summary>
@@ -391,9 +257,32 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play()
         {
-            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Play() called >>>");
-            debugPrint();
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+
+            if (mResourceURL == null || mResourceURL == String.Empty)
+            {
+                throw new InvalidOperationException("Resource Url not yet Set");
+            }
+
+            if (mIsMinMaxSet)
+            {
+                SetMinMaxFrame(mMinFrame, mMaxFrame);
+                base.CurrentFrame = mMinFrame;
+            }
+            else
+            {
+                SetMinMaxFrame(0, mTotalFrameNum - 1);
+                base.CurrentFrame = 0;
+            }
+
+            //temporal fix
+            Extents tmp = base.Margin;
+            base.Margin = tmp;
+
             base.Play();
+            AnimationState = AnimationStates.Playing;
+
+            tlog.Fatal(tag,  $" [{GetId()}] mIsMinMaxSet={mIsMinMaxSet}) ]VAV END]");
         }
 
         /// <summary>
@@ -403,287 +292,174 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Pause()
         {
-            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Pause() called >>>");
-            debugPrint();
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] AnimationState={AnimationState}, PlayState={PlayState}");
+
+            if (mResourceURL == null || mResourceURL == String.Empty)
+            {
+                throw new InvalidOperationException("Resource Url not yet Set");
+            }
+
             base.Pause();
+            AnimationState = AnimationStates.Paused;
+
+            tlog.Fatal(tag,  $" [{GetId()}] ]VAV END]");
         }
 
         /// <summary>
         /// Stop Animation.
         /// </summary>
+        /// <param name="endAction">Defines, what should be behaviour after cancel operation
+        /// End action is Cancel, Animation Stops at the Current Frame.
+        /// End action is Discard, Animation Stops at the Min Frame
+        /// End action is StopFinal, Animation Stops at the Max Frame
+        /// </param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new void Stop()
+        public void Stop(EndActions endAction = EndActions.Cancel)
         {
-            tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Stop() called >>>");
-            debugPrint();
+            tlog.Fatal(tag,  $"[VAV START[ [{GetId()}] endAction:({endAction}), PlayState={PlayState}");
+
+            if (mResourceURL == null || mResourceURL == String.Empty)
+            {
+                throw new InvalidOperationException("Resource Url not yet Set");
+            }
+
+            if (AnimationState == AnimationStates.Stopped)
+            {
+                return;
+            }
+
+            if (mEndAction != endAction)
+            {
+                mEndAction = endAction;
+                switch (endAction)
+                {
+                    case EndActions.Cancel:
+                        StopBehavior = StopBehaviorType.CurrentFrame;
+                        break;
+                    case EndActions.Discard:
+                        StopBehavior = StopBehaviorType.MinimumFrame;
+                        break;
+                    case EndActions.StopFinal:
+                        StopBehavior = StopBehaviorType.MaximumFrame;
+                        break;
+                    default:
+                        tlog.Fatal(tag,  $" [{GetId()}] no endAction : default set");
+                        break;
+                }
+            }
+            AnimationState = AnimationStates.Stopped;
+
             base.Stop();
+
+            if (endAction == EndActions.StopFinal)
+            {
+                if (mIsMinMaxSet)
+                {
+                    if (base.CurrentFrame != mMaxFrame)
+                    {
+                        tlog.Fatal(tag,  $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, mMaxFrame:{ mMaxFrame}");
+                        base.CurrentFrame = mMaxFrame;
+                        tlog.Fatal(tag,  $"set CurrentFrameNumber({base.CurrentFrame}) as mMaxFrame({mMaxFrame})!!!");
+                    }
+                }
+                else
+                {
+                    if (base.CurrentFrame != mTotalFrameNum - 1)
+                    {
+                        tlog.Fatal(tag,  $"mIsMinMaxSet:{mIsMinMaxSet}, CurrentFrameNumber:{base.CurrentFrame}, mTotalFrameNum:{ mTotalFrameNum}");
+                        base.CurrentFrame = mTotalFrameNum - 1;
+                        tlog.Fatal(tag,  $"set CurrentFrameNumber({base.CurrentFrame}) as mTotalFrameNum({mMaxFrame}) - 1 !");
+                    }
+                }
+            }
+
+            tlog.Fatal(tag,  $" [{GetId()}] ]VAV END]");
         }
         #endregion Method
 
 
         #region Event, Enum, Struct, ETC
         /// <summary>
-        /// Animation finished event
+        /// RepeatMode of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler Finished
+        public enum RepeatModes
         {
-            add
-            {
-                if (finishedEventHandler == null)
-                {
-                    tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Finished eventhandler added >>>");
-                    visualEventSignalCallback = onVisualEventSignal;
-                    VisualEventSignal().Connect(visualEventSignalCallback);
-                }
-                finishedEventHandler += value;
-            }
-            remove
-            {
-                tlog.Fatal(tag, $"  <<< [{GetId()}]AnimatedVectorImageView.Finished eventhandler removed >>>");
-                finishedEventHandler -= value;
-                if (finishedEventHandler == null && visualEventSignalCallback != null)
-                {
-                    VisualEventSignal().Disconnect(visualEventSignalCallback);
-                }
-            }
+            /// <summary>
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Restart = LoopingModeType.Restart,
+            /// <summary>
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
+            /// </summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Reverse = LoopingModeType.AutoReverse
         }
 
         /// <summary>
-        /// Loop mode
+        /// EndActions of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum LoopModes
+        public enum EndActions
         {
-            /// <summary>
-            /// Forward
-            /// </summary>
+            /// <summary> End action is Cancel, Animation Stops at the Current Frame.</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Forward = 1,
-            /// <summary>
-            /// Reverse
-            /// </summary>
+            Cancel = 0,
+            /// <summary>  End action is Discard, Animation Stops at the Min Frame</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Backward = 2
+            Discard = 1,
+            /// <summary> End action is StopFinal, Animation Stops at the Max Frame</summary>
+            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StopFinal = 2
         }
 
         /// <summary>
-        /// Enumeration for what state the vector animation is in
+        /// AnimationStates of animation.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum PlayStateType
+        public enum AnimationStates
         {
-            /// <summary>
-            /// Invalid
-            /// </summary>
+            /// <summary> The animation has stopped.</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Invalid = -1,
-            /// <summary>
-            /// Vector Animation has stopped
-            /// </summary>
+            Stopped = PlayStateType.Stopped,
+            /// <summary> The animation is playing.</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Stopped = 0,
-            /// <summary>
-            /// The vector animation is playing
-            /// </summary>
+            Playing = PlayStateType.Playing,
+            /// <summary> The animation is paused.</summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Playing = 1,
-            /// <summary>
-            /// The vector animation is paused
-            /// </summary>
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Paused = 2
-        }
-
-        /// <summary>
-        /// @brief Enumeration for what to do when the animation is stopped.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum StopBehaviorType
-        {
-            /// <summary>
-            /// When the animation is stopped, the current frame is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            CurrentFrame,
-            /// <summary>
-            /// When the animation is stopped, the first frame is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            FirstFrame,
-            /// <summary>
-            /// When the animation is stopped, the last frame is shown.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            LastFrame
-        }
-
-        /// <summary>
-        /// @brief Enumeration for what looping mode is in.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        public enum LoopingModeType
-        {
-            /// <summary>
-            /// When the animation arrives at the end in looping mode, the animation restarts from the beginning.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            Restart,
-            /// <summary>
-            /// When the animation arrives at the end in looping mode, the animation reverses direction and runs backwards again.
-            /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-            AutoReverse
+            Paused = PlayStateType.Paused
         }
         #endregion Event, Enum, Struct, ETC
 
 
         #region Internal
-        internal class VisualEventSignalArgs : EventArgs
-        {
-            public int VisualIndex
-            {
-                set;
-                get;
-            }
-            public int SignalId
-            {
-                set;
-                get;
-            }
-        }
-
-        internal event EventHandler<VisualEventSignalArgs> VisualEvent
-        {
-            add
-            {
-                if (visualEventSignalHandler == null)
-                {
-                    visualEventSignalCallback = onVisualEventSignal;
-                    VisualEventSignal().Connect(visualEventSignalCallback);
-                }
-                visualEventSignalHandler += value;
-            }
-            remove
-            {
-                visualEventSignalHandler -= value;
-                if (visualEventSignalHandler == null && VisualEventSignal().Empty() == false)
-                {
-                    VisualEventSignal().Disconnect(visualEventSignalCallback);
-                }
-            }
-        }
-
-        internal void EmitVisualEventSignal(int visualIndex, int signalId)
-        {
-            VisualEventSignal().Emit(this, visualIndex, signalId);
-        }
-
-        internal VisualEventSignal VisualEventSignal()
-        {
-            VisualEventSignal ret = new VisualEventSignal(Interop.VisualEventSignal.NewWithView(View.getCPtr(this)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
         #endregion Internal
 
 
         #region Private
-        private struct states
-        {
-            internal string url;
-            internal int frame;
-            internal int loopCount;
-            internal LoopingModeType loopMode;
-            internal StopBehaviorType stopEndAction;
-            internal int framePlayRangeMin;
-            internal int framePlayRangeMax;
-            internal bool changed;
-            internal int totalFrame;
-            internal float scale;
-        };
-        private states currentStates;
+        private string mResourceURL = null;
+        private int mRepeatCount = 0;
+        private int mTotalFrameNum = 0;
+        private RepeatModes mRepeatMode = RepeatModes.Restart;
+        private int mMinFrame = -1, mMaxFrame = -1;
+        private bool mIsMinMaxSet = false;
+        private int mCurrentFrame = -1;
+        private EndActions mEndAction = EndActions.Cancel;
 
-        private enum actionType
-        {
-            play,
-            pause,
-            stop,
-            jumpTo,
-            updateProperty,
-        };
-
-        private struct DevelVisual
-        {
-            internal enum Type
-            {
-                AnimatedGradient = Visual.Type.AnimatedImage + 1,
-                AnimatedVectorImage = Visual.Type.AnimatedImage + 2,
-            }
-        }
-
-        private const string tag = "NUITEST";
-        private const int vectorImageVisualIndex = 10000000 + 1000 + 2;
-        private event EventHandler finishedEventHandler;
-
-        private void OnFinished()
-        {
-            tlog.Fatal(tag, $"  <<<[{GetId()}] OnFinished() called >>>");
-            finishedEventHandler?.Invoke(this, null);
-        }
-
-        private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
-        {
-            OnFinished();
-
-            if (targetView != IntPtr.Zero)
-            {
-                View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
-                if (v != null)
-                {
-                    tlog.Fatal(tag, $"targetView is not null! name={v.Name}");
-                }
-                else
-                {
-                    tlog.Fatal(tag, $"target is something created from dali");
-                }
-            }
-            VisualEventSignalArgs e = new VisualEventSignalArgs();
-            e.VisualIndex = visualIndex;
-            e.SignalId = signalId;
-            visualEventSignalHandler?.Invoke(this, e);
-
-            tlog.Fatal(tag, $"  [{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}");
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
-
-        private VisualEventSignalCallbackType visualEventSignalCallback;
-        private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
-
-        private void debugPrint()
-        {
-            tlog.Fatal(tag, $"  <<< [{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, framePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
-            tlog.Fatal(tag, $"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopMode}, LoopCount={LoopCount} >>>");
-        }
+        private string tag = "NUITEST";
         #endregion Private
     }
 }
