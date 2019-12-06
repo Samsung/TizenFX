@@ -271,7 +271,10 @@ namespace Tizen.NUI.Components
                 {
                     Style.Text.PointSize = new Selector<float?>();
                 }
-                Style.Text.PointSize.All = value;
+                if (Style.Text.PointSize != null)
+                {
+                    Style.Text.PointSize.All = value;
+                }
             }
         }
 
