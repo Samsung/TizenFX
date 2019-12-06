@@ -137,6 +137,14 @@ namespace Tizen.NUI.Components
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         public Vector2 FlickDistanceMultiplierRange { get; set; } = new Vector2(0.6f, 1.1f);
 
+        /// <summary>
+        /// [Draft] Horizontal scrolling mode.
+        /// Sets the scrolling mode to horizontal.
+        /// Default is Vertical.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        public bool HorizontalScrolling { set; get; } = false;
+
         private Animation scrollAnimation;
         private float maxScrollDistance;
         private float childTargetPosition = 0.0f;
@@ -203,10 +211,11 @@ namespace Tizen.NUI.Components
             return new LayoutScroller();
         }
 
-        private void OffsetChildVertically(float displacement, bool animate)
+        private void OffsetChild(float displacement, bool animate)
         {
-            float childCurrentPosition = mScrollingChild.PositionY;
-            Debug.WriteLineIf(LayoutDebugScroller, "OffsetChildVertically childCurrentPosition:" + childCurrentPosition +
+            float childCurrentPosition = HorizontalScrolling ? mScrollingChild.PositionX: mScrollingChild.PositionY;
+
+            Debug.WriteLineIf(LayoutDebugScroller, "OffsetChild childCurrentPosition:" + childCurrentPosition +
                                                    " displacement:" + displacement,
                                                    " maxScrollDistance:" + maxScrollDistance );
 
@@ -214,7 +223,7 @@ namespace Tizen.NUI.Components
             childTargetPosition = Math.Min(0,childTargetPosition);
             childTargetPosition = Math.Max(-maxScrollDistance,childTargetPosition);
 
-            Debug.WriteLineIf( LayoutDebugScroller, "OffsetChildVertically currentYPosition:" + mScrollingChild.PositionY + "childTargetPosition:" + childTargetPosition);
+            Debug.WriteLineIf( LayoutDebugScroller, "OffsetChild currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
 
             if (animate)
             {
@@ -231,22 +240,29 @@ namespace Tizen.NUI.Components
                 {
                     scrollDistance = Math.Abs(childCurrentPosition + childTargetPosition);
                 }
-                else 
+                else
                 {
                     scrollDistance = Math.Abs(childCurrentPosition - childTargetPosition);
                 }
 
                 int duration = 325 + (int)((scrollDistance * FlickAnimationDurationModifier));
-                Debug.WriteLineIf(LayoutDebugScroller, "Scroll Animation Duration:" + duration + " Distance:"+ scrollDistance);
+                Debug.WriteLineIf(LayoutDebugScroller, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
                 scrollAnimation.Duration = duration;
                 scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
-                scrollAnimation.AnimateTo(mScrollingChild, "PositionY", childTargetPosition);
+                scrollAnimation.AnimateTo(mScrollingChild, (HorizontalScrolling) ? "PositionX" : "PositionY", childTargetPosition);
                 scrollAnimation.Play();
             }
             else
             {
                 // Set position of scrolling child without an animation
-                mScrollingChild.PositionY = childTargetPosition;
+                if (HorizontalScrolling)
+                {
+                    mScrollingChild.PositionX = childTargetPosition;
+                }
+                else
+                {
+                    mScrollingChild.PositionY = childTargetPosition;
+                }
             }
         }
 
@@ -294,8 +310,9 @@ namespace Tizen.NUI.Components
             float multiplierMaximum = FlickDistanceMultiplierRange.Y;
             
             float flickDisplacement = 0.0f;
+            float axisVelocity = (HorizontalScrolling) ? velocity.X : velocity.Y;
 
-            float speed = Math.Min(4.0f,Math.Abs(velocity.Y));
+            float speed = Math.Min(4.0f,Math.Abs(axisVelocity));
 
             Debug.WriteLineIf(LayoutDebugScroller, "LayoutScroller Candidate Flick speed:" + speed);
 
@@ -304,13 +321,13 @@ namespace Tizen.NUI.Components
                 Scrolling = true;
 
                 // Flick length is the length of the scroller.
-                float flickLength = CurrentSize.Height;
+                float flickLength = (HorizontalScrolling) ?CurrentSize.Width:CurrentSize.Height;
 
                 // Calculate multiplier by mapping speed between the multiplier minimum and maximum.
                 multiplier =( (speed - speedMinimum) / ( (speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum) ) )+ multiplierMinimum;
 
                 // flick displacement is the product of the flick length and multiplier
-                flickDisplacement = ((flickLength * multiplier) * speed) / velocity.Y;  // *speed and /velocity to perserve sign.
+                flickDisplacement = ((flickLength * multiplier) * speed) / axisVelocity;  // *speed and /velocity to perserve sign.
 
                 Debug.WriteLineIf(LayoutDebugScroller, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "] multiplier:"
                                                         + multiplier);
@@ -320,13 +337,27 @@ namespace Tizen.NUI.Components
 
         private float CalculateMaximumScrollDistance()
         {
-            int scrollingChildHeight = (int)mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue();
+            int scrollingChildLength = 0;
+            int scrollerLength = 0;
+            if (HorizontalScrolling)
+            {
+                Debug.WriteLineIf(LayoutDebugScroller, "Horizontal");
 
-            Debug.WriteLineIf(LayoutDebugScroller, "ScrollBy maxScrollDistance:" + (scrollingChildHeight - CurrentSize.Height) +
-                                                   " parent length:" + CurrentSize.Height +
-                                                   " scrolling child length:" + mScrollingChild.CurrentSize.Height);
+                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredWidth.Size.AsRoundedValue();
+                scrollerLength = CurrentSize.Width; 
+            }
+            else
+            {
+                Debug.WriteLineIf(LayoutDebugScroller, "Vertical");
+                scrollingChildLength = (int)mScrollingChild.Layout.MeasuredHeight.Size.AsRoundedValue();
+                scrollerLength = CurrentSize.Height;
+            }
 
-            return scrollingChildHeight - CurrentSize.Height;
+            Debug.WriteLineIf(LayoutDebugScroller, "ScrollBy maxScrollDistance:" + (scrollingChildLength - scrollerLength) +
+                                                   " parent length:" + scrollerLength +
+                                                   " scrolling child length:" + scrollingChildLength);
+
+            return scrollingChildLength - scrollerLength;
         }
 
         private void ScrollBy(float displacement, bool animate)
@@ -336,7 +367,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            OffsetChildVertically(displacement, animate);
+            OffsetChild(displacement, animate);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -351,7 +382,14 @@ namespace Tizen.NUI.Components
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
-                ScrollBy(e.PanGesture.Displacement.Y, false);
+                if (HorizontalScrolling)
+                {
+                    ScrollBy(e.PanGesture.Displacement.X, false);
+                }
+                else
+                {
+                    ScrollBy(e.PanGesture.Displacement.Y, false);
+                }
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
