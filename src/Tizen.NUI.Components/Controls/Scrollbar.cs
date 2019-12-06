@@ -225,22 +225,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (Style.Thumb.Size == null)
-                {
-                    Style.Thumb.Size = new Size();
-                }
-                return Style.Thumb.Size;
+                return Style?.Thumb?.Size;
             }
             set
             {
-                if (Style.Thumb.Size == null)
+                if (null != Style?.Thumb)
                 {
-                    Style.Thumb.Size = new Size();
-                }
-                if (thumbImage != null)
-                {
-                    Style.Thumb.Size.Width = value.Width;
-                    Style.Thumb.Size.Height = value.Height;
+                    Style.Thumb.Size = value;
                     RelayoutRequest();
                 }
             }
@@ -254,19 +245,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track.ResourceUrl.All;
+                return Style?.Track?.ResourceUrl?.All;
             }
             set
             {
-                if (trackImage != null)
+                if (null != Style?.Track)
                 {
-                    if (Style.Track.ResourceUrl == null)
-                    {
-                        Style.Track.ResourceUrl = new StringSelector();
-                    }
-                    Style.Track.ResourceUrl.All = value;
+                    Style.Track.ResourceUrl = value;
+                    RelayoutRequest();
                 }
-                RelayoutRequest();
             }
         }
 
@@ -278,19 +265,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track.BackgroundColor?.All;
+                return Style?.Track?.BackgroundColor?.All;
             }
             set
             {
-                if (Style.Track.BackgroundColor == null)
+                if (null != Style?.Track)
                 {
-                    Style.Track.BackgroundColor = new ColorSelector { All = value };
+                    Style.Track.BackgroundColor = value;
+                    RelayoutRequest();
                 }
-                else
-                {
-                    Style.Track.BackgroundColor.All = value;
-                }
-                RelayoutRequest();
             }
         }
 
@@ -302,19 +285,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb.BackgroundColor?.All;
+                return Style?.Thumb?.BackgroundColor?.All;
             }
             set
             {
-                if(Style.Thumb.BackgroundColor == null)
+                if(null != Style?.Thumb)
                 {
-                    Style.Thumb.BackgroundColor = new ColorSelector { All = value };
+                    Style.Thumb.BackgroundColor = value;
+                    RelayoutRequest();
                 }
-                else
-                {
-                    Style.Thumb.BackgroundColor.All = value;
-                }
-                RelayoutRequest();
             }
         }
 
