@@ -709,7 +709,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as PopupStyle;
+            PopupStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);

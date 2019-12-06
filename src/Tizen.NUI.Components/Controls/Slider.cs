@@ -814,7 +814,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SliderStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SliderStyle;
+            SliderStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SliderStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);

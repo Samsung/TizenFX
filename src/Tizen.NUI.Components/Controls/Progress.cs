@@ -443,7 +443,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ProgressStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ProgressStyle;
+            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ProgressStyle;
             if (null != tempStyle)
             {
                 Style.CopyFrom(tempStyle);

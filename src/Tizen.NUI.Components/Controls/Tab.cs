@@ -458,7 +458,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as TabStyle;
+            TabStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as TabStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);

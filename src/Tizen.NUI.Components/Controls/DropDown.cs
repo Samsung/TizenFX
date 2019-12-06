@@ -776,7 +776,7 @@ namespace Tizen.NUI.Components
             {
                 if(style != null)
                 {
-                    ViewStyle attributes = StyleManager.Instance.GetAttributes(style);
+                    ViewStyle attributes = StyleManager.Instance.GetViewStyle(style);
                     if(attributes == null)
                     {
                         throw new InvalidOperationException($"There is no style {style}");

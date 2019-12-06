@@ -949,7 +949,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ButtonStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as ButtonStyle;
+            ButtonStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);

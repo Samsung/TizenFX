@@ -114,7 +114,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SelectButtonStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SelectButtonStyle;
+            SelectButtonStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SelectButtonStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);

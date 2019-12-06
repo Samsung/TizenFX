@@ -77,8 +77,17 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(string style) : base()
+        public Control(string styleSheet) : base()
         {
+            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleSheet);
+            if (viewStyle == null)
+            {
+                throw new InvalidOperationException($"There is no style {styleSheet}");
+            }
+
+            ApplyStyle(viewStyle);
+            this.style = styleSheet;
+
             Initialize(style);
         }
 
@@ -341,17 +350,6 @@ namespace Tizen.NUI.Components
             tapGestureDetector.Detected += OnTapGestureDetected;
 
             StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
-        }
-
-        private ViewStyle GetAttributes(string style)
-        {
-            ViewStyle attributes = StyleManager.Instance.GetAttributes(style);
-            if(attributes == null)
-            {
-                throw new InvalidOperationException($"There is no style {style}");
-            }
-            this.style = style;
-            return attributes;
         }
     }
 }
