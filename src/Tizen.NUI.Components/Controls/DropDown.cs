@@ -603,7 +603,7 @@ namespace Tizen.NUI.Components
             {
                 Name = "LayoutScroller",
             };
-            layoutScroller.AddLayoutToScroll(dropDownMenuFullList);
+            layoutScroller.Add(dropDownMenuFullList);
 
             listBackgroundImage.Add(layoutScroller);
             listBackgroundImage.Hide();
