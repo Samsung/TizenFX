@@ -407,15 +407,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb?.ResourceUrl?.All;
+                return Style?.Thumb?.ResourceUrl?.All;
             }
             set
             {
-                if (Style.Thumb.ResourceUrl == null)
+                if (null != Style?.Thumb)
                 {
-                    Style.Thumb.ResourceUrl = new StringSelector(); 
+                    Style.Thumb.ResourceUrl = value; 
                 }
-                Style.Thumb.ResourceUrl.All = value;
             }
         }
 
@@ -427,11 +426,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style.Thumb?.ResourceUrl;
+                return (StringSelector)Style?.Thumb?.ResourceUrl;
             }
             set
             {
-                if (value != null)
+                if (null != value && null != Style?.Thumb)
                 {
                     Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
                 }
@@ -446,15 +445,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track?.BackgroundColor?.All;
+                return Style?.Track?.BackgroundColor?.All;
             }
             set
             {
-                if (Style.Track.BackgroundColor == null)
+                if (null != Style?.Track)
                 {
-                    Style.Track.BackgroundColor = new ColorSelector();
+                    Style.Track.BackgroundColor = value;
                 }
-                Style.Track.BackgroundColor.All = value;
             }
         }
 
@@ -466,15 +464,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Progress?.BackgroundColor?.All;
+                return Style?.Progress?.BackgroundColor?.All;
             }
             set
             {
-                if (Style.Progress.BackgroundColor == null)
+                if (null != Style?.Progress)
                 {
-                    Style.Progress.BackgroundColor = new ColorSelector();
+                    Style.Progress.BackgroundColor = value;
                 }
-                Style.Progress.BackgroundColor.All = value;
             }
         }
 
@@ -535,15 +532,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.LowIndicatorImage?.ResourceUrl?.All;
+                return Style?.LowIndicatorImage?.ResourceUrl?.All;
             }
             set
             {
-                if (Style.LowIndicatorImage.ResourceUrl == null)
+                if (null != Style?.LowIndicatorImage)
                 {
-                    Style.LowIndicatorImage.ResourceUrl = new StringSelector();
+                    Style.LowIndicatorImage.ResourceUrl = value;
                 }
-                Style.LowIndicatorImage.ResourceUrl.All = value;
             }
         }
 
@@ -555,15 +551,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.HighIndicatorImage?.ResourceUrl?.All;
+                return Style?.HighIndicatorImage?.ResourceUrl?.All;
             }
             set
             {
-                if (Style.HighIndicatorImage.ResourceUrl == null)
+                if (null != Style?.HighIndicatorImage)
                 {
-                    Style.HighIndicatorImage.ResourceUrl = new StringSelector();
+                    Style.HighIndicatorImage.ResourceUrl = value;
                 }
-                Style.HighIndicatorImage.ResourceUrl.All = value;
             }
         }
 
@@ -575,15 +570,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.LowIndicator?.Text?.All;
+                return Style?.LowIndicator?.Text?.All;
             }
             set
             {
-                if (Style.LowIndicator.Text == null)
+                if (null != Style?.LowIndicator)
                 {
-                    Style.LowIndicator.Text = new StringSelector();
+                    Style.LowIndicator.Text= value;
                 }
-                Style.LowIndicator.Text.All = value;
             }
         }
 
@@ -595,15 +589,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.HighIndicator?.Text?.All;
+                return Style?.HighIndicator?.Text?.All;
             }
             set
             {
-                if (Style.HighIndicator.Text == null)
+                if (null != Style?.HighIndicator)
                 {
-                    Style.HighIndicator.Text = new StringSelector();
+                    Style.HighIndicator.Text = value;
                 }
-                Style.HighIndicator.Text.All = value;
             }
         }
 

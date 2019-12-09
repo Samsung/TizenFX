@@ -107,12 +107,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.UseTextNaturalSize;
+                return Style?.UseTextNaturalSize ?? false;
             }
             set
             {
-                Style.UseTextNaturalSize = value;
-                RelayoutRequest();
+                if (null != Style)
+                {
+                    Style.UseTextNaturalSize = value;
+                    RelayoutRequest();
+                }
             }
         }
 
@@ -124,12 +127,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.ItemSpace;
+                return Style?.ItemSpace ?? 0;
             }
             set
             {
-                Style.ItemSpace = value;
-                RelayoutRequest();
+                if (null != Style)
+                {
+                    Style.ItemSpace = value;
+                    RelayoutRequest();
+                }
             }
         }
 
@@ -163,7 +169,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != value)
+                if(null != value && null != Style?.ItemPadding)
                 {
                     Style.ItemPadding.CopyFrom(value);
 
@@ -196,15 +202,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.UnderLine?.Size;
+                return Style?.UnderLine?.Size;
             }
             set
             {
-                if (value != null)
+                if (null != Style?.UnderLine)
                 {
-                    //CreateUnderLineAttributes();
                     Style.UnderLine.Size = value;
-                    //RelayoutRequest();
                 }
             }
         }
@@ -217,19 +221,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.UnderLine?.BackgroundColor?.All;
+                return Style?.UnderLine?.BackgroundColor?.All;
             }
             set
             {
-                if (value != null)
+                if (null != Style?.UnderLine)
                 {
-                    //CreateUnderLineAttributes();
-                    if (Style.UnderLine.BackgroundColor == null)
-                    {
-                        Style.UnderLine.BackgroundColor = new ColorSelector();
-                    }
-                    Style.UnderLine.BackgroundColor.All = value;
-                    //RelayoutRequest();
+                    Style.UnderLine.BackgroundColor = value;
                 }
             }
         }
@@ -242,17 +240,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.PointSize?.All ?? 0;
+                return Style?.Text?.PointSize?.All ?? 0;
             }
             set
             {
-                //CreateTextAttributes();
-                if (Style.Text.PointSize == null)
+                if (null != Style?.Text)
                 {
-                    Style.Text.PointSize = new FloatSelector();
+                    Style.Text.PointSize = value;
                 }
-                Style.Text.PointSize.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -264,13 +259,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.FontFamily.All;
+                return Style?.Text?.FontFamily?.All;
             }
             set
             {
-                //CreateTextAttributes();
-                Style.Text.FontFamily.All = value;
-                //RelayoutRequest();
+                if (null != Style?.Text)
+                {
+                    Style.Text.FontFamily = value;
+                }
             }
         }
 
@@ -282,17 +278,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.TextColor?.All;
+                return Style?.Text?.TextColor?.All;
             }
             set
             {
-                //CreateTextAttributes();
-                if (Style.Text.TextColor == null)
+                if (null != Style?.Text)
                 {
-                    Style.Text.TextColor = new ColorSelector();
+                    Style.Text.TextColor = value;
                 }
-                Style.Text.TextColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -304,15 +297,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (ColorSelector)Style.Text.TextColor;
+                return (ColorSelector)Style?.Text?.TextColor;
             }
             set
             {
-                if (value != null)
+                if (null != value && null != Style?.Text)
                 {
-                    //CreateTextAttributes();
                     Style.Text.TextColor = value.Clone() as ColorSelector;
-                    //RelayoutRequest();
                 }
             }
         }

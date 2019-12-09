@@ -161,15 +161,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)Style.Text?.PointSize?.All;
+                return (float)Style?.Text?.PointSize?.All;
             }
             set
             {
-                if (null == Style.Text.PointSize)
+                if (null != Style?.Text)
                 {
-                    Style.Text.PointSize = new FloatSelector();
+                    Style.Text.PointSize = value;
                 }
-                Style.Text.PointSize.All = value;
             }
         }
 
@@ -181,11 +180,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.FontFamily.All;
+                return Style?.Text?.FontFamily?.All;
             }
             set
             {
-                Style.Text.FontFamily = value;
+                if (null != Style?.Text)
+                {
+                    Style.Text.FontFamily = value;
+                }
             }
         }
 
@@ -197,17 +199,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.TextColor?.All;
+                return Style?.Text?.TextColor?.All;
             }
             set
             {
-                //CreateTextAttributes();
-                if (null == Style.Text.TextColor)
+                if (null != Style?.Text)
                 {
-                    Style.Text.TextColor = new ColorSelector();
+                    Style.Text.TextColor = value;
                 }
-                Style.Text.TextColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -219,13 +218,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
+                return Style?.Text?.HorizontalAlignment ?? HorizontalAlignment.Center;
             }
             set
             {
-                //CreateTextAttributes();
-                Style.Text.HorizontalAlignment = value;
-                //RelayoutRequest();
+                if (null != Style?.Text)
+                {
+                    Style.Text.HorizontalAlignment = value;
+                }
             }
         }
 

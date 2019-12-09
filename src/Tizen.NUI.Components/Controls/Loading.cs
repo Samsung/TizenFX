@@ -53,8 +53,10 @@ namespace Tizen.NUI.Components
             {
                 Size size = (Size)newValue;
                 instance.Style.Size = size;
-                //insbase.Size = value;
-                instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
+                if (null != instance.imageVisual)
+                {
+                    instance.imageVisual.Size = new Size2D((int)size.Width, (int)size.Height);
+                }
             }
         },
         defaultValueCreator: (bindable) =>
