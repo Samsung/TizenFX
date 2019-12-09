@@ -114,10 +114,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SelectButtonStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SelectButtonStyle;
-            if (tempAttributes != null)
+            SelectButtonStyle selectButtonStyle = StyleManager.Instance.GetAttributes(style) as SelectButtonStyle;
+            if (null != selectButtonStyle)
             {
-                Style.CopyFrom(tempAttributes);
+                Style?.CopyFrom(selectButtonStyle);
                 UpdateUIContent();
             }
         }
@@ -258,7 +258,8 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            if (selectableImage == null)
+            if (null == Style) return;
+            if (null == selectableImage)
             {
                 selectableImage = new ImageControl();
                 selectableImage.Name = "SelectableImage";
@@ -267,9 +268,13 @@ namespace Tizen.NUI.Components
                 selectableImage.RaiseToTop();
             }
 
+            if (null == Style.SelectableImage)
+            {
+                Style.SelectableImage = new ImageControlStyle();
+            }
             Style.SelectableImage.PositionUsesPivotPoint = true;
-            Style.SelectableImage.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-            Style.SelectableImage.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+            Style.SelectableImage.ParentOrigin = NUI.ParentOrigin.TopLeft;
+            Style.SelectableImage.PivotPoint = NUI.PivotPoint.TopLeft;
 
             Style.IsSelectable = true;
             LayoutDirectionChanged += SelectButtonLayoutDirectionChanged;
@@ -277,27 +282,31 @@ namespace Tizen.NUI.Components
 
         private void UpdateTextAttributes()
         {
-            if (Style.Text != null)
+            if (null == Style) return;
+            if (null == selectableImage) return;
+            if (null != Style.Text)
             {
                 Style.Text.PositionUsesPivotPoint = true;
-                Style.Text.ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft;
-                Style.Text.PivotPoint = Tizen.NUI.PivotPoint.TopLeft;
+                Style.Text.ParentOrigin = NUI.ParentOrigin.TopLeft;
+                Style.Text.PivotPoint = NUI.PivotPoint.TopLeft;
                 Style.Text.WidthResizePolicy = ResizePolicyType.Fixed;
                 Style.Text.HeightResizePolicy = ResizePolicyType.Fixed;
 
                 int iconWidth = (int)selectableImage.SizeWidth;
 
-                int textPaddingLeft = Style.Text.Padding.Start;
-                int textPaddingRight = Style.Text.Padding.End;
+                int textPaddingLeft = Style.Text.Padding?.Start ?? 0;
+                int textPaddingRight = Style.Text.Padding?.End ?? 0;
+                int imagePaddingStart = selectableImage.Padding?.Start ?? 0;
+                int imagePaddingEnd = selectableImage.Padding?.End ?? 0;
 
-                if(Style.Text.Size == null)
+                if (null == Style.Text.Size && null != Size2D)
                 {
-                    Style.Text.Size = new Size(Size2D.Width - iconWidth - selectableImage.Padding.Start - selectableImage.Padding.End - textPaddingLeft - textPaddingRight, Size2D.Height);
+                    Style.Text.Size = new Size(Size2D.Width - iconWidth - imagePaddingStart - imagePaddingEnd - textPaddingLeft - textPaddingRight, Size2D.Height);
                 }
                 
-                if(Style.Text.Position == null)
+                if(null == Style.Text.Position)
                 {
-                    Style.Text.Position = new Position(selectableImage.Padding.Start + iconWidth + selectableImage.Padding.End + textPaddingLeft, 0);
+                    Style.Text.Position = new Position(imagePaddingStart + iconWidth + imagePaddingEnd + textPaddingLeft, 0);
                 }
 
                 Style.Text.VerticalAlignment = VerticalAlignment.Center;
@@ -306,40 +315,46 @@ namespace Tizen.NUI.Components
 
         private void SelectButtonLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
         {
-            if (Style == null || Style.Text == null)
-            {
-                return;
-            }
+            if (null == Style || null == Style.Text) return;
+            if (null == selectableImage) return;
 
             UpdateTextAttributes();
 
             int iconWidth = (int)selectableImage.SizeWidth;
 
-            int textPaddingLeft = Style.Text.Padding.Start;
-            int textPaddingRight = Style.Text.Padding.End;
+            int textPaddingLeft = Style.Text.Padding?.Start ?? 0;
+            int textPaddingRight = Style.Text.Padding?.End ?? 0;
             int pos = 0;
+            int sizeWidth = (int)(Style.Text.Size?.Width ?? 0);
+            if (null == Style.Text.Position)
+            {
+                Style.Text.Position = new Position(0, 0, 0);
+            }
             if (LayoutDirection == ViewLayoutDirectionType.RTL)
             {
                 Style.Text.HorizontalAlignment = HorizontalAlignment.End;
+                
                 Style.Text.Position.X = textPaddingRight;
-				pos = (int)(Style.Text.Size.Width) + textPaddingLeft + textPaddingRight;
-                if (Style.Icon.Padding != null)
-				{
+				pos = sizeWidth + textPaddingLeft + textPaddingRight;
+                if (null != Style.Icon?.Padding)
+                {
                     pos += Style.Icon.Padding.End;
-				}
-
+                }
             }
             else if (LayoutDirection == ViewLayoutDirectionType.LTR)
             {
                 Style.Text.HorizontalAlignment = HorizontalAlignment.Begin;
                 Style.Text.Position.X = iconWidth + textPaddingLeft;
-                if (Style.Icon.Padding != null)
+                if (null != Style.Icon?.Padding)
 				{
                     Style.Text.Position.X += (Style.Icon.Padding.Start + Style.Icon.Padding.End); 
                     pos = Style.Icon.Padding.Start;
 				}
             }
-
+            if (null == selectableImage.Position2D)
+            {
+                selectableImage.Position2D = new Position2D(0, 0);
+            }
             selectableImage.Position2D.X = pos;
         }
 

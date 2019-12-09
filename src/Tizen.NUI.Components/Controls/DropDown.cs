@@ -292,10 +292,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteItem(int index)
         {
-            if(index < 0 || index >= adapter.GetItemCount())
-            {
-                return;
-            }
+            if (index < 0 || index >= adapter?.GetItemCount()) return;
+            if (null == dropDownMenuFullList) return;
 
             if (selectedItemIndex == index)
             {
@@ -306,7 +304,7 @@ namespace Tizen.NUI.Components
                 selectedItemIndex--;
             }
 
-            adapter.RemoveData(index);
+            adapter?.RemoveData(index);
 
             if(index < dropDownMenuFullList.ChildCount)
             {
@@ -681,10 +679,12 @@ namespace Tizen.NUI.Components
 
         private void UpdateSelectedItem(int index)
         {
+            if (null == adapter) return;
+            if (null == dropDownMenuFullList) return;
             if (selectedItemIndex != -1)
             {
                 DropDownDataItem data = adapter.GetData(selectedItemIndex);
-                if(data != null)
+                if(null != data)
                 {
                     data.IsSelected = false;
                 }
@@ -696,7 +696,7 @@ namespace Tizen.NUI.Components
             if (index != -1)
             {
                 DropDownDataItem data = adapter.GetData(index);
-                if (data != null)
+                if (null != data)
                 {
                     data.IsSelected = true;
                     DropDownItemView listItemView = dropDownMenuFullList?.GetChildAt((uint)index) as DropDownItemView;
@@ -831,7 +831,7 @@ namespace Tizen.NUI.Components
                 }
                 set
                 {
-                    if (null == itemDataStyle.BackgroundColor)
+                    if (null == itemDataStyle?.BackgroundColor)
                     {
                         itemDataStyle.BackgroundColor = new Selector<Color>();
                     }

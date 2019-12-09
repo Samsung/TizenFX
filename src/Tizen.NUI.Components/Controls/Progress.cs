@@ -203,17 +203,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track?.ResourceUrl?.All;
+                return Style?.Track?.ResourceUrl?.All;
             }
             set
             {
-                //CreateTrackImageAttributes();
-                if (Style.Track.ResourceUrl == null)
+                if (null != Style?.Track)
                 {
-                    Style.Track.ResourceUrl = new StringSelector();
+                    Style.Track.ResourceUrl = value;
                 }
-                Style.Track.ResourceUrl.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -225,17 +222,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Progress?.ResourceUrl?.All;
+                return Style?.Progress?.ResourceUrl?.All;
             }
             set
             {
-                //CreateProgressImageAttributes();
-                if (Style.Progress.ResourceUrl == null)
+                if (null != Style?.Progress)
                 {
-                    Style.Progress.ResourceUrl = new StringSelector();
+                    Style.Progress.ResourceUrl = value;
                 }
-                Style.Progress.ResourceUrl.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -247,17 +241,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Buffer?.ResourceUrl?.All;
+                return Style?.Buffer?.ResourceUrl?.All;
             }
             set
             {
-                //CreateBufferImageAttributes();
-                if (Style.Buffer.ResourceUrl == null)
+                if (null != Style?.Buffer)
                 {
-                    Style.Buffer.ResourceUrl = new StringSelector();
+                    Style.Buffer.ResourceUrl = value;
+                    RelayoutRequest();
                 }
-                Style.Buffer.ResourceUrl.All = value;
-                RelayoutRequest();
             }
         }
 
@@ -269,17 +261,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track?.BackgroundColor?.All;
+                return Style?.Track?.BackgroundColor?.All;
             }
             set
             {
-                //CreateTrackImageAttributes();
-                if (Style.Track.BackgroundColor == null)
+                if (null != Style?.Track)
                 {
-                    Style.Track.BackgroundColor = new ColorSelector();
+                    Style.Track.BackgroundColor = value;
                 }
-                Style.Track.BackgroundColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -291,17 +280,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Progress?.BackgroundColor?.All;
+                return Style?.Progress?.BackgroundColor?.All;
             }
             set
             {
-                //CreateProgressImageAttributes();
-                if (null == Style.Progress.BackgroundColor)
+                if (null != Style?.Progress)
                 {
-                    Style.Progress.BackgroundColor = new ColorSelector();
+                    Style.Progress.BackgroundColor = value;
                 }
-                Style.Progress.BackgroundColor.All = value;
-                //RelayoutRequest();
             }
         }
 
@@ -313,17 +299,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Buffer?.BackgroundColor?.All;
+                return Style?.Buffer?.BackgroundColor?.All;
             }
             set
             {
-                //CreateBufferImageAttributes();
-                if (null == Style.Buffer.BackgroundColor)
+                if (null != Style?.Buffer)
                 {
-                    Style.Buffer.BackgroundColor = new ColorSelector();
+                    Style.Buffer.BackgroundColor = value;
                 }
-                Style.Buffer.BackgroundColor.All = value;
-                //RelayoutRequest();
             }
         }
 
