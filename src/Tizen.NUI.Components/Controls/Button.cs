@@ -244,16 +244,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (value != null)
+                if (null != Style?.Text)
                 {
-                    if (Style.Text.TranslatableText == null)
-                    {
-                        Style.Text.TranslatableText = new Selector<string>();
-                    }
-                    if (Style.Text.TranslatableText != null)
-                    {
-                        Style.Text.TranslatableText.All = value;
-                    }
+                    Style.Text.TranslatableText = value;
                 }
             }
         }
@@ -270,13 +263,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (Style.Text.PointSize == null)
+                if (null != Style?.Text)
                 {
-                    Style.Text.PointSize = new Selector<float?>();
-                }
-                if (Style.Text.PointSize != null)
-                {
-                    Style.Text.PointSize.All = value;
+                    Style.Text.PointSize = value;
                 }
             }
         }
@@ -293,7 +282,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                Style.Text.FontFamily = value;
+                if (null != Style?.Text)
+                {
+                    Style.Text.FontFamily = value;
+                }
             }
         }
         /// <summary>
@@ -308,13 +300,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (Style.Text.TextColor == null)
+                if (null != Style?.Text)
                 {
-                    Style.Text.TextColor = new Selector<Color>();
-                }
-                if (Style.Text.TextColor != null)
-                {
-                    Style.Text.TextColor.All = value;
+                    Style.Text.TextColor = value;
                 }
             }
         }
@@ -330,7 +318,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                Style.Text.HorizontalAlignment = value;
+                if (null != Style?.Text)
+                {
+                    Style.Text.HorizontalAlignment = value;
+                }
             }
         }
         /// <summary>
@@ -345,16 +336,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (value != null)
+                if (null != Style?.Icon)
                 {
-                    if (Style.Icon.ResourceUrl == null)
-                    {
-                        Style.Icon.ResourceUrl = new Selector<string>();
-                    }
-                    if (Style.Icon.ResourceUrl != null)
-                    {
-                        Style.Icon.ResourceUrl.All = value;
-                    }
+                    Style.Icon.ResourceUrl = value;
                 }
             }
         }
@@ -371,7 +355,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                textSelector.Clone(value);
+                if (null != value && null != Style.Text)
+                {
+                    Style.Text.Text = value.Clone() as StringSelector;
+                }
             }
         }
 
@@ -388,7 +375,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                translatableTextSelector.Clone(value);
+                if (null != value && null != Style?.Text)
+                {
+                    Style.Text.TranslatableText = value.Clone() as StringSelector;
+                }
             }
         }
 
@@ -406,7 +396,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                textColorSelector.Clone(value);
+                if(null != value && null != Style.Text)
+                {
+                    Style.Text.TextColor = value.Clone() as ColorSelector;
+                }
             }
         }
 
@@ -423,7 +416,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                pointSizeSelector.Clone(value);
+                if (null != value && null != Style?.Text)
+                {
+                    Style.Text.PointSize = value.Clone() as FloatSelector;
+                }
             }
         }
 
@@ -441,7 +437,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                iconURLSelector.Clone(value);
+                if (null != value && null != Style?.Icon)
+                {
+                    Style.Icon.ResourceUrl = value.Clone() as StringSelector;
+                }
             }
         }
 
@@ -542,11 +541,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Icon.Padding;
+                return Style?.Icon?.Padding;
             }
             set
             {
-                if (null != value)
+                if (null != value && null != Style?.Icon?.Padding)
                 {
                     Style.Icon.Padding.CopyFrom(value);
                 }
@@ -561,11 +560,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text.Padding;
+                return Style?.Text?.Padding;
             }
             set
             {
-                if (null != value)
+                if (null != value && null != Style?.Text?.Padding)
                 {
                     Style.Text.Padding.CopyFrom(value);
                 }

@@ -85,20 +85,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Track?.ResourceUrl?.All;
+                return Style?.Track?.ResourceUrl?.All;
             }
             set
             {
-                if (value != null)
+                if (null != value && null != Style?.Track)
                 {
-                    if (Style.Track.ResourceUrl == null)
-                    {
-                        Style.Track.ResourceUrl = new StringSelector();
-                    }
-                    if (Style.Track.ResourceUrl != null)
-                    {
-                        Style.Track.ResourceUrl.All = value;
-                    }
+                    Style.Track.ResourceUrl = value;
                 }
             }
         }
@@ -112,11 +105,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return switchBackgroundImageURLSelector;
+                return (StringSelector)Style?.Track?.ResourceUrl;
             }
             set
             {
-                switchBackgroundImageURLSelector.Clone(value);
+                if (null != value && null != Style?.Track)
+                {
+                    Style.Track.ResourceUrl = value.Clone() as StringSelector;
+                }
             }
         }
 
@@ -128,20 +124,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb?.ResourceUrl?.All;
+                return Style?.Thumb?.ResourceUrl?.All;
             }
             set
             {
-                if (value != null)
+                if (null != value && null != Style?.Thumb)
                 {
-                    if (Style.Thumb.ResourceUrl == null)
-                    {
-                        Style.Thumb.ResourceUrl = new StringSelector();
-                    }
-                    if (Style.Thumb.ResourceUrl != null)
-                    {
-                        Style.Thumb.ResourceUrl.All = value;
-                    }
+                    Style.Thumb.ResourceUrl = value;
                 }
             }
         }
@@ -155,11 +144,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return switchHandlerImageURLSelector;
+                return (StringSelector)Style?.Thumb?.ResourceUrl;
             }
             set
             {
-                switchHandlerImageURLSelector.Clone(value);
+                if (null != value && null != Style?.Thumb)
+                {
+                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
+                }
             }
         }
 
@@ -172,11 +164,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Thumb?.Size ?? new Size(0, 0);
+                return Style?.Thumb?.Size;
             }
             set
             {
-                Style.Thumb.Size = value;
+                if (null != Style?.Thumb)
+                {
+                    Style.Thumb.Size = value;
+                }
             }
         }
 
