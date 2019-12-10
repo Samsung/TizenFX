@@ -96,6 +96,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private StringSelector switchBackgroundImageURLSelector = new StringSelector();
         /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
@@ -104,14 +105,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Track?.ResourceUrl;
+                return switchBackgroundImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value.Clone() as StringSelector;
-                }
+                switchBackgroundImageURLSelector.Clone(value);
             }
         }
 
@@ -134,6 +132,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private StringSelector switchHandlerImageURLSelector = new StringSelector();
         /// <summary>
         /// Handler image's resource url selector in Switch.
         /// </summary>
@@ -142,14 +141,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Thumb?.ResourceUrl;
+                return switchHandlerImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
-                }
+                switchHandlerImageURLSelector.Clone(value);
             }
         }
 
