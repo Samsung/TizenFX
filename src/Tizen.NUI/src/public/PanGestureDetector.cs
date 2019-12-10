@@ -60,9 +60,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr panGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr panGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pan is detected on the attached view.
@@ -73,29 +74,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_panGestureEventHandler == null)
-                    {
-                        _panGestureEventHandler += value;
-
-                        _panGestureCallbackDelegate = new DetectedCallbackDelegate(OnPanGestureDetected);
-                        this.DetectedSignal().Connect(_panGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnPanGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_panGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_panGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _panGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -541,6 +535,10 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -568,10 +566,9 @@ namespace Tizen.NUI
 
             e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
 
-            if (_panGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
-                //here we send all data to user event handlers
-                _panGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 
