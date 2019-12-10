@@ -32,7 +32,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the rotation state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value> The rotation state. </value>
         public AutoRotationState Rotaion { get; private set; } = AutoRotationState.Degree_0;
 
@@ -40,14 +39,12 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the accuracy of the auto rotation data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
         /// Returns true or false based on whether the auto rotation sensor is supported by the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
@@ -61,7 +58,6 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.AutoRotationSensor"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.auto_rotation</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
@@ -82,14 +78,12 @@ namespace Tizen.Sensor
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the auto rotation sensor data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
 
         public event EventHandler<AutoRotationSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
         /// An event handler for accuracy changed events.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged
         {
             add
@@ -133,7 +127,11 @@ namespace Tizen.Sensor
                 Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
 
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
-                Rotaion = (AutoRotationState)sensorData.values[0];
+                if (sensorData.values[0] == 0) {
+                    Rotaion = AutoRotationState.Degree_0;
+                } else {
+                    Rotaion = (AutoRotationState)sensorData.values[0];
+                }
                 Accuracy = sensorData.accuracy;
 
                 DataUpdated?.Invoke(this, new AutoRotationSensorDataUpdatedEventArgs(sensorData.values, sensorData.accuracy));

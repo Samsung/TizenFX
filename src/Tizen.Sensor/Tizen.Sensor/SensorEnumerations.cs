@@ -328,32 +328,27 @@ namespace Tizen.Sensor
     /// <summary>
     /// The auto rotation state.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AutoRotationState
     {
         /// <summary>
         /// Degree_0 sate.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Degree_0 = 0,
+        Degree_0 = 1,
 
         /// <summary>
         /// Degree_90 state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Degree_90 = 1,
+        Degree_90 = 2,
 
         /// <summary>
         /// Degree_180 state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Degree_180 = 2,
+        Degree_180 = 3,
 
         /// <summary>
         /// Degree_270 state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Degree_270 = 3
+        Degree_270 = 4
     }
 }
