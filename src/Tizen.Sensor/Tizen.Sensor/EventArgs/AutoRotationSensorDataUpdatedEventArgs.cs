@@ -34,14 +34,12 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the rotation state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value> The rotation state. </value>
         public AutoRotationState Rotaion { get; private set; } = AutoRotationState.Degree_0;
 
         /// <summary>
         /// Gets the accuracy of the auto rotation data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <value> Accuracy </value>
         public SensorDataAccuracy Accuracy { get; private set; }
     }
