@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -48,6 +49,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Timer(uint milliSec) : this(Interop.Timer.Timer_New(milliSec), true)
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
@@ -86,6 +99,19 @@ namespace Tizen.NUI
         {
             add
             {
+                if (Thread.CurrentThread.ManagedThreadId != 1)
+                {
+                    Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                    StackTrace st = new StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    }
+                }
+
+
                 if (_timerTickEventHandler == null && disposed == false)
                 {
                     TickSignal().Connect(_timerTickCallbackOfNative);
@@ -94,6 +120,18 @@ namespace Tizen.NUI
             }
             remove
             {
+                if (Thread.CurrentThread.ManagedThreadId != 1)
+                {
+                    Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                    StackTrace st = new StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    }
+                }
+
                 _timerTickEventHandler -= value;
                 if (_timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
@@ -113,10 +151,34 @@ namespace Tizen.NUI
         {
             get
             {
+                if (Thread.CurrentThread.ManagedThreadId != 1)
+                {
+                    Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                    StackTrace st = new StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    }
+                }
+
                 return GetInterval();
             }
             set
             {
+                if (Thread.CurrentThread.ManagedThreadId != 1)
+                {
+                    Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                    StackTrace st = new StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                    }
+                }
+
                 SetInterval(value);
             }
         }
@@ -128,6 +190,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
             played = true;
             Interop.Timer.Timer_Start(swigCPtr);
 
@@ -140,6 +214,19 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
             played = false;
             Interop.Timer.Timer_Stop(swigCPtr);
 
@@ -153,6 +240,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsRunning()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
             bool ret = Interop.Timer.Timer_IsRunning(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -198,6 +297,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
             NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
 
             if (this != null && _timerTickCallbackDelegate != null)
