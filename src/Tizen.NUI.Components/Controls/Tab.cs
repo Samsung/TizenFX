@@ -289,6 +289,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private ColorSelector textColorSelector = new ColorSelector();
         /// <summary>
         /// Text color selector in Tab.
         /// </summary>
@@ -297,14 +298,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (ColorSelector)Style?.Text?.TextColor;
+                return textColorSelector;
             }
             set
             {
-                if (null != value && null != Style?.Text)
-                {
-                    Style.Text.TextColor = value.Clone() as ColorSelector;
-                }
+                textColorSelector.Clone(value);
             }
         }
 

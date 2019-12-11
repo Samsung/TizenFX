@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Size?.Height ?? 0;
+            return (int)(instance.Style?.Buttons?.Size?.Height ?? 0);
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Text?.FontFamily;
+            return instance.Style?.Buttons?.Text?.FontFamily.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

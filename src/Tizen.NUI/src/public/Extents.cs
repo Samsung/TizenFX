@@ -91,7 +91,7 @@ namespace Tizen.NUI
             Interop.Extents.Extents_start_set(swigCPtr, that.Start);
             Interop.Extents.Extents_end_set(swigCPtr, that.End);
             Interop.Extents.Extents_top_set(swigCPtr, that.Top);
-            Interop.Extents.Extents_bottom_set(swigCPtr, that.End);
+            Interop.Extents.Extents_bottom_set(swigCPtr, that.Bottom);
         }
 
         /// <summary>
