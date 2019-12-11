@@ -418,6 +418,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private StringSelector thumbImageURLSelector = new StringSelector();
         /// <summary>
         /// Gets or sets the resource url selector of the thumb image object.
         /// </summary>
@@ -426,14 +427,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Thumb?.ResourceUrl;
+                return thumbImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
-                }
+                thumbImageURLSelector.Clone(value);
             }
         }
 
