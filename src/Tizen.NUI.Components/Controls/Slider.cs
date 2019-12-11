@@ -422,6 +422,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private StringSelector thumbImageURLSelector = new StringSelector();
         /// <summary>
         /// Gets or sets the resource url selector of the thumb image object.
         /// </summary>
@@ -430,16 +431,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style.Thumb?.ResourceUrl;
+                return thumbImageURLSelector;
             }
             set
             {
-                if (value != null)
-                {
-                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
-                }
+                thumbImageURLSelector.Clone(value);
             }
         }
+
 
         /// <summary>
         /// Gets or sets the color of the background track image object.

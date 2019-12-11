@@ -193,11 +193,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return Style.Text.Text?.GetValue(ControlState);
+                return Style?.Text?.Text?.GetValue(ControlState);
             }
             set
             {
-                Style.Text.Text = value;
+                if (null != Style?.Text)
+                {
+                    Style.Text.Text = value;
+                }
             }
         }
 
@@ -355,6 +358,7 @@ namespace Tizen.NUI.Components
                 }
             }
         }
+        private StringSelector textSelector = new StringSelector();
         /// <summary>
         /// Text string selector in Button.
         /// </summary>
@@ -363,16 +367,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Text?.Text;
+                return textSelector;
             }
             set
             {
-                if (value != null)
-                {
-                    Style.Text.Text = value.Clone() as StringSelector;
-                }
+                textSelector.Clone(value);
             }
         }
+
+        private StringSelector translatableTextSelector = new StringSelector();
         /// <summary>
         /// Translateable text string selector in Button.
         /// </summary>
@@ -381,17 +384,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Text?.TranslatableText;
+                return translatableTextSelector;
             }
             set
             {
-                if (value != null)
-                {
-                    Style.Text.TranslatableText = value.Clone() as StringSelector;
-                }
+                translatableTextSelector.Clone(value);
             }
         }
 
+
+        private ColorSelector textColorSelector = new ColorSelector();
         /// <summary>
         /// Text color selector in Button.
         /// </summary>
@@ -400,17 +402,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (ColorSelector)Style?.Text?.TextColor;
+                return textColorSelector;
             }
             set
             {
-                if(value != null)
-                {
-                    Style.Text.TextColor = value.Clone() as ColorSelector;
-                }
+                textColorSelector.Clone(value);
             }
         }
 
+        private FloatSelector pointSizeSelector = new FloatSelector();
         /// <summary>
         /// Text font size selector in Button.
         /// </summary>
@@ -419,17 +419,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (FloatSelector)Style?.Text?.PointSize;
+                return pointSizeSelector;
             }
             set
             {
-                if (value != null)
-                {
-                    Style.Text.PointSize = value.Clone() as FloatSelector;
-                }
+                pointSizeSelector.Clone(value);
             }
         }
 
+
+        private StringSelector iconURLSelector = new StringSelector();
         /// <summary>
         /// Icon image's resource url selector in Button.
         /// </summary>
@@ -438,16 +437,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Icon?.ResourceUrl;
+                return iconURLSelector;
             }
             set
             {
-                if (value != null)
-                {
-                    Style.Icon.ResourceUrl = value.Clone() as StringSelector;
-                }
+                iconURLSelector.Clone(value);
             }
         }
+
 
         /// <summary>
         /// Flag to decide selected state in Button.
