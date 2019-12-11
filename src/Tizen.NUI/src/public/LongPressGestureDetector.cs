@@ -33,9 +33,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _longPressGestureEventHandler;
-        private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
-
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -87,8 +84,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr longPressGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr longPressGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified long press is detected on the attached view.
@@ -99,29 +98,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener.
-                    if (_longPressGestureEventHandler == null)
-                    {
-                        _longPressGestureEventHandler += value;
-
-                        _longPressGestureCallbackDelegate = new DetectedCallbackDelegate(OnLongPressGestureDetected);
-                        this.DetectedSignal().Connect(_longPressGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnLongPressGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_longPressGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_longPressGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _longPressGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -254,10 +246,10 @@ namespace Tizen.NUI
 
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
-            if (_longPressGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _longPressGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 

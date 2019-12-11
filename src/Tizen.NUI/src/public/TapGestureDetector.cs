@@ -31,8 +31,6 @@ namespace Tizen.NUI
     public class TapGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
-        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
 
         /// <summary>
         /// Creates an initialized TapGestureDetector.
@@ -239,10 +237,10 @@ namespace Tizen.NUI
 
             e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
-            if (_tapGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _tapGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 

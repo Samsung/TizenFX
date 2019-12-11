@@ -30,9 +30,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _panGestureEventHandler;
-        private DetectedCallbackDelegate _panGestureCallbackDelegate;
-
         /// <summary>
         /// Creates an initialized PanGestureDetector.
         /// </summary>

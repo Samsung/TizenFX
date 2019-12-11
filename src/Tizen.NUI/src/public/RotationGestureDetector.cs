@@ -30,10 +30,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _rotationGestureEventHandler;
-        private DetectedCallbackDelegate _rotationGestureCallbackDelegate;
-
-
         /// <summary>
         /// Creates an initialized RotationGestureDetector.
         /// </summary>
@@ -61,8 +57,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr rotationGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr rotationGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified rotation is detected on the attached view.
@@ -73,29 +71,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_rotationGestureEventHandler == null)
-                    {
-                        _rotationGestureEventHandler += value;
-
-                        _rotationGestureCallbackDelegate = new DetectedCallbackDelegate(OnRotationGestureDetected);
-                        this.DetectedSignal().Connect(_rotationGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnRotationGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_rotationGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_rotationGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _rotationGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -158,7 +149,10 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //Because the execution order of Finalizes is non-deterministic.
-
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -186,10 +180,10 @@ namespace Tizen.NUI
 
             e.RotationGesture = Tizen.NUI.RotationGesture.GetRotationGestureFromPtr(rotationGesture);
 
-            if (_rotationGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _rotationGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 
