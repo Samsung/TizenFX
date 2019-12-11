@@ -31,8 +31,6 @@ namespace Tizen.NUI
     public class TapGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
-        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
 
         /// <summary>
         /// Creates an initialized TapGestureDetector.
@@ -61,8 +59,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr TapGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr TapGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified tap is detected on the attached view.
@@ -73,29 +73,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_tapGestureEventHandler == null)
-                    {
-                        _tapGestureEventHandler += value;
-
-                        _tapGestureCallbackDelegate = new DetectedCallbackDelegate(OnTapGestureDetected);
-                        this.DetectedSignal().Connect(_tapGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnTapGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_tapGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_tapGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _tapGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -212,6 +205,10 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -240,10 +237,10 @@ namespace Tizen.NUI
 
             e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
-            if (_tapGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _tapGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 

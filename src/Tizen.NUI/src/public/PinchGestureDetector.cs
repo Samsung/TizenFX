@@ -30,9 +30,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
-        private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
-
         /// <summary>
         /// Creates an initialized PinchGestureDetector.
         /// </summary>
@@ -60,8 +57,10 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr pinchGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pinch is detected on the attached view.
@@ -72,29 +71,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_pinchGestureEventHandler == null)
-                    {
-                        _pinchGestureEventHandler += value;
-
-                        _pinchGestureCallbackDelegate = new DetectedCallbackDelegate(OnPinchGestureDetected);
-                        this.DetectedSignal().Connect(_pinchGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnPinchGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_pinchGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_pinchGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _pinchGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -149,6 +141,10 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //Because the execution order of Finalizes is non-deterministic.
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -176,10 +172,10 @@ namespace Tizen.NUI
 
             e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
 
-            if (_pinchGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _pinchGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 
