@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Tizen.NET.API7</id>
+    <id>Tizen.NET.API8</id>
     <version>$fxversion$</version>
     <authors>Samsung Electronics</authors>
     <owners>Samsung Electronics</owners>
@@ -13,8 +13,8 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
   </metadata>
   <files>
-    <file src="pkg\Tizen.NET.API7\build\**" target="build" />
-    <file src="pkg\Tizen.NET.API7\design\*.dll" target="ref\netstandard2.0\Design" />
+    <file src="pkg\Tizen.NET.API8\build\**" target="build" />
+    <file src="pkg\Tizen.NET.API8\design\*.dll" target="ref\netstandard2.0\Design" />
     <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
     <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
   </files>

@@ -9,22 +9,26 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 | Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
-|master  | 7         | tizen70 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api7_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API7.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
-|API6    | 6         | tizen60 | [Link](https://samsung.github.io/TizenFX/API6/) | Tizen 5.5 | [![api6_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API6.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api6_nuget](https://img.shields.io/nuget/v/Tizen.NET.API6.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|master  | 8         | tizen80 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api8_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API8.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
+|API6    | 7         | tizen70 | [Link](https://samsung.github.io/TizenFX/API7/) | Tizen 5.5 M3 | [![api7_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API7.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
+|API6    | 6         | tizen60 | [Link](https://samsung.github.io/TizenFX/API6/) | Tizen 5.5 M2 | [![api6_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API6.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api6_nuget](https://img.shields.io/nuget/v/Tizen.NET.API6.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API5    | 5         | tizen50 | [Link](https://samsung.github.io/TizenFX/API5/) | Tizen 5.0       | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api5_nuget](https://img.shields.io/nuget/v/Tizen.NET.API5.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API4    | 4         | tizen40 | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### master
-The __master__ branch is the main development branch for the Tizen .NET __API Level 7__.
+The __master__ branch is the main development branch for the Tizen .NET __API Level 8__.
 
 The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build)
-* Tizen.NET 7.0.0.#####
-* Tizen.NET.API7 7.0.0.#####
-* Tizen.NET.Internals 7.0.0.#####
+* Tizen.NET 8.0.0.#####
+* Tizen.NET.API8 8.0.0.#####
+* Tizen.NET.Internals 8.0.0.#####
 
 And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submitted for the Tizen vNext (6.0) platform.
 
-### API# branches
+### API7
+The __API7__ branch is reserved for Tizen 5.5 M3 release with the Tizen .NET __API Level 7__.
+
+### API4,5,6 branches
 The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
