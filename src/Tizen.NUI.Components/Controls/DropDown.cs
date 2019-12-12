@@ -120,7 +120,8 @@ namespace Tizen.NUI.Components
         private TextLabel buttonText = null;
         private ImageView listBackgroundImage = null;
         // Component that scrolls the child added to it.
-        private LayoutScroller layoutScroller = null;
+        private Scrollable scrollable = null;
+
         // The LinearLayout container to house the items in the drop down list.
         private View dropDownMenuFullList = null;
         private DropDownListBridge adapter = new DropDownListBridge();
@@ -350,7 +351,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AttachScrollBar(ScrollBar scrollBar)
         {
-            if (layoutScroller == null)
+            if (scrollable == null)
             {
                 return;
             }
@@ -365,7 +366,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DetachScrollBar()
         {
-            if (layoutScroller == null)
+            if (scrollable == null)
             {
                 return;
             }
@@ -386,7 +387,7 @@ namespace Tizen.NUI.Components
                 CreateButton();
 
                 CreateListBackgroundImage();
-                if (null == layoutScroller) // layoutScroller used to test of ListContainer Setup invoked already
+                if (null == scrollable) // scrollable used to test of ListContainer Setup invoked already
                 {
                     SetUpListContainer();
                 }
@@ -404,11 +405,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateDropDown()
         {
-            if (null == layoutScroller || null == listBackgroundImage || null == dropDownMenuFullList) return;
+            if (null == scrollable || null == listBackgroundImage || null == dropDownMenuFullList) return;
             if (null == Style.ListBackgroundImage.Size) return;
             // Resize and position scrolling list within the drop down list container.  Can be used to position list in relation to the background image.
-            layoutScroller.Size = Style.ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
-            layoutScroller.Position2D = new Position2D(listPadding.Start, listPadding.Top);
+            scrollable.Size = Style.ListBackgroundImage.Size - new Size((listPadding.Start + listPadding.End), (listPadding.Top + listPadding.Bottom), 0);
+            scrollable.Position2D = new Position2D(listPadding.Start, listPadding.Top);
 
             int listBackgroundImageX = 0;
             int listBackgroundImageY = 0;
@@ -477,7 +478,7 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(headerText);
                 Utility.Dispose(buttonText);
                 Utility.Dispose(button);
-                Utility.Dispose(layoutScroller);
+                Utility.Dispose(scrollable);
                 Utility.Dispose(dropDownMenuFullList);
                 Utility.Dispose(listBackgroundImage);
             }
@@ -597,13 +598,13 @@ namespace Tizen.NUI.Components
                 Focusable = true,
             };
 
-            layoutScroller = new LayoutScroller()
+            scrollable = new Scrollable()
             {
-                Name = "LayoutScroller",
+                Name = "Scrollable",
             };
-            layoutScroller.Add(dropDownMenuFullList);
+            scrollable.Add(dropDownMenuFullList);
 
-            listBackgroundImage.Add(layoutScroller);
+            listBackgroundImage.Add(scrollable);
             listBackgroundImage.Hide();
         }
 
