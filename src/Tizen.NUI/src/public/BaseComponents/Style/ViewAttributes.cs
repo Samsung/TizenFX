@@ -303,15 +303,16 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.OpacitySelector.Clone((Selector<float?>)newValue);
-        }),
+            if (null == viewStyle.opacitySelector) viewStyle.opacitySelector = new Selector<float?>();
+            viewStyle.opacitySelector.Clone((Selector<float?>)newValue);
+        },
         defaultValueCreator: (bindable) =>
         {
-            var viewStyle = (ViewStyle)bindable;
-            return viewStyle.OpacitySelector;
+            var controlStyle = (ViewStyle)bindable;
+            return controlStyle.opacitySelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -654,31 +655,11 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty PaddingProperty = BindableProperty.Create("Padding", typeof(Extents), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.padding)
-            {
-                viewStyle.padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                {
-                    Extents extents = new Extents(start, end, top, bottom);
-                    viewStyle.padding.CopyFrom(extents);
-                    viewStyle.SetValue(PaddingProperty, extents);
-                }, 0, 0, 0, 0);
-            }
-            viewStyle.padding.CopyFrom((Extents)newValue);
+            viewStyle.padding = (Extents)newValue;
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-
-            if (null == viewStyle.padding)
-            {
-                viewStyle.padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                {
-                    Extents extents = new Extents(start, end, top, bottom);
-                    viewStyle.padding.CopyFrom(extents);
-                    viewStyle.SetValue(PaddingProperty, extents);
-                }, 0, 0, 0, 0);
-            }
-
             return viewStyle.padding;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -775,17 +756,6 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-
-            if (null == viewStyle.padding)
-            {
-                viewStyle.margin = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
-                {
-                    Extents extents = new Extents(start, end, top, bottom);
-                    viewStyle.margin.CopyFrom(extents);
-                    viewStyle.SetValue(MarginProperty, extents);
-                }, 0, 0, 0, 0);
-            }
-
             return viewStyle.margin;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -805,12 +775,26 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.BackgroundColorSelector.Clone((Selector<Color>)newValue);
+            if (null == viewStyle.backgroundColorSelector) viewStyle.backgroundColorSelector = new Selector<Color>();
+            viewStyle.backgroundColorSelector.Clone((Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            return viewStyle.BackgroundColorSelector;
+            return viewStyle.backgroundColorSelector;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundBorderSelectorProperty = BindableProperty.Create("BackgroundBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            if (null == viewStyle.backgroundBorderSelector) viewStyle.backgroundBorderSelector = new Selector<Rectangle>();
+            viewStyle.backgroundBorderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            return viewStyle.backgroundBorderSelector;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -833,716 +817,381 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string StyleName
         {
-            get
-            {
-                string temp = (string)GetValue(StyleNameProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(StyleNameProperty, value);
-            }
+            get => (string)GetValue(StyleNameProperty);
+            set => SetValue(StyleNameProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BackgroundImage
+        public Selector<string> BackgroundImage
         {
-            get
-            {
-                string temp = (string)GetValue(BackgroundImageProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(BackgroundImageProperty, value);
-            }
+            get => (string)GetValue(BackgroundImageProperty);
+            set => SetValue(BackgroundImageProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View.States? State
         {
-            get
-            {
-                View.States? temp = (View.States?)GetValue(StateProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(StateProperty, value);
-            }
+            get => (View.States?)GetValue(StateProperty);
+            set => SetValue(StateProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View.States? SubState
         {
-            get
-            {
-                View.States? temp = (View.States?)GetValue(SubStateProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SubStateProperty, value);
-            }
+            get => (View.States?)GetValue(SubStateProperty);
+            set => SetValue(SubStateProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Flex
         {
-            get
-            {
-                float? temp = (float?)GetValue(FlexProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(FlexProperty, value);
-            }
+            get => (float?)GetValue(FlexProperty);
+            set => SetValue(FlexProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? AlignSelf
         {
-            get
-            {
-                int? temp = (int?)GetValue(AlignSelfProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AlignSelfProperty, value);
-            }
+            get => (int?)GetValue(AlignSelfProperty);
+            set => SetValue(AlignSelfProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 FlexMargin
         {
-            get
-            {
-                Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(FlexMarginProperty, value);
-            }
+            get => (Vector4)GetValue(FlexMarginProperty);
+            set => SetValue(FlexMarginProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 CellIndex
         {
-            get
-            {
-                Vector2 temp = (Vector2)GetValue(CellIndexProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CellIndexProperty, value);
-            }
+            get => (Vector2)GetValue(CellIndexProperty);
+            set => SetValue(CellIndexProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? RowSpan
         {
-            get
-            {
-                float? temp = (float?)GetValue(RowSpanProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(RowSpanProperty, value);
-            }
+            get => (float?)GetValue(RowSpanProperty);
+            set => SetValue(RowSpanProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ColumnSpan
         {
-            get
-            {
-                float? temp = (float?)GetValue(ColumnSpanProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ColumnSpanProperty, value);
-            }
+            get => (float?)GetValue(ColumnSpanProperty);
+            set => SetValue(ColumnSpanProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignmentType? CellHorizontalAlignment
         {
-            get
-            {
-                HorizontalAlignmentType? temp = (HorizontalAlignmentType?)GetValue(CellHorizontalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CellHorizontalAlignmentProperty, value);
-            }
+            get => (HorizontalAlignmentType?)GetValue(CellHorizontalAlignmentProperty);
+            set => SetValue(CellHorizontalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalAlignmentType? CellVerticalAlignment
         {
-            get
-            {
-                VerticalAlignmentType? temp = (VerticalAlignmentType?)GetValue(CellVerticalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CellVerticalAlignmentProperty, value);
-            }
+            get => (VerticalAlignmentType?)GetValue(CellVerticalAlignmentProperty);
+            set => SetValue(CellVerticalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View LeftFocusableView
         {
-            get
-            {
-                View temp = (View)GetValue(LeftFocusableViewProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(LeftFocusableViewProperty, value);
-            }
+            get => (View)GetValue(LeftFocusableViewProperty);
+            set => SetValue(LeftFocusableViewProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View RightFocusableView
         {
-            get
-            {
-                View temp = (View)GetValue(RightFocusableViewProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(RightFocusableViewProperty, value);
-            }
+            get => (View)GetValue(RightFocusableViewProperty);
+            set => SetValue(RightFocusableViewProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View UpFocusableView
         {
-            get
-            {
-                View temp = (View)GetValue(UpFocusableViewProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(UpFocusableViewProperty, value);
-            }
+            get => (View)GetValue(UpFocusableViewProperty);
+            set => SetValue(UpFocusableViewProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View DownFocusableView
         {
-            get
-            {
-                View temp = (View)GetValue(DownFocusableViewProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(DownFocusableViewProperty, value);
-            }
+            get => (View)GetValue(DownFocusableViewProperty);
+            set => SetValue(DownFocusableViewProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Focusable
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(FocusableProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(FocusableProperty, value);
-            }
+            get => (bool?)GetValue(FocusableProperty);
+            set => SetValue(FocusableProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
         {
-            get
-            {
-                Size2D temp = (Size2D)GetValue(Size2DProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(Size2DProperty, value);
-            }
+            get => (Size2D)GetValue(Size2DProperty);
+            set => SetValue(Size2DProperty, value);
         }
 
         private Selector<float?> opacitySelector;
-        private Selector<float?> OpacitySelector
-        {
-            get
-            {
-                if (null == opacitySelector)
-                {
-                    opacitySelector = new Selector<float?>();
-                }
-                return opacitySelector;
-            }
-        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<float?> Opacity
         {
             get
             {
-                return (Selector<float?>)GetValue(OpacitySelectorProperty);
+                Selector<float?> opacity = (Selector<float?>)GetValue(OpacitySelectorProperty);
+                return (null != opacity) ? opacity : opacitySelector = new Selector<float?>();
             }
-            set
-            {
-                SetValue(OpacitySelectorProperty, value);
-            }
+            set => SetValue(OpacitySelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
         {
-            get
-            {
-                Position2D temp = (Position2D)GetValue(Position2DProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(Position2DProperty, value);
-            }
+            get => (Position2D)GetValue(Position2DProperty);
+            set => SetValue(Position2DProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? PositionUsesPivotPoint
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(PositionUsesPivotPointProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PositionUsesPivotPointProperty, value);
-            }
+            get => (bool?)GetValue(PositionUsesPivotPointProperty);
+            set => SetValue(PositionUsesPivotPointProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? SiblingOrder
         {
-            get
-            {
-                int? temp = (int?)GetValue(SiblingOrderProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SiblingOrderProperty, value);
-            }
+            get => (int?)GetValue(SiblingOrderProperty);
+            set => SetValue(SiblingOrderProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ParentOrigin
         {
-            get
-            {
-                Position temp = (Position)GetValue(ParentOriginProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ParentOriginProperty, value);
-            }
+            get => (Position)GetValue(ParentOriginProperty);
+            set => SetValue(ParentOriginProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position PivotPoint
         {
-            get
-            {
-                Position temp = (Position)GetValue(PivotPointProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PivotPointProperty, value);
-            }
+            get => (Position)GetValue(PivotPointProperty);
+            set => SetValue(PivotPointProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? SizeWidth
         {
-            get
-            {
-                float? temp = (float?)GetValue(SizeWidthProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SizeWidthProperty, value);
-            }
+            get => (float?)GetValue(SizeWidthProperty);
+            set => SetValue(SizeWidthProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? SizeHeight
         {
-            get
-            {
-                float? temp = (float?)GetValue(SizeHeightProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SizeHeightProperty, value);
-            }
+            get => (float?)GetValue(SizeHeightProperty);
+            set => SetValue(SizeHeightProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position Position
         {
-            get
-            {
-                Position temp = (Position)GetValue(PositionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PositionProperty, value);
-            }
+            get => (Position)GetValue(PositionProperty);
+            set => SetValue(PositionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionX
         {
-            get
-            {
-                float? temp = (float?)GetValue(PositionXProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PositionXProperty, value);
-            }
+            get => (float?)GetValue(PositionXProperty);
+            set => SetValue(PositionXProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionY
         {
-            get
-            {
-                float? temp = (float?)GetValue(PositionYProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PositionYProperty, value);
-            }
+            get => (float?)GetValue(PositionYProperty);
+            set => SetValue(PositionYProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionZ
         {
-            get
-            {
-                float? temp = (float?)GetValue(PositionZProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PositionZProperty, value);
-            }
+            get => (float?)GetValue(PositionZProperty);
+            set => SetValue(PositionZProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation Orientation
         {
-            get
-            {
-                Rotation temp = (Rotation)GetValue(OrientationProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(OrientationProperty, value);
-            }
+            get => (Rotation)GetValue(OrientationProperty);
+            set => SetValue(OrientationProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 Scale
         {
-            get
-            {
-                Vector3 temp = (Vector3)GetValue(ScaleProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScaleProperty, value);
-            }
+            get => (Vector3)GetValue(ScaleProperty);
+            set => SetValue(ScaleProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScaleX
         {
-            get
-            {
-                float? temp = (float?)GetValue(ScaleXProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScaleXProperty, value);
-            }
+            get => (float?)GetValue(ScaleXProperty);
+            set => SetValue(ScaleXProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScaleY
         {
-            get
-            {
-                float? temp = (float?)GetValue(ScaleYProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScaleYProperty, value);
-            }
+            get => (float?)GetValue(ScaleYProperty);
+            set => SetValue(ScaleYProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScaleZ
         {
-            get
-            {
-                float? temp = (float?)GetValue(ScaleZProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScaleZProperty, value);
-            }
+            get => (float?)GetValue(ScaleZProperty);
+            set => SetValue(ScaleZProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
-            get
-            {
-                string temp = (string)GetValue(NameProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(NameProperty, value);
-            }
+            get => (string)GetValue(NameProperty);
+            set => SetValue(NameProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Sensitive
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(SensitiveProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SensitiveProperty, value);
-            }
+            get => (bool?)GetValue(SensitiveProperty);
+            set => SetValue(SensitiveProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? LeaveRequired
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(LeaveRequiredProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(LeaveRequiredProperty, value);
-            }
+            get => (bool?)GetValue(LeaveRequiredProperty);
+            set => SetValue(LeaveRequiredProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? InheritOrientation
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(InheritOrientationProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InheritOrientationProperty, value);
-            }
+            get => (bool?)GetValue(InheritOrientationProperty);
+            set => SetValue(InheritOrientationProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? InheritScale
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(InheritScaleProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InheritScaleProperty, value);
-            }
+            get => (bool?)GetValue(InheritScaleProperty);
+            set => SetValue(InheritScaleProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DrawModeType? DrawMode
         {
-            get
-            {
-                DrawModeType? temp = (DrawModeType?)GetValue(DrawModeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(DrawModeProperty, value);
-            }
+            get => (DrawModeType?)GetValue(DrawModeProperty);
+            set => SetValue(DrawModeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 SizeModeFactor
         {
-            get
-            {
-                Vector3 temp = (Vector3)GetValue(SizeModeFactorProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SizeModeFactorProperty, value);
-            }
+            get => (Vector3)GetValue(SizeModeFactorProperty);
+            set => SetValue(SizeModeFactorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResizePolicyType? WidthResizePolicy
         {
-            get
-            {
-                ResizePolicyType? temp = (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(WidthResizePolicyProperty, value);
-            }
+            get => (ResizePolicyType?)GetValue(WidthResizePolicyProperty);
+            set => SetValue(WidthResizePolicyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ResizePolicyType? HeightResizePolicy
         {
-            get
-            {
-                ResizePolicyType? temp = (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(HeightResizePolicyProperty, value);
-            }
+            get => (ResizePolicyType?)GetValue(HeightResizePolicyProperty);
+            set => SetValue(HeightResizePolicyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SizeScalePolicyType? SizeScalePolicy
         {
-            get
-            {
-                SizeScalePolicyType? temp = (SizeScalePolicyType?)GetValue(SizeScalePolicyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SizeScalePolicyProperty, value);
-            }
+            get => (SizeScalePolicyType?)GetValue(SizeScalePolicyProperty);
+            set => SetValue(SizeScalePolicyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WidthForHeight
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(WidthForHeightProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(WidthForHeightProperty, value);
-            }
+            get => (bool?)GetValue(WidthForHeightProperty);
+            set => SetValue(WidthForHeightProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? HeightForWidth
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(HeightForWidthProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(HeightForWidthProperty, value);
-            }
+            get => (bool?)GetValue(HeightForWidthProperty);
+            set => SetValue(HeightForWidthProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1551,73 +1200,42 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Extents temp = (Extents)GetValue(PaddingProperty);
-                return temp;
+                Extents tmp = (Extents)GetValue(PaddingProperty);
+                return (null != tmp) ? tmp : padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) => { Padding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
             }
-            set
-            {
-                SetValue(PaddingProperty, value);
-            }
+            set => SetValue(PaddingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D MinimumSize
         {
-            get
-            {
-                Size2D temp = (Size2D)GetValue(MinimumSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MinimumSizeProperty, value);
-            }
+            get => (Size2D)GetValue(MinimumSizeProperty);
+            set => SetValue(MinimumSizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D MaximumSize
         {
-            get
-            {
-                Size2D temp = (Size2D)GetValue(MaximumSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MaximumSizeProperty, value);
-            }
+            get => (Size2D)GetValue(MaximumSizeProperty);
+            set => SetValue(MaximumSizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? InheritPosition
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(InheritPositionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InheritPositionProperty, value);
-            }
+            get => (bool?)GetValue(InheritPositionProperty);
+            set => SetValue(InheritPositionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ClippingModeType? ClippingMode
         {
-            get
-            {
-                ClippingModeType? temp = (ClippingModeType?)GetValue(ClippingModeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ClippingModeProperty, value);
-            }
+            get => (ClippingModeType?)GetValue(ClippingModeProperty);
+            set => SetValue(ClippingModeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1626,43 +1244,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Size temp = (Size)GetValue(SizeProperty);
-                return temp;
+                Size tmp = (Size)GetValue(SizeProperty);
+                return (null != tmp) ? tmp : size = new Size((float width, float height, float depth) => { Size = new Size(width, height, depth); }, 0, 0, 0);
             }
-            set
-            {
-                SetValue(SizeProperty, value);
-            }
+            set => SetValue(SizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? InheritLayoutDirection
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(InheritLayoutDirectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InheritLayoutDirectionProperty, value);
-            }
+            get => (bool?)GetValue(InheritLayoutDirectionProperty);
+            set => SetValue(InheritLayoutDirectionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewLayoutDirectionType? LayoutDirection
         {
-            get
-            {
-                ViewLayoutDirectionType? temp = (ViewLayoutDirectionType?)GetValue(LayoutDirectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(LayoutDirectionProperty, value);
-            }
+            get => (ViewLayoutDirectionType?)GetValue(LayoutDirectionProperty);
+            set => SetValue(LayoutDirectionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1671,42 +1272,21 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Extents temp = (Extents)GetValue(MarginProperty);
-                return temp;
+                Extents tmp = (Extents)GetValue(MarginProperty);
+                return (null != tmp) ? tmp : margin = new Extents((ushort start, ushort end, ushort top, ushort bottom) => { Margin = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
             }
-            set
-            {
-                SetValue(MarginProperty, value);
-            }
+            set => SetValue(MarginProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Weight
         {
-            get
-            {
-                float? temp = (float?)GetValue(WeightProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(WeightProperty, value);
-            }
+            get => (float?)GetValue(WeightProperty);
+            set => SetValue(WeightProperty, value);
         }
 
         private Selector<Color> backgroundColorSelector;
-        private Selector<Color> BackgroundColorSelector
-        {
-            get
-            {
-                if (null == backgroundColorSelector)
-                {
-                    backgroundColorSelector = new Selector<Color>();
-                }
-                return backgroundColorSelector;
-            }
-        }
         /// <summary>
         /// View BackgroundColor
         /// </summary>
@@ -1716,12 +1296,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Selector<Color>)GetValue(BackgroundColorSelectorProperty);
+                Selector<Color> color = (Selector<Color>)GetValue(BackgroundColorSelectorProperty);
+                return (null != color) ? color : backgroundColorSelector = new Selector<Color>();
             }
-            set
+            set => SetValue(BackgroundColorSelectorProperty, value);
+        }
+        private Selector<Rectangle> backgroundBorderSelector;
+        /// <summary>View BackgroundBorder</summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Rectangle> BackgroundBorder
+        {
+            get
             {
-                SetValue(BackgroundColorSelectorProperty, value);
+                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundBorderSelectorProperty);
+                return (null != border) ? border : backgroundBorderSelector = new Selector<Rectangle>();
             }
+            set => SetValue(BackgroundBorderSelectorProperty, value);
         }
     }
 }

@@ -102,7 +102,21 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundImage;
         });
-
+        /// <summary>BackgroundBorderProperty</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundBorderProperty = BindableProperty.Create(nameof(BackgroundBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (null != newValue)
+            {
+                view.backgroundBorder = (Rectangle)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundBorder;
+        });
         /// <summary>
         /// BackgroundProperty
         /// </summary>

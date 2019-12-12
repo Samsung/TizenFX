@@ -789,6 +789,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
+            if (null == Style.IconRelativeOrientation) Style.IconRelativeOrientation = IconOrientation.Left;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
         }
@@ -930,6 +931,11 @@ namespace Tizen.NUI.Components
                     break;
                 default:
                     break;
+            }
+            if ("" == buttonText.Text)
+            {
+                buttonIcon.ParentOrigin = NUI.ParentOrigin.Center;
+                buttonIcon.PivotPoint = NUI.PivotPoint.Center;
             }
         }
         /// <summary>
