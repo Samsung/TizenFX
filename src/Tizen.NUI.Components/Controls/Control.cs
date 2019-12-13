@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
     {
         /// <summary> BackgroundImageProperty</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(Selector<string>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("ControlBackgroundImage", typeof(Selector<string>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var control = (Control)bindable;
             if (null != newValue)
@@ -47,22 +47,22 @@ namespace Tizen.NUI.Components
         });
         /// <summary>BackgroundBorderProperty</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundBorderProperty = BindableProperty.Create(nameof(BackgroundBorder), typeof(Selector<Rectangle>), typeof(Control), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create("ControlBackgroundImageBorder", typeof(Selector<Rectangle>), typeof(Control), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var control = (Control)bindable;
             if (null != newValue)
             {
-                control.BackgroundBorderSelector.Clone((Selector<Rectangle>)newValue);
+                control.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var control = (Control)bindable;
-            return control.BackgroundBorderSelector;
+            return control.backgroundImageBorderSelector;
         });
         /// <summary> BackgroundColorProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Selector<Color>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("ControlBackgroundColor", typeof(Selector<Color>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var control = (Control)bindable;
             if (null != newValue)
@@ -147,16 +147,16 @@ namespace Tizen.NUI.Components
                 return _backgroundImageSelector;
             }
         }
-        private TriggerableSelector<Rectangle> _backgroundBorderSelector;
-        private TriggerableSelector<Rectangle> BackgroundBorderSelector
+        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
+        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
         {
             get
             {
-                if (null == _backgroundBorderSelector)
+                if (null == _backgroundImageBorderSelector)
                 {
-                    _backgroundBorderSelector = new TriggerableSelector<Rectangle>(backgroundImage, ImageView.BorderProperty);
+                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(backgroundImage, ImageView.BorderProperty);
                 }
-                return _backgroundBorderSelector;
+                return _backgroundImageBorderSelector;
             }
         }
         private TriggerableSelector<Color> _backgroundColorSelector;
@@ -183,14 +183,14 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Override view's BackgroundBorder.
+        /// Override view's BackgroundImageBorder.
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Selector<Rectangle> BackgroundBorder
+        public new Selector<Rectangle> BackgroundImageBorder
         {
-            get => (Selector<Rectangle>)GetValue(BackgroundBorderProperty);
-            set => SetValue(BackgroundBorderProperty, value);
+            get => (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
+            set => SetValue(BackgroundImageBorderProperty, value);
         }
         /// <summary>
         /// Override view's BackgroundBorder.

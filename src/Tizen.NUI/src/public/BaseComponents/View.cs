@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
-        private Rectangle backgroundBorder;
+        private Rectangle backgroundImageBorder;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
@@ -260,18 +260,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The mutually exclusive with "backgroundColor" and "background" type Map.
+        /// Get or set the border of background image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Rectangle BackgroundBorder
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle BackgroundImageBorder
         {
             get
             {
-                return (Rectangle)GetValue(BackgroundBorderProperty);
+                return (Rectangle)GetValue(BackgroundImageBorderProperty);
             }
             set
             {
-                SetValue(BackgroundBorderProperty, value);
+                SetValue(BackgroundImageBorderProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2200,7 +2201,28 @@ namespace Tizen.NUI.BaseComponents
             //If need to apply the state to all child, return true;
             return true;
         }
-
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageSelector;
+        });
+        private TriggerableSelector<string> _backgroundImageSelector;
+        private TriggerableSelector<string> backgroundImageSelector
+        {
+            get
+            {
+                if (null == _backgroundImageSelector)
+                {
+                    _backgroundImageSelector = new TriggerableSelector<string>(this, BackgroundImageProperty);
+                }
+                return _backgroundImageSelector;
+            }
+        }
         internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -2223,26 +2245,26 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
-        internal static readonly BindableProperty BackgroundBorderSelectorProperty = BindableProperty.Create("BackgroundBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.backgroundBorderSelector.Clone((Selector<Rectangle>)newValue);
+            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.backgroundBorderSelector;
+            return view.backgroundImageBorderSelector;
         });
-        private TriggerableSelector<Rectangle> _backgroundBorderSelector;
-        private TriggerableSelector<Rectangle> backgroundBorderSelector
+        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
+        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
         {
             get
             {
-                if (null == _backgroundBorderSelector)
+                if (null == _backgroundImageBorderSelector)
                 {
-                    _backgroundBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundBorderProperty);
+                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundImageBorderProperty);
                 }
-                return _backgroundBorderSelector;
+                return _backgroundImageBorderSelector;
             }
         }
         internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>

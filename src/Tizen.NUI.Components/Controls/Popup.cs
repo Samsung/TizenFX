@@ -217,9 +217,9 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (null != instance.Style?.Buttons?.BackgroundBorder)
+                if (null != instance.Style?.Buttons?.BackgroundImageBorder)
                 {
-                    instance.Style.Buttons.BackgroundBorder = (Rectangle)newValue;
+                    instance.Style.Buttons.BackgroundImageBorder = (Rectangle)newValue;
                     instance.UpdateButton();
                 }
             }
@@ -227,7 +227,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.BackgroundBorder?.All;
+            return instance.Style.Buttons?.BackgroundImageBorder?.All;
         });
 
         private TextLabel titleText;

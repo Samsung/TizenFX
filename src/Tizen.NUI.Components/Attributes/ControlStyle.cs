@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(Selector<string>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("ControlBackgroundImage", typeof(Selector<string>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var controlStyle = (ControlStyle)bindable;
             if (null == controlStyle.backgroundImage) controlStyle.backgroundImage = new Selector<string>();
@@ -44,7 +44,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create(nameof(BackgroundColor), typeof(Selector<Color>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("ControlBackgroundColor", typeof(Selector<Color>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var controlStyle = (ControlStyle)bindable;
             if (null == controlStyle.backgroundColor) controlStyle.backgroundColor = new Selector<Color>();
@@ -57,19 +57,19 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundBorderProperty = BindableProperty.Create(nameof(BackgroundBorder), typeof(Selector<Rectangle>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create("ControlBackgroundImageBorder", typeof(Selector<Rectangle>), typeof(ControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var controlStyle = (ControlStyle)bindable;
-            if (null == controlStyle.backgroundBorder) controlStyle.backgroundBorder = new Selector<Rectangle>();
-            controlStyle.backgroundBorder.Clone((Selector<Rectangle>)newValue);
+            if (null == controlStyle.backgroundImageBorder) controlStyle.backgroundImageBorder = new Selector<Rectangle>();
+            controlStyle.backgroundImageBorder.Clone((Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var controlStyle = (ControlStyle)bindable;
-            return controlStyle.backgroundBorder;
+            return controlStyle.backgroundImageBorder;
         });
         private Selector<string> backgroundImage;
-        private Selector<Rectangle> backgroundBorder;
+        private Selector<Rectangle> backgroundImageBorder;
         private Selector<Color> backgroundColor;
         /// <summary>
         /// Creates a new instance of a ControlStyle.
@@ -114,14 +114,14 @@ namespace Tizen.NUI.Components
         /// <summary>Background image border.</summary>
         /// This will be public opened in tizen__6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Selector<Rectangle> BackgroundBorder
+        public new Selector<Rectangle> BackgroundImageBorder
         {
             get
             {
-                Selector<Rectangle> boder = (Selector<Rectangle>)GetValue(BackgroundBorderProperty);
-                return (null != boder) ? boder : backgroundBorder = new Selector<Rectangle>();
+                Selector<Rectangle> boder = (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
+                return (null != boder) ? boder : backgroundImageBorder = new Selector<Rectangle>();
             }
-            set => SetValue(BackgroundBorderProperty, value);
+            set => SetValue(BackgroundImageBorderProperty, value);
         }
 
         /// <summary>Background image color. </summary>
@@ -164,10 +164,10 @@ namespace Tizen.NUI.Components
                     if (null == BackgroundImage) BackgroundImage = new Selector<string>();
                     BackgroundImage.Clone(controlStyle.BackgroundImage);
                 }
-                if (null != controlStyle.BackgroundBorder)
+                if (null != controlStyle.BackgroundImageBorder)
                 {
-                    if (null == BackgroundBorder) BackgroundBorder = new Selector<Rectangle>();
-                    BackgroundBorder.Clone(controlStyle.BackgroundBorder);
+                    if (null == BackgroundImageBorder) BackgroundImageBorder = new Selector<Rectangle>();
+                    BackgroundImageBorder.Clone(controlStyle.BackgroundImageBorder);
                 }
                 if (null != controlStyle.BackgroundColor)
                 {

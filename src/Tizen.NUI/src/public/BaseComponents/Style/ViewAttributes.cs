@@ -99,15 +99,16 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.backgroundImage = (string)newValue;
+            if (null == viewStyle.backgroundImageSelector) viewStyle.backgroundImageSelector = new Selector<string>();
+            viewStyle.backgroundImageSelector.Clone((Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            return viewStyle.backgroundImage;
+            return viewStyle.backgroundImageSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -785,16 +786,16 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundBorderSelectorProperty = BindableProperty.Create("BackgroundBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            if (null == viewStyle.backgroundBorderSelector) viewStyle.backgroundBorderSelector = new Selector<Rectangle>();
-            viewStyle.backgroundBorderSelector.Clone((Selector<Rectangle>)newValue);
+            if (null == viewStyle.backgroundImageBorderSelector) viewStyle.backgroundImageBorderSelector = new Selector<Rectangle>();
+            viewStyle.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            return viewStyle.backgroundBorderSelector;
+            return viewStyle.backgroundImageBorderSelector;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -821,12 +822,17 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(StyleNameProperty, value);
         }
 
+        private Selector<string> backgroundImageSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> BackgroundImage
         {
-            get => (string)GetValue(BackgroundImageProperty);
-            set => SetValue(BackgroundImageProperty, value);
+            get
+            {
+                Selector<string> image = (Selector<string>)GetValue(BackgroundImageSelectorProperty);
+                return (null != image) ? image : backgroundImageSelector = new Selector<string>();
+            }
+            set => SetValue(BackgroundImageSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1287,9 +1293,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private Selector<Color> backgroundColorSelector;
-        /// <summary>
-        /// View BackgroundColor
-        /// </summary>
+        /// <summary> View BackgroundColor </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> BackgroundColor
@@ -1301,18 +1305,18 @@ namespace Tizen.NUI.BaseComponents
             }
             set => SetValue(BackgroundColorSelectorProperty, value);
         }
-        private Selector<Rectangle> backgroundBorderSelector;
+        private Selector<Rectangle> backgroundImageBorderSelector;
         /// <summary>View BackgroundBorder</summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Rectangle> BackgroundBorder
+        public Selector<Rectangle> BackgroundImageBorder
         {
             get
             {
-                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundBorderSelectorProperty);
-                return (null != border) ? border : backgroundBorderSelector = new Selector<Rectangle>();
+                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundImageBorderSelectorProperty);
+                return (null != border) ? border : backgroundImageBorderSelector = new Selector<Rectangle>();
             }
-            set => SetValue(BackgroundBorderSelectorProperty, value);
+            set => SetValue(BackgroundImageBorderSelectorProperty, value);
         }
     }
 }

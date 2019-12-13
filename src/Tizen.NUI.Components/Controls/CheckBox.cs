@@ -29,6 +29,7 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox() : base() { }
+
         /// <summary>
         /// Creates a new instance of a CheckBox with style.
         /// </summary>
@@ -37,13 +38,14 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBox(string style) : base(style) { }
+
         /// <summary>
         /// Creates a new instance of a CheckBox with attributes.
         /// </summary>
         /// <param name="attrs"></param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(SelectButtonStyle attrs) : base(attrs) { }
+        public CheckBox(ButtonStyle attrs) : base(attrs) { }
 
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.
