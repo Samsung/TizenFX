@@ -135,7 +135,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Read gyroscope rotation vector sensor data synchronously.
         /// </summary>
-        protected override void ReadData()
+        protected internal override void ReadData()
         {
             Interop.SensorEventStruct sensorData;
             int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
