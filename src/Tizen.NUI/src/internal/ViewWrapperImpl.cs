@@ -404,7 +404,10 @@ namespace Tizen.NUI
 
         private void DirectorOnSetResizePolicy(int policy, int dimension)
         {
-            OnSetResizePolicy((ResizePolicyType)policy, (DimensionType)dimension);
+            if (null != OnSetResizePolicy)
+            {
+                OnSetResizePolicy((ResizePolicyType)policy, (DimensionType)dimension);
+            }
         }
 
         private global::System.IntPtr DirectorGetNaturalSize()
