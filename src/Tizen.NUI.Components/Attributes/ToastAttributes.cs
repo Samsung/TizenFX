@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ToastStyle : ControlStyle
+    public class ToastStyle : TextLabelStyle
     {
         /// <summary>
         /// Creates a new instance of a ToastStyle.
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ToastStyle(ToastStyle style) : base(style)
+        public ToastStyle(ToastStyle style) : base()
         {
             InitSubStyle();
             this.CopyFrom(style);
@@ -58,23 +58,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Background
+        public string BackgroundUrl
         {
             get;
             set;
         }
 
-        /// <summary>
-        /// Gets or sets text Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text
+        public Rectangle BackgroundBorder
         {
             get;
             set;
-        }
+        }    
 
         /// <summary>
         /// Gets or sets toast show duration time.
@@ -100,30 +95,17 @@ namespace Tizen.NUI.Components
             ToastStyle toastStyle = bindableObject as ToastStyle;
             if (toastStyle != null)
             {
-                if (toastStyle.Background!= null)
-                {
-                    Background.CopyFrom(toastStyle.Background);
-                }
-
-                if (toastStyle.Text!= null)
-                {
-                    Text.CopyFrom(toastStyle.Text);
-                }
                 Duration = toastStyle.Duration;
+                BackgroundUrl = toastStyle.BackgroundUrl;
+                BackgroundBorder = toastStyle.BackgroundBorder;          
             }
         }
 
         private void InitSubStyle()
         {
-            if (Background== null)
-            {
-                Background= new ImageViewStyle();
-            }
-       
-            if (Text== null)
-            {
-                Text= new TextLabelStyle();
-            }
+            HorizontalAlignment = Tizen.NUI.HorizontalAlignment.Center;
+            VerticalAlignment = Tizen.NUI.VerticalAlignment.Center;
+            TextColor = Color.White;
         }
     }
 }
