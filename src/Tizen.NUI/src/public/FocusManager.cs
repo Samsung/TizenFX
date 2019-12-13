@@ -782,6 +782,11 @@ namespace Tizen.NUI
 
             public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
             {
+                if(_customFocusAlgorithm == null)
+                {
+                    Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
+                    return null;
+                }
                 return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
             }
         }
