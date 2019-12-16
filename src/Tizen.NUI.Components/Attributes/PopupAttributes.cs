@@ -106,11 +106,6 @@ namespace Tizen.NUI.Components
                     Shadow.CopyFrom(popupAttributes.Shadow);
                 }
 
-                if (popupAttributes.Background != null)
-                {
-                    Background.CopyFrom(popupAttributes.Background);
-                }
-
                 if (popupAttributes.Title != null)
                 {
                     Title.CopyFrom(popupAttributes.Title);
@@ -135,15 +130,6 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                 PivotPoint = Tizen.NUI.PivotPoint.Center
-            };
-
-            Background = new ImageViewStyle()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center,
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
             };
 
             Title = new TextLabelStyle()
