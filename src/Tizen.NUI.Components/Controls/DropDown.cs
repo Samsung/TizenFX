@@ -390,9 +390,9 @@ namespace Tizen.NUI.Components
                 {
                     SetUpListContainer();
                 }
-                button.ApplyStyle(Style.Button);
-                headerText.ApplyStyle(Style.HeaderText);
-                listBackgroundImage.ApplyStyle(Style.ListBackgroundImage);
+                button.ApplyStyle(dropDownStyle.Button);
+                headerText.ApplyStyle(dropDownStyle.HeaderText);
+                listBackgroundImage.ApplyStyle(dropDownStyle.ListBackgroundImage);
                 UpdateDropDown();
             }
         }
@@ -1515,7 +1515,12 @@ namespace Tizen.NUI.Components
                     if (listItemData.CheckImageResourceUrl != null)
                     {
                         listItemView.CheckResourceUrl = listItemData.CheckImageResourceUrl;
-                        listItemView.CheckImageSize = listItemData.CheckImageSize;
+
+                        if (null != listItemData.CheckImageSize)
+                        {
+                            listItemView.CheckImageSize = listItemData.CheckImageSize;
+                        }
+
                         if (listItemView.CheckImageSize != null)
                         {
                             listItemView.CheckPosition = new Position(listItemView.Size2D.Width - listItemData.CheckImageGapToBoundary - listItemView.CheckImageSize.Width, (listItemView.Size2D.Height - listItemView.CheckImageSize.Height) / 2);
