@@ -106,6 +106,23 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read heart rate monitor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading heart rate monitor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading heart rate monitor data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            HeartRate = (int)sensorData.values[0];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
