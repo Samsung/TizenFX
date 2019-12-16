@@ -33,8 +33,6 @@ namespace Tizen.NUI.Components
         private ImageView slidedTrackImage = null;
         // the thumb image object
         private ImageView thumbImage = null;
-        // the background thumb image object
-        private ImageView bgThumbImage = null;
         // the low indicator image object
         private ImageView lowIndicatorImage = null;
         // the high indicator image object
@@ -762,7 +760,6 @@ namespace Tizen.NUI.Components
                     thumbImage.TouchEvent -= OnTouchEventForThumb;
                     Utility.Dispose(thumbImage);
                 }
-                Utility.Dispose(bgThumbImage);
                 Utility.Dispose(slidedTrackImage);
                 if (null != bgTrackImage)
                 {
@@ -805,10 +802,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SliderStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SliderStyle;
-            if (tempAttributes != null)
+            SliderStyle sliderStyle = StyleManager.Instance.GetAttributes(style) as SliderStyle;
+            if (sliderStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
+                Style?.CopyFrom(sliderStyle);
                 RelayoutRequest();
             }
         }
@@ -845,11 +842,6 @@ namespace Tizen.NUI.Components
             {
                 CreateThumbAttributes();
             }
-
-            if (null != sliderStyle.ThumbBackground)
-            {
-                CreateThumbBackgroundAttributes();
-            }
         }
 
         private void Initialize()
@@ -880,9 +872,9 @@ namespace Tizen.NUI.Components
                     bgTrackImage.Add(slidedTrackImage);
                 }
 
-                if (null != bgThumbImage)
+                if (null != thumbImage)
                 {
-                    slidedTrackImage.Add(bgThumbImage);
+                    slidedTrackImage.Add(thumbImage);
                 }
             }
 
@@ -970,15 +962,15 @@ namespace Tizen.NUI.Components
             {
                 thumbImage = new ImageView()
                 {
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
                     ParentOrigin = NUI.ParentOrigin.Center,
                     PivotPoint = NUI.PivotPoint.Center,
                     PositionUsesPivotPoint = true
                 };
-                if (bgThumbImage != null)
+                if (slidedTrackImage != null)
                 {
-                    bgThumbImage.Add(thumbImage);
+                    slidedTrackImage.Add(thumbImage);
                 }
                 thumbImage.TouchEvent += OnTouchEventForThumb;
 
@@ -993,35 +985,6 @@ namespace Tizen.NUI.Components
             }
 
             thumbImage.ApplyStyle(Style.Thumb);
-        }
-
-        private void CreateThumbBackgroundAttributes()
-        {
-            if (null == bgThumbImage)
-            {
-                bgThumbImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
-                };
-
-                if (slidedTrackImage != null)
-                {
-                    slidedTrackImage.Add(bgThumbImage);
-                }
-
-                if (null != thumbImage)
-                {
-                    bgThumbImage.Add(thumbImage);
-                }
-            }
-
-            if (null == Style.ThumbBackground)
-            {
-                Style.ThumbBackground= new ImageViewStyle();
-            }
-
-            bgThumbImage.ApplyStyle(Style.ThumbBackground);
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -1076,11 +1039,11 @@ namespace Tizen.NUI.Components
                     slidedTrackImage.PivotPoint = NUI.PivotPoint.CenterLeft;
                     slidedTrackImage.PositionUsesPivotPoint = true;
                 }
-                if (bgThumbImage != null)
+                if (thumbImage != null)
                 {
-                    bgThumbImage.ParentOrigin = NUI.ParentOrigin.CenterRight;
-                    bgThumbImage.PivotPoint = NUI.PivotPoint.Center;
-                    bgThumbImage.PositionUsesPivotPoint = true;
+                    thumbImage.ParentOrigin = NUI.ParentOrigin.CenterRight;
+                    thumbImage.PivotPoint = NUI.PivotPoint.Center;
+                    thumbImage.PositionUsesPivotPoint = true;
                 }
                 if (lowIndicatorImage != null)
                 {
@@ -1123,11 +1086,11 @@ namespace Tizen.NUI.Components
                     slidedTrackImage.PivotPoint = NUI.PivotPoint.BottomCenter;
                     slidedTrackImage.PositionUsesPivotPoint = true;
                 }
-                if (bgThumbImage != null)
+                if (thumbImage != null)
                 {
-                    bgThumbImage.ParentOrigin = NUI.ParentOrigin.TopCenter;
-                    bgThumbImage.PivotPoint = NUI.PivotPoint.Center;
-                    bgThumbImage.PositionUsesPivotPoint = true;
+                    thumbImage.ParentOrigin = NUI.ParentOrigin.TopCenter;
+                    thumbImage.PivotPoint = NUI.PivotPoint.Center;
+                    thumbImage.PositionUsesPivotPoint = true;
                 }
                 if (lowIndicatorImage != null)
                 {

@@ -74,9 +74,7 @@ namespace Tizen.NUI.BaseComponents
             return backgroundColor;
         });
 
-        /// <summary>
-        /// BackgroundImageProperty
-        /// </summary>
+        /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -102,7 +100,21 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundImage;
         });
-
+        /// <summary>BackgroundImageBorderProperty</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (null != newValue)
+            {
+                view.backgroundImageBorder = (Rectangle)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorder;
+        });
         /// <summary>
         /// BackgroundProperty
         /// </summary>

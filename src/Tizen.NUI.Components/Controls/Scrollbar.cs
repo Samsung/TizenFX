@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
                 instance.Style.Duration = (uint)newValue;
                 if (instance.scrollAniPlayer != null)
                 {
-                    instance.scrollAniPlayer.Duration = (int)instance.Style.Duration;
+                    instance.scrollAniPlayer.Duration = (int)newValue;
                 }
             }
         },

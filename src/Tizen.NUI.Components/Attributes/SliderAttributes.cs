@@ -128,11 +128,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Track
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set slided track.
@@ -140,11 +136,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Progress
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set thumb.
@@ -152,23 +144,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Thumb
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Get or set thumb background.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle ThumbBackground
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set low indicator image.
@@ -176,11 +152,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle LowIndicatorImage
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle LowIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set high indicator image.
@@ -188,11 +160,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle HighIndicatorImage
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle HighIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set low indicator text.
@@ -200,11 +168,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle LowIndicator
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle LowIndicator { get; set; }
 
         /// <summary>
         /// Get or set high indicator text.
@@ -212,11 +176,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle HighIndicator
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle HighIndicator { get; set; }
 
         /// <summary>
         /// Get or set Indicator type
@@ -226,20 +186,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IndicatorType? IndicatorType
         {
-            get
-            {
-                return (IndicatorType?)GetValue(IndicatorTypeProperty);
-            }
-            set
-            {
-                SetValue(IndicatorTypeProperty, value);
-            }
+            get => (IndicatorType?)GetValue(IndicatorTypeProperty);
+            set => SetValue(IndicatorTypeProperty, value);
         }
-        private IndicatorType? privateIndicatorType
-        {
-            get;
-            set;
-        }
+
+        private IndicatorType? privateIndicatorType { get; set; }
 
         /// <summary>
         /// Get or set track thickness
@@ -249,20 +200,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? TrackThickness
         {
-            get
-            {
-                return (uint?)GetValue(TrackThicknessProperty);
-            }
-            set
-            {
-                SetValue(TrackThicknessProperty, value);
-            }
+            get => (uint?)GetValue(TrackThicknessProperty);
+            set => SetValue(TrackThicknessProperty, value);
         }
-        private uint? privateTrackThickness
-        {
-            get;
-            set;
-        }
+        private uint? privateTrackThickness { get; set; }
 
         /// <summary>
         /// Get or set space between track and indicator
@@ -272,20 +213,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? SpaceBetweenTrackAndIndicator
         {
-            get
-            {
-                return (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
-            }
-            set
-            {
-                SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
-            }
+            get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
+            set => SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
         }
-        private uint? privateSpaceBetweenTrackAndIndicator
-        {
-            get;
-            set;
-        }
+        private uint? privateSpaceBetweenTrackAndIndicator { get; set; }
 
         /// <summary>
         /// Get or set space between track and indicator
@@ -295,14 +226,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents TrackPadding
         {
-            get
-            {
-                return (Extents)GetValue(TrackPaddingProperty);
-            }
-            set
-            {
-                SetValue(TrackPaddingProperty, value);
-            }
+            get => (Extents)GetValue(TrackPaddingProperty);
+            set => SetValue(TrackPaddingProperty, value);
         }
         private Extents _trackPadding;
         private Extents trackPadding
@@ -362,15 +287,6 @@ namespace Tizen.NUI.Components
                     Thumb.CopyFrom(sliderAttributes.Thumb);
                 }
 
-                if (sliderAttributes.ThumbBackground != null)
-                {
-                    if (null == ThumbBackground)
-                    {
-                        ThumbBackground = new ImageViewStyle();
-                    }
-                    ThumbBackground.CopyFrom(sliderAttributes.ThumbBackground);
-                }
-
                 if (sliderAttributes.LowIndicatorImage != null)
                 {
                     if (null == LowIndicatorImage)
@@ -424,7 +340,6 @@ namespace Tizen.NUI.Components
             Track = new ImageViewStyle();
             Progress = new ImageViewStyle();
             Thumb = new ImageViewStyle();
-            ThumbBackground = new ImageViewStyle();
             LowIndicatorImage = new ImageViewStyle();
             HighIndicatorImage = new ImageViewStyle();
             LowIndicator = new TextLabelStyle();
