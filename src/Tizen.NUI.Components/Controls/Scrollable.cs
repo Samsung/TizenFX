@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Scrollable : CustomView
+    public class Scrollable : Control
     {
 	    static bool LayoutDebugScrollable = false; // Debug flag
 
@@ -246,7 +246,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Scrollable() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
+        public Scrollable() : base()
         {
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
