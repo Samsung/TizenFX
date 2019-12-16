@@ -39,6 +39,13 @@ namespace Tizen.NUI.Components
                 MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
                 MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
+                Direction scrollingDirection = Direction.Vertical;
+                Scrollable scrollable = this.Owner as Scrollable;
+                if (scrollable)
+                {
+                   scrollingDirection = scrollable.ScrollingDirection;
+                }
+
                 // measure child, should be a single scrolling child
                 foreach( LayoutItem childLayout in LayoutChildren )
                 {
@@ -46,8 +53,18 @@ namespace Tizen.NUI.Components
                     {
                         // Get size of child
                         // Use an Unspecified MeasureSpecification mode so scrolling child is not restricted to it's parents size in Height (for vertical scrolling)
-                        MeasureSpecification heightMeasureSpecUnrestricted = new MeasureSpecification( heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
-                        MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpecUnrestricted );
+                        // or Width for horizontal scrolling
+                        MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification( heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+
+                        if (scrollingDirection == Direction.Vertical)
+                        {
+                            MeasureChild( childLayout, widthMeasureSpec, unrestrictedMeasureSpec );  // Height unrestricted by parent
+                        }
+                        else
+                        {
+                            MeasureChild( childLayout, unrestrictedMeasureSpec, heightMeasureSpec );  // Width unrestricted by parent
+                        }
+
                         float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
                         float childHeight = childLayout.MeasuredHeight.Size.AsDecimal();
 
