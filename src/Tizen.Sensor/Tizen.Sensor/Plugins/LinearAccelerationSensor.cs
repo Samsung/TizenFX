@@ -143,6 +143,25 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read linear acceleration sensor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading linear acceleration sensor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading linear acceleration sensor data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            X = sensorData.values[0];
+            Y = sensorData.values[1];
+            Z = sensorData.values[2];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()

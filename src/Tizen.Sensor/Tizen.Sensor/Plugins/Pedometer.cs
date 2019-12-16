@@ -156,6 +156,29 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read pedometer sensor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct pedoSensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out pedoSensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading pedometer sensor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading pedometer sensor data failed");
+            }
+
+            StepCount = (uint)pedoSensorData.values[0];
+            WalkStepCount = (uint)pedoSensorData.values[1];
+            RunStepCount = (uint)pedoSensorData.values[2];
+            MovingDistance = pedoSensorData.values[3];
+            CalorieBurned = pedoSensorData.values[4];
+            LastSpeed = pedoSensorData.values[5];
+            LastSteppingFrequency = pedoSensorData.values[6];
+            LastStepStatus = (PedometerState)pedoSensorData.values[7];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()
