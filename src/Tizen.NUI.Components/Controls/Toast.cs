@@ -76,7 +76,6 @@ namespace Tizen.NUI.Components
         private Window window = null;
 		protected TextLabel[] textLabels = null;
         private string strText = null;
-        private NPatchVisual toastBackground = null;
         private Timer timer = null;
         private readonly uint duration = 3000;
 
@@ -317,11 +316,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            toastBackground = new NPatchVisual();
-            if (toastBackground == null)
-            {
-                throw new Exception("Toast background is null.");
-            }
             SetToastBackground();
 
             this.VisibilityChanged += OnVisibilityChanged;
@@ -351,15 +345,14 @@ namespace Tizen.NUI.Components
 
         private void SetToastBackground()
         {
-            if (null != Style?.BackgroundUrl)
+            if (Style.BackgroundImage.All != null && Style.BackgroundImageBorder.All != null)
             {
-                toastBackground.URL = Style.BackgroundUrl;
+                PropertyMap propertyMap = new PropertyMap();
+                propertyMap.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
+                propertyMap.Insert(ImageVisualProperty.URL, new PropertyValue(Style.BackgroundImage.All));
+                propertyMap.Insert(ImageVisualProperty.Border, new PropertyValue(new Vector4(Style.BackgroundImageBorder.All.X, Style.BackgroundImageBorder.All.Y, Style.BackgroundImageBorder.All.Width, Style.BackgroundImageBorder.All.Height)));
+                this.Background = propertyMap;
             }
-            if (null != Style?.BackgroundBorder)
-            {
-                toastBackground.Border = Style.BackgroundBorder;
-            }
-            this.Background = toastBackground.OutputVisualMap;
         }
     }
 }

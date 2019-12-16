@@ -50,26 +50,7 @@ namespace Tizen.NUI.Components
         {
             InitSubStyle();
             this.CopyFrom(style);
-        }
-
-        /// <summary>
-        /// Gets or sets background image Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string BackgroundUrl
-        {
-            get;
-            set;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle BackgroundBorder
-        {
-            get;
-            set;
-        }    
+        } 
 
         /// <summary>
         /// Gets or sets toast show duration time.
@@ -96,8 +77,6 @@ namespace Tizen.NUI.Components
             if (toastStyle != null)
             {
                 Duration = toastStyle.Duration;
-                BackgroundUrl = toastStyle.BackgroundUrl;
-                BackgroundBorder = toastStyle.BackgroundBorder;          
             }
         }
 
