@@ -68,7 +68,8 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -94,7 +95,24 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>BackgroundImageBorderProperty</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (null != newValue)
+            {
+                view.backgroundImageBorder = (Rectangle)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorder;
+        });
+        /// <summary>
+        /// BackgroundProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create("Background", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {

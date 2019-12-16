@@ -197,9 +197,9 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (null != instance.Style?.Buttons?.Background)
+                if (null != instance.Style?.Buttons?.BackgroundImage)
                 {
-                    instance.Style.Buttons.Background.ResourceUrl = (string)newValue;
+                    instance.Style.Buttons.BackgroundImage = (string)newValue;
                     instance.UpdateButton();
                 }
             }
@@ -207,7 +207,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Background?.ResourceUrl?.All;
+            return instance.Style.Buttons?.BackgroundImage?.All;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -217,9 +217,9 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (null != instance.Style?.Buttons?.Background)
+                if (null != instance.Style?.Buttons?.BackgroundImageBorder)
                 {
-                    instance.Style.Buttons.Background.Border = (Rectangle)newValue;
+                    instance.Style.Buttons.BackgroundImageBorder = (Rectangle)newValue;
                     instance.UpdateButton();
                 }
             }
@@ -227,7 +227,7 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style.Buttons?.Background?.Border?.All;
+            return instance.Style.Buttons?.BackgroundImageBorder?.All;
         });
 
         private TextLabel titleText;
@@ -763,7 +763,7 @@ namespace Tizen.NUI.Components
                 btn.ClickEvent += ButtonClickEvent;
 
                 this.Add(btn);
-                buttonList?.Add(btn);
+                buttonList.Add(btn);
             }
 
             int pos = 0;

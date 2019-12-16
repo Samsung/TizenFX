@@ -105,14 +105,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Track?.ResourceUrl;
+                return switchBackgroundImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Track)
-                {
-                    Style.Track.ResourceUrl = value.Clone() as StringSelector;
-                }
+                switchBackgroundImageURLSelector.Clone(value);
             }
         }
 
@@ -144,17 +141,13 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (StringSelector)Style?.Thumb?.ResourceUrl;
+                return switchHandlerImageURLSelector;
             }
             set
             {
-                if (null != value && null != Style?.Thumb)
-                {
-                    Style.Thumb.ResourceUrl = value.Clone() as StringSelector;
-                }
+                switchHandlerImageURLSelector.Clone(value);
             }
         }
-
 
         /// <summary>
         /// Handler image's size in Switch.

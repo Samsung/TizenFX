@@ -30,9 +30,9 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create("IconRelativeOrientation", typeof(IconOrientation?), typeof(Tizen.NUI.Components.Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create("IconRelativeOrientation", typeof(IconOrientation?), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             if (newValue != null)
             {
                 instance.privateIconRelativeOrientation = (IconOrientation?)newValue;
@@ -40,14 +40,14 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             return instance.privateIconRelativeOrientation;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create("IsEnabled", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create("IsEnabled", typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             if (newValue != null)
             {
                 instance.privateIsEnabled = (bool)newValue;
@@ -55,14 +55,14 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             return instance.privateIsEnabled;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create("IsSelected", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create("IsSelected", typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             if (newValue != null)
             {
                 instance.privateIsSelected = (bool)newValue;
@@ -70,14 +70,14 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             return instance.privateIsSelected;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create("IsSelectable", typeof(bool), typeof(Tizen.NUI.Components.Button), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create("IsSelectable", typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             if (newValue != null)
             {
                 instance.privateIsSelectable = (bool)newValue;
@@ -85,14 +85,46 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (Tizen.NUI.Components.Button)bindable;
+            var instance = (Button)bindable;
             return instance.privateIsSelectable;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create("IconPadding", typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            if (null != newValue && null != instance.Style?.IconPadding)
+            {
+                instance.Style.IconPadding.CopyFrom((Extents)newValue);
+                instance.UpdateUIContent();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Button)bindable;
+            return instance.Style?.IconPadding;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create("TextPadding", typeof(Extents), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            if (null != newValue && null != instance.Style?.TextPadding)
+            {
+                instance.Style.TextPadding.CopyFrom((Extents)newValue);
+                instance.UpdateUIContent();
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Button)bindable;
+            return instance.Style?.TextPadding;
         });
 
         private ImageView overlayImage;
 
         private TextLabel buttonText;
-        private ImageView buttonIcon;
+        private ImageControl buttonIcon;
 
         private EventHandler<StateChangedEventArgs> stateChangeHander;
 
@@ -342,6 +374,7 @@ namespace Tizen.NUI.Components
                 }
             }
         }
+
         private StringSelector textSelector = new StringSelector();
         /// <summary>
         /// Text string selector in Button.
@@ -355,10 +388,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != value && null != Style.Text)
-                {
-                    Style.Text.Text = value.Clone() as StringSelector;
-                }
+                textSelector.Clone(value);
             }
         }
 
@@ -375,13 +405,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != value && null != Style?.Text)
-                {
-                    Style.Text.TranslatableText = value.Clone() as StringSelector;
-                }
+                translatableTextSelector.Clone(value);
             }
         }
-
 
         private ColorSelector textColorSelector = new ColorSelector();
         /// <summary>
@@ -396,10 +422,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(null != value && null != Style.Text)
-                {
-                    Style.Text.TextColor = value.Clone() as ColorSelector;
-                }
+                textColorSelector.Clone(value);
             }
         }
 
@@ -416,13 +439,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != value && null != Style?.Text)
-                {
-                    Style.Text.PointSize = value.Clone() as FloatSelector;
-                }
+                pointSizeSelector.Clone(value);
             }
         }
-
 
         private StringSelector iconURLSelector = new StringSelector();
         /// <summary>
@@ -437,13 +456,9 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null != value && null != Style?.Icon)
-                {
-                    Style.Icon.ResourceUrl = value.Clone() as StringSelector;
-                }
+                iconURLSelector.Clone(value);
             }
         }
-
 
         /// <summary>
         /// Flag to decide selected state in Button.
@@ -539,17 +554,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
-            get
-            {
-                return Style?.Icon?.Padding;
-            }
-            set
-            {
-                if (null != value && null != Style?.Icon?.Padding)
-                {
-                    Style.Icon.Padding.CopyFrom(value);
-                }
-            }
+            get => (Extents)GetValue(IconPaddingProperty);
+            set => SetValue(IconPaddingProperty, value);
         }
 
         /// <summary>
@@ -558,17 +564,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
-            get
-            {
-                return Style?.Text?.Padding;
-            }
-            set
-            {
-                if (null != value && null != Style?.Text?.Padding)
-                {
-                    Style.Text.Padding.CopyFrom(value);
-                }
-            }
+            get => (Extents) GetValue(TextPaddingProperty);
+            set => SetValue(TextPaddingProperty, value);
         }
 
         /// <summary>
@@ -743,7 +740,7 @@ namespace Tizen.NUI.Components
 
                 if (null == buttonIcon)
                 {
-                    buttonIcon = new ImageView();
+                    buttonIcon = new ImageControl();
                     buttonIcon.Relayout += OnIconRelayout;
                     this.Add(buttonIcon);
                 }
@@ -806,6 +803,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
         {
+            if (null == Style.IconRelativeOrientation) Style.IconRelativeOrientation = IconOrientation.Left;
             UpdateState();
             LayoutDirectionChanged += OnLayoutDirectionChanged;
         }
@@ -824,15 +822,15 @@ namespace Tizen.NUI.Components
             }
             buttonText.WidthResizePolicy = ResizePolicyType.Fixed;
             buttonText.HeightResizePolicy = ResizePolicyType.Fixed;
-            int textPaddingStart = Style.Text.Padding.Start;
-            int textPaddingEnd = Style.Text.Padding.End;
-            int textPaddingTop = Style.Text.Padding.Top;
-            int textPaddingBottom = Style.Text.Padding.Bottom;
+            int textPaddingStart = Style.TextPadding.Start;
+            int textPaddingEnd = Style.TextPadding.End;
+            int textPaddingTop = Style.TextPadding.Top;
+            int textPaddingBottom = Style.TextPadding.Bottom;
 
-            int iconPaddingStart = Style.Icon.Padding.Start;
-            int iconPaddingEnd = Style.Icon.Padding.End;
-            int iconPaddingTop = Style.Icon.Padding.Top;
-            int iconPaddingBottom = Style.Icon.Padding.Bottom;
+            int iconPaddingStart = Style.IconPadding.Start;
+            int iconPaddingEnd = Style.IconPadding.End;
+            int iconPaddingTop = Style.IconPadding.Top;
+            int iconPaddingBottom = Style.IconPadding.Bottom;
 
             if (IconRelativeOrientation == IconOrientation.Top || IconRelativeOrientation == IconOrientation.Bottom)
             {
@@ -858,15 +856,15 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            int textPaddingStart = Style.Text.Padding.Start;
-            int textPaddingEnd = Style.Text.Padding.End;
-            int textPaddingTop = Style.Text.Padding.Top;
-            int textPaddingBottom = Style.Text.Padding.Bottom;
+            int textPaddingStart = Style.TextPadding.Start;
+            int textPaddingEnd = Style.TextPadding.End;
+            int textPaddingTop = Style.TextPadding.Top;
+            int textPaddingBottom = Style.TextPadding.Bottom;
 
-            int iconPaddingStart = Style.Icon.Padding.Start;
-            int iconPaddingEnd = Style.Icon.Padding.End;
-            int iconPaddingTop = Style.Icon.Padding.Top;
-            int iconPaddingBottom = Style.Icon.Padding.Bottom;
+            int iconPaddingStart = Style.IconPadding.Start;
+            int iconPaddingEnd = Style.IconPadding.End;
+            int iconPaddingTop = Style.IconPadding.Top;
+            int iconPaddingBottom = Style.IconPadding.Bottom;
 
             switch (IconRelativeOrientation)
             {
@@ -947,6 +945,11 @@ namespace Tizen.NUI.Components
                     break;
                 default:
                     break;
+            }
+            if ("" == buttonText.Text)
+            {
+                buttonIcon.ParentOrigin = NUI.ParentOrigin.Center;
+                buttonIcon.PivotPoint = NUI.PivotPoint.Center;
             }
         }
         /// <summary>
