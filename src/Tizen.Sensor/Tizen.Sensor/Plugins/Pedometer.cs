@@ -159,7 +159,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Read pedometer sensor data synchronously.
         /// </summary>
-        protected internal override void ReadData()
+        internal override void ReadData()
         {
             Interop.SensorEventStruct pedoSensorData;
             int error = Interop.SensorListener.ReadData(ListenerHandle, out pedoSensorData);
