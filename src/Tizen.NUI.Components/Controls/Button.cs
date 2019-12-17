@@ -761,6 +761,8 @@ namespace Tizen.NUI.Components
             return new ButtonStyle();
         }
 
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
             base.OnUpdate();
