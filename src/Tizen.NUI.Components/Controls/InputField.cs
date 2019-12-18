@@ -95,11 +95,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.Text;
+                return textField?.Text;
             }
             set
             {
-                textField.Text = value;
+                if (null != textField) textField.Text = value;
             }
         }
 
@@ -113,11 +113,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PlaceholderText;
+                return textField?.PlaceholderText;
             }
             set
             {
-                textField.PlaceholderText = value;
+                if (null != textField) textField.PlaceholderText = value;
             }
         }
 
@@ -131,20 +131,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.TextColor;
+                return textField?.TextColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.TextColor)
+                if (null != inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.TextColor = new Selector<Color>();
+                    inputFieldAttrs.InputBoxAttributes.TextColor = value;
+                    if (null != textField) textField.TextColor = value;
                 }
-                if (null != inputFieldAttrs.InputBoxAttributes.TextColor)
-                {
-                    inputFieldAttrs.InputBoxAttributes.TextColor.All = value;
-                }
-                textField.TextColor = value;
             }
         }
 
@@ -158,20 +154,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PlaceholderTextColor;
+                return textField?.PlaceholderTextColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor)
+                if (null != inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor = new Selector<Color>();
+                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor = value;
+                    if (null != textField) textField.PlaceholderTextColor = value;
                 }
-                if (null != inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor)
-                {
-                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor.All = value;
-                }
-                textField.PlaceholderTextColor = value;
             }
         }
 
@@ -185,20 +177,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PrimaryCursorColor;
+                return textField?.PrimaryCursorColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor)
+                if (null == inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor = new Selector<Color>();
+                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor = value;
+                    if (null != textField) textField.PrimaryCursorColor = value;
                 }
-                if (null != inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor)
-                {
-                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor.All = value;
-                }
-                textField.PrimaryCursorColor = value;
             }
         }
 
@@ -212,13 +200,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.FontFamily;
+                return textField?.FontFamily;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.FontFamily = value;
-                textField.FontFamily = value;
+                if (null != inputFieldAttrs?.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.FontFamily = value;
+                    if (null != textField) textField.FontFamily = value;
+                }
             }
         }
 
@@ -232,13 +223,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.EnableCursorBlink;
+                return textField?.EnableCursorBlink ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.EnableCursorBlink = value;
-                textField.EnableCursorBlink = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.EnableCursorBlink = value;
+                    if (null != textField) textField.EnableCursorBlink = value;
+                }
             }
         }
 
@@ -252,13 +246,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.EnableSelection;
+                return textField?.EnableSelection ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.EnableSelection = value;
-                textField.EnableSelection = value;
+                if (null != inputFieldAttrs?.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.EnableSelection = value;
+                    if (null != textField) textField.EnableSelection = value;
+                }
             }
         }
 
@@ -272,13 +269,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.CursorWidth;
+                return textField?.CursorWidth ?? 0;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.CursorWidth = value;
-                textField.CursorWidth = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.CursorWidth = value;
+                    if (null != textField) textField.CursorWidth = value;
+                }
             }
         }
 
@@ -292,13 +292,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.Ellipsis;
+                return textField?.Ellipsis ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.Ellipsis = value;
-                textField.Ellipsis = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.Ellipsis = value;
+                    if (null != textField) textField.Ellipsis = value;
+                }
             }
         }
 
@@ -312,21 +315,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.BackgroundImageAttributes?.ResourceUrl?.All;
+                return inputFieldAttrs?.BackgroundImageAttributes?.ResourceUrl?.All;
             }
             set
             {
-                if (value != null)
+                CreateBackgroundAttributes();
+                if (null != inputFieldAttrs?.BackgroundImageAttributes)
                 {
-                    CreateBackgroundAttributes();
-                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceUrl == null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.ResourceUrl = new Selector<string>();
-                    }
-                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceUrl != null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.ResourceUrl.All = value;
-                    }
+                    inputFieldAttrs.BackgroundImageAttributes.ResourceUrl = value;
                     RelayoutRequest();
                 }
             }
@@ -342,21 +338,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.BackgroundImageAttributes?.Border?.All;
+                return inputFieldAttrs?.BackgroundImageAttributes?.Border?.All;
             }
             set
             {
-                if (value != null)
+                CreateBackgroundAttributes();
+                if (null != inputFieldAttrs?.BackgroundImageAttributes)
                 {
-                    CreateBackgroundAttributes();
-                    if (inputFieldAttrs.BackgroundImageAttributes.Border == null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.Border = new Selector<Rectangle>();
-                    }
-                    if (inputFieldAttrs.BackgroundImageAttributes.Border != null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.Border.All = value;
-                    }
+                    inputFieldAttrs.BackgroundImageAttributes.Border = value;
                     RelayoutRequest();
                 }
             }
@@ -369,12 +358,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.Space ?? 0;
+                return inputFieldAttrs?.Space ?? 0;
             }
             set
             {
-                inputFieldAttrs.Space = value;
-                RelayoutRequest();
+                if (null != inputFieldAttrs)
+                {
+                    inputFieldAttrs.Space = value;
+                    RelayoutRequest();
+                }
             }
         }
 

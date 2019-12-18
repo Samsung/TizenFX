@@ -58,6 +58,7 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
+        private Rectangle backgroundImageBorder;
 
         private ViewStyle viewStyle;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -169,9 +170,12 @@ namespace Tizen.NUI.BaseComponents
 
                     ControlStateChangeEvent?.Invoke(this, value);
 
-                    foreach (View child in Children)
+                    if (true == OnControlStateChanged(value))
                     {
-                        child.ControlState = value;
+                        foreach (View child in Children)
+                        {
+                            child.ControlState = value;
+                        }
                     }
                 }
             }
@@ -252,6 +256,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Get or set the border of background image.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle BackgroundImageBorder
+        {
+            get
+            {
+                return (Rectangle)GetValue(BackgroundImageBorderProperty);
+            }
+            set
+            {
+                SetValue(BackgroundImageBorderProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2161,7 +2183,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2172,6 +2194,35 @@ namespace Tizen.NUI.BaseComponents
             return viewStyle;
         }
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnControlStateChanged(ControlStates currentState)
+        {
+            //If need to apply the state to all child, return true;
+            return true;
+        }
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageSelector;
+        });
+        private TriggerableSelector<string> _backgroundImageSelector;
+        private TriggerableSelector<string> backgroundImageSelector
+        {
+            get
+            {
+                if (null == _backgroundImageSelector)
+                {
+                    _backgroundImageSelector = new TriggerableSelector<string>(this, BackgroundImageProperty);
+                }
+                return _backgroundImageSelector;
+            }
+        }
         internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -2194,7 +2245,28 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
-
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorderSelector;
+        });
+        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
+        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
+        {
+            get
+            {
+                if (null == _backgroundImageBorderSelector)
+                {
+                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundImageBorderProperty);
+                }
+                return _backgroundImageBorderSelector;
+            }
+        }
         internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;

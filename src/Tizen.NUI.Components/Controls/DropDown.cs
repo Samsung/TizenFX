@@ -292,10 +292,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void DeleteItem(int index)
         {
-            if(index < 0 || index >= adapter.GetItemCount())
-            {
-                return;
-            }
+            if (index < 0 || index >= adapter?.GetItemCount()) return;
+            if (null == dropDownMenuFullList) return;
 
             if (selectedItemIndex == index)
             {
@@ -306,15 +304,15 @@ namespace Tizen.NUI.Components
                 selectedItemIndex--;
             }
 
-            adapter.RemoveData(index);
+            adapter?.RemoveData(index);
 
-            if(index < dropDownMenuFullList?.ChildCount)
+            if(index < dropDownMenuFullList.ChildCount)
             {
-                View childToRemove = dropDownMenuFullList?.GetChildAt((uint)index);
+                View childToRemove = dropDownMenuFullList.GetChildAt((uint)index);
                 if (childToRemove)
                 {
                     childToRemove.TouchEvent -= ListItemTouchEvent;
-                    dropDownMenuFullList?.Remove(childToRemove);
+                    dropDownMenuFullList.Remove(childToRemove);
                     dropDownMenuFullList?.Layout?.RequestLayout();
                 }
             }
@@ -395,6 +393,7 @@ namespace Tizen.NUI.Components
                 button.ApplyStyle(Style.Button);
                 headerText.ApplyStyle(Style.HeaderText);
                 listBackgroundImage.ApplyStyle(Style.ListBackgroundImage);
+                UpdateDropDown();
             }
         }
 
@@ -421,12 +420,7 @@ namespace Tizen.NUI.Components
             }
             else if (listRelativeOrientation == ListOrientation.Right)
             {
-                int listWidth = 0;
-                if (dropDownMenuFullList.Size2D != null)
-                {
-                    listWidth = dropDownMenuFullList.Size2D.Width;
-                }
-                listBackgroundImageX = Size2D.Width - listWidth - (int)listMargin.End;
+                listBackgroundImageX = -(int)listMargin.End;
                 listBackgroundImageY = (int)listMargin.Top;
             }
             listBackgroundImage.Position2D = new Position2D(listBackgroundImageX, listBackgroundImageY);
@@ -681,25 +675,24 @@ namespace Tizen.NUI.Components
 
         private void UpdateSelectedItem(int index)
         {
+            if (null == adapter) return;
+            if (null == dropDownMenuFullList) return;
             if (selectedItemIndex != -1)
             {
                 DropDownDataItem data = adapter.GetData(selectedItemIndex);
-                if(data != null)
+                if(null != data)
                 {
                     data.IsSelected = false;
                 }
                 DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
-                if(data != null)
-                {
-                    data.IsSelected = false;
-                }
+                data.IsSelected = false;
                 SetListItemToSelected(listItemView);
             }
 
             if (index != -1)
             {
                 DropDownDataItem data = adapter.GetData(index);
-                if (data != null)
+                if (null != data)
                 {
                     data.IsSelected = true;
                     DropDownItemView listItemView = dropDownMenuFullList?.GetChildAt((uint)index) as DropDownItemView;
@@ -826,7 +819,7 @@ namespace Tizen.NUI.Components
             /// <since_tizen> 6 </since_tizen>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
-            public Selector<Color> BackgroundColorSelector
+            public Selector<Color> BackgroundColor
             {
                 get
                 {
@@ -834,15 +827,12 @@ namespace Tizen.NUI.Components
                 }
                 set
                 {
-                    if (null == itemDataStyle.BackgroundColor)
+                    if (null == itemDataStyle?.BackgroundColor)
                     {
                         itemDataStyle.BackgroundColor = new Selector<Color>();
                     }
-                    if (null != itemDataStyle.BackgroundColor)
-                    {
-                        itemDataStyle.BackgroundColor.Clone(value);
-                    }
 
+                    itemDataStyle.BackgroundColor.Clone(value);
                 }
             }
 
@@ -1112,11 +1102,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if(mText == null)
-                    {
-                        return null;
-                    }
-                    return mText.Text;
+                    return (null == mText) ? null : mText.Text;
                 }
                 set
                 {
@@ -1131,11 +1117,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mText == null)
-                    {
-                        return null;
-                    }
-                    return mText.FontFamily;
+                    return (null == mText) ? null : mText.FontFamily;
                 }
                 set
                 {
@@ -1150,11 +1132,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mText == null)
-                    {
-                        return 0;
-                    }
-                    return mText.PointSize;
+                    return (null == mText) ? 0 : mText.PointSize;
                 }
                 set
                 {
@@ -1169,11 +1147,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mText == null)
-                    {
-                        return null;
-                    }
-                    return mText.TextColor;
+                    return (null == mText) ? null : mText.TextColor;
                 }
                 set
                 {
@@ -1188,11 +1162,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mText == null)
-                    {
-                        return null;
-                    }
-                    return mText.Position;
+                    return (null == mText) ? null : mText.Position;
                 }
                 set
                 {
@@ -1207,11 +1177,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mIcon == null)
-                    {
-                        return null;
-                    }
-                    return mIcon.ResourceUrl;
+                    return (null == mIcon) ? null : mIcon.ResourceUrl;
                 }
                 set
                 {
@@ -1226,11 +1192,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mIcon == null)
-                    {
-                        return null;
-                    }
-                    return mIcon.Size;
+                    return (null == mIcon) ? null : mIcon.Size;
                 }
                 set
                 {
@@ -1245,11 +1207,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mIcon == null)
-                    {
-                        return null;
-                    }
-                    return mIcon.Position;
+                    return (null == mIcon) ? null : mIcon.Position;
                 }
                 set
                 {
@@ -1264,11 +1222,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mCheck == null)
-                    {
-                        return null;
-                    }
-                    return mCheck.ResourceUrl;
+                    return (null == mCheck) ? null : mCheck.ResourceUrl;
                 }
                 set
                 {
@@ -1283,11 +1237,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mCheck == null)
-                    {
-                        return null;
-                    }
-                    return mCheck.Position;
+                    return (null == mCheck) ? null : mCheck.Position;
                 }
                 set
                 {
@@ -1302,11 +1252,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mCheck == null)
-                    {
-                        return null;
-                    }
-                    return mCheck.Size;
+                    return (null == mCheck) ? null : mCheck.Size;
                 }
                 set
                 {
@@ -1321,11 +1267,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    if (mCheck == null)
-                    {
-                        return false;
-                    }
-                    return mCheck.Visibility;
+                    return (null == mCheck) ? false : mCheck.Visibility;
                 }
                 set
                 {
@@ -1551,7 +1493,7 @@ namespace Tizen.NUI.Components
 
                 if (listItemView != null)
                 {
-                    listItemView.BackgroundColorSelector = listItemData.BackgroundColorSelector;
+                    listItemView.BackgroundColorSelector = listItemData.BackgroundColor;
                     if (listItemData.Text != null)
                     {
                         listItemView.Text = listItemData.Text;
