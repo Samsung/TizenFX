@@ -626,7 +626,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
+        private new void OnTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
         {
             if (e.TapGesture.Type == Gesture.GestureType.Tap)
             {
