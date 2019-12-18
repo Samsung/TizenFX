@@ -29,6 +29,36 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ImageControlStyle : ControlStyle
     {
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ImageControlResourceUrl", typeof(Selector<string>), typeof(ImageControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageControlStyle = (ImageControlStyle)bindable;
+            if (null == imageControlStyle.resourceUrlSelector) imageControlStyle.resourceUrlSelector = new Selector<string>();
+            imageControlStyle.resourceUrlSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageControlStyle = (ImageControlStyle)bindable;
+            return imageControlStyle.resourceUrlSelector;
+        });
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderProperty = BindableProperty.Create("ImageControlBorder", typeof(Selector<Rectangle>), typeof(ImageControlStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageControlStyle = (ImageControlStyle)bindable;
+            if (null == imageControlStyle.borderSelector) imageControlStyle.borderSelector = new Selector<Rectangle>();
+            imageControlStyle.borderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageControlStyle = (ImageControlStyle)bindable;
+            return imageControlStyle.borderSelector;
+        });
+
+        private Selector<string> resourceUrlSelector;
+        private Selector<Rectangle> borderSelector;
+
         /// <summary>
         /// Creates a new instance of a ImageControlStyle.
         /// </summary>
@@ -37,8 +67,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageControlStyle() : base()
         {
-            InitSubStyle();
         }
+
         /// <summary>
         /// Creates a new instance of a ImageControlStyle with style.
         /// </summary>
@@ -48,26 +78,39 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageControlStyle(ImageControlStyle style) : base(style)
         {
-            if(style == null)
-            {
-                return;
-            }
+            if(null == style) return;
 
-            InitSubStyle();
-
-            Image.CopyFrom(style.Image);
+            this.CopyFrom(style);
         }
 
         /// <summary>
-        /// Image's Style.
+        /// Image URL.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Image
+        public Selector<string> ResourceUrl
         {
-            get;
-            set;
+            get
+            {
+                Selector<string> url = (Selector<string>)GetValue(ResourceUrlProperty);
+                return (null != url) ? url : resourceUrlSelector = new Selector<string>();
+            }
+            set => SetValue(ResourceUrlProperty, value);
+        }
+
+        /// <summary>
+        /// Image border.
+        /// </summary>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Rectangle> Border
+        {
+            get
+            {
+                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BorderProperty);
+                return (null != border) ? border : borderSelector = new Selector<Rectangle>();
+            }
+            set => SetValue(BorderProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -80,22 +123,17 @@ namespace Tizen.NUI.Components
 
             if (null != imageControlStyle)
             {
-                if (null != imageControlStyle.Image)
+                if (null != imageControlStyle.ResourceUrl)
                 {
-                    Image.CopyFrom(imageControlStyle.Image);
+                    if (null == ResourceUrl) ResourceUrl = new Selector<string>();
+                    ResourceUrl.Clone(imageControlStyle.ResourceUrl);
+                }
+                if (null != imageControlStyle.Border)
+                {
+                    if (null == Border) Border = new Selector<Rectangle>();
+                    Border.Clone(imageControlStyle.Border);
                 }
             }
-        }
-
-        private void InitSubStyle()
-        {
-            Image = new ImageViewStyle();
-            Image.PropertyChanged += SubStyleCalledEvent;
-        }
-
-        private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
-        {
-            OnPropertyChanged();
         }
     }
 }

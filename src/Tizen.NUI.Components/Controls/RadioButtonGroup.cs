@@ -42,7 +42,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RadioButtonGroup() : base()
         {
-
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RadioButton GetItemByIndex(int index)
+        public RadioButton GetItem(int index)
         {
             return itemGroup[index] as RadioButton;
         }
@@ -70,7 +69,6 @@ namespace Tizen.NUI.Components
             base.AddSelection(radio);
             radio.ItemGroup = this;
         }
-
 
         /// <summary>
         /// Remove RadioButton from the RadioButtonGroup.
