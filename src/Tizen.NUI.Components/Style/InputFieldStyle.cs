@@ -77,11 +77,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle BackgroundImageAttributes
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle BackgroundImageAttributes { get; set; }
 
         /// <summary>
         /// Gets or sets input box attributes of input field.
@@ -89,11 +85,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextFieldStyle InputBoxAttributes
-        {
-            get;
-            set;
-        }
+        public TextFieldStyle InputBoxAttributes { get; set; }
 
         /// <summary>
         /// Gets or sets space.
@@ -101,11 +93,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int? Space
-        {
-            get;
-            set;
-        } 
+        public int? Space { get; set; } 
 
         /// <summary>
         /// Attributes's clone function.
