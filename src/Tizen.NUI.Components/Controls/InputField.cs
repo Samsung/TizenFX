@@ -370,6 +370,50 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            InputFieldStyle inputFieldStyle = viewStyle as InputFieldStyle;
+
+            if (null != inputFieldStyle.BackgroundImageAttributes)
+            {
+                if (null == bgImage)
+                {
+                    bgImage = new ImageView()
+                    {
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                    };
+
+                    this.Add(bgImage);
+                }
+                bgImage.ApplyStyle(inputFieldStyle.BackgroundImageAttributes);
+            }
+            if (null != inputFieldStyle.InputBoxAttributes)
+            {
+                if (null == textField)
+                {
+                    textField = new TextField()
+                    {
+                        WidthResizePolicy = ResizePolicyType.Fixed,
+                        HeightResizePolicy = ResizePolicyType.Fixed,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                        PositionUsesPivotPoint = true,
+                    };
+                    this.Add(textField);
+                    textField.FocusGained += OnTextFieldFocusGained;
+                    textField.FocusLost += OnTextFieldFocusLost;
+                    textField.TextChanged += OnTextFieldTextChanged;
+                    textField.KeyEvent += OnTextFieldKeyEvent;
+                }
+                textField.ApplyStyle(inputFieldStyle.InputBoxAttributes);
+            }
+        }
+
         /// <summary>
         /// Get Input Field attribues.
         /// </summary>
@@ -552,37 +596,27 @@ namespace Tizen.NUI.Components
                 throw new Exception("Fail to get the InputField attributes.");
             }
 
-            bgImage = new ImageView();
             if (null == bgImage)
             {
-                throw new Exception("Fail to create background image.");
-            }
+                bgImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                };
 
-            textField = new TextField();
-            if (null == textField)
-            {
-                throw new Exception("Fail to create text field.");
-            }
-
-            if (null != inputFieldAttrs.BackgroundImageAttributes)
-            {
-                bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
-                bgImage.PivotPoint = Tizen.NUI.PivotPoint.Center;
-                bgImage.PositionUsesPivotPoint = true;
                 this.Add(bgImage);
             }
-
-            if (null != inputFieldAttrs.InputBoxAttributes)
+            if (null == textField)
             {
-                textField.WidthResizePolicy = ResizePolicyType.Fixed;
-                textField.HeightResizePolicy = ResizePolicyType.Fixed;
-                textField.ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft;
-                textField.PivotPoint = Tizen.NUI.PivotPoint.CenterLeft;
-                textField.PositionUsesPivotPoint = true;
+                textField = new TextField()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                    PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                    PositionUsesPivotPoint = true,
+                };
                 this.Add(textField);
-
                 textField.FocusGained += OnTextFieldFocusGained;
                 textField.FocusLost += OnTextFieldFocusLost;
                 textField.TextChanged += OnTextFieldTextChanged;

@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create("IndicatorType", typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (Tizen.NUI.Components.SliderStyle)bindable;
+            var instance = (SliderStyle)bindable;
             if (newValue != null)
             {
                 instance.privateIndicatorType = (IndicatorType)newValue;
