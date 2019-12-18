@@ -53,30 +53,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets background image Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Background
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets text Style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Gets or sets toast show duration time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -87,6 +63,14 @@ namespace Tizen.NUI.Components
             get;
             set;
         }
+
+        /// <summary>
+        /// Text's Style.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Style's clone function.
@@ -100,12 +84,7 @@ namespace Tizen.NUI.Components
             ToastStyle toastStyle = bindableObject as ToastStyle;
             if (toastStyle != null)
             {
-                if (toastStyle.Background!= null)
-                {
-                    Background.CopyFrom(toastStyle.Background);
-                }
-
-                if (toastStyle.Text!= null)
+                if (null != toastStyle.Text)
                 {
                     Text.CopyFrom(toastStyle.Text);
                 }
@@ -115,15 +94,17 @@ namespace Tizen.NUI.Components
 
         private void InitSubStyle()
         {
-            if (Background== null)
+            Text = new TextLabelStyle()
             {
-                Background= new ImageViewStyle();
-            }
-       
-            if (Text== null)
-            {
-                Text= new TextLabelStyle();
-            }
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                PivotPoint = Tizen.NUI.PivotPoint.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextColor = Color.White
+            };
         }
     }
 }
