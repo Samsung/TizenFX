@@ -33,7 +33,7 @@ namespace Tizen.Sensor
         /// Gets the value of the rotation state.
         /// </summary>
         /// <value> The rotation state. </value>
-        public AutoRotationState Rotaion { get; private set; } = AutoRotationState.Degree_0;
+        public AutoRotationState Rotation { get; private set; } = AutoRotationState.Degree_0;
 
 
         /// <summary>
@@ -128,9 +128,9 @@ namespace Tizen.Sensor
 
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 if (sensorData.values[0] == 0) {
-                    Rotaion = AutoRotationState.Degree_0;
+                    Rotation = AutoRotationState.Degree_0;
                 } else {
-                    Rotaion = (AutoRotationState)sensorData.values[0];
+                    Rotation = (AutoRotationState)sensorData.values[0];
                 }
                 Accuracy = sensorData.accuracy;
 

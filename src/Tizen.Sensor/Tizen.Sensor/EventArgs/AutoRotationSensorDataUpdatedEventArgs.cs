@@ -27,7 +27,7 @@ namespace Tizen.Sensor
     {
         internal AutoRotationSensorDataUpdatedEventArgs(float[] values, SensorDataAccuracy accuracy)
         {
-            Rotaion = (AutoRotationState)values[0];
+            Rotation = (AutoRotationState)values[0];
             Accuracy = accuracy;
         }
 
@@ -35,7 +35,7 @@ namespace Tizen.Sensor
         /// Gets the value of the rotation state.
         /// </summary>
         /// <value> The rotation state. </value>
-        public AutoRotationState Rotaion { get; private set; } = AutoRotationState.Degree_0;
+        public AutoRotationState Rotation { get; private set; } = AutoRotationState.Degree_0;
 
         /// <summary>
         /// Gets the accuracy of the auto rotation data.
