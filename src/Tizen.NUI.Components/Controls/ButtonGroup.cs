@@ -26,6 +26,7 @@ namespace Tizen.NUI.Components
     /// ButtonGroup is a group of buttons which can be set common property<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ButtonGroup : BindableObject, global::System.IDisposable
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
