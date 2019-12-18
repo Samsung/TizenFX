@@ -665,11 +665,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Animatable - This property can be animated using <c>Animation</c> class.
-        /// </para>
-        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float Opacity
         {
@@ -1204,6 +1199,9 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// If the view is not visible, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility values of the children, i.e., the view will only be rendered if all of its parents have visibility set to true.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
