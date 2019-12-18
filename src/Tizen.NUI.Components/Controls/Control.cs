@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Control(string styleSheet) : base()
         {
-            ViewStyle viewStyle = StyleManager.Instance.GetAttributes(styleSheet);
+            ViewStyle viewStyle = StyleManager.Instance.GetViewStyle(styleSheet);
             if (viewStyle == null)
             {
                 throw new InvalidOperationException($"There is no style {styleSheet}");
@@ -434,17 +434,6 @@ namespace Tizen.NUI.Components
             tapGestureDetector.Detected += OnTapGestureDetected;
 
             StyleManager.Instance.ThemeChangedEvent += OnThemeChangedEvent;
-        }
-
-        private ViewStyle GetAttributes(string style)
-        {
-            ViewStyle attributes = StyleManager.Instance.GetAttributes(style);
-            if(attributes == null)
-            {
-                throw new InvalidOperationException($"There is no style {style}");
-            }
-            this.style = style;
-            return attributes;
         }
     }
 }

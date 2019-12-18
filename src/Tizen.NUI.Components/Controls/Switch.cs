@@ -292,7 +292,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SwitchStyle;
+            SwitchStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
             if (null != tempAttributes)
             {
                 Style.CopyFrom(tempAttributes);
