@@ -481,7 +481,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            InputFieldStyle tempStyle = StyleManager.Instance.GetAttributes(style) as InputFieldStyle;
+            InputFieldStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as InputFieldStyle;
             if (tempStyle != null)
             {
                 Style.CopyFrom(tempStyle);
