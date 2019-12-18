@@ -59,18 +59,6 @@ namespace Tizen.NUI.Components
             return imageControl.BorderSelector;
         });
 
-        /// <summary>
-        /// Control style.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private ImageControlStyle imageControlStyle;
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new ImageControlStyle Style => imageControlStyle;
-
         internal ImageView imageView;
 
         /// <summary>
@@ -107,6 +95,10 @@ namespace Tizen.NUI.Components
         {
             Initialize(style);
         }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new ImageControlStyle Style => ViewStyle as ImageControlStyle;
 
         /// <summary>
         /// Override view's BackgroundImage.
@@ -176,6 +168,7 @@ namespace Tizen.NUI.Components
                     };
                     this.Add(imageView);
                 }
+                imageView.RaiseToTop();
             }
         }
 
@@ -205,8 +198,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override ViewStyle GetViewStyle()
         {
-            imageControlStyle = new ImageControlStyle();
-            return imageControlStyle;
+            return new ImageControlStyle(); ;
         }
 
         private void Initialize(string style)

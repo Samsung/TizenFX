@@ -84,7 +84,7 @@ namespace Tizen.NUI.Components
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
         private bool isFocused = false;
 
-        internal ImageView backgroundImage;
+        internal ImageView backgroundImage = new ImageView();
         internal ImageView shadowImage;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -356,16 +356,12 @@ namespace Tizen.NUI.Components
                 }
 
                 shadowImage.ApplyStyle(controlStyle.Shadow);
-
-                if (null == backgroundImage)
-                {
-                    backgroundImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent,
-                    };
-                    this.Add(backgroundImage);
-                }
+            }
+            if (null != controlStyle.BackgroundImage)
+            {
+                backgroundImage.WidthResizePolicy = ResizePolicyType.FillToParent;
+                backgroundImage.HeightResizePolicy = ResizePolicyType.FillToParent;
+                this.Add(backgroundImage);
             }
         }
 
@@ -427,15 +423,6 @@ namespace Tizen.NUI.Components
         private void Initialize(string style)
         {
             ControlState = ControlStates.Normal;
-            if(null == backgroundImage)
-            {
-                backgroundImage = new ImageView()
-                {
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                };
-                this.Add(backgroundImage);
-            }
 
             RegisterDetectionOfSubstyleChanges();
 
