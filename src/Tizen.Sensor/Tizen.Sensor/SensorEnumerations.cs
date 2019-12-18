@@ -111,7 +111,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Stationary activity detector.
         /// </summary>
-        /// Auto Rotaion sensor.
+        /// Auto Rotation sensor.
         /// </summary>
         AutoRotation = 0x901,
         /// <summary>
