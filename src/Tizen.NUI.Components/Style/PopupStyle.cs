@@ -70,7 +70,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 ShadowOffset
+        public Extents ShadowExtents
         {
             get;
             set;
@@ -101,11 +101,6 @@ namespace Tizen.NUI.Components
             PopupStyle popupAttributes = bindableObject as PopupStyle;
             if (popupAttributes != null)
             {
-                if (popupAttributes.Shadow != null)
-                {
-                    Shadow.CopyFrom(popupAttributes.Shadow);
-                }
-
                 if (popupAttributes.Title != null)
                 {
                     Title.CopyFrom(popupAttributes.Title);
@@ -116,22 +111,16 @@ namespace Tizen.NUI.Components
                     Buttons.CopyFrom(popupAttributes.Buttons);
                 }
 
-                if (popupAttributes.ShadowOffset != null)
+                if (popupAttributes.ShadowExtents != null)
                 {
-                    ShadowOffset = new Vector4(popupAttributes.ShadowOffset.W, popupAttributes.ShadowOffset.X, popupAttributes.ShadowOffset.Y, popupAttributes.ShadowOffset.Z);
+                    ShadowExtents = new Extents(popupAttributes.ShadowExtents.Start, popupAttributes.ShadowExtents.End, popupAttributes.ShadowExtents.Top, popupAttributes.ShadowExtents.Bottom);
                 }
             }
         }
 
         private void InitSubStyle()
         {
-            Shadow = new ImageViewStyle()
-            {
-                PositionUsesPivotPoint = true,
-                ParentOrigin = Tizen.NUI.ParentOrigin.Center,
-                PivotPoint = Tizen.NUI.PivotPoint.Center
-            };
-
+            ShadowExtents = new Extents(24, 24, 24, 24);
             Title = new TextLabelStyle()
             {
                 Size = new Size(0, 0),
@@ -148,11 +137,22 @@ namespace Tizen.NUI.Components
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
                 PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                Text = new TextLabelStyle
+                Overlay = new ImageViewStyle()
                 {
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                     PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent
+                },
+
+                Text = new TextLabelStyle()
+                {
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center
                 }

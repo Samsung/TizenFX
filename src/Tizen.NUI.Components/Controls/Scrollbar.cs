@@ -470,7 +470,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ScrollBarStyle;
+            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
             if (tempStyle != null)
             {
                 Style.CopyFrom(tempStyle);

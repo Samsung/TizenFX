@@ -27,11 +27,8 @@ namespace Tizen.NUI.Components
     // @see #createVerticalHelper(RecyclerView.LayoutManager)
     internal abstract class OrientationHelper
     {
-        public enum Direction
-        {
-            HORIZONTAL = 0,
-            VERTICAL
-        }
+        public static readonly int HORIZONTAL = 0;
+        public static readonly int VERTICAL = 1;
 
         private static readonly int INVALID_SIZE = -1;
 
@@ -136,10 +133,7 @@ namespace Tizen.NUI.Components
         // whether the layout is RTL or not.
         //
         // @return The padding at the end of the layout.
-        public abstract float EndPadding
-        {
-            get;
-        }
+        public abstract float GetEndPadding();
 
         // Creates an OrientationHelper for the given LayoutManager and orientation.
         //
@@ -147,13 +141,13 @@ namespace Tizen.NUI.Components
         // @param orientation   Desired orientation. Should be {@link #HORIZONTAL} or {@link #VERTICAL}
         // @return A new OrientationHelper
         public static OrientationHelper CreateOrientationHelper(
-                FlexibleView.LayoutManager layoutManager, Direction orientation)
+                FlexibleView.LayoutManager layoutManager, int orientation)
         {
-            if (orientation == Direction.HORIZONTAL)
+            if (orientation == HORIZONTAL)
             {
                 return CreateHorizontalHelper(layoutManager);
             }
-            else if (orientation == Direction.VERTICAL)
+            else if (orientation == VERTICAL)
             {
                 return CreateVerticalHelper(layoutManager);
             }
@@ -241,12 +235,9 @@ namespace Tizen.NUI.Components
             //holder.offsetLeftAndRight(offset);
         }
 
-        public override float EndPadding
+        public override float GetEndPadding()
         {
-            get
-            {
-                return mLayoutManager.PaddingRight;
-            }
+            return mLayoutManager.PaddingRight;
         }
 
     }
@@ -309,12 +300,11 @@ namespace Tizen.NUI.Components
             //holder.offsetTopAndBottom(offset);
         }
 
-        public override float EndPadding
+        public override float GetEndPadding()
         {
-            get
-            {
-                return mLayoutManager.PaddingBottom;
-            }
+            return mLayoutManager.PaddingBottom;
         }
+
     }
+
 }
