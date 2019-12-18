@@ -52,7 +52,7 @@ namespace Tizen.Applications
             if (b == null)
                 return 0;
 
-            b.Bind(context, Id);
+            b.Bind(context, Interop.Widget.GetAppId(context));
             WidgetInstances.Add(b);
             if (content != IntPtr.Zero)
                 bundle = new Bundle(new SafeBundleHandle(content, false));
