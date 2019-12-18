@@ -1349,6 +1349,20 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            /**
+             * Requests that the given child of the RecyclerView be positioned onto the screen. This
+             * method can be called for both unfocusable and focusable child views. For unfocusable
+             * child views, focusedChildVisible is typically true in which case, layout manager
+             * makes the child view visible only if the currently focused child stays in-bounds of RV.
+             * @param parent The parent RecyclerView.
+             * @param child The direct child making the request.
+             * @param rect The rectangle in the child's coordinates the child
+             *              wishes to be on the screen.
+             * @param immediate True to forbid animated or delayed scrolling,
+             *                  false otherwise
+             * @param focusedChildVisible Whether the currently focused view must stay visible.
+             * @return Whether the group scrolled to handle the operation
+             */
             internal bool RequestChildRectangleOnScreen(FlexibleView parent, FlexibleView.ViewHolder child, Recycler recycler, bool immediate)
             {
                 Vector2 scrollAmount = GetChildRectangleOnScreenScrollAmount(parent, child);
