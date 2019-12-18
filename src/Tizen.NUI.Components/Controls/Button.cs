@@ -584,7 +584,6 @@ namespace Tizen.NUI.Components
             {
                 if (buttonIcon != null)
                 {
-                    buttonIcon.Relayout -= OnIconRelayout;
                     Utility.Dispose(buttonIcon);
                 }
                 if (buttonText != null)
@@ -646,6 +645,7 @@ namespace Tizen.NUI.Components
             base.OnFocusGained();
             UpdateState();
         }
+
         /// <summary>
         /// Called when the control loses key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is lost.
         /// </summary>
@@ -741,7 +741,6 @@ namespace Tizen.NUI.Components
                 if (null == buttonIcon)
                 {
                     buttonIcon = new ImageControl();
-                    buttonIcon.Relayout += OnIconRelayout;
                     this.Add(buttonIcon);
                 }
 
@@ -760,6 +759,14 @@ namespace Tizen.NUI.Components
         protected override ViewStyle GetViewStyle()
         {
             return new ButtonStyle();
+        }
+
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnUpdate()
+        {
+            base.OnUpdate();
+            UpdateUIContent();
         }
 
         /// <summary>
