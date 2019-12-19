@@ -87,6 +87,7 @@ namespace Tizen.NUI
                 }
             }
         }
+        }
 
         /// <summary>
         /// For a left pan (-PI Radians).
