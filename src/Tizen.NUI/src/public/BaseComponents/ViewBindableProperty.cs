@@ -26,7 +26,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// StyleNameProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create("StyleName", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -43,7 +45,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.STYLE_NAME).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// BackgroundColorProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("BackgroundColor", typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -68,7 +73,8 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundColor;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(View), default(string), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -94,7 +100,24 @@ namespace Tizen.NUI.BaseComponents
 
             return backgroundImage;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>BackgroundImageBorderProperty</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (null != newValue)
+            {
+                view.backgroundImageBorder = (Rectangle)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorder;
+        });
+        /// <summary>
+        /// BackgroundProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundProperty = BindableProperty.Create("Background", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -111,7 +134,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.BACKGROUND).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// StateProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StateProperty = BindableProperty.Create("State", typeof(States), typeof(View), States.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -137,7 +163,10 @@ namespace Tizen.NUI.BaseComponents
                 default: return States.Normal;
             }
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SubStateProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SubStateProperty = BindableProperty.Create("SubState", typeof(States), typeof(View), States.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -145,13 +174,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((States)newValue)
-                {
-                    case States.Normal: { valueToString = "NORMAL"; break; }
-                    case States.Focused: { valueToString = "FOCUSED"; break; }
-                    case States.Disabled: { valueToString = "DISABLED"; break; }
-                    default: { valueToString = "NORMAL"; break; }
-                }
+                valueToString = ((States)newValue).GetDescription<States>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -163,15 +186,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("subState get error!");
             }
-            switch (temp)
-            {
-                case "NORMAL": return States.Normal;
-                case "FOCUSED": return States.Focused;
-                case "DISABLED": return States.Disabled;
-                default: return States.Normal;
-            }
+            return temp.GetValueByDescription<States>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// TooltipProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TooltipProperty = BindableProperty.Create("Tooltip", typeof(PropertyMap), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -189,7 +209,9 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        /// Only for XAML property binding. No need to open as public. (keep as Hidden/InhouseAPI)
+        /// <summary>
+        /// FlexProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexProperty = BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -207,7 +229,9 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// AlignSelfProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AlignSelfProperty = BindableProperty.Create("AlignSelf", typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -224,7 +248,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.ALIGN_SELF).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// FlexMarginProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexMarginProperty = BindableProperty.Create("FlexMargin", typeof(Vector4), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -241,7 +268,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, FlexContainer.ChildProperty.FLEX_MARGIN).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// CellIndexProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CellIndexProperty = BindableProperty.Create("CellIndex", typeof(Vector2), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -258,7 +288,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.CELL_INDEX).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// RowSpanProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RowSpanProperty = BindableProperty.Create("RowSpan", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -275,7 +308,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.ROW_SPAN).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ColumnSpanProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ColumnSpanProperty = BindableProperty.Create("ColumnSpan", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -292,7 +328,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, TableView.ChildProperty.COLUMN_SPAN).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// CellHorizontalAlignmentProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CellHorizontalAlignmentProperty = BindableProperty.Create("CellHorizontalAlignment", typeof(HorizontalAlignmentType), typeof(View), HorizontalAlignmentType.Left, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -301,13 +340,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (newValue != null)
             {
-                switch ((HorizontalAlignmentType)newValue)
-                {
-                    case Tizen.NUI.HorizontalAlignmentType.Left: { valueToString = "left"; break; }
-                    case Tizen.NUI.HorizontalAlignmentType.Center: { valueToString = "center"; break; }
-                    case Tizen.NUI.HorizontalAlignmentType.Right: { valueToString = "right"; break; }
-                    default: { valueToString = "left"; break; }
-                }
+                valueToString = ((HorizontalAlignmentType)newValue).GetDescription<HorizontalAlignmentType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -320,15 +353,12 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("CellHorizontalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "left": return Tizen.NUI.HorizontalAlignmentType.Left;
-                case "center": return Tizen.NUI.HorizontalAlignmentType.Center;
-                case "right": return Tizen.NUI.HorizontalAlignmentType.Right;
-                default: return Tizen.NUI.HorizontalAlignmentType.Left;
-            }
+            return temp.GetValueByDescription<HorizontalAlignmentType>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// CellVerticalAlignmentProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CellVerticalAlignmentProperty = BindableProperty.Create("CellVerticalAlignment", typeof(VerticalAlignmentType), typeof(View), VerticalAlignmentType.Top, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -337,13 +367,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (newValue != null)
             {
-                switch ((VerticalAlignmentType)newValue)
-                {
-                    case Tizen.NUI.VerticalAlignmentType.Top: { valueToString = "top"; break; }
-                    case Tizen.NUI.VerticalAlignmentType.Center: { valueToString = "center"; break; }
-                    case Tizen.NUI.VerticalAlignmentType.Bottom: { valueToString = "bottom"; break; }
-                    default: { valueToString = "top"; break; }
-                }
+                valueToString = ((VerticalAlignmentType)newValue).GetDescription<VerticalAlignmentType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -356,13 +380,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("CellVerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "top": return Tizen.NUI.VerticalAlignmentType.Top;
-                case "center": return Tizen.NUI.VerticalAlignmentType.Center;
-                case "bottom": return Tizen.NUI.VerticalAlignmentType.Bottom;
-                default: return Tizen.NUI.VerticalAlignmentType.Top;
-            }
+            return temp.GetValueByDescription<VerticalAlignmentType>();
         });
 
         /// <summary>
@@ -385,7 +403,9 @@ namespace Tizen.NUI.BaseComponents
             return view.Weight;
         });
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <summary>
+        /// LeftFocusableViewProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -399,7 +419,10 @@ namespace Tizen.NUI.BaseComponents
             if (view.LeftFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.LeftFocusableViewId); }
             return null;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// RightFocusableViewProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -413,7 +436,10 @@ namespace Tizen.NUI.BaseComponents
             if (view.RightFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.RightFocusableViewId); }
             return null;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// UpFocusableViewProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -427,7 +453,10 @@ namespace Tizen.NUI.BaseComponents
             if (view.UpFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.UpFocusableViewId); }
             return null;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// DownFocusableViewProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -441,7 +470,10 @@ namespace Tizen.NUI.BaseComponents
             if (view.DownFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.DownFocusableViewId); }
             return null;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// FocusableProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FocusableProperty = BindableProperty.Create("Focusable", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -453,7 +485,10 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             return view.IsKeyboardFocusable();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// Size2DProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty Size2DProperty = BindableProperty.Create("Size2D", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -471,7 +506,10 @@ namespace Tizen.NUI.BaseComponents
             Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
             return size;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// OpacityProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OpacityProperty = BindableProperty.Create("Opacity", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -488,7 +526,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.OPACITY).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// Position2DProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty Position2DProperty = BindableProperty.Create("Position2D", typeof(Position2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -505,7 +546,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION).Get(temp);
             return new Position2D(temp);
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PositionUsesPivotPointProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionUsesPivotPointProperty = BindableProperty.Create("PositionUsesPivotPoint", typeof(bool), typeof(View), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -522,7 +566,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SiblingOrderProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SiblingOrderProperty = BindableProperty.Create("SiblingOrder", typeof(int), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -568,7 +615,10 @@ namespace Tizen.NUI.BaseComponents
 
             return 0;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ParentOriginProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ParentOriginProperty = BindableProperty.Create("ParentOrigin", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -586,7 +636,10 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
         );
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PivotPointProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PivotPointProperty = BindableProperty.Create("PivotPoint", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -603,7 +656,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ANCHOR_POINT).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SizeWidthProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeWidthProperty = BindableProperty.Create("SizeWidth", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -620,7 +676,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_WIDTH).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SizeHeightProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeHeightProperty = BindableProperty.Create("SizeHeight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -637,7 +696,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PositionProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionProperty = BindableProperty.Create("Position", typeof(Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -654,7 +716,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PositionXProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionXProperty = BindableProperty.Create("PositionX", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -671,7 +736,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_X).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PositionYProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionYProperty = BindableProperty.Create("PositionY", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -688,7 +756,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_Y).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PositionZProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PositionZProperty = BindableProperty.Create("PositionZ", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -705,7 +776,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.POSITION_Z).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// OrientationProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OrientationProperty = BindableProperty.Create("Orientation", typeof(Rotation), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -722,7 +796,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.ORIENTATION).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ScaleProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleProperty = BindableProperty.Create("Scale", typeof(Vector3), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -739,7 +816,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ScaleXProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleXProperty = BindableProperty.Create("ScaleX", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -756,7 +836,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_X).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ScaleYProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleYProperty = BindableProperty.Create("ScaleY", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -773,7 +856,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_Y).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ScaleZProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScaleZProperty = BindableProperty.Create("ScaleZ", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -790,7 +876,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SCALE_Z).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// NameProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty NameProperty = BindableProperty.Create("Name", typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -807,7 +896,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.NAME).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SensitiveProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SensitiveProperty = BindableProperty.Create("Sensitive", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -824,7 +916,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SENSITIVE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// LeaveRequiredProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LeaveRequiredProperty = BindableProperty.Create("LeaveRequired", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -841,7 +936,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.LEAVE_REQUIRED).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// InheritOrientationProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InheritOrientationProperty = BindableProperty.Create("InheritOrientation", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -858,7 +956,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_ORIENTATION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// InheritScaleProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InheritScaleProperty = BindableProperty.Create("InheritScale", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -875,7 +976,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_SCALE).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// DrawModeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DrawModeProperty = BindableProperty.Create("DrawMode", typeof(DrawModeType), typeof(View), DrawModeType.Normal, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -893,17 +997,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("DrawMode get error!");
             }
-            switch (temp)
-            {
-                case "NORMAL": return DrawModeType.Normal;
-                case "OVERLAY_2D": return DrawModeType.Overlay2D;
-#pragma warning disable CS0618 // Disable deprecated warning as we do need to use the deprecated API here.
-                case "STENCIL": return DrawModeType.Stencil;
-#pragma warning restore CS0618
-                default: return DrawModeType.Normal;
-            }
+            return temp.GetValueByDescription<DrawModeType>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SizeModeFactorProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeModeFactorProperty = BindableProperty.Create("SizeModeFactor", typeof(Vector3), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -920,7 +1019,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_MODE_FACTOR).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// WidthResizePolicyProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WidthResizePolicyProperty = BindableProperty.Create("WidthResizePolicy", typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -938,20 +1040,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("WidthResizePolicy get error!");
             }
-            switch (temp)
-            {
-                case "FIXED": return ResizePolicyType.Fixed;
-                case "USE_NATURAL_SIZE": return ResizePolicyType.UseNaturalSize;
-                case "FILL_TO_PARENT": return ResizePolicyType.FillToParent;
-                case "SIZE_RELATIVE_TO_PARENT": return ResizePolicyType.SizeRelativeToParent;
-                case "SIZE_FIXED_OFFSET_FROM_PARENT": return ResizePolicyType.SizeFixedOffsetFromParent;
-                case "FIT_TO_CHILDREN": return ResizePolicyType.FitToChildren;
-                case "DIMENSION_DEPENDENCY": return ResizePolicyType.DimensionDependency;
-                case "USE_ASSIGNED_SIZE": return ResizePolicyType.UseAssignedSize;
-                default: return ResizePolicyType.Fixed;
-            }
+            return temp.GetValueByDescription<ResizePolicyType>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// HeightResizePolicyProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty HeightResizePolicyProperty = BindableProperty.Create("HeightResizePolicy", typeof(ResizePolicyType), typeof(View), ResizePolicyType.Fixed, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -969,20 +1063,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("HeightResizePolicy get error!");
             }
-            switch (temp)
-            {
-                case "FIXED": return ResizePolicyType.Fixed;
-                case "USE_NATURAL_SIZE": return ResizePolicyType.UseNaturalSize;
-                case "FILL_TO_PARENT": return ResizePolicyType.FillToParent;
-                case "SIZE_RELATIVE_TO_PARENT": return ResizePolicyType.SizeRelativeToParent;
-                case "SIZE_FIXED_OFFSET_FROM_PARENT": return ResizePolicyType.SizeFixedOffsetFromParent;
-                case "FIT_TO_CHILDREN": return ResizePolicyType.FitToChildren;
-                case "DIMENSION_DEPENDENCY": return ResizePolicyType.DimensionDependency;
-                case "USE_ASSIGNED_SIZE": return ResizePolicyType.UseAssignedSize;
-                default: return ResizePolicyType.Fixed;
-            }
+            return temp.GetValueByDescription<ResizePolicyType>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SizeScalePolicyProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeScalePolicyProperty = BindableProperty.Create("SizeScalePolicy", typeof(SizeScalePolicyType), typeof(View), SizeScalePolicyType.UseSizeSet, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -990,13 +1076,7 @@ namespace Tizen.NUI.BaseComponents
             string valueToString = "";
             if (newValue != null)
             {
-                switch ((SizeScalePolicyType)newValue)
-                {
-                    case SizeScalePolicyType.UseSizeSet: { valueToString = "USE_SIZE_SET"; break; }
-                    case SizeScalePolicyType.FitWithAspectRatio: { valueToString = "FIT_WITH_ASPECT_RATIO"; break; }
-                    case SizeScalePolicyType.FillWithAspectRatio: { valueToString = "FILL_WITH_ASPECT_RATIO"; break; }
-                    default: { valueToString = "USE_SIZE_SET"; break; }
-                }
+                valueToString = ((SizeScalePolicyType)newValue).GetDescription<SizeScalePolicyType>();
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
             }
         },
@@ -1008,15 +1088,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("SizeScalePolicy get error!");
             }
-            switch (temp)
-            {
-                case "USE_SIZE_SET": return SizeScalePolicyType.UseSizeSet;
-                case "FIT_WITH_ASPECT_RATIO": return SizeScalePolicyType.FitWithAspectRatio;
-                case "FILL_WITH_ASPECT_RATIO": return SizeScalePolicyType.FillWithAspectRatio;
-                default: return SizeScalePolicyType.UseSizeSet;
-            }
+            return temp.GetValueByDescription<SizeScalePolicyType>();
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// WidthForHeightProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WidthForHeightProperty = BindableProperty.Create("WidthForHeight", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1033,7 +1110,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.WIDTH_FOR_HEIGHT).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// HeightForWidthProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty HeightForWidthProperty = BindableProperty.Create("HeightForWidth", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1050,7 +1130,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.HEIGHT_FOR_WIDTH).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// PaddingProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PaddingProperty = BindableProperty.Create("Padding", typeof(Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1067,7 +1150,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.PADDING).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// SizeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SizeProperty = BindableProperty.Create("Size", typeof(Size), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1084,14 +1170,22 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// MinimumSizeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MinimumSizeProperty = BindableProperty.Create("MinimumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null)
+            Size2D temp = newValue as Size2D;
+            if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue((Size2D)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+            }
+            else
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] can't set MinimumSizeProperty!");
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1101,14 +1195,22 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MINIMUM_SIZE).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// MaximumSizeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MaximumSizeProperty = BindableProperty.Create("MaximumSize", typeof(Size2D), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null)
+            Size2D temp = newValue as Size2D;
+            if (temp != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue((Size2D)newValue));
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(temp));
+            }
+            else
+            {
+                Tizen.Log.Fatal("NUI", $"[ERROR] can't set MaximumSizeProperty!");
             }
         },
         defaultValueCreator: (bindable) =>
@@ -1118,7 +1220,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MAXIMUM_SIZE).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// InheritPositionProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InheritPositionProperty = BindableProperty.Create("InheritPosition", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1135,7 +1240,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_POSITION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// ClippingModeProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ClippingModeProperty = BindableProperty.Create("ClippingMode", typeof(ClippingModeType), typeof(View), ClippingModeType.Disabled, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1155,7 +1263,10 @@ namespace Tizen.NUI.BaseComponents
             }
             return (ClippingModeType)temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// InheritLayoutDirectionProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InheritLayoutDirectionProperty = BindableProperty.Create("InheritLayoutDirection", typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1172,7 +1283,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.INHERIT_LAYOUT_DIRECTION).Get(out temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// LayoutDirectionProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LayoutDirectionProperty = BindableProperty.Create("LayoutDirection", typeof(ViewLayoutDirectionType), typeof(View), ViewLayoutDirectionType.LTR, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1192,7 +1306,10 @@ namespace Tizen.NUI.BaseComponents
             }
             return (ViewLayoutDirectionType)temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// MarginProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MarginProperty = BindableProperty.Create("Margin", typeof(Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1209,7 +1326,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.MARGIN).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// UpdateSizeHintProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UpdateSizeHintProperty = BindableProperty.Create("UpdateSizeHint", typeof(Vector2), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -1227,7 +1347,10 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_UPDATE_SIZE_HINT_get()).Get(temp);
             return temp;
         });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+
+        /// <summary>
+        /// XamlStyleProperty
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create("XamlStyle", typeof(Style), typeof(View), default(Style), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable)._mergedStyle.Style = (Style)newvalue);
     }

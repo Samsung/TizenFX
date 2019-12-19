@@ -14,8 +14,8 @@
  * limitations under the License.
  *
  */
- using System;
- using Tizen.NUI.Binding;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,16 +24,9 @@ namespace Tizen.NUI
     /// All values (x, y, and z) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(RelativeVector4TypeConverter))]
+    [Binding.TypeConverter(typeof(RelativeVector4TypeConverter))]
     public class RelativeVector4 : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// The constructor.
@@ -52,7 +45,7 @@ namespace Tizen.NUI
         /// <param name="z">The z component.</param>
         /// <param name="w">The w component.</param>
         /// <since_tizen> 3 </since_tizen>
-        public RelativeVector4(float x, float y, float z, float w) : this(Interop.Vector4.new_Vector4__SWIG_1(ValueCheck(x), ValueCheck(y), ValueCheck(z), ValueCheck(w)), true)
+        public RelativeVector4(float x, float y, float z, float w) : this(Interop.Vector4.new_Vector4__SWIG_1(x, y, z, w), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -77,6 +70,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal RelativeVector4(RelativeVector4ChangedCallback cb, float x, float y, float z, float w) : this(Interop.Vector4.new_Vector4__SWIG_1(x, y, z, w), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void RelativeVector4ChangedCallback(float x, float y, float z, float w);
+        private RelativeVector4ChangedCallback callback = null;
+
         /// <summary>
         /// The x component.
         /// </summary>
@@ -85,8 +86,10 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector4.Vector4_X_set(swigCPtr, ValueCheck(value));
+                Interop.Vector4.Vector4_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -104,8 +107,10 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector4.Vector4_Y_set(swigCPtr, ValueCheck(value));
+                Interop.Vector4.Vector4_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -123,8 +128,10 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector4.Vector4_Z_set(swigCPtr, ValueCheck(value));
+                Interop.Vector4.Vector4_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -142,8 +149,10 @@ namespace Tizen.NUI
         {
             set
             {
-                Interop.Vector4.Vector4_W_set(swigCPtr, ValueCheck(value));
+                Interop.Vector4.Vector4_W_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z, W);
             }
             get
             {
@@ -163,7 +172,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator +(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Add(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -176,7 +185,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator -(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Subtract(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -189,7 +198,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator *(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -202,7 +211,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator *(RelativeVector4 arg1, float arg2)
         {
             RelativeVector4 result = arg1.Multiply(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -215,7 +224,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator /(RelativeVector4 arg1, RelativeVector4 arg2)
         {
             RelativeVector4 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -228,7 +237,7 @@ namespace Tizen.NUI
         public static RelativeVector4 operator /(RelativeVector4 arg1, float arg2)
         {
             RelativeVector4 result = arg1.Divide(arg2);
-            return ValueCheck(result);
+            return result;
         }
 
         /// <summary>
@@ -244,7 +253,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
         {
-            return new RelativeVector4(ValueCheck(vec.X), ValueCheck(vec.Y), ValueCheck(vec.Z), ValueCheck(vec.W));
+            return new RelativeVector4(vec.X, vec.Y, vec.Z, vec.W);
         }
 
         /// <summary>
@@ -322,102 +331,20 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static RelativeVector4 ValueCheck(RelativeVector4 relativeVector4)
-        {
-            if (relativeVector4.X < 0.0f)
-            {
-                relativeVector4.X = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector4.X > 1.0f)
-            {
-                relativeVector4.X = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector4.Y < 0.0f)
-            {
-                relativeVector4.Y = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector4.Y > 1.0f)
-            {
-                relativeVector4.Y = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector4.Z < 0.0f)
-            {
-                relativeVector4.Z = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector4.Z > 1.0f)
-            {
-                relativeVector4.Z = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            if (relativeVector4.W < 0.0f)
-            {
-                relativeVector4.W = 0.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            else if (relativeVector4.W > 1.0f)
-            {
-                relativeVector4.W = 1.0f;
-                NUILog.Error("The value of Result is invalid! Should be between [0, 1].");
-            }
-            return relativeVector4;
-        }
-
-        internal static float ValueCheck(float value)
-        {
-            if (value < 0.0f)
-            {
-                value = 0.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            else if (value > 1.0f)
-            {
-                value = 1.0f;
-                NUILog.Error("The value of Parameters is invalid! Should be between [0, 1].");
-            }
-            return value;
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RelativeVector4 obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector4.delete_Vector4(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Vector4.delete_Vector4(swigCPtr);
         }
 
         private RelativeVector4 Add(RelativeVector4 rhs)

@@ -31,7 +31,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LongPressGestureDetector : GestureDetector
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private DaliEventHandler<object, DetectedEventArgs> _longPressGestureEventHandler;
         private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
@@ -84,7 +83,6 @@ namespace Tizen.NUI
 
         internal LongPressGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.LongPressGestureDetector.LongPressGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -211,34 +209,11 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.LongPressGestureDetector.delete_LongPressGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.LongPressGestureDetector.delete_LongPressGestureDetector(swigCPtr);
         }
 
         private void OnLongPressGestureDetected(IntPtr actor, IntPtr longPressGesture)

@@ -26,6 +26,40 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField
     {
+        /// <summary>
+        /// StyleNameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatableTextProperty = BindableProperty.Create(nameof(TranslatableText), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                textField.translatableText = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatableText;
+        });
+        /// <summary>
+        /// StyleNameProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TranslatablePlaceholderTextProperty = BindableProperty.Create(nameof(TranslatablePlaceholderText), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                textField.translatablePlaceholderText = (string)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatablePlaceholderText;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -181,13 +215,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("HorizontalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "BEGIN": return HorizontalAlignment.Begin;
-                case "CENTER": return HorizontalAlignment.Center;
-                case "END": return HorizontalAlignment.End;
-                default: return HorizontalAlignment.Begin;
-            }
+            return temp.GetValueByDescription<HorizontalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -208,13 +236,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("VerticalAlignment get error!");
             }
 
-            switch (temp)
-            {
-                case "TOP": return VerticalAlignment.Top;
-                case "CENTER": return VerticalAlignment.Center;
-                case "BOTTOM": return VerticalAlignment.Bottom;
-                default: return VerticalAlignment.Bottom;
-            }
+            return temp.GetValueByDescription<VerticalAlignment>();
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -240,7 +262,9 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Color color = (Color)newValue;
+                Vector4 vector = new Vector4(color.R, color.G, color.B, color.A);
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(vector));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -291,7 +315,9 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                Color color = (Color)newValue;
+                Vector4 vector = new Vector4(color.R, color.G, color.B, color.A);
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(vector));
             }
         },
         defaultValueCreator: (bindable) =>
@@ -473,7 +499,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(TextField.SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(TextField.SelectionHandleImageRight), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)

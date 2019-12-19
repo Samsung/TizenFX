@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -29,6 +30,7 @@ namespace Tizen.NUI
     /// </summary>
     public class FlexLayout : LayoutGroup,  global::System.IDisposable
     {
+        private static bool LayoutDebugFlex = false; // Debug flag
         float Flex{ get; set;}
         int AlignSelf{get; set;}
 
@@ -38,6 +40,8 @@ namespace Tizen.NUI
         private bool isDisposeQueued = false;
 
         private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
+
+        internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
         internal struct MeasuredSize
         {
@@ -400,8 +404,20 @@ namespace Tizen.NUI
             Size2D viewSize = new Size2D(8,8);
             if(view)
             {
-              viewSize = view.NaturalSize2D;
+                viewSize = view.Size2D;
             }
+
+            // If size not set on child then use NaturalSize
+            if(viewSize.Width ==0 && viewSize.Height==0)
+            {
+                viewSize = view.NaturalSize2D;
+            }
+
+            Debug.WriteLineIf( LayoutDebugFlex, "FlexLayout measureChild View:" + view.Name
+                                               + "Size:" + viewSize.Width
+                                               + ","
+                                               + viewSize.Height);
+
             return new MeasuredSize(viewSize.Width,viewSize.Height);
         }
 
@@ -449,8 +465,8 @@ namespace Tizen.NUI
             Interop.FlexLayout.FlexLayout_SetMargin(swigCPtr, Extents.getCPtr(margin));
             Interop.FlexLayout.FlexLayout_SetPadding(swigCPtr, Extents.getCPtr(padding));
 
-            float width = 0.0f;
-            float height = 0.0f;
+            float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
+            float height = FlexUndefined; // Behaves as WrapContent (Flex Auto)
 
             if( widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly ||  widthMeasureSpec.Mode == MeasureSpecification.ModeType.AtMost )
             {
@@ -464,8 +480,14 @@ namespace Tizen.NUI
 
             Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width, height, isLayoutRtl );
 
-            SetMeasuredDimensions( GetDefaultSize( new LayoutLength( (float)Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr) ), widthMeasureSpec ),
-                                   GetDefaultSize( new LayoutLength( (float)Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr) ), heightMeasureSpec ) );
+            LayoutLength flexLayoutWidth =  new LayoutLength( Interop.FlexLayout.FlexLayout_GetWidth(swigCPtr) );
+            LayoutLength flexLayoutHeight = new LayoutLength( Interop.FlexLayout.FlexLayout_GetHeight(swigCPtr) );
+
+            Debug.WriteLineIf( LayoutDebugFlex, "FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue()
+                                                + " height:" + flexLayoutHeight.AsRoundedValue() );
+
+            SetMeasuredDimensions( GetDefaultSize(flexLayoutWidth, widthMeasureSpec ),
+                                   GetDefaultSize(flexLayoutHeight, heightMeasureSpec ) );
         }
 
         /// <summary>

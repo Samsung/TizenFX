@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -24,16 +24,9 @@ namespace Tizen.NUI
     /// A three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [TypeConverter(typeof(Vector3TypeConverter))]
+    [Binding.TypeConverter(typeof(Vector3TypeConverter))]
     public class Vector3 : Disposable
     {
-        /// <summary>
-        /// swigCMemOwn.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -85,11 +78,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
+
+        internal Vector3(Vector3ChangedCallback cb, float x, float y, float z) : this(Interop.Vector3.new_Vector3__SWIG_1(x, y, z), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal delegate void Vector3ChangedCallback(float x, float y, float z);
+        private Vector3ChangedCallback callback = null;
 
         /// <summary>
         /// (1.0f,1.0f,1.0f).
@@ -221,6 +220,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_X_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -240,6 +241,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Width_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -259,6 +262,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_r_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -278,6 +283,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Y_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -297,6 +304,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Height_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -316,6 +325,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_g_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -335,6 +346,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Z_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -354,6 +367,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_Depth_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -373,6 +388,8 @@ namespace Tizen.NUI
             {
                 Interop.Vector3.Vector3_b_set(swigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y, Z);
             }
             get
             {
@@ -597,32 +614,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Vector3.delete_Vector3(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.Vector3.delete_Vector3(swigCPtr);
         }
 
         private Vector3 Add(Vector3 rhs)

@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Samsung Electronics Co., Ltd.
+// Copyright (c) 2019 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -112,10 +112,12 @@ namespace Tizen.NUI
         /// <summary>
         /// The default draw-mode.
         /// </summary>
+        [Description("NORMAL")]
         Normal = 0,
         /// <summary>
         /// Draw the actor and its children as an overlay.
         /// </summary>
+        [Description("OVERLAY_2D")]
         Overlay2D = 1,
 
         /// <summary>
@@ -125,6 +127,7 @@ namespace Tizen.NUI
         /// Deprecated.(API Level 6) Not used.
         /// </remarks>
         [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
+        [Description("STENCIL")]
         Stencil = 3
     }
 
@@ -137,35 +140,43 @@ namespace Tizen.NUI
         /// <summary>
         /// Size is fixed as set by SetSize.
         /// </summary>
+        [Description("FIXED")]
         Fixed,
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
         /// <see cref="ViewImpl.GetNaturalSize"/>
+        [Description("USE_NATURAL_SIZE")]
         UseNaturalSize,
         /// <summary>
         /// Size is to fill up to the actor's parent's bounds. Aspect ratio is not maintained.
         /// </summary>
+        [Description("FILL_TO_PARENT")]
         FillToParent,
         /// <summary>
         /// The actors size will be ( ParentSize * SizeRelativeToParentFactor ).
         /// </summary>
+        [Description("SIZE_RELATIVE_TO_PARENT")]
         SizeRelativeToParent,
         /// <summary>
         /// The actors size will be ( ParentSize + SizeRelativeToParentFactor ).
         /// </summary>
+        [Description("SIZE_FIXED_OFFSET_FROM_PARENT")]
         SizeFixedOffsetFromParent,
         /// <summary>
         /// The size will adjust to wrap around all children.
         /// </summary>
+        [Description("FIT_TO_CHILDREN")]
         FitToChildren,
         /// <summary>
         /// One dimension is dependent on the other.
         /// </summary>
+        [Description("DIMENSION_DEPENDENCY")]
         DimensionDependency,
         /// <summary>
         /// The size will be assigned to the actor.
         /// </summary>
+        [Description("USE_ASSIGNED_SIZE")]
         UseAssignedSize
     }
 
@@ -178,14 +189,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Use the size that was set.
         /// </summary>
+        [Description("USE_SIZE_SET")]
         UseSizeSet,
         /// <summary>
         /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
+        [Description("FIT_WITH_ASPECT_RATIO")]
         FitWithAspectRatio,
         /// <summary>
         /// Fit within the size set maintaining natural size aspect ratio.
         /// </summary>
+        [Description("FILL_WITH_ASPECT_RATIO")]
         FillWithAspectRatio
     }
 
@@ -539,14 +553,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Align horizontally left.
         /// </summary>
+        [Description("left")]
         Left,
         /// <summary>
         /// Align horizontally center.
         /// </summary>
+        [Description("center")]
         Center,
         /// <summary>
         /// Align horizontally right.
         /// </summary>
+        [Description("right")]
         Right
     }
 
@@ -559,14 +576,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Align vertically top.
         /// </summary>
+        [Description("top")]
         Top,
         /// <summary>
         /// Align vertically center.
         /// </summary>
+        [Description("center")]
         Center,
         /// <summary>
         /// Align vertically bottom.
         /// </summary>
+        [Description("bottom")]
         Bottom
     }
 
@@ -648,10 +668,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Stop animation after current loop finished.
         /// </summary>
+        [Description("FINISH_LOOP")]
         FinishLoop,
         /// <summary>
         /// Stop animation immediately and reset position.
         /// </summary>
+        [Description("IMMEDIATE")]
         Immediate
     }
 
@@ -1596,9 +1618,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointTop_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Top;
             }
         }
         /// <summary>
@@ -1609,9 +1629,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointBottom_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Bottom;
             }
         }
         /// <summary>
@@ -1622,9 +1640,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointLeft_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Left;
             }
         }
         /// <summary>
@@ -1635,9 +1651,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointRight_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Right;
             }
         }
         /// <summary>
@@ -1648,9 +1662,7 @@ namespace Tizen.NUI
         {
             get
             {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointMiddle_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Middle;
             }
         }
         /// <summary>
@@ -1661,10 +1673,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeft_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.TopLeft;
             }
         }
         /// <summary>
@@ -1675,10 +1684,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenter_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.TopCenter;
             }
         }
         /// <summary>
@@ -1689,10 +1695,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRight_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.TopRight;
             }
         }
         /// <summary>
@@ -1703,10 +1706,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeft_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.CenterLeft;
             }
         }
         /// <summary>
@@ -1717,10 +1717,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenter_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.Center;
             }
         }
         /// <summary>
@@ -1731,10 +1728,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRight_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.CenterRight;
             }
         }
         /// <summary>
@@ -1745,10 +1739,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeft_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.BottomLeft;
             }
         }
         /// <summary>
@@ -1759,10 +1750,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenter_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.BottomCenter;
             }
         }
         /// <summary>
@@ -1773,10 +1761,7 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRight_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return PivotPoint.BottomRight;
             }
         }
     }

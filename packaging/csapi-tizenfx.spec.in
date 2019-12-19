@@ -184,6 +184,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 
 %files
 %license LICENSE
+%license LICENSE.MIT
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg

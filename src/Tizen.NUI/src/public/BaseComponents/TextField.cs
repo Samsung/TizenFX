@@ -20,6 +20,7 @@ using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -29,11 +30,14 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField : View
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFieldStyle Style => ViewStyle as TextFieldStyle;
 
         /// <summary>
         /// Creates the TextField control.
@@ -56,10 +60,27 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(shown);
         }
 
+        /// <summary>
+        /// Get attribues, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle GetViewStyle()
+        {
+            return new TextFieldStyle();
+        }
+
+        internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn, viewStyle)
+        {
+            if (!shown)
+            {
+                SetVisible(false);
+            }
+        }
+
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.TextField.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
             if (!shown)
             {
                 SetVisible(false);
@@ -94,6 +115,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (string)GetValue(TranslatableTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+            }
+        }
+        private string translatableText
+        {
+            get
+            {
                 return textFieldTextSid;
             }
             set
@@ -117,6 +149,17 @@ namespace Tizen.NUI.BaseComponents
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string TranslatablePlaceholderText
+        {
+            get
+            {
+                return (string)GetValue(TranslatablePlaceholderTextProperty);
+            }
+            set
+            {
+                SetValue(TranslatablePlaceholderTextProperty, value);
+            }
+        }
+        private string translatablePlaceholderText
         {
             get
             {
@@ -308,12 +351,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.TextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color TextColor
         {
             get
             {
-                return (Color)GetValue(TextColorProperty);
+                Color temp = (Color)GetValue(TextColorProperty);
+                return new Color(OnTextColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -325,12 +372,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PlaceholderTextColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PlaceholderTextColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PlaceholderTextColor
         {
             get
             {
-                return (Vector4)GetValue(PlaceholderTextColorProperty);
+                Vector4 temp = (Vector4)GetValue(PlaceholderTextColorProperty);
+                return new Vector4(OnPlaceholderTextColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -345,6 +396,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
@@ -355,7 +407,7 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
                 map.Find(TextField.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return shadowOffset;
+                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
             }
             set
             {
@@ -372,6 +424,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
         /// Deprecated.(API Level 6) Use Shadow instead.
+        /// The property cascade chaining set is possible. For example, this (textField.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
         [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
@@ -382,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextField.Property.SHADOW).Get(map);
                 Vector4 shadowColor = new Vector4();
                 map.Find(TextField.Property.SHADOW, "color")?.Get(shadowColor);
-                return shadowColor;
+                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
             }
             set
             {
@@ -396,12 +449,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The PrimaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.PrimaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 PrimaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(PrimaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(PrimaryCursorColorProperty);
+                return new Vector4(OnPrimaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -413,12 +470,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SecondaryCursorColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SecondaryCursorColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SecondaryCursorColor
         {
             get
             {
-                return (Vector4)GetValue(SecondaryCursorColorProperty);
+                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
+                return new Vector4(OnSecondaryCursorColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -668,12 +729,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionHighlightColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.SelectionHighlightColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 SelectionHighlightColor
         {
             get
             {
-                return (Vector4)GetValue(SelectionHighlightColorProperty);
+                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
+                return new Vector4(OnSelectionHighlightColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -685,12 +750,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The DecorationBoundingBox property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle DecorationBoundingBox
         {
             get
             {
-                return (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
+                return new Rectangle(OnDecorationBoundingBoxChanged, temp.X, temp.Y, temp.Width, temp.Height);
             }
             set
             {
@@ -719,12 +788,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The InputColor property.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (textField.InputColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 InputColor
         {
             get
             {
-                return (Vector4)GetValue(InputColorProperty);
+                Vector4 temp = (Vector4)GetValue(InputColorProperty);
+                return new Vector4(OnInputColorChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -1209,19 +1282,16 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    // In order to speed up IME hide, temporarily add
-                    GetInputMethodContext()?.DestroyContext();
-                    Interop.TextField.delete_TextField(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            // In order to speed up IME hide, temporarily add
+            GetInputMethodContext()?.DestroyContext();
+            Interop.TextField.delete_TextField(swigCPtr);
         }
 
         private string SetTranslatable(string textFieldSid)
@@ -1328,6 +1398,228 @@ namespace Tizen.NUI.BaseComponents
                 Emboss = 0x0040,
                 Outline = 0x0080
             }
+        }
+
+        internal static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.translatableTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatableTextSelector;
+        });
+        internal static readonly BindableProperty TranslatablePlaceholderTextSelectorProperty = BindableProperty.Create("TranslatablePlaceholderTextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.translatablePlaceholderTextSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.translatablePlaceholderTextSelector;
+        });
+        internal static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.textSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.textSelector;
+        });
+        internal static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.fontFamilySelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.fontFamilySelector;
+        });
+        internal static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.pointSizeSelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.pointSizeSelector;
+        });
+        internal static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.textColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.textColorSelector;
+        });
+        internal static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.placeholderTextColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.placeholderTextColorSelector;
+        });
+        internal static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Color>), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            textField.primaryCursorColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            return textField.primaryCursorColorSelector;
+        });
+
+        private TriggerableSelector<string> _translatableTextSelector;
+        private TriggerableSelector<string> translatableTextSelector
+        {
+            get
+            {
+                if (null == _translatableTextSelector)
+                {
+                    _translatableTextSelector = new TriggerableSelector<string>(this, TranslatableTextProperty);
+                }
+                return _translatableTextSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _translatablePlaceholderTextSelector;
+        private TriggerableSelector<string> translatablePlaceholderTextSelector
+        {
+            get
+            {
+                if (null == _translatablePlaceholderTextSelector)
+                {
+                    _translatablePlaceholderTextSelector = new TriggerableSelector<string>(this, TranslatablePlaceholderTextProperty);
+                }
+                return _translatablePlaceholderTextSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _textSelector;
+        private TriggerableSelector<string> textSelector
+        {
+            get
+            {
+                if (null == _textSelector)
+                {
+                    _textSelector = new TriggerableSelector<string>(this, TextProperty);
+                }
+                return _textSelector;
+            }
+        }
+
+        private TriggerableSelector<string> _fontFamilySelector;
+        private TriggerableSelector<string> fontFamilySelector
+        {
+            get
+            {
+                if (null == _fontFamilySelector)
+                {
+                    _fontFamilySelector = new TriggerableSelector<string>(this, FontFamilyProperty);
+                }
+                return _fontFamilySelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _textColorSelector;
+        private TriggerableSelector<Color> textColorSelector
+        {
+            get
+            {
+                if (null == _textColorSelector)
+                {
+                    _textColorSelector = new TriggerableSelector<Color>(this, TextColorProperty);
+                }
+                return _textColorSelector;
+            }
+        }
+
+        private TriggerableSelector<float?> _pointSizeSelector;
+        private TriggerableSelector<float?> pointSizeSelector
+        {
+            get
+            {
+                if (null == _pointSizeSelector)
+                {
+                    _pointSizeSelector = new TriggerableSelector<float?>(this, PointSizeProperty);
+                }
+                return _pointSizeSelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _placeholderTextColorSelector;
+        private TriggerableSelector<Color> placeholderTextColorSelector
+        {
+            get
+            {
+                if (null == _placeholderTextColorSelector)
+                {
+                    _placeholderTextColorSelector = new TriggerableSelector<Color>(this, PlaceholderTextColorProperty);
+                }
+                return _placeholderTextColorSelector;
+            }
+        }
+
+        private TriggerableSelector<Color> _primaryCursorColorSelector;
+        private TriggerableSelector<Color> primaryCursorColorSelector
+        {
+            get
+            {
+                if (null == _primaryCursorColorSelector)
+                {
+                    _primaryCursorColorSelector = new TriggerableSelector<Color>(this, PrimaryCursorColorProperty);
+                }
+                return _primaryCursorColorSelector;
+            }
+        }
+
+        private void OnDecorationBoundingBoxChanged(int x, int y, int width, int height)
+        {
+            DecorationBoundingBox = new Rectangle(x, y, width, height);
+        }
+        private void OnInputColorChanged(float x, float y, float z, float w)
+        {
+            InputColor = new Vector4(x, y, z, w);
+        }
+        private void OnPlaceholderTextColorChanged(float r, float g, float b, float a)
+        {
+            PlaceholderTextColor = new Vector4(r, g, b, a);
+        }
+        private void OnPrimaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            PrimaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSecondaryCursorColorChanged(float x, float y, float z, float w)
+        {
+            SecondaryCursorColor = new Vector4(x, y, z, w);
+        }
+        private void OnSelectionHighlightColorChanged(float x, float y, float z, float w)
+        {
+            SelectionHighlightColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowColorChanged(float x, float y, float z, float w)
+        {
+            ShadowColor = new Vector4(x, y, z, w);
+        }
+        private void OnShadowOffsetChanged(float x, float y)
+        {
+            ShadowOffset = new Vector2(x, y);
+        }
+        private void OnTextColorChanged(float r, float g, float b, float a)
+        {
+            TextColor = new Color(r, g, b, a);
         }
     }
 }

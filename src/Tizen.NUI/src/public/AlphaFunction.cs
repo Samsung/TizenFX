@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -26,10 +28,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AlphaFunction : Disposable
     {
-        /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool swigCMemOwn;
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// The constructor.<br />
@@ -76,10 +74,8 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
@@ -96,58 +92,72 @@ namespace Tizen.NUI
             /// <summary>
             /// Linear.
             /// </summary>
+            [Description("DEFAULT")]
             Default,
             /// <summary>
             /// No transformation.
             /// </summary>
+            [Description("LINEAR")]
             Linear,
             /// <summary>
             /// Reverse linear.
             /// </summary>
+            [Description("REVERSE")]
             Reverse,
             /// <summary>
             /// Speeds up and comes to a sudden stop (square).
             /// </summary>
+            [Description("EASE_IN_SQUARE")]
             EaseInSquare,
             /// <summary>
             /// Sudden start and slows to a gradual stop (square).
             /// </summary>
+            [Description("EASE_OUT_SQUARE")]
             EaseOutSquare,
             /// <summary>
             /// Speeds up and comes to a sudden stop (cubic).
             /// </summary>
+            [Description("EASE_IN")]
             EaseIn,
             /// <summary>
             /// Sudden start and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_OUT")]
             EaseOut,
             /// <summary>
             /// Speeds up and slows to a gradual stop (cubic).
             /// </summary>
+            [Description("EASE_IN_OUT")]
             EaseInOut,
             /// <summary>
             /// Speeds up and comes to a sudden stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_SINE")]
             EaseInSine,
             /// <summary>
             /// Sudden start and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_OUT_SINE")]
             EaseOutSine,
             /// <summary>
             /// Speeds up and slows to a gradual stop (sinusoidal).
             /// </summary>
+            [Description("EASE_IN_OUT_SINE")]
             EaseInOutSine,
             /// <summary>
             /// Sudden start, loses momentum and returns to start position.
             /// </summary>
+            [Description("BOUNCE")]
             Bounce,
             /// <summary>
             /// Single revolution.
             /// </summary>
+            [Description("SIN")]
             Sin,
             /// <summary>
             /// Sudden start, exceed end position and return to a gradual stop.
             /// </summary>
+            [Description("EASE_OUT_BACK")]
             EaseOutBack,
             /// <summary>
             /// The count of the BuiltinFunctions enum.
@@ -311,31 +321,11 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// To make the AlphaFunction instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.AlphaFunction.delete_AlphaFunction(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
+            Interop.AlphaFunction.delete_AlphaFunction(swigCPtr);
         }
     }
 }

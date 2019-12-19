@@ -145,6 +145,7 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private new Extents padding;
         /// <summary>
         /// overwrite the Padding.
         /// </summary>
@@ -153,8 +154,36 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Extents Padding
         {
-            get;
-            set;
+            get
+            {
+                if (null == padding)
+                {
+                    padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        padding.Start = start;
+                        padding.End = end;
+                        padding.Top = top;
+                        padding.Bottom = bottom;
+                    }, 0, 0, 0, 0);
+                }
+
+                return padding;
+            }
+            set
+            {
+                if (null == padding)
+                {
+                    padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
+                    {
+                        padding.Start = start;
+                        padding.End = end;
+                        padding.Top = top;
+                        padding.Bottom = bottom;
+                    }, 0, 0, 0, 0);
+                }
+
+                padding.CopyFrom(value);
+            }
         }
 
         /// <summary>
@@ -440,9 +469,9 @@ namespace Tizen.NUI.Components
         /// you can override it to create your own default attributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
             return null;
         }
@@ -624,11 +653,11 @@ namespace Tizen.NUI.Components
             }
             if (mScrollBar.Direction == ScrollBar.DirectionType.Vertical)
             {
-                mScrollBar.ThumbSize = new Size(thickness, length);
+                mScrollBar.Style.Thumb.Size = new Size(thickness, length);
             }
             else
             {
-                mScrollBar.ThumbSize = new Size(length, thickness);
+                mScrollBar.Style.Thumb.Size = new Size(length, thickness);
             }
             mScrollBar.MinValue = 0;
             mScrollBar.MaxValue = (int)(range - extent);
@@ -714,11 +743,11 @@ namespace Tizen.NUI.Components
             {
                 if (mLayout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy((int)e.PanGesture.Displacement.Y, mRecycler, true);
+                    mLayout.ScrollVerticallyBy(e.PanGesture.Displacement.Y, mRecycler, true);
                 }
                 else if (mLayout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy((int)e.PanGesture.Displacement.X, mRecycler, true);
+                    mLayout.ScrollHorizontallyBy(e.PanGesture.Displacement.X, mRecycler, true);
                 }
 
                 ShowScrollBar();
@@ -727,11 +756,11 @@ namespace Tizen.NUI.Components
             {
                 if (mLayout.CanScrollVertically())
                 {
-                    mLayout.ScrollVerticallyBy((int)e.PanGesture.Velocity.Y * 600, mRecycler, false);
+                    mLayout.ScrollVerticallyBy(e.PanGesture.Velocity.Y * 600, mRecycler, false);
                 }
                 else if (mLayout.CanScrollHorizontally())
                 {
-                    mLayout.ScrollHorizontallyBy((int)e.PanGesture.Velocity.X * 600, mRecycler, false);
+                    mLayout.ScrollHorizontallyBy(e.PanGesture.Velocity.X * 600, mRecycler, false);
                 }
                 ShowScrollBar(1200, true);
             }
@@ -1382,10 +1411,10 @@ namespace Tizen.NUI.Components
             public void LayoutChild(ViewHolder child, float left, float top, float width, float height)
             {
                 View itemView = child.ItemView;
-                itemView.SizeWidth = (int)(width - itemView.Margin.Start - itemView.Margin.End);
-                itemView.SizeHeight = (int)(height - itemView.Margin.Top - itemView.Margin.Bottom);
-                itemView.PositionX = (int)(left + itemView.Margin.Start);
-                itemView.PositionY = (int)(top + itemView.Margin.Top);
+                itemView.SizeWidth = width - itemView.Margin.Start - itemView.Margin.End;
+                itemView.SizeHeight = height - itemView.Margin.Top - itemView.Margin.Bottom;
+                itemView.PositionX = left + itemView.Margin.Start;
+                itemView.PositionY = top + itemView.Margin.Top;
             }
 
             /// <summary>
@@ -1467,7 +1496,7 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        v.ItemView.PositionX = (int)(v.ItemView.PositionX + dx);
+                        v.ItemView.PositionX += dx;
                     }
                 }
                 else
@@ -1486,18 +1515,18 @@ namespace Tizen.NUI.Components
                         ViewHolder vh = mChildHelper.GetChildAt(0);
                         if (vh.LayoutPosition == 0)
                         {
-                            if ((int)(vh.ItemView.PositionX + dx) != 0)
+                            if ((int)(vh.Left + dx) > 0)
                             {
-                                dx = (int)(0 - vh.ItemView.PositionX);
+                                dx = 0 - vh.Left;
                             }
                         }
 
                         vh = mChildHelper.GetChildAt(childCount - 1);
                         if (vh.LayoutPosition == ItemCount - 1)
                         {
-                            if ((int)(vh.ItemView.PositionX + dx) != (int)Width)
+                            if ((int)(vh.Right + dx) < (int)Width + PaddingRight)
                             {
-                                dx = (int)(Width - vh.ItemView.PositionX);
+                                dx = Width + PaddingRight - vh.Right;
                             }
                         }
                     }
@@ -1507,7 +1536,7 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        childrenPositon[i] = (int)v.ItemView.PositionX;
+                        childrenPositon[i] = v.ItemView.PositionX;
                     }
 
                     mScrollAni.Clear();
@@ -1516,11 +1545,9 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-
                         // set position again because position might be changed after animation clear.
                         v.ItemView.PositionX = childrenPositon[i];
-
-                        mScrollAni.AnimateTo(v.ItemView, "PositionX", (int)(v.ItemView.PositionX + dx));
+                        mScrollAni.AnimateTo(v.ItemView, "PositionX", v.ItemView.PositionX + dx);
                     }
                     mScrollAni.Play();
                 }
@@ -1552,7 +1579,7 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        v.ItemView.PositionY = (int)(v.ItemView.PositionY + dy);
+                        v.ItemView.PositionY += dy;
                     }
                 }
                 else
@@ -1571,18 +1598,18 @@ namespace Tizen.NUI.Components
                         ViewHolder vh = mChildHelper.GetChildAt(0);
                         if (vh.LayoutPosition == 0)
                         {
-                            if ((int)(vh.ItemView.PositionY + dy) != 0)
+                            if ((int)(vh.Top + dy) > 0)
                             {
-                                dy = (int)(0 - vh.ItemView.PositionY);
+                                dy = 0 - vh.Top;
                             }
                         }
 
                         vh = mChildHelper.GetChildAt(childCount - 1);
                         if (vh.LayoutPosition == ItemCount - 1)
                         {
-                            if ((int)(vh.ItemView.PositionY + dy) != (int)Height)
+                            if ((int)(vh.Bottom + dy) < (int)Height + PaddingBottom)
                             {
-                                dy = (int)(Height - vh.ItemView.PositionY);
+                                dy = Height + PaddingBottom - vh.Bottom;
                             }
                         }
                     }
@@ -1592,7 +1619,7 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-                        childPositon[i] = (int)v.ItemView.PositionY;
+                        childPositon[i] = v.ItemView.PositionY;
                     }
 
                     mScrollAni.Clear();
@@ -1601,11 +1628,9 @@ namespace Tizen.NUI.Components
                     for (int i = childCount - 1; i >= 0; i--)
                     {
                         ViewHolder v = mChildHelper.GetChildAt(i);
-
                         // set position again because position might be changed after animation clear.
                         v.ItemView.PositionY = childPositon[i];
-
-                        mScrollAni.AnimateTo(v.ItemView, "PositionY", (int)(v.ItemView.PositionY + dy));
+                        mScrollAni.AnimateTo(v.ItemView, "PositionY", v.ItemView.PositionY + dy);
                     }
                     mScrollAni.Play();
                 }
@@ -1814,6 +1839,28 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected abstract int GetNextPosition(int position, FlexibleView.LayoutManager.Direction direction);
 
+            /// <summary>
+            /// Retrieves the first visible item view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected virtual ViewHolder FindFirstVisibleItemView()
+            {
+                return null;
+            }
+
+            /// <summary>
+            /// Retrieves the last visible item view.
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected virtual ViewHolder FindLastVisibleItemView()
+            {
+                return null;
+            }
+
             internal virtual ViewHolder OnFocusSearchFailed(FlexibleView.ViewHolder focused, LayoutManager.Direction direction, Recycler recycler)
             {
                 return null;
@@ -1930,7 +1977,6 @@ namespace Tizen.NUI.Components
                 }
 
                 // relayout
-                mFlexibleView.OnRelayout(null, null);
             }
 
             private void AddViewInternal(ViewHolder holder, int index, bool disappearing)
@@ -1944,24 +1990,6 @@ namespace Tizen.NUI.Components
                 {
                     mChildHelper.AddView(holder, index);
                 }
-            }
-
-            /// <summary>
-            /// FindFirstVisibleItemView
-            /// </summary>
-            /// <returns>ViewHolder</returns>
-            protected virtual ViewHolder FindFirstVisibleItemView()
-            {
-                return null;
-            }
-
-            /// <summary>
-            /// FindLastVisibleItemView
-            /// </summary>
-            /// <returns>ViewHolder</returns>
-            protected virtual ViewHolder FindLastVisibleItemView()
-            {
-                return null;
             }
 
             private void RecycleChildrenInt(FlexibleView.Recycler recycler)
@@ -2059,7 +2087,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionX - ItemView.Margin.Start);
+                    return ItemView.PositionX - ItemView.Margin.Start;
                 }
             }
 
@@ -2073,7 +2101,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionX + ItemView.SizeWidth + ItemView.Margin.End);
+                    return ItemView.PositionX + ItemView.SizeWidth + ItemView.Margin.End;
                 }
             }
 
@@ -2087,7 +2115,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionY - ItemView.Margin.Top);
+                    return ItemView.PositionY - ItemView.Margin.Top;
                 }
             }
 
@@ -2101,7 +2129,7 @@ namespace Tizen.NUI.Components
             {
                 get
                 {
-                    return (int)(ItemView.PositionY + ItemView.SizeHeight + ItemView.Margin.Bottom);
+                    return ItemView.PositionY + ItemView.SizeHeight + ItemView.Margin.Bottom;
                 }
             }
 

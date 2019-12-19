@@ -35,6 +35,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_1")]
             public static extern global::System.IntPtr VideoView_New__SWIG_1(string jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_2")]
+            public static extern global::System.IntPtr VideoView_New__SWIG_2(bool swCodec);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_3")]
+            public static extern global::System.IntPtr VideoView_New__SWIG_3(string jarg1, bool swCodec);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VideoView__SWIG_0")]
             public static extern global::System.IntPtr new_VideoView__SWIG_0();
 

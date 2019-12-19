@@ -30,7 +30,6 @@ namespace Tizen.NUI
     public partial class Window : BaseHandle
     {
         private static readonly Window instance = Application.Instance?.GetWindow();
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
@@ -39,7 +38,6 @@ namespace Tizen.NUI
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (Interop.Stage.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, Interop.Stage.Stage_GetCurrent());
@@ -205,6 +203,19 @@ namespace Tizen.NUI
             get
             {
                 return instance;
+            }
+        }
+
+        /// <summary>
+        /// Get Resource ID of window
+        /// </summary>
+        internal int ResourceID
+        {
+            get
+            {
+                int ret = Interop.Window.GetResouceID(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
@@ -896,11 +907,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            Interop.Window.Add(swigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            LayersChildren?.Add(layer);
-            layer.SetWindow(this);
+            Add(layer);
         }
 
         /// <summary>
@@ -910,11 +917,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
-            Interop.Window.Remove(swigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            LayersChildren?.Remove(layer);
-            layer.SetWindow(null);
+            Remove(layer);
         }
 
         /// <summary>
@@ -1254,21 +1257,14 @@ namespace Tizen.NUI
 
             this.DisconnectNativeSignals();
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Window.delete_Window(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Window.delete_Window(swigCPtr);
         }
     }
 }

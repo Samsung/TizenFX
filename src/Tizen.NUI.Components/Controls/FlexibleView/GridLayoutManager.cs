@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
         internal override void EnsureAnchorReady(FlexibleView.Recycler recycler, AnchorInfo anchorInfo, int itemDirection)
         {
             bool layingOutInPrimaryDirection = (itemDirection == LayoutState.ITEM_DIRECTION_TAIL);
-            int span = anchorInfo.Position;
+            int span = anchorInfo.Position % mSpanCount;
             if (layingOutInPrimaryDirection)
             {
                 // choose span 0
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
                 int bestSpan = span;
                 while (pos < indexLimit)
                 {
-                    int next = (pos + 1);
+                    int next = (pos + 1) % mSpanCount;
                     if (next > bestSpan)
                     {
                         pos += 1;

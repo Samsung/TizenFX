@@ -17,7 +17,6 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -28,7 +27,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Layer : Container
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private Window window;
 
         /// <summary>
@@ -47,7 +45,6 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Layer.Layer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -374,13 +371,8 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -395,13 +387,8 @@ namespace Tizen.NUI
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.Actor_FindChildByName(swigCPtr, viewName);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -477,7 +464,6 @@ namespace Tizen.NUI
                 Interop.Layer.Layer_LowerToBottom(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-
         }
 
         /// <summary>
@@ -676,32 +662,11 @@ namespace Tizen.NUI
             window = win;
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Layer.delete_Layer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.Layer.delete_Layer(swigCPtr);
         }
 
         private void SetBehavior(LayerBehavior behavior)

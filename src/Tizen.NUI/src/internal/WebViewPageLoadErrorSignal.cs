@@ -19,31 +19,11 @@ namespace Tizen.NUI
 {
     internal class WebViewPageLoadErrorSignal : Disposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebViewPageLoadErrorSignal obj)
+
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                Interop.WebView.delete_WebViewPageLoadErrorSignal(swigCPtr);
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
+            Interop.WebView.delete_WebViewPageLoadErrorSignal(swigCPtr);
         }
 
         public void Connect(System.Delegate func)
@@ -70,9 +50,8 @@ namespace Tizen.NUI
             }
         }
 
-        public WebViewPageLoadErrorSignal(global::System.IntPtr cPtr)
+        public WebViewPageLoadErrorSignal(global::System.IntPtr cPtr) : base(cPtr, true)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
     }
 }

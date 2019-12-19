@@ -20,35 +20,35 @@ namespace Tizen.Network.Stc
 {
     internal static class StcErrorFactory
     {
-        internal static void ThrowStcException(int exception)
+        internal static Exception GetStcException(int exception)
         {
             StcError _error = (StcError)exception;
             switch (_error)
             {
-            case StcError.NotPermitted:
-                throw new InvalidOperationException("Operation not permitted");
-            case StcError.OutOfMemory:
-                throw new InvalidOperationException("Out of memory");
-            case StcError.PermissionDenied:
-                throw new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/network.get)");
-            case StcError.ResourceBusy:
-                throw new InvalidOperationException("Resource is busy");
-            case StcError.InvalidOperation:
-                throw new InvalidOperationException("Invalid operation"); 
-            case StcError.InvalidParameter:
-                throw new InvalidOperationException("Invalid parameter");
-            case StcError.NotSupported:
-                throw new NotSupportedException("Unsupported STC feature http://tizen.org/feature/network.traffic_control");
-            case StcError.OperationFailed:
-                throw new InvalidOperationException("Operation failed");
-            case StcError.NotInitialized:
-                throw new InvalidOperationException("Not initialized");
-            case StcError.AlreadyInitialized:
-                throw new InvalidOperationException("Already initialized");
-            case StcError.InProgress:
-                throw new InvalidOperationException("In progress");
-            default:
-                throw new InvalidOperationException("Unexpected value error = " + exception);
+                case StcError.NotPermitted:
+                    return new InvalidOperationException("Operation not permitted");
+                case StcError.OutOfMemory:
+                    return new InvalidOperationException("Out of memory");
+                case StcError.PermissionDenied:
+                    return new UnauthorizedAccessException("Permission denied (http://tizen.org/privilege/network.get)");
+                case StcError.ResourceBusy:
+                    return new InvalidOperationException("Resource is busy");
+                case StcError.InvalidOperation:
+                    return new InvalidOperationException("Invalid operation");
+                case StcError.InvalidParameter:
+                    return new ArgumentException("Invalid parameter");
+                case StcError.NotSupported:
+                    return new NotSupportedException("Unsupported STC feature http://tizen.org/feature/network.traffic_control");
+                case StcError.OperationFailed:
+                    return new InvalidOperationException("Operation failed");
+                case StcError.NotInitialized:
+                    return new InvalidOperationException("Not initialized");
+                case StcError.AlreadyInitialized:
+                    return new InvalidOperationException("Already initialized");
+                case StcError.InProgress:
+                    return new InvalidOperationException("In progress");
+                default:
+                    return new InvalidOperationException("Unexpected value error = " + exception);
             }
         }
     }

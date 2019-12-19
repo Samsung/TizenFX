@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Account.OAuth2
 {
     /// <summary>
     /// The class contains request parameters for retreiving access token in Resource Owner Password Credentials Grant flow.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete]
     public class ResourceOwnerPwdCredentialsTokenRequest : TokenRequest
     {
         /// <summary>
         /// The constructor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public ResourceOwnerPwdCredentialsTokenRequest()
         {
 
@@ -35,18 +39,21 @@ namespace Tizen.Account.OAuth2
         /// The grant type
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public override string GrantType { get; } = "password";
 
         /// <summary>
         /// The resource owner username
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string Username { get; set; }
 
         /// <summary>
         /// The resource owner password
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete]
         public string Password { get; set; }
     }
 }

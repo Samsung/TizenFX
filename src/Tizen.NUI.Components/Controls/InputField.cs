@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         // the textField
         private TextField textField = null;
         // the attributes of the inputField
-        private InputFieldAttributes inputFieldAttrs = null;
+        private InputFieldStyle inputFieldAttrs = null;
         // the flag indicate should relayout the textField in base class
         private bool relayoutTextField = true;
 
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public InputField(InputFieldAttributes attributes) : base(attributes)
+        public InputField(InputFieldStyle attributes) : base(attributes)
         {
             Initialize();
         }
@@ -95,11 +95,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.Text;
+                return textField?.Text;
             }
             set
             {
-                textField.Text = value;
+                if (null != textField) textField.Text = value;
             }
         }
 
@@ -113,11 +113,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PlaceholderText;
+                return textField?.PlaceholderText;
             }
             set
             {
-                textField.PlaceholderText = value;
+                if (null != textField) textField.PlaceholderText = value;
             }
         }
 
@@ -131,17 +131,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.TextColor;
+                return textField?.TextColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.TextColor)
+                if (null != inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.TextColor = new ColorSelector();
+                    inputFieldAttrs.InputBoxAttributes.TextColor = value;
+                    if (null != textField) textField.TextColor = value;
                 }
-                inputFieldAttrs.InputBoxAttributes.TextColor.All = value;
-                textField.TextColor = value;
             }
         }
 
@@ -155,17 +154,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PlaceholderTextColor;
+                return textField?.PlaceholderTextColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor)
+                if (null != inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor = new ColorSelector();
+                    inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor = value;
+                    if (null != textField) textField.PlaceholderTextColor = value;
                 }
-                inputFieldAttrs.InputBoxAttributes.PlaceholderTextColor.All = value;
-                textField.PlaceholderTextColor = value;
             }
         }
 
@@ -179,41 +177,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.PrimaryCursorColor;
+                return textField?.PrimaryCursorColor;
             }
             set
             {
                 CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor)
+                if (null == inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor = new ColorSelector();
+                    inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor = value;
+                    if (null != textField) textField.PrimaryCursorColor = value;
                 }
-                inputFieldAttrs.InputBoxAttributes.PrimaryCursorColor.All = value;
-                textField.PrimaryCursorColor = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets secondary cursor color.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color SecondaryCursorColor
-        {
-            get
-            {
-                return textField.SecondaryCursorColor;
-            }
-            set
-            {
-                CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.SecondaryCursorColor)
-                {
-                    inputFieldAttrs.InputBoxAttributes.SecondaryCursorColor = new ColorSelector();
-                }
-                inputFieldAttrs.InputBoxAttributes.SecondaryCursorColor.All = value;
-                textField.SecondaryCursorColor = value;
             }
         }
 
@@ -227,37 +200,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.FontFamily;
+                return textField?.FontFamily;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.FontFamily = value;
-                textField.FontFamily = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets point size of text.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float PointSize
-        {
-            get
-            {
-                return textField.PointSize;
-            }
-            set
-            {
-                CreateTextFieldAttributes();
-                if (null == inputFieldAttrs.InputBoxAttributes.PointSize)
+                if (null != inputFieldAttrs?.InputBoxAttributes)
                 {
-                    inputFieldAttrs.InputBoxAttributes.PointSize = new FloatSelector();
+                    inputFieldAttrs.InputBoxAttributes.FontFamily = value;
+                    if (null != textField) textField.FontFamily = value;
                 }
-                inputFieldAttrs.InputBoxAttributes.PointSize.All = value;
-                textField.PointSize = value;
             }
         }
 
@@ -271,13 +223,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.EnableCursorBlink;
+                return textField?.EnableCursorBlink ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.EnableCursorBlink = value;
-                textField.EnableCursorBlink = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.EnableCursorBlink = value;
+                    if (null != textField) textField.EnableCursorBlink = value;
+                }
             }
         }
 
@@ -291,13 +246,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.EnableSelection;
+                return textField?.EnableSelection ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.EnableSelection = value;
-                textField.EnableSelection = value;
+                if (null != inputFieldAttrs?.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.EnableSelection = value;
+                    if (null != textField) textField.EnableSelection = value;
+                }
             }
         }
 
@@ -311,13 +269,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.CursorWidth;
+                return textField?.CursorWidth ?? 0;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.CursorWidth = value;
-                textField.CursorWidth = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.CursorWidth = value;
+                    if (null != textField) textField.CursorWidth = value;
+                }
             }
         }
 
@@ -331,13 +292,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return textField.Ellipsis;
+                return textField?.Ellipsis ?? false;
             }
             set
             {
                 CreateTextFieldAttributes();
-                inputFieldAttrs.InputBoxAttributes.EnableEllipsis = value;
-                textField.Ellipsis = value;
+                if (null != inputFieldAttrs.InputBoxAttributes)
+                {
+                    inputFieldAttrs.InputBoxAttributes.Ellipsis = value;
+                    if (null != textField) textField.Ellipsis = value;
+                }
             }
         }
 
@@ -351,18 +315,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.BackgroundImageAttributes?.ResourceURL?.All;
+                return inputFieldAttrs?.BackgroundImageAttributes?.ResourceUrl?.All;
             }
             set
             {
-                if (value != null)
+                CreateBackgroundAttributes();
+                if (null != inputFieldAttrs?.BackgroundImageAttributes)
                 {
-                    CreateBackgroundAttributes();
-                    if (inputFieldAttrs.BackgroundImageAttributes.ResourceURL == null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.ResourceURL = new StringSelector();
-                    }
-                    inputFieldAttrs.BackgroundImageAttributes.ResourceURL.All = value;
+                    inputFieldAttrs.BackgroundImageAttributes.ResourceUrl = value;
                     RelayoutRequest();
                 }
             }
@@ -378,18 +338,14 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.BackgroundImageAttributes?.Border?.All;
+                return inputFieldAttrs?.BackgroundImageAttributes?.Border?.All;
             }
             set
             {
-                if (value != null)
+                CreateBackgroundAttributes();
+                if (null != inputFieldAttrs?.BackgroundImageAttributes)
                 {
-                    CreateBackgroundAttributes();
-                    if (inputFieldAttrs.BackgroundImageAttributes.Border == null)
-                    {
-                        inputFieldAttrs.BackgroundImageAttributes.Border = new RectangleSelector();
-                    }
-                    inputFieldAttrs.BackgroundImageAttributes.Border.All = value;
+                    inputFieldAttrs.BackgroundImageAttributes.Border = value;
                     RelayoutRequest();
                 }
             }
@@ -402,12 +358,59 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return inputFieldAttrs.Space ?? 0;
+                return inputFieldAttrs?.Space ?? 0;
             }
             set
             {
-                inputFieldAttrs.Space = value;
-                RelayoutRequest();
+                if (null != inputFieldAttrs)
+                {
+                    inputFieldAttrs.Space = value;
+                    RelayoutRequest();
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            base.ApplyStyle(viewStyle);
+
+            InputFieldStyle inputFieldStyle = viewStyle as InputFieldStyle;
+
+            if (null != inputFieldStyle.BackgroundImageAttributes)
+            {
+                if (null == bgImage)
+                {
+                    bgImage = new ImageView()
+                    {
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                    };
+
+                    this.Add(bgImage);
+                }
+                bgImage.ApplyStyle(inputFieldStyle.BackgroundImageAttributes);
+            }
+            if (null != inputFieldStyle.InputBoxAttributes)
+            {
+                if (null == textField)
+                {
+                    textField = new TextField()
+                    {
+                        WidthResizePolicy = ResizePolicyType.Fixed,
+                        HeightResizePolicy = ResizePolicyType.Fixed,
+                        ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                        PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                        PositionUsesPivotPoint = true,
+                    };
+                    this.Add(textField);
+                    textField.FocusGained += OnTextFieldFocusGained;
+                    textField.FocusLost += OnTextFieldFocusLost;
+                    textField.TextChanged += OnTextFieldTextChanged;
+                    textField.KeyEvent += OnTextFieldKeyEvent;
+                }
+                textField.ApplyStyle(inputFieldStyle.InputBoxAttributes);
             }
         }
 
@@ -417,9 +420,9 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override Attributes GetAttributes()
+        protected override ViewStyle GetViewStyle()
         {
-            return new InputFieldAttributes();
+            return new InputFieldStyle();
         }
 
         /// <summary>
@@ -466,9 +469,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnUpdate()
         {
-            ApplyAttributes(this, inputFieldAttrs);
-            ApplyAttributes(bgImage, inputFieldAttrs.BackgroundImageAttributes);
-            ApplyAttributes(textField, inputFieldAttrs.InputBoxAttributes);
             RelayoutComponent();
             OnLayoutDirectionChanged();
         }
@@ -481,10 +481,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            InputFieldAttributes tempAttributes = StyleManager.Instance.GetAttributes(style) as InputFieldAttributes;
-            if (tempAttributes != null)
+            InputFieldStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as InputFieldStyle;
+            if (tempStyle != null)
             {
-                attributes = inputFieldAttrs = tempAttributes;
+                Style.CopyFrom(tempStyle);
                 RelayoutRequest();
             }
         }
@@ -590,43 +590,33 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            inputFieldAttrs = attributes as InputFieldAttributes;
+            inputFieldAttrs = Style as InputFieldStyle;
             if (null == inputFieldAttrs)
             {
                 throw new Exception("Fail to get the InputField attributes.");
             }
 
-            bgImage = new ImageView();
             if (null == bgImage)
             {
-                throw new Exception("Fail to create background image.");
-            }
+                bgImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                };
 
-            textField = new TextField();
-            if (null == textField)
-            {
-                throw new Exception("Fail to create text field.");
-            }
-
-            if (null != inputFieldAttrs.BackgroundImageAttributes)
-            {
-                bgImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                bgImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                bgImage.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
-                bgImage.PivotPoint = Tizen.NUI.PivotPoint.Center;
-                bgImage.PositionUsesPivotPoint = true;
                 this.Add(bgImage);
             }
-
-            if (null != inputFieldAttrs.InputBoxAttributes)
+            if (null == textField)
             {
-                textField.WidthResizePolicy = ResizePolicyType.Fixed;
-                textField.HeightResizePolicy = ResizePolicyType.Fixed;
-                textField.ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft;
-                textField.PivotPoint = Tizen.NUI.PivotPoint.CenterLeft;
-                textField.PositionUsesPivotPoint = true;
+                textField = new TextField()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                    PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                    PositionUsesPivotPoint = true,
+                };
                 this.Add(textField);
-
                 textField.FocusGained += OnTextFieldFocusGained;
                 textField.FocusLost += OnTextFieldFocusLost;
                 textField.TextChanged += OnTextFieldTextChanged;
@@ -688,7 +678,7 @@ namespace Tizen.NUI.Components
         {
             if (null == inputFieldAttrs.BackgroundImageAttributes)
             {
-                inputFieldAttrs.BackgroundImageAttributes = new ImageAttributes();
+                inputFieldAttrs.BackgroundImageAttributes = new ImageViewStyle();
             }
         }
 
@@ -696,7 +686,7 @@ namespace Tizen.NUI.Components
         {
             if (null == inputFieldAttrs.InputBoxAttributes)
             {
-                inputFieldAttrs.InputBoxAttributes = new TextFieldAttributes();
+                inputFieldAttrs.InputBoxAttributes = new TextFieldStyle();
             }
         }
     }

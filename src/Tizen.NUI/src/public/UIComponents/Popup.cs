@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -549,7 +549,6 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private EventHandler<TouchedOutsideEventArgs> _popUpOutsideTouchedEventHandler;
         private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
         private EventHandler<ShowingEventArgs> _popUpShowingEventHandler;
@@ -575,7 +574,6 @@ namespace Tizen.NUI.UIComponents
 
         internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Popup_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -1337,20 +1335,11 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetTitle(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1359,11 +1348,7 @@ namespace Tizen.NUI.UIComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetContent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1372,11 +1357,7 @@ namespace Tizen.NUI.UIComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Popup.Popup_GetFooter(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
+            View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1469,17 +1450,14 @@ namespace Tizen.NUI.UIComponents
                 this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
             }
 
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    Interop.Popup.delete_Popup(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Popup.delete_Popup(swigCPtr);
         }
 
         // Callback for Popup OutsideTouchedSignal

@@ -16,6 +16,8 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -467,13 +469,8 @@ namespace Tizen.NUI.BaseComponents
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.Actor_FindChildById(swigCPtr, id);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            Interop.BaseHandle.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1045,7 +1042,19 @@ namespace Tizen.NUI.BaseComponents
                 view.InternalParent = null;
             }
 
+            simpleBinding.Dispose();
+            simpleBinding = null;
+
+            viewStyle = null;
+
             base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.View.delete_View(swigCPtr);
         }
 
         private void DisConnectFromSignals()
@@ -1186,13 +1195,63 @@ namespace Tizen.NUI.BaseComponents
 
                 if (File.Exists(likelyResourcePath))
                 {
-                    trans = Extensions.LoadObject<Transition>(likelyResourcePath);
+                    trans = Xaml.Extensions.LoadObject<Transition>(likelyResourcePath);
                 }
                 if (trans)
                 {
                     transDictionary.Add(trans.Name, trans);
                 }
             }
+        }
+
+        private void OnScaleChanged(float x, float y, float z)
+        {
+            Scale = new Vector3(x, y, z);
+        }
+
+        private void OnBackgroundColorChanged(float r, float g, float b, float a)
+        {
+            BackgroundColor = new Color(r, g, b, a);
+        }
+
+        private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Padding = new Extents(start, end, top, bottom);
+        }
+
+        private void OnMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Margin = new Extents(start, end, top, bottom);
+        }
+
+        private void OnColorChanged(float r, float g, float b, float a)
+        {
+            Color = new Color(r, g, b, a);
+        }
+
+        private void OnAnchorPointChanged(float x, float y, float z)
+        {
+            AnchorPoint = new Position(x, y, z);
+        }
+
+        private void OnCellIndexChanged(float x, float y)
+        {
+            CellIndex = new Vector2(x, y);
+        }
+
+        private void OnFlexMarginChanged(float x, float y, float z, float w)
+        {
+            FlexMargin = new Vector4(x, y, z, w);
+        }
+
+        private void OnPaddingEXChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            PaddingEX = new Extents(start, end, top, bottom);
+        }
+
+        private void OnSizeModeFactorChanged(float x, float y, float z)
+        {
+            SizeModeFactor = new Vector3(x, y, z);
         }
     }
 }

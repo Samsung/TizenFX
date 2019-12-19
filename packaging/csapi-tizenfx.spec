@@ -1,8 +1,8 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
-%define TIZEN_NET_API_VERSION 6
-%define TIZEN_NET_RPM_VERSION 6.0.0.999+nui550
-%define TIZEN_NET_NUGET_VERSION 6.0.0.99999
+%define TIZEN_NET_API_VERSION 8
+%define TIZEN_NET_RPM_VERSION 8.0.0.999+nui550
+%define TIZEN_NET_NUGET_VERSION 8.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -185,6 +185,7 @@ install -p -m 644 tools/bin/* %{buildroot}%{DOTNET_TOOLS_PATH}
 
 %files
 %license LICENSE
+%license LICENSE.MIT
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg

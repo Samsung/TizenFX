@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Components;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -44,7 +45,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool layoutingDisabled{get; set;} = true;
 
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private LayoutItem _layout; // Exclusive layout assigned to this View.
 
         // List of transitions paired with the condition that uses the transition.
@@ -57,6 +57,25 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
+        private Rectangle backgroundImageBorder;
+
+        internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+
+        private ViewStyle viewStyle;
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle ViewStyle
+        {
+            get
+            {
+                if (null == viewStyle)
+                {
+                    ApplyStyle(GetViewStyle());
+                }
+
+                return viewStyle;
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of a view.
@@ -65,6 +84,13 @@ namespace Tizen.NUI.BaseComponents
         public View() : this(Interop.View.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewStyle viewStyle) : this(Interop.View.View_New(), true)
+        {
+            this.ViewStyle.CopyFrom(viewStyle);
         }
 
         /// <summary>
@@ -88,9 +114,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
+        {
+            this.ViewStyle.CopyFrom(viewStyle);
+        }
+
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(Interop.View.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (HasBody())
             {
                 PositionUsesPivotPoint = false;
@@ -112,6 +142,41 @@ namespace Tizen.NUI.BaseComponents
             if (!shown)
             {
                 SetVisible(false);
+            }
+        }
+
+        internal delegate void ControlStateChangesDelegate(View obj, ControlStates state);
+        internal event ControlStateChangesDelegate ControlStateChangeEvent;
+
+        private ControlStates controlStates;
+        /// <summary>
+        /// Get/Set the control state.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ControlStates ControlState
+        {
+            get
+            {
+                return controlStates;
+            }
+            set
+            {
+                if (controlStates != value)
+                {
+                    controlStates = value;
+
+                    ControlStateChangeEvent?.Invoke(this, value);
+
+                    if (true == OnControlStateChanged(value))
+                    {
+                        foreach (View child in Children)
+                        {
+                            child.ControlState = value;
+                        }
+                    }
+                }
             }
         }
 
@@ -159,12 +224,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The mutually exclusive with "backgroundImage" and "background" type Vector4.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.BackgroundColor.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Color BackgroundColor
         {
             get
             {
-                return (Color)GetValue(BackgroundColorProperty);
+                Color temp = (Color)GetValue(BackgroundColorProperty);
+                return new Color(OnBackgroundColorChanged, temp.R, temp.G, temp.B, temp.A);
             }
             set
             {
@@ -186,6 +255,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundImageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Get or set the border of background image.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle BackgroundImageBorder
+        {
+            get
+            {
+                return (Rectangle)GetValue(BackgroundImageBorderProperty);
+            }
+            set
+            {
+                SetValue(BackgroundImageBorderProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -312,12 +399,16 @@ namespace Tizen.NUI.BaseComponents
         /// The Child property of FlexContainer.<br />
         /// The space around the flex item.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.FlexMargin.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector4 FlexMargin
         {
             get
             {
-                return (Vector4)GetValue(FlexMarginProperty);
+                Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
+                return new Vector4(OnFlexMarginChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
@@ -329,12 +420,16 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The top-left cell this child occupies, if not set, the first available cell is used.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.CellIndex.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 CellIndex
         {
             get
             {
-                return (Vector2)GetValue(CellIndexProperty);
+                Vector2 temp = (Vector2)GetValue(CellIndexProperty);
+                return new Vector2(OnCellIndexChanged, temp.X, temp.Y);
             }
             set
             {
@@ -530,11 +625,6 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// This NUI object (Size2D) typed property can be configured by multiple cascade setting. <br />
         /// For example, this code ( view.Size2D.Width = 100; view.Size2D.Height = 100; ) is equivalent to this ( view.Size2D = new Size2D(100, 100); ). <br />
-        /// Please note that this multi-cascade setting is especially possible for this NUI object (Size2D). <br />
-        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
-        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
-        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimum size is set. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -546,6 +636,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                sizeSetExplicitly = value;  // Store size set by API, will be used in place of NaturalSize if not set.
                 SetValue(Size2DProperty, value);
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
@@ -596,10 +687,6 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// This NUI object (Position2D) typed property can be configured by multiple cascade setting. <br />
         /// For example, this code ( view.Position2D.X = 100; view.Position2D.Y = 100; ) is equivalent to this ( view.Position2D = new Position2D(100, 100); ). <br />
-        /// Please note that this multi-cascade setting is especially possible for this NUI object (Position2D). <br />
-        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
-        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position2D Position2D
@@ -791,6 +878,9 @@ namespace Tizen.NUI.BaseComponents
         /// A view's orientation is the rotation from its default orientation, the rotation is centered around its anchor-point.<br />
         /// <pre>The view has been initialized.</pre>
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.PivotPoint.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position PivotPoint
         {
@@ -861,6 +951,7 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Position.X = 1.0f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position Position
@@ -1004,13 +1095,15 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Scale.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 Scale
         {
             get
             {
-                return (Vector3)GetValue(ScaleProperty);
+                Vector3 temp = (Vector3)GetValue(ScaleProperty);
+                return new Vector3(OnScaleChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1273,12 +1366,16 @@ namespace Tizen.NUI.BaseComponents
         /// This factor is only used when ResizePolicyType is set to either: ResizePolicyType.SizeRelativeToParent or ResizePolicyType.SizeFixedOffsetFromParent.<br />
         /// This view's size is set to the view's size multiplied by or added to this factor, depending on ResizePolicyType.<br />
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 SizeModeFactor
         {
             get
             {
-                return (Vector3)GetValue(SizeModeFactorProperty);
+                Vector3 temp = (Vector3)GetValue(SizeModeFactorProperty);
+                return new Vector3(OnSizeModeFactorChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1420,6 +1517,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the padding for use in layout.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.Padding.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Extents Padding
         {
@@ -1432,7 +1532,8 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Extents)GetValue(PaddingProperty);
+                    Extents temp = (Extents)GetValue(PaddingProperty);
+                    return new Extents(OnPaddingChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
                 }
                 // Two return points to prevent creating a zeroed Extent native object before assignment
             }
@@ -1462,6 +1563,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the minimum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.MinimumSize.Width = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D MinimumSize
         {
@@ -1488,6 +1592,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the maximum size the view can be assigned in size negotiation.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.MaximumSize.Width = 1;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D MaximumSize
         {
@@ -1564,6 +1671,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated in API5; Will be removed in API8. Please use PivotPoint instead!
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.AnchorPoint.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use PivotPoint instead! " +
             "Like: " +
@@ -1577,7 +1687,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
                 GetProperty(View.Property.ANCHOR_POINT).Get(temp);
-                return temp;
+                return new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
             }
             set
             {
@@ -1594,15 +1704,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// <para>
-        /// Please note that multi-cascade setting is not possible for this NUI object. <br />
-        /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
-        /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
-        /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
-        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
-        /// </para>
-        /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Size.Width = 1.0f;) is possible.
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size Size
@@ -1701,6 +1805,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Margin property is supported by Layout algorithms and containers.
         /// Please Set Layout if you want to use Margin property.
+        /// The property cascade chaining set is possible. For example, this (view.Margin.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public Extents Margin
@@ -1715,7 +1820,8 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     // If Layout not set then return margin stored in View.
-                    return (Extents)GetValue(MarginProperty);
+                    Extents temp = (Extents)GetValue(MarginProperty);
+                    return new Extents(OnMarginChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
                 }
                 // Two return points to prevent creating a zeroed Extent native object before assignment
             }
@@ -1755,8 +1861,18 @@ namespace Tizen.NUI.BaseComponents
                 if (_widthPolicy >= 0)
                 {
                     _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Width = _widthPolicy;
 
+                    if(_heightPolicy>=0) // Policy an exact value
+                    {
+                        Size2D.Width = _widthPolicy;
+                    }
+                    else
+                    {
+                        // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                    }
                 }
                 _layout?.RequestLayout();
             }
@@ -1766,7 +1882,6 @@ namespace Tizen.NUI.BaseComponents
         /// The required policy for this dimension, LayoutParamPolicies enum or exact value.
         ///</summary>
         /// <since_tizen> 6 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int HeightSpecification
         {
             get
@@ -1779,7 +1894,18 @@ namespace Tizen.NUI.BaseComponents
                 if (_heightPolicy >= 0)
                 {
                     _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-                    Size2D.Height = _heightPolicy;
+
+                    if(_widthPolicy>=0) // Policy an exact value
+                    {
+                        Size2D.Height = _heightPolicy;
+                    }
+                    else
+                    {
+                        // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                        // Size2D height will store the specification value (negative number) this will then be applied to the
+                        // HeightSpecification when the Size2D callback is invoked.
+                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                    }
 
                 }
                _layout?.RequestLayout();
@@ -1826,6 +1952,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Deprecated in API5; Will be removed in API8. Please use Padding instead.
         /// </summary>
+        /// <remarks>
+        /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1835,7 +1964,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Extents temp = new Extents(0, 0, 0, 0);
                 GetProperty(View.Property.PADDING).Get(temp);
-                return temp;
+                return new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
             }
             set
             {
@@ -1867,18 +1996,21 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
+        /// The property cascade chaining set is possible. For example, this (view.Color.X = 0.1f;) is possible.
         /// </remarks>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color Color
         {
+            get
+            {
+                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                GetProperty(Interop.ActorProperty.Actor_Property_COLOR_get()).Get(temp);
+                return new Color(OnColorChanged, temp.R, temp.G, temp.B, temp.A);
+            }
             set
             {
                 SetColor(value);
-            }
-            get
-            {
-                return GetCurrentColor();
             }
         }
 
@@ -2047,5 +2179,169 @@ namespace Tizen.NUI.BaseComponents
                 LoadTransitions();
             }
         }
+
+        /// <summary>
+        /// Get Style, it is abstract function and must be override.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual ViewStyle GetViewStyle()
+        {
+            viewStyle = new ViewStyle();
+            return viewStyle;
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnControlStateChanged(ControlStates currentState)
+        {
+            //If need to apply the state to all child, return true;
+            return true;
+        }
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageSelector;
+        });
+        private TriggerableSelector<string> _backgroundImageSelector;
+        private TriggerableSelector<string> backgroundImageSelector
+        {
+            get
+            {
+                if (null == _backgroundImageSelector)
+                {
+                    _backgroundImageSelector = new TriggerableSelector<string>(this, BackgroundImageProperty);
+                }
+                return _backgroundImageSelector;
+            }
+        }
+        internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundColorSelector.Clone((Selector<Color>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundColorSelector;
+        });
+        private TriggerableSelector<Color> _backgroundColorSelector;
+        private TriggerableSelector<Color> backgroundColorSelector
+        {
+            get
+            {
+                if (null == _backgroundColorSelector)
+                {
+                    _backgroundColorSelector = new TriggerableSelector<Color>(this, BackgroundColorProperty);
+                }
+                return _backgroundColorSelector;
+            }
+        }
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorderSelector;
+        });
+        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
+        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
+        {
+            get
+            {
+                if (null == _backgroundImageBorderSelector)
+                {
+                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundImageBorderProperty);
+                }
+                return _backgroundImageBorderSelector;
+            }
+        }
+        internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.opacitySelector.Clone((Selector<float?>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.opacitySelector;
+        });
+        private TriggerableSelector<float?> _opacitySelector;
+        private TriggerableSelector<float?> opacitySelector
+        {
+            get
+            {
+                if (null == _opacitySelector)
+                {
+                    _opacitySelector = new TriggerableSelector<float?>(this, OpacityProperty);
+                }
+                return _opacitySelector;
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void ApplyStyle(ViewStyle viewStyle)
+        {
+            if (null == viewStyle)
+            {
+                return;
+            }
+
+            if (this.viewStyle == viewStyle)
+            {
+                return;
+            }
+
+            if (null != this.viewStyle)
+            {
+                simpleBinding.Clear();
+            }
+
+            this.viewStyle = viewStyle;
+
+            Dictionary<string, BindableProperty> bindablePropertyOfView;
+            Type viewType = GetType();
+
+            Dictionary<string, BindableProperty> bindablePropertyOfStyle;
+            Type styleType = viewStyle.GetType();
+
+            BindableProperty.GetBindablePropertysOfType(viewType, out bindablePropertyOfView);
+            BindableProperty.GetBindablePropertysOfType(styleType, out bindablePropertyOfStyle);
+
+            if (null != bindablePropertyOfView && null != bindablePropertyOfStyle)
+            {
+                foreach (KeyValuePair<string, BindableProperty> keyValuePair in bindablePropertyOfStyle)
+                {
+                    BindableProperty viewProperty;
+                    bindablePropertyOfView.TryGetValue(keyValuePair.Key, out viewProperty);
+
+                    if (null != viewProperty)
+                    {
+                        object value = viewStyle.GetValue(keyValuePair.Value);
+
+                        if (null != value)
+                        {
+                            SetValue(viewProperty, value);
+                        }
+
+                        simpleBinding.Bind(viewStyle, keyValuePair.Value, this, viewProperty, BindingDirection.TwoWay);
+                    }
+                }
+            }
+        }
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private BundledPipe simpleBinding = new BundledPipe();
     }
 }
