@@ -87,6 +87,11 @@ namespace Tizen.NUI
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        internal Vector2(Vector2ChangedCallback cb, Vector2 other) : this(cb, other.X, other.Y)
+        {
+        }
+
         internal delegate void Vector2ChangedCallback(float x, float y);
         private Vector2ChangedCallback callback = null;
 
