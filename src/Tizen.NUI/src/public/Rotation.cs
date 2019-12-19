@@ -266,10 +266,17 @@ namespace Tizen.NUI
         /// <param name="angle">The result of angle in radians.</param>
         /// <returns>True if converted correctly.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool GetAxisAngle(Vector3 axis, Radian angle)
+        public bool GetAxisAngle(out Vector3 axis, out Radian angle)
         {
-            bool ret = Interop.Rotation.Rotation_GetAxisAngle(swigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
+            Vector3 currentAxis = new Vector3();
+            Radian currentAngle = new Radian();
+
+            bool ret = Interop.Rotation.Rotation_GetAxisAngle(swigCPtr, Vector3.getCPtr(currentAxis), Radian.getCPtr(currentAngle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            axis = currentAxis;
+            angle = currentAngle;
+
             return ret;
         }
 
