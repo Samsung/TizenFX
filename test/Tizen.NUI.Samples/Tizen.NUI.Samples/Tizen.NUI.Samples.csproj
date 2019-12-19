@@ -14,14 +14,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="App.config" />
-    <None Remove="packages.config" />
-  </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET.API8" Version="8.0.0.99999" />
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
+    <PackageReference Include="Tizen.NET" Version="8.0.0.15045" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
   </ItemGroup>
 
 </Project>
