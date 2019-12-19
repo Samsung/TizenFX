@@ -27,6 +27,7 @@ namespace Tizen.NUI.Components
     public class ScrollableBase : Control
     {
 	    static bool LayoutDebugScrollableBase = false; // Debug flag
+        private Direction mScrollingDirection = Direction.Vertical;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -184,7 +185,22 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Direction ScrollingDirection { set; get; } = Direction.Vertical;
+        public Direction ScrollingDirection
+        {
+            get
+            {
+                return mScrollingDirection;
+            }
+            set
+            {
+                if(value != mScrollingDirection)
+                {
+                    mScrollingDirection = value;
+                    mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
+                    mPanGestureDetector.AddDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
+                }
+            }
+        }
 
         /// <summary>
         /// [Draft] Pages mode, enables moving to the next or return to current page depending on pan displacement.
