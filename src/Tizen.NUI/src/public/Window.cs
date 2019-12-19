@@ -100,7 +100,14 @@ namespace Tizen.NUI
             /// Landscape inverse orientation.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            LandscapeInverse = 270
+            LandscapeInverse = 270,
+            /// <summary>
+            /// No orientation. It is for the preferred orientation
+            /// Especially, NoOrientationPreference only has the effect for the preferred orientation.
+            /// It is used to unset the preferred orientation with SetPreferredOrientation.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            NoOrientationPreference = -1
         }
 
         /// <summary>
