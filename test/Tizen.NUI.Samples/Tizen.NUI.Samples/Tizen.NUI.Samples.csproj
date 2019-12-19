@@ -1,25 +1,27 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.0.9">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen70</TargetFramework>
-    <DisableImplicitFrameworkReferences>True</DisableImplicitFrameworkReferences>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RootNamespace>Tizen.NUI.Samples</RootNamespace>
+    <AssemblyName>Tizen.NUI.Samples</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>portable</DebugType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-
   <ItemGroup>
-    <Folder Include="lib\" />
-    <Folder Include="res\" />
+    <None Remove="App.config" />
+    <None Remove="packages.config" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="7.0.0.15037" />
+    <PackageReference Include="Tizen.NET.API8" Version="8.0.0.99999" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
   </ItemGroup>
 
 </Project>
