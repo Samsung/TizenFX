@@ -155,14 +155,14 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Color>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextColorSelectorProperty = BindableProperty.Create("PlaceholderTextColorSelector", typeof(Selector<Vector4>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
             if (null == textFieldStyle.placeholderTextColorSelector)
             {
-                textFieldStyle.placeholderTextColorSelector = new Selector<Color>();
+                textFieldStyle.placeholderTextColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.placeholderTextColorSelector.Clone((Selector<Color>)newValue);
+            textFieldStyle.placeholderTextColorSelector.Clone((Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -171,14 +171,14 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Color>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PrimaryCursorColorSelectorProperty = BindableProperty.Create("PrimaryCursorColorSelector", typeof(Selector<Vector4>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextFieldStyle)bindable;
             if (null == textFieldStyle.primaryCursorColorSelector)
             {
-                textFieldStyle.primaryCursorColorSelector = new Selector<Color>();
+                textFieldStyle.primaryCursorColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.primaryCursorColorSelector.Clone((Selector<Color>)newValue);
+            textFieldStyle.primaryCursorColorSelector.Clone((Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1087,14 +1087,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private Selector<Color> placeholderTextColorSelector;
+        private Selector<Vector4> placeholderTextColorSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Color> PlaceholderTextColor
+        public Selector<Vector4> PlaceholderTextColor
         {
             get
             {
-                return (Selector<Color>)GetValue(PlaceholderTextColorSelectorProperty);
+                return (Selector<Vector4>)GetValue(PlaceholderTextColorSelectorProperty);
             }
             set
             {
@@ -1102,18 +1102,18 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private Selector<Color> primaryCursorColorSelector;
+        private Selector<Vector4> primaryCursorColorSelector;
         /// <summary>
         /// Gets or sets primary cursor color.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Color> PrimaryCursorColor
+        public Selector<Vector4> PrimaryCursorColor
         {
             get
             {
-                return (Selector<Color>)GetValue(PrimaryCursorColorSelectorProperty);
+                return (Selector<Vector4>)GetValue(PrimaryCursorColorSelectorProperty);
             }
             set
             {
