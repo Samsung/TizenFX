@@ -30,9 +30,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TapGestureDetector : GestureDetector
     {
-        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
-        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
-
         /// <summary>
         /// Creates an initialized TapGestureDetector.
         /// </summary>
@@ -59,8 +56,10 @@ namespace Tizen.NUI
         {
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr TapGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr TapGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified tap is detected on the attached view.
@@ -71,29 +70,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_tapGestureEventHandler == null)
-                    {
-                        _tapGestureEventHandler += value;
-
-                        _tapGestureCallbackDelegate = new DetectedCallbackDelegate(OnTapGestureDetected);
-                        this.DetectedSignal().Connect(_tapGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnTapGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_tapGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_tapGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _tapGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -198,6 +190,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
+
             Interop.TapGestureDetector.delete_TapGestureDetector(swigCPtr);
         }
 
@@ -215,10 +212,10 @@ namespace Tizen.NUI
 
             e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
 
-            if (_tapGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                _tapGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 
