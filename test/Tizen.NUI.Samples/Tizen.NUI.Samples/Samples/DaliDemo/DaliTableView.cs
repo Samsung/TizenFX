@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.UIComponents;
 
@@ -10,12 +8,6 @@ namespace Tizen.NUI.Samples
 {
     public class Example
     {
-        // Constructors
-
-        /**
-         * @param[in] name unique name of example
-         * @param[in] title The caption for the example to appear on a tile button.
-         */
         public Example(string name, string title)
         {
             this.name = name;
@@ -54,34 +46,18 @@ namespace Tizen.NUI.Samples
     {
         static private uint mCurPage = 0;
 
-        static public string DEMO_IMAGE_DIR = @"../../../demo/csharp-demo/res/images/FH3/DaliDemo/";
+        static public string DEMO_IMAGE_DIR = CommonResource.GetDaliResourcePath() + "DaliDemo/";
         static public string LOGO_PATH = DEMO_IMAGE_DIR + "Logo-for-demo.png";
 
-        const float KEYBOARD_FOCUS_ANIMATION_DURATION = 1.0f;           ///< The total duration of the keyboard focus animation
-        const float KEYBOARD_FOCUS_START_SCALE = 1.05f;                 ///< The starting scale of the focus highlight
-        const float KEYBOARD_FOCUS_END_SCALE = 1.18f;                   ///< The end scale of the focus highlight
-        const float KEYBOARD_FOCUS_END_ALPHA = 0.7f;                    ///< The end alpha of the focus highlight
-        const float KEYBOARD_FOCUS_INITIAL_FADE_PERCENTAGE = 0.16f;     ///< The duration of the initial fade (from translucent to the end-alpha) as a percentage of the overal animation duration.
-        Vector3 startScale = new Vector3(KEYBOARD_FOCUS_START_SCALE, KEYBOARD_FOCUS_START_SCALE, KEYBOARD_FOCUS_START_SCALE); ///< @see KEYBOARD_FOCUS_START_SCALE
-        Vector3 endScale = new Vector3(KEYBOARD_FOCUS_END_SCALE, KEYBOARD_FOCUS_END_SCALE, KEYBOARD_FOCUS_END_SCALE);         ///< @see KEYBOARD_FOCUS_END_SCALE
-        const float initialFadeDuration = KEYBOARD_FOCUS_ANIMATION_DURATION * KEYBOARD_FOCUS_INITIAL_FADE_PERCENTAGE;   ///< @see KEYBOARD_FOCUS_INITIAL_FADE_PERCENTAGE
+        const float TILE_LABEL_PADDING = 8.0f;                          //  Border between edge of tile and the example text
+        const float BUTTON_PRESS_ANIMATION_TIME = 0.35f;                //  Time to perform button scale effect.
+        const float ROTATE_ANIMATION_TIME = 0.5f;                       //  Time to perform rotate effect.
 
-        const float TILE_LABEL_PADDING = 8.0f;                          ///< Border between edge of tile and the example text
-        const float BUTTON_PRESS_ANIMATION_TIME = 0.35f;                ///< Time to perform button scale effect.
-        const float ROTATE_ANIMATION_TIME = 0.5f;                       ///< Time to perform rotate effect.
-        const int MAX_PAGES = 256;                                      ///< Maximum pages (arbitrary safety limit)
         const int EXAMPLES_PER_ROW = 3;
         const int ROWS_PER_PAGE = 3;
         const int EXAMPLES_PER_PAGE = EXAMPLES_PER_ROW * ROWS_PER_PAGE;
-        const float LOGO_MARGIN_RATIO = 0.1f / 0.3f;
-        const float BOTTOM_PADDING_RATIO = 0.4f / 0.9f;
-        Vector3 SCROLLVIEW_RELATIVE_SIZE = new Vector3(0.9f, 1.0f, 0.8f);      ///< ScrollView's relative size to its parent
-        Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.9f, 0.8f);          ///< TableView's relative size to the entire stage. The Y value means sum of the logo and table relative heights.
-        const float STENCIL_RELATIVE_SIZE = 1.0f;
 
-        const float EFFECT_SNAP_DURATION = 0.66f;                       ///< Scroll Snap Duration for Effects
-        const float EFFECT_FLICK_DURATION = 0.5f;                       ///< Scroll Flick Duration for Effects
-        Vector3 ANGLE_CUBE_PAGE_ROTATE = new Vector3((float)Math.PI * 0.5f, (float)Math.PI * 0.5f, 0.0f);
+        Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.9f, 0.8f);          //  TableView's relative size to the entire stage. The Y value means sum of the logo and table relative heights.
 
         Vector4[] BUBBLE_COLOR =
         {
@@ -100,32 +76,24 @@ namespace Tizen.NUI.Samples
         };
 
         const int NUMBER_OF_SHAPE_IMAGES = 2;
-
         const int NUM_BACKGROUND_IMAGES = 18;
-        const float BACKGROUND_SWIPE_SCALE = 0.025f;
         const float BACKGROUND_SPREAD_SCALE = 1.5f;
-        const float SCALE_MOD = 1000.0f * (float)Math.PI * 2.0f;
-        const float SCALE_SPEED = 10.0f;
-        const float SCALE_SPEED_SIN = 0.1f;
-
         const uint BACKGROUND_ANIMATION_DURATION = 15000; // 15 secs
-
-        Vector4 BACKGROUND_COLOR = new Vector4(0.3569f, 0.5451f, 0.7294f, 1.0f);
 
         const float BUBBLE_MIN_Z = -1.0f;
         const float BUBBLE_MAX_Z = 0.0f;
 
         const uint CORE_MAJOR_VERSION = 1;
         const uint CORE_MINOR_VERSION = 4;
-        const uint CORE_MICRO_VERSION = 25;
+        const uint CORE_MICRO_VERSION = 50;
 
         const uint ADAPTOR_MAJOR_VERSION = 1;
         const uint ADAPTOR_MINOR_VERSION = 4;
-        const uint ADAPTOR_MICRO_VERSION = 25;
+        const uint ADAPTOR_MICRO_VERSION = 50;
 
         const uint TOOLKIT_MAJOR_VERSION = 1;
         const uint TOOLKIT_MINOR_VERSION = 4;
-        const uint TOOLKIT_MICRO_VERSION = 25;
+        const uint TOOLKIT_MICRO_VERSION = 50;
 
         public void AddExample(Example example)
         {
@@ -160,7 +128,6 @@ namespace Tizen.NUI.Samples
             // Add logo
             ImageView logo = new ImageView(LOGO_PATH);
             logo.Name = "LOGO_IMAGE";
-            //logo.SetAnchorPoint(AnchorPoint::TOP_CENTER);
             logo.PositionUsesPivotPoint = true;
             logo.PivotPoint = PivotPoint.TopCenter;
             logo.ParentOrigin = new Position(0.5f, 0.1f, 0.5f);
@@ -168,7 +135,6 @@ namespace Tizen.NUI.Samples
             logo.HeightResizePolicy = ResizePolicyType.UseNaturalSize;
 
             //// The logo should appear on top of everything.
-            //logo.DrawMode = DrawModeType.Overlay2D;
             mRootActor.Add(logo);
 
             // Show version in a popup when log is tapped
@@ -188,7 +154,6 @@ namespace Tizen.NUI.Samples
             ushort buttonsPageMargin = (ushort)((1.0f - TABLE_RELATIVE_SIZE.X) * 0.5f * stageSize.Width);
             mScrollView.SetPadding(new PaddingType(buttonsPageMargin, buttonsPageMargin, 0, 0));
 
-            //mScrollView.SetAxisAutoLock(true);
             mScrollView.ScrollCompleted += OnScrollComplete;
             mScrollView.ScrollStarted += OnScrollStart;
 
@@ -275,7 +240,6 @@ namespace Tizen.NUI.Samples
         private void OnScrollStart(object source, Scrollable.StartedEventArgs e)
         {
             mScrolling = true;
-            //PlayAnimation();
         }
 
         private void OnScrollComplete(object source, Scrollable.CompletedEventArgs e)
@@ -283,7 +247,6 @@ namespace Tizen.NUI.Samples
             // move focus to 1st item of new page
             mScrolling = false;
             mCurPage = mScrollView.GetCurrentPage();
-            //FocusManager.Instance.SetCurrentFocusView(mPages[mScrollView.GetCurrentPage()].GetChildAt(0));
         }
 
         private void OnLogoTapped(object source, TapGestureDetector.DetectedEventArgs e)
@@ -318,6 +281,10 @@ namespace Tizen.NUI.Samples
                     mVersionPopup.HeightResizePolicy = ResizePolicyType.FitToChildren;
 
                     mVersionPopup.TouchedOutside += HideVersionPopup;
+                    mVersionPopup.PositionUsesPivotPoint = true;
+                    mVersionPopup.PivotPoint = PivotPoint.Center;
+                    mVersionPopup.ParentOrigin = ParentOrigin.Center;
+
                     Window.Instance.Add(mVersionPopup);
                 }
 
@@ -334,9 +301,7 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        /**
-         * Creates the background image
-         */
+        // Creates the background image
         private View CreateBackground(string stylename)
         {
             View background = new View();
@@ -356,7 +321,7 @@ namespace Tizen.NUI.Samples
             ImageView focusableTile = new ImageView();
 
             focusableTile.SetStyleName("DemoTile");
-            focusableTile.ResourceUrl = CommonResource.GetFHResourcePath() + "DaliDemo/demo-tile-texture.9.png";
+            focusableTile.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/demo-tile-texture.9.png";
             focusableTile.PositionUsesPivotPoint = true;
             focusableTile.ParentOrigin = ParentOrigin.Center;
             focusableTile.WidthResizePolicy = focusableTile.HeightResizePolicy = ResizePolicyType.SizeRelativeToParent;
@@ -370,18 +335,10 @@ namespace Tizen.NUI.Samples
             PropertyValue value = new PropertyValue(new Vector3(0.0f, 0.0f, 0.0f));
             int propertyIndex = focusableTile.RegisterProperty("uCustomPosition", value);
 
-            // We create a constraint to perform a precalculation on the scroll-view X offset
-            // and pass it to the shader uniform, along with the tile's position.
-            //Constraint shaderPosition = Constraint::New<Vector3>(focusableTile, propertyIndex, TileShaderPositionConstraint(mPageWidth, position.x));
-            //shaderPosition.AddSource(Source(mScrollView, ScrollView::Property::SCROLL_POSITION) );
-            //shaderPosition.SetRemoveAction(Constraint::Discard );
-            //shaderPosition.Apply();
-            //focusableTile.Add( tileContent );
-
             // Create an ImageView for the 9-patch border around the tile.
             ImageView borderImage = new ImageView();
             borderImage.SetStyleName("DemoTileBorder");
-            borderImage.ResourceUrl = CommonResource.GetFHResourcePath() + "DaliDemo/item-background.9.png";
+            borderImage.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/item-background.9.png";
             borderImage.PositionUsesPivotPoint = true;
             borderImage.PivotPoint = PivotPoint.Center;
             borderImage.ParentOrigin = ParentOrigin.Center;
@@ -406,7 +363,6 @@ namespace Tizen.NUI.Samples
 
             // Connect to the touch events
             focusableTile.TouchEvent += OnTilePressed;
-            //focusableTile.HoverEvent += OnTileHovered;
 
             return focusableTile;
         }
@@ -521,7 +477,6 @@ namespace Tizen.NUI.Samples
 
                             tile.SetPadding(new PaddingType((int)margin, (int)margin, (int)margin, (int)margin));
                             page.AddChild(tile, new TableView.CellPosition(row, column));
-                            //page.Add(tile);
 
                             tiles.Add(tile);
 
@@ -572,7 +527,6 @@ namespace Tizen.NUI.Samples
             {
                 int randSize = sizeRandom.Next(10, 400);
                 shapeType = shapeRandom.Next(0, NUMBER_OF_SHAPE_IMAGES);
-                //shapeType = (shapeType + 1) % 2;
 
                 Console.WriteLine("randSize is {0}, shapeType is {1}", randSize, shapeType);
 
@@ -619,14 +573,6 @@ namespace Tizen.NUI.Samples
 
                 child.Position = childPos;
 
-                // Define bubble horizontal parallax and vertical wrapping
-                //Constraint animConstraint = Constraint::New<Vector3>(child, Actor::Property::POSITION, AnimateBubbleConstraint(childPos, Random::Range(-0.85f, 0.25f)));
-                //animConstraint.AddSource(Source(mScrollView, ScrollView::Property::SCROLL_POSITION));
-                //animConstraint.AddSource(Dali::ParentSource(Dali::Actor::Property::SIZE));
-                //animConstraint.AddSource(Dali::LocalSource(Dali::Actor::Property::SIZE));
-                //animConstraint.SetRemoveAction(Constraint::Discard);
-                //animConstraint.Apply();
-
                 // Kickoff animation
                 Animation animation = new Animation(animationDurationRandom.Next(30, 160) * 1000);
                 animation.AnimateBy(child, "Position", new Vector3(0.0f, -2000.0f, 0.0f), new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear));
@@ -641,22 +587,22 @@ namespace Tizen.NUI.Samples
             string fragmentShaderPrefix = "#extension GL_OES_standard_derivatives : enable\n";
 
             string fragmentShader = "varying mediump vec2 vTexCoord;\n" +
-      "\n" +
-      "uniform mediump float uGlowBoundary;\n" +
-      "uniform mediump vec2  uOutlineParams;\n" +
-      "uniform lowp vec4  uOutlineColor;\n" +
-   "uniform lowp vec4  uShadowColor;\n" +
-"uniform mediump vec2  uShadowOffset;\n" +
-"uniform lowp vec4  uGlowColor;\n" +
-"uniform lowp    float uDoOutline;\n" +
-"uniform lowp    float uDoShadow;\n" +
-"uniform lowp    float uDoGlow;\n" +
-      "\n" +
-      "uniform sampler2D sTexture;\n" +
-      "uniform lowp vec4 uColor;\n" +
-      "\n" +
-      "void main()\n" +
-      "{\n" +
+                "\n" +
+                "uniform mediump float uGlowBoundary;\n" +
+                "uniform mediump vec2  uOutlineParams;\n" +
+                "uniform lowp vec4  uOutlineColor;\n" +
+                "uniform lowp vec4  uShadowColor;\n" +
+                "uniform mediump vec2  uShadowOffset;\n" +
+                "uniform lowp vec4  uGlowColor;\n" +
+                "uniform lowp    float uDoOutline;\n" +
+                "uniform lowp    float uDoShadow;\n" +
+                "uniform lowp    float uDoGlow;\n" +
+                "\n" +
+                "uniform sampler2D sTexture;\n" +
+                "uniform lowp vec4 uColor;\n" +
+                "\n" +
+                "void main()\n" +
+                "{\n" +
                 "// sample distance field\n" +
                 "mediump float smoothing = 0.5;\n" +
 
@@ -664,80 +610,80 @@ namespace Tizen.NUI.Samples
                 "mediump float smoothWidth = fwidth(distance);\n" +
                 "mediump float alphaFactor = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
                 "lowp    vec4 color;\n" +
-        "if (uDoShadow == 0.0)\n" +
-        "{\n" +
-                    "mediump float alpha = uColor.a * alphaFactor;\n" +
-                    "lowp    vec4 rgb = uColor;\n" +
-          "\n" +
-          "if (uDoOutline > 0.0)\n" +
-          "{\n" +
-                        "mediump float outlineWidth = uOutlineParams[1] + smoothWidth;\n" +
-                        "mediump float outlineBlend = smoothstep(uOutlineParams[0] - outlineWidth, uOutlineParams[0] + outlineWidth, distance);\n" +
-                        "alpha = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
-                        "rgb = mix(uOutlineColor, uColor, outlineBlend);\n" +
-          "}\n" +
-          "\n" +
-          "if (uDoGlow > 0.0)\n" +
-          "{\n" +
-                        "rgb = mix(uGlowColor, rgb, alphaFactor);\n" +
-                        "alpha = smoothstep(uGlowBoundary, smoothing, distance);\n" +
-          "}\n" +
-          "\n" +
-          "// set fragment color\n" +
-          "color = vec4(rgb.rgb, alpha);\n" +
-        "}\n" +
-        "\n" +
-        "else // (uDoShadow > 0.0)\n" +
-        "{\n" +
-                    "mediump float shadowDistance = texture2D(sTexture, vTexCoord - uShadowOffset).a;\n" +
-                    "mediump float inText = alphaFactor;\n" +
-                    "mediump float inShadow = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, shadowDistance);\n" +
-          "\n" +
-          "// inside object, outside shadow\n" +
-          "if (inText == 1.0)\n" +
-          "{\n" +
-                        "color = uColor;\n" +
-          "}\n" +
-          "// inside object, outside shadow\n" +
-          "else if ((inText != 0.0) && (inShadow == 0.0))\n" +
-          "{\n" +
-                        "color = uColor;\n" +
-            "color.a *= inText;\n" +
-          "}\n" +
-          "// outside object, completely inside shadow\n" +
-          "else if ((inText == 0.0) && (inShadow == 1.0))\n" +
-          "{\n" +
-                        "color = uShadowColor;\n" +
-          "}\n" +
-          "// inside object, completely inside shadow\n" +
-          "else if ((inText != 0.0) && (inShadow == 1.0))\n" +
-          "{\n" +
-                        "color = mix(uShadowColor, uColor, inText);\n" +
-            "color.a = uShadowColor.a;\n" +
-          "}\n" +
-          "// inside object, inside shadow's border\n" +
-          "else if ((inText != 0.0) && (inShadow != 0.0))\n" +
-          "{\n" +
-                        "color = mix(uShadowColor, uColor, inText);\n" +
-            "color.a *= max(inText, inShadow);\n" +
-          "}\n" +
-          "// inside shadow's border\n" +
-          "else if (inShadow != 0.0)\n" +
-          "{\n" +
-                        "color = uShadowColor;\n" +
-            "color.a *= inShadow;\n" +
-          "}\n" +
-          "// outside shadow and object\n" +
-          "else \n" +
-          "{\n" +
-            "color.a = 0.0;\n" +
-          "}\n" +
-          "\n" +
-        "}\n" +
-        "\n" +
-        "gl_FragColor = color;\n" +
-        "\n" +
-      "}";
+                "if (uDoShadow == 0.0)\n" +
+                "{\n" +
+                "mediump float alpha = uColor.a * alphaFactor;\n" +
+                "lowp    vec4 rgb = uColor;\n" +
+                "\n" +
+                "if (uDoOutline > 0.0)\n" +
+                "{\n" +
+                "mediump float outlineWidth = uOutlineParams[1] + smoothWidth;\n" +
+                "mediump float outlineBlend = smoothstep(uOutlineParams[0] - outlineWidth, uOutlineParams[0] + outlineWidth, distance);\n" +
+                "alpha = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, distance);\n" +
+                "rgb = mix(uOutlineColor, uColor, outlineBlend);\n" +
+                "}\n" +
+                "\n" +
+                "if (uDoGlow > 0.0)\n" +
+                "{\n" +
+                "rgb = mix(uGlowColor, rgb, alphaFactor);\n" +
+                "alpha = smoothstep(uGlowBoundary, smoothing, distance);\n" +
+                "}\n" +
+                "\n" +
+                "// set fragment color\n" +
+                "color = vec4(rgb.rgb, alpha);\n" +
+                "}\n" +
+                "\n" +
+                "else // (uDoShadow > 0.0)\n" +
+                "{\n" +
+                "mediump float shadowDistance = texture2D(sTexture, vTexCoord - uShadowOffset).a;\n" +
+                "mediump float inText = alphaFactor;\n" +
+                "mediump float inShadow = smoothstep(smoothing - smoothWidth, smoothing + smoothWidth, shadowDistance);\n" +
+                "\n" +
+                "// inside object, outside shadow\n" +
+                "if (inText == 1.0)\n" +
+                "{\n" +
+                "color = uColor;\n" +
+                "}\n" +
+                "// inside object, outside shadow\n" +
+                "else if ((inText != 0.0) && (inShadow == 0.0))\n" +
+                "{\n" +
+                "color = uColor;\n" +
+                "color.a *= inText;\n" +
+                "}\n" +
+                "// outside object, completely inside shadow\n" +
+                "else if ((inText == 0.0) && (inShadow == 1.0))\n" +
+                "{\n" +
+                "color = uShadowColor;\n" +
+                "}\n" +
+                "// inside object, completely inside shadow\n" +
+                "else if ((inText != 0.0) && (inShadow == 1.0))\n" +
+                "{\n" +
+                "color = mix(uShadowColor, uColor, inText);\n" +
+                "color.a = uShadowColor.a;\n" +
+                "}\n" +
+                "// inside object, inside shadow's border\n" +
+                "else if ((inText != 0.0) && (inShadow != 0.0))\n" +
+                "{\n" +
+                "color = mix(uShadowColor, uColor, inText);\n" +
+                "color.a *= max(inText, inShadow);\n" +
+                "}\n" +
+                "// inside shadow's border\n" +
+                "else if (inShadow != 0.0)\n" +
+                "{\n" +
+                "color = uShadowColor;\n" +
+                "color.a *= inShadow;\n" +
+                "}\n" +
+                "// outside shadow and object\n" +
+                "else \n" +
+                "{\n" +
+                "color.a = 0.0;\n" +
+                "}\n" +
+                "\n" +
+                "}\n" +
+                "\n" +
+                "gl_FragColor = color;\n" +
+                "\n" +
+                "}";
 
             PropertyMap map = new PropertyMap();
 
@@ -756,7 +702,6 @@ namespace Tizen.NUI.Samples
         private void ApplyScrollViewEffect()
         {
             // Remove old effect if exists.
-
             if (mScrollViewEffect)
             {
                 mScrollView.RemoveEffect(mScrollViewEffect);
@@ -826,37 +771,35 @@ namespace Tizen.NUI.Samples
             mRotateAnimation.Play();
         }
 
-        internal View mRootActor;                ///< All content (excluding background is anchored to this Actor)
-        private Animation mRotateAnimation;          ///< Animation to rotate and resize mRootActor.
-        private Animation mPressedAnimation;         ///< Button press scaling animation.
-        private ScrollView mScrollView;               ///< ScrollView container (for all Examples)
-        private ScrollViewPagePathEffect mScrollViewEffect;         ///< Effect to be applied to the scroll view
-        private RulerPtr mScrollRulerX;             ///< ScrollView X (horizontal) ruler
-        private RulerPtr mScrollRulerY;             ///< ScrollView Y (vertical) ruler
-        private View mPressedActor;             ///< The currently pressed actor.
-        private Timer mAnimationTimer;           ///< Timer used to turn off animation after a specific time period
-        private TapGestureDetector mLogoTapDetector;          ///< To detect taps on the logo
-        private Popup mVersionPopup;             ///< Displays DALi library version information
+        internal View mRootActor;                //  All content (excluding background is anchored to this Actor)
+        private Animation mRotateAnimation;          //  Animation to rotate and resize mRootActor.
+        private Animation mPressedAnimation;         //  Button press scaling animation.
+        private ScrollView mScrollView;               //  ScrollView container (for all Examples)
+        private ScrollViewPagePathEffect mScrollViewEffect;         //  Effect to be applied to the scroll view
+        private RulerPtr mScrollRulerX;             //  ScrollView X (horizontal) ruler
+        private RulerPtr mScrollRulerY;             //  ScrollView Y (vertical) ruler
+        private View mPressedActor;             //  The currently pressed actor.
+        private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
+        private TapGestureDetector mLogoTapDetector;          //  To detect taps on the logo
+        private Popup mVersionPopup;             //  Displays DALi library version information
 
-        /**
-   * This struct encapsulates all data relevant to each of the elements used within the custom keyboard focus effect.
-   */
+        // This struct encapsulates all data relevant to each of the elements used within the custom keyboard focus effect.
         private struct FocusEffect
         {
-            public ImageView actor;                   ///< The parent keyboard focus highlight actor
-            public Animation animation;               ///< The animation for the parent keyboard focus highlight actor
+            public ImageView actor;                   //  The parent keyboard focus highlight actor
+            public Animation animation;               //  The animation for the parent keyboard focus highlight actor
         };
-        FocusEffect[] mFocusEffect = new FocusEffect[FOCUS_ANIMATION_ACTOR_NUMBER];    ///< The elements used to create the custom focus effect
+        FocusEffect[] mFocusEffect = new FocusEffect[FOCUS_ANIMATION_ACTOR_NUMBER];    //  The elements used to create the custom focus effect
 
-        private View[] mPages;                    ///< List of pages.
-        private List<Animation> mBackgroundAnimations = new List<Animation>();     ///< List of background bubble animations
-        private List<Example> mExampleList = new List<Example>();              ///< List of examples.
+        private View[] mPages;                    //  List of pages.
+        private List<Animation> mBackgroundAnimations = new List<Animation>();     //  List of background bubble animations
+        private List<Example> mExampleList = new List<Example>();              //  List of examples.
 
-        private float mPageWidth;                ///< The width of a page within the scroll-view, used to calculate the domain
-        private uint mTotalPages;               ///< Total pages within scrollview.
+        private float mPageWidth;                //  The width of a page within the scroll-view, used to calculate the domain
+        private uint mTotalPages;               //  Total pages within scrollview.
 
-        private bool mScrolling;              ///< Flag indicating whether view is currently being scrolled
-        private bool mSortAlphabetically;     ///< Sort examples alphabetically.
-        private bool mBackgroundAnimsPlaying; ///< Are background animations playing
+        private bool mScrolling;              //  Flag indicating whether view is currently being scrolled
+        private bool mSortAlphabetically;     //  Sort examples alphabetically.
+        private bool mBackgroundAnimsPlaying; //  Are background animations playing
     }
 }

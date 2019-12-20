@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Components;
 using Tizen.NUI.UIComponents;
 
 namespace Tizen.NUI.Samples
@@ -23,25 +21,25 @@ namespace Tizen.NUI.Samples
         private string GRID_LABEL = "Grid";
         private string DEPTH_LABEL = "Depth";
 
-        private string TOOLBAR_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/top-bar.png";
-        private string EDIT_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-edit.png";
-        private string EDIT_IMAGE_SELECTED = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-edit-selected.png";
-        private string DELETE_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-delete.png";
-        private string DELETE_IMAGE_SELECTED = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-delete-selected.png";
-        private string REPLACE_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-replace.png";
-        private string REPLACE_IMAGE_SELECTED = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-replace-selected.png";
-        private string INSERT_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-insert.png";
-        private string INSERT_IMAGE_SELECTED = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-insert-selected.png.png";
-        private string SELECTED_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/item-select-check.png";
+        private string TOOLBAR_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/top-bar.png";
+        private string EDIT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-edit.png";
+        private string EDIT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-edit-selected.png";
+        private string DELETE_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-delete.png";
+        private string DELETE_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-delete-selected.png";
+        private string REPLACE_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-replace.png";
+        private string REPLACE_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-replace-selected.png";
+        private string INSERT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-insert.png";
+        private string INSERT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-insert-selected.png.png";
+        private string SELECTED_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/item-select-check.png";
 
-        private string SPIRAL_LAYOUT_IMAGE = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral.png";
-        private string SPIRAL_LAYOUT_IMAGE_SELECTED = CommonResource.GetFHResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral-selected.png";
-        private string GRID_LAYOUT_IMAGE = CommonResource.GetFHResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid.png";
-        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetFHResourcePath() +  "ItemViewDemo/icon-item-view-layout-grid-selected.png";
-        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetFHResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth.png";
-        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetFHResourcePath() +  "ItemViewDemo/icon-item-view-layout-depth-selected.png";
+        private string SPIRAL_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral.png";
+        private string SPIRAL_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-spiral-selected.png";
+        private string GRID_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid.png";
+        private string GRID_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-grid-selected.png";
+        private string DEPTH_LAYOUT_IMAGE = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth.png";
+        private string DEPTH_LAYOUT_IMAGE_SELECTED = CommonResource.GetDaliResourcePath() + "ItemViewDemo/icon-item-view-layout-depth-selected.png";
 
-        
+
         private ItemView mItemView;
         private ItemFactoryWrapper mItemFactoryWrapper;
         private PropertyMap mGridLayout;
@@ -63,9 +61,7 @@ namespace Tizen.NUI.Samples
         private ImageView mToolBarBackground;
 
         private Layer mToolBarLayer;
-        //private Layer mContentLayer;
         private View mContentView;
-        //private View mToolBarView;
 
         private int mDurationSeconds = 250;
 
@@ -87,7 +83,7 @@ namespace Tizen.NUI.Samples
 
         private void SetTitle(string title)
         {
-            if(mTitle != null)
+            if (mTitle != null)
             {
                 mTitle.Text = title;
             }
@@ -97,12 +93,6 @@ namespace Tizen.NUI.Samples
         {
             mGridLayout = new PropertyMap();
             mGridLayout.Insert((int)DefaultItemLayoutProperty.TYPE, new PropertyValue((int)DefaultItemLayoutType.GRID));
-            //mGridLayout.Add((int)DefaultItemLayoutProperty.GRID_COLUMN_NUMBER, new Dali.Property.Value(_columnNumber))
-            //     .Add((int)DefaultItemLayoutProperty.GRID_ROW_SPACING, new Dali.Property.Value(_rowSpacing))
-            //     .Add((int)DefaultItemLayoutProperty.GRID_COLUMN_SPACING, new Dali.Property.Value(_columnSpacing))
-            //     .Add((int)DefaultItemLayoutProperty.GRID_TOP_MARGIN, new Dali.Property.Value(TopMargin))
-            //     .Add((int)DefaultItemLayoutProperty.GRID_BOTTOM_MARGIN, new Dali.Property.Value(BottomMargin))
-            //     .Add((int)DefaultItemLayoutProperty.GRID_BOTTOM_MARGIN, new Dali.Property.Value(SideMargin));
         }
 
         public void CreateDepthLayout()
@@ -203,10 +193,9 @@ namespace Tizen.NUI.Samples
             mItemFactoryWrapper.NewItemDelegate = NewItemView;
 
             mItemView = new ItemView(mItemFactoryWrapper);
-            //mItemView.BackgroundColor = Color.Blue;
+            mItemView.PositionUsesPivotPoint = true;
             mItemView.ParentOrigin = Position.ParentOriginCenter;
             mItemView.PivotPoint = Position.PivotPointCenter;
-            mItemView.PositionUsesPivotPoint = true;
             window.Add(mItemView);
 
             window.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
@@ -235,7 +224,7 @@ namespace Tizen.NUI.Samples
                         mItemView.GetItemsRange(range);
 
                         uint item = (e.LongPressGesture.ScreenPoint.Y < 0.5f * (float)windowSize.Height) ? range.begin : range.end;
-                        
+
                         mItemView.ScrollToItem(item, SCROLL_TO_ITEM_ANIMATION_TIME);
 
                         break;
@@ -271,10 +260,6 @@ namespace Tizen.NUI.Samples
                     }
             }
 
-            // Set the new orientation to the layout
-            //Issue
-            //mItemView.GetLayout(layoutId)->SetOrientation(static_cast<ControlOrientation::Type>(mOrientation / 90));
-
             Size2D windowSize = Window.Instance.Size;
 
             if (layoutId == (int)AllImagesLayouts.DEPTH_LAYOUT)
@@ -285,17 +270,6 @@ namespace Tizen.NUI.Samples
                 mLayout.PushBack(new PropertyValue(mDepthLayout));
                 mLayout.PushBack(new PropertyValue(mGridLayout));
                 mItemView.Layout = mLayout;
-
-                // Set up the depth layout according to the new orientation
-                // issue
-                //if (Toolkit::IsVertical(mDepthLayout->GetOrientation()))
-                //{
-                //    mDepthLayout->SetItemSize(DepthLayoutItemSizeFunctionPortrait(stageSize.width));
-                //}
-                //else
-                //{
-                //    mDepthLayout->SetItemSize(DepthLayoutItemSizeFunctionLandscape(stageSize.height));
-                //}
             }
 
             // Enable anchoring for depth layout only
@@ -303,7 +277,6 @@ namespace Tizen.NUI.Samples
 
             // Activate the layout
             mItemView.ActivateLayout((uint)layoutId, new Vector3(800, 800, 800), 0.0f);
-            //mItemView.ActivateLayout((uint)layoutId, new Vector3(windowSize.Width, windowSize.Height, windowSize.Width), 0.0f);
         }
 
 
@@ -316,7 +289,7 @@ namespace Tizen.NUI.Samples
         public View NewItemView(uint itemId)
         {
             // Create an image view for this item
-            string imagePath = CommonResource.GetFHResourcePath() + "ItemViewDemo/gallery/gallery-medium-";
+            string imagePath = CommonResource.GetDaliResourcePath() + "ItemViewDemo/gallery/gallery-medium-";
             uint id = itemId % 53;
             imagePath += id.ToString();
             imagePath += ".jpg";
@@ -337,7 +310,7 @@ namespace Tizen.NUI.Samples
             borderActor.HeightResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             borderActor.WidthResizePolicy = ResizePolicyType.SizeFixedOffsetFromParent;
             borderActor.SetSizeModeFactor(new Vector3(2.0f * ITEM_BORDER_SIZE, 2.0f * ITEM_BORDER_SIZE, 0.0f));
-            //borderActor.SetColorMode(ColorMode.UseParentColor);
+            borderActor.SetColorMode(ColorMode.UseParentColor);
 
             PropertyMap borderProperty = new PropertyMap();
             borderProperty.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Border));
@@ -349,11 +322,10 @@ namespace Tizen.NUI.Samples
             actor.Add(borderActor);
 
             Size spiralItemSize = new Size(30, 30, 0);
-            //static_cast < ItemLayout &> (*mSpiralLayout).GetItemSize(0u, Vector3(Stage::GetCurrent().GetSize()), spiralItemSize);
             // Add a checkbox child actor; invisible until edit-mode is enabled
             ImageView checkBox = new ImageView();
             checkBox.Name = "CheckBox";
-            //checkBox.SetColorMode(ColorMode.UseParentColor);
+            checkBox.SetColorMode(ColorMode.UseParentColor);
             checkBox.ParentOrigin = ParentOrigin.TopRight;
             checkBox.PivotPoint = PivotPoint.TopRight;
             checkBox.Size = spiralItemSize;
@@ -374,14 +346,13 @@ namespace Tizen.NUI.Samples
 
             ImageView tick = new ImageView(SELECTED_IMAGE);
             tick.Name = "Tick";
-            //tick.SetColorMode(ColorMode.UseParentColor);
             tick.ParentOrigin = ParentOrigin.TopRight;
             tick.PivotPoint = PivotPoint.TopRight;
             tick.Size = spiralItemSize;
             tick.Hide();
             checkBox.Add(tick);
 
-            if(mTapDetector)
+            if (mTapDetector)
             {
                 mTapDetector.Attach(actor);
             }
@@ -390,7 +361,7 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            if(mLayoutButton != null)
+            if (mLayoutButton != null)
             {
                 mLayoutButton.GetParent().Remove(mLayoutButton);
                 mLayoutButton.Dispose();
@@ -432,7 +403,7 @@ namespace Tizen.NUI.Samples
                 mToolBarBackground.Dispose();
             }
 
-            if(mItemView != null)
+            if (mItemView != null)
             {
                 mItemView.GetParent().Remove(mItemView);
                 mItemView.Dispose();
@@ -444,7 +415,7 @@ namespace Tizen.NUI.Samples
                 mContentView.Dispose();
             }
 
-            if(mToolBarLayer != null)
+            if (mToolBarLayer != null)
             {
                 Window.Instance.RemoveLayer(mToolBarLayer);
                 mToolBarLayer.Dispose();
@@ -467,39 +438,10 @@ namespace Tizen.NUI.Samples
         }
 
 
-        //public void CreateToolBarView()
-        //{
-        //    mToolBarView = new View();
-        //    mToolBarView.Name = "TOOLBAR";
-        //    mToolBarView.BackgroundImage = TOOLBAR_IMAGE;
-        //    mToolBarView.ParentOrigin = ParentOrigin.TopCenter;
-        //    mToolBarView.PivotPoint = PivotPoint.TopCenter;
-        //    mToolBarView.PositionUsesPivotPoint = true;
-        //    mToolBarView.WidthResizePolicy = ResizePolicyType.FillToParent;
-        //    mToolBarView.Size2D = new Size2D(0, 80);
-        //    Window.Instance.Add(mToolBarView);
-
-        //    mToolBarView.RaiseToTop();
-
-        //    mTitle = new TextLabel();
-        //    mTitle.ParentOrigin = ParentOrigin.TopLeft;
-        //    mTitle.PivotPoint = PivotPoint.TopLeft;
-        //    mTitle.PositionUsesPivotPoint = true;
-        //    mTitle.PointSize = 10.0f;
-        //    mTitle.WidthResizePolicy = ResizePolicyType.FillToParent;
-        //    mTitle.HeightResizePolicy = ResizePolicyType.FillToParent;
-        //    mTitle.Text = APPLICATION_TITLE;
-        //    mTitle.VerticalAlignment = VerticalAlignment.Center;
-        //    mTitle.HorizontalAlignment = HorizontalAlignment.Center;
-        //    mToolBarView.Add(mTitle);
-        //}
-
         private void CreateToolBarLayer()
         {
             mToolBarLayer = new Layer();
             mToolBarLayer.Name = "TOOLBAR";
-            //mToolBarLayer.BackgroundImage = TOOLBAR_IMAGE;
-            //mToolBarLayer.PositionUsesPivotPoint = true;
             mToolBarLayer.SetAnchorPoint(PivotPoint.TopCenter);
             mToolBarLayer.SetParentOrigin(ParentOrigin.TopCenter);
             mToolBarLayer.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.Width);
@@ -550,7 +492,6 @@ namespace Tizen.NUI.Samples
                 SetLayoutImage();
                 return true;
             };
-            //mToolBarView.Add(mLayoutButton);
             mToolBarLayer.Add(mLayoutButton);
         }
 
@@ -570,7 +511,6 @@ namespace Tizen.NUI.Samples
                 SwitchToNextMode();
                 return true;
             };
-            //mToolBarView.Add(mEditButton);
             mToolBarLayer.Add(mEditButton);
         }
 
@@ -600,7 +540,6 @@ namespace Tizen.NUI.Samples
         private void CreateDeleteButton()
         {
             mDeleteButton = new PushButton();
-            //mDeleteButton.BackgroundColor = Color.Red;
             mDeleteButton.ParentOrigin = ParentOrigin.BottomRight;
             mDeleteButton.PivotPoint = PivotPoint.BottomRight;
             mDeleteButton.PositionUsesPivotPoint = true;
@@ -615,10 +554,9 @@ namespace Tizen.NUI.Samples
             {
                 ItemIdContainer removeList = new ItemIdContainer();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-                //for (uint i = 0; i < ITEM_COUNT; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
-                    if(child != null)
+                    if (child != null)
                     {
                         View tick = child.FindChildByName("Tick");
 
@@ -641,7 +579,6 @@ namespace Tizen.NUI.Samples
         private void CreateInsertButton()
         {
             mInsertButton = new PushButton();
-            //mInsertButton.BackgroundColor = Color.Red;
             mInsertButton.ParentOrigin = ParentOrigin.BottomRight;
             mInsertButton.PivotPoint = PivotPoint.BottomRight;
             mInsertButton.PositionUsesPivotPoint = true;
@@ -657,10 +594,9 @@ namespace Tizen.NUI.Samples
                 ItemContainer insertList = new ItemContainer();
                 Random random = new Random();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-                //for (uint i = 0; i < ITEM_COUNT; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
-                    if(child != null)
+                    if (child != null)
                     {
                         View tick = child.FindChildByName("Tick");
 
@@ -682,7 +618,6 @@ namespace Tizen.NUI.Samples
         private void CreateReplaceButton()
         {
             mReplaceButton = new PushButton();
-            //mReplaceButton.BackgroundColor = Color.Red;
             mReplaceButton.ParentOrigin = ParentOrigin.BottomRight;
             mReplaceButton.PivotPoint = PivotPoint.BottomRight;
             mReplaceButton.PositionUsesPivotPoint = true;
@@ -698,10 +633,9 @@ namespace Tizen.NUI.Samples
                 ItemContainer replaceList = new ItemContainer();
                 Random random = new Random();
                 for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-                //for (uint i = 0; i < ITEM_COUNT; ++i)
                 {
                     View child = mItemView.GetChildAt(i);
-                    if(child != null)
+                    if (child != null)
                     {
                         View tick = child.FindChildByName("Tick");
 
@@ -789,9 +723,8 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
-                if(mItemView.GetChildAt(i) != null)
+                if (mItemView.GetChildAt(i) != null)
                 {
                     mTapDetector.Attach(mItemView.GetChildAt(i));
                 }
@@ -800,7 +733,7 @@ namespace Tizen.NUI.Samples
             mTapDetector.Detected += (obj, e) =>
             {
                 View item = e.View;
-                if(item != null)
+                if (item != null)
                 {
                     mItemView.RemoveItem(mItemView.GetItemId(item), 0.5f);
                 }
@@ -821,10 +754,9 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
-                if(child != null)
+                if (child != null)
                 {
                     View box = child.FindChildByName("CheckBox");
                     if (box)
@@ -838,7 +770,7 @@ namespace Tizen.NUI.Samples
             mTapDetector.Detected += (obj, e) =>
             {
                 View view = e.View;
-                if(view != null)
+                if (view != null)
                 {
                     Console.WriteLine("haha");
                 }
@@ -849,7 +781,7 @@ namespace Tizen.NUI.Samples
                 View tick = view.FindChildByName("Tick");
                 if (tick)
                 {
-                    if(tick.Visibility)
+                    if (tick.Visibility)
                     {
                         tick.Hide();
                     }
@@ -864,10 +796,9 @@ namespace Tizen.NUI.Samples
         void ExitRemoveManyMode()
         {
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
-                if(child != null)
+                if (child != null)
                 {
                     View box = child.FindChildByName("CheckBox");
 
@@ -893,17 +824,16 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
-                if(mItemView.GetChildAt(i) != null)
+                if (mItemView.GetChildAt(i) != null)
                 {
                     mTapDetector.Attach(mItemView.GetChildAt(i));
                 }
-                
+
             }
             mTapDetector.Detected += (obj, e) =>
             {
-                if(e.View != null)
+                if (e.View != null)
                 {
                     uint id = mItemView.GetItemId(e.View);
                     Random random = new Random();
@@ -932,10 +862,9 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
-                if(child != null)
+                if (child != null)
                 {
                     View box = child.FindChildByName("CheckBox");
 
@@ -966,10 +895,9 @@ namespace Tizen.NUI.Samples
         void ExitInsertManyMode()
         {
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
-                if(child != null)
+                if (child != null)
                 {
                     View box = child.FindChildByName("CheckBox");
 
@@ -995,12 +923,11 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
-                if(mItemView.GetChildAt(i) != null)
+                if (mItemView.GetChildAt(i) != null)
                 {
                     mTapDetector.Attach(mItemView.GetChildAt(i));
-                } 
+                }
             }
 
             mTapDetector.Detected += (obj, e) =>
@@ -1025,7 +952,6 @@ namespace Tizen.NUI.Samples
             mTapDetector = new TapGestureDetector();
 
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 View box = child.FindChildByName("CheckBox");
@@ -1056,7 +982,6 @@ namespace Tizen.NUI.Samples
         void ExitReplaceManyMode()
         {
             for (uint i = 0; i < mItemView.GetChildCount(); ++i)
-            //for (uint i = 0; i < ITEM_COUNT; ++i)
             {
                 View child = mItemView.GetChildAt(i);
                 View box = child.FindChildByName("CheckBox");
@@ -1075,6 +1000,6 @@ namespace Tizen.NUI.Samples
             mTapDetector.Reset();
             mReplaceButton.Hide();
         }
-        
+
     }
 }
