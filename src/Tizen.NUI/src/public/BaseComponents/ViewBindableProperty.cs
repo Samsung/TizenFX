@@ -1349,6 +1349,39 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// ImageShadow Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create("ImageShadow", typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.imageShadow = (ImageShadow)newValue;
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow));
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((View)bindable).imageShadow;
+        });
+
+        /// <summary>
+        /// Shadow Property
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create("BoxShadow", typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.boxShadow = (Shadow)newValue;
+            if (view.imageShadow == null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((View)bindable).boxShadow;
+        });
+
+        /// <summary>
         /// XamlStyleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

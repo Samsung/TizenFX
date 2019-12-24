@@ -59,6 +59,10 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private Rectangle backgroundImageBorder;
 
+        private ImageShadow imageShadow;
+
+        private Shadow boxShadow;
+
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
         private ViewStyle viewStyle;
@@ -290,6 +294,52 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Describes a shadow as an image for View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "BoxShadow".
+        /// If it is not null, the "BoxShadow" property will be ignored.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow ImageShadow
+        {
+            get
+            {
+                return (ImageShadow)GetValue(ImageShadowProperty);
+            }
+            set
+            {
+                value.OnPropertyChanged = OnImageShadowChanged;
+                SetValue(ImageShadowProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Describes a box shaped shadow drawing for View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "ImageShadow".
+        /// If the "ImageShadow" is not null, this property will be ignored.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shadow BoxShadow
+        {
+            get
+            {
+                return (Shadow)GetValue(BoxShadowProperty);
+            }
+            set
+            {
+                value.OnPropertyChanged = OnBoxShadowChanged;
+                SetValue(BoxShadowProperty, value);
                 NotifyPropertyChanged();
             }
         }

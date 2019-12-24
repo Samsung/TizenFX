@@ -52,6 +52,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_UPDATE_SIZE_HINT_get")]
             public static extern int View_Property_UPDATE_SIZE_HINT_get();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_SHADOW_get")]
+            public static extern int View_Property_SHADOW_get();
         }
     }
 }
