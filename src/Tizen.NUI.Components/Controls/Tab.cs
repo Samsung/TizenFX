@@ -544,6 +544,7 @@ namespace Tizen.NUI.Components
 
         private void AddItemByIndex(TabItemData itemData, int index)
         {
+            if (null == itemData) return;
             int h = 0;
             int topSpace = (int)Style.ItemPadding.Top;
             if (Style.UnderLine != null && Style.UnderLine.Size != null)

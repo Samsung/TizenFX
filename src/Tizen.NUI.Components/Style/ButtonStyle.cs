@@ -38,7 +38,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create("IsSelectable", typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.isSelectable = (bool?)newValue;
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create("IsSelected", typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.isSelected = (bool?)newValue;
@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create("IsEnabled", typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.isEnabled = (bool?)newValue;
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create("IconRelativeOrientation", typeof(Button.IconOrientation?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(Button.IconOrientation?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.iconRelativeOrientation = (Button.IconOrientation?)newValue;
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create("IconPadding", typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.iconPadding = (Extents)newValue;
@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create("TextPadding", typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
             buttonStyle.textPadding = (Extents)newValue;
@@ -209,7 +209,7 @@ namespace Tizen.NUI.Components
             get
             {
                 Extents padding = (Extents)GetValue(IconPaddingProperty);
-                return (null != padding) ? padding : iconPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) => { IconPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
+                return (null != padding) ? padding : new Extents((ushort start, ushort end, ushort top, ushort bottom) => { IconPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
             }
             set => SetValue(IconPaddingProperty, value);
         }
@@ -221,7 +221,7 @@ namespace Tizen.NUI.Components
             get
             {
                 Extents padding = (Extents)GetValue(TextPaddingProperty);
-                return (null != padding) ? padding : textPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom) => { TextPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
+                return (null != padding) ? padding : new Extents((ushort start, ushort end, ushort top, ushort bottom) => { TextPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
             }
             set => SetValue(TextPaddingProperty, value);
         }
