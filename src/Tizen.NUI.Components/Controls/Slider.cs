@@ -104,7 +104,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create("SpaceBetweenTrackAndIndicator", typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -119,7 +119,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create("TrackThickness", typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint), typeof(Slider), (uint)0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -134,7 +134,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create("TrackPadding", typeof(Extents), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -818,27 +818,27 @@ namespace Tizen.NUI.Components
 
             SliderStyle sliderStyle = viewStyle as SliderStyle;
 
-            if (null != sliderStyle.Progress)
+            if (null != sliderStyle?.Progress)
             {
                 CreateSlidedTrackAttributes();
             }
 
-            if (null != sliderStyle.LowIndicator)
+            if (null != sliderStyle?.LowIndicator)
             {
                 CreateLowIndicatorTextAttributes();
             }
 
-            if (null != sliderStyle.HighIndicator)
+            if (null != sliderStyle?.HighIndicator)
             {
                 CreateHighIndicatorTextAttributes();
             }
 
-            if (null != sliderStyle.Track)
+            if (null != sliderStyle?.Track)
             {
                 CreateBackgroundTrackAttributes();
             }
 
-            if (null != sliderStyle.Thumb)
+            if (null != sliderStyle?.Thumb)
             {
                 CreateThumbAttributes();
             }

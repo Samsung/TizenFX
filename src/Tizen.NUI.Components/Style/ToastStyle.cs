@@ -42,7 +42,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ToastStyle with Style.
         /// </summary>
-        /// <param name="Style">Create ToastStyle by Style customized by user.</param>
+        /// <param name="style">Create ToastStyle by Style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

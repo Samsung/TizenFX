@@ -66,6 +66,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(RadioButton radio)
         {
+            if (null == radio) return;
             base.AddSelection(radio);
             radio.ItemGroup = this;
         }
@@ -79,6 +80,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(RadioButton radio)
         {
+            if (null == radio) return;
             base.RemoveSelection(radio);
             radio.ItemGroup = null;
         }

@@ -264,6 +264,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetLayoutManager(LayoutManager layoutManager)
         {
+            if (null == layoutManager) return;
             mLayout = layoutManager;
 
             mLayout.SetRecyclerView(this);
@@ -1410,6 +1411,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void LayoutChild(ViewHolder child, float left, float top, float width, float height)
             {
+                if (null == child) return;
                 View itemView = child.ItemView;
                 itemView.SizeWidth = width - itemView.Margin.Start - itemView.Margin.End;
                 itemView.SizeHeight = height - itemView.Margin.Top - itemView.Margin.Bottom;
@@ -1758,7 +1760,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void ScrapAttachedViews(Recycler recycler)
             {
-                if (mChildHelper == null)
+                if (null == mChildHelper || null == recycler)
                 {
                     return;
                 }
@@ -1778,6 +1780,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RemoveAndRecycleViewAt(int index, Recycler recycler)
             {
+                if (null == recycler) return;
                 ViewHolder v = mChildHelper.GetChildAt(index);
                 mChildHelper.RemoveViewAt(index);
                 recycler.RecycleView(v);
@@ -1981,6 +1984,7 @@ namespace Tizen.NUI.Components
 
             private void AddViewInternal(ViewHolder holder, int index, bool disappearing)
             {
+                if (null == holder) return;
                 if (holder.IsScrap())
                 {
                     holder.Unscrap();
@@ -1994,6 +1998,7 @@ namespace Tizen.NUI.Components
 
             private void RecycleChildrenInt(FlexibleView.Recycler recycler)
             {
+                if (null == recycler) return;
                 foreach (ViewHolder holder in mPendingRecycleViews)
                 {
                     holder.PendingRecycle = false;
@@ -2344,6 +2349,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void RecycleView(ViewHolder itemView)
             {
+                if (null == itemView) return;
                 itemView.ScrapContainer = null;
                 mRecyclerPool.PutRecycledView(itemView);
             }

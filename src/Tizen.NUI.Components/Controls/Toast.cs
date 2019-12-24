@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MessageProperty = BindableProperty.Create("Message", typeof(string), typeof(Toast), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MessageProperty = BindableProperty.Create(nameof(Message), typeof(string), typeof(Toast), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Toast)bindable;
             if (newValue != null)
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create("Duration", typeof(uint), typeof(Toast), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(Toast), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Toast)bindable;
             if (newValue != null)
@@ -74,6 +74,7 @@ namespace Tizen.NUI.Components
         }
 
         private Window window = null;
+        /// <summary> text labels </summary>
         protected TextLabel[] textLabels = null;
         private TextLabel textLabel = null;
         private string strText = null;
@@ -96,7 +97,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Toast class with specific Style.
         /// </summary>
-        /// <param name="Style">Construct Style</param>
+        /// <param name="style">Construct Style</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -279,6 +280,9 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Apply style.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
