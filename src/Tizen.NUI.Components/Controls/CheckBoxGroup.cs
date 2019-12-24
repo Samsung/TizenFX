@@ -53,6 +53,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(CheckBox check)
         {
+            if (null == check) return;
             base.AddSelection(check);
             check.ItemGroup = this;
         }
@@ -66,6 +67,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(CheckBox check)
         {
+            if (null == check) return;
             base.RemoveSelection(check);
             check.ItemGroup = null;
         }

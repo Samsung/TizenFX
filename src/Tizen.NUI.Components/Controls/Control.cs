@@ -103,13 +103,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Construct with attributes
+        /// Construct with style.
         /// </summary>
-        /// <param name="attributes">Create attributes customized by user</param>
+        /// <param name="style">Create control with style.</param>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Control(ControlStyle controlStyle) : base(controlStyle)
+        public Control(ControlStyle style) : base(style)
         {
             Initialize(null);
         }
