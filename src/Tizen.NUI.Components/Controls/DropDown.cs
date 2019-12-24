@@ -32,7 +32,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create("ListPadding", typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ListPaddingProperty = BindableProperty.Create(nameof(ListPadding), typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DropDown)bindable;
             if (newValue != null)
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectedItemIndexProperty = BindableProperty.Create("SelectedItemIndex", typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectedItemIndexProperty = BindableProperty.Create(nameof(SelectedItemIndex), typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DropDown)bindable;
             if (newValue != null)
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ListMarginProperty = BindableProperty.Create("ListMargin", typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ListMarginProperty = BindableProperty.Create(nameof(ListMargin), typeof(Extents), typeof(DropDown), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DropDown)bindable;
             if (newValue != null)
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ListRelativeOrientationProperty = BindableProperty.Create("ListRelativeOrientation", typeof(ListOrientation), typeof(DropDown), ListOrientation.Left, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ListRelativeOrientationProperty = BindableProperty.Create(nameof(ListRelativeOrientation), typeof(ListOrientation), typeof(DropDown), ListOrientation.Left, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DropDown)bindable;
             if (newValue != null)
@@ -100,7 +100,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenButtonTextAndIconProperty = BindableProperty.Create("SpaceBetweenButtonTextAndIcon", typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SpaceBetweenButtonTextAndIconProperty = BindableProperty.Create(nameof(SpaceBetweenButtonTextAndIcon), typeof(int), typeof(DropDown), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DropDown)bindable;
             if (newValue != null)
@@ -428,6 +428,9 @@ namespace Tizen.NUI.Components
             dropDownMenuFullList?.Layout?.RequestLayout();
         }
 
+        /// <summary>
+        /// update.
+        /// </summary>
         protected override void OnUpdate()
         {
             float iconWidth = 0;
@@ -1464,6 +1467,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void BindViewHolder(ViewHolder holder, int position)
             {
+                if (null == holder) return;
                 DropDownDataItem listItemData = itemDataList[position];
                 if(listItemData == null)
                 {
@@ -1541,6 +1545,7 @@ namespace Tizen.NUI.Components
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void OnDestroyViewHolder(ViewHolder holder)
             {
+                if (null == holder) return;
                 if (holder.ItemView != null)
                 {
                     holder.ItemView.Dispose();

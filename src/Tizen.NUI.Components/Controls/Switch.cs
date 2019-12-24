@@ -206,7 +206,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            if (!IsEnabled) return false;
+            if (!IsEnabled || null == key) return false;
 
             bool ret = base.OnKey(key);
             if (key.State == Key.StateType.Up)
@@ -231,7 +231,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnTouch(Touch touch)
         {
-            if(!IsEnabled) return false;
+            if(!IsEnabled || null == touch) return false;
 
             PointStateType state = touch.GetState(0);
             bool ret = base.OnTouch(touch);
