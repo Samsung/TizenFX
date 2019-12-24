@@ -34,7 +34,6 @@ namespace Tizen.NUI.Components
         private VisualView container;
 
         private List<ImageVisual> indicatorList = new List<ImageVisual>();
-        private ImageVisual selectIndicator;
 
         private int indicatorCount = 0;
         private int selectedIndex = -1;
@@ -247,7 +246,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void SelectOut(VisualMap selectOutIndicator)
         {
-            ImageVisual visual = selectOutIndicator as ImageVisual;
+            if (!(selectOutIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle.IndicatorImageURL.Normal;
         }
 
@@ -260,8 +259,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void SelectIn(VisualMap selectInIndicator)
         {
-            //selectIndicator.Position = selectInIndicator.Position;
-            ImageVisual visual = selectInIndicator as ImageVisual;
+            if (!(selectInIndicator is ImageVisual visual)) return;
             visual.URL = paginationStyle.IndicatorImageURL.Selected;
         }
 
@@ -317,15 +315,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
                 PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
                 PositionUsesPivotPoint = true,
-                //BackgroundColor = Color.Yellow
             };
             this.Add(container);
-
-            //selectIndicator = new ImageVisual()
-            //{
-            //    URL = " "
-            //};
-            //container.AddVisual("SelectIndicator", selectIndicator);
         }
 
         private void CreateIndicator()
@@ -375,9 +366,6 @@ namespace Tizen.NUI.Components
                 indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
                 indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
             }
-
-            //selectIndicator.URL = paginationStyle.IndicatorSelectURL;
-            //selectIndicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
         }
     }
 }
