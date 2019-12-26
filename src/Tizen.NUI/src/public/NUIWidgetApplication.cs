@@ -42,7 +42,6 @@ namespace Tizen.NUI
         /// The constructor for multi widget class and instance.
         /// </summary>
         /// <param name="widgetTypes">List of derived widget class type.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIWidgetApplication(Dictionary<System.Type, string> widgetTypes) : base(new NUIWidgetCoreBackend())
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
