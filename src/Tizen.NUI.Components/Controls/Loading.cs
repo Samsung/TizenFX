@@ -87,6 +87,8 @@ namespace Tizen.NUI.Components
 
         private AnimatedImageVisual imageVisual = null;
 
+        static Loading() { }
+
         /// <summary>
         /// The constructor of Loading.
         /// </summary>

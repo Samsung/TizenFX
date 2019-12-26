@@ -132,6 +132,8 @@ namespace Tizen.NUI.Components
         private bool isEnabled = true;
         private bool isPressed = false;
 
+        static Button() { }
+
         /// <summary>
         /// Creates a new instance of a Button.
         /// </summary>
