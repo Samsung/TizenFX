@@ -424,10 +424,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Size(SizeChangedCallback cb, Size other) : this(cb, other.Width, other.Height, other.Depth)
-        {
-        }
-
         private SizeChangedCallback callback = null;
     }
 }

@@ -604,16 +604,6 @@ namespace Tizen.NUI.BaseComponents
             PivotPoint = new Position(x, y, z);
         }
 
-        private void OnImageShadowChanged(TransformablePropertyMap instance)
-        {
-            ImageShadow = (ImageShadow)instance;
-        }
-
-        private void OnBoxShadowChanged(TransformablePropertyMap instance)
-        {
-            BoxShadow = (Shadow)instance;
-        }
-
         private void OnKeyInputFocusGained(IntPtr view)
         {
             if (_keyInputFocusGainedEventHandler != null)

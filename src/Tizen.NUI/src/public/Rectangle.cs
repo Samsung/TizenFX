@@ -67,11 +67,6 @@ namespace Tizen.NUI
             callback = cb;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)
-        {
-        }
-
         internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
         private RectangleChangedCallback callback = null;
 
