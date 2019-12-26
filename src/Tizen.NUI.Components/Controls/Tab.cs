@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
+        static Tab() { }
 
         /// <summary>
         /// Creates a new instance of a Tab.

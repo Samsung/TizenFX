@@ -91,6 +91,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ControlStyle Style => ViewStyle as ControlStyle;
 
+        static Control() { }
+
         /// <summary>
         /// Construct an empty Control.
         /// </summary>

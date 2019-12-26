@@ -33,6 +33,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RadioButton : SelectButton
     {
+        static RadioButton() { }
+
         /// <summary>
         /// Creates a new instance of a RadioButton.
         /// </summary>
