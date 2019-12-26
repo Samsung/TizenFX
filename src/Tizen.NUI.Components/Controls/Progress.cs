@@ -133,6 +133,7 @@ namespace Tizen.NUI.Components
         private float currentValue = 0;
         private float bufferValue = 0;
 
+        static Progress() { }
         /// <summary>
         /// The constructor of Progress
         /// </summary>

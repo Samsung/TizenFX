@@ -61,6 +61,8 @@ namespace Tizen.NUI.Components
 
         internal ImageView imageView;
 
+        static ImageControl() { }
+
         /// <summary>
         /// Construct an empty Control.
         /// </summary>

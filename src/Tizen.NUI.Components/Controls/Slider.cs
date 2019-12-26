@@ -147,6 +147,7 @@ namespace Tizen.NUI.Components
             var instance = (Slider)bindable;
             return instance.privateTrackPadding;
         });
+        static Slider() { }
 
         /// <summary>
         /// The constructor of the Slider class.
