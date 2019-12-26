@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
@@ -602,6 +603,30 @@ namespace Tizen.NUI.BaseComponents
             Transition trans = null;
             transDictionary.TryGetValue(transitionName, out trans);
             return trans;
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ObjectDump()
+        {
+            if ( 0== Children.Count)
+            {
+                Type type = this.GetType();
+                PropertyInfo[] properties = type.GetProperties(BindingFlags.Public | BindingFlags.Instance);
+                foreach(var property in properties)
+                {
+                    if (null != property && property.CanRead)
+                    {
+                        Console.WriteLine($"{type.Name} {property.Name} ({property.PropertyType.Name}): {property.GetValueString(this, property.PropertyType)}");
+                    }
+                }
+                return;
+            }
+
+            foreach (View view in Children)
+            {
+                view.ObjectDump();
+            }
         }
     }
 }
