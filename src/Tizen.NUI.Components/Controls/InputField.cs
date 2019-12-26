@@ -37,6 +37,8 @@ namespace Tizen.NUI.Components
         // the flag indicate should relayout the textField in base class
         private bool relayoutTextField = true;
 
+        static InputField() { }
+
         /// <summary>
         /// Initializes a new instance of the InputField class.
         /// </summary>

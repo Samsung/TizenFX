@@ -129,6 +129,7 @@ namespace Tizen.NUI.Components
         private int minValue;
         private int maxValue;
         private int curValue;
+        static ScrollBar() { }
 
         /// <summary>
         /// The constructor of ScrollBar.

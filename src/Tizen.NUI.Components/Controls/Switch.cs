@@ -31,6 +31,7 @@ namespace Tizen.NUI.Components
         private ImageView trackImage;
         private ImageView thumbImage;
         private Animation handlerAni = null;
+        static Switch() { }
 
         /// <summary>
         /// Creates a new instance of a Switch.
