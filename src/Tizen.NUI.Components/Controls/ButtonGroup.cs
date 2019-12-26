@@ -237,6 +237,8 @@ namespace Tizen.NUI.Components
             return btGroup.itemShadowBorder;
         });
 
+        static ButtonGroup() { }
+
         /// <summary>
         /// Construct an button group.
         /// </summary>

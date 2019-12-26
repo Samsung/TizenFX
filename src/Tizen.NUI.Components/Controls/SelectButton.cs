@@ -37,6 +37,7 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected SelectGroup itemGroup = null;
+        static SelectButton() { }
 
         /// <summary>
         /// Creates a new instance of a SelectButton.
