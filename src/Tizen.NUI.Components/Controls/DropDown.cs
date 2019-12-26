@@ -135,6 +135,8 @@ namespace Tizen.NUI.Components
         private int spaceBetweenButtonTextAndIcon = 0;
         private bool itemPressed = false;
 
+        static DropDown() { }
+
         /// <summary>
         /// Creates a new instance of a DropDown.
         /// </summary>

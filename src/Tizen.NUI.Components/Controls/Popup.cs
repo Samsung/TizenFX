@@ -227,6 +227,7 @@ namespace Tizen.NUI.Components
         private TextLabel titleText;
         private ButtonGroup btGroup = null;
         private Window window = null;
+        static Popup() { }
 
         /// <summary>
         /// Creates a new instance of a Popup.
