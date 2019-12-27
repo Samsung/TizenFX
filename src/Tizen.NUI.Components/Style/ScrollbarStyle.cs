@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollBarStyle : ControlStyle
     {
+        static ScrollBarStyle() { }
+
         /// <summary>
         /// Creates a new instance of a ScrollBarStyle.
         /// </summary>

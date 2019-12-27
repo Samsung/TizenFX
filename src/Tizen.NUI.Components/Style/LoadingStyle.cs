@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LoadingStyle : ControlStyle
     {
+        static LoadingStyle() { }
+
         /// <summary>
         /// Creates a new instance of a LoadingStyle.
         /// </summary>

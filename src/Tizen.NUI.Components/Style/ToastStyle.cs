@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
+        static ToastStyle() { }
+
         /// <summary>
         /// Creates a new instance of a ToastStyle.
         /// </summary>
