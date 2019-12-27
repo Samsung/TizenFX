@@ -1091,6 +1091,19 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets current orientation of the window.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>The current window orientation if previously set, or none.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.WindowOrientation GetCurrentOrientation()
+        {
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetCurrentOrientation(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal Any GetNativeHandle()
         {
             Any ret = new Any(Interop.WindowInternal.Window_GetNativeHandle(swigCPtr), true);
