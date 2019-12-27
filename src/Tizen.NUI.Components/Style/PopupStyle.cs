@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PopupStyle : ControlStyle
     {
+        static PopupStyle() { }
+
         /// <summary>
         /// Creates a new instance of a PopupStyle.
         /// </summary>

@@ -71,6 +71,9 @@ namespace Tizen.NUI.Components
         private Selector<string> backgroundImage;
         private Selector<Rectangle> backgroundImageBorder;
         private Selector<Color> backgroundColor;
+
+        static ControlStyle () { }
+
         /// <summary>
         /// Creates a new instance of a ControlStyle.
         /// </summary>
