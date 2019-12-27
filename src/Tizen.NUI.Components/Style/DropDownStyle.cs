@@ -99,6 +99,8 @@ namespace Tizen.NUI.Components
             return dropDownStyle.listPadding;
         });
 
+        static DropDownStyle() { }
+
         /// <summary>
         /// Creates a new instance of a DropDownStyle.
         /// </summary>

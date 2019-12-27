@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PaginationStyle : ControlStyle
     {
+        static PaginationStyle() { }
+
         /// <summary>
         /// Creates a new instance of a PaginationStyle.
         /// </summary>

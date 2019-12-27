@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchStyle : ButtonStyle
     {
+        static SwitchStyle() { }
+
         /// <summary>
         /// Creates a new instance of a SwitchStyle.
         /// </summary>

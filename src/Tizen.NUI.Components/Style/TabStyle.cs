@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TabStyle : ControlStyle
     {
+        static TabStyle() { }
+
         /// <summary>
         /// Creates a new instance of a TabStyle.
         /// </summary>

@@ -109,6 +109,8 @@ namespace Tizen.NUI.Components
             return buttonStyle.textPadding;
         });
 
+        static ButtonStyle() { }
+
         /// <summary>
         /// Creates a new instance of a ButtonStyle.
         /// </summary>
