@@ -38,6 +38,20 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>
+        /// Deep copy method
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        override public object Clone()
+        {
+            return new ImageShadow() {
+                Offset = offset,
+                Scale = scale,
+                Url = url,
+                Border = border
+            };
+        }
+
         private void OnBorderChanged(int x, int y, int width, int height)
         {
             UpdateBorder();

@@ -137,6 +137,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal Color(ColorChangedCallback cb, Color other) : this(cb, other.R, other.G, other.B, other.A)
+        {
+        }
+
         internal delegate void ColorChangedCallback(float r, float g, float b, float a);
         private ColorChangedCallback callback = null;
 
