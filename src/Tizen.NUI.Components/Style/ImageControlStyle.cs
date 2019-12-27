@@ -59,6 +59,8 @@ namespace Tizen.NUI.Components
         private Selector<string> resourceUrlSelector;
         private Selector<Rectangle> borderSelector;
 
+        static ImageControlStyle() { }
+
         /// <summary>
         /// Creates a new instance of a ImageControlStyle.
         /// </summary>

@@ -89,6 +89,9 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.trackPadding;
         });
+
+        static SliderStyle() { }
+
         /// <summary>
         /// Creates a new instance of a SliderStyle.
         /// </summary>

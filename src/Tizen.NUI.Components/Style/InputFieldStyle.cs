@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class InputFieldStyle : ControlStyle
     {
+        static InputFieldStyle() { }
+
         /// <summary>
         /// Creates a new instance of a InputFieldAttributes.
         /// </summary>

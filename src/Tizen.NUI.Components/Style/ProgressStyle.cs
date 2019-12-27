@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ProgressStyle : ControlStyle
     {
+        static ProgressStyle() { }
+
         /// <summary>
         /// Creates a new instance of a ProgressStyle.
         /// </summary>
