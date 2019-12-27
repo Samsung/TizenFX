@@ -43,12 +43,12 @@ namespace Tizen.NUI
         /// <summary>
         /// The offset value that tansform should have in common
         /// </summary>
-        protected internal Vector2 offset = defaultOffset;
+        protected internal Vector2 offset;
 
         /// <summary>
         /// The size value in scale that tansform should have in common
         /// </summary>
-        protected internal Vector2 scale = noScale;
+        protected internal Vector2 scale;
 
         /// <summary>
         /// The output property map
@@ -64,15 +64,29 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TransformablePropertyMap()
+        public TransformablePropertyMap() : this(defaultOffset, noScale)
         {
-            // Initialize maps
+        }
+
+        /// <summary>
+        /// Copy Constructor
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransformablePropertyMap(TransformablePropertyMap other) : this(other.offset, other.scale)
+        {
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        protected internal TransformablePropertyMap(Vector2 offset, Vector2 scale)
+        {
             propertyMap = new PropertyMap();
             transformMap = new PropertyMap();
-
-            // Offet has default value, so need to update map
             transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(defaultOffsetPolicy);
-            transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(offset);
+
+            Offset = offset;
+            Scale = scale;
             propertyMap[Visual.Property.Transform] = new PropertyValue(transformMap);
         }
 
@@ -154,6 +168,7 @@ namespace Tizen.NUI
         /// The value indicates percentage of the container size. <br />
         /// e.g. (0.5f, 1.0f) means 50% of the container's width and 100% of container's height.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 Scale
         {
             get
@@ -170,6 +185,12 @@ namespace Tizen.NUI
         abstract internal string ToDebugString();
 
         abstract internal bool IsValid();
+
+        /// <summary>
+        /// Deep copy method
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        abstract public object Clone();
 
         static internal PropertyValue ToPropertyValue(TransformablePropertyMap instance)
         {
