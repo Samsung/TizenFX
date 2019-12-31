@@ -207,7 +207,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static void Initialize()
         {
-            Interop.Elementary.elm_init(0, null);
+            if (!Window.IsPreloaded)
+                Interop.Elementary.elm_init(0, null);
         }
 
         /// <summary>
