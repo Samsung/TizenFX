@@ -1104,6 +1104,25 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets available orientations of the window.
+        /// This API is for setting several orientations one time.
+        /// </summary>
+        /// <param name="orientations">The list of orientations.</param>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAvailableOrientations( List<Window.WindowOrientation> orientations )
+        {
+            PropertyArray orientationArray = new PropertyArray();
+            for( int i = 0; i < orientations.Count; i++ )
+            {
+              orientationArray.PushBack(new PropertyValue((int)orientations[i]));
+            }
+
+            Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal Any GetNativeHandle()
         {
             Any ret = new Any(Interop.WindowInternal.Window_GetNativeHandle(swigCPtr), true);
