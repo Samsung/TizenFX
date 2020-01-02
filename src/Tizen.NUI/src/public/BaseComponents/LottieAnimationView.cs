@@ -482,6 +482,36 @@ namespace Tizen.NUI.BaseComponents
             tlog.Fatal(tag, $">");
             return currentStates.contentInfo;
         }
+
+        /// <summary>
+        /// A marker has its start frame and end frame. 
+        /// Animation will play between the start frame and the end frame of the marker if one marker is specified.
+        /// Or animation will play between the start frame of the first marker and the end frame of the second marker if two markers are specified.   *
+        /// </summary>
+        /// <param name="marker1">First marker</param>
+        /// <param name="marker2">Second marker</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMinMaxFrameByMarker(string marker1, string marker2 = null)
+        {
+            tlog.Fatal(tag, $"< [{GetId()}] SetMinMaxFrameByMarker({marker1}, {marker2})");
+
+            currentStates.changed = true;
+            currentStates.mark1 = marker1;
+            currentStates.mark2 = marker2;
+
+            PropertyArray array = new PropertyArray();
+            array.PushBack(new PropertyValue(currentStates.mark1));
+            if (marker2 != null)
+            {
+                array.PushBack(new PropertyValue(currentStates.mark2));
+            }
+
+            PropertyMap map = new PropertyMap();
+            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
+            DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
+            tlog.Fatal(tag, $"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
+        }
         #endregion Method
 
 
@@ -662,6 +692,7 @@ namespace Tizen.NUI.BaseComponents
             internal float scale;
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
+            internal string mark1, mark2;
         };
         private states currentStates;
 
