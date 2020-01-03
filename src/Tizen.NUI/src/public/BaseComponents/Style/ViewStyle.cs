@@ -792,7 +792,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.backgroundImageBorderSelector) viewStyle.backgroundImageBorderSelector = new Selector<Rectangle>();
-            viewStyle.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
+
+            viewStyle.backgroundImageBorderSelector.Clone(newValue == null ? new Rectangle() : (Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
