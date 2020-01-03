@@ -64,6 +64,8 @@ namespace Tizen.NUI.BaseComponents
 
         private Shadow boxShadow;
 
+        static View() {}
+
         private ViewStyle viewStyle;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2240,8 +2242,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ViewStyle GetViewStyle()
         {
-            viewStyle = new ViewStyle();
-            return viewStyle;
+            return new ViewStyle();
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
