@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : TransformablePropertyMap
+    public class ImageShadow : TransformablePropertyMap, Tizen.NUI.ICloneable
     {
         private string url;
 
@@ -38,11 +38,18 @@ namespace Tizen.NUI
         {
         }
 
+        internal ImageShadow(ImageShadow other, PropertyChangedCallback callback = null) : base(other)
+        {
+            Url = other.Url;
+            Border = other.Border;
+            OnPropertyChanged = callback;
+        }
+
         /// <summary>
         /// Deep copy method
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        override public object Clone()
+        public object Clone()
         {
             return new ImageShadow() {
                 Offset = offset,

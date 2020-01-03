@@ -301,46 +301,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Describes a shadow as an image for View.
+        /// Describes a shadow as an image for a View.
         /// It is null by default.
         /// </summary>
         /// <remarks>
         /// The mutually exclusive with "BoxShadow".
-        /// If it is not null, the "BoxShadow" property will be ignored.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow ImageShadow
         {
             get
             {
-                return (ImageShadow)GetValue(ImageShadowProperty);
+                var value = (ImageShadow)GetValue(ImageShadowProperty);
+                return value == null ? null : new ImageShadow(value, OnImageShadowChanged);
             }
             set
             {
-                value.OnPropertyChanged = OnImageShadowChanged;
                 SetValue(ImageShadowProperty, value);
                 NotifyPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Describes a box shaped shadow drawing for View.
+        /// Describes a box shaped shadow drawing for a View.
         /// It is null by default.
         /// </summary>
         /// <remarks>
         /// The mutually exclusive with "ImageShadow".
-        /// If the "ImageShadow" is not null, this property will be ignored.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow BoxShadow
         {
             get
             {
-                return (Shadow)GetValue(BoxShadowProperty);
+                var value = (Shadow)GetValue(BoxShadowProperty);
+                return value == null ? null : new Shadow(value, OnBoxShadowChanged);
             }
             set
             {
-                value.OnPropertyChanged = OnBoxShadowChanged;
                 SetValue(BoxShadowProperty, value);
                 NotifyPropertyChanged();
             }
