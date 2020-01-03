@@ -56,6 +56,20 @@ namespace Tizen.NUI
             return shadow;
         }
 
+        /// <summary>
+        /// Deep copy method
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        override public object Clone()
+        {
+            return new Shadow() {
+                Offset = offset,
+                Scale = scale,
+                Color = color,
+                BlurRadius = blurRadius
+            };
+        }
+
         private void OnColorChanged(float r, float g, float b, float a)
         {
             UpdateColor();
@@ -85,7 +99,7 @@ namespace Tizen.NUI
             }
             set
             {
-                color = value;
+                color = value == null? null : new Color(OnColorChanged, value);
                 UpdateColor();
             }
         }
