@@ -20,15 +20,14 @@ namespace ElmSharp
     {
         static PreloadedWindow s_precreated;
 
-        public PreloadedWindow(bool useBaseLayout=true, bool preloadWidgets=true, bool preloadEvents=true) : base("PreloadWindow")
+        public PreloadedWindow(bool useBaseLayout=true) : base("PreloadWindow")
         {
             s_precreated = this;
             if (useBaseLayout)
                 InitializeBaseLayout();
-            if (preloadWidgets)
-                CreateWidgets();
-            if (preloadEvents)
-                AddRemoveEvents();
+            CreateWidgets();
+            BackButtonPressed += DummyHandler;
+            BackButtonPressed -= DummyHandler;
         }
 
         public Layout BaseLayout
@@ -52,31 +51,25 @@ namespace ElmSharp
 
         public void CreateWidgets()
         {
-            _ = new Entry(this);
-            _ = new Scroller(this);
-            _ = new Box(this);
-            _ = new Label(this);
-            _ = new GenList(this);
-            _ = new Button(this);
-            _ = new Check(this);
-            _ = new Naviframe(this);
-            _ = new Slider(this);
-            _ = new Spinner(this);
-            _ = new ProgressBar(this);
-            _ = new GestureLayer(this);
-            _ = new Polygon(this);
-            _ = new Image(this);
+            new Entry(this).Unrealize();
+            new Scroller(this).Unrealize();
+            new Box(this).Unrealize();
+            new Label(this).Unrealize();
+            new GenList(this).Unrealize();
+            new Button(this).Unrealize();
+            new Check(this).Unrealize();
+            new Naviframe(this).Unrealize();
+            new Slider(this).Unrealize();
+            new Spinner(this).Unrealize();
+            new ProgressBar(this).Unrealize();
+            new GestureLayer(this).Unrealize();
+            new Polygon(this).Unrealize();
+            new Image(this).Unrealize();
             //TODO: Need to call Image.LoadAsync()
         }
 
         void DummyHandler(object sender, System.EventArgs e)
         {
-        }
-
-        public void AddRemoveEvents()
-        {
-            this.BackButtonPressed += DummyHandler;
-            this.BackButtonPressed -= DummyHandler;
         }
 
         public static PreloadedWindow GetInstance()

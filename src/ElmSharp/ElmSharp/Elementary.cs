@@ -236,7 +236,7 @@ namespace ElmSharp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
-            if (File.Exists(_themeFilePath))
+            if (!Window.IsPreloaded && File.Exists(_themeFilePath))
             {
                 AddThemeOverlay(_themeFilePath);
             }
