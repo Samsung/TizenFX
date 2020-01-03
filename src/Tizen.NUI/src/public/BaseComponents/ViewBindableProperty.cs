@@ -76,7 +76,20 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue((string)newValue));
+                string url = (string)newValue;
+
+                if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
+                {
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+                }
+                else
+                {
+                    var visual = new NPatchVisual();
+                    visual.URL = url;
+                    visual.Border = view.backgroundImageBorder;
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(visual.OutputVisualMap));
+                }
+
                 view.BackgroundImageSynchronosLoading = view._backgroundImageSynchronosLoading;
             }
         },
@@ -88,7 +101,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.PropertyMap background = view.Background;
             int visualType = 0;
             background.Find(Visual.Property.Type)?.Get(out visualType);
-            if (visualType == (int)Visual.Type.Image)
+            if ((visualType == (int)Visual.Type.Image) || (visualType == (int)Visual.Type.NPatch))
             {
                 background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
             }
@@ -100,15 +113,30 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create(nameof(BackgroundImageBorder), typeof(Rectangle), typeof(View), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (null != newValue)
+            string url = view.BackgroundImage;
+            view.backgroundImageBorder = (Rectangle)newValue;
+
+            if (string.IsNullOrEmpty(url))
             {
-                view.backgroundImageBorder = (Rectangle)newValue;
+                return;
+            }
+
+            if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+            }
+            else
+            {
+                var visual = new NPatchVisual();
+                visual.URL = url;
+                visual.Border = view.backgroundImageBorder;
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(visual.OutputVisualMap));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var view = (View)bindable;
-            return view.backgroundImageBorder;
+            return view.backgroundImageBorder == null ? new Rectangle(view.OnBackgroundImageBorderChanged) : new Rectangle(view.OnBackgroundImageBorderChanged, view.backgroundImageBorder);
         });
         /// <summary>
         /// BackgroundProperty
