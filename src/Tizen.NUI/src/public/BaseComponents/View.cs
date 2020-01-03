@@ -65,6 +65,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
+        static View() {}
+
         private ViewStyle viewStyle;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2238,8 +2240,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ViewStyle GetViewStyle()
         {
-            viewStyle = new ViewStyle();
-            return viewStyle;
+            return new ViewStyle();
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
