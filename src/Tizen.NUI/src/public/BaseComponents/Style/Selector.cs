@@ -239,4 +239,56 @@ namespace Tizen.NUI.BaseComponents
         private View targetView;
         private BindableProperty targetBindableProperty;
     }
+
+    internal static class SelectorHelper<T> where T : class, Tizen.NUI.ICloneable
+    {
+        /// <summary>
+        /// For the object type of T or Selector T, convert it to Selector T and return the cloned one.
+        /// Otherwise, return null. <br/>
+        /// </summary>
+        static internal Selector<T> Clone(object value)
+        {
+            var type = value?.GetType();
+
+            if (type == typeof(Selector<T>))
+            {
+                var result = new Selector<T>();
+                result.Clone((Selector<T>)value);
+                return result;
+            }
+
+            if (type == typeof(T))
+            {
+                var result = new Selector<T>();
+                result.Clone((T)value);
+                return result;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// For the object type of T or Selector T, convert it to T and return the cloned one.
+        /// Otherwise, return null. <br/>
+        /// </summary>
+        static internal T Clone(object value, View view)
+        {
+            var type = value?.GetType();
+
+            if (type == typeof(T))
+            {
+                return (T)((T)value).Clone();
+            }
+
+            if (type == typeof(Selector<T>) && view != null)
+            {
+                Selector<T> selector = (Selector<T>)value;
+                T valueInState = selector.GetValue(view.ControlState);
+
+                return (T)valueInState?.Clone();
+            }
+
+            return null;
+        }
+    }
 }
