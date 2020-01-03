@@ -614,6 +614,11 @@ namespace Tizen.NUI.BaseComponents
             BoxShadow = (Shadow)instance;
         }
 
+        private void OnBackgroundImageBorderChanged(int left, int right, int bottom, int top)
+        {
+            BackgroundImageBorder = new Rectangle(left, right, bottom, top);
+        }
+
         private void OnKeyInputFocusGained(IntPtr view)
         {
             if (_keyInputFocusGainedEventHandler != null)

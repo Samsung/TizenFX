@@ -68,6 +68,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal Rectangle(RectangleChangedCallback cb) : this()
+        {
+        }
+
         internal Rectangle(RectangleChangedCallback cb, Rectangle other) : this(cb, other.x, other.y, other.width, other.height)
         {
         }
@@ -479,5 +483,10 @@ namespace Tizen.NUI
             }
             base.Dispose(type);
         }
+
+        /// <summary>
+        /// Determines whether the reference is null or the Rectangle has all 0 properties.
+        /// </summary>
+        internal static bool IsNullOrZero(Rectangle rectangle) => (rectangle == null || (rectangle.top == 0 && rectangle.right == 0 && rectangle.bottom == 0 && rectangle.left == 0));
     }
 }
