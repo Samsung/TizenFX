@@ -85,6 +85,8 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private float? weight;
 
+        static ViewStyle() {}
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StyleNameProperty = BindableProperty.Create(nameof(StyleName), typeof(string), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
