@@ -186,12 +186,6 @@ namespace Tizen.NUI
 
         abstract internal bool IsValid();
 
-        /// <summary>
-        /// Deep copy method
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        abstract public object Clone();
-
         static internal PropertyValue ToPropertyValue(TransformablePropertyMap instance)
         {
             return (instance != null && instance.IsValid()) ? new PropertyValue(instance.propertyMap) : new PropertyValue();

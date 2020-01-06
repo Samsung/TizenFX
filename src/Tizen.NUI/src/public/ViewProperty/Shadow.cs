@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The platform provided shadow drawing for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Shadow : TransformablePropertyMap
+    public class Shadow : TransformablePropertyMap, Tizen.NUI.ICloneable
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
 
@@ -41,6 +41,13 @@ namespace Tizen.NUI
         public Shadow() : base()
         {
             Color = defaultColor;
+        }
+
+        internal Shadow(Shadow other, PropertyChangedCallback callback = null) : base(other)
+        {
+            Color = other.Color;
+            BlurRadius = other.BlurRadius;
+            OnPropertyChanged = callback;
         }
 
         /// <summary>
@@ -60,7 +67,7 @@ namespace Tizen.NUI
         /// Deep copy method
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        override public object Clone()
+        public object Clone()
         {
             return new Shadow() {
                 Offset = offset,
