@@ -25,7 +25,7 @@ namespace ElmSharp
             s_precreated = this;
             if (useBaseLayout)
                 InitializeBaseLayout();
-            CreateWidgets();
+            WarmupWidgets();
             BackButtonPressed += DummyHandler;
             BackButtonPressed -= DummyHandler;
             void DummyHandler(object sender, System.EventArgs e) { }
@@ -50,7 +50,7 @@ namespace ElmSharp
             conformant.SetContent(BaseLayout);
         }
 
-        public void CreateWidgets()
+        public void WarmupWidgets()
         {
             new Entry(this).Unrealize();
             new Scroller(this).Unrealize();
