@@ -28,6 +28,7 @@ namespace ElmSharp
             CreateWidgets();
             BackButtonPressed += DummyHandler;
             BackButtonPressed -= DummyHandler;
+            void DummyHandler(object sender, System.EventArgs e) { }
         }
 
         public Layout BaseLayout
@@ -65,11 +66,7 @@ namespace ElmSharp
             new GestureLayer(this).Unrealize();
             new Polygon(this).Unrealize();
             new Image(this).Unrealize();
-            //TODO: Need to call Image.LoadAsync()
-        }
-
-        void DummyHandler(object sender, System.EventArgs e)
-        {
+            //TODO: Consider to call Image.LoadAsync()
         }
 
         public static PreloadedWindow GetInstance()
