@@ -85,6 +85,10 @@ namespace Tizen.NUI.BaseComponents
         private Extents margin;
         private float? weight;
 
+        private Selector<ImageShadow> imageShadow;
+
+        private Selector<Shadow> boxShadow;
+
         static ViewStyle() {}
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -801,6 +805,32 @@ namespace Tizen.NUI.BaseComponents
             return viewStyle.backgroundImageBorderSelector;
         });
 
+        /// A BindableProperty for ImageShadow
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            viewStyle.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            return viewStyle.imageShadow;
+        });
+
+        /// A BindableProperty for BoxShadow
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            viewStyle.boxShadow = SelectorHelper<Shadow>.Clone(newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            return viewStyle.boxShadow;
+        });
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle()
@@ -1320,6 +1350,34 @@ namespace Tizen.NUI.BaseComponents
                 return (null != border) ? border : backgroundImageBorderSelector = new Selector<Rectangle>();
             }
             set => SetValue(BackgroundImageBorderSelectorProperty, value);
+        }
+
+        /// <summary>
+        /// Describes a shadow as an image for a View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "BoxShadow".
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<ImageShadow> ImageShadow
+        {
+            get => (Selector<ImageShadow>)GetValue(ImageShadowProperty);
+            set => SetValue(ImageShadowProperty, value);
+        }
+
+        /// <summary>
+        /// Describes a box shaped shadow drawing for a View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "ImageShadow".
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Shadow> BoxShadow
+        {
+            get => (Selector<Shadow>)GetValue(BoxShadowProperty);
+            set => SetValue(BoxShadowProperty, value);
         }
     }
 }
