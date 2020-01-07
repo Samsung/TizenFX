@@ -63,11 +63,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Track
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set progress image.
@@ -75,11 +71,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Progress
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set buffer image.
@@ -87,11 +79,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageViewStyle Buffer
-        {
-            get;
-            set;
-        }
+        public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
         /// Clone function.
