@@ -1079,6 +1079,8 @@ namespace ElmSharp
             }
         }
 
+        internal static bool IsPreloaded { get; private set; }
+
         /// <summary>
         /// Creates a socket to provide the service for the Plug widget.
         /// </summary>
@@ -1302,6 +1304,7 @@ namespace ElmSharp
             Elementary.Initialize();
             Elementary.ThemeOverlay();
             _ = new PreloadedWindow();
+            IsPreloaded = true;
         }
 
         /// <summary>
