@@ -81,6 +81,7 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             if (newValue != null)
             {
+                if (null == instance.trackPadding) instance.trackPadding = new Extents(instance.OnTrackPaddingChanged, 0, 0, 0, 0);
                 instance.trackPadding.CopyFrom((Extents)newValue);
             }
         },
@@ -89,6 +90,11 @@ namespace Tizen.NUI.Components
             var instance = (SliderStyle)bindable;
             return instance.trackPadding;
         });
+
+        private IndicatorType? privateIndicatorType;
+        private uint? privateTrackThickness;
+        private uint? privateSpaceBetweenTrackAndIndicator;
+        private Extents trackPadding;
 
         static SliderStyle() { }
 
@@ -193,8 +199,6 @@ namespace Tizen.NUI.Components
             set => SetValue(IndicatorTypeProperty, value);
         }
 
-        private IndicatorType? privateIndicatorType { get; set; }
-
         /// <summary>
         /// Get or set track thickness
         /// </summary>
@@ -206,7 +210,6 @@ namespace Tizen.NUI.Components
             get => (uint?)GetValue(TrackThicknessProperty);
             set => SetValue(TrackThicknessProperty, value);
         }
-        private uint? privateTrackThickness { get; set; }
 
         /// <summary>
         /// Get or set space between track and indicator
@@ -219,7 +222,6 @@ namespace Tizen.NUI.Components
             get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
             set => SetValue(SpaceBetweenTrackAndIndicatorProperty, value);
         }
-        private uint? privateSpaceBetweenTrackAndIndicator { get; set; }
 
         /// <summary>
         /// Get or set space between track and indicator
@@ -229,24 +231,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents TrackPadding
         {
-            get => (Extents)GetValue(TrackPaddingProperty);
-            set => SetValue(TrackPaddingProperty, value);
-        }
-        private Extents _trackPadding;
-        private Extents trackPadding
-        {
             get
             {
-                if (null == _trackPadding)
-                {
-                    _trackPadding = new Extents((ushort start, ushort end, ushort top, ushort bottom)=>
-                                        {
-                                            Extents extents = new Extents(start, end, top, bottom);
-                                            _trackPadding.CopyFrom(extents);
-                                        }, 0, 0, 0, 0);
-                }
-                return _trackPadding;
+                Extents tmp = (Extents)GetValue(TrackPaddingProperty);
+                return (null == tmp) ? tmp : trackPadding = new Extents(OnTrackPaddingChanged, 0, 0, 0, 0);
             }
+            set => SetValue(TrackPaddingProperty, value);
         }
 
         /// <summary>
@@ -347,6 +337,11 @@ namespace Tizen.NUI.Components
             HighIndicatorImage = new ImageViewStyle();
             LowIndicator = new TextLabelStyle();
             HighIndicator = new TextLabelStyle();
+        }
+
+        private void OnTrackPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            TrackPadding = new Extents(start, end, top, bottom);
         }
     }
 }

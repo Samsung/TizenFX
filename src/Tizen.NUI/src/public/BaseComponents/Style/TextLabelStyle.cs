@@ -27,85 +27,70 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextLabelStyle : ViewStyle
     {
-        private bool? multiLine;
-        private HorizontalAlignment? horizontalAlignment;
-        private VerticalAlignment? verticalAlignment;
-        private bool? enableMarkup;
-        private bool? enableAutoScroll;
-        private int? autoScrollSpeed;
-        private int? autoScrollLoopCount;
-        private float? autoScrollGap;
-        private float? lineSpacing;
-        private string emboss;
-        private float? pixelSize;
-        private bool? ellipsis;
-        private float? autoScrollLoopDelay;
-        private AutoScrollStopMode? autoScrollStopMode;
-        private LineWrapMode? lineWrapMode;
-        private VerticalLineAlignment? verticalLineAlignment;
-        private bool? matchSystemLanguageDirection;
-
-        static TextLabelStyle() { }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create(nameof(TranslatableTextSelector), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            textFieldStyle.TranslatableTextSelector.Clone((Selector<string>)newValue);
+            if (null == textFieldStyle.translatableTextSelector) textFieldStyle.translatableTextSelector = new Selector<string>();
+            textFieldStyle.translatableTextSelector.Clone((Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.TranslatableTextSelector;
+            return textFieldStyle.translatableTextSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create(nameof(TextSelector), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create("TextSelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            textFieldStyle.TextSelector.Clone((Selector<string>)newValue);
+            if (null == textFieldStyle.textSelector) textFieldStyle.textSelector = new Selector<string>();
+            textFieldStyle.textSelector.Clone((Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.TextSelector;
+            return textFieldStyle.textSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create(nameof(FontFamilySelector), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontFamilySelectorProperty = BindableProperty.Create("FontFamilySelector", typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            textFieldStyle.FontFamilySelector.Clone((Selector<string>)newValue);
+            if (null == textFieldStyle.fontFamilySelector) textFieldStyle.fontFamilySelector = new Selector<string>();
+            textFieldStyle.fontFamilySelector.Clone((Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.FontFamilySelector;
+            return textFieldStyle.fontFamilySelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create(nameof(PointSizeSelector), typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create("PointSizeSelector", typeof(Selector<float?>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            textFieldStyle.PointSizeSelector.Clone((Selector<float?>)newValue);
+            if (null == textFieldStyle.pointSizeSelector) textFieldStyle.pointSizeSelector = new Selector<float?>();
+            textFieldStyle.pointSizeSelector.Clone((Selector<float?>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.PointSizeSelector;
+            return textFieldStyle.pointSizeSelector;
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create(nameof(TextColorSelector), typeof(Selector<Color>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create("TextColorSelector", typeof(Selector<Color>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            textFieldStyle.TextColorSelector.Clone((Selector<Color>)newValue);
+            if (null == textFieldStyle.textColorSelector) textFieldStyle.textColorSelector = new Selector<Color>();
+            textFieldStyle.textColorSelector.Clone((Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
             var textFieldStyle = (TextLabelStyle)bindable;
-            return textFieldStyle.TextColorSelector;
+            return textFieldStyle.textColorSelector;
         });
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -313,389 +298,225 @@ namespace Tizen.NUI.BaseComponents
             return textLabelStyle.matchSystemLanguageDirection;
         });
 
+        private bool? multiLine;
+        private HorizontalAlignment? horizontalAlignment;
+        private VerticalAlignment? verticalAlignment;
+        private bool? enableMarkup;
+        private bool? enableAutoScroll;
+        private int? autoScrollSpeed;
+        private int? autoScrollLoopCount;
+        private float? autoScrollGap;
+        private float? lineSpacing;
+        private string emboss;
+        private float? pixelSize;
+        private bool? ellipsis;
+        private float? autoScrollLoopDelay;
+        private AutoScrollStopMode? autoScrollStopMode;
+        private LineWrapMode? lineWrapMode;
+        private VerticalLineAlignment? verticalLineAlignment;
+        private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
-        private Selector<string> TranslatableTextSelector
-        {
-            get
-            {
-                if (null == translatableTextSelector)
-                {
-                    translatableTextSelector = new Selector<string>();
-                }
-                return translatableTextSelector;
-            }
-        }
+        private Selector<string> fontFamilySelector;
+        private Selector<string> textSelector;
+        private Selector<Color> textColorSelector;
+        private Selector<float?> pointSizeSelector;
+
+        static TextLabelStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatableText
         {
             get
             {
-                return (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+                return (null != tmp) ? tmp : translatableTextSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(TranslatableTextSelectorProperty, value);
-            }
+            set => SetValue(TranslatableTextSelectorProperty, value);
         }
 
-        private Selector<string> fontFamilySelector;
-        private Selector<string> FontFamilySelector
-        {
-            get
-            {
-                if (null == fontFamilySelector)
-                {
-                    fontFamilySelector = new Selector<string>();
-                }
-                return fontFamilySelector;
-            }
-        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> FontFamily
         {
             get
             {
-                return (Selector<string>)GetValue(FontFamilySelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(FontFamilySelectorProperty);
+                return (null != tmp) ? tmp : fontFamilySelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(FontFamilySelectorProperty, value);
-            }
+            set => SetValue(FontFamilySelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? MultiLine
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(MultiLineProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MultiLineProperty, value);
-            }
+            get => (bool?)GetValue(MultiLineProperty);
+            set => SetValue(MultiLineProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment? HorizontalAlignment
         {
-            get
-            {
-                HorizontalAlignment? temp = (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(HorizontalAlignmentProperty, value);
-            }
+            get => (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
+            set => SetValue(HorizontalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalAlignment? VerticalAlignment
         {
-            get
-            {
-                VerticalAlignment? temp = (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(VerticalAlignmentProperty, value);
-            }
+            get => (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
+            set => SetValue(VerticalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? EnableMarkup
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EnableMarkupProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EnableMarkupProperty, value);
-            }
+            get => (bool?)GetValue(EnableMarkupProperty);
+            set => SetValue(EnableMarkupProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? EnableAutoScroll
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EnableAutoScrollProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EnableAutoScrollProperty, value);
-            }
+            get => (bool?)GetValue(EnableAutoScrollProperty);
+            set => SetValue(EnableAutoScrollProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? AutoScrollSpeed
         {
-            get
-            {
-                int? temp = (int?)GetValue(AutoScrollSpeedProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AutoScrollSpeedProperty, value);
-            }
+            get => (int?)GetValue(AutoScrollSpeedProperty);
+            set => SetValue(AutoScrollSpeedProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? AutoScrollLoopCount
         {
-            get
-            {
-                int? temp = (int?)GetValue(AutoScrollLoopCountProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AutoScrollLoopCountProperty, value);
-            }
+            get => (int?)GetValue(AutoScrollLoopCountProperty);
+            set => SetValue(AutoScrollLoopCountProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? AutoScrollGap
         {
-            get
-            {
-                float? temp = (float?)GetValue(AutoScrollGapProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AutoScrollGapProperty, value);
-            }
+            get => (float?)GetValue(AutoScrollGapProperty);
+            set => SetValue(AutoScrollGapProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? LineSpacing
         {
-            get
-            {
-                float? temp = (float?)GetValue(LineSpacingProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(LineSpacingProperty, value);
-            }
+            get => (float?)GetValue(LineSpacingProperty);
+            set => SetValue(LineSpacingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Emboss
         {
-            get
-            {
-                string temp = (string)GetValue(EmbossProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EmbossProperty, value);
-            }
+            get => (string)GetValue(EmbossProperty);
+            set => SetValue(EmbossProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PixelSize
         {
-            get
-            {
-                float? temp = (float?)GetValue(PixelSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PixelSizeProperty, value);
-            }
+            get => (float?)GetValue(PixelSizeProperty);
+            set => SetValue(PixelSizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Ellipsis
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EllipsisProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EllipsisProperty, value);
-            }
+            get => (bool?)GetValue(EllipsisProperty);
+            set => SetValue(EllipsisProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? AutoScrollLoopDelay
         {
-            get
-            {
-                float? temp = (float?)GetValue(AutoScrollLoopDelayProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AutoScrollLoopDelayProperty, value);
-            }
+            get => (float?)GetValue(AutoScrollLoopDelayProperty);
+            set => SetValue(AutoScrollLoopDelayProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AutoScrollStopMode? AutoScrollStopMode
         {
-            get
-            {
-                AutoScrollStopMode? temp = (AutoScrollStopMode?)GetValue(AutoScrollStopModeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(AutoScrollStopModeProperty, value);
-            }
+            get => (AutoScrollStopMode?)GetValue(AutoScrollStopModeProperty);
+            set => SetValue(AutoScrollStopModeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LineWrapMode? LineWrapMode
         {
-            get
-            {
-                LineWrapMode? temp = (LineWrapMode?)GetValue(LineWrapModeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(LineWrapModeProperty, value);
-            }
+            get => (LineWrapMode?)GetValue(LineWrapModeProperty);
+            set => SetValue(LineWrapModeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalLineAlignment? VerticalLineAlignment
         {
-            get
-            {
-                VerticalLineAlignment? temp = (VerticalLineAlignment?)GetValue(VerticalLineAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(VerticalLineAlignmentProperty, value);
-            }
+            get => (VerticalLineAlignment?)GetValue(VerticalLineAlignmentProperty);
+            set => SetValue(VerticalLineAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? MatchSystemLanguageDirection
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(MatchSystemLanguageDirectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MatchSystemLanguageDirectionProperty, value);
-            }
+            get => (bool?)GetValue(MatchSystemLanguageDirectionProperty);
+            set => SetValue(MatchSystemLanguageDirectionProperty, value);
         }
 
-        private Selector<string> textSelector;
-        private Selector<string> TextSelector
-        {
-            get
-            {
-                if (null == textSelector)
-                {
-                    textSelector = new Selector<string>();
-                }
-                return textSelector;
-            }
-        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> Text
         {
             get
             {
-                return (Selector<string>)GetValue(TextSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(TextSelectorProperty);
+                return (null != tmp) ? tmp : textSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(TextSelectorProperty, value);
-            }
+            set => SetValue(TextSelectorProperty, value);
         }
 
-        private Selector<Color> textColorSelector;
-        private Selector<Color> TextColorSelector
-        {
-            get
-            {
-                if (null == textColorSelector)
-                {
-                    textColorSelector = new Selector<Color>();
-                }
-                return textColorSelector;
-            }
-        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> TextColor
         {
             get
             {
-                return (Selector<Color>)GetValue(TextColorSelectorProperty);
+                Selector<Color> tmp = (Selector<Color>)GetValue(TextColorSelectorProperty);
+                return (null != tmp) ? tmp : textColorSelector = new Selector<Color>();
             }
-            set
-            {
-                SetValue(TextColorSelectorProperty, value);
-            }
+            set => SetValue(TextColorSelectorProperty, value);
         }
 
-        private Selector<float?> pointSizeSelector;
-        private Selector<float?> PointSizeSelector
-        {
-            get
-            {
-                if (null == pointSizeSelector)
-                {
-                    pointSizeSelector = new Selector<float?>();
-                }
-                return pointSizeSelector;
-            }
-        }
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<float?> PointSize
         {
             get
             {
-                return (Selector<float?>)GetValue(PointSizeSelectorProperty);
+                Selector<float?> tmp = (Selector<float?>)GetValue(PointSizeSelectorProperty);
+                return (null != tmp) ? tmp : pointSizeSelector = new Selector<float?>();
             }
-            set
-            {
-                SetValue(PointSizeSelectorProperty, value);
-            }
+            set => SetValue(PointSizeSelectorProperty, value);
         }
     }
 }

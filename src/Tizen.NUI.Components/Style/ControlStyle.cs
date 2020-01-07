@@ -68,6 +68,7 @@ namespace Tizen.NUI.Components
             var controlStyle = (ControlStyle)bindable;
             return controlStyle.backgroundImageBorder;
         });
+
         private Selector<string> backgroundImage;
         private Selector<Rectangle> backgroundImageBorder;
         private Selector<Color> backgroundColor;

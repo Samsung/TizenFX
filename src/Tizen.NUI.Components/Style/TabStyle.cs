@@ -101,11 +101,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle UnderLine
-        {
-            get;
-            set;
-        }
+        public ViewStyle UnderLine { get; set; }
 
         /// <summary>
         /// Text's attributes.
@@ -113,11 +109,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Text
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Flag to decide if item is fill with item text's natural width.
@@ -125,11 +117,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool UseTextNaturalSize
-        {
-            get;
-            set;
-        }
+        public bool UseTextNaturalSize { get; set; }
 
         /// <summary>
         /// Gap between items.
@@ -137,11 +125,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int ItemSpace
-        {
-            get;
-            set;
-        }
+        public int ItemSpace { get; set; }
 
         /// <summary>
         /// Space in Tab.
@@ -149,11 +133,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents ItemPadding
-        {
-            get;
-            set;
-        }
+        public Extents ItemPadding { get; set; }
 
         /// <summary>
         /// Attributes's clone function.

@@ -29,13 +29,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ButtonStyle : ControlStyle
     {
-        private bool? isSelectable;
-        private bool? isSelected;
-        private bool? isEnabled;
-        private Button.IconOrientation? iconRelativeOrientation;
-        private Extents iconPadding;
-        private Extents textPadding;
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsSelectableProperty = BindableProperty.Create(nameof(IsSelectable), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -89,6 +82,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconPaddingProperty = BindableProperty.Create(nameof(IconPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
+            if (null == buttonStyle.iconPadding) buttonStyle.iconPadding = new Extents(buttonStyle.OnIconPaddingChanged, 0, 0, 0, 0);
             buttonStyle.iconPadding = (Extents)newValue;
         },
         defaultValueCreator: (bindable) =>
@@ -101,6 +95,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
+            if (null == buttonStyle.textPadding) buttonStyle.textPadding = new Extents(buttonStyle.OnTextPaddingChanged, 0, 0, 0, 0);
             buttonStyle.textPadding = (Extents)newValue;
         },
         defaultValueCreator: (bindable) =>
@@ -108,6 +103,13 @@ namespace Tizen.NUI.Components
             var buttonStyle = (ButtonStyle)bindable;
             return buttonStyle.textPadding;
         });
+
+        private bool? isSelectable;
+        private bool? isSelected;
+        private bool? isEnabled;
+        private Button.IconOrientation? iconRelativeOrientation;
+        private Extents iconPadding;
+        private Extents textPadding;
 
         static ButtonStyle() { }
 
@@ -211,7 +213,7 @@ namespace Tizen.NUI.Components
             get
             {
                 Extents padding = (Extents)GetValue(IconPaddingProperty);
-                return (null != padding) ? padding : new Extents((ushort start, ushort end, ushort top, ushort bottom) => { IconPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
+                return (null != padding) ? padding : iconPadding = new Extents(OnIconPaddingChanged, 0, 0, 0, 0);
             }
             set => SetValue(IconPaddingProperty, value);
         }
@@ -223,7 +225,7 @@ namespace Tizen.NUI.Components
             get
             {
                 Extents padding = (Extents)GetValue(TextPaddingProperty);
-                return (null != padding) ? padding : new Extents((ushort start, ushort end, ushort top, ushort bottom) => { TextPadding = new Extents(start, end, top, bottom); }, 0, 0, 0, 0);
+                return (null != padding) ? padding : textPadding = new Extents(OnTextPaddingChanged, 0, 0, 0, 0);
             }
             set => SetValue(TextPaddingProperty, value);
         }
@@ -296,6 +298,16 @@ namespace Tizen.NUI.Components
         private void SubStyleCalledEvent(object sender, global::System.EventArgs e)
         {
             OnPropertyChanged();
+        }
+
+        private void OnIconPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            IconPadding = new Extents(start, end, top, bottom);
+        }
+
+        private void OnTextPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            TextPadding = new Extents(start, end, top, bottom);
         }
     }
 }
