@@ -60,11 +60,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextLabelStyle Title
-        {
-            get;
-            set;
-        }
+        public TextLabelStyle Title { get; set; }
 
         /// <summary>
         /// Shadow offset.
@@ -72,11 +68,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents ShadowExtents
-        {
-            get;
-            set;
-        }
+        public Extents ShadowExtents { get; set; }
 
         /// <summary>
         /// Popup button's attributes.
@@ -84,11 +76,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ButtonStyle Buttons
-        {
-            get;
-            set;
-        }
+        public ButtonStyle Buttons { get; set; }
 
         /// <summary>
         /// Attributes's clone function.

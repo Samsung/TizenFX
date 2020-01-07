@@ -60,11 +60,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string[] Images
-        {
-            get;
-            set;
-        }
+        public string[] Images { get; set; }
 
         /// <summary>
         /// Gets or sets loading image size.
@@ -72,11 +68,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size LoadingSize
-        {
-            get;
-            set;
-        }
+        public Size LoadingSize { get; set; }
 
         /// <summary>
         /// Gets or sets loading frame per second.
@@ -84,11 +76,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<int?> FrameRate
-        {
-            get;
-            set;
-        } = new Selector<int?>();
+        public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
 
         /// <summary>
         /// Attributes's clone function.
