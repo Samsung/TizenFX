@@ -36,6 +36,8 @@ namespace Tizen.NUI.BaseComponents
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
 
+        static TextField() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFieldStyle Style => ViewStyle as TextFieldStyle;

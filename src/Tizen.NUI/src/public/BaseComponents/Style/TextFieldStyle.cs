@@ -57,6 +57,9 @@ namespace Tizen.NUI.BaseComponents
         private bool? enableSelection;
         private bool? ellipsis;
         private bool? matchSystemLanguageDirection;
+
+        static TextFieldStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
