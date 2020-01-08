@@ -44,6 +44,9 @@ namespace Tizen.NUI.BaseComponents
         private LineWrapMode? lineWrapMode;
         private VerticalLineAlignment? verticalLineAlignment;
         private bool? matchSystemLanguageDirection;
+
+        static TextLabelStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create(nameof(TranslatableTextSelector), typeof(Selector<string>), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>

@@ -33,6 +33,8 @@ namespace Tizen.NUI.BaseComponents
         private bool? synchronosLoading;
         private bool? orientationCorrection;
 
+        static ImageViewStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
