@@ -186,7 +186,7 @@ namespace Tizen.NUI.Samples
 
             ButtonStyle utilityAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size =  new Size(48, 48),
                     Opacity = new Selector<float?>
@@ -207,7 +207,7 @@ namespace Tizen.NUI.Samples
             };         
             ButtonStyle familyAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size =  new Size(48, 48),
                     Opacity = new Selector<float?>
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Samples
             };
             ButtonStyle foodAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Opacity = new Selector<float?>
@@ -249,7 +249,7 @@ namespace Tizen.NUI.Samples
             };
             ButtonStyle kitchenAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Opacity = new Selector<float?>

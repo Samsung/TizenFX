@@ -750,6 +750,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             viewStyle.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue);
+
+            if (viewStyle.imageShadow != null) viewStyle.boxShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -763,6 +765,8 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             viewStyle.boxShadow = SelectorHelper<Shadow>.Clone(newValue);
+
+            if (viewStyle.boxShadow != null) viewStyle.imageShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {

@@ -65,10 +65,10 @@ namespace Tizen.NUI.Samples
                     },
                     BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) },
 
-                    Shadow = new ImageViewStyle
+                    ImageShadow = new ImageShadow
                     {
-                        ResourceUrl = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png" },
-                        Border = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) }
+                        Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
+                        Border = new Rectangle(5, 5, 5, 5)
                     },
 
                     Overlay = new ImageViewStyle

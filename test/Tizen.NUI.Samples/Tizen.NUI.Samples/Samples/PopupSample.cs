@@ -62,10 +62,17 @@ namespace Tizen.NUI.Samples
             popup.Style.Title.Position = new Position(64, 52);
             popup.Style.Title.Text = "Popup Title";
 
-            // Shadow and background
-		    popup.Style.ShadowExtents = new Extents(24, 24, 24, 24);
-            popup.ShadowImage = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png";
-            popup.ShadowImageBorder = new Rectangle(0, 0, 105, 105);
+            // Shadow
+            popup.Style.ImageShadow = new ImageShadow
+            {
+                Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
+                Border = new Rectangle(24, 24, 24, 24),
+                Offset = new Vector2(-24, -24),
+                // TODO We do not have shadow extents now, so replace it to scale value
+                Scale = new Vector2(1080f/1032f, 448f/400f),
+            };
+
+            // Background
             popup.BackgroundImage = CommonResource.GetFHResourcePath() + "11. Popup/popup_background.png";
             popup.BackgroundImageBorder = new Rectangle(0, 0, 81, 81);
 
@@ -80,8 +87,11 @@ namespace Tizen.NUI.Samples
                 Pressed = new Color(0.0f, 0.0f, 0.0f, 0.1f),
                 Selected = new Color(1.0f, 1.0f, 1.0f, 1.0f),
             };
-            popup.ButtonShadow = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png";
-            popup.ButtonShadowBorder = new Rectangle(5, 5, 5, 5);
+            popup.ButtonImageShadow = new ImageShadow
+            {
+                Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
+                Border = new Rectangle(5, 5, 5, 5)
+            };
             popup.ButtonTextColor = color[0];
             popup.ButtonHeight = 132;
             popup.PopupButtonClickEvent += PopupButtonClickedEvent;
@@ -107,13 +117,15 @@ namespace Tizen.NUI.Samples
             PopupStyle attrs = new PopupStyle
             {
                 MinimumSize = new Size2D(1032, 184),
-                ShadowExtents = new Extents(24, 24, 24, 24),
                 BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "11. Popup/popup_background.png" },
                 BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(0, 0, 81, 81) },
-                Shadow = new ImageViewStyle
+                ImageShadow = new ImageShadow
                 {
-                    ResourceUrl = new Selector<string> { All = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png" },
-                    Border = new Selector<Rectangle> { All = new Rectangle(0, 0, 105, 105) }
+                    Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
+                    Border = new Rectangle(24, 24, 24, 24),
+                    Offset = new Vector2(-24, -24),
+                    // TODO We do not have shadow extents now, so replace it to scale value
+                    Scale = new Vector2(1080f/1032f, 448f/400f),
                 },
                 Title = new TextLabelStyle
                 {
@@ -135,10 +147,10 @@ namespace Tizen.NUI.Samples
                     PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
                     BackgroundImage = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_normal.png" },
                     BackgroundImageBorder = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) },
-                    Shadow = new ImageViewStyle
+                    ImageShadow = new ImageShadow
                     {
-                        ResourceUrl = new Selector<string> { All = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png" },
-                        Border = new Selector<Rectangle> { All = new Rectangle(5, 5, 5, 5) }
+                        Url = CommonResource.GetFHResourcePath() + "3. Button/rectangle_btn_shadow.png",
+                        Border = new Rectangle(5, 5, 5, 5),
                     },
                     Overlay = new ImageViewStyle
                     {
