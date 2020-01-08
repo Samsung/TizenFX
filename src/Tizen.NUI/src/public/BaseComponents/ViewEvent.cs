@@ -604,12 +604,12 @@ namespace Tizen.NUI.BaseComponents
             PivotPoint = new Position(x, y, z);
         }
 
-        private void OnImageShadowChanged(TransformablePropertyMap instance)
+        private void OnImageShadowChanged(ShadowBase instance)
         {
             ImageShadow = (ImageShadow)instance;
         }
 
-        private void OnBoxShadowChanged(TransformablePropertyMap instance)
+        private void OnBoxShadowChanged(ShadowBase instance)
         {
             BoxShadow = (Shadow)instance;
         }

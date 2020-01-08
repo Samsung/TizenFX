@@ -30,51 +30,6 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Control : VisualView
     {
-        /// <summary> BackgroundImageProperty</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("ControlBackgroundImage", typeof(Selector<string>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var control = (Control)bindable;
-            if (null != newValue)
-            {
-                control.BackgroundImageSelector.Clone((Selector<string>)newValue);
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var control = (Control)bindable;
-            return control.BackgroundImageSelector;
-        });
-        /// <summary>BackgroundBorderProperty</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundImageBorderProperty = BindableProperty.Create("ControlBackgroundImageBorder", typeof(Selector<Rectangle>), typeof(Control), default(Rectangle), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var control = (Control)bindable;
-            if (null != newValue)
-            {
-                control.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var control = (Control)bindable;
-            return control.backgroundImageBorderSelector;
-        });
-        /// <summary> BackgroundColorProperty </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static readonly BindableProperty BackgroundColorProperty = BindableProperty.Create("ControlBackgroundColor", typeof(Selector<Color>), typeof(Control), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var control = (Control)bindable;
-            if (null != newValue)
-            {
-                control.BackgroundColorSelector.Clone((Selector<Color>)newValue);
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var control = (Control)bindable;
-            return control.BackgroundColorSelector;
-        });
         /// <summary> Control style. </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -83,9 +38,6 @@ namespace Tizen.NUI.Components
 
         private TapGestureDetector tapGestureDetector = new TapGestureDetector();
         private bool isFocused = false;
-
-        internal ImageView backgroundImage = new ImageView();
-        internal ImageView shadowImage;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -137,108 +89,6 @@ namespace Tizen.NUI.Components
             Initialize(style);
         }
 
-        private TriggerableSelector<string> _backgroundImageSelector;
-        private TriggerableSelector<string> BackgroundImageSelector
-        {
-            get
-            {
-                if (null == _backgroundImageSelector)
-                {
-                    _backgroundImageSelector = new TriggerableSelector<string>(backgroundImage, ImageView.ResourceUrlProperty);
-                }
-                return _backgroundImageSelector;
-            }
-        }
-        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
-        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
-        {
-            get
-            {
-                if (null == _backgroundImageBorderSelector)
-                {
-                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(backgroundImage, ImageView.BorderProperty);
-                }
-                return _backgroundImageBorderSelector;
-            }
-        }
-        private TriggerableSelector<Color> _backgroundColorSelector;
-        private TriggerableSelector<Color> BackgroundColorSelector
-        {
-            get
-            {
-                if (null == _backgroundColorSelector)
-                {
-                    _backgroundColorSelector = new TriggerableSelector<Color>(backgroundImage, View.BackgroundColorProperty);
-                }
-                return _backgroundColorSelector;
-            }
-        }
-        /// <summary>
-        /// Override view's BackgroundImage.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Selector<string> BackgroundImage
-        {
-            get => (Selector<string>)GetValue(BackgroundImageProperty);
-            set => SetValue(BackgroundImageProperty, value);
-        }
-
-        /// <summary>
-        /// Override view's BackgroundImageBorder.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Selector<Rectangle> BackgroundImageBorder
-        {
-            get => (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
-            set => SetValue(BackgroundImageBorderProperty, value);
-        }
-        /// <summary>
-        /// Override view's BackgroundBorder.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new Selector<Color> BackgroundColor
-        {
-            get => (Selector<Color>)GetValue(BackgroundColorProperty);
-            set => SetValue(BackgroundColorProperty, value);
-        }
-
-        /// <summary>
-        /// Shadow image.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> ShadowImage
-        {
-            get
-            {
-                return Style.Shadow.ResourceUrl;
-            }
-            set
-            {
-                Style.Shadow.ResourceUrl = value;
-            }
-        }
-
-        /// <summary>
-        /// Shadow image border.
-        /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<Rectangle> ShadowImageBorder
-        {
-            get
-            {
-                return Style.Shadow.Border;
-            }
-            set
-            {
-                Style.Shadow.Border = value;
-            }
-        }
-
         internal void ApplyAttributes(View view, ViewStyle viewStyle)
         {
             view.CopyFrom(viewStyle);
@@ -271,15 +121,6 @@ namespace Tizen.NUI.Components
                 StyleManager.Instance.ThemeChangedEvent -= OnThemeChangedEvent;
                 tapGestureDetector.Detected -= OnTapGestureDetected;
                 tapGestureDetector.Detach(this);
-            }
-
-            if (backgroundImage != null)
-            {
-                Utility.Dispose(backgroundImage);
-            }
-            if (shadowImage != null)
-            {
-                Utility.Dispose(shadowImage);
             }
 
             base.Dispose(type);
@@ -334,37 +175,6 @@ namespace Tizen.NUI.Components
         public override void OnFocusLost()
         {
             isFocused = false;
-        }
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            base.ApplyStyle(viewStyle);
-
-            ControlStyle controlStyle = viewStyle as ControlStyle;
-
-            if (null != controlStyle?.Shadow)
-            {
-                if (null == shadowImage)
-                {
-                    shadowImage = new ImageView()
-                    {
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        HeightResizePolicy = ResizePolicyType.FillToParent,
-                    };
-                    this.Add(shadowImage);
-                    shadowImage.LowerToBottom();
-                }
-
-                shadowImage.ApplyStyle(controlStyle.Shadow);
-            }
-            if (null != controlStyle.BackgroundImage)
-            {
-                backgroundImage.WidthResizePolicy = ResizePolicyType.FillToParent;
-                backgroundImage.HeightResizePolicy = ResizePolicyType.FillToParent;
-                this.Add(backgroundImage);
-            }
         }
 
         /// <summary>
