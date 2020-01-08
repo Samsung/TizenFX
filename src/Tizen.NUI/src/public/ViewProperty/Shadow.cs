@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The platform provided shadow drawing for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Shadow : TransformablePropertyMap, Tizen.NUI.ICloneable
+    public class Shadow : ShadowBase, Tizen.NUI.ICloneable
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
 
@@ -40,11 +40,15 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shadow() : base()
         {
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
+
             Color = defaultColor;
         }
 
         internal Shadow(Shadow other, PropertyChangedCallback callback = null) : base(other)
         {
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
+
             Color = other.Color;
             BlurRadius = other.BlurRadius;
             OnPropertyChanged = callback;
@@ -127,29 +131,9 @@ namespace Tizen.NUI
             }
         }
 
-        override internal string ToDebugString()
-        {
-            string result = "";
-            // TODO
-            return result;
-        }
-
         override internal bool IsValid()
         {
             return color != null && color.A != 0;
-        }
-
-        static internal new PropertyValue ToPropertyValue(TransformablePropertyMap instance)
-        {
-            if (instance == null || !instance.IsValid())
-            {
-                return new PropertyValue();
-            }
-
-            // TODO to be other blurable visual in the future
-            instance.propertyMap.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-
-            return new PropertyValue(instance.propertyMap);
         }
     }
 }

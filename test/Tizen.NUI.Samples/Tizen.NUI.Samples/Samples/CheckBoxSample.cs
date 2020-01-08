@@ -91,7 +91,7 @@ namespace Tizen.NUI.Samples
                     Disabled = "",
                     DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check.png",
                 };
-                utilityCheckBox[i].Style.Icon.Shadow.ResourceUrl = new Selector<string>
+                utilityCheckBox[i].Style.Icon.ImageShadow = new Selector<ImageShadow>
                 {
                     Normal = "",
                     Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check_shadow.png",
@@ -207,7 +207,7 @@ namespace Tizen.NUI.Samples
 
             ButtonStyle utilityAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Opacity = new Selector<float?>
@@ -231,21 +231,18 @@ namespace Tizen.NUI.Samples
                         Disabled = "",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check.png",
                     },
-                    Shadow = new ImageViewStyle
+                    ImageShadow = new Selector<ImageShadow>
                     {
-                        ResourceUrl = new Selector<string>
-                        {
-                            Normal = "",
-                            Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check_shadow.png",
-                            Disabled = "",
-                            DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check_shadow.png",
-                        },
+                        Normal = "",
+                        Selected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check_shadow.png",
+                        Disabled = "",
+                        DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_check_shadow.png",
                     },
                 }
             };
             ButtonStyle familyAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Opacity = new Selector<float?>
@@ -266,7 +263,7 @@ namespace Tizen.NUI.Samples
             };
             ButtonStyle foodAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Position = new Position(0, 0),
@@ -288,7 +285,7 @@ namespace Tizen.NUI.Samples
             };
             ButtonStyle kitchenAttrs = new ButtonStyle
             {
-                Icon = new ImageControlStyle
+                Icon = new ImageViewStyle
                 {
                     Size = new Size(48, 48),
                     Position = new Position(0, 0),
