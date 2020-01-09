@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         {
             var controlStyle = (ControlStyle)bindable;
             if (null == controlStyle.backgroundImage) controlStyle.backgroundImage = new Selector<string>();
-            controlStyle.backgroundImage.Clone((Selector<string>)newValue);
+            controlStyle.backgroundImage.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Components
         {
             var controlStyle = (ControlStyle)bindable;
             if (null == controlStyle.backgroundColor) controlStyle.backgroundColor = new Selector<Color>();
-            controlStyle.backgroundColor.Clone((Selector<Color>)newValue);
+            controlStyle.backgroundColor.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -61,7 +61,7 @@ namespace Tizen.NUI.Components
         {
             var controlStyle = (ControlStyle)bindable;
             if (null == controlStyle.backgroundImageBorder) controlStyle.backgroundImageBorder = new Selector<Rectangle>();
-            controlStyle.backgroundImageBorder.Clone((Selector<Rectangle>)newValue);
+            controlStyle.backgroundImageBorder.Clone(null == newValue ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {

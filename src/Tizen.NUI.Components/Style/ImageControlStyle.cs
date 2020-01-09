@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         {
             var imageControlStyle = (ImageControlStyle)bindable;
             if (null == imageControlStyle.resourceUrlSelector) imageControlStyle.resourceUrlSelector = new Selector<string>();
-            imageControlStyle.resourceUrlSelector.Clone((Selector<string>)newValue);
+            imageControlStyle.resourceUrlSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
