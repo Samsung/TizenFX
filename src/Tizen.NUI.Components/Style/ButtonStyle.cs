@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
         {
             var buttonStyle = (ButtonStyle)bindable;
             if (null == buttonStyle.iconPadding) buttonStyle.iconPadding = new Extents(buttonStyle.OnIconPaddingChanged, 0, 0, 0, 0);
-            buttonStyle.iconPadding = (Extents)newValue;
+            buttonStyle.iconPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -96,7 +96,7 @@ namespace Tizen.NUI.Components
         {
             var buttonStyle = (ButtonStyle)bindable;
             if (null == buttonStyle.textPadding) buttonStyle.textPadding = new Extents(buttonStyle.OnTextPaddingChanged, 0, 0, 0, 0);
-            buttonStyle.textPadding = (Extents)newValue;
+            buttonStyle.textPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {

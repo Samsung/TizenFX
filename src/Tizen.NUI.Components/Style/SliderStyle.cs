@@ -82,7 +82,7 @@ namespace Tizen.NUI.Components
             if (newValue != null)
             {
                 if (null == instance.trackPadding) instance.trackPadding = new Extents(instance.OnTrackPaddingChanged, 0, 0, 0, 0);
-                instance.trackPadding.CopyFrom((Extents)newValue);
+                instance.trackPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -234,7 +234,7 @@ namespace Tizen.NUI.Components
             get
             {
                 Extents tmp = (Extents)GetValue(TrackPaddingProperty);
-                return (null == tmp) ? tmp : trackPadding = new Extents(OnTrackPaddingChanged, 0, 0, 0, 0);
+                return (null != tmp) ? tmp : trackPadding = new Extents(OnTrackPaddingChanged, 0, 0, 0, 0);
             }
             set => SetValue(TrackPaddingProperty, value);
         }
