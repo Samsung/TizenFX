@@ -283,6 +283,7 @@ namespace Tizen.NUI.Components
         {
             mPanGestureDetector = new PanGestureDetector();
             mPanGestureDetector.Attach(this);
+            mPanGestureDetector.AddDirection(PanGestureDetector.DirectionVertical);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
             mTapGestureDetector = new TapGestureDetector();
