@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextLabelStyle)bindable;
             if (null == textFieldStyle.translatableTextSelector) textFieldStyle.translatableTextSelector = new Selector<string>();
-            textFieldStyle.translatableTextSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.translatableTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextLabelStyle)bindable;
             if (null == textFieldStyle.textSelector) textFieldStyle.textSelector = new Selector<string>();
-            textFieldStyle.textSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.textSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -59,7 +59,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextLabelStyle)bindable;
             if (null == textFieldStyle.fontFamilySelector) textFieldStyle.fontFamilySelector = new Selector<string>();
-            textFieldStyle.fontFamilySelector.Clone((Selector<string>)newValue);
+            textFieldStyle.fontFamilySelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -72,7 +72,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextLabelStyle)bindable;
             if (null == textFieldStyle.pointSizeSelector) textFieldStyle.pointSizeSelector = new Selector<float?>();
-            textFieldStyle.pointSizeSelector.Clone((Selector<float?>)newValue);
+            textFieldStyle.pointSizeSelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textFieldStyle = (TextLabelStyle)bindable;
             if (null == textFieldStyle.textColorSelector) textFieldStyle.textColorSelector = new Selector<Color>();
-            textFieldStyle.textColorSelector.Clone((Selector<Color>)newValue);
+            textFieldStyle.textColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {

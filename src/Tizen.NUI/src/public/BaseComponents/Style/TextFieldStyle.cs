@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.translatableTextSelector = new Selector<string>();
             }
-            textFieldStyle.translatableTextSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.translatableTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.translatablePlaceholderTextSelector = new Selector<string>();
             }
-            textFieldStyle.translatablePlaceholderTextSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.translatablePlaceholderTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.textSelector = new Selector<string>();
             }
-            textFieldStyle.textSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.textSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -84,7 +84,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.fontFamilySelector = new Selector<string>();
             }
-            textFieldStyle.fontFamilySelector.Clone((Selector<string>)newValue);
+            textFieldStyle.fontFamilySelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -100,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.pointSizeSelector = new Selector<float?>();
             }
-            textFieldStyle.pointSizeSelector.Clone((Selector<float?>)newValue);
+            textFieldStyle.pointSizeSelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -116,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.textColorSelector = new Selector<Color>();
             }
-            textFieldStyle.textColorSelector.Clone((Selector<Color>)newValue);
+            textFieldStyle.textColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -132,7 +132,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.placeholderTextColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.placeholderTextColorSelector.Clone((Selector<Vector4>)newValue);
+            textFieldStyle.placeholderTextColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.primaryCursorColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.primaryCursorColorSelector.Clone((Selector<Vector4>)newValue);
+            textFieldStyle.primaryCursorColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -562,7 +562,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatableText
         {
-            get => (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+            get
+            {
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+                return (null != tmp) ? tmp : translatableTextSelector = new Selector<string>();
+            }
             set => SetValue(TranslatableTextSelectorProperty, value);
         }
 
@@ -570,7 +574,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatablePlaceholderText
         {
-            get => (Selector<string>)GetValue(TranslatablePlaceholderTextSelectorProperty);
+            get
+            {
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatablePlaceholderTextSelectorProperty);
+                return (null != tmp) ? tmp : translatablePlaceholderTextSelector = new Selector<string>();
+            }
             set => SetValue(TranslatablePlaceholderTextSelectorProperty, value);
         }
 
@@ -578,7 +586,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> Text
         {
-            get => (Selector<string>)GetValue(TextSelectorProperty);
+            get
+            {
+                Selector<string> tmp = (Selector<string>)GetValue(TextSelectorProperty);
+                return (null != tmp) ? tmp : textSelector = new Selector<string>();
+            }
             set => SetValue(TextSelectorProperty, value);
         }
 
@@ -602,7 +614,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> FontFamily
         {
-            get => (Selector<string>)GetValue(FontFamilySelectorProperty);
+            get
+            {
+                Selector<string> tmp = (Selector<string>)GetValue(FontFamilySelectorProperty);
+                return (null != tmp) ? tmp : fontFamilySelector = new Selector<string>();
+            }
             set => SetValue(FontFamilySelectorProperty, value);
         }
 
@@ -834,7 +850,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> TextColor
         {
-            get => (Selector<Color>)GetValue(TextColorSelectorProperty);
+            get
+            {
+                Selector<Color> tmp = (Selector<Color>)GetValue(TextColorSelectorProperty);
+                return (null != tmp) ? tmp : textColorSelector = new Selector<Color>();
+            }
             set => SetValue(TextColorSelectorProperty, value);
         }
 
@@ -842,7 +862,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<float?> PointSize
         {
-            get => (Selector<float?>)GetValue(PointSizeSelectorProperty);
+            get
+            {
+                Selector<float?> tmp = (Selector<float?>)GetValue(PointSizeSelectorProperty);
+                return (null != tmp) ? tmp : pointSizeSelector = new Selector<float?>();
+            }
             set => SetValue(PointSizeSelectorProperty, value);
         }
 
@@ -850,7 +874,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Vector4> PlaceholderTextColor
         {
-            get => (Selector<Vector4>)GetValue(PlaceholderTextColorSelectorProperty);
+            get
+            {
+                Selector<Vector4> tmp = (Selector<Vector4>)GetValue(PlaceholderTextColorSelectorProperty);
+                return (null != tmp) ? tmp : placeholderTextColorSelector = new Selector<Vector4>();
+            }
             set => SetValue(PlaceholderTextColorSelectorProperty, value);
         }
 
@@ -862,7 +890,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Vector4> PrimaryCursorColor
         {
-            get => (Selector<Vector4>)GetValue(PrimaryCursorColorSelectorProperty);
+            get
+            {
+                Selector<Vector4> tmp = (Selector<Vector4>)GetValue(PrimaryCursorColorSelectorProperty);
+                return (null != tmp) ? tmp : primaryCursorColorSelector = new Selector<Vector4>();
+            }
             set => SetValue(PrimaryCursorColorSelectorProperty, value);
         }
     }
