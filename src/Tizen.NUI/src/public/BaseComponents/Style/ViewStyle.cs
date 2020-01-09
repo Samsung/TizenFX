@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.backgroundImageSelector) viewStyle.backgroundImageSelector = new Selector<string>();
-            viewStyle.backgroundImageSelector.Clone((Selector<string>)newValue);
+            viewStyle.backgroundImageSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -251,7 +251,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.opacitySelector) viewStyle.opacitySelector = new Selector<float?>();
-            viewStyle.opacitySelector.Clone((Selector<float?>)newValue);
+            viewStyle.opacitySelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -722,7 +722,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.backgroundColorSelector) viewStyle.backgroundColorSelector = new Selector<Color>();
-            viewStyle.backgroundColorSelector.Clone((Selector<Color>)newValue);
+            viewStyle.backgroundColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -736,7 +736,7 @@ namespace Tizen.NUI.BaseComponents
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.backgroundImageBorderSelector) viewStyle.backgroundImageBorderSelector = new Selector<Rectangle>();
 
-            viewStyle.backgroundImageBorderSelector.Clone(newValue == null ? new Rectangle() : (Selector<Rectangle>)newValue);
+            viewStyle.backgroundImageBorderSelector.Clone(newValue == null ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {

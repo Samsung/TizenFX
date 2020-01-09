@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageViewStyle = (ImageViewStyle)bindable;
             if (null == imageViewStyle.resourceUrlSelector) imageViewStyle.resourceUrlSelector = new Selector<string>();
-            imageViewStyle.resourceUrlSelector.Clone(null == newValue ? string.Empty : (Selector<string>)newValue);
+            imageViewStyle.resourceUrlSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -70,7 +70,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageViewStyle = (ImageViewStyle)bindable;
             if (null == imageViewStyle.borderSelector) imageViewStyle.borderSelector = new Selector<Rectangle>();
-            imageViewStyle.borderSelector.Clone(null == newValue ? new Rectangle() : (Selector<Rectangle>)newValue);
+            imageViewStyle.borderSelector.Clone(null == newValue ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
