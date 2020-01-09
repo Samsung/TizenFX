@@ -20,12 +20,12 @@ using global::System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
 
-#if (NUI_DEBUG_ON)
-using tlog = Tizen.Log;
-#endif
-
 namespace Tizen.NUI.BaseComponents
 {
+    #if (NUI_DEBUG_ON)
+    using tlog = Tizen.Log;
+    #endif
+
     /// <summary>
     /// LottieAnimationView renders an animated vector image (Lottie file).
     /// </summary>
@@ -172,11 +172,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             currentStates.playState = (PlayStateType)ret;
                             tlog.Fatal(tag, $"gotten play state={ret} >");
-                            return currentStates.playState;
                         }
                     }
                 }
-                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
+                else
+                {
+                    Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
+                }
                 return currentStates.playState;
             }
         }
@@ -485,6 +487,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (val.Get(contentMap))
                     {
+                        currentStates.contentInfo = new List<Tuple<string, int, int>>();
                         for (uint i = 0; i < contentMap.Count(); i++)
                         {
                             string key = contentMap.GetKeyAt(i).StringKey;
@@ -538,6 +541,57 @@ namespace Tizen.NUI.BaseComponents
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
             DoAction(vectorImageVisualIndex, (int)actionType.updateProperty, new PropertyValue(map));
             tlog.Fatal(tag, $"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
+        }
+
+        /// <summary>
+        /// Get MinMax Frame
+        /// </summary>
+        /// <returns>Tuple of Min and Max frames</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tuple<int, int> GetMinMaxFrame()
+        {
+            tlog.Fatal(tag, $"< [{GetId()}] GetMinMaxFrame()! total frame={currentStates.totalFrame}");
+
+            PropertyMap map = Image;
+            if (map != null)
+            {
+                PropertyValue val = map.Find(ImageVisualProperty.PlayRange);
+                if (val != null)
+                {
+                    PropertyArray array = new PropertyArray();
+                    if (val.Get(array))
+                    {
+                        uint cnt = array.Count();
+                        int item1 = -1, item2 = -1;
+                        for (uint i = 0; i < cnt; i++)
+                        {
+                            PropertyValue v = array.GetElementAt(i);
+                            int intRet;
+                            if (v.Get(out intRet))
+                            {
+                                tlog.Fatal(tag, $"Got play range of string [{i}]: {intRet}");
+                                if (i == 0)
+                                {
+                                    item1 = intRet;
+                                }
+                                else if (i == 1)
+                                {
+                                    item2 = intRet;
+                                }
+                            }
+                            else
+                            {
+                                Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#1");
+                            }
+                        }
+                        tlog.Fatal(tag, $"  [{GetId()}] GetMinMaxFrame(min:{item1}, max:{item2})! >");
+                        return new Tuple<int, int>(item1, item2);
+                    }
+                }
+            }
+            Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#2");
+            return new Tuple<int, int>(-1, -1);
         }
         #endregion Method
 
