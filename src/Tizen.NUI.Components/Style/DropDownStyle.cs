@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
         {
             var dropDownStyle = (DropDownStyle)bindable;
             if (null == dropDownStyle.listMargin) dropDownStyle.listMargin = new Extents(dropDownStyle.OnListMarginChanged, 0, 0, 0, 0);
-            dropDownStyle.listMargin.CopyFrom((Extents)newValue);
+            dropDownStyle.listMargin.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
             if (null != newValue)
             {
                 if (null == dropDownStyle.listPadding) dropDownStyle.listPadding = new Extents(dropDownStyle.OnListPaddingChanged, 0, 0, 0, 0);
-                dropDownStyle.listPadding.CopyFrom((Extents)newValue);
+                dropDownStyle.listPadding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
