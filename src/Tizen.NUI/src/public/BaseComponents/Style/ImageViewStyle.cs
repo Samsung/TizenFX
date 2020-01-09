@@ -27,20 +27,13 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ImageViewStyle : ViewStyle
     {
-        private bool? preMultipliedAlpha;
-        private RelativeVector4 pixelArea;
-        private bool? borderOnly;
-        private bool? synchronosLoading;
-        private bool? orientationCorrection;
-
-        static ImageViewStyle() { }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ResourceUrlSelectorProperty = BindableProperty.Create("ResourceUrlSelector", typeof(Selector<string>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.resourceUrlSelector.Clone((Selector<string>)newValue);
+            if (null == imageViewStyle.resourceUrlSelector) imageViewStyle.resourceUrlSelector = new Selector<string>();
+            imageViewStyle.resourceUrlSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -76,7 +69,8 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BorderSelectorProperty = BindableProperty.Create("BorderSelector", typeof(Selector<Rectangle>), typeof(ImageViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageViewStyle = (ImageViewStyle)bindable;
-            imageViewStyle.borderSelector.Clone((Selector<Rectangle>)newValue);
+            if (null == imageViewStyle.borderSelector) imageViewStyle.borderSelector = new Selector<Rectangle>();
+            imageViewStyle.borderSelector.Clone(null == newValue ? new Selector<Rectangle>() : (Selector<Rectangle>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -120,82 +114,56 @@ namespace Tizen.NUI.BaseComponents
             return imageViewStyle.orientationCorrection;
         });
 
+        private bool? preMultipliedAlpha;
+        private RelativeVector4 pixelArea;
+        private bool? borderOnly;
+        private bool? synchronosLoading;
+        private bool? orientationCorrection;
+        private Selector<string> resourceUrlSelector;
+        private Selector<Rectangle> borderSelector;
+
+        static ImageViewStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? PreMultipliedAlpha
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(PreMultipliedAlphaProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PreMultipliedAlphaProperty, value);
-            }
+            get => (bool?)GetValue(PreMultipliedAlphaProperty);
+            set => SetValue(PreMultipliedAlphaProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RelativeVector4 PixelArea
         {
-            get
-            {
-                RelativeVector4 temp = (RelativeVector4)GetValue(PixelAreaProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PixelAreaProperty, value);
-            }
+            get => (RelativeVector4)GetValue(PixelAreaProperty);
+            set => SetValue(PixelAreaProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? BorderOnly
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(BorderOnlyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(BorderOnlyProperty, value);
-            }
+            get => (bool?)GetValue(BorderOnlyProperty);
+            set => SetValue(BorderOnlyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? SynchronosLoading
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(SynchronosLoadingProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SynchronosLoadingProperty, value);
-            }
+            get => (bool?)GetValue(SynchronosLoadingProperty);
+            set => SetValue(SynchronosLoadingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? OrientationCorrection
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(OrientationCorrectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(OrientationCorrectionProperty, value);
-            }
+            get => (bool?)GetValue(OrientationCorrectionProperty);
+            set => SetValue(OrientationCorrectionProperty, value);
         }
 
-        private Selector<string> resourceUrlSelector = new Selector<string>();
         /// <summary>
         /// Image URL.
         /// </summary>
@@ -205,15 +173,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Selector<string>)GetValue(ResourceUrlSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(ResourceUrlSelectorProperty);
+                return (null != tmp) ? tmp : resourceUrlSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(ResourceUrlSelectorProperty, value);
-            }
+            set => SetValue(ResourceUrlSelectorProperty, value);
         }
 
-        private Selector<Rectangle> borderSelector = new Selector<Rectangle>();
         /// <summary>
         /// Image border.
         /// </summary>
@@ -223,12 +188,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Selector<Rectangle>)GetValue(BorderSelectorProperty);
+                Selector<Rectangle> tmp = (Selector<Rectangle>)GetValue(BorderSelectorProperty);
+                return (null != tmp) ? tmp : borderSelector = new Selector<Rectangle>();
             }
-            set
-            {
-                SetValue(BorderSelectorProperty, value);
-            }
+            set => SetValue(BorderSelectorProperty, value);
         }
     }
 }

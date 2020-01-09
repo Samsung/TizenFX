@@ -27,39 +27,6 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextFieldStyle : ViewStyle
     {
-        private string placeholderText;
-        private string placeholderTextFocused;
-        private int? maxLength;
-        private int? exceedPolicy;
-        private HorizontalAlignment? horizontalAlignment;
-        private VerticalAlignment? verticalAlignment;
-        private Vector4 secondaryCursorColor;
-        private bool? enableCursorBlink;
-        private float? cursorBlinkInterval;
-        private float? cursorBlinkDuration;
-        private int? cursorWidth;
-        private string grabHandleImage;
-        private string grabHandlePressedImage;
-        private float? scrollThreshold;
-        private float? scrollSpeed;
-        private Vector4 selectionHighlightColor;
-        private Rectangle decorationBoundingBox;
-        private Vector4 inputColor;
-        private bool? enableMarkup;
-        private string inputFontFamily;
-        private float? inputPointSize;
-        private string inputUnderline;
-        private string inputShadow;
-        private string emboss;
-        private string inputEmboss;
-        private string inputOutline;
-        private float? pixelSize;
-        private bool? enableSelection;
-        private bool? ellipsis;
-        private bool? matchSystemLanguageDirection;
-
-        static TextFieldStyle() { }
-
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create("TranslatableTextSelector", typeof(Selector<string>), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -69,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.translatableTextSelector = new Selector<string>();
             }
-            textFieldStyle.translatableTextSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.translatableTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -85,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.translatablePlaceholderTextSelector = new Selector<string>();
             }
-            textFieldStyle.translatablePlaceholderTextSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.translatablePlaceholderTextSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -101,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.textSelector = new Selector<string>();
             }
-            textFieldStyle.textSelector.Clone((Selector<string>)newValue);
+            textFieldStyle.textSelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -117,7 +84,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.fontFamilySelector = new Selector<string>();
             }
-            textFieldStyle.fontFamilySelector.Clone((Selector<string>)newValue);
+            textFieldStyle.fontFamilySelector.Clone(null == newValue ? new Selector<string>() : (Selector<string>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -133,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.pointSizeSelector = new Selector<float?>();
             }
-            textFieldStyle.pointSizeSelector.Clone((Selector<float?>)newValue);
+            textFieldStyle.pointSizeSelector.Clone(null == newValue ? new Selector<float?>() : (Selector<float?>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -149,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.textColorSelector = new Selector<Color>();
             }
-            textFieldStyle.textColorSelector.Clone((Selector<Color>)newValue);
+            textFieldStyle.textColorSelector.Clone(null == newValue ? new Selector<Color>() : (Selector<Color>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -165,7 +132,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.placeholderTextColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.placeholderTextColorSelector.Clone((Selector<Vector4>)newValue);
+            textFieldStyle.placeholderTextColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -181,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textFieldStyle.primaryCursorColorSelector = new Selector<Vector4>();
             }
-            textFieldStyle.primaryCursorColorSelector.Clone((Selector<Vector4>)newValue);
+            textFieldStyle.primaryCursorColorSelector.Clone(null == newValue ? new Selector<Vector4>() : (Selector<Vector4>)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -550,562 +517,371 @@ namespace Tizen.NUI.BaseComponents
             return textFieldStyle.matchSystemLanguageDirection;
         });
 
+        private string placeholderText;
+        private string placeholderTextFocused;
+        private int? maxLength;
+        private int? exceedPolicy;
+        private HorizontalAlignment? horizontalAlignment;
+        private VerticalAlignment? verticalAlignment;
+        private Vector4 secondaryCursorColor;
+        private bool? enableCursorBlink;
+        private float? cursorBlinkInterval;
+        private float? cursorBlinkDuration;
+        private int? cursorWidth;
+        private string grabHandleImage;
+        private string grabHandlePressedImage;
+        private float? scrollThreshold;
+        private float? scrollSpeed;
+        private Vector4 selectionHighlightColor;
+        private Rectangle decorationBoundingBox;
+        private Vector4 inputColor;
+        private bool? enableMarkup;
+        private string inputFontFamily;
+        private float? inputPointSize;
+        private string inputUnderline;
+        private string inputShadow;
+        private string emboss;
+        private string inputEmboss;
+        private string inputOutline;
+        private float? pixelSize;
+        private bool? enableSelection;
+        private bool? ellipsis;
+        private bool? matchSystemLanguageDirection;
         private Selector<string> translatableTextSelector;
+        private Selector<string> translatablePlaceholderTextSelector;
+        private Selector<string> textSelector;
+        private Selector<string> fontFamilySelector;
+        private Selector<Color> textColorSelector;
+        private Selector<float?> pointSizeSelector;
+        private Selector<Vector4> placeholderTextColorSelector;
+        private Selector<Vector4> primaryCursorColorSelector;
+
+        static TextFieldStyle() { }
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatableText
         {
             get
             {
-                return (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatableTextSelectorProperty);
+                return (null != tmp) ? tmp : translatableTextSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(TranslatableTextSelectorProperty, value);
-            }
+            set => SetValue(TranslatableTextSelectorProperty, value);
         }
 
-        private Selector<string> translatablePlaceholderTextSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> TranslatablePlaceholderText
         {
             get
             {
-                return (Selector<string>)GetValue(TranslatablePlaceholderTextSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(TranslatablePlaceholderTextSelectorProperty);
+                return (null != tmp) ? tmp : translatablePlaceholderTextSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(TranslatablePlaceholderTextSelectorProperty, value);
-            }
+            set => SetValue(TranslatablePlaceholderTextSelectorProperty, value);
         }
 
-        private Selector<string> textSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> Text
         {
             get
             {
-                return (Selector<string>)GetValue(TextSelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(TextSelectorProperty);
+                return (null != tmp) ? tmp : textSelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(TextSelectorProperty, value);
-            }
+            set => SetValue(TextSelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string PlaceholderText
         {
-            get
-            {
-                string temp = (string)GetValue(PlaceholderTextProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PlaceholderTextProperty, value);
-            }
+            get => (string)GetValue(PlaceholderTextProperty);
+            set => SetValue(PlaceholderTextProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string PlaceholderTextFocused
         {
-            get
-            {
-                string temp = (string)GetValue(PlaceholderTextFocusedProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PlaceholderTextFocusedProperty, value);
-            }
+            get => (string)GetValue(PlaceholderTextFocusedProperty);
+            set => SetValue(PlaceholderTextFocusedProperty, value);
         }
 
-        private Selector<string> fontFamilySelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> FontFamily
         {
             get
             {
-                return (Selector<string>)GetValue(FontFamilySelectorProperty);
+                Selector<string> tmp = (Selector<string>)GetValue(FontFamilySelectorProperty);
+                return (null != tmp) ? tmp : fontFamilySelector = new Selector<string>();
             }
-            set
-            {
-                SetValue(FontFamilySelectorProperty, value);
-            }
+            set => SetValue(FontFamilySelectorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? MaxLength
         {
-            get
-            {
-                int? temp = (int?)GetValue(MaxLengthProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MaxLengthProperty, value);
-            }
+            get => (int?)GetValue(MaxLengthProperty);
+            set => SetValue(MaxLengthProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? ExceedPolicy
         {
-            get
-            {
-                int? temp = (int?)GetValue(ExceedPolicyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ExceedPolicyProperty, value);
-            }
+            get => (int?)GetValue(ExceedPolicyProperty);
+            set => SetValue(ExceedPolicyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public HorizontalAlignment? HorizontalAlignment
         {
-            get
-            {
-                HorizontalAlignment? temp = (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(HorizontalAlignmentProperty, value);
-            }
+            get => (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
+            set => SetValue(HorizontalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalAlignment? VerticalAlignment
         {
-            get
-            {
-                VerticalAlignment? temp = (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(VerticalAlignmentProperty, value);
-            }
+            get => (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
+            set => SetValue(VerticalAlignmentProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 SecondaryCursorColor
         {
-            get
-            {
-                Vector4 temp = (Vector4)GetValue(SecondaryCursorColorProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SecondaryCursorColorProperty, value);
-            }
+            get => (Vector4)GetValue(SecondaryCursorColorProperty);
+            set => SetValue(SecondaryCursorColorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? EnableCursorBlink
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EnableCursorBlinkProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EnableCursorBlinkProperty, value);
-            }
+            get => (bool?)GetValue(EnableCursorBlinkProperty);
+            set => SetValue(EnableCursorBlinkProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? CursorBlinkInterval
         {
-            get
-            {
-                float? temp = (float?)GetValue(CursorBlinkIntervalProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CursorBlinkIntervalProperty, value);
-            }
+            get => (float?)GetValue(CursorBlinkIntervalProperty);
+            set => SetValue(CursorBlinkIntervalProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? CursorBlinkDuration
         {
-            get
-            {
-                float? temp = (float?)GetValue(CursorBlinkDurationProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CursorBlinkDurationProperty, value);
-            }
+            get => (float?)GetValue(CursorBlinkDurationProperty);
+            set => SetValue(CursorBlinkDurationProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? CursorWidth
         {
-            get
-            {
-                int? temp = (int?)GetValue(CursorWidthProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(CursorWidthProperty, value);
-            }
+            get => (int?)GetValue(CursorWidthProperty);
+            set => SetValue(CursorWidthProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GrabHandleImage
         {
-            get
-            {
-                string temp = (string)GetValue(GrabHandleImageProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(GrabHandleImageProperty, value);
-            }
+            get => (string)GetValue(GrabHandleImageProperty);
+            set => SetValue(GrabHandleImageProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GrabHandlePressedImage
         {
-            get
-            {
-                string temp = (string)GetValue(GrabHandlePressedImageProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(GrabHandlePressedImageProperty, value);
-            }
+            get => (string)GetValue(GrabHandlePressedImageProperty);
+            set => SetValue(GrabHandlePressedImageProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScrollThreshold
         {
-            get
-            {
-                float? temp = (float?)GetValue(ScrollThresholdProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScrollThresholdProperty, value);
-            }
+            get => (float?)GetValue(ScrollThresholdProperty);
+            set => SetValue(ScrollThresholdProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? ScrollSpeed
         {
-            get
-            {
-                float? temp = (float?)GetValue(ScrollSpeedProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(ScrollSpeedProperty, value);
-            }
+            get => (float?)GetValue(ScrollSpeedProperty);
+            set => SetValue(ScrollSpeedProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 SelectionHighlightColor
         {
-            get
-            {
-                Vector4 temp = (Vector4)GetValue(SelectionHighlightColorProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(SelectionHighlightColorProperty, value);
-            }
+            get => (Vector4)GetValue(SelectionHighlightColorProperty);
+            set => SetValue(SelectionHighlightColorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle DecorationBoundingBox
         {
-            get
-            {
-                Rectangle temp = (Rectangle)GetValue(DecorationBoundingBoxProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(DecorationBoundingBoxProperty, value);
-            }
+            get => (Rectangle)GetValue(DecorationBoundingBoxProperty);
+            set => SetValue(DecorationBoundingBoxProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 InputColor
         {
-            get
-            {
-                Vector4 temp = (Vector4)GetValue(InputColorProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputColorProperty, value);
-            }
+            get => (Vector4)GetValue(InputColorProperty);
+            set => SetValue(InputColorProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? EnableMarkup
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EnableMarkupProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EnableMarkupProperty, value);
-            }
+            get => (bool?)GetValue(EnableMarkupProperty);
+            set => SetValue(EnableMarkupProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputFontFamily
         {
-            get
-            {
-                string temp = (string)GetValue(InputFontFamilyProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputFontFamilyProperty, value);
-            }
+            get => (string)GetValue(InputFontFamilyProperty);
+            set => SetValue(InputFontFamilyProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? InputPointSize
         {
-            get
-            {
-                float? temp = (float?)GetValue(InputPointSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputPointSizeProperty, value);
-            }
+            get => (float?)GetValue(InputPointSizeProperty);
+            set => SetValue(InputPointSizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputUnderline
         {
-            get
-            {
-                string temp = (string)GetValue(InputUnderlineProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputUnderlineProperty, value);
-            }
+            get => (string)GetValue(InputUnderlineProperty);
+            set => SetValue(InputUnderlineProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputShadow
         {
-            get
-            {
-                string temp = (string)GetValue(InputShadowProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputShadowProperty, value);
-            }
+            get => (string)GetValue(InputShadowProperty);
+            set => SetValue(InputShadowProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Emboss
         {
-            get
-            {
-                string temp = (string)GetValue(EmbossProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EmbossProperty, value);
-            }
+            get => (string)GetValue(EmbossProperty);
+            set => SetValue(EmbossProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputEmboss
         {
-            get
-            {
-                string temp = (string)GetValue(InputEmbossProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputEmbossProperty, value);
-            }
+            get => (string)GetValue(InputEmbossProperty);
+            set => SetValue(InputEmbossProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string InputOutline
         {
-            get
-            {
-                string temp = (string)GetValue(InputOutlineProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(InputOutlineProperty, value);
-            }
+            get => (string)GetValue(InputOutlineProperty);
+            set => SetValue(InputOutlineProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PixelSize
         {
-            get
-            {
-                float? temp = (float?)GetValue(PixelSizeProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(PixelSizeProperty, value);
-            }
+            get => (float?)GetValue(PixelSizeProperty);
+            set => SetValue(PixelSizeProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? EnableSelection
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EnableSelectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EnableSelectionProperty, value);
-            }
+            get => (bool?)GetValue(EnableSelectionProperty);
+            set => SetValue(EnableSelectionProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Ellipsis
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(EllipsisProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(EllipsisProperty, value);
-            }
+            get => (bool?)GetValue(EllipsisProperty);
+            set => SetValue(EllipsisProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? MatchSystemLanguageDirection
         {
-            get
-            {
-                bool? temp = (bool?)GetValue(MatchSystemLanguageDirectionProperty);
-                return temp;
-            }
-            set
-            {
-                SetValue(MatchSystemLanguageDirectionProperty, value);
-            }
+            get => (bool?)GetValue(MatchSystemLanguageDirectionProperty);
+            set => SetValue(MatchSystemLanguageDirectionProperty, value);
         }
 
-        private Selector<Color> textColorSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> TextColor
         {
             get
             {
-                return (Selector<Color>)GetValue(TextColorSelectorProperty);
+                Selector<Color> tmp = (Selector<Color>)GetValue(TextColorSelectorProperty);
+                return (null != tmp) ? tmp : textColorSelector = new Selector<Color>();
             }
-            set
-            {
-                SetValue(TextColorSelectorProperty, value);
-            }
+            set => SetValue(TextColorSelectorProperty, value);
         }
 
-        private Selector<float?> pointSizeSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<float?> PointSize
         {
             get
             {
-                return (Selector<float?>)GetValue(PointSizeSelectorProperty);
+                Selector<float?> tmp = (Selector<float?>)GetValue(PointSizeSelectorProperty);
+                return (null != tmp) ? tmp : pointSizeSelector = new Selector<float?>();
             }
-            set
-            {
-                SetValue(PointSizeSelectorProperty, value);
-            }
+            set => SetValue(PointSizeSelectorProperty, value);
         }
 
-        private Selector<Vector4> placeholderTextColorSelector;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Vector4> PlaceholderTextColor
         {
             get
             {
-                return (Selector<Vector4>)GetValue(PlaceholderTextColorSelectorProperty);
+                Selector<Vector4> tmp = (Selector<Vector4>)GetValue(PlaceholderTextColorSelectorProperty);
+                return (null != tmp) ? tmp : placeholderTextColorSelector = new Selector<Vector4>();
             }
-            set
-            {
-                SetValue(PlaceholderTextColorSelectorProperty, value);
-            }
+            set => SetValue(PlaceholderTextColorSelectorProperty, value);
         }
 
-        private Selector<Vector4> primaryCursorColorSelector;
         /// <summary>
         /// Gets or sets primary cursor color.
         /// </summary>
@@ -1116,12 +892,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Selector<Vector4>)GetValue(PrimaryCursorColorSelectorProperty);
+                Selector<Vector4> tmp = (Selector<Vector4>)GetValue(PrimaryCursorColorSelectorProperty);
+                return (null != tmp) ? tmp : primaryCursorColorSelector = new Selector<Vector4>();
             }
-            set
-            {
-                SetValue(PrimaryCursorColorSelectorProperty, value);
-            }
+            set => SetValue(PrimaryCursorColorSelectorProperty, value);
         }
     }
 }
