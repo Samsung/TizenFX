@@ -57,11 +57,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size IndicatorSize
-        {
-            get;
-            set;
-        }
+        public Size IndicatorSize { get; set; }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
@@ -69,11 +65,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Selector<string> IndicatorImageURL
-        {
-            get;
-            set;
-        } = new Selector<string>();
+        public Selector<string> IndicatorImageURL { get; set; } = new Selector<string>();
 
         /// <summary>
         /// Gets or sets the space of the indicator.
@@ -81,11 +73,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int IndicatorSpacing
-        {
-            get;
-            set;
-        }
+        public int IndicatorSpacing { get; set; }
 
         /// <summary>
         /// Retrieves a copy of PaginationStyle.
