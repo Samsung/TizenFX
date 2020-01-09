@@ -600,7 +600,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.padding) viewStyle.padding = new Extents(viewStyle.OnPaddingChanged, 0, 0, 0, 0);
-            viewStyle.padding = (Extents)newValue;
+            viewStyle.padding.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -697,7 +697,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             if (null == viewStyle.margin) viewStyle.margin = new Extents(viewStyle.OnMarginChanged, 0, 0, 0, 0);
-            viewStyle.margin = (Extents)newValue;
+            viewStyle.margin.CopyFrom(null == newValue ? new Extents() : (Extents)newValue);
         },
         defaultValueCreator: (bindable) =>
         {
