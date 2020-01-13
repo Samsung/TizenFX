@@ -110,6 +110,10 @@ namespace Tizen.Sensor
         /// <summary>
         /// Stationary activity detector.
         /// </summary>
+        /// Auto Rotation sensor.
+        /// </summary>
+        AutoRotation = 0x901,
+        /// <summary>
         StationaryActivityDetector = 0x1A00,
         /// <summary>
         /// Walking activity detector.
@@ -318,5 +322,36 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Detected = 1
+    }
+    
+    /// <summary>
+    /// The auto rotation state.
+    /// </summary>
+    /// <since_tizen> 7 </since_tizen>
+    public enum AutoRotationState
+    {
+        /// <summary>
+        /// Degree_0 sate.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        Degree_0 = 1,
+
+        /// <summary>
+        /// Degree_90 state.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        Degree_90 = 2,
+
+        /// <summary>
+        /// Degree_180 state.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        Degree_180 = 3,
+
+        /// <summary>
+        /// Degree_270 state.
+        /// </summary>
+        /// <since_tizen> 7 </since_tizen>
+        Degree_270 = 4
     }
 }
