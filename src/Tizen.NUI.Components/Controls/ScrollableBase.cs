@@ -28,6 +28,7 @@ namespace Tizen.NUI.Components
     {
 	    static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
+        private bool mScrollEnabled = true;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -198,6 +199,36 @@ namespace Tizen.NUI.Components
                     mScrollingDirection = value;
                     mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
                     mPanGestureDetector.AddDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionHorizontal : PanGestureDetector.DirectionVertical);
+                }
+            }
+        }
+
+        /// <summary>
+        /// [Draft] Enable or disable scrolling.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                    if(mScrollEnabled)
+                    {
+                        mPanGestureDetector.Detected += OnPanGestureDetected;
+                        mTapGestureDetector.Detected += OnTapGestureDetected;
+                    }
+                    else
+                    {
+                        mPanGestureDetector.Detected -= OnPanGestureDetected;
+                        mTapGestureDetector.Detected -= OnTapGestureDetected;
+                    }
                 }
             }
         }
