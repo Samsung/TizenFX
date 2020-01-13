@@ -110,7 +110,7 @@ internal static partial class Interop
         [DllImport(Libraries.AppcoreWidget)]
         internal static extern IntPtr widget_app_get_id(IntPtr handle);
 
-        internal static string GetAppId(IntPtr handle)
+        internal static string GetId(IntPtr handle)
         {
             return Marshal.PtrToStringAnsi(widget_app_get_id(handle));
         }
