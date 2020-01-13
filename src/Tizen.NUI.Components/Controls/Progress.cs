@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create("MaxValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create("MinValue", typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(float), typeof(Progress), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Progress)bindable;
             if (newValue != null)
@@ -133,6 +133,7 @@ namespace Tizen.NUI.Components
         private float currentValue = 0;
         private float bufferValue = 0;
 
+        static Progress() { }
         /// <summary>
         /// The constructor of Progress
         /// </summary>
@@ -426,7 +427,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ProgressStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ProgressStyle;
+            ProgressStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ProgressStyle;
             if (null != tempStyle)
             {
                 Style.CopyFrom(tempStyle);

@@ -94,6 +94,24 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
+        /// Read running activity detector data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading running activity detector data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading running activity detector data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Running = (DetectorState)sensorData.values[0];
+            ActivityAccuracy = (SensorDataAccuracy)sensorData.accuracy;
+        }
+
+        /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in running the activity detector data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

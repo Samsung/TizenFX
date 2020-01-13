@@ -46,13 +46,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Count
-        {
-            get
-            {
-                return itemGroup.Count;
-            }
-        }
+        public int Count => itemGroup.Count;
 
         /// <summary>
         /// Get the index of currently or latest selected item.
@@ -60,13 +54,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int SelectedIndex
-        {
-            get
-            {
-                return selectedIndex;
-            }
-        }
+        public int SelectedIndex => selectedIndex;
 
         /// <summary>
         /// Construct SelectionGroup
@@ -114,6 +102,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void AddSelection(SelectButton selection)
         {
+            if (null == selection) return;
             if (itemGroup.Contains(selection))
             {
                 return;
@@ -139,7 +128,6 @@ namespace Tizen.NUI.Components
             itemGroup.Remove(selection);
         }
 
-
         /// <summary>
         /// Overrides this method if want to handle behavior after pressing return key by user.
         /// </summary>
@@ -149,7 +137,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void SelectionHandler(SelectButton selection)
         {
-
         }
 
         private void OnSelectedEvent(object sender, SelectButton.SelectEventArgs args)

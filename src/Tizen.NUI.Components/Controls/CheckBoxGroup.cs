@@ -34,6 +34,8 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CheckBoxGroup : SelectGroup
     {
+        static CheckBoxGroup() { }
+
         /// <summary>
         /// Construct CheckBoxGroup
         /// </summary>
@@ -42,7 +44,6 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CheckBoxGroup() : base()
         {
-
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(CheckBox check)
         {
+            if (null == check) return;
             base.AddSelection(check);
             check.ItemGroup = this;
         }
@@ -67,6 +69,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(CheckBox check)
         {
+            if (null == check) return;
             base.RemoveSelection(check);
             check.ItemGroup = null;
         }
@@ -79,7 +82,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox GetItemByIndex(int index)
+        public CheckBox GetItem(int index)
         {
             return itemGroup[index] as CheckBox;
         }
@@ -91,7 +94,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int[] GetCheckedIndexArray()
+        public int[] GetCheckedIndices()
         {
             List<int> selectedItemsList = new List<int>();
             for (int i = 0; i < itemGroup.Count; i++)
@@ -113,7 +116,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox[] GetCheckedItemArray()
+        public CheckBox[] GetCheckedItems()
         {
             List<CheckBox> selectedList = new List<CheckBox>();
 
@@ -154,7 +157,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void CheckingAll(bool state)
+        public void CheckAll(bool state)
         {
             foreach (CheckBox cb in itemGroup)
             {

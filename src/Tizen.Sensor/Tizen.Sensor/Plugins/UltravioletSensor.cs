@@ -105,6 +105,23 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read ultraviolet sensor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading ultraviolet sensor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading ultraviolet sensor data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            UltravioletIndex = sensorData.values[0];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()

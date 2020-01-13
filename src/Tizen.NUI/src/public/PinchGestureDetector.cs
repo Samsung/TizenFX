@@ -28,10 +28,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PinchGestureDetector : GestureDetector
     {
-
-        private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
-        private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
-
         /// <summary>
         /// Creates an initialized PinchGestureDetector.
         /// </summary>
@@ -58,8 +54,10 @@ namespace Tizen.NUI
         {
         }
 
+        private DaliEventHandler<object, DetectedEventArgs> _detectedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr pinchGesture);
+        private delegate void DetectedCallbackType(IntPtr actor, IntPtr pinchGesture);
+        private DetectedCallbackType _detectedCallback;
 
         /// <summary>
         /// This signal is emitted when the specified pinch is detected on the attached view.
@@ -70,29 +68,22 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_detectedEventHandler == null)
                 {
-                    // Restricted to only one listener
-                    if (_pinchGestureEventHandler == null)
-                    {
-                        _pinchGestureEventHandler += value;
-
-                        _pinchGestureCallbackDelegate = new DetectedCallbackDelegate(OnPinchGestureDetected);
-                        this.DetectedSignal().Connect(_pinchGestureCallbackDelegate);
-                    }
+                    _detectedCallback = OnPinchGestureDetected;
+                    DetectedSignal().Connect(_detectedCallback);
                 }
+
+                _detectedEventHandler += value;
             }
 
             remove
             {
-                lock (this)
-                {
-                    if (_pinchGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_pinchGestureCallbackDelegate);
-                    }
+                _detectedEventHandler -= value;
 
-                    _pinchGestureEventHandler -= value;
+                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                {
+                    DetectedSignal().Disconnect(_detectedCallback);
                 }
             }
         }
@@ -135,6 +126,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
+            if (_detectedCallback != null)
+            {
+                DetectedSignal().Disconnect(_detectedCallback);
+            }
+
             Interop.PinchGesture.delete_PinchGestureDetector(swigCPtr);
         }
 
@@ -151,10 +147,10 @@ namespace Tizen.NUI
 
             e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
 
-            if (_pinchGestureEventHandler != null)
+            if (_detectedEventHandler != null)
             {
                 //Here we send all data to user event handlers.
-                _pinchGestureEventHandler(this, e);
+                _detectedEventHandler(this, e);
             }
         }
 

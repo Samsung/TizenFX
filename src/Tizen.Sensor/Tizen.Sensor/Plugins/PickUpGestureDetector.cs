@@ -110,6 +110,23 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
+        /// Read pick up gesture detector data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading pick up gesture detector data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading pick up gesture detector data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            PickUp = (DetectorState)sensorData.values[0];
+        }
+
+        /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the pick up gesture detector data.	
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

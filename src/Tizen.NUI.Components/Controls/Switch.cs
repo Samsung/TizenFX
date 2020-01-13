@@ -31,6 +31,7 @@ namespace Tizen.NUI.Components
         private ImageView trackImage;
         private ImageView thumbImage;
         private Animation handlerAni = null;
+        static Switch() { }
 
         /// <summary>
         /// Creates a new instance of a Switch.
@@ -96,7 +97,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector switchBackgroundImageURLSelector = new StringSelector();
         /// <summary>
         /// Background image's resource url selector in Switch.
         /// </summary>
@@ -105,11 +105,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return switchBackgroundImageURLSelector;
+                StringSelector strSl = new StringSelector();
+                strSl.Clone(Style?.Track?.ResourceUrl);
+                return strSl;
             }
             set
             {
-                switchBackgroundImageURLSelector.Clone(value);
+                if (null != value && null != Style?.Track)
+                {
+                    Style.Track.ResourceUrl = value;
+                }
             }
         }
 
@@ -132,7 +137,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private StringSelector switchHandlerImageURLSelector = new StringSelector();
         /// <summary>
         /// Handler image's resource url selector in Switch.
         /// </summary>
@@ -141,11 +145,16 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return switchHandlerImageURLSelector;
+                StringSelector strSl = new StringSelector();
+                strSl.Clone(Style?.Thumb?.ResourceUrl);
+                return strSl;
             }
             set
             {
-                switchHandlerImageURLSelector.Clone(value);
+                if (null != value && null != Style?.Thumb)
+                {
+                    Style.Thumb.ResourceUrl = value;
+                }
             }
         }
 
@@ -206,7 +215,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            if (!IsEnabled) return false;
+            if (!IsEnabled || null == key) return false;
 
             bool ret = base.OnKey(key);
             if (key.State == Key.StateType.Up)
@@ -231,7 +240,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnTouch(Touch touch)
         {
-            if(!IsEnabled) return false;
+            if(!IsEnabled || null == touch) return false;
 
             PointStateType state = touch.GetState(0);
             bool ret = base.OnTouch(touch);
@@ -292,7 +301,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as SwitchStyle;
+            SwitchStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
             if (null != tempAttributes)
             {
                 Style.CopyFrom(tempAttributes);

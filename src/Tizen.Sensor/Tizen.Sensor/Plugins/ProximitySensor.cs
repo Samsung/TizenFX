@@ -104,6 +104,23 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read proximity sensor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading proximity sensor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading proximity sensor data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Proximity = (ProximitySensorState)sensorData.values[0];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()

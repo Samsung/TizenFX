@@ -57,8 +57,15 @@ namespace Tizen.NUI.BaseComponents
         private bool _backgroundImageSynchronosLoading = false;
         private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
         private string[] transitionNames;
+        private Rectangle backgroundImageBorder;
+
+        private ImageShadow imageShadow;
+
+        private Shadow boxShadow;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
+
+        static View() {}
 
         private ViewStyle viewStyle;
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -168,9 +175,12 @@ namespace Tizen.NUI.BaseComponents
 
                     ControlStateChangeEvent?.Invoke(this, value);
 
-                    foreach (View child in Children)
+                    if (true == OnControlStateChanged(value))
                     {
-                        child.ControlState = value;
+                        foreach (View child in Children)
+                        {
+                            child.ControlState = value;
+                        }
                     }
                 }
             }
@@ -256,6 +266,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get or set the border of background image.
+        /// </summary>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle BackgroundImageBorder
+        {
+            get
+            {
+                return (Rectangle)GetValue(BackgroundImageBorderProperty);
+            }
+            set
+            {
+                SetValue(BackgroundImageBorderProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The background of view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -268,6 +296,50 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BackgroundProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Describes a shadow as an image for a View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "BoxShadow".
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageShadow ImageShadow
+        {
+            get
+            {
+                var value = (ImageShadow)GetValue(ImageShadowProperty);
+                return value == null ? null : new ImageShadow(value, OnImageShadowChanged);
+            }
+            set
+            {
+                SetValue(ImageShadowProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Describes a box shaped shadow drawing for a View.
+        /// It is null by default.
+        /// </summary>
+        /// <remarks>
+        /// The mutually exclusive with "ImageShadow".
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shadow BoxShadow
+        {
+            get
+            {
+                var value = (Shadow)GetValue(BoxShadowProperty);
+                return value == null ? null : new Shadow(value, OnBoxShadowChanged);
+            }
+            set
+            {
+                SetValue(BoxShadowProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -643,11 +715,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
-        /// <remarks>
-        /// <para>
-        /// Animatable - This property can be animated using <c>Animation</c> class.
-        /// </para>
-        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float Opacity
         {
@@ -1182,6 +1249,9 @@ namespace Tizen.NUI.BaseComponents
         /// <para>
         /// If the view is not visible, then the view and its children will not be rendered.
         /// This is regardless of the individual visibility values of the children, i.e., the view will only be rendered if all of its parents have visibility set to true.
+        /// </para>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
         /// </para>
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -2161,17 +2231,45 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get attribues, it is abstract function and must be override.
+        /// Get Style, it is abstract function and must be override.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ViewStyle GetViewStyle()
         {
-            viewStyle = new ViewStyle();
-            return viewStyle;
+            return new ViewStyle();
         }
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnControlStateChanged(ControlStates currentState)
+        {
+            //If need to apply the state to all child, return true;
+            return true;
+        }
+        internal static readonly BindableProperty BackgroundImageSelectorProperty = BindableProperty.Create("BackgroundImageSelector", typeof(Selector<string>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageSelector.Clone((Selector<string>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageSelector;
+        });
+        private TriggerableSelector<string> _backgroundImageSelector;
+        private TriggerableSelector<string> backgroundImageSelector
+        {
+            get
+            {
+                if (null == _backgroundImageSelector)
+                {
+                    _backgroundImageSelector = new TriggerableSelector<string>(this, BackgroundImageProperty);
+                }
+                return _backgroundImageSelector;
+            }
+        }
         internal static readonly BindableProperty BackgroundColorSelectorProperty = BindableProperty.Create("BackgroundColorSelector", typeof(Selector<Color>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -2194,7 +2292,28 @@ namespace Tizen.NUI.BaseComponents
                 return _backgroundColorSelector;
             }
         }
-
+        internal static readonly BindableProperty BackgroundImageBorderSelectorProperty = BindableProperty.Create("BackgroundImageBorderSelector", typeof(Selector<Rectangle>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            view.backgroundImageBorderSelector.Clone((Selector<Rectangle>)newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            return view.backgroundImageBorderSelector;
+        });
+        private TriggerableSelector<Rectangle> _backgroundImageBorderSelector;
+        private TriggerableSelector<Rectangle> backgroundImageBorderSelector
+        {
+            get
+            {
+                if (null == _backgroundImageBorderSelector)
+                {
+                    _backgroundImageBorderSelector = new TriggerableSelector<Rectangle>(this, BackgroundImageBorderProperty);
+                }
+                return _backgroundImageBorderSelector;
+            }
+        }
         internal static readonly BindableProperty OpacitySelectorProperty = BindableProperty.Create("OpacitySelector", typeof(Selector<float?>), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
