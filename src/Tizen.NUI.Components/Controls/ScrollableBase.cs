@@ -28,6 +28,7 @@ namespace Tizen.NUI.Components
     {
 	    static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
+        private bool mScrollEnabled = true;
 
         private class ScrollableBaseCustomLayout : LayoutGroup
         {
@@ -203,12 +204,50 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// [Draft] Enable or disable scrolling.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ScrollEnabled
+        {
+            get
+            {
+                return mScrollEnabled;
+            }
+            set
+            {
+                if (value != mScrollEnabled)
+                {
+                    mScrollEnabled = value;
+                    if(mScrollEnabled)
+                    {
+                        mPanGestureDetector.Detected += OnPanGestureDetected;
+                        mTapGestureDetector.Detected += OnTapGestureDetected;
+                    }
+                    else
+                    {
+                        mPanGestureDetector.Detected -= OnPanGestureDetected;
+                        mTapGestureDetector.Detected -= OnTapGestureDetected;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// [Draft] Pages mode, enables moving to the next or return to current page depending on pan displacement.
         /// Default is false.
         /// </summary>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SnapToPage { set; get; } = false;
+
+        /// <summary>
+        /// [Draft] Get current page.
+        /// Working propery with SnapToPage property.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int CurrentPage { get; private set; } = 0;
 
         /// <summary>
         /// [Draft] Pages mode, Number of pages.
@@ -270,8 +309,6 @@ namespace Tizen.NUI.Components
 
         // If false then can only flick pages when the current animation/scroll as ended.
         private bool flickWhenAnimating = false;
-
-        private int currentPage = 0;
 
         /// <summary>
         /// [Draft] Constructor
@@ -529,24 +566,24 @@ namespace Tizen.NUI.Components
         private void PageSnap()
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
-                                                                " currentPage[" + currentPage + "]" );
+                                                                " currentPage[" + CurrentPage + "]" );
 
             //Increment current page if total displacement enough to warrant a page change.
             if (Math.Abs(totalDisplacementForPan) > (PageWidth * ratioOfScreenWidthToCompleteScroll))
             {
                 if (totalDisplacementForPan < 0)
                 {
-                    currentPage = Math.Min(NumberOfPages-1, ++currentPage);
+                    CurrentPage = Math.Min(NumberOfPages - 1, ++CurrentPage);
                 }
                 else
                 {
-                    currentPage = Math.Max(0, --currentPage);
+                    CurrentPage = Math.Max(0, --CurrentPage);
                 }
             }
 
             // Animate to new page or reposition to current page
-            int destinationX = -(currentPage * PageWidth);
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + currentPage + "] to:"+ destinationX + " from:" + mScrollingChild.PositionX);
+            int destinationX = -(CurrentPage * PageWidth);
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:"+ destinationX + " from:" + mScrollingChild.PositionX);
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
@@ -558,15 +595,15 @@ namespace Tizen.NUI.Components
               {
                   if(flickDisplacement < 0)
                   {
-                      currentPage = Math.Min(NumberOfPages - 1, currentPage + 1);
-                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap - to page:" + currentPage);
+                      CurrentPage = Math.Min(NumberOfPages - 1, CurrentPage + 1);
+                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap - to page:" + CurrentPage);
                   }
                   else
                   {
-                      currentPage = Math.Max(0, currentPage - 1);
-                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + currentPage);
+                      CurrentPage = Math.Max(0, CurrentPage - 1);
+                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + CurrentPage);
                   }
-                  float targetPosition = -(currentPage* PageWidth); // page size
+                  float targetPosition = -(CurrentPage* PageWidth); // page size
                   Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + targetPosition);
                   AnimateChildTo(ScrollDuration,targetPosition);
               }
