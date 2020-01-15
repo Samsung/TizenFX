@@ -6,7 +6,7 @@ namespace Tizen.NUI.Samples
 {
     public class CubeTransitionEffectSample : IExample
     {
-        static string DEMO_IMAGE_DIR = CommonResource.GetFHResourcePath() + "CubeTransitionEffect/";
+        static string DEMO_IMAGE_DIR = CommonResource.GetDaliResourcePath() + "CubeTransitionEffect/";
 
         string TOOLBAR_IMAGE = DEMO_IMAGE_DIR + "top-bar.png";
         string APPLICATION_TITLE_WAVE = "Cube Transition: Wave";

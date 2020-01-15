@@ -25,11 +25,15 @@
         <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
       </group>
       <group targetFramework="Tizen7.0">
-        <dependency id="Tizen.NET.API7" version="$fxversion$" />
+        <dependency id="Tizen.NET.API7" version="7.0.0.15037" />
+        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+      </group>
+      <group targetFramework="Tizen8.0">
+        <dependency id="Tizen.NET.API8" version="$fxversion$" />
         <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
       </group>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Tizen.NET.API7" version="$fxversion$" />
+        <dependency id="Tizen.NET.API8" version="$fxversion$" />
         <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
       </group>
     </dependencies>
