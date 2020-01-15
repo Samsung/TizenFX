@@ -1380,11 +1380,13 @@ namespace Tizen.NUI.BaseComponents
         /// ImageShadow Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create("ImageShadow", typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
             view.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue, view);
             Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow));
+
+            if (view.imageShadow != null) view.boxShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1395,11 +1397,13 @@ namespace Tizen.NUI.BaseComponents
         /// Shadow Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create("BoxShadow", typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
             view.boxShadow = SelectorHelper<Shadow>.Clone(newValue, view);
             Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow));
+
+            if (view.boxShadow != null) view.imageShadow = null;
         },
         defaultValueCreator: (bindable) =>
         {
