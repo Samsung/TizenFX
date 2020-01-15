@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : TransformablePropertyMap, Tizen.NUI.ICloneable
+    public class ImageShadow : ShadowBase, Tizen.NUI.ICloneable
     {
         private string url;
 
@@ -36,13 +36,29 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow() : base()
         {
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
         }
 
         internal ImageShadow(ImageShadow other, PropertyChangedCallback callback = null) : base(other)
         {
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+
             Url = other.Url;
             Border = other.Border;
             OnPropertyChanged = callback;
+        }
+
+        /// <summary>
+        /// The string conversion
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator ImageShadow(string value)
+        {
+            ImageShadow imageShadow = new ImageShadow()
+            {
+                Url = value ?? "",
+            };
+            return imageShadow;
         }
 
         /// <summary>
@@ -56,6 +72,21 @@ namespace Tizen.NUI
                 Scale = scale,
                 Url = url,
                 Border = border
+            };
+        }
+
+        /// <summary>
+        /// Deep copy method (static)
+        /// This provides nullity check.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public object Clone(ImageShadow instance)
+        {
+            return instance == null ? null : new ImageShadow() {
+                Offset = instance.offset,
+                Scale = instance.scale,
+                Url = instance.url,
+                Border = instance.border
             };
         }
 
@@ -112,28 +143,9 @@ namespace Tizen.NUI
             }
         }
 
-        override internal string ToDebugString()
-        {
-            string result = "";
-            // TODO
-            return result;
-        }
-
         override internal bool IsValid()
         {
-            return url != null;
-        }
-
-        static internal new PropertyValue ToPropertyValue(TransformablePropertyMap instance)
-        {
-            if (instance == null || !instance.IsValid())
-            {
-                return new PropertyValue();
-            }
-
-            instance.propertyMap.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.NPatch));
-
-            return new PropertyValue(instance.propertyMap);
+            return !string.IsNullOrEmpty(url);
         }
     }
 }

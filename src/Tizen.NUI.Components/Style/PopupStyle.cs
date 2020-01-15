@@ -63,14 +63,6 @@ namespace Tizen.NUI.Components
         public TextLabelStyle Title { get; set; }
 
         /// <summary>
-        /// Shadow offset.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents ShadowExtents { get; set; }
-
-        /// <summary>
         /// Popup button's attributes.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -100,17 +92,17 @@ namespace Tizen.NUI.Components
                 {
                     Buttons.CopyFrom(popupAttributes.Buttons);
                 }
-
-                if (popupAttributes.ShadowExtents != null)
-                {
-                    ShadowExtents = new Extents(popupAttributes.ShadowExtents.Start, popupAttributes.ShadowExtents.End, popupAttributes.ShadowExtents.Top, popupAttributes.ShadowExtents.Bottom);
-                }
             }
         }
 
         private void InitSubStyle()
         {
-            ShadowExtents = new Extents(24, 24, 24, 24);
+            // TODO Apply proper shadow as a default for a Popup
+            BoxShadow = new Shadow()
+            {
+                Offset = new Vector2(5, 5),
+            };
+
             Title = new TextLabelStyle()
             {
                 Size = new Size(0, 0),

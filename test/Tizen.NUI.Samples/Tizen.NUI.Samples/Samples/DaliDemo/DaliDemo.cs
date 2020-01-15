@@ -95,6 +95,7 @@ namespace Tizen.NUI.Samples
             CreateDaliDemo();
 
             Window.Instance.KeyEvent += Instance_KeyEvent;
+            Window.Instance.BackgroundColor = Color.White;
         }
 
         private void Instance_KeyEvent(object sender, Window.KeyEventArgs e)

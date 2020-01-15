@@ -195,46 +195,23 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ItemShadowUrlProperty = BindableProperty.Create(nameof(ItemShadowUrl), typeof(string), typeof(ButtonGroup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ItemImageShadowProperty = BindableProperty.Create(nameof(ItemImageShadow), typeof(ImageShadow), typeof(ButtonGroup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
+            if (btGroup.itemGroup != null)
             {
+                var shadow = (ImageShadow)newValue;
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    if (btn.Style.Shadow.ResourceUrl == null)
-                    {
-                        btn.Style.Shadow.ResourceUrl = new Selector<string>();
-                    }
-                    btn.Style.Shadow.ResourceUrl = (string)newValue;
+                    btn.Style.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
                 }
-                btGroup.itemShadowUrl = (string)newValue;
+                btGroup.itemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
             }
         },
         defaultValueCreator: (bindable) =>
         {
             ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemShadowUrl;
-        });
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ItemShadowBorderProperty = BindableProperty.Create(nameof(ItemShadowBorder), typeof(Rectangle), typeof(ButtonGroup), new Rectangle(), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ButtonGroup btGroup = (ButtonGroup)bindable;
-            if (btGroup.itemGroup != null && newValue != null)
-            {
-                foreach (Button btn in btGroup.itemGroup)
-                {
-                    btn.Style.Shadow.Border = (Rectangle)newValue;
-                }
-                btGroup.itemShadowBorder = (Rectangle)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            ButtonGroup btGroup = (ButtonGroup)bindable;
-            return btGroup.itemShadowBorder;
+            return btGroup.itemImageShadow;
         });
 
         static ButtonGroup() { }
@@ -537,32 +514,10 @@ namespace Tizen.NUI.Components
         /// Get or set shadow resource of item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ItemShadowUrl
+        public ImageShadow ItemImageShadow
         {
-            get
-            {
-                return (string)GetValue(ItemShadowUrlProperty);
-            }
-            set
-            {
-                SetValue(ItemShadowUrlProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Get or set shadow border of item.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ItemShadowBorder
-        {
-            get
-            {
-                return (Rectangle)GetValue(ItemShadowBorderProperty);
-            }
-            set
-            {
-                SetValue(ItemShadowBorderProperty, value);
-            }
+            get => (ImageShadow)GetValue(ItemImageShadowProperty);
+            set => SetValue(ItemImageShadowProperty, value);
         }
 
         /// <summary>
@@ -591,7 +546,6 @@ namespace Tizen.NUI.Components
         private Selector<Color> overLayBackgroundColorSelector = new Selector<Color>();
         private string itemBackgroundImageUrl;
         private Rectangle itemBackgroundBorder = new Rectangle();
-        private string itemShadowUrl;
-        private Rectangle itemShadowBorder = new Rectangle();
+        private ImageShadow itemImageShadow;
     }
 }

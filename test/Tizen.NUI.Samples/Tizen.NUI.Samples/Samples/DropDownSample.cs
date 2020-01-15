@@ -151,7 +151,7 @@ namespace Tizen.NUI.Samples
                         TextColor = new Selector<Color> { All = new Color(0, 0, 0, 1) },
                         FontFamily = "SamsungOneUI 500",
                     },
-                    Icon = new ImageControlStyle
+                    Icon = new ImageViewStyle
                     {
                         Size = new Size(48, 48),
                         ResourceUrl = new Selector<string> { All = CommonResource.GetFHResourcePath() + "6. List/list_ic_dropdown.png" },
