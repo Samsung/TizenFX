@@ -184,45 +184,19 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonShadowProperty = BindableProperty.Create(nameof(ButtonShadow), typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ButtonImageShadowProperty = BindableProperty.Create(nameof(ButtonImageShadow), typeof(ImageShadow), typeof(Popup), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if (newValue != null)
-            {
-                if (instance.Style.Buttons.Shadow.ResourceUrl == null)
-                {
-                    instance.Style.Buttons.Shadow.ResourceUrl = new Selector<string>();
-                }
-                instance.btGroup.ItemShadowUrl = (string)newValue;
-                instance.Style.Buttons.Shadow.ResourceUrl = (string)newValue;
-            }
+            ImageShadow shadow = (ImageShadow)newValue;
+            instance.btGroup.ItemImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
+            instance.Style.Buttons.ImageShadow = (ImageShadow)ImageShadow.Clone(shadow);
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Shadow?.ResourceUrl?.All;
+            return instance.Style?.Buttons?.ImageShadow?.All;
         });
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ButtonShadowBorderProperty = BindableProperty.Create(nameof(ButtonShadowBorder), typeof(Rectangle), typeof(Popup), new Rectangle(0, 0, 0, 0), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Popup)bindable;
-            if (newValue != null)
-            {
-                if (instance.Style.Buttons.Shadow.Border == null)
-                {
-                    instance.Style.Buttons.Shadow.Border = new Selector<Rectangle>();
-                }
-                instance.btGroup.ItemShadowBorder = (Rectangle)newValue;
-                instance.Style.Buttons.Shadow.Border = (Rectangle)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Popup)bindable;
-            return instance.Style?.Buttons?.Shadow?.Border?.All;
-        });
 
         private TextLabel titleText;
         private ButtonGroup btGroup = null;
@@ -470,18 +444,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Shadow offset in Popup, including left, right, up and bottom offset.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector4 ShadowOffset
-        {
-            get;
-            set;
-        }
-
-        /// <summary>
         /// Button height in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -617,41 +579,17 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Button shadow's resource url in Popup.
+        /// Button's image shadow in Popup.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ButtonShadow
+        public ImageShadow ButtonImageShadow
         {
-            get
-            {
-                return (string)GetValue(ButtonShadowProperty);
-            }
-            set
-            {
-                SetValue(ButtonShadowProperty, value);
-            }
+            get => (ImageShadow)GetValue(ButtonImageShadowProperty);
+            set => SetValue(ButtonImageShadowProperty, value);
         }
 
-        /// <summary>
-        /// Button shadow's border in Popup.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle ButtonShadowBorder
-        {
-            get
-            {
-
-                return (Rectangle)GetValue(ButtonShadowBorderProperty);
-            }
-            set
-            {
-                SetValue(ButtonShadowBorderProperty, value);
-            }
-        }
 
         /// <summary>
         /// Set button text by index.
@@ -799,7 +737,6 @@ namespace Tizen.NUI.Components
 
         private void UpdateView()
         {
-            UpdateShadowExtens();
             btGroup.UpdateButton(Style.Buttons);
             UpdateContentView();
             UpdateTitle();
@@ -855,14 +792,6 @@ namespace Tizen.NUI.Components
             ContentView.Size = new Size(Size.Width - titleX * 2, Size.Height - titleY - titleH - buttonH);
             ContentView.Position = new Position(titleX, titleY + titleH);
             ContentView.RaiseToTop();
-        }
-
-        private void UpdateShadowExtens()
-        {
-            if (Style.ShadowExtents != null)
-            {
-                Style.Shadow.Size = new Size(Size.Width + Style.ShadowExtents.Start + Style.ShadowExtents.End, Size.Height + Style.ShadowExtents.Top + Style.ShadowExtents.Bottom);
-            }
         }
 
         private void UpdateTitle()

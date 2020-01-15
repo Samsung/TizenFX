@@ -164,7 +164,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageControlStyle Icon { get; set; }
+        public ImageViewStyle Icon { get; set; }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -284,7 +284,7 @@ namespace Tizen.NUI.Components
             };
             Text.PropertyChanged += SubStyleCalledEvent;
 
-            Icon = new ImageControlStyle()
+            Icon = new ImageViewStyle()
             {
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.Center,
