@@ -124,7 +124,7 @@ namespace Tizen.NUI.Components
         private ImageView overlayImage;
 
         private TextLabel buttonText;
-        private ImageControl buttonIcon;
+        private ImageView buttonIcon;
 
         private EventHandler<StateChangedEventArgs> stateChangeHander;
 
@@ -744,7 +744,7 @@ namespace Tizen.NUI.Components
 
                 if (null == buttonIcon)
                 {
-                    buttonIcon = new ImageControl();
+                    buttonIcon = new ImageView();
                     this.Add(buttonIcon);
                 }
 
