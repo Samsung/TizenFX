@@ -105,6 +105,23 @@ namespace Tizen.Sensor
             return count;
         }
 
+        /// <summary>
+        /// Read pressure sensor data synchronously.
+        /// </summary>
+        internal override void ReadData()
+        {
+            Interop.SensorEventStruct sensorData;
+            int error = Interop.SensorListener.ReadData(ListenerHandle, out sensorData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error reading pressure sensor data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Reading pressure sensor data failed");
+            }
+
+            TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
+            Pressure = sensorData.values[0];
+        }
+
         private static Interop.SensorListener.SensorEventCallback _callback;
 
         internal override void EventListenStart()

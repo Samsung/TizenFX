@@ -90,6 +90,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_set_attribute_int")]
         internal static extern int SetAttribute(IntPtr listenerHandle, SensorAttribute sensorAttribute, int option);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_listener_read_data")]
+        internal static extern int ReadData(IntPtr listenerHandle, out SensorEventStruct data);
     }
 
     internal static class SensorManager
