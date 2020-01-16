@@ -198,6 +198,23 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnTouch(Touch touch)
         {
+            // Handle Normal and Pressed states
+            PointStateType state = touch.GetState(0);
+            switch(state)
+            {
+                case PointStateType.Down:
+                    ControlState = ControlStates.Pressed;
+                    return true;
+                case PointStateType.Interrupted:
+                case PointStateType.Up:
+                    if (ControlState == ControlStates.Pressed)
+                    {
+                        ControlState = ControlStates.Normal;
+                    }
+                    return true;
+                default:
+                    break;
+            }
             return false;
         }
 
