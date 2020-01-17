@@ -1383,10 +1383,12 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
+            bool hadShadowExtents = view.HasShadowExtents();
             view.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue, view);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow));
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow, view));
 
             if (view.imageShadow != null) view.boxShadow = null;
+            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
         },
         defaultValueCreator: (bindable) =>
         {
@@ -1400,10 +1402,12 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
+            bool hadShadowExtents = view.HasShadowExtents();
             view.boxShadow = SelectorHelper<Shadow>.Clone(newValue, view);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow));
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow, view));
 
             if (view.boxShadow != null) view.imageShadow = null;
+            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
         },
         defaultValueCreator: (bindable) =>
         {

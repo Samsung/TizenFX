@@ -75,7 +75,7 @@ namespace Tizen.NUI
         {
             return new Shadow() {
                 Offset = offset,
-                Scale = scale,
+                Extents = extents,
                 Color = color,
                 BlurRadius = blurRadius
             };

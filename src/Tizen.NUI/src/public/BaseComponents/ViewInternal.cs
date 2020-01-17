@@ -1253,5 +1253,30 @@ namespace Tizen.NUI.BaseComponents
         {
             SizeModeFactor = new Vector3(x, y, z);
         }
+
+        private bool HasShadowExtents()
+        {
+            return (imageShadow != null && imageShadow.HasValidSizeExtents()) || (boxShadow != null && boxShadow.HasValidSizeExtents());
+        }
+
+        private void UpdateRelayoutCallbackForShadow(bool hadShadowExtents)
+        {
+            bool hasShadowExtents = HasShadowExtents();
+
+            if (!hadShadowExtents && hasShadowExtents)
+            {
+                Relayout += OnRelayoutForShadow;
+            }
+            else if (hadShadowExtents && !hasShadowExtents)
+            {
+                Relayout -= OnRelayoutForShadow;
+            }
+        }
+
+        private void OnRelayoutForShadow(object sender, global::System.EventArgs e)
+        {
+            ShadowBase shadow = ((ShadowBase)boxShadow ?? (ShadowBase)imageShadow);
+            Tizen.NUI.Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ShadowBase.ToPropertyValue(shadow, this));
+        }
     }
 }

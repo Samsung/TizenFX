@@ -69,7 +69,7 @@ namespace Tizen.NUI
         {
             return new ImageShadow() {
                 Offset = offset,
-                Scale = scale,
+                Extents = extents,
                 Url = url,
                 Border = border
             };
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         {
             return instance == null ? null : new ImageShadow() {
                 Offset = instance.offset,
-                Scale = instance.scale,
+                Extents = instance.extents,
                 Url = instance.url,
                 Border = instance.border
             };
