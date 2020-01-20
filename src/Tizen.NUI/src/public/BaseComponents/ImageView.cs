@@ -783,7 +783,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                UpdateImage(ImageVisualProperty.CropToMask, new PropertyValue((int)value));
+                UpdateImage(ImageVisualProperty.FittingMode, new PropertyValue((int)value));
             }
         }
 
