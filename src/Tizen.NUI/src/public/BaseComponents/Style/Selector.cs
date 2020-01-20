@@ -240,7 +240,7 @@ namespace Tizen.NUI.BaseComponents
         private BindableProperty targetBindableProperty;
     }
 
-    internal static class SelectorHelper<T> where T : class, Tizen.NUI.ICloneable
+    internal static class SelectorHelper<T> where T : class, Tizen.NUI.Internal.ICloneable
     {
         /// <summary>
         /// For the object type of T or Selector T, convert it to Selector T and return the cloned one.

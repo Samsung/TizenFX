@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The platform provided shadow drawing for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Shadow : ShadowBase, Tizen.NUI.ICloneable
+    public class Shadow : ShadowBase, Tizen.NUI.Internal.ICloneable
     {
         private static readonly Color noColor = new Color(0, 0, 0, 0);
 

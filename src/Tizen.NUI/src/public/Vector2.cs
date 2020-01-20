@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(Vector2TypeConverter))]
-    public class Vector2 : Disposable
+    public class Vector2 : Disposable, Tizen.NUI.Internal.ICloneable
     {
 
         /// <summary>
@@ -577,6 +577,15 @@ namespace Tizen.NUI
             float ret = Interop.Vector2.Vector2_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Deep copy method
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone()
+        {
+            return new Vector2(this.X, this.Y);
         }
 
     }

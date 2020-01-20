@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase, Tizen.NUI.ICloneable
+    public class ImageShadow : ShadowBase, Tizen.NUI.Internal.ICloneable
     {
         private string url;
 
