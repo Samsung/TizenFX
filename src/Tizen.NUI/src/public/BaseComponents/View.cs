@@ -59,9 +59,9 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private Rectangle backgroundImageBorder;
 
-        private ImageShadow imageShadow;
+        private ViewSelector<ImageShadow> imageShadow;
 
-        private Shadow boxShadow;
+        private ViewSelector<Shadow> boxShadow;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
