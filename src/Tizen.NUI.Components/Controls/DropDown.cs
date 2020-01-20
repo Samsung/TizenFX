@@ -691,7 +691,7 @@ namespace Tizen.NUI.Components
                     data.IsSelected = false;
                 }
                 DropDownItemView listItemView = dropDownMenuFullList.GetChildAt((uint)selectedItemIndex) as DropDownItemView;
-                data.IsSelected = false;
+
                 SetListItemToSelected(listItemView);
             }
 

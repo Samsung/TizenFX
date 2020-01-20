@@ -183,23 +183,24 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                  // Grid expands to fit content
+                    // Grid expands to fit content
 
-                  // If number of columns AUTO_FIT then set to 1 column.
-                  _columns = ( _columns > 0 ) ? _columns : 1;
-                  // Calculate numbers of rows, round down result as later check for remainder.
-                  _rows = childCount / _columns;
-                  // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
-                  _rows += ( childCount % _columns > 0 ) ? 1 : 0;
+                    // If number of columns AUTO_FIT then set to 1 column.
+                    _columns = ( _columns > 0 ) ? _columns : 1;
+                    // Calculate numbers of rows, round down result as later check for remainder.
+                    _rows = childCount / _columns;
+                    // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
+                    _rows += ( childCount % _columns > 0 ) ? 1 : 0;
 
-                  availableContentHeight = desiredChildHeight * _rows;
+                    heightSize = desiredChildHeight * _rows + gridLayoutPadding.Top + gridLayoutPadding.Bottom;
+                    availableContentHeight = heightSize - gridLayoutPadding.Top - gridLayoutPadding.Bottom;
                 }
 
-            // If number of columns not defined
-            DetermineNumberOfColumns( availableContentWidth );
+                // If number of columns not defined
+                DetermineNumberOfColumns( availableContentWidth );
 
-            // Locations define the start, end,top and bottom of each cell.
-            _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
+                // Locations define the start, end,top and bottom of each cell.
+                _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
 
             } // Children exists
 
