@@ -423,7 +423,7 @@ namespace Tizen.NUI.Components
 
         private void ScrollBy(float displacement, bool animate)
         {
-            if (GetChildCount() == 0 || displacement == 0)
+            if (GetChildCount() == 0 || displacement == 0 || maxScrollDistance < 0)
             {
                 return;
             }
