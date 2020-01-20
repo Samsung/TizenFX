@@ -281,20 +281,39 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// An event emitted when the scrolling starts, user can subscribe or unsubscribe to this event handler.<br />
+        /// An event emitted when the scrolling drag starts, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollStartedEvent;
+        public event EventHandler<ScrollEventArgs> ScrollStartDragEvent;
 
         /// <summary>
-        /// An event emitted when the scrolling ends, user can subscribe or unsubscribe to this event handler.<br />
+        /// An event emitted when the scrolling drag ends, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollEndedEvent;
+        public event EventHandler<ScrollEventArgs> ScrollEndDragEvent;
+
+
+        /// <summary>
+        /// An event emitted when the scrolling slide animation starts, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollEventArgs> ScrollAnimationStartEvent;
+
+        /// <summary>
+        /// An event emitted when the scrolling slide animation ends, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollEventArgs> ScrollAnimationEndEvent;
+
+
 
         private Animation scrollAnimation;
         private float maxScrollDistance;
@@ -362,16 +381,28 @@ namespace Tizen.NUI.Components
             mScrollingChild = new View();
         }
 
-        private void OnScrollStart()
+        private void OnScrollStartDrag()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs();
-            ScrollStartedEvent?.Invoke(this, eventArgs);
+            ScrollStartDragEvent?.Invoke(this, eventArgs);
         }
 
-        private void OnScrollEnd()
+        private void OnScrollEndDrag()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs();
-            ScrollEndedEvent?.Invoke(this, eventArgs);
+            ScrollEndDragEvent?.Invoke(this, eventArgs);
+        }
+
+        private void OnScrollAnimationStart()
+        {
+            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollAnimationStartEvent?.Invoke(this, eventArgs);
+        }
+
+        private void OnScrollAnimationEnd()
+        {
+            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollAnimationEndEvent?.Invoke(this, eventArgs);
         }
 
         private void StopScroll()
@@ -382,7 +413,7 @@ namespace Tizen.NUI.Components
                 {
                     Debug.WriteLineIf(LayoutDebugScrollableBase, "StopScroll Animation Playing");
                     scrollAnimation.Stop(Animation.EndActions.Cancel);
-                    OnScrollEnd();
+                    OnScrollAnimationEnd();
                 }
                 scrollAnimation.Clear();
             }
@@ -417,7 +448,7 @@ namespace Tizen.NUI.Components
             scrollAnimation.DefaultAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseOutSine);
             scrollAnimation.AnimateTo(mScrollingChild, (ScrollingDirection == Direction.Horizontal) ? "PositionX" : "PositionY", axisPosition);
             scrolling = true;
-            OnScrollStart();
+            OnScrollAnimationStart();
             scrollAnimation.Play();
         }
 
@@ -625,6 +656,7 @@ namespace Tizen.NUI.Components
                 }
                 maxScrollDistance = CalculateMaximumScrollDistance();
                 totalDisplacementForPan = 0.0f;
+                OnScrollStartDrag();
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
@@ -647,6 +679,7 @@ namespace Tizen.NUI.Components
                 float flickDisplacement = CalculateDisplacementFromVelocity(axisVelocity);
 
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "FlickDisplacement:" + flickDisplacement + "TotalDisplacementForPan:" + totalDisplacementForPan);
+                OnScrollEndDrag();
 
                 if (flickDisplacement > 0 | flickDisplacement < 0)// Flick detected
                 {
@@ -680,7 +713,7 @@ namespace Tizen.NUI.Components
         private void ScrollAnimationFinished(object sender, EventArgs e)
         {
             scrolling = false;
-            OnScrollEnd();
+            OnScrollAnimationEnd();
         }
 
     }
