@@ -29,7 +29,6 @@ namespace Tizen.Network.Smartcard
     internal class SmartcardManagerImpl : IDisposable
     {
         private static readonly SmartcardManagerImpl _instance = new SmartcardManagerImpl();
-        private List<SmartcardReader> _readerList = new List<SmartcardReader>();
         private bool disposed = false;
 
         internal static SmartcardManagerImpl Instance
@@ -64,11 +63,6 @@ namespace Tizen.Network.Smartcard
             if (disposing)
             {
                 // Free managed objects.
-                foreach (SmartcardReader reader in _readerList)
-                {
-                    reader.Dispose();
-                    _readerList.Remove(reader);
-                }
             }
             //Free unmanaged objects
             deinitialize();
@@ -98,6 +92,7 @@ namespace Tizen.Network.Smartcard
         {
             IntPtr readerPtr;
             int len = 0;
+            List<SmartcardReader> readerList = new List<SmartcardReader>();
 
             int ret = Interop.Smartcard.GetReaders(out readerPtr, out len);
             if (ret != (int)SmartcardError.None)
@@ -111,11 +106,11 @@ namespace Tizen.Network.Smartcard
                 int readerID = Marshal.ReadInt32(readerPtr);
 
                 SmartcardReader readerItem = new SmartcardReader(readerID);
-                _readerList.Add(readerItem);
+                readerList.Add(readerItem);
                 readerPtr += sizeof(int);
             }
 
-            return _readerList;
+            return readerList;
         }
     }
 }
