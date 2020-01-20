@@ -54,11 +54,10 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {
-                if (instance.Style.Buttons.Text.PointSize == null)
+                if (instance.Style?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.PointSize = new Selector<float?>();
+                    instance.Style.Buttons.Text.PointSize = (float)newValue;
                 }
-                instance.Style.Buttons.Text.PointSize.All = (float)newValue;
                 instance.btGroup.ItemPointSize = (float)newValue;
             }
         },
@@ -92,11 +91,10 @@ namespace Tizen.NUI.Components
             var instance = (Popup)bindable;
             if (newValue != null)
             {  
-                if (instance.Style.Buttons.Text.TextColor == null)
+                if (instance.Style?.Buttons?.Text != null)
                 {
-                    instance.Style.Buttons.Text.TextColor = new Selector<Color>();
+                    instance.Style.Buttons.Text.TextColor = (Color)newValue;
                 }
-                instance.Style.Buttons.Text.TextColor.All = (Color)newValue;
                 instance.btGroup.ItemTextColor = (Color)newValue;
             }
         },
@@ -326,11 +324,10 @@ namespace Tizen.NUI.Components
             {
                 if (value != null)
                 {
-                    if (Style.Title.Text == null)
+                    if (Style?.Title != null)
                     {
-                        Style.Title.Text = new Selector<string>();
+                        Style.Title.Text = value;
                     }
-                    Style.Title.Text.All = value;
                 }
             }
         }
@@ -347,11 +344,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (Style.Title.PointSize == null)
+                if (Style?.Title != null)
                 {
-                    Style.Title.PointSize = new Selector<float?>();
+                    Style.Title.PointSize = value;
                 }
-                Style.Title.PointSize.All = value;
             }
         }
 
@@ -367,11 +363,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (Style.Title.TextColor == null)
+                if (Style?.Title != null)
                 {
-                    Style.Title.TextColor = new Selector<Color>();
+                    Style.Title.TextColor = value;
                 }
-                Style.Title.TextColor.All = value;
             }
         }
 
