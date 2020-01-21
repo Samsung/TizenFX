@@ -24,8 +24,10 @@ namespace Tizen.NUI
     /// The Shadow composed of image for View
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ImageShadow : ShadowBase, Tizen.NUI.ICloneable
+    public class ImageShadow : ShadowBase, Tizen.NUI.Internal.ICloneable
     {
+        private static readonly Rectangle noBorder = new Rectangle();
+
         private string url;
 
         private Rectangle border;
@@ -69,7 +71,7 @@ namespace Tizen.NUI
         {
             return new ImageShadow() {
                 Offset = offset,
-                Scale = scale,
+                Extents = extents,
                 Url = url,
                 Border = border
             };
@@ -84,7 +86,7 @@ namespace Tizen.NUI
         {
             return instance == null ? null : new ImageShadow() {
                 Offset = instance.offset,
-                Scale = instance.scale,
+                Extents = instance.extents,
                 Url = instance.url,
                 Border = instance.border
             };
@@ -138,7 +140,7 @@ namespace Tizen.NUI
             }
             set
             {
-                border = value == null? null : new Rectangle(OnBorderChanged, value);
+                border = new Rectangle(OnBorderChanged, value ?? noBorder);
                 UpdateBorder();
             }
         }

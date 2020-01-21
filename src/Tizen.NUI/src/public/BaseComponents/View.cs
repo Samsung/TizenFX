@@ -60,9 +60,9 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private Rectangle backgroundImageBorder;
 
-        private ImageShadow imageShadow;
+        private ViewSelector<ImageShadow> imageShadow;
 
-        private Shadow boxShadow;
+        private ViewSelector<Shadow> boxShadow;
 
         static View() {}
 

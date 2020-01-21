@@ -1246,5 +1246,42 @@ namespace Tizen.NUI.BaseComponents
         {
             SizeModeFactor = new Vector3(x, y, z);
         }
+
+        private bool HasShadowExtents()
+        {
+            bool verifyImageShadow = imageShadow?.GetValue()?.HasValidSizeExtents() ?? false;
+            bool verifyBoxShadow = boxShadow?.GetValue()?.HasValidSizeExtents() ?? false;
+            return verifyImageShadow || verifyBoxShadow;
+        }
+
+        private void UpdateRelayoutCallbackForShadow(bool hadShadowExtents)
+        {
+            bool hasShadowExtents = HasShadowExtents();
+
+            if (!hadShadowExtents && hasShadowExtents)
+            {
+                Relayout += OnRelayoutForShadow;
+            }
+            else if (hadShadowExtents && !hasShadowExtents)
+            {
+                Relayout -= OnRelayoutForShadow;
+            }
+        }
+
+        private void OnRelayoutForShadow(object sender, global::System.EventArgs e)
+        {
+            UpdateShadowVisual();
+        }
+
+        private void OnControlStateChangedForShadow(View obj, NUI.Components.ControlStates state)
+        {
+            UpdateShadowVisual();
+        }
+
+        private void UpdateShadowVisual()
+        {
+            ShadowBase shadow = (boxShadow != null && !boxShadow.IsEmpty()) ? (ShadowBase)boxShadow.GetValue() : (ShadowBase)imageShadow?.GetValue();
+            Tizen.NUI.Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ShadowBase.ToPropertyValue(shadow, this));
+        }
     }
 }
