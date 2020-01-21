@@ -756,6 +756,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetVisible(bool visible)
         {
+            if (disposed)
+            {
+                NUILog.Error("[ERR] already disposed! cannot call native method! just return!");
+                return;
+            }
+            
             Interop.Actor.Actor_SetVisible(swigCPtr, visible);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
