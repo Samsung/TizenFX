@@ -353,6 +353,11 @@ namespace Tizen.NUI
             }
             get
             {
+                if (disposed)
+                {
+                    NUILog.Error("[ERR] already disposed! cannot call native method! just return!");
+                    return (Key.StateType)(-1);
+                }
                 Key.StateType ret = (Key.StateType)Interop.Key.Key_state_get(swigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
