@@ -37,6 +37,19 @@ namespace Tizen.NUI.BaseComponents
             return selector;
         }
 
+        /// Default Contructor
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector()
+        {
+        }
+
+        /// Contructor with T
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector(T value) : this()
+        {
+            All = value;
+        }
+
         /// <summary>
         /// All State.
         /// </summary>
@@ -199,6 +212,22 @@ namespace Tizen.NUI.BaseComponents
             SelectedFocused = selector.SelectedFocused;
             Other = selector.Other;
         }
+
+        internal void Clone<U>(Selector<U> other) where U : T, Tizen.NUI.Internal.ICloneable
+        {
+            // TODO Apply constraint to the Selector (not to Clone method)
+
+            All = (T)(other.All)?.Clone();
+            Normal = (T)(other.Normal)?.Clone();
+            Focused = (T)(other.Focused)?.Clone();
+            Pressed = (T)(other.Pressed)?.Clone();
+            Disabled = (T)(other.Disabled)?.Clone();
+            Selected = (T)(other.Selected)?.Clone();
+            DisabledSelected = (T)(other.DisabledSelected)?.Clone();
+            DisabledFocused = (T)(other.DisabledFocused)?.Clone();
+            SelectedFocused = (T)(other.SelectedFocused)?.Clone();
+            Other = (T)(other.Other)?.Clone();
+        }
     }
 
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -240,7 +269,79 @@ namespace Tizen.NUI.BaseComponents
         private BindableProperty targetBindableProperty;
     }
 
-    internal static class SelectorHelper<T> where T : class, Tizen.NUI.ICloneable
+    /// <summary>
+    /// A class that helps binding a non-selector property in View to selector property in ViewStyle.
+    /// </summary>
+    internal class ViewSelector<T> where T : class, Tizen.NUI.Internal.ICloneable
+    {
+        private Selector<T> selector;
+        private View view;
+        private View.ControlStateChangesDelegate controlStateChanged;
+
+        internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
+        {
+            if (view == null || controlStateChanged == null)
+            {
+                throw new global::System.ArgumentNullException();
+            }
+            this.view = view;
+            this.controlStateChanged = controlStateChanged;
+            this.selector = null;
+        }
+
+        internal T GetValue()
+        {
+            return selector == null ? null : selector.GetValue(view.ControlState);
+        }
+
+        internal void Clone(object value)
+        {
+            bool hadMultiValue = HasMultiValue();
+            var type = value?.GetType();
+
+            if (type == typeof(T))
+            {
+                selector = new Selector<T>();
+                selector.All = (T)((T)value).Clone();
+            }
+            else if (type == typeof(Selector<T>))
+            {
+                selector = new Selector<T>();
+                selector.Clone<T>((Selector<T>)value);
+            }
+            else
+            {
+                selector = null;
+            }
+
+            if (hadMultiValue != HasMultiValue())
+            {
+                if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
+                else view.ControlStateChangeEvent += controlStateChanged;
+            }
+        }
+
+        internal void Clear()
+        {
+            if (HasMultiValue())
+            {
+                view.ControlStateChangeEvent -= controlStateChanged;
+            }
+            selector = null;
+        }
+
+        internal bool IsEmpty()
+        {
+            return selector == null;
+        }
+
+        private bool HasMultiValue()
+        {
+            return (selector != null && selector.All == null);
+        }
+    }
+
+    internal static class SelectorHelper<T> where T : class, Tizen.NUI.Internal.ICloneable
     {
         /// <summary>
         /// For the object type of T or Selector T, convert it to Selector T and return the cloned one.
@@ -253,15 +354,13 @@ namespace Tizen.NUI.BaseComponents
             if (type == typeof(Selector<T>))
             {
                 var result = new Selector<T>();
-                result.Clone((Selector<T>)value);
+                result.Clone<T>((Selector<T>)value);
                 return result;
             }
 
             if (type == typeof(T))
             {
-                var result = new Selector<T>();
-                result.Clone((T)value);
-                return result;
+                return new Selector<T>((T)((T)value).Clone());
             }
 
             return null;

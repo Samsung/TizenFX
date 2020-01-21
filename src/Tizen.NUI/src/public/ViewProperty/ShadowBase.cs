@@ -33,7 +33,7 @@ namespace Tizen.NUI
 
         private static readonly Vector2 noOffset = new Vector2(0, 0);
 
-        private static readonly Vector2 noScale = new Vector2(1, 1);
+        private static readonly Vector2 noExtents = new Vector2(0, 0);
 
         private static readonly Vector2 absoluteTransformPolicy = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
 
@@ -44,9 +44,9 @@ namespace Tizen.NUI
         protected internal Vector2 offset;
 
         /// <summary>
-        /// The size value in scale
+        /// The size value in extension length
         /// </summary>
-        protected internal Vector2 scale;
+        protected internal Vector2 extents;
 
         /// <summary>
         /// The output property map
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ShadowBase() : this(noOffset, noScale)
+        public ShadowBase() : this(noOffset, noExtents)
         {
         }
 
@@ -65,27 +65,22 @@ namespace Tizen.NUI
         /// Copy Constructor
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ShadowBase(ShadowBase other) : this(other.offset, other.scale)
+        public ShadowBase(ShadowBase other) : this(other.offset, other.extents)
         {
         }
 
         /// <summary>
         /// Constructor
         /// </summary>
-        protected internal ShadowBase(Vector2 offset, Vector2 scale)
+        private ShadowBase(Vector2 offset, Vector2 extents)
         {
             propertyMap = new PropertyMap();
 
             Offset = offset;
-            Scale = scale;
+            Extents = extents;
         }
 
-        private void OnOffsetChanged(float x, float y)
-        {
-            OnPropertyChanged?.Invoke(this);
-        }
-
-        private void OnScaleChanged(float widht, float height)
+        private void OnOffsetOrSizeChanged(float x, float y)
         {
             OnPropertyChanged?.Invoke(this);
         }
@@ -102,7 +97,7 @@ namespace Tizen.NUI
             }
             set
             {
-                offset = new Vector2(OnOffsetChanged, value ?? noOffset);
+                offset = new Vector2(OnOffsetOrSizeChanged, value ?? noOffset);
                 OnPropertyChanged?.Invoke(this);
             }
         }
@@ -111,21 +106,40 @@ namespace Tizen.NUI
         /// The value indicates percentage of the container size. <br />
         /// e.g. (0.5f, 1.0f) means 50% of the container's width and 100% of container's height.
         /// </summary>
+        /// <Remarks> It is not guaranteed that this would work well. It will be removed in the next version.</Remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 Scale
         {
             get
             {
-                return scale;
+                return new Vector2();
             }
             set
             {
-                scale = new Vector2(OnScaleChanged, value ?? noScale);
+            }
+        }
+
+        /// <summary>
+        /// The shadow will extend its size by specified amount of length.<br />
+        /// If the value is negative then the shadow will shrink.
+        /// For example, when View's size is (100, 100) and the Shadow's Extents is (5, -5),
+        /// the output shadow will have size (105, 95).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 Extents
+        {
+            get
+            {
+                return extents;
+            }
+            set
+            {
+                extents = new Vector2(OnOffsetOrSizeChanged, value ?? noExtents);
                 OnPropertyChanged?.Invoke(this);
             }
         }
 
-        private PropertyValue GetTransformMap()
+        private PropertyValue GetTransformMap(BaseComponents.View attachedView)
         {
             var transformMap = new PropertyMap();
 
@@ -135,9 +149,13 @@ namespace Tizen.NUI
                 transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(offset);
             }
 
-            if (!scale.Equals(noScale))
+            if (!extents.Equals(noExtents))
             {
-                transformMap[(int)VisualTransformPropertyType.Size] = PropertyValue.CreateWithGuard(scale);
+                var viewSize = new Vector2(attachedView.GetRelayoutSize(DimensionType.Width), attachedView.GetRelayoutSize(DimensionType.Height));
+                var shadowSize = viewSize + extents;
+
+                transformMap[(int)VisualTransformPropertyType.SizePolicy] = new PropertyValue(absoluteTransformPolicy);
+                transformMap[(int)VisualTransformPropertyType.Size] = PropertyValue.CreateWithGuard(shadowSize);
             }
 
             return transformMap.Count() == 0 ? new PropertyValue() : new PropertyValue(transformMap);
@@ -145,14 +163,19 @@ namespace Tizen.NUI
 
         abstract internal bool IsValid();
 
-        static internal PropertyValue ToPropertyValue(ShadowBase instance)
+        internal bool HasValidSizeExtents()
+        {
+            return IsValid() && !extents.Equals(noExtents);
+        }
+
+        static internal PropertyValue ToPropertyValue(ShadowBase instance, BaseComponents.View attachedView)
         {
             if (instance == null || !instance.IsValid())
             {
                 return new PropertyValue();
             }
 
-            instance.propertyMap[Visual.Property.Transform] = instance.GetTransformMap();
+            instance.propertyMap[Visual.Property.Transform] = instance.GetTransformMap(attachedView);
 
             return new PropertyValue(instance.propertyMap);
         }

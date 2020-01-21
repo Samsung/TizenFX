@@ -1383,14 +1383,18 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(ImageShadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue, view);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow));
+            bool hadShadowExtents = view.HasShadowExtents();
 
-            if (view.imageShadow != null) view.boxShadow = null;
+            (view.imageShadow ?? (view.imageShadow = new ViewSelector<ImageShadow>(view, view.OnControlStateChangedForShadow))).Clone(newValue);
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ImageShadow.ToPropertyValue(view.imageShadow.GetValue(), view));
+
+            view.boxShadow?.Clear();
+            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).imageShadow;
+            var view = (View)bindable;
+            return view.imageShadow?.GetValue();
         });
 
         /// <summary>
@@ -1400,14 +1404,18 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Shadow), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            view.boxShadow = SelectorHelper<Shadow>.Clone(newValue, view);
-            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow));
+            bool hadShadowExtents = view.HasShadowExtents();
 
-            if (view.boxShadow != null) view.imageShadow = null;
+            (view.boxShadow ?? (view.boxShadow = new ViewSelector<Shadow>(view, view.OnControlStateChangedForShadow))).Clone(newValue);
+            Tizen.NUI.Object.SetProperty(view.swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), Shadow.ToPropertyValue(view.boxShadow.GetValue(), view));
+
+            view.imageShadow?.Clear();
+            view.UpdateRelayoutCallbackForShadow(hadShadowExtents);
         },
         defaultValueCreator: (bindable) =>
         {
-            return ((View)bindable).boxShadow;
+            var view = (View)bindable;
+            return view.boxShadow?.GetValue();
         });
 
         /// <summary>
