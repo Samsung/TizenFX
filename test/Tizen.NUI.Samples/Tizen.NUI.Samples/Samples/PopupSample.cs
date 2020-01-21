@@ -68,8 +68,7 @@ namespace Tizen.NUI.Samples
                 Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
                 Border = new Rectangle(24, 24, 24, 24),
                 Offset = new Vector2(-24, -24),
-                // TODO We do not have shadow extents now, so replace it to scale value
-                Scale = new Vector2(1080f/1032f, 448f/400f),
+                Extents = new Vector2(48, 48),
             };
 
             // Background
@@ -124,8 +123,7 @@ namespace Tizen.NUI.Samples
                     Url = CommonResource.GetFHResourcePath() + "11. Popup/popup_background_shadow.png",
                     Border = new Rectangle(24, 24, 24, 24),
                     Offset = new Vector2(-24, -24),
-                    // TODO We do not have shadow extents now, so replace it to scale value
-                    Scale = new Vector2(1080f/1032f, 448f/400f),
+                    Extents = new Vector2(48, 48),
                 },
                 Title = new TextLabelStyle
                 {

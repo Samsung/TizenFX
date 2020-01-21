@@ -17,7 +17,7 @@
 
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Internal
 {
 
     /// <summary>
