@@ -281,20 +281,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// An event emitted when the scrolling drag starts, user can subscribe or unsubscribe to this event handler.<br />
+        /// An event emitted when user starts dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollStartDragEvent;
+        public event EventHandler<ScrollEventArgs> ScrollDragStartEvent;
 
         /// <summary>
-        /// An event emitted when the scrolling drag ends, user can subscribe or unsubscribe to this event handler.<br />
+        /// An event emitted when user stops dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ScrollEventArgs> ScrollEndDragEvent;
+        public event EventHandler<ScrollEventArgs> ScrollDragEndEvent;
 
 
         /// <summary>
@@ -381,16 +381,16 @@ namespace Tizen.NUI.Components
             mScrollingChild = new View();
         }
 
-        private void OnScrollStartDrag()
+        private void OnScrollDragStart()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs();
-            ScrollStartDragEvent?.Invoke(this, eventArgs);
+            ScrollDragStartEvent?.Invoke(this, eventArgs);
         }
 
-        private void OnScrollEndDrag()
+        private void OnScrollDragEnd()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs();
-            ScrollEndDragEvent?.Invoke(this, eventArgs);
+            ScrollDragEndEvent?.Invoke(this, eventArgs);
         }
 
         private void OnScrollAnimationStart()
@@ -656,7 +656,7 @@ namespace Tizen.NUI.Components
                 }
                 maxScrollDistance = CalculateMaximumScrollDistance();
                 totalDisplacementForPan = 0.0f;
-                OnScrollStartDrag();
+                OnScrollDragStart();
             }
             else if (e.PanGesture.State == Gesture.StateType.Continuing)
             {
@@ -679,7 +679,7 @@ namespace Tizen.NUI.Components
                 float flickDisplacement = CalculateDisplacementFromVelocity(axisVelocity);
 
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "FlickDisplacement:" + flickDisplacement + "TotalDisplacementForPan:" + totalDisplacementForPan);
-                OnScrollEndDrag();
+                OnScrollDragEnd();
 
                 if (flickDisplacement > 0 | flickDisplacement < 0)// Flick detected
                 {
