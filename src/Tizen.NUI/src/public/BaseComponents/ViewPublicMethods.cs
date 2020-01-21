@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -128,6 +128,10 @@ namespace Tizen.NUI.BaseComponents
                 // If child already has a parent then re-parent child
                 if (oldParent != null)
                 {
+                    if (child.Layout !=null)
+                    {
+                        child.Layout.SetReplaceFlag();
+                    }
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
