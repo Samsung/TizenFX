@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,7 +88,11 @@ namespace Tizen.NUI
             {
                 if( childLayout == layoutItem )
                 {
-                    Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                    if (! childLayout.IsReplaceFlag())
+                    {
+                        Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                    }
+                    childLayout.ClearReplaceFlag();
                     LayoutChildren.Remove(childLayout);
                     childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                     // Add LayoutItem to the transition stack so can animate it out.
