@@ -161,12 +161,13 @@ namespace Tizen.Sensor
             BiasZ = sensorData.values[5];
         }
 
-        private static Interop.SensorListener.SensorEventCallback _callback;
+        private static Interop.SensorListener.SensorEventsCallback _callback;
 
         internal override void EventListenStart()
         {
-            _callback = (IntPtr sensorHandle, IntPtr eventPtr, IntPtr data) => {
-                Interop.SensorEventStruct sensorData = Interop.IntPtrToEventStruct(eventPtr);
+            _callback = (IntPtr sensorHandle, IntPtr eventPtr, uint events_count, IntPtr data) => {
+                updateBatchEvents(eventPtr, events_count);
+                Interop.SensorEventStruct sensorData = latestEvent();
 
                 TimeSpan = new TimeSpan((Int64)sensorData.timestamp);
                 X = sensorData.values[0];
@@ -179,7 +180,7 @@ namespace Tizen.Sensor
                 DataUpdated?.Invoke(this, new UncalibratedGyroscopeDataUpdatedEventArgs(sensorData.values));
             };
 
-            int error = Interop.SensorListener.SetEventCallback(ListenerHandle, Interval, _callback, IntPtr.Zero);
+            int error = Interop.SensorListener.SetEventsCallback(ListenerHandle, _callback, IntPtr.Zero);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error setting event callback for uncalibrated gyroscope sensor");
@@ -189,7 +190,7 @@ namespace Tizen.Sensor
 
         internal override void EventListenStop()
         {
-            int error = Interop.SensorListener.UnsetEventCallback(ListenerHandle);
+            int error = Interop.SensorListener.UnsetEventsCallback(ListenerHandle);
             if (error != (int)SensorError.None)
             {
                 Log.Error(Globals.LogTag, "Error unsetting event callback for uncalibrated gyroscope sensor");
