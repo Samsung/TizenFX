@@ -101,13 +101,19 @@ namespace Tizen.Network.Smartcard
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
 
+            IntPtr tempPtr = readerPtr;
             for (int i = 0; i < len; i++)
             {
-                int readerID = Marshal.ReadInt32(readerPtr);
+                int readerID = Marshal.ReadInt32(tempPtr);
 
                 SmartcardReader readerItem = new SmartcardReader(readerID);
                 readerList.Add(readerItem);
-                readerPtr += sizeof(int);
+                tempPtr += sizeof(int);
+            }
+
+            if (len > 0)
+            {
+                Marshal.FreeHGlobal(readerPtr);
             }
 
             return readerList;
