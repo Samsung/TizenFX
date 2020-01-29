@@ -252,13 +252,13 @@ namespace Tizen.NUI
         }
 
 
-        private void SetBackgroundColor(Vector4 color)
+        internal void SetBackgroundColor(Vector4 color)
         {
             Interop.GaussianBlurView.GaussianBlurView_SetBackgroundColor(swigCPtr, Vector4.getCPtr(color));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private Vector4 GetBackgroundColor()
+        internal Vector4 GetBackgroundColor()
         {
             Vector4 ret = new Vector4(Interop.GaussianBlurView.GaussianBlurView_GetBackgroundColor(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -272,12 +272,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private void SetUserImageAndOutputRenderTarget(Texture inputTexture, FrameBuffer outputRenderTarget)
+        internal void SetUserImageAndOutputRenderTarget(Texture inputTexture, FrameBuffer outputRenderTarget)
         {
             Interop.GaussianBlurView.GaussianBlurView_SetUserImageAndOutputRenderTarget(swigCPtr, Texture.getCPtr(inputTexture), FrameBuffer.getCPtr(outputRenderTarget));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        private FrameBufferImage GetBlurredRenderTarget()
+        internal FrameBufferImage GetBlurredRenderTarget()
         {
             FrameBufferImage ret = new FrameBufferImage(Interop.GaussianBlurView.GaussianBlurView_GetBlurredRenderTarget(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
