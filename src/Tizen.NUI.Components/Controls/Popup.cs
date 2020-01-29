@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ButtonHeightProperty = BindableProperty.Create(nameof(ButtonHeight), typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Popup)bindable;
-            if (newValue != null)
+            if (newValue != null && instance?.Style?.Buttons?.Size != null )
             {
                 instance.Style.Buttons.Size.Height = (int)newValue;
                 instance.btGroup.Itemheight = (int)newValue;
@@ -414,7 +414,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                Style.Title.Size.Height = value;
+                if (Style?.Title?.Size != null)
+                {
+                     Style.Title.Size.Height = value;
+                }
             }
         }
 
@@ -780,7 +783,7 @@ namespace Tizen.NUI.Components
                 titleY = (int)Style.Title.Position.Y;
             }
 
-            if (btGroup.Count != 0)
+            if (btGroup.Count != 0 && Style?.Buttons?.Size != null )
             {
                 buttonH = (int)Style.Buttons.Size.Height;
             }
