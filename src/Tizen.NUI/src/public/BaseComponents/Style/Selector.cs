@@ -379,7 +379,7 @@ namespace Tizen.NUI.BaseComponents
                 return (T)((T)value).Clone();
             }
 
-            if (type == typeof(Selector<T>) && view != null)
+            if (type == typeof(Selector<T>) && view != null && value != null)
             {
                 Selector<T> selector = (Selector<T>)value;
                 T valueInState = selector.GetValue(view.ControlState);
