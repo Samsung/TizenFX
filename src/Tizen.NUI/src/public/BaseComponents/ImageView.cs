@@ -242,6 +242,7 @@ namespace Tizen.NUI.BaseComponents
         private Rectangle _border;
         private string _resourceUrl = "";
         private bool _synchronosLoading = false;
+        private string _alphaMaskUrl = null;
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -731,6 +732,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.GetProperty(swigCPtr, ImageView.Property.IMAGE).Get(imageMap);
                 imageMap?.Find(ImageVisualProperty.AlphaMaskURL)?.Get(out ret);
 
+                _alphaMaskUrl = ret;
                 return ret;
             }
             set
@@ -740,6 +742,7 @@ namespace Tizen.NUI.BaseComponents
                     value = "";
                 }
 
+                _alphaMaskUrl = value;
                 UpdateImage(ImageVisualProperty.AlphaMaskURL, new PropertyValue(value));
             }
         }
@@ -1052,6 +1055,11 @@ namespace Tizen.NUI.BaseComponents
         private void UpdateImage(int key, PropertyValue value)
         {
             PropertyMap temp = new PropertyMap();
+
+            if(_alphaMaskUrl != null)
+            {
+                temp.Insert(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl));
+            }
 
             if (_resourceUrl == "")
             {
