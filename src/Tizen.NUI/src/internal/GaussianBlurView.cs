@@ -71,6 +71,14 @@ namespace Tizen.NUI
                 return;
             }
 
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (_finishedCallback != null)
+            {
+                FinishedSignal().Disconnect(_finishedCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -79,14 +87,6 @@ namespace Tizen.NUI
                     Interop.GaussianBlurView.delete_GaussianBlurView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (_finishedCallback != null)
-            {
-                FinishedSignal().Disconnect(_finishedCallback);
             }
 
             base.Dispose(type);
