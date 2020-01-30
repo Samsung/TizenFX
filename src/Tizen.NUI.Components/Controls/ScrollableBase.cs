@@ -401,20 +401,9 @@ namespace Tizen.NUI.Components
                 CurrentPage = index;
             }
 
-            float targetPosition = 0;
+            maxScrollDistance = CalculateMaximumScrollDistance();
 
-            for (int i = 0; i < index; i++)
-            {
-                // SetSize doesn't change specification so check both
-                float expectedWidth = Math.Max(mScrollingChild.Children[i].WidthSpecification, mScrollingChild.Children[i].Size.Width);
-                float expectedHeight = Math.Max(mScrollingChild.Children[i].HeightSpecification, mScrollingChild.Children[i].Size.Height);
-
-                targetPosition += ScrollingDirection == Direction.Vertical ? expectedHeight : expectedWidth;
-
-                maxScrollDistance = CalculateMaximumScrollDistance();
-                targetPosition = Math.Min(targetPosition, maxScrollDistance);
-            }
-
+            float targetPosition = Math.Min(ScrollingDirection == Direction.Vertical ? mScrollingChild.Children[index].Position.Y : mScrollingChild.Children[index].Position.X, maxScrollDistance);
             AnimateChildTo(ScrollDuration, -targetPosition);
         }
 
