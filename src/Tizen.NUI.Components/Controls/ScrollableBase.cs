@@ -381,6 +381,43 @@ namespace Tizen.NUI.Components
             mScrollingChild = new View();
         }
 
+
+        /// <summary>
+        /// Scrolls to the item at the specified index.
+        /// </summary>
+        /// <param name="index">Index of item.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ScrollToIndex(int index)
+        {
+            if(mScrollingChild.ChildCount-1 < index || index < 0)
+            {
+                return;
+            }
+
+            if(SnapToPage)
+            {
+                CurrentPage = index;
+            }
+
+            float targetPosition = 0;
+
+            for (int i = 0; i < index; i++)
+            {
+                // SetSize doesn't change specification so check both
+                float expectedWidth = Math.Max(mScrollingChild.Children[i].WidthSpecification, mScrollingChild.Children[i].Size.Width);
+                float expectedHeight = Math.Max(mScrollingChild.Children[i].HeightSpecification, mScrollingChild.Children[i].Size.Height);
+
+                targetPosition += ScrollingDirection == Direction.Vertical ? expectedHeight : expectedWidth;
+
+                maxScrollDistance = CalculateMaximumScrollDistance();
+                targetPosition = Math.Min(targetPosition, maxScrollDistance);
+            }
+
+            AnimateChildTo(ScrollDuration, -targetPosition);
+        }
+
         private void OnScrollDragStart()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs();
@@ -591,7 +628,7 @@ namespace Tizen.NUI.Components
                                                    " parent length:" + scrollerLength +
                                                    " scrolling child length:" + scrollingChildLength);
 
-            return scrollingChildLength - scrollerLength;
+            return Math.Max(scrollingChildLength - scrollerLength,0);
         }
 
         private void PageSnap()
