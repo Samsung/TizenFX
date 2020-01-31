@@ -110,7 +110,7 @@ namespace Tizen.NUI.Samples
                     }
                     else
                     {
-                        Dispose();
+                        Exit();
                     }
                 }
             }
