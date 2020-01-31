@@ -113,7 +113,7 @@ namespace Tizen.Network.Smartcard
 
             if (len > 0)
             {
-                Marshal.FreeHGlobal(readerPtr);
+                Interop.Libc.Free(readerPtr);
             }
 
             return readerList;
