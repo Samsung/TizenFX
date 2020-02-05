@@ -122,20 +122,24 @@ namespace Tizen.NUI
             var childCount = LayoutChildren.Count;
 
             // WIDTH SPECIFICATIONS
-
-            // measure first child and use it's dimensions for layout measurement
-
             if (childCount > 0)
             {
-                LayoutItem childLayoutItem = LayoutChildren[0];
-                View childOwner = childLayoutItem.Owner;
+                foreach( LayoutItem childLayout in LayoutChildren )
+                {
+                    if( childLayout != null )
+                    {
+                        MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
+                    }
+                }
 
-                MeasureChild( childLayoutItem, widthMeasureSpec, heightMeasureSpec );
-                desiredChildHeight = (int)childLayoutItem.MeasuredHeight.Size.AsRoundedValue();
-                desiredChildWidth = (int)childLayoutItem.MeasuredWidth.Size.AsRoundedValue();
+                // Use first child's dimensions for layout measurement
+                View childOwner = LayoutChildren[0].Owner;
+
+                desiredChildHeight = (int)LayoutChildren[0].MeasuredHeight.Size.AsRoundedValue();
+                desiredChildWidth = (int)LayoutChildren[0].MeasuredWidth.Size.AsRoundedValue();
 
                 // If child has a margin then add it to desired size
-                Extents childMargin = childLayoutItem.Margin;
+                Extents childMargin = LayoutChildren[0].Margin;
                 desiredChildHeight += childMargin.Top + childMargin.Bottom;
                 desiredChildWidth += childMargin.Start + childMargin.End;
 
