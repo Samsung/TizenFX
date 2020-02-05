@@ -1285,28 +1285,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if (this != null)
-            {
-                if (_animationFinishedEventCallback != null)
-                {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
-                }
-
-                if (_animationProgressReachedEventCallback != null)
-                {
-
-                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                }
-            }
-
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if (this != null)
+            if (_finishedCallbackOfNative != null)
             {
-                this.Clear();
+                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+            }
+
+            if (_animationProgressReachedEventCallback != null)
+            {
+
+                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
             }
 
             //Release your own unmanaged resources here.
