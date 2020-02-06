@@ -53,14 +53,6 @@ namespace Tizen.NUI
             }
         }
 
-        public new static WatchApplication Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
-
         public static WatchApplication NewWatchApplication()
         {
             WatchApplication ret = New();
@@ -342,7 +334,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        private static WatchApplication _instance; //singleton
     }
 }
