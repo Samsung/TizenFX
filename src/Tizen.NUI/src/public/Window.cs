@@ -1004,13 +1004,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal static Window GetCurrent()
-        {
-            Window ret = new Window(Interop.Stage.Stage_GetCurrent(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal static bool IsInstalled()
         {
             bool ret = Interop.Stage.Stage_IsInstalled();
