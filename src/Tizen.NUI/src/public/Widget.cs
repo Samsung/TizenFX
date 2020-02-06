@@ -47,7 +47,7 @@ namespace Tizen.NUI
             widgetImpl.WidgetInstanceResized += OnWidgetInstanceResized;
             widgetImpl.WidgetInstanceUpdated += OnWidgetInstanceUpdated;
 
-            WidgetApplication.Instance?.AddWidgetInstance(this);
+            (WidgetApplication.Instance as WidgetApplication)?.AddWidgetInstance(this);
         }
 
         internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)

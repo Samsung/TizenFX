@@ -1139,7 +1139,7 @@ namespace Tizen.NUI
             }
         }
 
-        private static Application _instance; // singleton
+        protected static Application _instance; // singleton
 
         public static Application Instance
         {

@@ -22,7 +22,6 @@ namespace Tizen.NUI
     internal class WidgetApplication : Application
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private static WidgetApplication _instance; //singleton
         private Dictionary<System.Type, string> _widgetInfo;
         private List<Widget> _widgetList = new List<Widget>();
         private delegate System.IntPtr CreateWidgetFunctionDelegate(ref string widgetName);
@@ -58,14 +57,6 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             base.Dispose(type);
-        }
-
-        public new static WidgetApplication Instance
-        {
-            get
-            {
-                return _instance;
-            }
         }
 
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
@@ -137,7 +128,7 @@ namespace Tizen.NUI
 
         public static System.IntPtr WidgetCreateFunction(ref string widgetName)
         {
-            Dictionary<System.Type, string> widgetInfo = Instance.WidgetInfo;
+            Dictionary<System.Type, string> widgetInfo = (Instance as WidgetApplication).WidgetInfo;
 
             foreach (System.Type widgetType in widgetInfo.Keys)
             {
