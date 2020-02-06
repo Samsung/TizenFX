@@ -9,7 +9,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private List<NUIFrameComponent> _frameComponentList;
-        private static ComponentApplication _instance; //singleton
 
         internal ComponentApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -42,14 +41,6 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             base.Dispose(type);
-        }
-
-        public new static ComponentApplication Instance
-        {
-            get
-            {
-                return _instance;
-            }
         }
 
         public static ComponentApplication NewComponentApplication(string[] args, string stylesheet)
