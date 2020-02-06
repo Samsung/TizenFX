@@ -35,16 +35,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override IWindowInfo CreateWindowInfo()
         {
-            ComponentApplication.Instance.RegisterFrameComponent(this);
-            if(ComponentApplication.Instance.GetFrameComponentCount() == 1)
+            ComponentApplication instance = ComponentApplication.Instance as ComponentApplication;
+            if(instance)
             {
-                Window = ComponentApplication.Instance.GetWindow();
+                instance.RegisterFrameComponent(this);
+                if(instance.GetFrameComponentCount() == 1)
+                {
+                    Window = instance.GetWindow();
+                }
+                else
+                {
+                    Window = new Window();
+                }
             }
-            else
-            {
-                Window = new Window();
-            }
-
             NUIWindowInfo = new NUIWindowInfo(Window);
             return NUIWindowInfo;
         }
