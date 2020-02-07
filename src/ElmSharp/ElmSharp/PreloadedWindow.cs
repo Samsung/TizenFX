@@ -25,6 +25,10 @@ namespace ElmSharp
             s_precreated = this;
             if (useBaseLayout)
                 InitializeBaseLayout();
+            WarmupWidgets();
+            BackButtonPressed += DummyHandler;
+            BackButtonPressed -= DummyHandler;
+            void DummyHandler(object sender, System.EventArgs e) { }
         }
 
         public Layout BaseLayout
@@ -44,6 +48,25 @@ namespace ElmSharp
 
             BaseLayout = layout;
             conformant.SetContent(BaseLayout);
+        }
+
+        public void WarmupWidgets()
+        {
+            new Entry(this).Unrealize();
+            new Scroller(this).Unrealize();
+            new Box(this).Unrealize();
+            new Label(this).Unrealize();
+            new GenList(this).Unrealize();
+            new Button(this).Unrealize();
+            new Check(this).Unrealize();
+            new Naviframe(this).Unrealize();
+            new Slider(this).Unrealize();
+            new Spinner(this).Unrealize();
+            new ProgressBar(this).Unrealize();
+            new GestureLayer(this).Unrealize();
+            new Polygon(this).Unrealize();
+            new Image(this).Unrealize();
+            //TODO: Consider to call Image.LoadAsync()
         }
 
         public static PreloadedWindow GetInstance()
