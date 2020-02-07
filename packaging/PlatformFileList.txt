@@ -36,6 +36,7 @@ Tizen.Content.MediaContent.dll                     #common #mobile #mobile-emul 
 Tizen.Content.MimeType.dll                         #common #mobile #mobile-emul #tv #wearable
 Tizen.Context.dll                                  #mobile #mobile-emul #wearable
 Tizen.dll                                          #common #mobile #mobile-emul #tv #wearable
+Tizen.GenericTextClassifier.dll                    #common #mobile #mobile-emul #tv #wearable
 Tizen.Location.dll                                 #mobile #mobile-emul #tv #wearable
 Tizen.Location.Geofence.dll                        #mobile #mobile-emul
 Tizen.Log.dll                                      #common #mobile #mobile-emul #tv #wearable

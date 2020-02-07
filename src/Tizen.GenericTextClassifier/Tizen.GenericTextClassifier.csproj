@@ -1,0 +1,19 @@
+﻿<Project Sdk="Tizen.NET.Sdk/1.0.3">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <TizenCreateTpkOnBuild>false</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+  </ItemGroup>
+
+</Project>
