@@ -152,6 +152,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
+            base.OnRelayout(size, container);
             OnUpdate();
         }
 
