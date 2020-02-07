@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 
 namespace Tizen.Applications.ComponentBased.Common
@@ -93,6 +94,23 @@ namespace Tizen.Applications.ComponentBased.Common
         public void Finish()
         {
             Interop.CBApplication.ComponentFinish(Handle);
+        }
+
+        /// <summary>
+        /// A Context Handle
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IntPtr ContextHandle
+        {
+            get
+            {
+                return Handle;
+            }
+            set
+            {
+                Handle = value;
+            }
         }
 
         internal void Bind(IntPtr handle, string compId, string instanceId, ComponentBasedApplication parent)
