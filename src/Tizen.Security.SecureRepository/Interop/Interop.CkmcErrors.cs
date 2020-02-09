@@ -26,8 +26,10 @@ internal static partial class Interop
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
+        AuthenticationFailed    = TizenErrorKeyManager | 0x06, // CKMC_ERROR_AUTHENTICATION_FAILED    
         InvalidFormat = TizenErrorKeyManager | 0x0E, // CKMC_ERROR_INVALID_FORMAT
-        VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED
+        UnknownAlias = TizenErrorKeyManager | 0x0C, // CKMC_ERROR_DB_ALIAS_UNKNOWN            
+        VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED       
     };
 
     internal static void CheckNThrowException(int err, string msg)

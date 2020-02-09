@@ -55,15 +55,53 @@ namespace Tizen.Security.SecureRepository
 
             try
             {
-                Interop.CheckNThrowException(
-                    Interop.CkmcManager.GetData(alias, password, out ptr),
+                CheckNThrowException(
+                    CkmcManager.GetData(alias, password, out ptr),
                     "Failed to get certificate. alias=" + alias);
                 return new SafeRawBufferHandle(ptr).Data;
             }
             finally
             {
                 if (ptr != IntPtr.Zero)
-                    Interop.CkmcTypes.BufferFree(ptr);
+                    CkmcTypes.BufferFree(ptr);
+            }
+        }
+
+        /// <summary>
+        /// Checks for alias existance
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="alias">The name of a certificate to retrieve.</param>
+        /// <returns>Data specified by alias.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// The alias argument is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Indicates failure to communicate with the Keystore. Check the errorcode for details
+        /// </exception>
+        static public bool AliasExists(string alias)
+        {
+            if (alias == null)
+                throw new ArgumentNullException("alias cannot be null");
+
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                var errorCode = CkmcManager.GetData(alias, string.Empty, out ptr);
+                if((int)KeyManagerError.UnknownAlias == errorCode)
+                    return false;
+
+                if((int)KeyManagerError.AuthenticationFailed == errorCode ||
+                   (int)KeyManagerError.None == errorCode) // Key already exists
+                    return true;
+                CheckNThrowException(errorCode, "Failed to determine alias existance.");
+                throw new InvalidOperationException("Unreachable"); //Unreachable. Interop.CheckNThrow will throw an Exception as we test for KeyManagerError.None
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    CkmcTypes.BufferFree(ptr);
             }
         }
 
@@ -79,15 +117,15 @@ namespace Tizen.Security.SecureRepository
 
             try
             {
-                Interop.CheckNThrowException(
-                    Interop.CkmcManager.GetDataAliasList(out ptr),
+                CheckNThrowException(
+                    CkmcManager.GetDataAliasList(out ptr),
                     "Failed to get data aliases");
                 return new SafeAliasListHandle(ptr).Aliases;
             }
             finally
             {
                 if (ptr != IntPtr.Zero)
-                    Interop.CkmcTypes.AliasListAllFree(ptr);
+                    CkmcTypes.AliasListAllFree(ptr);
             }
         }
 
@@ -114,8 +152,8 @@ namespace Tizen.Security.SecureRepository
             else if (policy.Extractable == false)
                 throw new ArgumentException("Data should be extractable");
 
-            Interop.CheckNThrowException(
-                Interop.CkmcManager.SaveData(
+            CheckNThrowException(
+                CkmcManager.SaveData(
                     alias,
                     new Interop.CkmcRawBuffer(new PinnedObject(data), data.Length),
                     policy.ToCkmcPolicy()),
