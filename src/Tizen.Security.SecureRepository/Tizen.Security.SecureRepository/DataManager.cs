@@ -70,9 +70,9 @@ namespace Tizen.Security.SecureRepository
         /// <summary>
         /// Checks for alias existance
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         /// <param name="alias">The name of a certificate to retrieve.</param>
-        /// <returns>Data specified by alias.</returns>
+        /// <returns>Boolean indicating the exitsance of the alias.</returns>
         /// <exception cref="ArgumentNullException">
         /// The alias argument is null.
         /// </exception>
@@ -93,7 +93,7 @@ namespace Tizen.Security.SecureRepository
                     return false;
 
                 if((int)KeyManagerError.AuthenticationFailed == errorCode ||
-                   (int)KeyManagerError.None == errorCode) // Key already exists
+                   (int)KeyManagerError.None == errorCode) // Key already exists, we just may have used the incorrect password
                     return true;
                 CheckNThrowException(errorCode, "Failed to determine alias existance.");
                 throw new InvalidOperationException("Unreachable"); //Unreachable. Interop.CheckNThrow will throw an Exception as we test for KeyManagerError.None
