@@ -29,9 +29,11 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class StyleManager
     {
-        private string theme = "default";
+        private static readonly string defaultThemeName = "default";
+        private string theme = defaultThemeName;
         private Dictionary<string, Dictionary<string, StyleBase>> themeStyleSet = new Dictionary<string, Dictionary<string, StyleBase>>();
         private Dictionary<string, StyleBase> defaultStyleSet = new Dictionary<string, StyleBase>();
+        private Dictionary<string, Dictionary<Type, StyleBase>> componentStyleByTheme = new Dictionary<string, Dictionary<Type, StyleBase>>();
         private EventHandler<ThemeChangeEventArgs> themeChangeHander;
 
         /// <summary>
@@ -41,6 +43,7 @@ namespace Tizen.NUI.Components
         private StyleManager()
         {
         }
+
         /// <summary>
         /// An event for the theme changed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
@@ -160,6 +163,64 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Register a style for a component to theme.
+        /// </summary>
+        /// <param name="targetTheme">Theme</param>
+        /// <param name="component">The type of ComponentStyle</param>
+        /// <param name="style">The type of style</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RegisterComponentStyle(string targetTheme, Type component, Type style)
+        {
+            if (targetTheme == null)
+            {
+                throw new ArgumentException("The argument targetTheme must be specified");
+            }
+
+            if (!componentStyleByTheme.ContainsKey(targetTheme))
+            {
+                componentStyleByTheme.Add(targetTheme, new Dictionary<Type, StyleBase>());
+            }
+
+            if (componentStyleByTheme[targetTheme].ContainsKey(component))
+            {
+                componentStyleByTheme[targetTheme][component] = Activator.CreateInstance(style) as StyleBase;
+            }
+            else
+            {
+                componentStyleByTheme[targetTheme].Add(component, Activator.CreateInstance(style) as StyleBase);
+            }
+        }
+
+        /// <summary>
+        /// Get components style in the current theme.
+        /// </summary>
+        /// <param name="component">The type of component</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewStyle GetComponentStyle(Type component)
+        {
+            var currentTheme = theme;
+
+            if (!componentStyleByTheme.ContainsKey(theme))
+            {
+                currentTheme = defaultThemeName;
+            }
+
+            if (defaultThemeName.Equals(currentTheme) && !componentStyleByTheme.ContainsKey(defaultThemeName))
+            {
+                LoadDefaultComponentStyle();
+            }
+
+            if (!componentStyleByTheme[currentTheme].ContainsKey(component))
+            {
+                return null;
+            }
+
+            return (componentStyleByTheme[currentTheme][component])?.GetAttributes();
+        }
+
+        /// <summary>
         /// ThemeChangeEventArgs is a class to record theme change event arguments which will sent to user.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -172,6 +233,17 @@ namespace Tizen.NUI.Components
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string CurrentTheme;
+        }
+
+        private void LoadDefaultComponentStyle()
+        {
+            componentStyleByTheme.Add(defaultThemeName, new Dictionary<Type, StyleBase>());
+
+            var defaultComponentsStyle = componentStyleByTheme[defaultThemeName];
+            defaultComponentsStyle.Add(typeof(Button), new DefaultButtonStyle());
+            defaultComponentsStyle.Add(typeof(CheckBox), new DefaultCheckBoxStyle());
+            defaultComponentsStyle.Add(typeof(RadioButton), new DefaultRadioButtonStyle());
+            defaultComponentsStyle.Add(typeof(Switch), new DefaultSwitchStyle());
         }
     }
 }
