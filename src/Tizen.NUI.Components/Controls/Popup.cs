@@ -199,6 +199,7 @@ namespace Tizen.NUI.Components
         private TextLabel titleText;
         private ButtonGroup btGroup = null;
         private Window window = null;
+        private Layer container = new Layer();
         static Popup() { }
 
         /// <summary>
@@ -236,11 +237,31 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Post(Window win)
+        public virtual void Post(Window targetWindow)
         {
-            if (null == win) return;
-            window = win;
-            window.Add(this);
+            if (targetWindow == null)
+            {
+                return;
+            }
+
+            window = targetWindow;
+            window.AddLayer(container);
+            container.RaiseToTop();
+        }
+
+        /// <summary>
+        /// Dismiss the dialog
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void Dismiss()
+        {
+            if (window == null)
+            {
+                return;
+            }
+
+            window.RemoveLayer(container);
+            window = null;
         }
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -708,6 +729,7 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
+            container.Add(this);
             LeaveRequired = true;
             PropertyChanged += PopupAttributesPropertyChanged;
 

@@ -352,7 +352,7 @@ namespace Tizen.NUI.Components
             if (Count == 0) return;
 
             int buttonWidth = (int)root.Size.Width / Count;
-            int buttonHeight = (int)itemheight;
+            int buttonHeight = btStyle.Size.Height > itemheight ? (int)btStyle.Size.Height : (int)itemheight;
             foreach (Button btnTemp in itemGroup)
             {
                 btnTemp.Size = new Size(buttonWidth, buttonHeight);
