@@ -7,6 +7,8 @@ res/maps_marker_sticker_72.png                     #mobile #mobile-emul #tv #wea
 res/nui_component_default_checkbox_bg_n.png        #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_checkbox_bg_p.png        #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_checkbox_s.png           #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_pagination_n.png         #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_pagination_s.png         #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_switch_thumb_d.png       #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_switch_thumb_n.png       #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_switch_track_d.png       #common #mobile #mobile-emul #tv #wearable

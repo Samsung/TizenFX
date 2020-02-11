@@ -76,6 +76,14 @@ namespace Tizen.NUI.Components
         public int IndicatorSpacing { get; set; }
 
         /// <summary>
+        /// Gets or sets the count of the pages/indicators.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int IndicatorCount { get; set; }
+
+        /// <summary>
         /// Retrieves a copy of PaginationStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -97,6 +105,7 @@ namespace Tizen.NUI.Components
                     IndicatorImageURL.Clone(paginationStyle.IndicatorImageURL);
                 }
                 IndicatorSpacing = paginationStyle.IndicatorSpacing;
+                IndicatorCount = paginationStyle.IndicatorCount;
             }
         }
     }

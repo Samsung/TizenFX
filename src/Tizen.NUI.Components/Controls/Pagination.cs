@@ -73,6 +73,10 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new PaginationStyle Style => ViewStyle as PaginationStyle;
+
         /// <summary>
         /// Gets or sets the size of the indicator.
         /// </summary>
@@ -153,11 +157,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return indicatorCount;
+                return (int)paginationStyle?.IndicatorCount;
             }
             set
             {
-                if (indicatorCount == value || indicatorCount < 0)
+                if (paginationStyle == null || indicatorCount == value || indicatorCount < 0)
                 {
                     return;
                 }
@@ -180,14 +184,14 @@ namespace Tizen.NUI.Components
                     //{
                     //    container.RemoveVisual("SelectIndicator");
                     //}
-                    //else 
+                    //else
                     if (selectedIndex >= value)
                     {
                         selectedIndex = 0;
                         SelectIn(indicatorList[selectedIndex]);
                     }
                 }
-                indicatorCount = value;
+                indicatorCount = paginationStyle.IndicatorCount;
 
                 UpdateContainer();
             }
@@ -292,7 +296,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                container.RemoveAll();    
+                container.RemoveAll();
                 indicatorList.Clear();
 
                 this.Remove(container);
@@ -367,6 +371,21 @@ namespace Tizen.NUI.Components
                 indicator.URL = paginationStyle.IndicatorImageURL.Normal;
                 indicator.Size = new Size2D((int)paginationStyle.IndicatorSize.Width, (int)paginationStyle.IndicatorSize.Height);
                 indicator.Position = new Position2D((int)(paginationStyle.IndicatorSize.Width + paginationStyle.IndicatorSpacing) * i, 0);
+            }
+        }
+
+        /// <summary>
+        /// Theme change callback when theme is changed, this callback will be trigger.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
+        {
+            PaginationStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as PaginationStyle;
+            if (null != tempAttributes)
+            {
+                Style.CopyFrom(tempAttributes);
             }
         }
     }

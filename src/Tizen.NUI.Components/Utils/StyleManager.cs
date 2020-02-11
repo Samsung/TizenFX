@@ -242,6 +242,7 @@ namespace Tizen.NUI.Components
             var defaultComponentsStyle = componentStyleByTheme[defaultThemeName];
             defaultComponentsStyle.Add(typeof(Button), new DefaultButtonStyle());
             defaultComponentsStyle.Add(typeof(CheckBox), new DefaultCheckBoxStyle());
+            defaultComponentsStyle.Add(typeof(Pagination), new DefaultPaginationStyle());
             defaultComponentsStyle.Add(typeof(RadioButton), new DefaultRadioButtonStyle());
             defaultComponentsStyle.Add(typeof(Switch), new DefaultSwitchStyle());
         }
