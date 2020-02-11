@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System;
+using System.Reflection;
+
 namespace ElmSharp
 {
     internal class PreloadedWindow : Window
@@ -29,6 +32,11 @@ namespace ElmSharp
             BackButtonPressed += DummyHandler;
             BackButtonPressed -= DummyHandler;
             void DummyHandler(object sender, System.EventArgs e) { }
+
+            if (Elementary.GetProfile() == "wearable")
+            {
+                PreloadElmSharpWearable();
+            }
         }
 
         public Layout BaseLayout
@@ -67,6 +75,21 @@ namespace ElmSharp
             new Polygon(this).Unrealize();
             new Image(this).Unrealize();
             //TODO: Consider to call Image.LoadAsync()
+        }
+
+        public void PreloadElmSharpWearable()
+        {
+            try
+            {
+                Assembly assem = Assembly.Load("ElmSharp.Wearable");
+                var type = assem.GetType("ElmSharp.Wearable.Preload");
+                type.GetMethod("WarmupWidgets", BindingFlags.Public | BindingFlags.Static).Invoke(null, new object[] { this });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                Console.WriteLine("Fail to preload ElmSharp.Wearable");
+            }
         }
 
         public static PreloadedWindow GetInstance()
