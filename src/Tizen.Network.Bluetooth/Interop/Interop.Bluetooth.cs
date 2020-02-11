@@ -350,6 +350,8 @@ internal static partial class Interop
         internal static extern int DisconnectSocket(int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_send_data")]
         internal static extern int SendData(int socketFd, string data, int dataLength);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_send_data")]
+        internal static extern int SendData(int socketFd, byte[] data, int dataLength);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_set_data_received_cb")]
         internal static extern int SetDataReceivedCallback(DataReceivedCallback callback, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_unset_data_received_cb")]
