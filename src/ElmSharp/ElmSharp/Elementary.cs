@@ -207,7 +207,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static void Initialize()
         {
-            Interop.Elementary.elm_init(0, null);
+            if (!Window.IsPreloaded)
+                Interop.Elementary.elm_init(0, null);
         }
 
         /// <summary>
@@ -235,7 +236,7 @@ namespace ElmSharp
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
-            if (File.Exists(_themeFilePath))
+            if (!Window.IsPreloaded && File.Exists(_themeFilePath))
             {
                 AddThemeOverlay(_themeFilePath);
             }
