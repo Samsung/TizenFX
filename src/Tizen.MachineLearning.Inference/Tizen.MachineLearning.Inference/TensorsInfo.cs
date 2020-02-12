@@ -15,8 +15,8 @@
 */
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
-using Log = Tizen.Log;
 
 namespace Tizen.MachineLearning.Inference
 {
@@ -24,7 +24,7 @@ namespace Tizen.MachineLearning.Inference
     /// The TensorsInfo class manages each Tensor information such as Name, Type and Dimension.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TensorsInfo : IDisposable
+    public class TensorsInfo : IDisposable, IEquatable<TensorsInfo>
     {
         private List<TensorInfo> _infoList;
         private IntPtr _handle = IntPtr.Zero;
@@ -118,7 +118,6 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="name">The tensor name to be set.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -138,19 +137,21 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
-        /// Gets the tensor name with given index.
+        /// Calculates the byte size of tensor data.
         /// </summary>
-        /// <param name="idx">The index of the tensor.</param>
-        /// <returns>The tensor name.</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
+        /// <param name="idx">The index of the tensor information in the list</param>
+        /// <returns>The byte size of tensor</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
-        /// <since_tizen> 6 </since_tizen>
-        public string GetTensorName(int idx)
+        /// <since_tizen> 8 </since_tizen>
+        public int GetTensorSize(int idx)
         {
             NNStreamer.CheckNNStreamerSupport();
-
             CheckIndexBoundary(idx);
-            return _infoList[idx].Name;
+
+            return _infoList[idx].Size;
+
         }
 
         /// <summary>
@@ -159,7 +160,6 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="type">The tensor type to be set.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -183,7 +183,7 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="idx">The index of the tensor.</param>
         /// <returns>The tensor type</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -201,7 +201,6 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="idx">The index of the tensor to be updated.</param>
         /// <param name="dimension">The tensor dimension to be set.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -225,7 +224,7 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         /// <param name="idx">The index of the tensor.</param>
         /// <returns>The tensor dimension.</returns>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the index is greater than the number of Tensor.</exception>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -262,11 +261,132 @@ namespace Tizen.MachineLearning.Inference
             ret = Interop.Util.CreateTensorsData(_handle, out tensorsData_h);
             NNStreamer.CheckException(ret, "unable to create the tensorsData object");
 
-            retTensorData = TensorsData.CreateFromNativeHandle(tensorsData_h);
+            retTensorData = TensorsData.CreateFromNativeHandle(tensorsData_h, _handle, false);
 
             return retTensorData;
         }
 
+        /// <summary>
+        /// Gets the tensor name with given index.
+        /// </summary>
+        /// <param name="idx">The index of the tensor.</param>
+        /// <returns>The tensor name</returns>
+        /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public string GetTensorName(int idx)
+        {
+            NNStreamer.CheckNNStreamerSupport();
+
+            CheckIndexBoundary(idx);
+            return _infoList[idx].Name;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this TensorsInfo object
+        /// </summary>
+        /// <returns>The hash code</returns>
+        /// <since_tizen> 8 </since_tizen>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 19;
+                foreach (var info in _infoList)
+                {
+                    hash = hash * 31 + info.GetHashCode();
+                }
+                return hash;
+            }
+        }
+
+        /// <summary>
+        /// Compare TensorsInfo, which is its contents are the same or not.
+        /// </summary>
+        /// <param name="obj">Object to compare</param>
+        /// <returns>True if the given object is the same object or its contents are the same</returns>
+        /// <since_tizen> 8 </since_tizen>
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+
+            TensorsInfo cInfo = obj as TensorsInfo;
+            return this.Equals(cInfo);
+        }
+
+        /// <summary>
+        /// Compare TensorsInfo, which is its contents are the same or not.
+        /// </summary>
+        /// <param name="other">TensorsInfo instance to compare</param>
+        /// <returns>True if the given object is the same object or its contents are the same</returns>
+        /// <since_tizen> 8 </since_tizen>
+        public bool Equals(TensorsInfo other)
+        {
+            if (other == null)
+                return false;
+
+            if (this.Count != other.Count)
+                return false;
+
+            for (int i = 0; i < this.Count; ++i)
+            {
+                // Name
+                if (string.Compare(this.GetTensorName(i), other.GetTensorName(i)) != 0)
+                    return false;
+
+                // Type
+                if (this.GetTensorType(i) != other.GetTensorType(i))
+                    return false;
+
+                // Dimension
+                if (!this.GetDimension(i).SequenceEqual(other.GetDimension(i)))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Make TensorsInfo object from Native handle
+        /// </summary>
+        /// <param name="handle">Handle of TensorsInfo object</param>
+        /// <returns>TensorsInfo object</returns>
+        internal static TensorsInfo ConvertTensorsInfoFromHandle(IntPtr handle)
+        {
+            TensorsInfo retInfo = null;
+            NNStreamerError ret = NNStreamerError.None;
+
+            int count;
+            ret = Interop.Util.GetTensorsCount(handle, out count);
+            NNStreamer.CheckException(ret, "Fail to get Tensors' count");
+
+            retInfo = new TensorsInfo();
+
+            for (int i = 0; i < count; ++i)
+            {
+                string name;
+                TensorType type;
+                uint[] dim = new uint[Tensor.RankLimit];
+
+                ret = Interop.Util.GetTensorName(handle, i, out name);
+                NNStreamer.CheckException(ret, "Fail to get Tensor's name");
+
+                ret = Interop.Util.GetTensorType(handle, i, out type);
+                NNStreamer.CheckException(ret, "Fail to get Tensor's type");
+
+                ret = Interop.Util.GetTensorDimension(handle, i, dim);
+                NNStreamer.CheckException(ret, "Fail to get Tensor's dimension");
+
+                retInfo.AddTensorInfo(name, type, (int[])(object)dim);
+            }
+            return retInfo;
+        }
+
+        /// <summary>
+        /// Return TensorsInfo handle
+        /// </summary>
+        /// <returns>IntPtr TensorsInfo handle</returns>
         internal IntPtr GetTensorsInfoHandle()
         {
             NNStreamerError ret = NNStreamerError.None;
@@ -348,8 +468,10 @@ namespace Tizen.MachineLearning.Inference
         
         private void CheckIndexBoundary(int idx)
         {
-            if (idx < 0 || idx >= _infoList.Count) {
-                throw new IndexOutOfRangeException("Invalid index [" + idx + "] of the tensors");
+            if (idx < 0 || idx >= _infoList.Count)
+            {
+                string msg = "Invalid index [" + idx + "] of the tensors";
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
             }
         }
 
@@ -379,8 +501,52 @@ namespace Tizen.MachineLearning.Inference
                 }
                 Dimension = (int[])dimension.Clone();
             }
+            private int GetSize()
+            {
+                int size = 0;
 
-            public string Name { get; set; } = null;
+                switch (Type) {
+                    case TensorType.Int32:
+                    case TensorType.UInt32:
+                    case TensorType.Float32:
+                        size = 4;
+                        break;
+
+                    case TensorType.Int16:
+                    case TensorType.UInt16:
+                        size = 2;
+                        break;
+
+                    case TensorType.Int8:
+                    case TensorType.UInt8:
+                        size = 1;
+                        break;
+
+                    case TensorType.Float64:
+                    case TensorType.Int64:
+                    case TensorType.UInt64:
+                        size = 8;
+                        break;
+
+                    default:
+                        /* Unknown Type */
+                        break;
+                }
+                for (int i = 0; i < Tensor.RankLimit; ++i)
+                {
+                    size *= Dimension[i];
+                }
+                return size;
+            }
+
+            public int Size
+            {
+                get {
+                    return GetSize();
+                }
+            }
+
+            public string Name { get; set; } = string.Empty;
 
             public TensorType Type { get; set; } = TensorType.Int32;
 

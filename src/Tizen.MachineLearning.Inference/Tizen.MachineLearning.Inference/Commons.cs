@@ -79,6 +79,8 @@ namespace Tizen.MachineLearning.Inference
         Unknown = Tizen.Internals.Errors.ErrorCode.Unknown,
         TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+        QuotaExceeded = Tizen.Internals.Errors.ErrorCode.QuotaExceeded,
+        InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
     }
 
     /// <summary>
@@ -241,8 +243,12 @@ namespace Tizen.MachineLearning.Inference
                     exp = new TimeoutException(msg);
                     break;
 
+                case NNStreamerError.QuotaExceeded:
+                    exp = new IndexOutOfRangeException(msg);
+                    break;
+
                 default:
-                    exp = new InvalidOperationException(msg);
+                    exp = new NotSupportedException(msg);
                     break;
             }
             return exp;
