@@ -131,5 +131,13 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Added to make tizen_5.5 TCT passed. Deprecated! Please use WidgetView.WidgetAdded, WidgetDeleted events instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool swigCMemOwn;
     }
 }

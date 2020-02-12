@@ -131,5 +131,14 @@ namespace Tizen.NUI
         {
             Interop.PropertyNotifySignal.delete_PropertyNotifySignal(swigCPtr);
         }
+
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Added to make tizen_5.5 TCT passed. Deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool swigCMemOwn;
+
     }
 }
