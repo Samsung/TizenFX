@@ -131,5 +131,14 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// swigCMemOwn
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Added to make tizen_5.5 TCT passed. Deprecated! Please use InputMethodContext.KeyboardTypeChanged event instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool swigCMemOwn;
+
     }
 }
