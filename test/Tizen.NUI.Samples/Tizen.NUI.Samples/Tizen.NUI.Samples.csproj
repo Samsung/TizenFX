@@ -14,6 +14,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Samples\AnimatedImageViewTest.cs" />
+    <Compile Remove="Samples\AnimatedVectorImageViewTest.cs" />
+    <Compile Remove="Samples\ButtonSample.cs" />
+    <Compile Remove="Samples\CheckBoxSample.cs" />
+    <Compile Remove="Samples\DropDownSample.cs" />
+    <Compile Remove="Samples\PopupSample.cs" />
+    <Compile Remove="Samples\RadioButtonSample.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Tizen.NET" Version="8.0.0.15045" />
