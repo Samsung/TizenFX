@@ -20,40 +20,37 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The default Button style
+    /// The default Tab style
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultButtonStyle : StyleBase
+    public class DefaultTabStyle : StyleBase
     {
         /// <summary>
-        /// Return default Button style
+        /// Return default Tab style
         /// </summary>
         internal protected override ViewStyle GetAttributes()
         {
-            ButtonStyle style = new ButtonStyle
+            TabStyle style = new TabStyle
             {
-                Size = new Size(100, 45),
-                BackgroundColor = new Selector<Color>
+                BackgroundColor = Color.Yellow,
+                Size = new Size(480, 80),
+                UnderLine = new ViewStyle
                 {
-                    Normal = new Color(0.88f, 0.88f, 0.88f, 1),
-                    Pressed = new Color(0.77f, 0.77f, 0.77f, 1),
-                    Disabled = new Color(0.88f, 0.88f, 0.88f, 1)
+                    Size = new Size(0, 6),
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
+                    PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
+                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 1),
                 },
                 Text = new TextLabelStyle
                 {
-                    PointSize = new Selector<float?> { All = DefaultStyle.PointSizeNormal },
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
+                    PointSize = DefaultStyle.PointSizeTitle,
                     TextColor = new Selector<Color>
                     {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1)
+                        Normal = Color.Black,
+                        Selected = new Color(0.05f, 0.63f, 0.9f, 1),
                     },
-                    Text = "Button",
-                }
+                },
             };
             return style;
         }

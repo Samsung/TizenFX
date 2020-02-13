@@ -261,6 +261,7 @@ namespace Tizen.NUI.Components
             defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Popup), new DefaultPopupStyle());
             defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown), new DefaultDropDownStyle());
             defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown.DropDownDataItem), new DefaultDropDownItemStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Tab), new DefaultTabStyle());
         }
     }
 }
