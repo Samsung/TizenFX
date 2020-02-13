@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (Rectangle.IsNullOrZero(view.backgroundImageBorder))
                 {
-                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, new PropertyValue(url));
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.BACKGROUND, string.IsNullOrEmpty(url) ? new PropertyValue() : new PropertyValue(url));
                 }
                 else
                 {
