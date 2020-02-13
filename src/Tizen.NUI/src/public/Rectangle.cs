@@ -66,6 +66,17 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>
+        /// The type cast operator, int to Rectangle.
+        /// </summary>
+        /// <param name="value">A value of int type.</param>
+        /// <returns>return a Extents instance</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static implicit operator Rectangle(int value)
+        {
+            return new Rectangle(value, value, value, value);
+        }
+
         internal delegate void RectangleChangedCallback(int x, int y, int width, int height);
         private RectangleChangedCallback callback = null;
 

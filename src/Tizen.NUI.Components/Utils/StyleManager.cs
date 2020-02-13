@@ -178,6 +178,12 @@ namespace Tizen.NUI.Components
                 throw new ArgumentException("The argument targetTheme must be specified");
             }
 
+            if (defaultThemeName.Equals(targetTheme))
+            {
+                // Ensure default component styles have loaded before override custom default style
+                LoadDefaultComponentStyle();
+            }
+
             if (!componentStyleByTheme.ContainsKey(targetTheme))
             {
                 componentStyleByTheme.Add(targetTheme, new Dictionary<Type, StyleBase>());
@@ -207,7 +213,7 @@ namespace Tizen.NUI.Components
                 currentTheme = defaultThemeName;
             }
 
-            if (defaultThemeName.Equals(currentTheme) && !componentStyleByTheme.ContainsKey(defaultThemeName))
+            if (defaultThemeName.Equals(currentTheme))
             {
                 LoadDefaultComponentStyle();
             }
@@ -237,13 +243,24 @@ namespace Tizen.NUI.Components
 
         private void LoadDefaultComponentStyle()
         {
+            if (componentStyleByTheme.ContainsKey(defaultThemeName))
+            {
+                return;
+            }
+
             componentStyleByTheme.Add(defaultThemeName, new Dictionary<Type, StyleBase>());
 
             var defaultComponentsStyle = componentStyleByTheme[defaultThemeName];
-            defaultComponentsStyle.Add(typeof(Button), new DefaultButtonStyle());
-            defaultComponentsStyle.Add(typeof(CheckBox), new DefaultCheckBoxStyle());
-            defaultComponentsStyle.Add(typeof(RadioButton), new DefaultRadioButtonStyle());
-            defaultComponentsStyle.Add(typeof(Switch), new DefaultSwitchStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Button), new DefaultButtonStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.CheckBox), new DefaultCheckBoxStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.RadioButton), new DefaultRadioButtonStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Switch), new DefaultSwitchStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Progress), new DefaultProgressStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Slider), new DefaultSliderStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Toast), new DefaultToastStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.Popup), new DefaultPopupStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown), new DefaultDropDownStyle());
+            defaultComponentsStyle.Add(typeof(Tizen.NUI.Components.DropDown.DropDownDataItem), new DefaultDropDownItemStyle());
         }
     }
 }

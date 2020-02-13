@@ -16,6 +16,11 @@ res/nui_component_default_switch_track_s.png       #common #mobile #mobile-emul 
 res/nui_component_default_radiobutton_n.png        #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_radiobutton_p.png        #common #mobile #mobile-emul #tv #wearable
 res/nui_component_default_radiobutton_s.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_popup_shadow.png         #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_slider_thumb_bg_p.png    #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_slider_thumb_n.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_dropdown_button_icon.png #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_dropdown_list_bg.png     #common #mobile #mobile-emul #tv #wearable
 Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #tv #wearable
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #wearable
