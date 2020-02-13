@@ -36,8 +36,9 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="handle">The handle of tensors data.</param>
         /// <param name="info">The handle of tensors info. (Default: null)</param>
         /// <param name="isFetch">The boolean value for fetching the data (Default: false)</param>
+        /// <param name="hasOwnership">The boolean value for automatic disposal (Default: true)</param>
         /// <since_tizen> 6 </since_tizen>
-        private TensorsData(IntPtr handle, TensorsInfo info, bool isFetch = false)
+        private TensorsData(IntPtr handle, TensorsInfo info, bool isFetch = false, bool hasOwnership = true)
         {
             NNStreamer.CheckNNStreamerSupport();
             NNStreamerError ret = NNStreamerError.None;
@@ -78,6 +79,9 @@ namespace Tizen.MachineLearning.Inference
                     _dataList.Add(bufData);
                 }
             }
+
+            /* If it created as DataReceivedEventArgs, do not dispose. */
+            _disposed = !hasOwnership;
         }
 
         /// <summary>
@@ -231,7 +235,7 @@ namespace Tizen.MachineLearning.Inference
             }
         }
 
-        internal static TensorsData CreateFromNativeHandle(IntPtr dataHandle, IntPtr infoHandle, bool isFetch = false)
+        internal static TensorsData CreateFromNativeHandle(IntPtr dataHandle, IntPtr infoHandle, bool isFetch = false, bool hasOwnership = true)
         {
             TensorsInfo info = null;
 
@@ -240,7 +244,7 @@ namespace Tizen.MachineLearning.Inference
                 info = TensorsInfo.ConvertTensorsInfoFromHandle(infoHandle);
             }
 
-            return new TensorsData(dataHandle, info, isFetch);
+            return new TensorsData(dataHandle, info, isFetch, hasOwnership);
         }
 
         private void CheckIndex(int index)

@@ -85,6 +85,42 @@ namespace Tizen.MachineLearning.Inference
         InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
     }
 
+    internal enum SwitchType
+    {
+        OutputSelector = 0,
+        InputSelector = 1,
+    }
+
+    internal enum PipelineBufferPolicy
+    {
+        AutoFree = 0,
+        NotFreed = 1,
+    }
+
+    /// <summary>
+    /// States of NNStreamer pipeline.
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    public enum PipelineState
+    {
+        /// <summary>
+        /// Initial state of the pipeline.
+        /// </summary>
+        Null = 1,
+        /// <summary>
+        /// The pipeline is ready to go to PAUSED.
+        /// </summary>
+        Ready = 2,
+        /// <summary>
+        /// The pipeline is stopped, ready to accept and process data.
+        /// </summary>
+        Paused = 3,
+        /// <summary>
+        /// The pipeline is started and the data is flowing.
+        /// </summary>
+        Playing = 4,
+    }
+
     /// <summary>
     /// Types of Neural Network Framework.
     /// </summary>
