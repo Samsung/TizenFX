@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -79,6 +79,8 @@ namespace Tizen.MachineLearning.Inference
         Unknown = Tizen.Internals.Errors.ErrorCode.Unknown,
         TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+        PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
         QuotaExceeded = Tizen.Internals.Errors.ErrorCode.QuotaExceeded,
         InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
     }
@@ -106,9 +108,34 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         Tensorflow,
         /// <summary>
-        /// Neural Network Inference framework, which is developed by SR
+        /// Neural Network Inference framework, which is developed by SR (Samsung Research).
         /// </summary>
         NNFW,
+        /// <summary>
+        /// Intel Movidius Neural Compute SDK (libmvnc).
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        MVNC,
+        /// <summary>
+        /// Intel OpenVINO.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        OpenVINO,
+        /// <summary>
+        /// VeriSilicon's Vivante.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        Vivante,
+        /// <summary>
+        /// Google Coral Edge TPU (USB).
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        EdgeTPU,
+        /// <summary>
+        /// Arm Neural Network framework (support for caffe and tensorflow-lite).
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        ArmNN,
     }
 
     /// <summary>
@@ -126,17 +153,42 @@ namespace Tizen.MachineLearning.Inference
         /// </summary>
         Auto = 1,
         /// <summary>
-        /// Any CPU  if possible.
+        /// Any CPU if possible.
         /// </summary>
         CPU = 0x1000,
         /// <summary>
-        /// Any GPU  if possible.
+        /// NEON in CPU.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        CPUNeon = 0x1100,
+        /// <summary>
+        /// Any GPU if possible.
         /// </summary>
         GPU = 0x2000,
         /// <summary>
         /// Any NPU if possible.
         /// </summary>
         NPU = 0x3000,
+        /// <summary>
+        /// Intel Movidius Stick.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        NPUMovidius = 0x3001,
+        /// <summary>
+        /// Google Coral Edge TPU (USB).
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        NPUEdgeTPU = 0x3002,
+        /// <summary>
+        /// VeriSilicon's Vivante.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        NPUVivante = 0x3003,
+        /// <summary>
+        /// Any SR (Samsung Research) made NPU.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        NPUSR = 0x13000,
     }
 
     internal static class Tensor
@@ -223,7 +275,7 @@ namespace Tizen.MachineLearning.Inference
         internal static Exception CreateException(NNStreamerError err, string msg)
         {
             Exception exp;
-            
+
             switch (err)
             {
                 case NNStreamerError.InvalidParameter:
@@ -234,9 +286,13 @@ namespace Tizen.MachineLearning.Inference
                     exp = new NotSupportedException(msg);
                     break;
 
+                case NNStreamerError.PermissionDenied:
+                    exp = new UnauthorizedAccessException(msg);
+                    break;
+
                 case NNStreamerError.StreamsPipe:
                 case NNStreamerError.TryAgain:
-                    exp = new IOException(msg);
+                    exp = new InvalidOperationException(msg);
                     break;
 
                 case NNStreamerError.TimedOut:
@@ -248,7 +304,7 @@ namespace Tizen.MachineLearning.Inference
                     break;
 
                 default:
-                    exp = new NotSupportedException(msg);
+                    exp = new InvalidOperationException(msg);
                     break;
             }
             return exp;

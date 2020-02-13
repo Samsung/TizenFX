@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="type">Data element type of Tensor.</param>
         /// <param name="dimension">Dimension of Tensor. Note that we support up to 4th ranks.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SlzeLimit)</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SizeLimit)</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -83,7 +83,7 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="type">Data element type of Tensor.</param>
         /// <param name="dimension">Dimension of Tensor. Note that we support up to 4th ranks.</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
-        /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SlzeLimit)</exception>
+        /// <exception cref="IndexOutOfRangeException">Thrown when the number of Tensor already exceeds the size limits (i.e. Tensor.SizeLimit)</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -102,13 +102,9 @@ namespace Tizen.MachineLearning.Inference
                 NNStreamerError ret = NNStreamerError.None;
 
                 ret = Interop.Util.SetTensorsCount(_handle, _infoList.Count);
-                NNStreamer.CheckException(ret, "unable to set the number of tensors");
+                NNStreamer.CheckException(ret, "Failed to set the number of tensors");
 
-                ret = Interop.Util.SetTensorType(_handle, idx, type);
-                NNStreamer.CheckException(ret, "fail to set TensorsInfo type");
-
-                ret = Interop.Util.SetTensorDimension(_handle, idx, dimension);
-                NNStreamer.CheckException(ret, "fail to set TensorsInfo dimension");
+                UpdateInfoHandle(_handle, idx, name, type, dimension);
             }
         }
 
@@ -137,21 +133,20 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
-        /// Calculates the byte size of tensor data.
+        /// Gets the tensor name with given index.
         /// </summary>
-        /// <param name="idx">The index of the tensor information in the list</param>
-        /// <returns>The byte size of tensor</returns>
+        /// <param name="idx">The index of the tensor.</param>
+        /// <returns>The tensor name</returns>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
-        /// <since_tizen> 8 </since_tizen>
-        public int GetTensorSize(int idx)
+        /// <since_tizen> 6 </since_tizen>
+        public string GetTensorName(int idx)
         {
             NNStreamer.CheckNNStreamerSupport();
+
             CheckIndexBoundary(idx);
-
-            return _infoList[idx].Size;
-
+            return _infoList[idx].Name;
         }
 
         /// <summary>
@@ -259,7 +254,7 @@ namespace Tizen.MachineLearning.Inference
             }
 
             ret = Interop.Util.CreateTensorsData(_handle, out tensorsData_h);
-            NNStreamer.CheckException(ret, "unable to create the tensorsData object");
+            NNStreamer.CheckException(ret, "Failed to create the TensorsData object");
 
             retTensorData = TensorsData.CreateFromNativeHandle(tensorsData_h, _handle, false);
 
@@ -267,20 +262,20 @@ namespace Tizen.MachineLearning.Inference
         }
 
         /// <summary>
-        /// Gets the tensor name with given index.
+        /// Calculates the byte size of tensor data.
         /// </summary>
-        /// <param name="idx">The index of the tensor.</param>
-        /// <returns>The tensor name</returns>
+        /// <param name="idx">The index of the tensor information in the list</param>
+        /// <returns>The byte size of tensor</returns>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
-        /// <since_tizen> 6 </since_tizen>
-        public string GetTensorName(int idx)
+        /// <since_tizen> 8 </since_tizen>
+        public int GetTensorSize(int idx)
         {
             NNStreamer.CheckNNStreamerSupport();
 
             CheckIndexBoundary(idx);
-            return _infoList[idx].Name;
+            return _infoList[idx].Size;
         }
 
         /// <summary>
@@ -415,12 +410,7 @@ namespace Tizen.MachineLearning.Inference
             idx = 0;
             foreach (TensorInfo t in _infoList)
             {
-                ret = Interop.Util.SetTensorType(ret_handle, idx, t.Type);
-                NNStreamer.CheckException(ret, "fail to set the type of tensor" + idx.ToString());
-
-                ret = Interop.Util.SetTensorDimension(ret_handle, idx, t.Dimension);
-                NNStreamer.CheckException(ret, "fail to set the dimension of tensor: " + idx.ToString());
-
+                UpdateInfoHandle(ret_handle, idx, t.Name, t.Type, t.Dimension);
                 idx += 1;
             }
 
@@ -465,7 +455,24 @@ namespace Tizen.MachineLearning.Inference
             }
             _disposed = true;
         }
-        
+
+        private void UpdateInfoHandle(IntPtr handle, int idx, string name, TensorType type, int[] dimension)
+        {
+            if (handle != IntPtr.Zero)
+            {
+                NNStreamerError ret = NNStreamerError.None;
+
+                ret = Interop.Util.SetTensorName(handle, idx, name);
+                NNStreamer.CheckException(ret, "Failed to set the name of tensor at index " + idx.ToString());
+
+                ret = Interop.Util.SetTensorType(handle, idx, type);
+                NNStreamer.CheckException(ret, "Failed to set the type of tensor at index " + idx.ToString());
+
+                ret = Interop.Util.SetTensorDimension(handle, idx, dimension);
+                NNStreamer.CheckException(ret, "Failed to set the dimension of tensor at index " + idx.ToString());
+            }
+        }
+
         private void CheckIndexBoundary(int idx)
         {
             if (idx < 0 || idx >= _infoList.Count)
@@ -501,6 +508,7 @@ namespace Tizen.MachineLearning.Inference
                 }
                 Dimension = (int[])dimension.Clone();
             }
+
             private int GetSize()
             {
                 int size = 0;

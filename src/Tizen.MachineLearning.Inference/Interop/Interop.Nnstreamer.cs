@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ internal static partial class Interop
         /* int ml_tensors_info_create (ml_tensors_info_h *info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError CreateTensorsInfo(out IntPtr info);
-            
+
         /* int ml_tensors_info_destroy (ml_tensors_info_h info) */
         [DllImport(Libraries.Nnstreamer, EntryPoint = "ml_tensors_info_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern NNStreamerError DestroyTensorsInfo(IntPtr info);
