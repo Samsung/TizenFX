@@ -122,7 +122,7 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ProgressStatusType state = ProgressStatusType.Indeterminate;
+        protected ProgressStatusType state = ProgressStatusType.Determinate;
 
         private const float round = 0.5f;
         private ImageView trackImage = null;
@@ -174,19 +174,19 @@ namespace Tizen.NUI.Components
         public enum ProgressStatusType
         {
             /// <summary>
-            /// Show TrackImage
+            /// Show BufferImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             Buffering,
 
             /// <summary>
-            /// Show ProgressImage
+            /// Show ProgressImage and BufferImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             Determinate,
 
             /// <summary>
-            /// Show LoadingImage
+            /// Show TrackImage
             /// </summary>
             /// <since_tizen> 6 </since_tizen>
             Indeterminate
@@ -507,7 +507,7 @@ namespace Tizen.NUI.Components
             }
             else if (state == ProgressStatusType.Determinate)
             {
-                bufferImage.Hide();
+                bufferImage.Show();
                 progressImage.Show();
                 UpdateValue();
             }
