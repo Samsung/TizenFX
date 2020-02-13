@@ -23,6 +23,8 @@ namespace Tizen.NUI.Components
     {
         internal const float PointSizeNormal = 12;
 
+        internal const float PointSizeTitle = 16;
+
         static internal string GetResourcePath(string filename)
         {
             return "/usr/share/dotnet.tizen/framework/res/" + filename;
