@@ -20,39 +20,32 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// The default Button style
+    /// The default Toast style
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultButtonStyle : StyleBase
+    public class DefaultToastStyle : StyleBase
     {
         /// <summary>
-        /// Return default Button style
+        /// Return default Toast style
         /// </summary>
         internal protected override ViewStyle GetAttributes()
         {
-            ButtonStyle style = new ButtonStyle
+            ToastStyle style = new ToastStyle
             {
-                Size = new Size(100, 45),
-                BackgroundColor = new Selector<Color>
+                WidthResizePolicy = ResizePolicyType.FitToChildren,
+                HeightResizePolicy = ResizePolicyType.FitToChildren,
+                BackgroundColor = new Color(0, 0, 0, 0.8f),
+                Text = new TextLabelStyle()
                 {
-                    Normal = new Color(0.88f, 0.88f, 0.88f, 1),
-                    Pressed = new Color(0.77f, 0.77f, 0.77f, 1),
-                    Disabled = new Color(0.88f, 0.88f, 0.88f, 1)
-                },
-                Text = new TextLabelStyle
-                {
-                    PointSize = new Selector<float?> { All = DefaultStyle.PointSizeNormal },
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                    PositionUsesPivotPoint = true,
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Selector<Color>
-                    {
-                        Normal = new Color(0.22f, 0.22f, 0.22f, 1),
-                        Pressed = new Color(0.11f, 0.11f, 0.11f, 1),
-                        Disabled = new Color(0.66f, 0.66f, 0.66f, 1)
-                    },
-                    Text = "Button",
+                    TextColor = Color.White,
+                    Padding = new Extents(12, 12, 8, 8),
                 }
             };
             return style;

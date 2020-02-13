@@ -47,11 +47,11 @@ namespace Tizen.NUI.Components
         private IndicatorType indicatorType = IndicatorType.None;
         private const float round = 0.5f;
         // the minimum value
-        private float? minValue = null;
+        private float minValue = 0;
         // the maximum value
-        private float? maxValue = null;
+        private float maxValue = 100;
         // the current value
-        private float? curValue = null;
+        private float curValue = 0;
         // the size of the low indicator
         private Size lowIndicatorSize = null;
         // the size of the high indicator
@@ -339,7 +339,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return minValue ?? 0;
+                return minValue;
             }
             set
             {
@@ -356,7 +356,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return maxValue ?? 100;
+                return maxValue;
             }
             set
             {
@@ -373,7 +373,7 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return curValue ?? 0;
+                return curValue;
             }
             set
             {
@@ -1021,7 +1021,7 @@ namespace Tizen.NUI.Components
                 if (null != slidingFinishedHandler)
                 {
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
-                    args.CurrentValue = curValue.Value;
+                    args.CurrentValue = curValue;
                     slidingFinishedHandler(this, args);
                 }
 
@@ -1279,7 +1279,7 @@ namespace Tizen.NUI.Components
 
         private void UpdateValue()
         {
-            if (slidedTrackImage == null || curValue == null || minValue == null || maxValue == null)
+            if (slidedTrackImage == null)
             {
                 return;
             }
@@ -1444,7 +1444,7 @@ namespace Tizen.NUI.Components
             if (valueChangedHandler != null)
             {
                 ValueChangedArgs args = new ValueChangedArgs();
-                args.CurrentValue = curValue.Value;
+                args.CurrentValue = curValue;
                 valueChangedHandler(this, args);
             }
         }
@@ -1460,7 +1460,7 @@ namespace Tizen.NUI.Components
                 if (null != slidingFinishedHandler)
                 {
                     SlidingFinishedArgs args = new SlidingFinishedArgs();
-                    args.CurrentValue = curValue.Value;
+                    args.CurrentValue = curValue;
                     slidingFinishedHandler(this, args);
                 }
             }
@@ -1498,7 +1498,7 @@ namespace Tizen.NUI.Components
                 if (null != valueChangedHandler)
                 {
                     ValueChangedArgs args = new ValueChangedArgs();
-                    args.CurrentValue = curValue.Value;
+                    args.CurrentValue = curValue;
                     valueChangedHandler(this, args);
                 }
             }
