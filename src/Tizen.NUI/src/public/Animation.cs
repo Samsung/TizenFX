@@ -1290,24 +1290,25 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (_finishedCallbackOfNative != null)
+            if (_animationFinishedEventHandler != null)
             {
                 FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                _animationFinishedEventHandler = null;
             }
 
             if (_animationProgressReachedEventCallback != null)
             {
 
                 ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                _animationProgressReachedEventCallback = null;
             }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                if (swigCMemOwn)
+                if (swigCMemOwn && this.HasBody())
                 {
                     swigCMemOwn = false;
                     Interop.Animation.delete_Animation(swigCPtr);
