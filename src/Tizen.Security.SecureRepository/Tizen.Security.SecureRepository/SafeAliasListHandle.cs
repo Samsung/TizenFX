@@ -21,12 +21,12 @@ using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
-    internal class SafeAliasListHandle
+    internal class SafeAliasContainerHandle<T> where T : ICollection<string>, new() 
     {
-        public SafeAliasListHandle(IntPtr ptr)
+        public SafeAliasContainerHandle(IntPtr ptr)
         {
             var cur = ptr;
-            var aliases = new List<string>();
+            var aliases = new T();
             while (cur != IntPtr.Zero)
             {
                 var ckmcAliasList = Marshal.PtrToStructure<Interop.CkmcAliasList>(cur);
@@ -37,9 +37,15 @@ namespace Tizen.Security.SecureRepository
             this.Aliases = aliases;
         }
 
-        public List<string> Aliases
+        public T Aliases
         {
             get; set;
+        }
+    }
+    internal class SafeAliasListHandle : SafeAliasContainerHandle<List<string>>
+    {
+        public SafeAliasListHandle(IntPtr ptr) : base(ptr)
+        {
         }
     }
 }

@@ -73,7 +73,7 @@ namespace Tizen.Security.SecureRepository
         /// <since_tizen> 3 </since_tizen>
         /// <returns>All aliases of data, which the client can access.</returns>
         /// <exception cref="ArgumentException">No alias to get.</exception>
-        static public IEnumerable<string> GetAliases()
+        static public IReadOnlyCollection<string> GetAliases()
         {
             IntPtr ptr = IntPtr.Zero;
 
@@ -82,7 +82,7 @@ namespace Tizen.Security.SecureRepository
                 Interop.CheckNThrowException(
                     Interop.CkmcManager.GetDataAliasList(out ptr),
                     "Failed to get data aliases");
-                return new SafeAliasListHandle(ptr).Aliases;
+                return new SafeAliasContainerHandle<HashSet<string>>(ptr).Aliases;
             }
             finally
             {
