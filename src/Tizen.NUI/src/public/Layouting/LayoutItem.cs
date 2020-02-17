@@ -65,6 +65,14 @@ namespace Tizen.NUI
         public View Owner{get; set;}  // Should not keep a View alive.
 
         /// <summary>
+        /// [Draft] Layout children with transition if true.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LayoutWithTransition{get; set;}
+
+        /// <summary>
         /// [Draft] Margin for this LayoutItem
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -136,6 +144,7 @@ namespace Tizen.NUI
 
         private void Initialize()
         {
+            LayoutWithTransition = true;
             _layoutPositionData = new LayoutData(this,TransitionCondition.Unspecified,0,0,0,0);
             _padding = new Extents(0,0,0,0);
             _margin = new Extents(0,0,0,0);
@@ -518,7 +527,16 @@ namespace Tizen.NUI
                                                          " right:" + _layoutPositionData.Right +
                                                          " bottom:" + _layoutPositionData.Bottom );
 
-                Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
+                {
+                    Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                }
+                else
+                {
+                    Owner.Size = new Size(right - left, bottom - top, Owner.Position.Z);
+                    Owner.Position = new Position(left, top, Owner.Position.Z);
+                }
+
 
                 // Reset condition for animation ready for next transition when required.
                 ConditionForAnimation = TransitionCondition.Unspecified;
