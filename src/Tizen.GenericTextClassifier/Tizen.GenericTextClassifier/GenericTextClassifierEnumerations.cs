@@ -5,7 +5,7 @@ namespace Tizen.GenericTextClassifier
     /// <summary>
     /// Enumeration for the GenericTextClassifier errors.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen>8</since_tizen>
     public enum GenericTextClassifierError
     {
         /// <summary>
