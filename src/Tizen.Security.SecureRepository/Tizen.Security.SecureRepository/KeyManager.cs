@@ -126,6 +126,37 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
+        /// Checks for alias existence
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <param name="alias">The name of a certificate to retrieve.</param>
+        /// <returns>Boolean indicating the exitsance of the alias.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// The alias argument is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// Indicates failure to communicate with the Keystore. Check the errorcode for details
+        /// </exception>
+        static public bool AliasExists(string alias)
+        {
+            if (alias == null)
+                throw new ArgumentNullException(nameof(alias));
+
+            IntPtr ptr = IntPtr.Zero;
+
+            try
+            {
+                var errorCode = Interop.CkmcManager.GetKey(alias, string.Empty, out ptr);
+                return Interop.CheckForExistingKey(errorCode);
+            }
+            finally
+            {
+                if (ptr != IntPtr.Zero)
+                    Interop.CkmcTypes.KeyFree(ptr);
+            }
+        }
+
+        /// <summary>
         /// Creates the RSA private/public key pair and stores them inside the secure repository
         /// based on each policy.
         /// </summary>

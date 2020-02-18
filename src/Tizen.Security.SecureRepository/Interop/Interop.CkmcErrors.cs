@@ -15,6 +15,9 @@
  */
 
 using System;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 using Tizen.Internals.Errors;
 
 internal static partial class Interop
@@ -22,15 +25,35 @@ internal static partial class Interop
     private const int TizenErrorKeyManager = -0x01E10000;
     private const string LogTag = "Tizen.Security.SecureRepository";
 
+
     internal enum KeyManagerError : int
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
-        AuthenticationFailed    = TizenErrorKeyManager | 0x06, // CKMC_ERROR_AUTHENTICATION_FAILED    
+        AuthenticationFailed = TizenErrorKeyManager | 0x06, // CKMC_ERROR_AUTHENTICATION_FAILED    
         InvalidFormat = TizenErrorKeyManager | 0x0E, // CKMC_ERROR_INVALID_FORMAT
         UnknownAlias = TizenErrorKeyManager | 0x0C, // CKMC_ERROR_DB_ALIAS_UNKNOWN            
         VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED       
     };
+
+    internal static bool CheckForExistingKey(int errorCode)
+    {
+        switch (errorCode)
+        {
+            case (int)KeyManagerError.None:
+            case (int)KeyManagerError.AuthenticationFailed: // Key already exists, we just may have used the incorrect password
+                return true;
+            case (int)KeyManagerError.UnknownAlias:
+                return false;
+            case (int)KeyManagerError.InvalidParameter:
+            case (int)KeyManagerError.InvalidFormat:
+                throw new ArgumentException(string.Format("[{0}] Failed to determine alias existence, error={2}",
+                    LogTag, ErrorFacts.GetErrorMessage(errorCode)));
+            default:
+                throw new InvalidOperationException(string.Format("[{0}] Failed to determine alias existence, error={2}",
+                    LogTag, ErrorFacts.GetErrorMessage(errorCode)));
+        }
+    }
 
     internal static void CheckNThrowException(int err, string msg)
     {

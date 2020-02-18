@@ -82,21 +82,14 @@ namespace Tizen.Security.SecureRepository
         static public bool AliasExists(string alias)
         {
             if (alias == null)
-                throw new ArgumentNullException("alias cannot be null");
+                throw new ArgumentNullException(nameof(alias));
 
             IntPtr ptr = IntPtr.Zero;
 
             try
             {
                 var errorCode = CkmcManager.GetData(alias, string.Empty, out ptr);
-                if((int)KeyManagerError.UnknownAlias == errorCode)
-                    return false;
-
-                if((int)KeyManagerError.AuthenticationFailed == errorCode ||
-                   (int)KeyManagerError.None == errorCode) // Key already exists, we just may have used the incorrect password
-                    return true;
-                CheckNThrowException(errorCode, "Failed to determine alias existence.");
-                throw new InvalidOperationException("Unreachable"); //Unreachable. Interop.CheckNThrow will throw an Exception as we test for KeyManagerError.None
+                return CheckForExistingKey(errorCode);
             }
             finally
             {
