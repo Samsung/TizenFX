@@ -73,12 +73,12 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <param name="alias">The name of a certificate to retrieve.</param>
-        /// <returns>Boolean indicating the exitsance of the alias.</returns>
+        /// <returns>Boolean indicating the existence of the alias.</returns>
         /// <exception cref="ArgumentNullException">
         /// The alias argument is null.
         /// </exception>
         /// <exception cref="InvalidOperationException">
-        /// Indicates failure to communicate with the Keystore. Check the errorcode for details
+        /// Failed to determine the alias existence. Check the errorcode for details
         /// </exception>
         static public bool AliasExists(string alias)
         {
@@ -90,7 +90,7 @@ namespace Tizen.Security.SecureRepository
             try
             {
                 var errorCode = CkmcManager.GetCert(alias, string.Empty, out ptr);
-                return CheckForExistingKey(errorCode);
+                return CheckForExistingAlias(errorCode);
             }
             finally
             {

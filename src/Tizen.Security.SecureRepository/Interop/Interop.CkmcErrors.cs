@@ -15,9 +15,6 @@
  */
 
 using System;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
 using Tizen.Internals.Errors;
 
 internal static partial class Interop
@@ -36,12 +33,12 @@ internal static partial class Interop
         VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED       
     };
 
-    internal static bool CheckForExistingKey(int errorCode)
+    internal static bool CheckForExistingAlias(int errorCode)
     {
         switch (errorCode)
         {
             case (int)KeyManagerError.None:
-            case (int)KeyManagerError.AuthenticationFailed: // Key already exists, we just may have used the incorrect password
+            case (int)KeyManagerError.AuthenticationFailed: // Alias already exists, we just may have used the incorrect password
                 return true;
             case (int)KeyManagerError.UnknownAlias:
                 return false;

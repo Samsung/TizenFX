@@ -89,7 +89,7 @@ namespace Tizen.Security.SecureRepository
             try
             {
                 var errorCode = CkmcManager.GetData(alias, string.Empty, out ptr);
-                return CheckForExistingKey(errorCode);
+                return CheckForExistingAlias(errorCode);
             }
             finally
             {
