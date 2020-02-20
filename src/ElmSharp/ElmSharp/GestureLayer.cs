@@ -552,18 +552,18 @@ namespace ElmSharp
                 SetGestureCallback(type, state, new Action<object>((info) => action((T)info)));
         }
 
-        private void GestureCallbackHandler(IntPtr data, IntPtr event_info)
+        private int GestureCallbackHandler(IntPtr data, IntPtr event_info)
         {
             // so EFL called our callback, lets use data to find the right Action to call
             var handlerIndex = (int)data;
             // thanks to the fact that we never remove item from _handlers, we don't need a lock here
             if (handlerIndex < 0 || handlerIndex >= _handlers.Count)
-                return;
+                return 0;
 
             var currentHandler = _handlers[handlerIndex];
             Action<object> action = currentHandler.Action;
             if (action == null)
-                return;
+                return 0;
 
             // the interpretation of the event_info struct pointer depends on the GestureType
             switch (currentHandler.Type)
@@ -592,6 +592,7 @@ namespace ElmSharp
                     action(Marshal.PtrToStructure<RotateData>(event_info));
                     break;
             }
+            return 0;
         }
 
         #region Info structures
