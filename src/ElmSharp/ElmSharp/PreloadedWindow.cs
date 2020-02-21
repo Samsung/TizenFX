@@ -67,6 +67,8 @@ namespace ElmSharp
             new Polygon(this).Unrealize();
             new Image(this).Unrealize();
             //TODO: Consider to call Image.LoadAsync()
+            new Radio(this).Unrealize();
+            new Index(this).Unrealize();
         }
 
         public static PreloadedWindow GetInstance()
