@@ -35,7 +35,7 @@ namespace ElmSharp
 
             if (Elementary.GetProfile() == "wearable")
             {
-                PreloadElmSharpWearable();
+                WarmupWearableWidgets();
             }
         }
 
@@ -77,7 +77,7 @@ namespace ElmSharp
             //TODO: Consider to call Image.LoadAsync()
         }
 
-        public void PreloadElmSharpWearable()
+        public void WarmupWearableWidgets()
         {
             try
             {
