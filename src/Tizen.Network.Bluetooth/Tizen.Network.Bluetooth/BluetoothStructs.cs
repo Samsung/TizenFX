@@ -385,9 +385,16 @@ namespace Tizen.Network.Bluetooth
         internal static SocketData ConvertStructToSocketData(SocketDataStruct structInfo)
         {
             SocketData data = new SocketData();
-            data.Fd = structInfo.SocketFd;
-            data.Size = structInfo.DataSize;
-            data.RecvData = Marshal.PtrToStringAnsi(structInfo.Data);
+            Log.Info(Globals.LogTag, "SocketDataLength" + structInfo.DataSize);
+
+            data._fd = structInfo.SocketFd;
+            if (structInfo.DataSize > 0)
+            {
+                data._dataSize = structInfo.DataSize;
+                data._data = new byte[data._dataSize];
+                Marshal.Copy(structInfo.Data, data._data, 0, data._dataSize);
+                data._recvData = Marshal.PtrToStringAnsi(structInfo.Data, structInfo.DataSize);
+            }
             return data;
         }
 

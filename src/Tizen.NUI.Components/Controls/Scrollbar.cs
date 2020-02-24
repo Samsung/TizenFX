@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DirectionProperty = BindableProperty.Create("Direction", typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DirectionProperty = BindableProperty.Create(nameof(Direction), typeof(DirectionType), typeof(ScrollBar), DirectionType.Horizontal, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create("MaxValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxValueProperty = BindableProperty.Create(nameof(MaxValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinValueProperty = BindableProperty.Create("MinValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinValueProperty = BindableProperty.Create(nameof(MinValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create("CurrentValue", typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentValueProperty = BindableProperty.Create(nameof(CurrentValue), typeof(int), typeof(ScrollBar), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -102,7 +102,7 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create("Duration", typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(ScrollBar), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (ScrollBar)bindable;
             if (newValue != null)
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
                 instance.Style.Duration = (uint)newValue;
                 if (instance.scrollAniPlayer != null)
                 {
-                    instance.scrollAniPlayer.Duration = (int)instance.Style.Duration;
+                    instance.scrollAniPlayer.Duration = (int)(uint)newValue;
                 }
             }
         },
@@ -129,6 +129,7 @@ namespace Tizen.NUI.Components
         private int minValue;
         private int maxValue;
         private int curValue;
+        static ScrollBar() { }
 
         /// <summary>
         /// The constructor of ScrollBar.
@@ -382,7 +383,7 @@ namespace Tizen.NUI.Components
         /// Method to set current value. The thumb object would move to the corresponding position with animation or not.
         /// </summary>
         /// <param name="currentValue">The special current value.</param>
-        /// <param name="EnableAnimation">Enable move with animation or not, the default value is true.</param>
+        /// <param name="enableAnimation">Enable move with animation or not, the default value is true.</param>
         /// <exception cref="ArgumentOutOfRangeException">Throw when current size is less than the min value, or greater than the max value.</exception>
         /// <example>
         /// <code>
@@ -405,7 +406,9 @@ namespace Tizen.NUI.Components
             if (currentValue < minValue || currentValue > maxValue)
             {
                 //TNLog.E("Current value is less than the Min value, or greater than the Max value. currentValue = " + currentValue + ";");
+#pragma warning disable CA2208 // Instantiate argument exceptions correctly
                 throw new ArgumentOutOfRangeException("Wrong Current value. It shoud be greater than the Min value, and less than the Max value!");
+#pragma warning restore CA2208 // Instantiate argument exceptions correctly
             }
 
             enableAni = enableAnimation;
@@ -470,7 +473,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ScrollBarStyle tempStyle = StyleManager.Instance.GetAttributes(style) as ScrollBarStyle;
+            ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
             if (tempStyle != null)
             {
                 Style.CopyFrom(tempStyle);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@
 using System;
 using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -51,6 +52,8 @@ namespace Tizen.NUI
         private Extents _padding;
         private Extents _margin;
 
+        private bool parentReplacement = false;
+
         /// <summary>
         /// [Draft] Condition event that is causing this Layout to transition.
         /// </summary>
@@ -61,6 +64,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public View Owner{get; set;}  // Should not keep a View alive.
+
+        /// <summary>
+        /// [Draft] Use transition for layouting child
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+         public bool LayoutWithTransition{get; set;}
 
         /// <summary>
         /// [Draft] Margin for this LayoutItem
@@ -134,6 +145,7 @@ namespace Tizen.NUI
 
         private void Initialize()
         {
+            LayoutWithTransition = false;
             _layoutPositionData = new LayoutData(this,TransitionCondition.Unspecified,0,0,0,0);
             _padding = new Extents(0,0,0,0);
             _margin = new Extents(0,0,0,0);
@@ -301,6 +313,21 @@ namespace Tizen.NUI
             {
                 return ( Flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
             }
+        }
+
+        internal void SetReplaceFlag()
+        {
+            parentReplacement = true;
+        }
+
+        internal bool IsReplaceFlag()
+        {
+            return parentReplacement;
+        }
+
+        internal void ClearReplaceFlag()
+        {
+            parentReplacement = false;
         }
 
         /// <summary>
@@ -501,7 +528,16 @@ namespace Tizen.NUI
                                                          " right:" + _layoutPositionData.Right +
                                                          " bottom:" + _layoutPositionData.Bottom );
 
-                Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
+                {
+                    Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                }
+                else
+                {
+                    Owner.Size = new Size(right - left, bottom - top, Owner.Position.Z);
+                    Owner.Position = new Position(left, top, Owner.Position.Z);
+                }
+
 
                 // Reset condition for animation ready for next transition when required.
                 ConditionForAnimation = TransitionCondition.Unspecified;

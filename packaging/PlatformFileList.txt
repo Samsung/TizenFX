@@ -4,6 +4,23 @@ res/maps_marker_pin_48.png                         #mobile #mobile-emul #tv #wea
 res/maps_marker_pin_72.png                         #mobile #mobile-emul #tv #wearable
 res/maps_marker_sticker_48.png                     #mobile #mobile-emul #tv #wearable
 res/maps_marker_sticker_72.png                     #mobile #mobile-emul #tv #wearable
+res/nui_component_default_checkbox_bg_n.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_checkbox_bg_p.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_checkbox_s.png           #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_thumb_d.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_thumb_n.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_track_d.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_track_ds.png      #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_track_n.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_switch_track_s.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_radiobutton_n.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_radiobutton_p.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_radiobutton_s.png        #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_popup_shadow.png         #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_slider_thumb_bg_p.png    #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_slider_thumb_n.png       #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_dropdown_button_icon.png #common #mobile #mobile-emul #tv #wearable
+res/nui_component_default_dropdown_list_bg.png     #common #mobile #mobile-emul #tv #wearable
 Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #tv #wearable
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #wearable

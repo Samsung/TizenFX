@@ -39,6 +39,9 @@ namespace Tizen.NUI
         private bool disposed;
         private bool isDisposeQueued = false;
 
+        private MeasureSpecification parentMeasureSpecificationWidth;
+        private MeasureSpecification parentMeasureSpecificationHeight;
+
         private IntPtr _rootFlex;  // Pointer to the unmanged flex layout class.
 
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
@@ -398,33 +401,30 @@ namespace Tizen.NUI
             Stretch
         }
 
-        private MeasuredSize measureChild(global::System.IntPtr child, float width, int measureModeWidth, float height, int measureModeHeight)
+        private MeasuredSize measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight)
         {
-            View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            Size2D viewSize = new Size2D(8,8);
-            if(view)
-            {
-                viewSize = view.Size2D;
-            }
+            // We need to measure child layout
+            View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
 
-            // If size not set on child then use NaturalSize
-            if(viewSize.Width ==0 && viewSize.Height==0)
-            {
-                viewSize = view.NaturalSize2D;
-            }
+            LayoutItem childLayout = child.Layout;
 
-            Debug.WriteLineIf( LayoutDebugFlex, "FlexLayout measureChild View:" + view.Name
-                                               + "Size:" + viewSize.Width
-                                               + ","
-                                               + viewSize.Height);
+            MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(parentMeasureSpecificationWidth,
+                                    new LayoutLength(childLayout.Padding.Start + childLayout.Padding.End),
+                                    new LayoutLength(child.WidthSpecification));
 
-            return new MeasuredSize(viewSize.Width,viewSize.Height);
+            MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(parentMeasureSpecificationHeight,
+                                    new LayoutLength(childLayout.Padding.Top + childLayout.Padding.Bottom),
+                                    new LayoutLength(child.HeightSpecification));
+
+            childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
+
+            return new MeasuredSize(childLayout.MeasuredWidth.Size.AsRoundedValue(),childLayout.MeasuredHeight.Size.AsRoundedValue());
         }
 
         void InsertChild( LayoutItem child )
         {
             // Store created node for child
-            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, LayoutChildren.Count-1);
+            Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count-1);
         }
 
         /// <summary>
@@ -477,6 +477,12 @@ namespace Tizen.NUI
             {
                 height = heightMeasureSpec.Size.AsDecimal();
             }
+
+            // Save measureSpec to measure children.
+            // In other Layout, we can pass it as parameter to measuring child but in FlexLayout we can't
+            // because measurChild function is called by native callback.
+            parentMeasureSpecificationWidth = widthMeasureSpec;
+            parentMeasureSpecificationHeight = heightMeasureSpec;
 
             Interop.FlexLayout.FlexLayout_CalculateLayout( swigCPtr, width, height, isLayoutRtl );
 

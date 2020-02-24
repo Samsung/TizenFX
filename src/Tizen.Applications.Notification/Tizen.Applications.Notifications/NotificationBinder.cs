@@ -198,7 +198,7 @@ namespace Tizen.Applications.Notifications
 
                 if (time != 0)
                 {
-                    notification.TimeStamp = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local)).AddSeconds(time).ToLocalTime();
+                    notification.TimeStamp = (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(time).ToLocalTime();
                 }
             }
         }

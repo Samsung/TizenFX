@@ -15,9 +15,6 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.IO;
 
 namespace Tizen.MachineLearning.Inference
 {
@@ -28,7 +25,11 @@ namespace Tizen.MachineLearning.Inference
     public class SingleShot : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
+        private bool _dynamicMode = false;
         private bool _disposed = false;
+
+        private TensorsInfo _inInfo = null;
+        private TensorsInfo _outInfo = null;
 
         /// <summary>
         /// Loads the neural network model and configures runtime environment
@@ -38,7 +39,6 @@ namespace Tizen.MachineLearning.Inference
         /// <param name="outTensorsInfo">Output TensorsInfo object for inference result</param>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
-        /// <exception cref="IOException">Thrown when constructing the pipeline is failed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public SingleShot(string modelAbsPath, TensorsInfo inTensorsInfo, TensorsInfo outTensorsInfo)
@@ -46,12 +46,137 @@ namespace Tizen.MachineLearning.Inference
             NNStreamer.CheckNNStreamerSupport();
 
             if (inTensorsInfo == null || outTensorsInfo == null)
-            {
-                string msg = "TensorsInfo is null";
-                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
-            }
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
 
-            CreateSingleShot(modelAbsPath, inTensorsInfo, outTensorsInfo);
+            CreateSingleShot(modelAbsPath, inTensorsInfo, outTensorsInfo, NNFWType.Any, HWType.Any, false);
+        }
+
+        /// <summary>
+        /// Loads the neural network model and configures runtime environment with Neural Network Framework and HW information
+        /// </summary>
+        /// <param name="modelAbsPath">Absolute path to the neural network model file.</param>
+        /// <param name="inTensorsInfo">Input TensorsInfo object</param>
+        /// <param name="outTensorsInfo">Output TensorsInfo object for inference result</param>
+        /// <param name="fwType">Types of Neural Network Framework</param>
+        /// <param name="hwType">Types of hardware resources to be used for NNFWs</param>
+        /// <param name="isDynamicMode">Support Dynamic Mode</param>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public SingleShot(string modelAbsPath,
+            TensorsInfo inTensorsInfo, TensorsInfo outTensorsInfo, NNFWType fwType, HWType hwType, bool isDynamicMode)
+        {
+            NNStreamer.CheckNNStreamerSupport();
+
+            if (inTensorsInfo == null || outTensorsInfo == null)
+                throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
+
+            CreateSingleShot(modelAbsPath, inTensorsInfo, outTensorsInfo, fwType, hwType, isDynamicMode);
+        }
+
+        /// <summary>
+        /// Loads the neural network model and configures runtime environment without TensorsInfo
+        /// </summary>
+        /// <param name="modelAbsPath">Absolute path to the neural network model file.</param>
+        /// <param name="fwType">Types of Neural Network Framework (Default:NNFWType.Any)</param>
+        /// <param name="hwType">Types of hardware resources to be used for NNFWs (Default: HWType.Any)</param>
+        /// <param name="isDynamicMode">Support Dynamic Mode (Default: false)</param>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public SingleShot(string modelAbsPath, NNFWType fwType = NNFWType.Any, HWType hwType = HWType.Any, bool isDynamicMode = false)
+        {
+            NNStreamer.CheckNNStreamerSupport();
+
+            CreateSingleShot(modelAbsPath, null, null, fwType, hwType, isDynamicMode);
+        }
+
+        /// <summary>
+        /// The information (tensor dimension, type, name and so on) of required input data for the given model.
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public TensorsInfo Input
+        {
+            get
+            {
+                NNStreamer.CheckNNStreamerSupport();
+
+                IntPtr inHandle;
+                NNStreamerError ret = NNStreamerError.None;
+
+                if (_inInfo != null)
+                    return _inInfo;
+
+                ret = Interop.SingleShot.GetInputTensorsInfo(_handle, out inHandle);
+                NNStreamer.CheckException(ret, "fail to get Input TensorsInfo handle");
+
+                TensorsInfo retInfo = TensorsInfo.ConvertTensorsInfoFromHandle(inHandle);
+
+                _inInfo = retInfo;
+                return retInfo;
+            }
+            set
+            {
+                NNStreamer.CheckNNStreamerSupport();
+                NNStreamerError ret = NNStreamerError.None;
+
+                if (value == null)
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
+
+                ret = Interop.SingleShot.SetInputInfo(_handle, value.GetTensorsInfoHandle());
+                NNStreamer.CheckException(ret, "fail to set Input TensorsInfo");
+
+                _inInfo = value;
+            }
+        }
+
+        /// <summary>
+        /// The information (tensor dimension, type, name and so on) of output data for the given model.
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public TensorsInfo Output
+        {
+            get
+            {
+                NNStreamer.CheckNNStreamerSupport();
+
+                IntPtr outHandle;
+                NNStreamerError ret = NNStreamerError.None;
+
+                if (_outInfo != null)
+                    return _outInfo;
+
+                ret = Interop.SingleShot.GetOutputTensorsInfo(_handle, out outHandle);
+                NNStreamer.CheckException(ret, "fail to get Output TensorsInfo handle");
+
+                TensorsInfo retInfo = TensorsInfo.ConvertTensorsInfoFromHandle(outHandle);
+
+                _outInfo = retInfo;
+                return retInfo;
+            }
+        }
+
+        /// <summary>
+        /// Sets the maximum amount of time to wait for an output, in milliseconds.
+        /// </summary>
+        /// <param name="ms">The time to wait for an output (milliseconds)</param>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetTimeout(int ms)
+        {
+            NNStreamer.CheckNNStreamerSupport();
+            NNStreamerError ret = NNStreamerError.None;
+
+            if (ms <= 0)
+                ret = NNStreamerError.InvalidParameter;
+            NNStreamer.CheckException(ret, "timeout: " + ms.ToString());
+
+            ret = Interop.SingleShot.SetTimeout(_handle, ms);
+            NNStreamer.CheckException(ret, "fail to set the timeout!");
         }
 
         /// <summary>
@@ -80,15 +205,16 @@ namespace Tizen.MachineLearning.Inference
         /// <returns>TensorsData instance which contains the inferred result.</returns>
         /// <feature>http://tizen.org/feature/machine_learning.inference</feature>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
-        /// <exception cref="IOException">Thrown when failed to push an input data into source element.</exception>
         /// <exception cref="TimeoutException">Thrown when failed to get the result from sink element.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 6 </since_tizen>
         public TensorsData Invoke(TensorsData inTensorsData)
         {
-            TensorsData out_data;
-            IntPtr out_ptr = IntPtr.Zero;
+            TensorsData out_data = null;
+            IntPtr outDataPtr = IntPtr.Zero;
             NNStreamerError ret = NNStreamerError.None;
+
+            NNStreamer.CheckNNStreamerSupport();
 
             if (inTensorsData == null)
             {
@@ -96,28 +222,71 @@ namespace Tizen.MachineLearning.Inference
                 throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
             }
 
-            ret = Interop.SingleShot.InvokeSingle(_handle, inTensorsData.Handle, out out_ptr);
-            NNStreamer.CheckException(ret, "fail to invoke the single inference engine");
+            if (_dynamicMode)
+            {
+                TensorsInfo inInfo = inTensorsData.TensorsInfo;
+                if (inInfo == null)
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, "TensorsInfo is null");
 
-            out_data = TensorsData.CreateFromNativeHandle(out_ptr);
+                /* Apply all data */
+                inTensorsData.PrepareInvoke();
+
+                IntPtr outInfoPtr = IntPtr.Zero;
+                ret = Interop.SingleShot.InvokeSingleDynamic(_handle, inTensorsData.GetHandle(), inInfo.GetTensorsInfoHandle(), out outDataPtr, out outInfoPtr);
+                NNStreamer.CheckException(ret, "fail to invoke the single dynamic inference");
+
+                out_data = TensorsData.CreateFromNativeHandle(outDataPtr, outInfoPtr, true);
+            }
+            else
+            {
+                TensorsInfo data_inInfo = inTensorsData.TensorsInfo;
+
+                if (!data_inInfo.Equals(_inInfo))
+                {
+                    string msg = "The TensorsInfo of Input TensorsData is different from that of SingleShot object";
+                    throw NNStreamerExceptionFactory.CreateException(NNStreamerError.InvalidParameter, msg);
+                }
+
+                /* Apply all data */
+                inTensorsData.PrepareInvoke();
+
+                ret = Interop.SingleShot.InvokeSingle(_handle, inTensorsData.GetHandle(), out outDataPtr);
+                NNStreamer.CheckException(ret, "fail to invoke the single inference");
+
+                out_data = TensorsData.CreateFromNativeHandle(outDataPtr, data_inInfo.GetTensorsInfoHandle(), true);
+            }
             return out_data;
         }
 
-        private void CreateSingleShot(string modelAbsPath, TensorsInfo inTensorInfo, TensorsInfo outTensorInfo)
+        private void CreateSingleShot(string modelAbsPath,
+            TensorsInfo inTensorInfo, TensorsInfo outTensorInfo,
+            NNFWType FWType, HWType HWType, bool IsDynamicMode)
         {
             NNStreamerError ret = NNStreamerError.None;
-            IntPtr input_info;
-            IntPtr output_info;
+            IntPtr input_info = IntPtr.Zero;
+            IntPtr output_info = IntPtr.Zero;
 
             /* Check model path */
             if (string.IsNullOrEmpty(modelAbsPath))
                 ret = NNStreamerError.InvalidParameter;
             NNStreamer.CheckException(ret, "model path is invalid: " + modelAbsPath);
 
-            input_info = inTensorInfo.GetTensorsInfoHandle();
-            output_info = outTensorInfo.GetTensorsInfoHandle();
+            /* Set Dynamic Mode */
+            _dynamicMode = IsDynamicMode;
 
-            ret = Interop.SingleShot.OpenSingle(out _handle, modelAbsPath, input_info, output_info, NNFWType.Any, HWType.Any);
+            if (inTensorInfo != null)
+            {
+                input_info = inTensorInfo.GetTensorsInfoHandle();
+                _inInfo = inTensorInfo;
+            }
+
+            if (outTensorInfo != null)
+            {
+                output_info = outTensorInfo.GetTensorsInfoHandle();
+                _outInfo = outTensorInfo;
+            }
+
+            ret = Interop.SingleShot.OpenSingle(out _handle, modelAbsPath, input_info, output_info, FWType, HWType);
             NNStreamer.CheckException(ret, "fail to open the single inference engine");
         }
 

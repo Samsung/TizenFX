@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -128,6 +129,24 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
+
             played = true;
             Interop.Timer.Timer_Start(swigCPtr);
 
@@ -140,6 +159,25 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
+
             played = false;
             Interop.Timer.Timer_Stop(swigCPtr);
 
@@ -153,6 +191,24 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsRunning()
         {
+            if (Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+
+                StackTrace st = new StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    StackFrame sf = st.GetFrame(i);
+                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod());
+                }
+            }
+
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return false;
+            }
+
             bool ret = Interop.Timer.Timer_IsRunning(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -172,6 +228,12 @@ namespace Tizen.NUI
         {
             NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
 
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return;
+            }
+
             played = true;
 
             Interop.Timer.Timer_SetInterval(swigCPtr, milliSec);
@@ -180,6 +242,12 @@ namespace Tizen.NUI
 
         internal uint GetInterval()
         {
+            if(swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            {
+                NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
+                return 0;
+            }
+
             uint ret = Interop.Timer.Timer_GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

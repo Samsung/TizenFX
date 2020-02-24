@@ -35,6 +35,7 @@ namespace Tizen.NUI.Components
         private Animation underlineAni = null;
         private bool isNeedAnimation = false;
         private Extents space;
+        static Tab() { }
 
         /// <summary>
         /// Creates a new instance of a Tab.
@@ -447,7 +448,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tempAttributes = StyleManager.Instance.GetAttributes(style) as TabStyle;
+            TabStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as TabStyle;
             if (tempAttributes != null)
             {
                 Style.CopyFrom(tempAttributes);
@@ -483,7 +484,7 @@ namespace Tizen.NUI.Components
                 {
                     for (int i = 0; i < totalNum; i++)
                     {
-                        preW = (itemList[i].NaturalSize2D != null ? itemList[i].NaturalSize2D.Width : 0);
+                        preW = (itemList[i].TextItem.NaturalSize2D != null ? itemList[i].TextItem.NaturalSize2D.Width : 0);
                         itemList[i].Position2D.X = preX;
                         itemList[i].Size2D.Width = preW;
                         preX = itemList[i].Position2D.X + preW + itemSpace;
@@ -544,6 +545,7 @@ namespace Tizen.NUI.Components
 
         private void AddItemByIndex(TabItemData itemData, int index)
         {
+            if (null == itemData) return;
             int h = 0;
             int topSpace = (int)Style.ItemPadding.Top;
             if (Style.UnderLine != null && Style.UnderLine.Size != null)

@@ -100,7 +100,14 @@ namespace Tizen.NUI
             /// Landscape inverse orientation.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            LandscapeInverse = 270
+            LandscapeInverse = 270,
+            /// <summary>
+            /// No orientation. It is for the preferred orientation
+            /// Especially, NoOrientationPreference only has the effect for the preferred orientation.
+            /// It is used to unset the preferred orientation with SetPreferredOrientation.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            NoOrientationPreference = -1
         }
 
         /// <summary>
@@ -997,13 +1004,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal static Window GetCurrent()
-        {
-            Window ret = new Window(Interop.Stage.Stage_GetCurrent(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal static bool IsInstalled()
         {
             bool ret = Interop.Stage.Stage_IsInstalled();
@@ -1070,6 +1070,19 @@ namespace Tizen.NUI
         public Window.WindowOrientation GetPreferredOrientation()
         {
             Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetPreferredOrientation(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets current orientation of the window.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>The current window orientation if previously set, or none.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.WindowOrientation GetCurrentOrientation()
+        {
+            Window.WindowOrientation ret = (Window.WindowOrientation)Interop.Window.Window_GetCurrentOrientation(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

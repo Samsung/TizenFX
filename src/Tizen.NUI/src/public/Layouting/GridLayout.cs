@@ -122,20 +122,24 @@ namespace Tizen.NUI
             var childCount = LayoutChildren.Count;
 
             // WIDTH SPECIFICATIONS
-
-            // measure first child and use it's dimensions for layout measurement
-
             if (childCount > 0)
             {
-                LayoutItem childLayoutItem = LayoutChildren[0];
-                View childOwner = childLayoutItem.Owner;
+                foreach( LayoutItem childLayout in LayoutChildren )
+                {
+                    if( childLayout != null )
+                    {
+                        MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
+                    }
+                }
 
-                MeasureChild( childLayoutItem, widthMeasureSpec, heightMeasureSpec );
-                desiredChildHeight = (int)childLayoutItem.MeasuredHeight.Size.AsRoundedValue();
-                desiredChildWidth = (int)childLayoutItem.MeasuredWidth.Size.AsRoundedValue();
+                // Use first child's dimensions for layout measurement
+                View childOwner = LayoutChildren[0].Owner;
+
+                desiredChildHeight = (int)LayoutChildren[0].MeasuredHeight.Size.AsRoundedValue();
+                desiredChildWidth = (int)LayoutChildren[0].MeasuredWidth.Size.AsRoundedValue();
 
                 // If child has a margin then add it to desired size
-                Extents childMargin = childLayoutItem.Margin;
+                Extents childMargin = LayoutChildren[0].Margin;
                 desiredChildHeight += childMargin.Top + childMargin.Bottom;
                 desiredChildWidth += childMargin.Start + childMargin.End;
 
@@ -183,23 +187,24 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                  // Grid expands to fit content
+                    // Grid expands to fit content
 
-                  // If number of columns AUTO_FIT then set to 1 column.
-                  _columns = ( _columns > 0 ) ? _columns : 1;
-                  // Calculate numbers of rows, round down result as later check for remainder.
-                  _rows = childCount / _columns;
-                  // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
-                  _rows += ( childCount % _columns > 0 ) ? 1 : 0;
+                    // If number of columns AUTO_FIT then set to 1 column.
+                    _columns = ( _columns > 0 ) ? _columns : 1;
+                    // Calculate numbers of rows, round down result as later check for remainder.
+                    _rows = childCount / _columns;
+                    // If number of cells not cleanly dividable by columns, add another row to house remainder cells.
+                    _rows += ( childCount % _columns > 0 ) ? 1 : 0;
 
-                  availableContentHeight = desiredChildHeight * _rows;
+                    heightSize = desiredChildHeight * _rows + gridLayoutPadding.Top + gridLayoutPadding.Bottom;
+                    availableContentHeight = heightSize - gridLayoutPadding.Top - gridLayoutPadding.Bottom;
                 }
 
-            // If number of columns not defined
-            DetermineNumberOfColumns( availableContentWidth );
+                // If number of columns not defined
+                DetermineNumberOfColumns( availableContentWidth );
 
-            // Locations define the start, end,top and bottom of each cell.
-            _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
+                // Locations define the start, end,top and bottom of each cell.
+                _locations.CalculateLocations(_columns, availableContentWidth, availableContentHeight, childCount);
 
             } // Children exists
 

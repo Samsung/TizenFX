@@ -61,6 +61,10 @@ namespace Tizen.NUI
             {
                 return ValueOfIndex(key);
             }
+            internal set
+            {
+                SetValue(key, value);
+            }
         }
 
         /// <summary>
@@ -75,6 +79,10 @@ namespace Tizen.NUI
             get
             {
                 return ValueOfIndex(key);
+            }
+            internal set
+            {
+                SetValue(key, value);
             }
         }
 
@@ -284,6 +292,18 @@ namespace Tizen.NUI
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyMap obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal void SetValue(int key, PropertyValue value)
+        {
+            Interop.PropertyMap.Property_Map_SetValue_IntKey(swigCPtr, key, PropertyValue.getCPtr(value));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetValue(string key, PropertyValue value)
+        {
+            Interop.PropertyMap.Property_Map_SetValue_StringKey(swigCPtr, key, PropertyValue.getCPtr(value));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will not be public opened.

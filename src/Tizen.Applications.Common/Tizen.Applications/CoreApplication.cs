@@ -327,12 +327,11 @@ namespace Tizen.Applications
 
     internal class ULocale
     {
-        private const int ICU_ULOC_FULLNAME_CAPACITY = 157;
-        private const int ICU_ULOC_LANG_CAPACITY = 12;
-        private const int ICU_ULOC_SCRIPT_CAPACITY = 6;
-        private const int ICU_ULOC_COUNTRY_CAPACITY = 4;
-        private const int ICU_ULOC_VARIANT_CAPACITY = ICU_ULOC_FULLNAME_CAPACITY;
-        private const int ICU_U_ZERO_ERROR = 0;
+        private const int ULOC_FULLNAME_CAPACITY = 157;
+        private const int ULOC_LANG_CAPACITY = 12;
+        private const int ULOC_SCRIPT_CAPACITY = 6;
+        private const int ULOC_COUNTRY_CAPACITY = 4;
+        private const int ULOC_VARIANT_CAPACITY = ULOC_FULLNAME_CAPACITY;
 
         internal ULocale(string locale)
         {
@@ -351,11 +350,9 @@ namespace Tizen.Applications
 
         private string Canonicalize(string localeName)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the locale name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_FULLNAME_CAPACITY);
-            if (Interop.Icu.Canonicalize(localeName, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_FULLNAME_CAPACITY);
+            if (Interop.BaseUtilsi18n.Canonicalize(localeName, sb, sb.Capacity) <= 0)
             {
                 return null;
             }
@@ -365,11 +362,9 @@ namespace Tizen.Applications
 
         private string GetLanguage(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the language name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_LANG_CAPACITY);
-            if (Interop.Icu.GetLanguage(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_LANG_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetLanguage(locale, sb, sb.Capacity, out int bufSizeLanguage) != 0)
             {
                 return null;
             }
@@ -379,11 +374,9 @@ namespace Tizen.Applications
 
         private string GetScript(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the script name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
-            if (Interop.Icu.GetScript(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetScript(locale, sb, sb.Capacity) <= 0)
             {
                 return null;
             }
@@ -393,11 +386,11 @@ namespace Tizen.Applications
 
         private string GetCountry(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
+            int err = 0;
 
             // Get the country name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
-            if (Interop.Icu.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
             {
                 return null;
             }
@@ -407,11 +400,9 @@ namespace Tizen.Applications
 
         private string GetVariant(string locale)
         {
-            int err = ICU_U_ZERO_ERROR;
-
             // Get the variant name from ICU
-            StringBuilder sb = new StringBuilder(ICU_ULOC_VARIANT_CAPACITY);
-            if (Interop.Icu.GetVariant(locale, sb, sb.Capacity, out err) <= 0)
+            StringBuilder sb = new StringBuilder(ULOC_VARIANT_CAPACITY);
+            if (Interop.BaseUtilsi18n.GetVariant(locale, sb, sb.Capacity) <= 0)
             {
                 return null;
             }

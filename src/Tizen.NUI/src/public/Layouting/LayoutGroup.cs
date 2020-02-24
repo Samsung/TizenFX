@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -88,11 +88,27 @@ namespace Tizen.NUI
             {
                 if( childLayout == layoutItem )
                 {
-                    Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                    childLayout.ClearReplaceFlag();
                     LayoutChildren.Remove(childLayout);
-                    childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
-                    // Add LayoutItem to the transition stack so can animate it out.
-                    Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0,0,0,0));
+
+                    if (LayoutWithTransition)
+                    {
+                        if (!childLayout.IsReplaceFlag())
+                        {
+                            Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                        }
+
+                        childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
+                        // Add LayoutItem to the transition stack so can animate it out.
+                        Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                    }
+                    else
+                    {
+                        Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
+                        if (NDalicPINVOKE.SWIGPendingException.Pending)
+                            throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    }
+
                     // Reset condition for animation ready for next transition when required.
                     // SetFrame usually would do this but this LayoutItem is being removed.
                     childLayout.ConditionForAnimation = TransitionCondition.Unspecified;
@@ -461,7 +477,7 @@ namespace Tizen.NUI
         {
             View childOwner = child.Owner;
 
-            Extents padding = Padding; // Padding of this layout's owner, not of the child being measured.
+            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
                                                                                        new LayoutLength(padding.Start + padding.End ),
