@@ -424,7 +424,7 @@ namespace Tizen.NUI
         void InsertChild( LayoutItem child )
         {
             // Store created node for child
-            Interop.FlexLayout.FlexLayout_AddChild(swigCPtr, View.getCPtr(child.Owner), measureChildDelegate, LayoutChildren.Count-1);
+            Interop.FlexLayout.FlexLayout_AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count-1);
         }
 
         /// <summary>
