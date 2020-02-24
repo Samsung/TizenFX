@@ -17,6 +17,7 @@ using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 using System.Diagnostics;
+
 namespace Tizen.NUI.Components
 {
     /// <summary>
@@ -267,6 +268,31 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ScrollEventArgs : EventArgs
         {
+            Position position;
+
+            /// <summary>
+            /// Default constructor.
+            /// </summary>
+            /// <param name="position">Current scroll position</param>
+            /// <since_tizen> 6 </since_tizen>
+            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+            public ScrollEventArgs(Position position)
+            {
+                this.position = position;
+            }
+
+            /// <summary>
+            /// [Draft] Current scroll position.
+            /// </summary>
+            /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Position Position
+            {
+                get
+                {
+                    return position;
+                }
+            }
         }
 
         /// <summary>
@@ -303,6 +329,13 @@ namespace Tizen.NUI.Components
         public event EventHandler<ScrollEventArgs> ScrollAnimationEndEvent;
 
 
+        /// <summary>
+        /// An event emitted when scrolling, user can subscribe or unsubscribe to this event handler.<br />
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScrollEventArgs> ScrollEvent;
 
         private Animation scrollAnimation;
         private float maxScrollDistance;
@@ -317,6 +350,7 @@ namespace Tizen.NUI.Components
 
         // If false then can only flick pages when the current animation/scroll as ended.
         private bool flickWhenAnimating = false;
+        private PropertyNotification propertyNotification;
 
         /// <summary>
         /// [Draft] Constructor
@@ -335,11 +369,18 @@ namespace Tizen.NUI.Components
             mTapGestureDetector.Attach(this);
             mTapGestureDetector.Detected += OnTapGestureDetected;
 
+
             ClippingMode = ClippingModeType.ClipToBoundingBox;
 
             mScrollingChild = new View();
+            mScrollingChild.Name = "DefaultScrollingChild";
 
             Layout = new ScrollableBaseCustomLayout();
+        }
+
+        private void OnPropertyChanged(object source, PropertyNotification.NotifyEventArgs args)
+        {
+            OnScroll();
         }
 
         /// <summary>
@@ -351,10 +392,19 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            mScrollingChild = view;
+            if(mScrollingChild.Name != "DefaultScrollingChild")
             {
-            if (Children.Count > 1)
-                Log.Error("ScrollableBase", $"Only 1 child should be added to ScrollableBase.");
+                propertyNotification.Notified -= OnPropertyChanged;
+                mScrollingChild.RemovePropertyNotification(propertyNotification);
+            }
+
+            mScrollingChild = view;
+            propertyNotification = mScrollingChild?.AddPropertyNotification("position", PropertyCondition.Step(1.0f));
+            propertyNotification.Notified += OnPropertyChanged;
+
+            {
+                if (Children.Count > 1)
+                    Log.Error("ScrollableBase", $"Only 1 child should be added to ScrollableBase.");
             }
         }
 
@@ -367,6 +417,9 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildRemove(View view)
         {
+            propertyNotification.Notified -= OnPropertyChanged;
+            mScrollingChild.RemovePropertyNotification(propertyNotification);
+
             mScrollingChild = new View();
         }
 
@@ -398,26 +451,32 @@ namespace Tizen.NUI.Components
 
         private void OnScrollDragStart()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollDragStartEvent?.Invoke(this, eventArgs);
         }
 
         private void OnScrollDragEnd()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollDragEndEvent?.Invoke(this, eventArgs);
         }
 
         private void OnScrollAnimationStart()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollAnimationStartEvent?.Invoke(this, eventArgs);
         }
 
         private void OnScrollAnimationEnd()
         {
-            ScrollEventArgs eventArgs = new ScrollEventArgs();
+            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
             ScrollAnimationEndEvent?.Invoke(this, eventArgs);
+        }
+
+        private void OnScroll()
+        {
+            ScrollEventArgs eventArgs = new ScrollEventArgs(mScrollingChild.CurrentPosition);
+            ScrollEvent?.Invoke(this, eventArgs);
         }
 
         private void StopScroll()
@@ -686,7 +745,6 @@ namespace Tizen.NUI.Components
                     totalDisplacementForPan += e.PanGesture.Displacement.Y;
                 }
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "OnPanGestureDetected Continue totalDisplacementForPan:" + totalDisplacementForPan);
-
             }
             else if (e.PanGesture.State == Gesture.StateType.Finished)
             {
@@ -730,7 +788,6 @@ namespace Tizen.NUI.Components
             scrolling = false;
             OnScrollAnimationEnd();
         }
-
     }
 
 } // namespace
