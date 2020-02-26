@@ -24,3 +24,6 @@ echo "# Auto-generated from $(basename $RPMSPEC_IN) by makespec.sh" | cat - $RPM
 sed -i -e "s/@api_version@/$API_VERSION/g" $RPMSPEC
 sed -i -e "s/@rpm_version@/$RPM_VERSION/g" $RPMSPEC
 sed -i -e "s/@nuget_version@/$NUGET_VERSION/g" $RPMSPEC
+
+# Update RID
+$SCRIPT_DIR/makerid.py
