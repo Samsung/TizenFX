@@ -10,7 +10,7 @@
 %define DOTNET_TOOLS_PATH /usr/share/dotnet.tizen/tools
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
