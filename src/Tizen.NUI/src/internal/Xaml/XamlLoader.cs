@@ -268,6 +268,41 @@ namespace Tizen.NUI.Xaml
                     throw new XamlParseException(string.Format("Can't find type {0}", type.FullName), new XmlLineInfo());
                 }
             }
+            else
+            {
+                Assembly assembly = type.Assembly;
+
+                Stream stream = null;
+
+                foreach (string str in assembly.GetManifestResourceNames())
+                {
+                    string resourceClassName = str.Substring(0, str.LastIndexOf('.'));
+                    int index = resourceClassName.LastIndexOf('.');
+                    if (0 <= index && index < resourceClassName.Length)
+                    {
+                        resourceClassName = resourceClassName.Substring(index + 1);
+
+                        if (resourceClassName == type.Name)
+                        {
+                            stream = assembly.GetManifestResourceStream(str);
+                            break;
+                        }
+                    }
+                }
+
+                if (null == stream)
+                {
+                    throw new XamlParseException(string.Format("Can't find type {0} in embedded resource", type.FullName), new XmlLineInfo());
+                }
+                else
+                {
+                    Byte[] buffer = new byte[stream.Length];
+                    stream.Read(buffer, 0, (int)stream.Length);
+
+                    string ret = System.Text.Encoding.Default.GetString(buffer);
+                    return ret;
+                }
+            }
 
             return null;
         }
