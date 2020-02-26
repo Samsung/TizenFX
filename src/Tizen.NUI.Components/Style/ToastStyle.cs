@@ -24,8 +24,6 @@ namespace Tizen.NUI.Components
     /// ToastStyle is a class which saves Toast's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
         static ToastStyle() { }
@@ -34,8 +32,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ToastStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle() : base()
         {
             InitSubStyle();
@@ -46,8 +42,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create ToastStyle by Style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ToastStyle(ToastStyle style) : base(style)
         {
             InitSubStyle();
@@ -58,24 +52,18 @@ namespace Tizen.NUI.Components
         /// Gets or sets toast show duration time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? Duration { get; set; }
 
         /// <summary>
         /// Text's Style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle Text { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

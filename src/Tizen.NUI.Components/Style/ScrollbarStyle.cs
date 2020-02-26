@@ -24,8 +24,6 @@ namespace Tizen.NUI.Components
     /// ScrollBarStyle is a class which saves Scrollbar's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollBarStyle : ControlStyle
     {
         static ScrollBarStyle() { }
@@ -34,8 +32,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ScrollBarStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBarStyle() : base()
         {
             InitSubStyle();
@@ -47,8 +43,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create ScrollBarStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBarStyle(ScrollBarStyle style) : base(style)
         {
             if (null == style) return;
@@ -62,40 +56,30 @@ namespace Tizen.NUI.Components
         /// Get or set track image style
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set thumb image style
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set direction type
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollBar.DirectionType? Direction { get; set; }
 
         /// <summary>
         /// Get or set duration
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Duration { get; set; }
 
         /// <summary>
         /// Attributes's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

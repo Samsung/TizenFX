@@ -25,8 +25,6 @@ namespace Tizen.NUI.Components
     /// SliderStyle is a class which saves Slider's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SliderStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -102,8 +100,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a SliderStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public SliderStyle() : base()
         {
             IndicatorType = Slider.IndicatorType.None;
@@ -115,8 +111,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create SliderStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public SliderStyle(SliderStyle style) : base(style)
         {
             if(style == null)
@@ -135,64 +129,48 @@ namespace Tizen.NUI.Components
         /// Get or set background track.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set slided track.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set thumb.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set low indicator image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle LowIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set high indicator image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle HighIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set low indicator text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle LowIndicator { get; set; }
 
         /// <summary>
         /// Get or set high indicator text.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle HighIndicator { get; set; }
 
         /// <summary>
         /// Get or set Indicator type
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public IndicatorType? IndicatorType
         {
             get => (IndicatorType?)GetValue(IndicatorTypeProperty);
@@ -203,8 +181,6 @@ namespace Tizen.NUI.Components
         /// Get or set track thickness
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? TrackThickness
         {
             get => (uint?)GetValue(TrackThicknessProperty);
@@ -215,8 +191,6 @@ namespace Tizen.NUI.Components
         /// Get or set space between track and indicator
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint? SpaceBetweenTrackAndIndicator
         {
             get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
@@ -227,8 +201,6 @@ namespace Tizen.NUI.Components
         /// Get or set space between track and indicator
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents TrackPadding
         {
             get
@@ -243,8 +215,6 @@ namespace Tizen.NUI.Components
         /// Attributes's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

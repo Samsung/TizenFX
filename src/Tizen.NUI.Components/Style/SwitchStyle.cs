@@ -24,8 +24,6 @@ namespace Tizen.NUI.Components
     /// SwitchStyle is a class which saves Switch's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchStyle : ButtonStyle
     {
         static SwitchStyle() { }
@@ -34,8 +32,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a SwitchStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public SwitchStyle() : base()
         {
             InitSubStyle();
@@ -46,8 +42,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create SwitchStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public SwitchStyle(SwitchStyle style) : base(style)
         {
             if(null == style)
@@ -64,24 +58,18 @@ namespace Tizen.NUI.Components
         /// Thumb image's style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Track image's style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

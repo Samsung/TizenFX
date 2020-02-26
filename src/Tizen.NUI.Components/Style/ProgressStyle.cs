@@ -24,8 +24,6 @@ namespace Tizen.NUI.Components
     /// ProgressStyle is a class which saves Progress's ux data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ProgressStyle : ControlStyle
     {
         static ProgressStyle() { }
@@ -34,8 +32,6 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ProgressStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ProgressStyle() : base()
         {
             InitSubStyle();
@@ -46,8 +42,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="style">Create ProgressStyle by style customized by user.</param>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ProgressStyle(ProgressStyle style) : base(style)
         {
             if (null == style) return;
@@ -61,32 +55,24 @@ namespace Tizen.NUI.Components
         /// Get or set track image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set progress image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set buffer image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
         /// Clone function.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
