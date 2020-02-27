@@ -228,17 +228,21 @@ namespace Tizen.NUI
             if (horizontal)
             {
                 childWidthMeasureSpec = new MeasureSpecification( new LayoutLength(childLength), MeasureSpecification.ModeType.Exactly );
-                childHeightMeasureSpec = GetChildMeasureSpecification( heightMeasureSpec,
+                childHeightMeasureSpec = GetChildMeasureSpecification( 
+                                            new MeasureSpecification(
+                                                new LayoutLength(heightMeasureSpec.Size - (Padding.Top + Padding.Bottom + childLayout.Owner.Margin.Top + childLayout.Owner.Margin.Bottom)),
+                                                heightMeasureSpec.Mode),
                                             new LayoutLength(Padding.Top + Padding.Bottom),
-                                            new LayoutLength(desiredHeight),
-                                            new LayoutLength(childLayout.Owner.Margin.Top + childLayout.Owner.Margin.Bottom) );
+                                            new LayoutLength(desiredHeight));
             }
             else // vertical
             {
-                childWidthMeasureSpec = GetChildMeasureSpecification( widthMeasureSpec,
+                childWidthMeasureSpec = GetChildMeasureSpecification(
+                                            new MeasureSpecification(
+                                                new LayoutLength(widthMeasureSpec.Size - (Padding.Start + Padding.End + childLayout.Owner.Margin.Start + childLayout.Owner.Margin.End)),
+                                                widthMeasureSpec.Mode),
                                             new LayoutLength(Padding.Start + Padding.End),
-                                            new LayoutLength(desiredWidth),
-                                            new LayoutLength(childLayout.Owner.Margin.Start + childLayout.Owner.Margin.End) );
+                                            new LayoutLength(desiredWidth));
 
                 childHeightMeasureSpec = new MeasureSpecification( new LayoutLength(childLength), MeasureSpecification.ModeType.Exactly);
             }
@@ -304,15 +308,19 @@ namespace Tizen.NUI
                         // this child is only laid out using excess space. Measure
                         // using WrapContent so that we can find out the view's
                         // optimal width.
-                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(widthMeasureSpec,
+                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
+                                                new MeasureSpecification(
+                                                    new LayoutLength(widthMeasureSpec.Size - (Padding.Start + Padding.End + childLayout.Margin.Start + childLayout.Margin.End)),
+                                                    widthMeasureSpec.Mode),
                                                 new LayoutLength(Padding.Start + Padding.End),
-                                                new LayoutLength(LayoutParamPolicies.WrapContent),
-                                                new LayoutLength(childLayout.Margin.Start + childLayout.Margin.End));
+                                                new LayoutLength(LayoutParamPolicies.WrapContent));
 
-                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(heightMeasureSpec,
+                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
+                                                new MeasureSpecification(
+                                                    new LayoutLength(heightMeasureSpec.Size - (Padding.Top + Padding.Bottom + childLayout.Margin.Top + childLayout.Margin.Bottom)),
+                                                    heightMeasureSpec.Mode),
                                                 new LayoutLength(Padding.Top + Padding.Bottom),
-                                                new LayoutLength(childDesiredHeight),
-                                                new LayoutLength(childLayout.Margin.Top + childLayout.Margin.Bottom));
+                                                new LayoutLength(childDesiredHeight));
 
                         childLayout.Measure( childWidthMeasureSpec, childHeightMeasureSpec);
                         usedExcessSpace += childLayout.MeasuredWidth.Size.AsDecimal();
@@ -372,7 +380,7 @@ namespace Tizen.NUI
 
             float widthSize = _totalLength;
             widthSize = Math.Max( widthSize, SuggestedMinimumWidth.AsDecimal());
-            MeasuredSize widthSizeAndState = ResolveSizeAndState( new LayoutLength(widthSize), new LayoutLength(Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+            MeasuredSize widthSizeAndState = ResolveSizeAndState( new LayoutLength(widthSize + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             widthSize = widthSizeAndState.Size.AsDecimal();
 
             // 2nd phase:
@@ -445,7 +453,7 @@ namespace Tizen.NUI
             widthSizeAndState.State = childState.widthState;
 
             SetMeasuredDimensions(widthSizeAndState,
-                                  ResolveSizeAndState( new LayoutLength(maxHeight), new LayoutLength(Padding.Top + Padding.Bottom), heightMeasureSpec, childState.heightState ));
+                                  ResolveSizeAndState( new LayoutLength(maxHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childState.heightState ));
 
             if (matchHeight)
             {
@@ -500,15 +508,19 @@ namespace Tizen.NUI
                         // using WrapContent so that we can find out the view's
                         // optimal height.
                         // We'll restore the original height of 0 after measurement.
-                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(widthMeasureSpec,
-                                                                    new LayoutLength(Padding.Start + Padding.End),
-                                                                    new LayoutLength(childDesiredWidth),
-                                                                    new LayoutLength(childLayout.Margin.Start + childLayout.Margin.End) );
+                        MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
+                                                new MeasureSpecification(
+                                                    new LayoutLength(widthMeasureSpec.Size - (Padding.Start + Padding.End + childLayout.Margin.Start + childLayout.Margin.End)),
+                                                    widthMeasureSpec.Mode),
+                                                new LayoutLength(Padding.Start + Padding.End),
+                                                new LayoutLength(childDesiredWidth));
 
-                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification( heightMeasureSpec,
-                                                                    new LayoutLength(Padding.Top + Padding.Bottom),
-                                                                    new LayoutLength(LayoutParamPolicies.WrapContent),
-                                                                    new LayoutLength(childLayout.Margin.Top + childLayout.Margin.Bottom) );
+                        MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
+                                                new MeasureSpecification(
+                                                    new LayoutLength(heightMeasureSpec.Size - (Padding.Top + Padding.Bottom + childLayout.Margin.Top + childLayout.Margin.Bottom)),
+                                                    heightMeasureSpec.Mode),
+                                                new LayoutLength(Padding.Top + Padding.Bottom),
+                                                new LayoutLength(LayoutParamPolicies.WrapContent));
 
                         childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
                         usedExcessSpace += childLayout.MeasuredHeight.Size.AsDecimal();
@@ -569,7 +581,7 @@ namespace Tizen.NUI
 
             float heightSize = _totalLength;
             heightSize = Math.Max( heightSize, SuggestedMinimumHeight.AsDecimal());
-            MeasuredSize heightSizeAndState = ResolveSizeAndState( new LayoutLength(heightSize), new LayoutLength(Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK );
+            MeasuredSize heightSizeAndState = ResolveSizeAndState( new LayoutLength(heightSize + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK );
             heightSize = heightSizeAndState.Size.AsDecimal();
 
             // 2nd phase:
@@ -637,7 +649,7 @@ namespace Tizen.NUI
 
             heightSizeAndState.State = childState.heightState;
 
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(maxWidth), new LayoutLength(Padding.Top + Padding.Bottom), widthMeasureSpec, childState.widthState ),
+            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(maxWidth + Padding.Top + Padding.Bottom), widthMeasureSpec, childState.widthState ),
                                   heightSizeAndState );
 
             if (matchWidth)
