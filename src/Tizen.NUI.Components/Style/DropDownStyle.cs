@@ -171,6 +171,10 @@ namespace Tizen.NUI.Components
             set => SetValue(ListMarginProperty, value);
         }
 
+        /// <summary>
+        /// Selected item index in list.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public int SelectedItemIndex
         {
             get => (int)GetValue(SelectedItemIndexProperty);
@@ -191,6 +195,11 @@ namespace Tizen.NUI.Components
             set => SetValue(ListPaddingProperty, value);
         }
 
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 6 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
@@ -275,6 +284,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public bool IsSelected { get; set; }
 
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 6 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

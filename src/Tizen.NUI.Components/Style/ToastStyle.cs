@@ -63,6 +63,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Style's clone function.
         /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
         /// <since_tizen> 6 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {

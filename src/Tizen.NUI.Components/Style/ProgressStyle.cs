@@ -70,8 +70,9 @@ namespace Tizen.NUI.Components
         public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
-        /// Clone function.
+        /// Style's clone function.
         /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
         /// <since_tizen> 6 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {

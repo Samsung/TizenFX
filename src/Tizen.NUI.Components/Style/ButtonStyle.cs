@@ -154,12 +154,20 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public ImageViewStyle Icon { get; set; }
 
+        /// <summary>
+        /// Flag to decide Button can be selected or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public bool? IsSelectable
         {
             get => (bool?)GetValue(IsSelectableProperty);
             set => SetValue(IsSelectableProperty, value);
         }
 
+        /// <summary>
+        /// Flag to decide selected state in Button.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public bool? IsSelected
         {
             get => (bool?)GetValue(IsSelectedProperty);
@@ -186,6 +194,10 @@ namespace Tizen.NUI.Components
             set => SetValue(IconRelativeOrientationProperty, value);
         }
 
+        /// <summary>
+        /// Icon padding in Button, work only when show icon and text.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public Extents IconPadding
         {
             get
@@ -196,6 +208,10 @@ namespace Tizen.NUI.Components
             set => SetValue(IconPaddingProperty, value);
         }
 
+        /// <summary>
+        /// Text padding in Button, work only when show icon and text.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
         public Extents TextPadding
         {
             get
@@ -206,6 +222,11 @@ namespace Tizen.NUI.Components
             set => SetValue(TextPaddingProperty, value);
         }
 
+        /// <summary>
+        /// Style's clone function.
+        /// </summary>
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 6 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

@@ -67,9 +67,10 @@ namespace Tizen.NUI.Components
         public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
 
         /// <summary>
-        /// Attributes's clone function.
+        /// Style's clone function.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <param name="bindableObject">The style that need to copy.</param>
+        /// <since_tizen> 6 </since_tizen></since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
