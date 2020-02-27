@@ -246,87 +246,97 @@ namespace Tizen.NUI
         /// for one dimension (height or width) of one child view.<br />
         /// </summary>
         /// <param name="parentMeasureSpec">The requirements for this view. MeasureSpecification.</param>
-        /// <param name="padding">The padding of this view for the current dimension and margins, if applicable. LayoutLength.</param>
+        /// <param name="parentPadding">The padding of this parent. LayoutLength.</param>
         /// <param name="childDimension"> How big the child wants to be in the current dimension. LayoutLength.</param>
+        /// <param name="childMargin"> The margin of the child. LayoutLength.</param>
         /// <returns>a MeasureSpec for the child.</returns>
-        public static MeasureSpecification GetChildMeasureSpecification(MeasureSpecification parentMeasureSpec, LayoutLength padding, LayoutLength childDimension)
+        public static MeasureSpecification GetChildMeasureSpecification(MeasureSpecification parentMeasureSpec, LayoutLength parentPadding, LayoutLength childDimension, LayoutLength childMargin)
         {
             MeasureSpecification.ModeType specMode = parentMeasureSpec.Mode;
             MeasureSpecification.ModeType resultMode = MeasureSpecification.ModeType.Unspecified;
-            LayoutLength resultSize = new LayoutLength(Math.Max( 0.0f, (parentMeasureSpec.Size.AsDecimal() - padding.AsDecimal() ) )); // reduce available size by the owners padding
 
+            // Child only can use parent's size without parent's padding and own margin.
+            LayoutLength resultSize = new LayoutLength(Math.Max( 0.0f, (parentMeasureSpec.Size.AsDecimal()-parentPadding.AsDecimal()-childMargin.AsDecimal())));
             switch( specMode )
             {
                 // Parent has imposed an exact size on us
                 case MeasureSpecification.ModeType.Exactly:
                 {
-                if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
-                {
-                    // Child wants to be our size. So be it.
-                    resultMode = MeasureSpecification.ModeType.Exactly;
-                }
-                else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
-                {
-                    // Child wants to determine its own size. It can't be
-                    // bigger than us.
-                    resultMode = MeasureSpecification.ModeType.AtMost;
-                }
-                else
-                {
-                    resultSize = childDimension;
-                    resultMode = MeasureSpecification.ModeType.Exactly;
-                }
+                    if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+                    {
+                        // Child wants to be our size. So be it.
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+                    else if ((int)childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+                    {
+                        // Child wants to determine its own size. It can't be
+                        // bigger than us.
+                        // Don't need parent's size. Size of this child will be determined by its children.
+                        resultMode = MeasureSpecification.ModeType.AtMost;
+                    }
+                    else
+                    {
+                        // Child has its own size.
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
 
-                break;
+                    break;
                 }
 
                 // Parent has imposed a maximum size on us
                 case MeasureSpecification.ModeType.AtMost:
                 {
-                if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
-                {
-                    // Child wants to be our size, but our size is not fixed.
-                    // Constrain child to not be bigger than us.
-                    resultMode = MeasureSpecification.ModeType.AtMost;
-                }
-                else if (childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
-                {
-                    // Child wants to determine its own size. It can't be
-                    // bigger than us.
-                    resultMode = MeasureSpecification.ModeType.AtMost;
-                }
-                else
-                {
-                    // Child wants a specific size... so be it
-                    resultSize = childDimension + padding;
-                    resultMode = MeasureSpecification.ModeType.Exactly;
-                }
+                    if (childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent)
+                    {
+                        // Crashed. Cannot calculate. 
 
-                break;
+                        // Child wants to be our size, but our size is not fixed.
+                        // Constrain child to not be bigger than us.
+                        resultMode = MeasureSpecification.ModeType.AtMost;
+                    }
+                    else if (childDimension.AsRoundedValue() == LayoutParamPolicies.WrapContent)
+                    {
+                        // Child wants to determine its own size. It can't be
+                        // bigger than us.
+
+                        // Don't need parent's size. Size of this child will be determined by its children.
+                        resultMode = MeasureSpecification.ModeType.AtMost;
+                    }
+                    else
+                    {
+                        // Child wants a specific size... so be it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+
+                    break;
                 }
 
                 // Parent asked to see how big we want to be
                 case MeasureSpecification.ModeType.Unspecified:
                 {
+                    if ((childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent))
+                    {
+                        // Child wants to be our size... find out how big it should be
 
-                if ((childDimension.AsRoundedValue() == LayoutParamPolicies.MatchParent))
-                {
-                    // Child wants to be our size... find out how big it should be
-                    resultMode = MeasureSpecification.ModeType.Unspecified;
-                }
-                else if (childDimension.AsRoundedValue() == (LayoutParamPolicies.WrapContent))
-                {
-                    // Child wants to determine its own size.... find out how big
-                    // it should be
-                    resultMode = MeasureSpecification.ModeType.Unspecified;
-                }
-                else
-                {
-                    // Child wants a specific size... let him have it
-                    resultSize = childDimension + padding;
-                    resultMode = MeasureSpecification.ModeType.Exactly;
-                }
-                break;
+                        // There is no one who has exact size in parent hierarchy.
+                        // Cannot calculate.
+                        resultMode = MeasureSpecification.ModeType.Unspecified;
+                    }
+                    else if (childDimension.AsRoundedValue() == (LayoutParamPolicies.WrapContent))
+                    {
+                        // Child wants to determine its own size.... find out how big
+                        // it should be
+                        resultMode = MeasureSpecification.ModeType.Unspecified;
+                    }
+                    else
+                    {
+                        // Child wants a specific size... let him have it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpecification.ModeType.Exactly;
+                    }
+                    break;
                 }
             } // switch
 
@@ -477,15 +487,15 @@ namespace Tizen.NUI
         {
             View childOwner = child.Owner;
 
-            Extents padding = childOwner.Padding; // Padding of this layout's owner, not of the child being measured.
-
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
-                                                                                       new LayoutLength(padding.Start + padding.End ),
-                                                                                       new LayoutLength(childOwner.WidthSpecification) );
+                                                                                       new LayoutLength(Padding.Start + Padding.End ),
+                                                                                       new LayoutLength(childOwner.WidthSpecification),
+                                                                                       new LayoutLength(childOwner.Margin.Start + childOwner.Margin.End) );
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification( parentHeightMeasureSpec,
-                                                                                        new LayoutLength(padding.Top + padding.Bottom),
-                                                                                        new LayoutLength(childOwner.HeightSpecification) );
+                                                                                        new LayoutLength(Padding.Top + Padding.Bottom),
+                                                                                        new LayoutLength(childOwner.HeightSpecification),
+                                                                                        new LayoutLength(childOwner.Margin.Top + childOwner.Margin.Bottom) );
 
             child.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
         }
@@ -505,19 +515,17 @@ namespace Tizen.NUI
         protected virtual void MeasureChildWithMargins(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, LayoutLength widthUsed, MeasureSpecification parentHeightMeasureSpec, LayoutLength heightUsed)
         {
             View childOwner = child.Owner;
-            int desiredWidth = childOwner.WidthSpecification;
-            int desiredHeight = childOwner.HeightSpecification;
-
-            Extents padding = child.Padding; // Padding of this layout's owner, not of the child being measured.
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification( parentWidthMeasureSpec,
-                                                                                       new LayoutLength( padding.Start + padding.End ) +
-                                                                                       widthUsed, new LayoutLength(desiredWidth) );
+                                                                                       new LayoutLength( Padding.Start + Padding.End ) +
+                                                                                       widthUsed, new LayoutLength(childOwner.WidthSpecification),
+                                                                                       new LayoutLength(childOwner.Margin.Start + childOwner.Margin.End) );
 
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification( parentHeightMeasureSpec,
-                                                                                        new LayoutLength( padding.Top + padding.Bottom )+
-                                                                                        heightUsed, new LayoutLength(desiredHeight) );
+                                                                                        new LayoutLength( Padding.Top + Padding.Bottom )+
+                                                                                        heightUsed, new LayoutLength(childOwner.HeightSpecification),
+                                                                                       new LayoutLength(childOwner.Margin.Start + childOwner.Margin.End) );
 
             child.Measure( childWidthMeasureSpec, childHeightMeasureSpec );
         }

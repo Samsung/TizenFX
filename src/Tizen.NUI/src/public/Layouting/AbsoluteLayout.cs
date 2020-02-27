@@ -104,8 +104,8 @@ namespace Tizen.NUI
             }
 
 
-            MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-            MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+            MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), new LayoutLength(0), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+            MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), new LayoutLength(0), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             totalWidth = widthSizeAndState.Size.AsDecimal();
             totalHeight = heightSizeAndState.Size.AsDecimal();
 
@@ -116,8 +116,8 @@ namespace Tizen.NUI
             widthSizeAndState.State = childState.widthState;
             heightSizeAndState.State = childState.heightState;
 
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), widthMeasureSpec, childState.widthState ),
-                                   ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childState.heightState ) );
+            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), new LayoutLength(0), widthMeasureSpec, childState.widthState ),
+                                   ResolveSizeAndState( new LayoutLength(totalHeight), new LayoutLength(0), heightMeasureSpec, childState.heightState ) );
         }
 
         /// <summary>

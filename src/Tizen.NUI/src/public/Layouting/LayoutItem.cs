@@ -396,15 +396,16 @@ namespace Tizen.NUI
         /// Utility to reconcile a desired size and state, with constraints imposed by a MeasureSpecification.
         ///</summary>
         /// <param name="size"> How big the layout wants to be.</param>
+        /// <param name="padding"> Padding of owner.</param>
         /// <param name="measureSpecification"> Constraints imposed by the parent.</param>
         /// <param name="childMeasuredState"> Size information bit mask for the layout's children.</param>
         /// <returns> A measured size, which may indicate that it is too small. </returns>
         /// <since_tizen> 6 </since_tizen>
-        protected MeasuredSize ResolveSizeAndState( LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState )
+        protected MeasuredSize ResolveSizeAndState( LayoutLength size, LayoutLength padding, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState )
         {
             var specMode = measureSpecification.Mode;
             LayoutLength specSize = measureSpecification.Size;
-            MeasuredSize result = new MeasuredSize( size, childMeasuredState);
+            MeasuredSize result = new MeasuredSize( size + padding, childMeasuredState);
 
             switch( specMode )
             {

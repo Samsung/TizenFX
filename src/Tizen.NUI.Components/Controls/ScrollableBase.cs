@@ -95,8 +95,8 @@ namespace Tizen.NUI.Components
                 }
 
 
-                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), new LayoutLength(Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), new LayoutLength(Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
                 totalWidth = widthSizeAndState.Size.AsDecimal();
                 totalHeight = heightSizeAndState.Size.AsDecimal();
 
@@ -107,8 +107,8 @@ namespace Tizen.NUI.Components
                 widthSizeAndState.State = childWidthState;
                 heightSizeAndState.State = childHeightState;
 
-                SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), widthMeasureSpec, childWidthState ),
-                                       ResolveSizeAndState( new LayoutLength(totalHeight), heightMeasureSpec, childHeightState ) );
+                SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth), new LayoutLength(Padding.Start + Padding.End), widthMeasureSpec, childWidthState ),
+                                       ResolveSizeAndState( new LayoutLength(totalHeight), new LayoutLength(Padding.Top + Padding.Bottom), heightMeasureSpec, childHeightState ) );
 
                 // Size of ScrollableBase is changed. Change Page width too.
                 scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
