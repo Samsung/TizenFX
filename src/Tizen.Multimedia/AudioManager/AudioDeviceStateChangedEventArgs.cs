@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -19,29 +19,30 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="AudioManager.DeviceRunningChanged"/> event.
+    /// Provides data for the <see cref="AudioManager.DeviceStateChanged"/> event.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public class AudioDeviceRunningChangedEventArgs : EventArgs
+    /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 5. Please use the AudioDeviceRunningChangedEventArgs class instead.")]
+    public class AudioDeviceStateChangedEventArgs : EventArgs
     {
-        internal AudioDeviceRunningChangedEventArgs(AudioDevice device, bool isRunning)
+        internal AudioDeviceStateChangedEventArgs(AudioDevice device, AudioDeviceState changedState)
         {
             Device = device;
-            IsRunning = isRunning;
+            State = changedState;
         }
 
         /// <summary>
         /// Gets the device.
         /// </summary>
         /// <value>The <see cref="AudioDevice"/>.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDevice Device { get; }
 
         /// <summary>
-        /// Gets the running state of the device.
+        /// Gets the state of the device.
         /// </summary>
-        /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public bool IsRunning { get; }
+        /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
+        /// <since_tizen> 4 </since_tizen>
+        public AudioDeviceState State { get; }
     }
 }
