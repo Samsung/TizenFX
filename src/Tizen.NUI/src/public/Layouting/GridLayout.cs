@@ -208,8 +208,8 @@ namespace Tizen.NUI
 
             } // Children exists
 
-            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(widthSize), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK ),
-                                   ResolveSizeAndState( new LayoutLength(heightSize), heightMeasureSpec,  MeasuredSize.StateType.MeasuredSizeOK ) );
+            SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(widthSize + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK ),
+                                   ResolveSizeAndState( new LayoutLength(heightSize + Padding.Top + Padding.Bottom), heightMeasureSpec,  MeasuredSize.StateType.MeasuredSizeOK ) );
         }
 
         /// <summary>
