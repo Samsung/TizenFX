@@ -24,6 +24,8 @@ namespace Tizen.NUI.Components
     /// PaginationStyle used to config the pagination represent.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PaginationStyle : ControlStyle
     {
         static PaginationStyle() { }
@@ -32,12 +34,16 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a PaginationStyle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PaginationStyle() : base() { }
 
         /// <summary>
         /// Creates a new instance of a PaginationStyle using style.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PaginationStyle(PaginationStyle style) : base(style)
         {
             if (null == style) return;
@@ -49,25 +55,32 @@ namespace Tizen.NUI.Components
         /// Gets or sets the size of the indicator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size IndicatorSize { get; set; }
 
         /// <summary>
         /// Gets or sets the resource of indicator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> IndicatorImageURL { get; set; } = new Selector<string>();
 
         /// <summary>
         /// Gets or sets the space of the indicator.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int IndicatorSpacing { get; set; }
 
         /// <summary>
-        /// Style's clone function.
+        /// Retrieves a copy of PaginationStyle.
         /// </summary>
-        /// <param name="bindableObject">The style that need to copy.</param>
         /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

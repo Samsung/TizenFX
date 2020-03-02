@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// SliderStyle is a class which saves Slider's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     public class SliderStyle : ControlStyle
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -99,7 +99,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a SliderStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public SliderStyle() : base()
         {
             IndicatorType = Slider.IndicatorType.None;
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a SliderStyle with style.
         /// </summary>
         /// <param name="style">Create SliderStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public SliderStyle(SliderStyle style) : base(style)
         {
             if(style == null)
@@ -128,49 +128,49 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set background track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set slided track.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set thumb.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Thumb { get; set; }
 
         /// <summary>
         /// Get or set low indicator image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle LowIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set high indicator image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle HighIndicatorImage { get; set; }
 
         /// <summary>
         /// Get or set low indicator text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle LowIndicator { get; set; }
 
         /// <summary>
         /// Get or set high indicator text.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle HighIndicator { get; set; }
 
         /// <summary>
         /// Get or set Indicator type
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public IndicatorType? IndicatorType
         {
             get => (IndicatorType?)GetValue(IndicatorTypeProperty);
@@ -180,7 +180,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set track thickness
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public uint? TrackThickness
         {
             get => (uint?)GetValue(TrackThicknessProperty);
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set space between track and indicator
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public uint? SpaceBetweenTrackAndIndicator
         {
             get => (uint?)GetValue(SpaceBetweenTrackAndIndicatorProperty);
@@ -200,7 +200,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set space between track and indicator
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
             get
@@ -215,7 +215,7 @@ namespace Tizen.NUI.Components
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

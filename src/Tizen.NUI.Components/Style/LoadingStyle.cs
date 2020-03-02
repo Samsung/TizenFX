@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// LoadingStyle is a class which saves Loading's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     public class LoadingStyle : ControlStyle
     {
         static LoadingStyle() { }
@@ -31,14 +31,14 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a LoadingStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public LoadingStyle() : base() { }
 
         /// <summary>
         /// Creates a new instance of a LoadingStyle with style.
         /// </summary>
         /// <param name="style">Create LoadingStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public LoadingStyle(LoadingStyle style) : base(style)
         {
             if(null == style)
@@ -51,26 +51,26 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Gets or sets loading image resources.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public string[] Images { get; set; }
 
         /// <summary>
         /// Gets or sets loading image size.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public Size LoadingSize { get; set; }
 
         /// <summary>
         /// Gets or sets loading frame per second.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public Selector<int?> FrameRate { get; set; } = new Selector<int?>();
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 6 </since_tizen></since_tizen>
+        /// <since_tizen> 8 </since_tizen></since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);

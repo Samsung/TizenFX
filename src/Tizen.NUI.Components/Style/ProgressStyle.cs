@@ -23,7 +23,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// ProgressStyle is a class which saves Progress's ux data.
     /// </summary>
-    /// <since_tizen> 6 </since_tizen>
+    /// <since_tizen> 8 </since_tizen>
     public class ProgressStyle : ControlStyle
     {
         static ProgressStyle() { }
@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ProgressStyle.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ProgressStyle() : base()
         {
             InitSubStyle();
@@ -41,7 +41,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of a ProgressStyle with style.
         /// </summary>
         /// <param name="style">Create ProgressStyle by style customized by user.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ProgressStyle(ProgressStyle style) : base(style)
         {
             if (null == style) return;
@@ -54,26 +54,26 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get or set track image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Track { get; set; }
 
         /// <summary>
         /// Get or set progress image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Progress { get; set; }
 
         /// <summary>
         /// Get or set buffer image.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public ImageViewStyle Buffer { get; set; }
 
         /// <summary>
         /// Style's clone function.
         /// </summary>
         /// <param name="bindableObject">The style that need to copy.</param>
-        /// <since_tizen> 6 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
         {
             base.CopyFrom(bindableObject);
