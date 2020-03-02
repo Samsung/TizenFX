@@ -118,8 +118,10 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of loading.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new LoadingStyle Style => ViewStyle as LoadingStyle;
 
         /// <summary>
