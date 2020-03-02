@@ -40,6 +40,8 @@ namespace Tizen.NUI
         /// Constructor.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be deprecated
+        [Obsolete("Deprecated in API8; Will be removed in API10")]
         public InputMethodContext() : this(Interop.InputMethodContext.InputMethodContext_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
