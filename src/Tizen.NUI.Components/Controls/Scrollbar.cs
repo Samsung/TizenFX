@@ -144,9 +144,7 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar with specific style.
         /// </summary>
         /// <param name="style">style name</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ScrollBar(string style) : base(style)
         {
             Initialize();
@@ -156,9 +154,7 @@ namespace Tizen.NUI.Components
         /// The constructor of ScrollBar with specific style.
         /// </summary>
         /// <param name="style">The style object to initialize the ScrollBar.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public ScrollBar(ScrollBarStyle style) : base(style)
         {
             Initialize();
@@ -184,8 +180,10 @@ namespace Tizen.NUI.Components
         }
 
         #region public property 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of scrollbar.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new ScrollBarStyle Style => ViewStyle as ScrollBarStyle;
 
         /// <summary>
@@ -457,9 +455,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Scrollbar style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new ScrollBarStyle();
@@ -468,9 +464,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
             ScrollBarStyle tempStyle = StyleManager.Instance.GetViewStyle(style) as ScrollBarStyle;
