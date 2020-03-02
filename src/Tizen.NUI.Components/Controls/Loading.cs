@@ -102,9 +102,7 @@ namespace Tizen.NUI.Components
         /// Constructor of the Loading class with special style.
         /// </summary>
         /// <param name="style">The string to initialize the Loading.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Loading(string style) : base(style)
         {
             Initialize();
@@ -114,9 +112,7 @@ namespace Tizen.NUI.Components
         /// The constructor of the Loading class with specific style.
         /// </summary>
         /// <param name="style">The style object to initialize the Loading.</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         public Loading(LoadingStyle style) : base(style)
         {
             Initialize();
@@ -195,9 +191,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Loading style.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
             return new LoadingStyle();
