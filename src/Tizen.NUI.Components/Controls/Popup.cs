@@ -327,8 +327,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<ButtonClickEventArgs> PopupButtonClickEvent;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// Get style of popup.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         public new PopupStyle Style => ViewStyle as PopupStyle;
 
         /// <summary>
