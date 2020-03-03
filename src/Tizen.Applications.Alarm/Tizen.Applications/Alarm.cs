@@ -60,14 +60,14 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
         /// <remarks>
-        /// The <c>WeekFlag</c> property setter is available since API Level 6.
-        /// Weekflag may be a combination of days, like Tuesday | Friday.
-        /// If the period was set before, it will be removed and the week recurrence flag will be set.
-        /// If the week recurrence flag was set before, it will be overwritten.If it was not, it will be set.
-        /// If the Weekflag argument is 0 and the flag was previously set,
-        /// the flag attribute will be cleared and the alarm will be changed to one-time.
-        /// If the Weekflag argument is 0 and the flag was not set,
-        /// or the period was set, the alarm will be unchanged.
+        /// The setter for <c>WeekFlag</c> property is available since API Level 6.
+        /// Weekflag can be a combination of the days of the week, for example Tuesday | Friday.
+        /// If the period is already set, it will be removed and the week repetition flag will be set.
+        /// If the week repetition flag is already set, it will be overwritten. If not, it will be set.
+        /// If the Weekflag argument is 0 and the flag is already set,
+        /// the flag will be cleared and the alarm will be changed to set once.
+        /// If the Weekflag argument is 0, and the flag is not set or the period is set,
+        /// the alarm won't be changed.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public AlarmWeekFlag WeekFlag
