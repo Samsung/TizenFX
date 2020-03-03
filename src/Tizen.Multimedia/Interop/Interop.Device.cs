@@ -26,6 +26,11 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ConnectionChangedCallback(IntPtr device, bool isConnected, IntPtr userData);
 
+#pragma warning disable CS0618 // Type or member is obsolete
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void StateChangedCallback(IntPtr device, AudioDeviceState changedState, IntPtr userData);
+#pragma warning restore CS0618 // Type or member is obsolete
+
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void RunningChangedCallback(IntPtr device, bool isRunning, IntPtr userData);
 
@@ -50,6 +55,11 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_name")]
             internal static extern int GetDeviceName(IntPtr device, out IntPtr name);
+
+#pragma warning disable CS0618 // Type or member is obsolete
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state_by_id")]
+            internal static extern AudioManagerError GetDeviceState(int deviceId, out AudioDeviceState state);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id")]
             internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
@@ -90,6 +100,13 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_connection_changed_cb")]
             internal static extern AudioManagerError RemoveDeviceConnectionChangedCallback(int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_state_changed_cb")]
+            internal static extern AudioManagerError AddDeviceStateChangedCallback(AudioDeviceOptions deviceMask,
+                StateChangedCallback callback, IntPtr userData, out int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_state_changed_cb")]
+            internal static extern AudioManagerError RemoveDeviceStateChangedCallback(int id);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_running_changed_cb")]
             internal static extern AudioManagerError AddDeviceRunningChangedCallback(AudioDeviceOptions deviceMask,
