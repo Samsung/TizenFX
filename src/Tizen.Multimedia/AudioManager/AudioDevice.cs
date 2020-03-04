@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -83,6 +84,7 @@ namespace Tizen.Multimedia
         /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated since API level 5. Please use the IsRunning property instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AudioDeviceState State
         {
             get
@@ -107,7 +109,7 @@ namespace Tizen.Multimedia
                     ThrowIfError("Failed to get the running state of the device");
 
                 return isRunning;
-			}
+            }
         }
 
         /// <summary>
