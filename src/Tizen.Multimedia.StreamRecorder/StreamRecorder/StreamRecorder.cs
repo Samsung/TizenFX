@@ -118,6 +118,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderAudioOptions"/>
         /// <seealso cref="StreamRecorderVideoOptions"/>
         /// <since_tizen> 4 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Prepare(StreamRecorderOptions options)
         {
             if (options == null)
@@ -150,10 +151,12 @@ namespace Tizen.Multimedia
         /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Idle"/> state.
         /// </remarks>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Prepare"/>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Unprepare()
         {
             if (State == RecorderState.Idle)
@@ -176,6 +179,7 @@ namespace Tizen.Multimedia
         /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Recording"/> state.
         /// </remarks>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="UnauthorizedAccessException">The access of the resources can not be granted.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
@@ -183,6 +187,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Start()
         {
             if (State == RecorderState.Recording)
@@ -205,12 +210,14 @@ namespace Tizen.Multimedia
         /// <br/>
         /// It has no effect if the recorder is already in the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Pause()
         {
             if (State == RecorderState.Paused)
@@ -238,12 +245,14 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="UnauthorizedAccessException">The access to the resources can not be granted.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Commit()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -259,11 +268,13 @@ namespace Tizen.Multimedia
         /// The recorder state must be <see cref="RecorderState.Recording"/> state by <see cref="Start"/> or
         /// <see cref="RecorderState.Paused"/> state by <see cref="Pause"/>.
         /// </remarks>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Cancel()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -347,7 +358,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
+        /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/multimedia.streamrecorder.record </feature>
         public void Dispose()
         {
             Dispose(true);
