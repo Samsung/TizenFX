@@ -34,6 +34,12 @@ namespace Tizen.Multimedia
         private bool _audioEnabled;
         private bool _videoEnabled;
         private StreamRecorderVideoFormat _sourceFormat;
+        private const string Feature = "http://tizen.org/feature/network.streamrecorder.record";
+
+        private static bool IsSupported()
+        {
+            return System.Information.TryGetValue(Feature, out bool isSupported) ? isSupported : false;
+        }
 
         /// <summary>
         /// Initialize a new instance of the <see cref="StreamRecorder"/> class.
@@ -42,6 +48,12 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public StreamRecorder()
         {
+            if (IsSupported() == false)
+            {
+                throw new PlatformNotSupportedException(
+                    $"The feature({Feature}) is not supported on the current device.");
+            }
+
             try
             {
                 Native.Create(out _handle).ThrowIfError("Failed to create stream recorder.");
