@@ -50,7 +50,7 @@ namespace Tizen.Multimedia
         {
             if (IsSupported() == false)
             {
-                throw new PlatformNotSupportedException(
+                throw new NotSupportedException(
                     $"The feature({Feature}) is not supported on the current device.");
             }
 
