@@ -290,19 +290,28 @@ namespace Tizen.NUI.BaseComponents
                     _wheelEventCallback = OnWheelEvent;
                     this.WheelEventSignal().Connect(_wheelEventCallback);
                 }
-
                 _wheelEventHandler += value;
+
+                if (WindowWheelEventHandler == null)
+                {
+                    Window.Instance.WheelEvent += OnWindowWheelEvent;
+                }
+                WindowWheelEventHandler += value;
             }
 
             remove
             {
                 _wheelEventHandler -= value;
-
                 if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
                 {
                     this.WheelEventSignal().Disconnect(_wheelEventCallback);
                 }
 
+                WindowWheelEventHandler -= value;
+                if (WindowWheelEventHandler == null)
+                {
+                    Window.Instance.WheelEvent -= OnWindowWheelEvent;
+                }
             }
         }
 
@@ -1044,5 +1053,22 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
+        private void OnWindowWheelEvent(object sender, Window.WheelEventArgs e)
+        {
+            if(e != null)
+            {
+                if(e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                {
+                    var arg = new WheelEventArgs()
+                    {
+                        Wheel = e.Wheel,
+                    };
+                    WindowWheelEventHandler?.Invoke(this, arg);
+                }
+            }
+        }
+
     }
 }

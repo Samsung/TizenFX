@@ -124,16 +124,29 @@ namespace Tizen.NUI
                 if (_stageWheelHandler == null)
                 {
                     _wheelEventCallback = OnStageWheel;
-                    this.StageWheelEventSignal().Connect(_wheelEventCallback);
+                    WheelEventSignal().Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
+
+                if (DetentEventHandler == null)
+                {
+                    DetentEventCallback = OnDetentEvent;
+                    StageWheelEventSignal().Connect(DetentEventCallback);
+                }
+                DetentEventHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && StageWheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
                 {
-                    this.StageWheelEventSignal().Disconnect(_wheelEventCallback);
+                    WheelEventSignal().Disconnect(_wheelEventCallback);
+                }
+
+                DetentEventHandler -= value;
+                if(DetentEventHandler ==  null && StageWheelEventSignal().Empty() == false)
+                {
+                    StageWheelEventSignal().Disconnect(DetentEventCallback);
                 }
             }
         }
@@ -451,7 +464,12 @@ namespace Tizen.NUI
 
             if (_wheelEventCallback != null)
             {
-                StageWheelEventSignal().Disconnect(_wheelEventCallback);
+                WheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if(DetentEventCallback != null)
+            {
+                StageWheelEventSignal().Disconnect(DetentEventCallback);
             }
 
             if (_stageKeyCallbackDelegate != null)
@@ -495,14 +513,14 @@ namespace Tizen.NUI
             }
         }
 
-        private StageWheelSignal WheelEventSignal()
+        private StageWheelSignal StageWheelEventSignal()
         {
             StageWheelSignal ret = new StageWheelSignal(Interop.StageSignal.Stage_WheelEventSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        private WheelSignal StageWheelEventSignal()
+        private WheelSignal WheelEventSignal()
         {
             WheelSignal ret = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -889,5 +907,25 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        private EventHandler<WheelEventArgs> DetentEventHandler;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void DetentEventCallbackType(IntPtr arg1);
+
+        private DetentEventCallbackType DetentEventCallback;
+
+        private void OnDetentEvent(IntPtr wheelEvent)
+        {
+            WheelEventArgs e = new WheelEventArgs();
+
+            if (wheelEvent != global::System.IntPtr.Zero)
+            {
+                e.Wheel = Wheel.GetWheelFromPtr(wheelEvent);
+            }
+
+            DetentEventHandler?.Invoke(this, e);
+        }
+
     }
 }

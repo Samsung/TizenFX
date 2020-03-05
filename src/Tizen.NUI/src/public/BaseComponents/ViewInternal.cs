@@ -1085,6 +1085,11 @@ namespace Tizen.NUI.BaseComponents
                 this.WheelEventSignal().Disconnect(_wheelEventCallback);
             }
 
+            if (WindowWheelEventHandler != null)
+            {
+                Window.Instance.WheelEvent -= OnWindowWheelEvent;
+            }
+
             if (_hoverEventCallback != null)
             {
                 this.HoveredSignal().Disconnect(_hoverEventCallback);
