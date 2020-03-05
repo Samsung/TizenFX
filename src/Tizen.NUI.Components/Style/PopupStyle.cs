@@ -74,12 +74,12 @@ namespace Tizen.NUI.Components
             {
                 if (popupAttributes.Title != null)
                 {
-                    Title.CopyFrom(popupAttributes.Title);
+                    Title?.CopyFrom(popupAttributes.Title);
                 }
 
                 if (popupAttributes.Buttons != null)
                 {
-                    Buttons.CopyFrom(popupAttributes.Buttons);
+                    Buttons?.CopyFrom(popupAttributes.Buttons);
                 }
             }
         }

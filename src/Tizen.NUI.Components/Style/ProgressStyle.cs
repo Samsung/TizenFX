@@ -84,17 +84,17 @@ namespace Tizen.NUI.Components
             {
                 if (null != progressStyle.Track)
                 {
-                    Track.CopyFrom(progressStyle.Track);
+                    Track?.CopyFrom(progressStyle.Track);
                 }
 
                 if (null != progressStyle.Progress)
                 {
-                    Progress.CopyFrom(progressStyle.Progress);
+                    Progress?.CopyFrom(progressStyle.Progress);
                 }
 
                 if (null != progressStyle.Buffer)
                 {
-                    Buffer.CopyFrom(progressStyle.Buffer);
+                    Buffer?.CopyFrom(progressStyle.Buffer);
                 }
             }
         }

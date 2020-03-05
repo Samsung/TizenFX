@@ -91,12 +91,12 @@ namespace Tizen.NUI.Components
             {
                 if (null != scrollBarStyle.Track)
                 {
-                    Track.CopyFrom(scrollBarStyle.Track);
+                    Track?.CopyFrom(scrollBarStyle.Track);
                 }
 
                 if (null != scrollBarStyle.Thumb)
                 {
-                    Thumb.CopyFrom(scrollBarStyle.Thumb);
+                    Thumb?.CopyFrom(scrollBarStyle.Thumb);
                 }
 
                 Direction = scrollBarStyle.Direction;

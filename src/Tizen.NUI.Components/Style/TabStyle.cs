@@ -59,12 +59,12 @@ namespace Tizen.NUI.Components
 
             if (style.UnderLine != null)
             {
-                UnderLine.CopyFrom(style.UnderLine);
+                UnderLine?.CopyFrom(style.UnderLine);
             }
 
             if (style.Text != null)
             {
-                Text.CopyFrom(style.Text);
+                Text?.CopyFrom(style.Text);
             }
 
             if (style.ItemPadding != null)
@@ -80,12 +80,12 @@ namespace Tizen.NUI.Components
 
             if (null != style.UnderLine)
             {
-                UnderLine.CopyFrom(style.UnderLine);
+                UnderLine?.CopyFrom(style.UnderLine);
             }
 
             if (null != style.Text)
             {
-                Text.CopyFrom(style.Text);
+                Text?.CopyFrom(style.Text);
             }
         }
 
@@ -133,7 +133,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != tabStyle.ItemPadding)
                 {
-                    ItemPadding.CopyFrom(tabStyle.ItemPadding);
+                    ItemPadding?.CopyFrom(tabStyle.ItemPadding);
                 }
 
                 ItemSpace = tabStyle.ItemSpace;
@@ -141,12 +141,12 @@ namespace Tizen.NUI.Components
 
                 if (null != tabStyle.UnderLine)
                 {
-                    UnderLine.CopyFrom(tabStyle.UnderLine);
+                    UnderLine?.CopyFrom(tabStyle.UnderLine);
                 }
 
                 if (null != tabStyle.Text)
                 {
-                    Text.CopyFrom(tabStyle.Text);
+                    Text?.CopyFrom(tabStyle.Text);
                 }
             }
         }

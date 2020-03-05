@@ -81,7 +81,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != loadingStyle.FrameRate)
                 {
-                    FrameRate.Clone(loadingStyle.FrameRate);
+                    FrameRate?.Clone(loadingStyle.FrameRate);
                 }
                 if (null != loadingStyle.LoadingSize)
                 {

@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Return default CheckBox style
         /// </summary>
-        internal protected override ViewStyle GetAttributes()
+        internal protected override ViewStyle GetViewStyle()
         {
             ButtonStyle style = new ButtonStyle
             {

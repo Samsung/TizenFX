@@ -73,7 +73,7 @@ namespace Tizen.NUI.Components
             {
                 if (null != toastStyle.Text)
                 {
-                    Text.CopyFrom(toastStyle.Text);
+                    Text?.CopyFrom(toastStyle.Text);
                 }
                 Duration = toastStyle.Duration;
             }

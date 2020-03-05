@@ -237,17 +237,17 @@ namespace Tizen.NUI.Components
             {
                 if (null != buttonStyle.Overlay)
                 {
-                    Overlay.CopyFrom(buttonStyle.Overlay);
+                    Overlay?.CopyFrom(buttonStyle.Overlay);
                 }
 
                 if (null != buttonStyle.Text)
                 {
-                    Text.CopyFrom(buttonStyle.Text);
+                    Text?.CopyFrom(buttonStyle.Text);
                 }
 
                 if (null != buttonStyle.Icon)
                 {
-                    Icon.CopyFrom(buttonStyle.Icon);
+                    Icon?.CopyFrom(buttonStyle.Icon);
                 }
 
                 IsSelectable = buttonStyle.IsSelectable;

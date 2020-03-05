@@ -81,12 +81,12 @@ namespace Tizen.NUI.Components
             {
                 if (null != switchStyle.Track)
                 {
-                    Track.CopyFrom(switchStyle.Track);
+                    Track?.CopyFrom(switchStyle.Track);
                 }
 
                 if (null != switchStyle.Thumb)
                 {
-                    Thumb.CopyFrom(switchStyle.Thumb);
+                    Thumb?.CopyFrom(switchStyle.Thumb);
                 }
             }
         }
