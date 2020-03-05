@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ScrollableBase : Control
     {
-	    static bool LayoutDebugScrollableBase = false; // Debug flag
+        static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
         private int mPageWidth = 0;
@@ -47,26 +47,26 @@ namespace Tizen.NUI.Components
                 ScrollableBase scrollableBase = this.Owner as ScrollableBase;
                 if (scrollableBase)
                 {
-                   scrollingDirection = scrollableBase.ScrollingDirection;
+                    scrollingDirection = scrollableBase.ScrollingDirection;
                 }
 
                 // measure child, should be a single scrolling child
-                foreach( LayoutItem childLayout in LayoutChildren )
+                foreach (LayoutItem childLayout in LayoutChildren)
                 {
                     if (childLayout != null)
                     {
                         // Get size of child
                         // Use an Unspecified MeasureSpecification mode so scrolling child is not restricted to it's parents size in Height (for vertical scrolling)
                         // or Width for horizontal scrolling
-                        MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification( heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                        MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
 
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureChild( childLayout, widthMeasureSpec, unrestrictedMeasureSpec );  // Height unrestricted by parent
+                            MeasureChild(childLayout, widthMeasureSpec, unrestrictedMeasureSpec);  // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureChild( childLayout, unrestrictedMeasureSpec, heightMeasureSpec );  // Width unrestricted by parent
+                            MeasureChild(childLayout, unrestrictedMeasureSpec, heightMeasureSpec);  // Width unrestricted by parent
                         }
 
                         float childWidth = childLayout.MeasuredWidth.Size.AsDecimal();
@@ -95,20 +95,20 @@ namespace Tizen.NUI.Components
                 }
 
 
-                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
-                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
+                MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
                 totalWidth = widthSizeAndState.Size.AsDecimal();
                 totalHeight = heightSizeAndState.Size.AsDecimal();
 
                 // Ensure layout respects it's given minimum size
-                totalWidth = Math.Max( totalWidth, SuggestedMinimumWidth.AsDecimal() );
-                totalHeight = Math.Max( totalHeight, SuggestedMinimumHeight.AsDecimal() );
+                totalWidth = Math.Max(totalWidth, SuggestedMinimumWidth.AsDecimal());
+                totalHeight = Math.Max(totalHeight, SuggestedMinimumHeight.AsDecimal());
 
                 widthSizeAndState.State = childWidthState;
                 heightSizeAndState.State = childHeightState;
 
-                SetMeasuredDimensions( ResolveSizeAndState( new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, childWidthState ),
-                                       ResolveSizeAndState( new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childHeightState ) );
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth + Padding.Start + Padding.End), widthMeasureSpec, childWidthState),
+                                       ResolveSizeAndState(new LayoutLength(totalHeight + Padding.Top + Padding.Bottom), heightMeasureSpec, childHeightState));
 
                 // Size of ScrollableBase is changed. Change Page width too.
                 scrollableBase.mPageWidth = (int)MeasuredWidth.Size.AsRoundedValue();
@@ -116,9 +116,9 @@ namespace Tizen.NUI.Components
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
             {
-                foreach( LayoutItem childLayout in LayoutChildren )
+                foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if( childLayout != null )
+                    if (childLayout != null)
                     {
                         LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                         LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -130,7 +130,7 @@ namespace Tizen.NUI.Components
                         LayoutLength childLeft = new LayoutLength(childPosition.X + childMargin.Start + padding.Start);
                         LayoutLength childTop = new LayoutLength(childPosition.Y + childMargin.Top + padding.Top);
 
-                        childLayout.Layout( childLeft, childTop, childLeft + childWidth, childTop + childHeight );
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
                     }
                 }
             }
@@ -198,7 +198,7 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if(value != mScrollingDirection)
+                if (value != mScrollingDirection)
                 {
                     mScrollingDirection = value;
                     mPanGestureDetector.RemoveDirection(value == Direction.Horizontal ? PanGestureDetector.DirectionVertical : PanGestureDetector.DirectionHorizontal);
@@ -223,7 +223,7 @@ namespace Tizen.NUI.Components
                 if (value != mScrollEnabled)
                 {
                     mScrollEnabled = value;
-                    if(mScrollEnabled)
+                    if (mScrollEnabled)
                     {
                         mPanGestureDetector.Detected += OnPanGestureDetected;
                         mTapGestureDetector.Detected += OnTapGestureDetected;
@@ -259,6 +259,13 @@ namespace Tizen.NUI.Components
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int ScrollDuration { set; get; } = 125;
+
+        /// <summary>
+        /// [Draft] Scroll Available area.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle ScrollAvailableArea { set; get; }
 
         /// <summary>
         /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
@@ -343,7 +350,7 @@ namespace Tizen.NUI.Components
         private PanGestureDetector mPanGestureDetector;
         private TapGestureDetector mTapGestureDetector;
         private View mScrollingChild;
-        private float multiplier =1.0f;
+        private float multiplier = 1.0f;
         private bool scrolling = false;
         private float ratioOfScreenWidthToCompleteScroll = 0.5f;
         private float totalDisplacementForPan = 0.0f;
@@ -392,7 +399,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnChildAdd(View view)
         {
-            if(mScrollingChild.Name != "DefaultScrollingChild")
+            if (mScrollingChild.Name != "DefaultScrollingChild")
             {
                 propertyNotification.Notified -= OnPropertyChanged;
                 mScrollingChild.RemovePropertyNotification(propertyNotification);
@@ -433,12 +440,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ScrollToIndex(int index)
         {
-            if(mScrollingChild.ChildCount-1 < index || index < 0)
+            if (mScrollingChild.ChildCount - 1 < index || index < 0)
             {
                 return;
             }
 
-            if(SnapToPage)
+            if (SnapToPage)
             {
                 CurrentPage = index;
             }
@@ -533,17 +540,31 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? mScrollingChild.PositionX: mScrollingChild.PositionY;
+            float childCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? mScrollingChild.PositionX : mScrollingChild.PositionY;
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy childCurrentPosition:" + childCurrentPosition +
                                                    " displacement:" + displacement,
-                                                   " maxScrollDistance:" + maxScrollDistance );
+                                                   " maxScrollDistance:" + maxScrollDistance);
 
             childTargetPosition = childCurrentPosition + displacement; // child current position + gesture displacement
-            childTargetPosition = Math.Min(0,childTargetPosition);
-            childTargetPosition = Math.Max(-maxScrollDistance,childTargetPosition);
 
-            Debug.WriteLineIf( LayoutDebugScrollableBase, "ScrollBy currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
+            if(ScrollAvailableArea != null)
+            {
+                float minScrollPosition = ScrollingDirection == Direction.Horizontal? ScrollAvailableArea.X:ScrollAvailableArea.Y;
+                float maxScrollPosition = ScrollingDirection == Direction.Horizontal? 
+                                        ScrollAvailableArea.X + ScrollAvailableArea.Width:
+                                        ScrollAvailableArea.Y + ScrollAvailableArea.Height;
+
+                childTargetPosition = Math.Min( -minScrollPosition, childTargetPosition );
+                childTargetPosition = Math.Max( -maxScrollPosition, childTargetPosition );
+            }
+            else
+            {
+                childTargetPosition = Math.Min(0, childTargetPosition);
+                childTargetPosition = Math.Max(-maxScrollDistance, childTargetPosition);
+            }
+
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollBy currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
 
             if (animate)
             {
@@ -558,7 +579,7 @@ namespace Tizen.NUI.Components
                     scrollDistance = Math.Abs(childCurrentPosition - childTargetPosition);
                 }
 
-                int duration = (int)((320*FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
+                int duration = (int)((320 * FlickAnimationSpeed) + (scrollDistance * FlickAnimationSpeed));
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Scroll Animation Duration:" + duration + " Distance:" + scrollDistance);
 
                 AnimateChildTo(duration, childTargetPosition);
@@ -622,22 +643,22 @@ namespace Tizen.NUI.Components
 
             float flickDisplacement = 0.0f;
 
-            float speed = Math.Min(4.0f,Math.Abs(axisVelocity));
+            float speed = Math.Min(4.0f, Math.Abs(axisVelocity));
 
             Debug.WriteLineIf(LayoutDebugScrollableBase, "ScrollableBase Candidate Flick speed:" + speed);
 
             if (speed > FlickThreshold)
             {
                 // Flick length is the length of the ScrollableBase.
-                float flickLength = (ScrollingDirection == Direction.Horizontal) ?CurrentSize.Width:CurrentSize.Height;
+                float flickLength = (ScrollingDirection == Direction.Horizontal) ? CurrentSize.Width : CurrentSize.Height;
 
                 // Calculate multiplier by mapping speed between the multiplier minimum and maximum.
-                multiplier =( (speed - speedMinimum) / ( (speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum) ) )+ multiplierMinimum;
+                multiplier = ((speed - speedMinimum) / ((speedMaximum - speedMinimum) * (multiplierMaximum - multiplierMinimum))) + multiplierMinimum;
 
                 // flick displacement is the product of the flick length and multiplier
                 flickDisplacement = ((flickLength * multiplier) * speed) / axisVelocity;  // *speed and /velocity to perserve sign.
 
-                Debug.WriteLineIf(LayoutDebugScrollableBase, "Calculated FlickDisplacement[" + flickDisplacement +"] from speed[" + speed + "] multiplier:"
+                Debug.WriteLineIf(LayoutDebugScrollableBase, "Calculated FlickDisplacement[" + flickDisplacement + "] from speed[" + speed + "] multiplier:"
                                                         + multiplier);
             }
             return flickDisplacement;
@@ -665,20 +686,20 @@ namespace Tizen.NUI.Components
                                                    " parent length:" + scrollerLength +
                                                    " scrolling child length:" + scrollingChildLength);
 
-            return Math.Max(scrollingChildLength - scrollerLength,0);
+            return Math.Max(scrollingChildLength - scrollerLength, 0);
         }
 
         private void PageSnap()
         {
             Debug.WriteLineIf(LayoutDebugScrollableBase, "PageSnap with pan candidate totalDisplacement:" + totalDisplacementForPan +
-                                                                " currentPage[" + CurrentPage + "]" );
+                                                                " currentPage[" + CurrentPage + "]");
 
             //Increment current page if total displacement enough to warrant a page change.
             if (Math.Abs(totalDisplacementForPan) > (mPageWidth * ratioOfScreenWidthToCompleteScroll))
             {
                 if (totalDisplacementForPan < 0)
                 {
-                    CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1,0), ++CurrentPage);
+                    CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1, 0), ++CurrentPage);
                 }
                 else
                 {
@@ -686,37 +707,37 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            // Animate to new page or reposition to current page
-            int destinationX = -(CurrentPage * mPageWidth);
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:"+ destinationX + " from:" + mScrollingChild.PositionX);
+            float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width/2 - CurrentSize.Width/2); // set to middle of current page
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + mScrollingChild.PositionX);
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
         private void Flick(float flickDisplacement)
         {
-          if (SnapToPage)
-          {
-              if ( ( flickWhenAnimating && scrolling == true) || ( scrolling == false) )
-              {
-                  if(flickDisplacement < 0)
-                  {
-                      CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1,0), CurrentPage + 1);
-                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap - to page:" + CurrentPage);
-                  }
-                  else
-                  {
-                      CurrentPage = Math.Max(0, CurrentPage - 1);
-                      Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + CurrentPage);
-                  }
-                  float targetPosition = -(CurrentPage* mPageWidth); // page size
-                  Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + targetPosition);
-                  AnimateChildTo(ScrollDuration,targetPosition);
-              }
-          }
-          else
-          {
-              ScrollBy(flickDisplacement, true); // Animate flickDisplacement.
-          }
+            if (SnapToPage)
+            {
+                if ((flickWhenAnimating && scrolling == true) || (scrolling == false))
+                {
+                    if (flickDisplacement < 0)
+                    {
+                        CurrentPage = Math.Min(Math.Max(mScrollingChild.Children.Count - 1, 0), CurrentPage + 1);
+                        Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap - to page:" + CurrentPage);
+                    }
+                    else
+                    {
+                        CurrentPage = Math.Max(0, CurrentPage - 1);
+                        Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + CurrentPage);
+                    }
+
+                    float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width/2.0f - CurrentSize.Width/2.0f); // set to middle of current page
+                    Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + destinationX);
+                    AnimateChildTo(ScrollDuration, destinationX);
+                }
+            }
+            else
+            {
+                ScrollBy(flickDisplacement, true); // Animate flickDisplacement.
+            }
         }
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
@@ -776,7 +797,7 @@ namespace Tizen.NUI.Components
             {
                 // Stop scrolling if tap detected (press then relase).
                 // Unless in Pages mode, do not want a page change to stop part way.
-                if(scrolling && !SnapToPage)
+                if (scrolling && !SnapToPage)
                 {
                     StopScroll();
                 }
