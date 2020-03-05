@@ -48,6 +48,7 @@ namespace Tizen.Multimedia.MediaCodec
             RegisterInputProcessed();
             RegisterErrorOccurred();
             RegisterBufferStatusChanged();
+            RegisterEosReached();
         }
 
         #region IDisposable-support
