@@ -404,7 +404,7 @@ namespace Tizen.NUI
         {
             var specMode = measureSpecification.Mode;
             LayoutLength specSize = measureSpecification.Size;
-            MeasuredSize result = new MeasuredSize( size, childMeasuredState);
+            MeasuredSize result = new MeasuredSize( size, childMeasuredState );
 
             switch( specMode )
             {
