@@ -258,7 +258,14 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
         [EditorBrowsable(EditorBrowsableState.Never)]
+
         public int ScrollDuration { set; get; } = 125;
+        /// <summary>
+        /// [Draft] Scroll Available area.
+        /// </summary>
+        /// This may be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle ScrollAvailableArea { set; get; }
 
         /// <summary>
         /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
@@ -540,8 +547,22 @@ namespace Tizen.NUI.Components
                                                    " maxScrollDistance:" + maxScrollDistance );
 
             childTargetPosition = childCurrentPosition + displacement; // child current position + gesture displacement
-            childTargetPosition = Math.Min(0,childTargetPosition);
-            childTargetPosition = Math.Max(-maxScrollDistance,childTargetPosition);
+
+            if(ScrollAvailableArea != null)
+            {
+                float minScrollPosition = ScrollingDirection == Direction.Horizontal? ScrollAvailableArea.X:ScrollAvailableArea.Y;
+                float maxScrollPosition = ScrollingDirection == Direction.Horizontal? 
+                                        ScrollAvailableArea.X + ScrollAvailableArea.Width:
+                                        ScrollAvailableArea.Y + ScrollAvailableArea.Height;
+
+                childTargetPosition = Math.Min( -minScrollPosition, childTargetPosition );
+                childTargetPosition = Math.Max( -maxScrollPosition, childTargetPosition );
+            }
+            else
+            {
+                childTargetPosition = Math.Min(0, childTargetPosition);
+                childTargetPosition = Math.Max(-maxScrollDistance, childTargetPosition);
+            }
 
             Debug.WriteLineIf( LayoutDebugScrollableBase, "ScrollBy currentAxisPosition:" + childCurrentPosition + "childTargetPosition:" + childTargetPosition);
 
@@ -687,8 +708,8 @@ namespace Tizen.NUI.Components
             }
 
             // Animate to new page or reposition to current page
-            int destinationX = -(CurrentPage * mPageWidth);
-            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:"+ destinationX + " from:" + mScrollingChild.PositionX);
+            float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width/2 - CurrentSize.Width/2); // set to middle of current page
+            Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to page[" + CurrentPage + "] to:" + destinationX + " from:" + mScrollingChild.PositionX);
             AnimateChildTo(ScrollDuration, destinationX);
         }
 
@@ -708,9 +729,10 @@ namespace Tizen.NUI.Components
                       CurrentPage = Math.Max(0, CurrentPage - 1);
                       Debug.WriteLineIf(LayoutDebugScrollableBase, "Snap + to page:" + CurrentPage);
                   }
-                  float targetPosition = -(CurrentPage* mPageWidth); // page size
-                  Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + targetPosition);
-                  AnimateChildTo(ScrollDuration,targetPosition);
+
+                  float destinationX = -(mScrollingChild.Children[CurrentPage].Position.X + mScrollingChild.Children[CurrentPage].CurrentSize.Width/2.0f - CurrentSize.Width/2.0f); // set to middle of current page
+                  Debug.WriteLineIf(LayoutDebugScrollableBase, "Snapping to :" + destinationX);
+                  AnimateChildTo(ScrollDuration, destinationX);
               }
           }
           else
