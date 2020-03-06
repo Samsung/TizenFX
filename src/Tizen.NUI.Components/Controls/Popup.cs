@@ -222,11 +222,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Creates a new instance of a Popup with attributes.
+        /// Creates a new instance of a Popup with style.
         /// </summary>
-        /// <param name="attributes">Create Popup by attributes customized by user.</param>
+        /// <param name="popupStyle">Create Popup by style customized by user.</param>
         /// <since_tizen> 8 </since_tizen>
-        public Popup(PopupStyle attributes) : base(attributes)
+        public Popup(PopupStyle popupStyle) : base(popupStyle)
         {
             Initialize();
         }
@@ -703,7 +703,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Popup attribues.
+        /// Get Popup style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
@@ -717,11 +717,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            PopupStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
-            if (tempAttributes != null)
+            PopupStyle popupStyle = StyleManager.Instance.GetViewStyle(style) as PopupStyle;
+            if (popupStyle != null)
             {
                 string strSaveTitleText = TitleText;
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(popupStyle);
                 Style.Title.Text = strSaveTitleText;
                 UpdateView();
             }
@@ -731,7 +731,7 @@ namespace Tizen.NUI.Components
         {
             container.Add(this);
             LeaveRequired = true;
-            PropertyChanged += PopupAttributesPropertyChanged;
+            PropertyChanged += PopupStylePropertyChanged;
 
             // ContentView
             ContentView = new View()
@@ -779,7 +779,7 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private void PopupAttributesPropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void PopupStylePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName.Equals("LayoutDirection"))
             {

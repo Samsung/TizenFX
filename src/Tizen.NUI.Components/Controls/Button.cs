@@ -154,11 +154,11 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Creates a new instance of a Button with attributes.
+        /// Creates a new instance of a Button with style.
         /// </summary>
-        /// <param name="controlStyle">Create Button by attributes customized by user.</param>
+        /// <param name="buttonStyle">Create Button by style customized by user.</param>
         /// <since_tizen> 8 </since_tizen>
-        public Button(ButtonStyle controlStyle) : base(controlStyle)
+        public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
             Initialize();
         }
@@ -807,7 +807,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// It is hijack by using protected, attributes copy problem when class inherited from Button.
+        /// It is hijack by using protected, style copy problem when class inherited from Button.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         private void Initialize()
@@ -967,10 +967,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            ButtonStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
-            if (tempAttributes != null)
+            ButtonStyle buttonStyle = StyleManager.Instance.GetViewStyle(style) as ButtonStyle;
+            if (buttonStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(buttonStyle);
                 UpdateUIContent();
             }
         }

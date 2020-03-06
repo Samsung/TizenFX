@@ -41,12 +41,12 @@ namespace Tizen.NUI.Components
         public CheckBox(string style) : base(style) { }
 
         /// <summary>
-        /// Creates a new instance of a CheckBox with attributes.
+        /// Creates a new instance of a CheckBox with style.
         /// </summary>
-        /// <param name="attrs"></param>
+        /// <param name="buttonStyle"></param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public CheckBox(ButtonStyle attrs) : base(attrs) { }
+        public CheckBox(ButtonStyle buttonStyle) : base(buttonStyle) { }
 
         /// <summary>
         /// Get CheckBoxGroup to which this CheckBox belong.

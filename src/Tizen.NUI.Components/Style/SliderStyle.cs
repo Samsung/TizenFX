@@ -220,81 +220,81 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            SliderStyle sliderAttributes = bindableObject as SliderStyle;
+            SliderStyle sliderStyle = bindableObject as SliderStyle;
 
-            if (null != sliderAttributes)
+            if (null != sliderStyle)
             {
-                if (sliderAttributes.Track != null)
+                if (sliderStyle.Track != null)
                 {
                     if (null == Track)
                     {
                         Track = new ImageViewStyle();
                     }
-                    Track.CopyFrom(sliderAttributes.Track);
+                    Track.CopyFrom(sliderStyle.Track);
                 }
 
-                if (sliderAttributes.Progress != null)
+                if (sliderStyle.Progress != null)
                 {
                     if (null == Progress)
                     {
                         Progress = new ImageViewStyle();
                     }
-                    Progress.CopyFrom(sliderAttributes.Progress);
+                    Progress.CopyFrom(sliderStyle.Progress);
                 }
 
-                if (sliderAttributes.Thumb != null)
+                if (sliderStyle.Thumb != null)
                 {
                     if (null == Thumb)
                     {
                         Thumb = new ImageViewStyle();
                     }
-                    Thumb.CopyFrom(sliderAttributes.Thumb);
+                    Thumb.CopyFrom(sliderStyle.Thumb);
                 }
 
-                if (sliderAttributes.LowIndicatorImage != null)
+                if (sliderStyle.LowIndicatorImage != null)
                 {
                     if (null == LowIndicatorImage)
                     {
                         LowIndicatorImage = new ImageViewStyle();
                     }
-                    LowIndicatorImage.CopyFrom(sliderAttributes.LowIndicatorImage);
+                    LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
                 }
 
-                if (sliderAttributes.HighIndicatorImage != null)
+                if (sliderStyle.HighIndicatorImage != null)
                 {
                     if (null == HighIndicatorImage)
                     {
                         HighIndicatorImage = new ImageViewStyle();
                     }
-                    HighIndicatorImage.CopyFrom(sliderAttributes.HighIndicatorImage);
+                    HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
                 }
 
-                if (sliderAttributes.LowIndicator != null)
+                if (sliderStyle.LowIndicator != null)
                 {
                     if (null == LowIndicator)
                     {
                         LowIndicator = new TextLabelStyle();
                     }
-                    LowIndicator.CopyFrom(sliderAttributes.LowIndicator);
+                    LowIndicator.CopyFrom(sliderStyle.LowIndicator);
                 }
 
-                if (sliderAttributes.HighIndicator != null)
+                if (sliderStyle.HighIndicator != null)
                 {
                     if (null == HighIndicator)
                     {
                         HighIndicator = new TextLabelStyle();
                     }
-                    HighIndicator.CopyFrom(sliderAttributes.HighIndicator);
+                    HighIndicator.CopyFrom(sliderStyle.HighIndicator);
                 }
 
-                if (sliderAttributes.TrackThickness != null)
+                if (sliderStyle.TrackThickness != null)
                 {
-                    TrackThickness = sliderAttributes.TrackThickness;
+                    TrackThickness = sliderStyle.TrackThickness;
                 }
 
-                if (sliderAttributes.TrackPadding != null)
+                if (sliderStyle.TrackPadding != null)
                 {
-                    TrackPadding = sliderAttributes.TrackPadding;
+                    TrackPadding = sliderStyle.TrackPadding;
                 }
             }
         }

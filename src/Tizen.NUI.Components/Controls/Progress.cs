@@ -154,9 +154,9 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// The constructor of the Progress class with specific Attributes.
+        /// The constructor of the Progress class with specific style.
         /// </summary>
-        /// <param name="progressStyle">The Attributes object to initialize the Progress.</param>
+        /// <param name="progressStyle">The style object to initialize the Progress.</param>
         /// <since_tizen> 8 </since_tizen>
         public Progress(ProgressStyle progressStyle) : base(progressStyle)
         {

@@ -153,9 +153,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of ScrollBar with specific style.
         /// </summary>
-        /// <param name="style">The style object to initialize the ScrollBar.</param>
+        /// <param name="scrollBarStyle">The style object to initialize the ScrollBar.</param>
         /// <since_tizen> 8 </since_tizen>
-        public ScrollBar(ScrollBarStyle style) : base(style)
+        public ScrollBar(ScrollBarStyle scrollBarStyle) : base(scrollBarStyle)
         {
             Initialize();
         }

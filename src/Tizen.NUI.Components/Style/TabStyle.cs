@@ -90,13 +90,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// UnderLine's attributes.
+        /// UnderLine's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ViewStyle UnderLine { get; set; }
 
         /// <summary>
-        /// Text's attributes.
+        /// Text's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle Text { get; set; }

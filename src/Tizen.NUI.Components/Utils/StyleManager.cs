@@ -125,7 +125,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get attributes by style.
+        /// Get style.
         /// </summary>
         /// <param name="style">Style name.</param>
         /// <since_tizen> 8 </since_tizen>

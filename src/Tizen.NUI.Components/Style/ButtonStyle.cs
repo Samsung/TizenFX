@@ -22,7 +22,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// ButtonAttributes is a class which saves Button's ux data.
+    /// ButtonStyle is a class which saves Button's ux data.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     public class ButtonStyle : ControlStyle

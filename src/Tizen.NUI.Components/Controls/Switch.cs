@@ -55,9 +55,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a Switch with style.
         /// </summary>
-        /// <param name="style">Create Switch by style customized by user.</param>
+        /// <param name="switchStyle">Create Switch by style customized by user.</param>
         /// <since_tizen> 8 </since_tizen>
-        public Switch(SwitchStyle style) : base(style)
+        public Switch(SwitchStyle switchStyle) : base(switchStyle)
         {
             Initialize();
         }
@@ -295,10 +295,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            SwitchStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
-            if (null != tempAttributes)
+            SwitchStyle switchStyle = StyleManager.Instance.GetViewStyle(style) as SwitchStyle;
+            if (null != switchStyle)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(switchStyle);
             }
         }
 

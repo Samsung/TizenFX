@@ -111,9 +111,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Loading class with specific style.
         /// </summary>
-        /// <param name="style">The style object to initialize the Loading.</param>
+        /// <param name="loadingStyle">The style object to initialize the Loading.</param>
         /// <since_tizen> 8 </since_tizen>
-        public Loading(LoadingStyle style) : base(style)
+        public Loading(LoadingStyle loadingStyle) : base(loadingStyle)
         {
             Initialize();
         }

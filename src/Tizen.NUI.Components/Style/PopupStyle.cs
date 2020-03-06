@@ -49,13 +49,13 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Title Text's Style.
+        /// Title Text's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public TextLabelStyle Title { get; set; }
 
         /// <summary>
-        /// Popup button's attributes.
+        /// Popup button's style.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public ButtonStyle Buttons { get; set; }
@@ -69,17 +69,17 @@ namespace Tizen.NUI.Components
         {
             base.CopyFrom(bindableObject);
 
-            PopupStyle popupAttributes = bindableObject as PopupStyle;
-            if (popupAttributes != null)
+            PopupStyle popupStyle = bindableObject as PopupStyle;
+            if (popupStyle != null)
             {
-                if (popupAttributes.Title != null)
+                if (popupStyle.Title != null)
                 {
-                    Title?.CopyFrom(popupAttributes.Title);
+                    Title?.CopyFrom(popupStyle.Title);
                 }
 
-                if (popupAttributes.Buttons != null)
+                if (popupStyle.Buttons != null)
                 {
-                    Buttons?.CopyFrom(popupAttributes.Buttons);
+                    Buttons?.CopyFrom(popupStyle.Buttons);
                 }
             }
         }

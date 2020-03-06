@@ -100,9 +100,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The constructor of the Toast class with specific Style.
         /// </summary>
-        /// <param name="style">Construct Style</param>
+        /// <param name="toastStyle">Construct Style</param>
         /// <since_tizen> 8 </since_tizen>
-        public Toast(ToastStyle style) : base(style)
+        public Toast(ToastStyle toastStyle) : base(toastStyle)
         {
             Initialize();
         }

@@ -59,9 +59,9 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a Tab with style.
         /// </summary>
-        /// <param name="style">Create Tab by style customized by user.</param>
+        /// <param name="tabStyle">Create Tab by style customized by user.</param>
         /// <since_tizen> 8 </since_tizen>
-        public Tab(TabStyle style) : base(style)
+        public Tab(TabStyle tabStyle) : base(tabStyle)
         {
             Initialize();
         }
@@ -419,7 +419,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Update Tab by attributes.
+        /// Update Tab.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -444,10 +444,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {
-            TabStyle tempAttributes = StyleManager.Instance.GetViewStyle(style) as TabStyle;
-            if (tempAttributes != null)
+            TabStyle tabStyle = StyleManager.Instance.GetViewStyle(style) as TabStyle;
+            if (tabStyle != null)
             {
-                Style.CopyFrom(tempAttributes);
+                Style.CopyFrom(tabStyle);
             }
         }
 
@@ -584,19 +584,6 @@ namespace Tizen.NUI.Components
                 {
                     underline.Hide();
                 }
-            }
-        }
-
-        private void CreateUnderLineAttributes()
-        {
-            if (Style.UnderLine == null)
-            {
-                Style.UnderLine = new ViewStyle()
-                {
-                    PositionUsesPivotPoint = true,
-                    ParentOrigin = Tizen.NUI.ParentOrigin.BottomLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.BottomLeft,
-                };
             }
         }
 
