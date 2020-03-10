@@ -1087,7 +1087,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (WindowWheelEventHandler != null)
             {
-                Window.Instance.WheelEvent -= OnWindowWheelEvent;
+                GetWindow().WheelEvent -= OnWindowWheelEvent;
             }
 
             if (_hoverEventCallback != null)

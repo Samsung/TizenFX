@@ -300,7 +300,7 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             Flags = Flags | LayoutFlags.ForceLayout;
-            Window.Instance.LayoutController.RequestLayout(this);
+            Application.Instance.GetWindow().LayoutController.RequestLayout(this);
         }
 
         /// <summary>
@@ -530,7 +530,7 @@ namespace Tizen.NUI
 
                 if (Owner.Parent != null && Owner.Parent.Layout != null && Owner.Parent.Layout.LayoutWithTransition)
                 {
-                    Window.Instance.LayoutController.AddTransitionDataEntry(_layoutPositionData);
+                    Application.Instance.GetWindow().LayoutController.AddTransitionDataEntry(_layoutPositionData);
                 }
                 else
                 {

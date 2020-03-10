@@ -58,7 +58,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SendViewAddedEventToWindow(IntPtr data)
         {
-            Window.Instance?.SendViewAdded(this);
+            GetWindow().SendViewAdded(this);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (WindowWheelEventHandler == null)
                 {
-                    Window.Instance.WheelEvent += OnWindowWheelEvent;
+                    GetWindow().WheelEvent += OnWindowWheelEvent;
                 }
                 WindowWheelEventHandler += value;
             }
@@ -310,7 +310,7 @@ namespace Tizen.NUI.BaseComponents
                 WindowWheelEventHandler -= value;
                 if (WindowWheelEventHandler == null)
                 {
-                    Window.Instance.WheelEvent -= OnWindowWheelEvent;
+                    GetWindow().WheelEvent -= OnWindowWheelEvent;
                 }
             }
         }

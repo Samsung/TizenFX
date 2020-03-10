@@ -36,7 +36,7 @@ namespace Tizen.NUI
         public Layer() : this(Interop.Layer.Layer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (Window.Instance != null)
+            if (Application.Instance.GetWindow() != null)
             {
                 this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
                 this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
@@ -660,6 +660,11 @@ namespace Tizen.NUI
         internal void SetWindow(Window win)
         {
             window = win;
+        }
+
+        internal Window GetWindow()
+        {
+            return window;
         }
 
         /// This will not be public opened.

@@ -843,7 +843,7 @@ namespace Tizen.NUI
             /// <since_tizen> 4 </since_tizen>
             public SafeNativeWindowHandle() : base(IntPtr.Zero, false)
             {
-                SetHandle(Tizen.NUI.Window.Instance.GetNativeWindowHandler());
+                SetHandle(Application.Instance.GetWindow().GetNativeWindowHandler());
             }
             /// <summary>
             /// Null check if the handle is valid or not.

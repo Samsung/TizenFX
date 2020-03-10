@@ -706,9 +706,11 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-            if (Window.Instance)
+
+            Window defaultWindow = GetWindow();
+            if (defaultWindow)
             {
-                Window.Instance.DisconnectNativeSignals();
+                defaultWindow.DisconnectNativeSignals();
             }
         }
 

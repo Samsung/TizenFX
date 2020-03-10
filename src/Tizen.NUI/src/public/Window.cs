@@ -209,6 +209,11 @@ namespace Tizen.NUI
         {
             get
             {
+                if (Application.Instance is ComponentApplication)
+                {
+                    Tizen.Log.Error("NUI", "You can't use 'Window.Intance' in ComponentApplication");
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
                 return instance;
             }
         }

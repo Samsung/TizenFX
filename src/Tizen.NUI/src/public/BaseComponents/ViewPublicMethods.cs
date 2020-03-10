@@ -370,6 +370,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal Window GetWindow()
+        {
+            return GetLayer().GetWindow();
+        }
+
         /// <summary>
         /// Removes a view from its parent view or layer. If a view has no parent, this method does nothing.
         /// </summary>

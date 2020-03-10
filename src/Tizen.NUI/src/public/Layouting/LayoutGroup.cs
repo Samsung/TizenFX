@@ -95,12 +95,12 @@ namespace Tizen.NUI
                     {
                         if (!childLayout.IsReplaceFlag())
                         {
-                            Window.Instance.LayoutController.AddToRemovalStack(childLayout);
+                            Application.Instance.GetWindow().LayoutController.AddToRemovalStack(childLayout);
                         }
 
                         childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                         // Add LayoutItem to the transition stack so can animate it out.
-                        Window.Instance.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        Application.Instance.GetWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
                     }
                     else
                     {
