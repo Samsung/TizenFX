@@ -51,6 +51,8 @@ namespace Tizen.NUI.BaseComponents
         private Dictionary<TransitionCondition, TransitionList> _layoutTransitions;
         private int _widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int _heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
+        private int _oldWidthPolicy = LayoutParamPolicies.MatchParent; // // Store Layout width to compare against later
+        private int _oldHeightPolicy = LayoutParamPolicies.MatchParent; // Store Layout height to compare against later
         private float _weight = 0.0f; // Weighting of child View in a Layout
         private MeasureSpecification _measureSpecificationWidth; // Layout width and internal Mode
         private MeasureSpecification _measureSpecificationHeight; // Layout height and internal Mode
@@ -1908,23 +1910,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _widthPolicy = value;
-                if (_widthPolicy >= 0)
+                if( _oldWidthPolicy != _widthPolicy )
                 {
-                    _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
+                    if (_widthPolicy >= 0)
+                    {
+                        _measureSpecificationWidth = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
 
-                    if(_heightPolicy>=0) // Policy an exact value
-                    {
-                        Size2D.Width = _widthPolicy;
+                        if(_heightPolicy>=0) // Policy an exact value
+                        {
+                            Size2D.Width = _widthPolicy;
+                        }
+                        else
+                        {
+                            // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                            // Size2D height will store the specification value (negative number) this will then be applied to the
+                            // HeightSpecification when the Size2D callback is invoked.
+                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                        }
                     }
-                    else
-                    {
-                        // Store _heightPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                        // Size2D height will store the specification value (negative number) this will then be applied to the
-                        // HeightSpecification when the Size2D callback is invoked.
-                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
-                    }
+                    _layout?.RequestLayout();
+                    _oldWidthPolicy = _widthPolicy;
                 }
-                _layout?.RequestLayout();
             }
         }
 
@@ -1941,24 +1947,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 _heightPolicy = value;
-                if (_heightPolicy >= 0)
+                if( _oldHeightPolicy != _heightPolicy )
                 {
-                    _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
-
-                    if(_widthPolicy>=0) // Policy an exact value
+                    if (_heightPolicy >= 0)
                     {
-                        Size2D.Height = _heightPolicy;
-                    }
-                    else
-                    {
-                        // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
-                        // Size2D height will store the specification value (negative number) this will then be applied to the
-                        // HeightSpecification when the Size2D callback is invoked.
-                        Size2D = new Size2D(_widthPolicy,_heightPolicy);
-                    }
+                        _measureSpecificationHeight = new MeasureSpecification( new LayoutLength(value), MeasureSpecification.ModeType.Exactly );
 
+                        if(_widthPolicy>=0) // Policy an exact value
+                        {
+                            Size2D.Height = _heightPolicy;
+                        }
+                        else
+                        {
+                            // Store widthPolicy in the Size2D memember as will be reset to 0 by a Size2D callback.
+                            // Size2D height will store the specification value (negative number) this will then be applied to the
+                            // HeightSpecification when the Size2D callback is invoked.
+                            Size2D = new Size2D(_widthPolicy,_heightPolicy);
+                        }
+
+                    }
+                    _layout?.RequestLayout();
+                    _oldHeightPolicy = _heightPolicy;
                 }
-               _layout?.RequestLayout();
             }
         }
 
