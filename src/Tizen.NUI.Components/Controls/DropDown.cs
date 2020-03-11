@@ -1338,7 +1338,7 @@ namespace Tizen.NUI.Components
             }
 
             /// <summary>
-            /// Get DropDown item style.
+            /// Get DropDownItemView style.
             /// </summary>
             /// <returns>The empty.</returns>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.

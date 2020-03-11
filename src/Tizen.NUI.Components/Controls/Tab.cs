@@ -431,7 +431,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get Tab tab.
+        /// Get Tab style.
         /// </summary>
         /// <returns>The default tab style.</returns>
         /// <since_tizen> 8 </since_tizen>

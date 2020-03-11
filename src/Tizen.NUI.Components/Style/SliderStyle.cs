@@ -226,65 +226,37 @@ namespace Tizen.NUI.Components
             {
                 if (sliderStyle.Track != null)
                 {
-                    if (null == Track)
-                    {
-                        Track = new ImageViewStyle();
-                    }
-                    Track.CopyFrom(sliderStyle.Track);
+                    Track?.CopyFrom(sliderStyle.Track);
                 }
 
                 if (sliderStyle.Progress != null)
                 {
-                    if (null == Progress)
-                    {
-                        Progress = new ImageViewStyle();
-                    }
-                    Progress.CopyFrom(sliderStyle.Progress);
+                    Progress?.CopyFrom(sliderStyle.Progress);
                 }
 
                 if (sliderStyle.Thumb != null)
                 {
-                    if (null == Thumb)
-                    {
-                        Thumb = new ImageViewStyle();
-                    }
-                    Thumb.CopyFrom(sliderStyle.Thumb);
+                    Thumb?.CopyFrom(sliderStyle.Thumb);
                 }
 
                 if (sliderStyle.LowIndicatorImage != null)
                 {
-                    if (null == LowIndicatorImage)
-                    {
-                        LowIndicatorImage = new ImageViewStyle();
-                    }
-                    LowIndicatorImage.CopyFrom(sliderStyle.LowIndicatorImage);
+                    LowIndicatorImage?.CopyFrom(sliderStyle.LowIndicatorImage);
                 }
 
                 if (sliderStyle.HighIndicatorImage != null)
                 {
-                    if (null == HighIndicatorImage)
-                    {
-                        HighIndicatorImage = new ImageViewStyle();
-                    }
-                    HighIndicatorImage.CopyFrom(sliderStyle.HighIndicatorImage);
+                    HighIndicatorImage?.CopyFrom(sliderStyle.HighIndicatorImage);
                 }
 
                 if (sliderStyle.LowIndicator != null)
                 {
-                    if (null == LowIndicator)
-                    {
-                        LowIndicator = new TextLabelStyle();
-                    }
-                    LowIndicator.CopyFrom(sliderStyle.LowIndicator);
+                    LowIndicator?.CopyFrom(sliderStyle.LowIndicator);
                 }
 
                 if (sliderStyle.HighIndicator != null)
                 {
-                    if (null == HighIndicator)
-                    {
-                        HighIndicator = new TextLabelStyle();
-                    }
-                    HighIndicator.CopyFrom(sliderStyle.HighIndicator);
+                    HighIndicator?.CopyFrom(sliderStyle.HighIndicator);
                 }
 
                 if (sliderStyle.TrackThickness != null)
