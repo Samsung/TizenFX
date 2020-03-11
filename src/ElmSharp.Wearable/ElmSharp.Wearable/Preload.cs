@@ -20,9 +20,10 @@ namespace ElmSharp.Wearable
 {
     static class Preload
     {
-        static public void WarmupWidgets(Window win)
+        static public void WarmupWidgets(PreloadedWindow win)
         {
-            var surface = new CircleSurface();
+            var surface = new CircleSurface(win.BaseConformant);
+            win.BaseCircleSurface = surface;
             new CircleDateTimeSelector(win, surface).Unrealize();
             new CircleProgressBar(win, surface).Unrealize();
             new CircleScroller(win, surface).Unrealize();
