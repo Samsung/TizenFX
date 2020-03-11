@@ -193,6 +193,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Loading style.
         /// </summary>
+        /// <returns>The default loading style.</returns>
         /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {

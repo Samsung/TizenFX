@@ -494,6 +494,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get DropDown style.
         /// </summary>
+        /// <returns>The default dropdown style.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1336,6 +1337,10 @@ namespace Tizen.NUI.Components
                 base.Dispose(type);
             }
 
+            /// <summary>
+            /// Get DropDown item style.
+            /// </summary>
+            /// <returns>The empty.</returns>
             /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
             [EditorBrowsable(EditorBrowsableState.Never)]
             protected override ViewStyle GetViewStyle()

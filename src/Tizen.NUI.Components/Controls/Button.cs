@@ -717,6 +717,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Apply style to button.
         /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
         /// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
@@ -757,6 +758,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Button style.
         /// </summary>
+        /// <returns>The default button style.</returns>
         /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
@@ -964,6 +966,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {

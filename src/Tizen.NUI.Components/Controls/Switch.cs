@@ -256,6 +256,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Switch style.
         /// </summary>
+        /// <returns>The default switch style.</returns>
         /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
@@ -292,6 +293,8 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Theme change callback when theme is changed, this callback will be trigger.
         /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event data</param>
         /// <since_tizen> 8 </since_tizen>
         protected override void OnThemeChangedEvent(object sender, StyleManager.ThemeChangeEventArgs e)
         {

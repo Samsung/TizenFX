@@ -128,6 +128,7 @@ namespace Tizen.NUI.Components
         /// Get style.
         /// </summary>
         /// <param name="style">Style name.</param>
+        /// <returns>The style corresponding to style name .</returns>
         /// <since_tizen> 8 </since_tizen>
         public ViewStyle GetViewStyle(string style)
         {
@@ -187,6 +188,7 @@ namespace Tizen.NUI.Components
         /// Get components style in the current theme.
         /// </summary>
         /// <param name="component">The type of component</param>
+        /// <returns>The style of the component.</returns>
         /// <since_tizen> 8 </since_tizen>
         public ViewStyle GetComponentStyle(Type component)
         {

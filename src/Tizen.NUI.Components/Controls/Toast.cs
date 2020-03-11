@@ -282,6 +282,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Apply style to toast.
         /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
 		/// <since_tizen> 8 </since_tizen>
         public override void ApplyStyle(ViewStyle viewStyle)
         {
@@ -334,6 +335,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Get Toast style.
         /// </summary>
+        /// <returns>The default toast style.</returns>
         /// <since_tizen> 8 </since_tizen>
         protected override ViewStyle GetViewStyle()
         {
