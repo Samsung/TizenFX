@@ -15,9 +15,12 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-    internal class NativeImageInterface : RefObject
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class NativeImageInterface : RefObject
     {
 
         internal NativeImageInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.NativeImageInterface.NativeImageInterface_SWIGUpcast(cPtr), cMemoryOwn)
