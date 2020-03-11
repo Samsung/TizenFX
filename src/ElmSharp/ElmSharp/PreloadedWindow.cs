@@ -15,15 +15,20 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Reflection;
 
 namespace ElmSharp
 {
-    internal class PreloadedWindow : Window
+    /// <summary>
+    /// Pre-created window which prepares features that takes time in advance.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PreloadedWindow : Window
     {
         static PreloadedWindow s_precreated;
 
-        public PreloadedWindow(bool useBaseLayout=true) : base("PreloadWindow")
+        internal PreloadedWindow(bool useBaseLayout=true) : base("PreloadWindow")
         {
             s_precreated = this;
             if (useBaseLayout)
@@ -45,9 +50,23 @@ namespace ElmSharp
             protected set;
         }
 
+        public Conformant BaseConformant
+        {
+            get;
+            protected set;
+        }
+
+        public object BaseCircleSurface
+        {
+            get;
+            set;
+        }
+
+
         public void InitializeBaseLayout()
         {
             var conformant = new Conformant(this);
+            BaseConformant = conformant;
             conformant.Show();
 
             var layout = new Layout(conformant);
