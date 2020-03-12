@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,12 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
-    internal partial class AccessibilityManager
+    public partial class AccessibilityManager
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool StatusChangedEventCallbackDelegate(IntPtr accessibilityManager);
@@ -138,11 +139,6 @@ namespace Tizen.NUI
         private ActionZoomEventCallbackDelegate _accessibilityManagerActionZoomEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool ActionReadIndicatorInformationEventCallbackDelegate(IntPtr accessibilityManager);
-        private DaliEventHandlerWithReturnType<object, ActionReadIndicatorInformationEventArgs, bool> _accessibilityManagerActionReadIndicatorInformationEventHandler;
-        private ActionReadIndicatorInformationEventCallbackDelegate _accessibilityManagerActionReadIndicatorInformationEventCallbackDelegate;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool ActionReadPauseResumeEventCallbackDelegate(IntPtr accessibilityManager);
         private DaliEventHandlerWithReturnType<object, ActionReadPauseResumeEventArgs, bool> _accessibilityManagerActionReadPauseResumeEventHandler;
         private ActionReadPauseResumeEventCallbackDelegate _accessibilityManagerActionReadPauseResumeEventCallbackDelegate;
@@ -175,6 +171,15 @@ namespace Tizen.NUI
         private DaliEventHandler<object, FocusOvershotEventArgs> _accessibilityManagerFocusOvershotEventHandler;
         private FocusOvershotEventCallbackDelegate _accessibilityManagerFocusOvershotEventCallbackDelegate;
 
+        // Accessibility action signals
+
+        /// <summary>
+        /// This is emitted when accessibility(screen-reader) feature turned on or off.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, StatusChangedEventArgs, bool> StatusChanged
         {
             add
@@ -206,6 +211,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move focus to the next focusable view (by one finger flick down).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionNextEventArgs, bool> ActionNext
         {
             add
@@ -237,6 +249,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move focus to the previous focusable view (by one finger flick up).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionPreviousEventArgs, bool> ActionPrevious
         {
             add
@@ -268,6 +287,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to activate the current focused view (by one finger double tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionActivateEventArgs, bool> ActionActivate
         {
             add
@@ -299,6 +325,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to focus and read the view (by one finger tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadEventArgs, bool> ActionRead
         {
             add
@@ -330,6 +363,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to focus and read the view  (by one finger move).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionOverEventArgs, bool> ActionOver
         {
             add
@@ -361,6 +401,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move focus to the next focusable view (by one finger flick right).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadNextEventArgs, bool> ActionReadNext
         {
             add
@@ -392,6 +439,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move focus to the previous focusable view (by one finger flick left).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadPreviousEventArgs, bool> ActionReadPrevious
         {
             add
@@ -423,6 +477,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to change the value when the current focused view is a slider
+        /// (by double finger down and move up and right).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionUpEventArgs, bool> ActionUp
         {
             add
@@ -454,6 +516,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to change the value when the current focused view is a slider
+        /// (by double finger down and move down and left).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionDownEventArgs, bool> ActionDown
         {
             add
@@ -485,6 +555,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to clear the focus from the current focused view
+        /// if any, so that no view is focused in the focus chain.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionClearFocusEventArgs, bool> ActionClearFocus
         {
             add
@@ -516,6 +594,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to navigate back (by two fingers circle draw).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionBackEventArgs, bool> ActionBack
         {
             add
@@ -547,6 +632,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll up the list (by two finger swipe up).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionScrollUpEventArgs, bool> ActionScrollUp
         {
             add
@@ -578,6 +670,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll down the list (by two finger swipe down).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionScrollDownEventArgs, bool> ActionScrollDown
         {
             add
@@ -609,6 +708,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll left to the previous page (by two finger swipe left).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionPageLeftEventArgs, bool> ActionPageLeft
         {
             add
@@ -640,6 +746,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll right to the next page (by two finger swipe right).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionPageRightEventArgs, bool> ActionPageRight
         {
             add
@@ -671,6 +784,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll up to the previous page (by one finger swipe left and right).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionPageUpEventArgs, bool> ActionPageUp
         {
             add
@@ -702,6 +822,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to scroll down to the next page (by one finger swipe right and left).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionPageDownEventArgs, bool> ActionPageDown
         {
             add
@@ -733,6 +860,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move the focus to the first item on the screen
+        /// (by one finger swipe up and down).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionMoveToFirstEventArgs, bool> ActionMoveToFirst
         {
             add
@@ -764,6 +899,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move the focus to the last item on the screen
+        /// (by one finger swipe down and up).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionMoveToLastEventArgs, bool> ActionMoveToLast
         {
             add
@@ -795,6 +938,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to focus and read from the first item on the top continuously
+        /// (by three fingers single tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadFromTopEventArgs, bool> ActionReadFromTop
         {
             add
@@ -826,6 +977,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to move the focus to and read from the next item continuously
+        /// (by three fingers double tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadFromNextEventArgs, bool> ActionReadFromNext
         {
             add
@@ -857,6 +1016,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to zoom (by one finger triple tap)
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionZoomEventArgs, bool> ActionZoom
         {
             add
@@ -888,37 +1054,13 @@ namespace Tizen.NUI
             }
         }
 
-        public event DaliEventHandlerWithReturnType<object, ActionReadIndicatorInformationEventArgs, bool> ActionReadIndicatorInformation
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_accessibilityManagerActionReadIndicatorInformationEventHandler == null)
-                    {
-                        _accessibilityManagerActionReadIndicatorInformationEventHandler += value;
-
-                        _accessibilityManagerActionReadIndicatorInformationEventCallbackDelegate = new ActionReadIndicatorInformationEventCallbackDelegate(OnActionReadIndicatorInformation);
-                        this.ActionReadIndicatorInformationSignal().Connect(_accessibilityManagerActionReadIndicatorInformationEventCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_accessibilityManagerActionReadIndicatorInformationEventHandler != null)
-                    {
-                        this.ActionReadIndicatorInformationSignal().Disconnect(_accessibilityManagerActionReadIndicatorInformationEventCallbackDelegate);
-                    }
-
-                    _accessibilityManagerActionReadIndicatorInformationEventHandler -= value;
-                }
-            }
-        }
-
+        /// <summary>
+        /// This is emitted when accessibility action is received to pause/resume the current speech (by two fingers single tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionReadPauseResumeEventArgs, bool> ActionReadPauseResume
         {
             add
@@ -950,6 +1092,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This is emitted when accessibility action is received to start/stop the current action (by two fingers double tap).
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandlerWithReturnType<object, ActionStartStopEventArgs, bool> ActionStartStop
         {
             add
@@ -1032,6 +1181,15 @@ namespace Tizen.NUI
             }
         */
 
+        // Common Signals
+
+        /// <summary>
+        /// This signal is emitted when the current focused view is changed.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, FocusChangedEventArgs> FocusChanged
         {
             add
@@ -1063,6 +1221,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This signal is emitted when the current focused view is activated.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, FocusedViewActivatedEventArgs> FocusedViewActivated
         {
             add
@@ -1094,6 +1259,13 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// This signal is emitted when there is no way to move focus further.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, FocusOvershotEventArgs> FocusOvershot
         {
             add
