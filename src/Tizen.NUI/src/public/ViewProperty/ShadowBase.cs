@@ -175,6 +175,11 @@ namespace Tizen.NUI
                 return new PropertyValue();
             }
 
+            if (attachedView.CornerRadius > 0)
+            {
+                instance.propertyMap[Visual.Property.CornerRadius] = new PropertyValue(attachedView.CornerRadius);
+            }
+
             instance.propertyMap[Visual.Property.Transform] = instance.GetTransformMap(attachedView);
 
             return new PropertyValue(instance.propertyMap);

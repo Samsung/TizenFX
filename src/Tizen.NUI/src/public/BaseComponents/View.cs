@@ -61,9 +61,11 @@ namespace Tizen.NUI.BaseComponents
         private string[] transitionNames;
         private Rectangle backgroundImageBorder;
 
-        private ViewSelector<ImageShadow> imageShadow;
+        private CloneableViewSelector<ImageShadow> imageShadow;
 
-        private ViewSelector<Shadow> boxShadow;
+        private CloneableViewSelector<Shadow> boxShadow;
+
+        private ViewSelector<float?> cornerRadius;
 
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
 
@@ -342,6 +344,26 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BoxShadowProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The radius for the rounded corners of the View.
+        /// This will rounds background and shadow edges.
+        /// Note that, an image background (or shadow) may not have rounded corners if it uses a Border property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CornerRadius
+        {
+            get
+            {
+                float? value = (float?)GetValue(CornerRadiusProperty);
+                return value ?? 0;
+            }
+            set
+            {
+                SetValue(CornerRadiusProperty, value);
                 NotifyPropertyChanged();
             }
         }

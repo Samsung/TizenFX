@@ -38,12 +38,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageShadow() : base()
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
         }
 
         internal ImageShadow(ImageShadow other, PropertyChangedCallback callback = null) : base(other)
         {
-            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+            propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
 
             Url = other.Url;
             Border = other.Border;
@@ -105,6 +105,15 @@ namespace Tizen.NUI
 
         private void UpdateBorder()
         {
+            if (Rectangle.IsNullOrZero(border))
+            {
+                propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Image);
+            }
+            else
+            {
+                propertyMap[Visual.Property.Type] = new PropertyValue((int)Visual.Type.NPatch);
+            }
+
             propertyMap[ImageVisualProperty.Border] = PropertyValue.CreateWithGuard(border);
             OnPropertyChanged?.Invoke(this);
         }
