@@ -42,7 +42,7 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
         private static readonly object s_pkgEventLock = new object();
-        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
+        private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
         private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
         private static int s_callbackId = 0;
@@ -1170,7 +1170,6 @@ namespace Tizen.Applications
                 return;
 
             var err = Interop.PackageManager.ErrorCode.None;
-            s_packageManagerEventCallback = new Interop.PackageManager.PackageManagerEventCallback(InternalEventCallback);
 
             if (!Handle.IsInvalid)
             {
@@ -1229,8 +1228,6 @@ namespace Tizen.Applications
             {
                 return;
             }
-
-            s_packageManagerEventCallback = null;
 
             lock (Handle)
             {
