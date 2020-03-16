@@ -749,7 +749,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ImageShadowProperty = BindableProperty.Create(nameof(ImageShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.imageShadow = SelectorHelper<ImageShadow>.Clone(newValue);
+            viewStyle.imageShadow = SelectorHelper.CopyCloneable<ImageShadow>(newValue);
 
             if (viewStyle.imageShadow != null) viewStyle.boxShadow = null;
         },
@@ -764,7 +764,7 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BoxShadowProperty = BindableProperty.Create(nameof(BoxShadow), typeof(Selector<ImageShadow>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
-            viewStyle.boxShadow = SelectorHelper<Shadow>.Clone(newValue);
+            viewStyle.boxShadow = SelectorHelper.CopyCloneable<Shadow>(newValue);
 
             if (viewStyle.boxShadow != null) viewStyle.imageShadow = null;
         },
@@ -772,6 +772,19 @@ namespace Tizen.NUI.BaseComponents
         {
             var viewStyle = (ViewStyle)bindable;
             return viewStyle.boxShadow;
+        });
+
+        /// A BindableProperty for CornerRadius
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CornerRadiusProperty = BindableProperty.Create(nameof(CornerRadius), typeof(Selector<float?>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            viewStyle.cornerRadius = SelectorHelper.CopyValue<float?>(newValue);
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+            return viewStyle.cornerRadius;
         });
 
         private string styleName;
@@ -834,6 +847,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
         private Selector<string> backgroundImageSelector;
+        private Selector<float?> cornerRadius;
         private Selector<float?> opacitySelector;
         private Selector<Color> backgroundColorSelector;
         private Selector<Rectangle> backgroundImageBorderSelector;
@@ -1382,6 +1396,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Selector<Shadow>)GetValue(BoxShadowProperty);
             set => SetValue(BoxShadowProperty, value);
+        }
+
+        /// <summary>
+        /// The radius for the rounded corners of the View
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<float?> CornerRadius
+        {
+            get => (Selector<float?>)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
         private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)

@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
@@ -272,11 +273,11 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A class that helps binding a non-selector property in View to selector property in ViewStyle.
     /// </summary>
-    internal class ViewSelector<T> where T : class, Tizen.NUI.Internal.ICloneable
+    internal class ViewSelector<T>
     {
-        private Selector<T> selector;
-        private View view;
-        private View.ControlStateChangesDelegate controlStateChanged;
+        protected Selector<T> selector;
+        protected View view;
+        protected View.ControlStateChangesDelegate controlStateChanged;
 
         internal ViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged)
         {
@@ -291,23 +292,25 @@ namespace Tizen.NUI.BaseComponents
 
         internal T GetValue()
         {
-            return selector == null ? null : selector.GetValue(view.ControlState);
+            return selector == null ? default(T) : selector.GetValue(view.ControlState);
         }
 
-        internal void Clone(object value)
+        internal void Set(object value)
         {
             bool hadMultiValue = HasMultiValue();
             var type = value?.GetType();
 
             if (type == typeof(T))
             {
-                selector = new Selector<T>();
-                selector.All = (T)((T)value).Clone();
+                CopyValueToSelector((T)value);
             }
             else if (type == typeof(Selector<T>))
             {
-                selector = new Selector<T>();
-                selector.Clone<T>((Selector<T>)value);
+                CopySelectorToSelector((Selector<T>)value);
+            }
+            else if (type == Nullable.GetUnderlyingType(typeof(T)))
+            {
+                CopyValueToSelector((T)value);
             }
             else
             {
@@ -319,6 +322,18 @@ namespace Tizen.NUI.BaseComponents
                 if (hadMultiValue) view.ControlStateChangeEvent -= controlStateChanged;
                 else view.ControlStateChangeEvent += controlStateChanged;
             }
+        }
+
+        protected virtual void CopyValueToSelector(T value)
+        {
+            selector = new Selector<T>();
+            selector.All = value;
+        }
+
+        protected virtual void CopySelectorToSelector(Selector<T> value)
+        {
+            selector = new Selector<T>();
+            selector.Clone(value);
         }
 
         internal void Clear()
@@ -335,19 +350,41 @@ namespace Tizen.NUI.BaseComponents
             return selector == null;
         }
 
-        private bool HasMultiValue()
+        protected bool HasMultiValue()
         {
             return (selector != null && selector.All == null);
         }
     }
 
-    internal static class SelectorHelper<T> where T : class, Tizen.NUI.Internal.ICloneable
+    /// <summary>
+    /// ViewSelector class for ICloneable type
+    /// </summary>
+    internal class CloneableViewSelector<T> : ViewSelector<T> where T : Tizen.NUI.Internal.ICloneable
+    {
+        internal CloneableViewSelector(View view, View.ControlStateChangesDelegate controlStateChanged) : base(view, controlStateChanged)
+        {
+        }
+
+        protected override void CopyValueToSelector(T value)
+        {
+            selector = new Selector<T>();
+            selector.All = (T)((T)value).Clone();
+        }
+
+        protected override void CopySelectorToSelector(Selector<T> value)
+        {
+            selector = new Selector<T>();
+            selector.Clone<T>((Selector<T>)value);
+        }
+    }
+
+    internal static class SelectorHelper
     {
         /// <summary>
         /// For the object type of T or Selector T, convert it to Selector T and return the cloned one.
         /// Otherwise, return null. <br/>
         /// </summary>
-        static internal Selector<T> Clone(object value)
+        static internal Selector<T> CopyCloneable<T>(object value) where T : class, Tizen.NUI.Internal.ICloneable
         {
             var type = value?.GetType();
 
@@ -367,24 +404,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// For the object type of T or Selector T, convert it to T and return the cloned one.
+        /// For the value type of T or Selector T, convert it to Selector T and return the cloned one.
         /// Otherwise, return null. <br/>
         /// </summary>
-        static internal T Clone(object value, View view)
+        static internal Selector<T> CopyValue<T>(object value)
         {
             var type = value?.GetType();
 
-            if (type == typeof(T))
+            if (type == typeof(Selector<T>))
             {
-                return (T)((T)value).Clone();
+                var result = new Selector<T>();
+                result.Clone((Selector<T>)value);
+                return result;
             }
 
-            if (type == typeof(Selector<T>) && view != null && value != null)
+            if (type == typeof(T))
             {
-                Selector<T> selector = (Selector<T>)value;
-                T valueInState = selector.GetValue(view.ControlState);
-
-                return (T)valueInState?.Clone();
+                return new Selector<T>((T)value);
             }
 
             return null;
