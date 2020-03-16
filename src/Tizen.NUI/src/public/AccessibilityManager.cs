@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,23 @@
  *
  */
 using System;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal partial class AccessibilityManager : BaseHandle
+    /// <summary>
+    /// AccessibilityManager manages registration of views in an accessibility focus chain and changing the focused view within that chain.
+    /// This class provides the functionality of registering the focus order and description of views and maintaining the focus chain.
+    /// It provides functionality of setting the focus and moving the focus forward and backward.
+    ///  It also draws a highlight for the focused view and emits a signal when the focus is changed.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public partial class AccessibilityManager : BaseHandle
     {
+        private static readonly AccessibilityManager instance = AccessibilityManager.Get();
 
         internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AccessibilityManage.AccessibilityManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -31,6 +42,8 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.AccessibilityManage.delete_AccessibilityManager(swigCPtr);
@@ -39,15 +52,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager StatusChangedSignal
         private bool OnStatusChanged(IntPtr data)
         {
-            StatusChangedEventArgs e = new StatusChangedEventArgs();
-
-            // Populate all members of "e" (StatusChangedEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerStatusChangedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerStatusChangedEventHandler(this, e);
+                return _accessibilityManagerStatusChangedEventHandler(instance, null);
             }
             return false;
         }
@@ -55,15 +63,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionNextSignal
         private bool OnActionNext(IntPtr data)
         {
-            ActionNextEventArgs e = new ActionNextEventArgs();
-
-            // Populate all members of "e" (ActionNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionNextEventHandler(this, e);
+                return _accessibilityManagerActionNextEventHandler(instance, null);
             }
             return false;
         }
@@ -71,15 +74,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPreviousSignal
         private bool OnActionPrevious(IntPtr data)
         {
-            ActionPreviousEventArgs e = new ActionPreviousEventArgs();
-
-            // Populate all members of "e" (ActionPreviousEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPreviousEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPreviousEventHandler(this, e);
+                return _accessibilityManagerActionPreviousEventHandler(instance, null);
             }
             return false;
         }
@@ -87,15 +85,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionActivateSignal
         private bool OnActionActivate(IntPtr data)
         {
-            ActionActivateEventArgs e = new ActionActivateEventArgs();
-
-            // Populate all members of "e" (ActionActivateEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionActivateEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionActivateEventHandler(this, e);
+                return _accessibilityManagerActionActivateEventHandler(instance, null);
             }
             return false;
         }
@@ -103,15 +96,11 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadSignal
         private bool OnActionRead(IntPtr data)
         {
-            ActionReadEventArgs e = new ActionReadEventArgs();
-
-            // Populate all members of "e" (ActionReadEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
 
             if (_accessibilityManagerActionReadEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadEventHandler(this, e);
+                return _accessibilityManagerActionReadEventHandler(instance, null);
             }
             return false;
         }
@@ -119,15 +108,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionOverSignal
         private bool OnActionOver(IntPtr data)
         {
-            ActionOverEventArgs e = new ActionOverEventArgs();
-
-            // Populate all members of "e" (ActionOverEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionOverEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionOverEventHandler(this, e);
+                return _accessibilityManagerActionOverEventHandler(instance, null);
             }
             return false;
         }
@@ -135,32 +119,21 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadNextSignal
         private bool OnActionReadNext(IntPtr data)
         {
-            ActionReadNextEventArgs e = new ActionReadNextEventArgs();
-
-            // Populate all members of "e" (ActionReadNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadNextEventHandler(this, e);
+                return _accessibilityManagerActionReadNextEventHandler(instance, null);
             }
             return false;
         }
 
-
         // Callback for AccessibilityManager ActionReadPreviousSignal
         private bool OnActionReadPrevious(IntPtr data)
         {
-            ActionReadPreviousEventArgs e = new ActionReadPreviousEventArgs();
-
-            // Populate all members of "e" (ActionReadPreviousEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadPreviousEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadPreviousEventHandler(this, e);
+                return _accessibilityManagerActionReadPreviousEventHandler(instance, null);
             }
             return false;
         }
@@ -168,15 +141,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionUpSignal
         private bool OnActionUp(IntPtr data)
         {
-            ActionUpEventArgs e = new ActionUpEventArgs();
-
-            // Populate all members of "e" (ActionUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionUpEventHandler(this, e);
+                return _accessibilityManagerActionUpEventHandler(instance, null);
             }
             return false;
         }
@@ -184,15 +152,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionDownSignal
         private bool OnActionDown(IntPtr data)
         {
-            ActionDownEventArgs e = new ActionDownEventArgs();
-
-            // Populate all members of "e" (ActionDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionDownEventHandler(this, e);
+                return _accessibilityManagerActionDownEventHandler(instance, null);
             }
             return false;
         }
@@ -200,15 +163,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionClearFocusSignal
         private bool OnActionClearFocus(IntPtr data)
         {
-            ActionClearFocusEventArgs e = new ActionClearFocusEventArgs();
-
-            // Populate all members of "e" (ActionClearFocusEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionClearFocusEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionClearFocusEventHandler(this, e);
+                return _accessibilityManagerActionClearFocusEventHandler(instance, null);
             }
             return false;
         }
@@ -216,15 +174,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionBackSignal
         private bool OnActionBack(IntPtr data)
         {
-            ActionBackEventArgs e = new ActionBackEventArgs();
-
-            // Populate all members of "e" (ActionBackEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionBackEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionBackEventHandler(this, e);
+                return _accessibilityManagerActionBackEventHandler(instance, null);
             }
             return false;
         }
@@ -232,15 +185,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionScrollUpSignal
         private bool OnActionScrollUp(IntPtr data)
         {
-            ActionScrollUpEventArgs e = new ActionScrollUpEventArgs();
-
-            // Populate all members of "e" (ActionScrollUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionScrollUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionScrollUpEventHandler(this, e);
+                return _accessibilityManagerActionScrollUpEventHandler(instance, null);
             }
             return false;
         }
@@ -248,32 +196,21 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionScrollDownSignal
         private bool OnActionScrollDown(IntPtr data)
         {
-            ActionScrollDownEventArgs e = new ActionScrollDownEventArgs();
-
-            // Populate all members of "e" (ActionScrollDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionScrollDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionScrollDownEventHandler(this, e);
+                return _accessibilityManagerActionScrollDownEventHandler(instance, null);
             }
             return false;
         }
 
-
         // Callback for AccessibilityManager ActionPageLeftSignal
         private bool OnActionPageLeft(IntPtr data)
         {
-            ActionPageLeftEventArgs e = new ActionPageLeftEventArgs();
-
-            // Populate all members of "e" (ActionPageLeftEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageLeftEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageLeftEventHandler(this, e);
+                return _accessibilityManagerActionPageLeftEventHandler(instance, null);
             }
             return false;
         }
@@ -281,15 +218,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageRightSignal
         private bool OnActionPageRight(IntPtr data)
         {
-            ActionPageRightEventArgs e = new ActionPageRightEventArgs();
-
-            // Populate all members of "e" (ActionPageRightEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageRightEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageRightEventHandler(this, e);
+                return _accessibilityManagerActionPageRightEventHandler(instance, null);
             }
             return false;
         }
@@ -297,15 +229,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageUpSignal
         private bool OnActionPageUp(IntPtr data)
         {
-            ActionPageUpEventArgs e = new ActionPageUpEventArgs();
-
-            // Populate all members of "e" (ActionPageUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageUpEventHandler(this, e);
+                return _accessibilityManagerActionPageUpEventHandler(instance, null);
             }
             return false;
         }
@@ -314,15 +241,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageDownSignal
         private bool OnActionPageDown(IntPtr data)
         {
-            ActionPageDownEventArgs e = new ActionPageDownEventArgs();
-
-            // Populate all members of "e" (ActionPageDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageDownEventHandler(this, e);
+                return _accessibilityManagerActionPageDownEventHandler(instance, null);
             }
             return false;
         }
@@ -331,15 +253,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionMoveToFirstSignal
         private bool OnActionMoveToFirst(IntPtr data)
         {
-            ActionMoveToFirstEventArgs e = new ActionMoveToFirstEventArgs();
-
-            // Populate all members of "e" (ActionMoveToFirstEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionMoveToFirstEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionMoveToFirstEventHandler(this, e);
+                return _accessibilityManagerActionMoveToFirstEventHandler(instance, null);
             }
             return false;
         }
@@ -347,15 +264,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionMoveToLastSignal
         private bool OnActionMoveToLast(IntPtr data)
         {
-            ActionMoveToLastEventArgs e = new ActionMoveToLastEventArgs();
-
-            // Populate all members of "e" (ActionMoveToLastEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionMoveToLastEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionMoveToLastEventHandler(this, e);
+                return _accessibilityManagerActionMoveToLastEventHandler(instance, null);
             }
             return false;
         }
@@ -363,15 +275,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadFromTopSignal
         private bool OnActionReadFromTop(IntPtr data)
         {
-            ActionReadFromTopEventArgs e = new ActionReadFromTopEventArgs();
-
-            // Populate all members of "e" (ActionReadFromTopEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadFromTopEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadFromTopEventHandler(this, e);
+                return _accessibilityManagerActionReadFromTopEventHandler(instance, null);
             }
             return false;
         }
@@ -379,15 +286,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadFromNextSignal
         private bool OnActionReadFromNext(IntPtr data)
         {
-            ActionReadFromNextEventArgs e = new ActionReadFromNextEventArgs();
-
-            // Populate all members of "e" (ActionReadFromNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadFromNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadFromNextEventHandler(this, e);
+                return _accessibilityManagerActionReadFromNextEventHandler(instance, null);
             }
             return false;
         }
@@ -395,31 +297,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionZoomSignal
         private bool OnActionZoom(IntPtr data)
         {
-            ActionZoomEventArgs e = new ActionZoomEventArgs();
-
-            // Populate all members of "e" (ActionZoomEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionZoomEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionZoomEventHandler(this, e);
-            }
-            return false;
-        }
-
-        // Callback for AccessibilityManager ActionReadIndicatorInformationSignal
-        private bool OnActionReadIndicatorInformation(IntPtr data)
-        {
-            ActionReadIndicatorInformationEventArgs e = new ActionReadIndicatorInformationEventArgs();
-
-            // Populate all members of "e" (ActionReadIndicatorInformationEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
-            if (_accessibilityManagerActionReadIndicatorInformationEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                return _accessibilityManagerActionReadIndicatorInformationEventHandler(this, e);
+                return _accessibilityManagerActionZoomEventHandler(instance, null);
             }
             return false;
         }
@@ -427,15 +308,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadPauseResumeSignal
         private bool OnActionReadPauseResume(IntPtr data)
         {
-            ActionReadPauseResumeEventArgs e = new ActionReadPauseResumeEventArgs();
-
-            // Populate all members of "e" (ActionReadPauseResumeEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadPauseResumeEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadPauseResumeEventHandler(this, e);
+                return _accessibilityManagerActionReadPauseResumeEventHandler(instance, null);
             }
             return false;
         }
@@ -443,15 +319,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionStartStopSignal
         private bool OnActionStartStop(IntPtr data)
         {
-            ActionStartStopEventArgs e = new ActionStartStopEventArgs();
-
-            // Populate all members of "e" (ActionStartStopEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionStartStopEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionStartStopEventHandler(this, e);
+                return _accessibilityManagerActionStartStopEventHandler(instance, null);
             }
             return false;
         }
@@ -503,33 +374,128 @@ namespace Tizen.NUI
             }
         }
 
-
-        public static AccessibilityManager GetAccessibilityManagerFromPtr(global::System.IntPtr cPtr)
+        /// <summary>
+        /// Enumeration for accessibility that needs four information which will be read by screen-reader.
+        ///
+        /// Reading order : Label -> Trait -> Optional (Value and Hint)
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum AccessibilityAttribute
         {
-            AccessibilityManager ret = new AccessibilityManager(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            /// <summary>
+            /// Simple text which contained in components, such as Ok or Cancel in case of a button
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Label = 0,
+            /// <summary>
+            /// Description of components trait, such as Button in case of a button
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Trait,
+            /// <summary>
+            /// Current value of components (Optional)
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Value,
+            /// <summary>
+            /// Hint for action (Optional)
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Hint,
+            /// <summary>
+            /// The number of attributes
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AttributeNumber
+        }
+
+        /// <summary>
+        /// Enumeration for overshoot direction.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum FocusOvershotDirection
+        {
+            /// <summary>
+            /// Try to move previous of the first view
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Previous = -1,
+            /// <summary>
+            /// Try to move next of the last view
+            /// </summary>
+            /// <since_tizen> 6 </since_tizen>
+            /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Next = 1
         }
 
 
+        /// <summary>
+        /// Creates an AccessibilityManager handle.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityManager() : this(Interop.AccessibilityManage.new_AccessibilityManager(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public static AccessibilityManager Get()
+        /// <summary>
+        /// Gets the singleton of AccessibilityManager object.
+        /// </summary>
+        /// <returns> A handle to the AccessibilityManager </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AccessibilityManager Instance
         {
-            AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManage.AccessibilityManager_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            get
+            {
+                return instance;
+            }
         }
 
+        /// <summary>
+        /// Sets the information of the specified view's accessibility attribute.
+        /// </summary>
+        /// <param name="view"> The view to be set with</param>
+        /// <param name="type"> The attribute type the text to be set with</param>
+        /// <param name="text"> The text for the view's accessibility information</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityAttribute(View view, AccessibilityManager.AccessibilityAttribute type, string text)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetAccessibilityAttribute(swigCPtr, View.getCPtr(view), (int)type, text);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the text of the specified view's accessibility attribute.
+        /// </summary>
+        /// <param name="view"> The view to be queried</param>
+        /// <param name="type"> The attribute type to be queried</param>
+        /// <returns> The text of the view's accessibility information </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetAccessibilityAttribute(View view, AccessibilityManager.AccessibilityAttribute type)
         {
             string ret = Interop.AccessibilityManage.AccessibilityManager_GetAccessibilityAttribute(swigCPtr, View.getCPtr(view), (int)type);
@@ -537,12 +503,34 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the focus order of the view.
+        /// The focus order of each view in the focus chain is unique.
+        /// If there is another view assigned with the same focus order already, the new view will be inserted to the focus chain with that focus order,
+        /// and the focus order of the original view and all the views followed in the focus chain will be increased accordingly.
+        /// If the focus order assigned to the view is 0, it means that view's focus order is undefined
+        /// (e.g. the view has a  description but with no focus order being set yet) and therefore that view is not focusable.
+        /// </summary>
+        /// <param name="view"> the view to be set with</param>
+        /// <param name="order"> the focus order to be set with</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFocusOrder(View view, uint order)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetFocusOrder(swigCPtr, View.getCPtr(view), order);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the focus order of the view.
+        /// When the focus order is 0, it means the focus order of the view is undefined.
+        /// </summary>
+        /// <param name="view"> the view to be set with</param>
+        /// <returns> The focus order of the view </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetFocusOrder(View view)
         {
             uint ret = Interop.AccessibilityManage.AccessibilityManager_GetFocusOrder(swigCPtr, View.getCPtr(view));
@@ -550,6 +538,17 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Generates a new focus order number which can be used to assign to views
+        /// which need to be appended to the end of the current focus order chain.
+        /// The new number will be an increment over the very last focus order number in the focus chain.
+        /// If the focus chain is empty then the function returns 1,
+        /// else the number returned will be FOLast + 1 where FOLast is the focus order of the very last control in the focus chain.
+        /// </summary>
+        /// <returns> The focus order of the view </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GenerateNewFocusOrder()
         {
             uint ret = Interop.AccessibilityManage.AccessibilityManager_GenerateNewFocusOrder(swigCPtr);
@@ -557,6 +556,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the view that has the specified focus order.
+        /// It will return an empty handle if no view in the window has the specified focus order.
+        /// </summary>
+        /// <param name="order"> The focus order of the view</param>
+        /// <returns> The view that has the specified focus order or an empty handle if no view in the stage has the specified focus order </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetViewByFocusOrder(uint order)
         {
             View ret = new View(Interop.AccessibilityManage.AccessibilityManager_GetActorByFocusOrder(swigCPtr, order), true);
@@ -564,6 +572,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Moves the focus to the specified view.
+        /// Only one view can be focused at the same time. The view must have a defined focus order
+        /// and must be focusable, visible and in the window.
+        /// </summary>
+        /// <param name="view"> the view to be set with</param>
+        /// <returns> Whether the focus is successful or not </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetCurrentFocusView(View view)
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_SetCurrentFocusActor(swigCPtr, View.getCPtr(view));
@@ -571,6 +589,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the current focused view.
+        /// </summary>
+        /// <returns> A handle to the current focused view or an empty handle if no view is focused </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetCurrentFocusView()
         {
             View ret = new View(Interop.AccessibilityManage.AccessibilityManager_GetCurrentFocusActor(swigCPtr), true);
@@ -578,6 +603,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the focus group of current focused view.
+        /// </summary>
+        /// <returns> A handle to the immediate parent of the current focused view which is also a focus group, or an empty handle if no view is focused </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetCurrentFocusGroup()
         {
             View ret = new View(Interop.AccessibilityManage.AccessibilityManager_GetCurrentFocusGroup(swigCPtr), true);
@@ -585,6 +617,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the focus order of currently focused view.
+        /// </summary>
+        /// <returns> The focus order of the currently focused view or 0 if no view is in focus </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetCurrentFocusOrder()
         {
             uint ret = Interop.AccessibilityManage.AccessibilityManager_GetCurrentFocusOrder(swigCPtr);
@@ -592,6 +631,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Moves the focus to the next focusable view in the focus chain (according to the focus traversal order).
+        /// When the focus movement is wrapped around, the focus will be moved to the first focusable view when it reaches the end of the focus chain.
+        /// </summary>
+        /// <returns> True if the moving was successful </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MoveFocusForward()
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_MoveFocusForward(swigCPtr);
@@ -599,6 +646,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Moves the focus to the previous focusable view in the focus chain (according to the focus traversal order).
+        /// When the focus movement is wrapped around, the focus will be moved to the last focusable view
+        /// when it reaches the beginning of the focus chain.
+        /// </summary>
+        /// <returns> True if the moving was successful </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool MoveFocusBackward()
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_MoveFocusBackward(swigCPtr);
@@ -606,24 +662,53 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Clears the focus from the current focused view if any, so that no view is focused in the focus chain.
+        /// It will emit focus changed signal without current focused view.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearFocus()
         {
             Interop.AccessibilityManage.AccessibilityManager_ClearFocus(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Clears every registered focusable view from focus-manager.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Reset()
         {
             Interop.AccessibilityManage.AccessibilityManager_Reset(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets whether an view is a focus group that can limit the scope of focus movement to its child views in the focus chain.
+        /// </summary>
+        /// <param name="view"> the view to be set as a focus group</param>
+        /// <param name="isFocusGroup"> Whether to set the view to be a focus group or not</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFocusGroup(View view, bool isFocusGroup)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetFocusGroup(swigCPtr, View.getCPtr(view), isFocusGroup);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Checks whether the view is set as a focus group or not.
+        /// </summary>
+        /// <param name="view"> the view to be checked</param>
+        /// <returns> Whether the view is set as a focus group </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsFocusGroup(View view)
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_IsFocusGroup(swigCPtr, View.getCPtr(view));
@@ -631,12 +716,28 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets whether the group mode is enabled or not.
+        /// When the group mode is enabled, the focus movement will be limited to the child views  of the current focus group including the current focus group itself.
+        /// The current focus group is the closest ancestor of the current focused view that is set as a focus group.
+        /// </summary>
+        /// <param name="enabled"> Whether the group mode is enabled or not</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetGroupMode(bool enabled)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetGroupMode(swigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets whether the group mode is enabled or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns> Whether the group mode is enabled or not. </returns>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetGroupMode()
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_GetGroupMode(swigCPtr);
@@ -644,12 +745,28 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets whether focus will be moved to the beginning of the focus chain when it reaches the end or vice versa.
+        /// When both the wrap mode and the group mode are enabled, focus will be wrapped within the current focus group.
+        /// Focus will not be wrapped in default.
+        /// </summary>
+        /// <param name="wrapped"> Whether the focus movement is wrapped around or not</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetWrapMode(bool wrapped)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetWrapMode(swigCPtr, wrapped);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets whether the wrap mode is enabled or not.
+        /// </summary>
+        /// <returns> Whether the wrap mode is enabled or not. </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetWrapMode()
         {
             bool ret = Interop.AccessibilityManage.AccessibilityManager_GetWrapMode(swigCPtr);
@@ -657,12 +774,28 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the focus indicator view.
+        /// This will replace the default focus indicator view in AccessibilityManager and
+        /// will be added to the focused view as a highlight.
+        /// </summary>
+        /// <param name="indicator"> The indicator view to be added</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFocusIndicatorView(View indicator)
         {
             Interop.AccessibilityManage.AccessibilityManager_SetFocusIndicatorActor(swigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets the focus indicator view.
+        /// </summary>
+        /// <returns> A handle to the focus indicator view </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetFocusIndicatorView()
         {
             View ret = new View(Interop.AccessibilityManage.AccessibilityManager_GetFocusIndicatorActor(swigCPtr), true);
@@ -670,6 +803,14 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the closest ancestor of the given view that is a focus group.
+        /// </summary>
+        /// <param name="view"> The view to be checked for its focus group</param>
+        /// <returns> The focus group the given view belongs to or an empty handle if the given view doesn't belong to any focus group </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public View GetFocusGroup(View view)
         {
             View ret = new View(Interop.AccessibilityManage.AccessibilityManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
@@ -677,6 +818,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Returns the current position of the read action.
+        /// </summary>
+        /// <returns> The current event position </returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 GetReadPosition()
         {
             Vector2 ret = new Vector2(Interop.AccessibilityManage.AccessibilityManager_GetReadPosition(swigCPtr), true);
@@ -684,231 +832,215 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public FocusChangedSignal FocusChangedSignal()
+        internal static AccessibilityManager Get()
+        {
+            AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManage.AccessibilityManager_Get(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        // Signals - AccessibilityManagerEvent.cs
+        internal FocusChangedSignal FocusChangedSignal()
         {
             FocusChangedSignal ret = new FocusChangedSignal(Interop.AccessibilityManage.AccessibilityManager_FocusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityFocusOvershotSignal FocusOvershotSignal()
+        internal AccessibilityFocusOvershotSignal FocusOvershotSignal()
         {
             AccessibilityFocusOvershotSignal ret = new AccessibilityFocusOvershotSignal(Interop.AccessibilityManage.AccessibilityManager_FocusOvershotSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public ViewSignal FocusedViewActivatedSignal()
+        internal ViewSignal FocusedViewActivatedSignal()
         {
             ViewSignal ret = new ViewSignal(Interop.AccessibilityManage.AccessibilityManager_FocusedActorActivatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal StatusChangedSignal()
+        internal AccessibilityActionSignal StatusChangedSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_StatusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionNextSignal()
+        internal AccessibilityActionSignal ActionNextSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionNextSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionPreviousSignal()
+        internal AccessibilityActionSignal ActionPreviousSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionPreviousSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionActivateSignal()
+        internal AccessibilityActionSignal ActionActivateSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionActivateSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadSignal()
+        internal AccessibilityActionSignal ActionReadSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionOverSignal()
+        internal AccessibilityActionSignal ActionOverSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionOverSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadNextSignal()
+        internal AccessibilityActionSignal ActionReadNextSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadNextSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadPreviousSignal()
+        internal AccessibilityActionSignal ActionReadPreviousSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadPreviousSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionUpSignal()
+        internal AccessibilityActionSignal ActionUpSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionUpSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionDownSignal()
+        internal AccessibilityActionSignal ActionDownSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionDownSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionClearFocusSignal()
+        internal AccessibilityActionSignal ActionClearFocusSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionClearFocusSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionBackSignal()
+        internal AccessibilityActionSignal ActionBackSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionBackSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionScrollUpSignal()
+        internal AccessibilityActionSignal ActionScrollUpSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionScrollUpSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionScrollDownSignal()
+        internal AccessibilityActionSignal ActionScrollDownSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionScrollDownSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionPageLeftSignal()
+        internal AccessibilityActionSignal ActionPageLeftSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionPageLeftSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionPageRightSignal()
+        internal AccessibilityActionSignal ActionPageRightSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionPageRightSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionPageUpSignal()
+        internal AccessibilityActionSignal ActionPageUpSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionPageUpSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionPageDownSignal()
+        internal AccessibilityActionSignal ActionPageDownSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionPageDownSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionMoveToFirstSignal()
+        internal AccessibilityActionSignal ActionMoveToFirstSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionMoveToFirstSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionMoveToLastSignal()
+        internal AccessibilityActionSignal ActionMoveToLastSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionMoveToLastSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadFromTopSignal()
+        internal AccessibilityActionSignal ActionReadFromTopSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadFromTopSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadFromNextSignal()
+        internal AccessibilityActionSignal ActionReadFromNextSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadFromNextSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionZoomSignal()
+        internal AccessibilityActionSignal ActionZoomSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionZoomSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionReadIndicatorInformationSignal()
-        {
-            AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadIndicatorInformationSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public AccessibilityActionSignal ActionReadPauseResumeSignal()
+        internal AccessibilityActionSignal ActionReadPauseResumeSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionReadPauseResumeSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public AccessibilityActionSignal ActionStartStopSignal()
+        internal AccessibilityActionSignal ActionStartStopSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManage.AccessibilityManager_ActionStartStopSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t ActionScrollSignal()
+        internal SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t ActionScrollSignal()
         {
             SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t ret = new SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t(Interop.AccessibilityManage.AccessibilityManager_ActionScrollSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <since_tizen> 3 </since_tizen>
-        public enum AccessibilityAttribute
-        {
-            ACCESSIBILITY_LABEL = 0,
-            ACCESSIBILITY_TRAIT,
-            ACCESSIBILITY_VALUE,
-            ACCESSIBILITY_HINT,
-            ACCESSIBILITY_ATTRIBUTE_NUM
-        }
-
-        /// <since_tizen> 3 </since_tizen>
-        public enum FocusOvershotDirection
-        {
-            OVERSHOT_PREVIOUS = -1,
-            OVERSHOT_NEXT = 1
         }
     }
 }
