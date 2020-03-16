@@ -31,6 +31,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class AccessibilityManager : BaseHandle
     {
+        private static readonly AccessibilityManager instance = AccessibilityManager.Get();
 
         internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AccessibilityManage.AccessibilityManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -48,25 +49,13 @@ namespace Tizen.NUI
             Interop.AccessibilityManage.delete_AccessibilityManager(swigCPtr);
         }
 
-        internal static AccessibilityManager GetAccessibilityManagerFromPtr(global::System.IntPtr cPtr)
-        {
-            AccessibilityManager ret = new AccessibilityManager(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         // Callback for AccessibilityManager StatusChangedSignal
         private bool OnStatusChanged(IntPtr data)
         {
-            StatusChangedEventArgs e = new StatusChangedEventArgs();
-
-            // Populate all members of "e" (StatusChangedEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerStatusChangedEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerStatusChangedEventHandler(this, e);
+                return _accessibilityManagerStatusChangedEventHandler(instance, null);
             }
             return false;
         }
@@ -74,15 +63,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionNextSignal
         private bool OnActionNext(IntPtr data)
         {
-            ActionNextEventArgs e = new ActionNextEventArgs();
-
-            // Populate all members of "e" (ActionNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionNextEventHandler(this, e);
+                return _accessibilityManagerActionNextEventHandler(instance, null);
             }
             return false;
         }
@@ -90,15 +74,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPreviousSignal
         private bool OnActionPrevious(IntPtr data)
         {
-            ActionPreviousEventArgs e = new ActionPreviousEventArgs();
-
-            // Populate all members of "e" (ActionPreviousEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPreviousEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPreviousEventHandler(this, e);
+                return _accessibilityManagerActionPreviousEventHandler(instance, null);
             }
             return false;
         }
@@ -106,15 +85,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionActivateSignal
         private bool OnActionActivate(IntPtr data)
         {
-            ActionActivateEventArgs e = new ActionActivateEventArgs();
-
-            // Populate all members of "e" (ActionActivateEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionActivateEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionActivateEventHandler(this, e);
+                return _accessibilityManagerActionActivateEventHandler(instance, null);
             }
             return false;
         }
@@ -122,15 +96,11 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadSignal
         private bool OnActionRead(IntPtr data)
         {
-            ActionReadEventArgs e = new ActionReadEventArgs();
-
-            // Populate all members of "e" (ActionReadEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
 
             if (_accessibilityManagerActionReadEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadEventHandler(this, e);
+                return _accessibilityManagerActionReadEventHandler(instance, null);
             }
             return false;
         }
@@ -138,15 +108,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionOverSignal
         private bool OnActionOver(IntPtr data)
         {
-            ActionOverEventArgs e = new ActionOverEventArgs();
-
-            // Populate all members of "e" (ActionOverEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionOverEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionOverEventHandler(this, e);
+                return _accessibilityManagerActionOverEventHandler(instance, null);
             }
             return false;
         }
@@ -154,32 +119,21 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadNextSignal
         private bool OnActionReadNext(IntPtr data)
         {
-            ActionReadNextEventArgs e = new ActionReadNextEventArgs();
-
-            // Populate all members of "e" (ActionReadNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadNextEventHandler(this, e);
+                return _accessibilityManagerActionReadNextEventHandler(instance, null);
             }
             return false;
         }
 
-
         // Callback for AccessibilityManager ActionReadPreviousSignal
         private bool OnActionReadPrevious(IntPtr data)
         {
-            ActionReadPreviousEventArgs e = new ActionReadPreviousEventArgs();
-
-            // Populate all members of "e" (ActionReadPreviousEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadPreviousEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadPreviousEventHandler(this, e);
+                return _accessibilityManagerActionReadPreviousEventHandler(instance, null);
             }
             return false;
         }
@@ -187,15 +141,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionUpSignal
         private bool OnActionUp(IntPtr data)
         {
-            ActionUpEventArgs e = new ActionUpEventArgs();
-
-            // Populate all members of "e" (ActionUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionUpEventHandler(this, e);
+                return _accessibilityManagerActionUpEventHandler(instance, null);
             }
             return false;
         }
@@ -203,15 +152,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionDownSignal
         private bool OnActionDown(IntPtr data)
         {
-            ActionDownEventArgs e = new ActionDownEventArgs();
-
-            // Populate all members of "e" (ActionDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionDownEventHandler(this, e);
+                return _accessibilityManagerActionDownEventHandler(instance, null);
             }
             return false;
         }
@@ -219,15 +163,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionClearFocusSignal
         private bool OnActionClearFocus(IntPtr data)
         {
-            ActionClearFocusEventArgs e = new ActionClearFocusEventArgs();
-
-            // Populate all members of "e" (ActionClearFocusEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionClearFocusEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionClearFocusEventHandler(this, e);
+                return _accessibilityManagerActionClearFocusEventHandler(instance, null);
             }
             return false;
         }
@@ -235,15 +174,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionBackSignal
         private bool OnActionBack(IntPtr data)
         {
-            ActionBackEventArgs e = new ActionBackEventArgs();
-
-            // Populate all members of "e" (ActionBackEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionBackEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionBackEventHandler(this, e);
+                return _accessibilityManagerActionBackEventHandler(instance, null);
             }
             return false;
         }
@@ -251,15 +185,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionScrollUpSignal
         private bool OnActionScrollUp(IntPtr data)
         {
-            ActionScrollUpEventArgs e = new ActionScrollUpEventArgs();
-
-            // Populate all members of "e" (ActionScrollUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionScrollUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionScrollUpEventHandler(this, e);
+                return _accessibilityManagerActionScrollUpEventHandler(instance, null);
             }
             return false;
         }
@@ -267,32 +196,21 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionScrollDownSignal
         private bool OnActionScrollDown(IntPtr data)
         {
-            ActionScrollDownEventArgs e = new ActionScrollDownEventArgs();
-
-            // Populate all members of "e" (ActionScrollDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionScrollDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionScrollDownEventHandler(this, e);
+                return _accessibilityManagerActionScrollDownEventHandler(instance, null);
             }
             return false;
         }
 
-
         // Callback for AccessibilityManager ActionPageLeftSignal
         private bool OnActionPageLeft(IntPtr data)
         {
-            ActionPageLeftEventArgs e = new ActionPageLeftEventArgs();
-
-            // Populate all members of "e" (ActionPageLeftEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageLeftEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageLeftEventHandler(this, e);
+                return _accessibilityManagerActionPageLeftEventHandler(instance, null);
             }
             return false;
         }
@@ -300,15 +218,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageRightSignal
         private bool OnActionPageRight(IntPtr data)
         {
-            ActionPageRightEventArgs e = new ActionPageRightEventArgs();
-
-            // Populate all members of "e" (ActionPageRightEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageRightEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageRightEventHandler(this, e);
+                return _accessibilityManagerActionPageRightEventHandler(instance, null);
             }
             return false;
         }
@@ -316,15 +229,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageUpSignal
         private bool OnActionPageUp(IntPtr data)
         {
-            ActionPageUpEventArgs e = new ActionPageUpEventArgs();
-
-            // Populate all members of "e" (ActionPageUpEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageUpEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageUpEventHandler(this, e);
+                return _accessibilityManagerActionPageUpEventHandler(instance, null);
             }
             return false;
         }
@@ -333,15 +241,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionPageDownSignal
         private bool OnActionPageDown(IntPtr data)
         {
-            ActionPageDownEventArgs e = new ActionPageDownEventArgs();
-
-            // Populate all members of "e" (ActionPageDownEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionPageDownEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionPageDownEventHandler(this, e);
+                return _accessibilityManagerActionPageDownEventHandler(instance, null);
             }
             return false;
         }
@@ -350,15 +253,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionMoveToFirstSignal
         private bool OnActionMoveToFirst(IntPtr data)
         {
-            ActionMoveToFirstEventArgs e = new ActionMoveToFirstEventArgs();
-
-            // Populate all members of "e" (ActionMoveToFirstEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionMoveToFirstEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionMoveToFirstEventHandler(this, e);
+                return _accessibilityManagerActionMoveToFirstEventHandler(instance, null);
             }
             return false;
         }
@@ -366,15 +264,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionMoveToLastSignal
         private bool OnActionMoveToLast(IntPtr data)
         {
-            ActionMoveToLastEventArgs e = new ActionMoveToLastEventArgs();
-
-            // Populate all members of "e" (ActionMoveToLastEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionMoveToLastEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionMoveToLastEventHandler(this, e);
+                return _accessibilityManagerActionMoveToLastEventHandler(instance, null);
             }
             return false;
         }
@@ -382,15 +275,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadFromTopSignal
         private bool OnActionReadFromTop(IntPtr data)
         {
-            ActionReadFromTopEventArgs e = new ActionReadFromTopEventArgs();
-
-            // Populate all members of "e" (ActionReadFromTopEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadFromTopEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadFromTopEventHandler(this, e);
+                return _accessibilityManagerActionReadFromTopEventHandler(instance, null);
             }
             return false;
         }
@@ -398,15 +286,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadFromNextSignal
         private bool OnActionReadFromNext(IntPtr data)
         {
-            ActionReadFromNextEventArgs e = new ActionReadFromNextEventArgs();
-
-            // Populate all members of "e" (ActionReadFromNextEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadFromNextEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadFromNextEventHandler(this, e);
+                return _accessibilityManagerActionReadFromNextEventHandler(instance, null);
             }
             return false;
         }
@@ -414,15 +297,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionZoomSignal
         private bool OnActionZoom(IntPtr data)
         {
-            ActionZoomEventArgs e = new ActionZoomEventArgs();
-
-            // Populate all members of "e" (ActionZoomEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionZoomEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionZoomEventHandler(this, e);
+                return _accessibilityManagerActionZoomEventHandler(instance, null);
             }
             return false;
         }
@@ -430,15 +308,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionReadPauseResumeSignal
         private bool OnActionReadPauseResume(IntPtr data)
         {
-            ActionReadPauseResumeEventArgs e = new ActionReadPauseResumeEventArgs();
-
-            // Populate all members of "e" (ActionReadPauseResumeEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionReadPauseResumeEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionReadPauseResumeEventHandler(this, e);
+                return _accessibilityManagerActionReadPauseResumeEventHandler(instance, null);
             }
             return false;
         }
@@ -446,15 +319,10 @@ namespace Tizen.NUI
         // Callback for AccessibilityManager ActionStartStopSignal
         private bool OnActionStartStop(IntPtr data)
         {
-            ActionStartStopEventArgs e = new ActionStartStopEventArgs();
-
-            // Populate all members of "e" (ActionStartStopEventArgs) with real data
-            e.AccessibilityManager = AccessibilityManager.GetAccessibilityManagerFromPtr(data);
-
             if (_accessibilityManagerActionStartStopEventHandler != null)
             {
                 //here we send all data to user event handlers
-                return _accessibilityManagerActionStartStopEventHandler(this, e);
+                return _accessibilityManagerActionStartStopEventHandler(instance, null);
             }
             return false;
         }
@@ -596,11 +464,12 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static AccessibilityManager Get()
+        public static AccessibilityManager Instance
         {
-            AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManage.AccessibilityManager_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            get
+            {
+                return instance;
+            }
         }
 
         /// <summary>
@@ -959,6 +828,13 @@ namespace Tizen.NUI
         public Vector2 GetReadPosition()
         {
             Vector2 ret = new Vector2(Interop.AccessibilityManage.AccessibilityManager_GetReadPosition(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static AccessibilityManager Get()
+        {
+            AccessibilityManager ret = new AccessibilityManager(Interop.AccessibilityManage.AccessibilityManager_Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
