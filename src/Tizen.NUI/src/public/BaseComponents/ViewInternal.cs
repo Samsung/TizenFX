@@ -1277,18 +1277,37 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnRelayoutForShadow(object sender, global::System.EventArgs e)
         {
-            UpdateShadowVisual();
+            ApplyShadow();
         }
 
         private void OnControlStateChangedForShadow(View obj, NUI.Components.ControlStates state)
         {
-            UpdateShadowVisual();
+            ApplyShadow();
         }
 
-        private void UpdateShadowVisual()
+        private void ApplyShadow()
         {
             ShadowBase shadow = (boxShadow != null && !boxShadow.IsEmpty()) ? (ShadowBase)boxShadow.GetValue() : (ShadowBase)imageShadow?.GetValue();
             Tizen.NUI.Object.SetProperty(swigCPtr, Interop.ViewProperty.View_Property_SHADOW_get(), ShadowBase.ToPropertyValue(shadow, this));
+        }
+
+        private void OnControlStateChangedForCornerRadius(View obj, NUI.Components.ControlStates state)
+        {
+            ApplyCornerRadius();
+            ApplyShadow();
+        }
+
+        private void ApplyCornerRadius()
+        {
+            Tizen.NUI.PropertyMap backgroundMap = new Tizen.NUI.PropertyMap();
+            Tizen.NUI.Object.GetProperty(swigCPtr, View.Property.BACKGROUND).Get(backgroundMap);
+
+            if (!backgroundMap.Empty())
+            {
+                // TODO (NDalic.VISUAL_PROPERTY_MIX_COLOR + 3) to CornerRadius
+                backgroundMap[Visual.Property.CornerRadius] = new PropertyValue(cornerRadius.GetValue() ?? 0);
+                Tizen.NUI.Object.SetProperty(swigCPtr, View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(backgroundMap));
+            }
         }
     }
 }
