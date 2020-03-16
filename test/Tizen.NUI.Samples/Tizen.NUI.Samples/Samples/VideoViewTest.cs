@@ -113,7 +113,7 @@ namespace Tizen.NUI.Samples
             videoView.PivotPoint = PivotPoint.Center;
             win.Add(videoView);
 
-            var playerHandle = new SafeNativePlayerHandler(videoView);
+            var playerHandle = new SafeNativePlayerHandle(videoView);
             player = new myPlayer(playerHandle.DangerousGetHandle());
             if (player != null)
             {

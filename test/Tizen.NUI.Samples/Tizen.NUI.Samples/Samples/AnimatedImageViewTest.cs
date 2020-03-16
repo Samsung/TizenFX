@@ -138,12 +138,12 @@ namespace Tizen.NUI.Samples
             resPath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
             root = new View();
             root.BackgroundColor = Color.Green;
-            root.Size2D = new Size2D(Window.Instance.Size.Width, Window.Instance.Size.Height);
+            root.Size2D = new Size2D(NUIApplication.GetDefaultWindow().Size.Width, NUIApplication.GetDefaultWindow().Size.Height);
             var layer = new LinearLayout();
             layer.LinearAlignment = LinearLayout.Alignment.CenterHorizontal;
             layer.LinearOrientation = LinearLayout.Orientation.Vertical;
             root.Layout = layer;
-            Window.Instance.GetDefaultLayer().Add(root);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(root);
 
             box = new Box(new Size2D(root.Size2D.Width, GetRatio(40, root.Size2D.Height)), "AGIF Test", resPath + "images/AGIF/dali-logo-anim.gif");
             root.Add(box);
