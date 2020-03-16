@@ -118,9 +118,9 @@ namespace Tizen.NUI.Samples
 
         public void Initialize()
         {
-            Window.Instance.KeyEvent += OnKeyEvent;
+            NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;
 
-            Size2D stageSize = Window.Instance.WindowSize;
+            Size2D stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             // Background
             mRootActor = CreateBackground("LauncherBackground");
@@ -285,7 +285,7 @@ namespace Tizen.NUI.Samples
                     mVersionPopup.PivotPoint = PivotPoint.Center;
                     mVersionPopup.ParentOrigin = ParentOrigin.Center;
 
-                    Window.Instance.Add(mVersionPopup);
+                    NUIApplication.GetDefaultWindow().Add(mVersionPopup);
                 }
 
                 mVersionPopup.SetDisplayState(Popup.DisplayStateType.Shown);
@@ -305,7 +305,7 @@ namespace Tizen.NUI.Samples
         private View CreateBackground(string stylename)
         {
             View background = new View();
-            Window.Instance.Add(background);
+            NUIApplication.GetDefaultWindow().Add(background);
             background.SetStyleName(stylename);
             background.Name = "BACKGROUND";
             background.PositionUsesPivotPoint = true;
@@ -432,7 +432,7 @@ namespace Tizen.NUI.Samples
 
         private void Populate()
         {
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             mTotalPages = (uint)((mExampleList.Count() + EXAMPLES_PER_PAGE - 1) / EXAMPLES_PER_PAGE);
 
@@ -715,7 +715,7 @@ namespace Tizen.NUI.Samples
 
         private void SetupInnerPageCubeEffect()
         {
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
 
             Path path = new Path();
             PropertyArray points = new PropertyArray();
@@ -751,7 +751,7 @@ namespace Tizen.NUI.Samples
         void Rotate(uint degrees)
         {
             // Resize the root actor
-            Vector2 stageSize = Window.Instance.WindowSize;
+            Vector2 stageSize = NUIApplication.GetDefaultWindow().WindowSize;
             Vector3 targetSize = new Vector3(stageSize.X, stageSize.Y, 1.0f);
 
             if (degrees == 90 || degrees == 270)

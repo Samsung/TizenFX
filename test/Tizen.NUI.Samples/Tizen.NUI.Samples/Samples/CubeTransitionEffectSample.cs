@@ -99,13 +99,13 @@ namespace Tizen.NUI.Samples
             // tool bar
             tool_bar = new View();
             tool_bar.BackgroundColor = Color.White;
-            tool_bar.Size2D = new Size2D(Window.Instance.WindowSize.Width, 100);
+            tool_bar.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, 100);
             tool_bar.PositionUsesPivotPoint = true;
             tool_bar.ParentOrigin = ParentOrigin.TopLeft;
             tool_bar.PivotPoint = PivotPoint.TopLeft;
 
-            Window.Instance.GetDefaultLayer().Add(tool_bar);
-            Window.Instance.GetDefaultLayer().RaiseToTop();
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(tool_bar);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().RaiseToTop();
 
             // title of tool bar
             mTitle = new TextLabel();
@@ -162,7 +162,7 @@ namespace Tizen.NUI.Samples
             // content layer is 3D.
             content_layer = new Layer();
             content_layer.Behavior = Layer.LayerBehavior.Layer3D;
-            Window.Instance.AddLayer(content_layer);
+            NUIApplication.GetDefaultWindow().AddLayer(content_layer);
 
             //use small cubes
             mCubeWaveEffect = new CubeTransitionWaveEffect(NUM_ROWS_WAVE, NUM_COLUMNS_WAVE);
@@ -171,7 +171,7 @@ namespace Tizen.NUI.Samples
             mCubeWaveEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeWaveEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeWaveEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeWaveEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeWaveEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeWaveEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeWaveEffect.SetCurrentTexture(mCurrentTexture);
@@ -183,7 +183,7 @@ namespace Tizen.NUI.Samples
             mCubeCrossEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeCrossEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeCrossEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeCrossEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeCrossEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeCrossEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeCrossEffect.SetCurrentTexture(mCurrentTexture);
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Samples
             mCubeFoldEffect.TransitionCompleted += OnCubeEffectCompleted;
 
             mCubeFoldEffect.Position2D = new Position2D(0, tool_bar.Size2D.Height);
-            mCubeFoldEffect.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mCubeFoldEffect.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mCubeFoldEffect.PivotPoint = PivotPoint.TopLeft;
             mCubeFoldEffect.ParentOrigin = ParentOrigin.TopLeft;
             mCubeFoldEffect.SetCurrentTexture(mCurrentTexture);
@@ -205,7 +205,7 @@ namespace Tizen.NUI.Samples
             mCurrentEffect = mCubeWaveEffect;
 
             mContent = new View();
-            mContent.Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height - tool_bar.Size2D.Height);
+            mContent.Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height - tool_bar.Size2D.Height);
             mContent.ParentOrigin = ParentOrigin.TopLeft;
             mContent.PositionUsesPivotPoint = true;
             mContent.PivotPoint = PivotPoint.TopLeft;
@@ -246,7 +246,7 @@ namespace Tizen.NUI.Samples
 
             if (tool_bar)
             {
-                Window.Instance.GetDefaultLayer().Remove(tool_bar);
+                NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(tool_bar);
                 tool_bar.Dispose();
                 tool_bar = null;
             }
@@ -304,7 +304,7 @@ namespace Tizen.NUI.Samples
 
             if (content_layer)
             {
-                Window.Instance.RemoveLayer(content_layer);
+                NUIApplication.GetDefaultWindow().RemoveLayer(content_layer);
                 content_layer.Dispose();
                 content_layer = null;
             }
@@ -369,7 +369,7 @@ namespace Tizen.NUI.Samples
 
         private Texture LoadStageFillingTexture(string filepath)
         {
-            Size2D dimensions = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height);
+            Size2D dimensions = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height);
             PixelBuffer pb = ImageLoading.LoadImageFromFile(filepath, dimensions, FittingModeType.ScaleToFill);
             PixelData pd = PixelBuffer.Convert(pb);
 
@@ -422,7 +422,7 @@ namespace Tizen.NUI.Samples
                 selected_bg_map.Add(ImageVisualProperty.URL, new PropertyValue(SLIDE_SHOW_STOP_ICON_SELECTED));
                 mSlideshowButton.SelectedBackgroundVisual = selected_bg_map;
 
-                mPanPosition = new Vector2(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Width * 0.5f);
+                mPanPosition = new Vector2(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Width * 0.5f);
                 mPanDisplacement = new Vector2(-10.0f, 0.0f);
 
                 mViewTimer.Start();

@@ -14,7 +14,7 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
             root = new View()
             {
                 Size2D = new Size2D(1920, 1080),
@@ -219,7 +219,7 @@ namespace Tizen.NUI.Samples
         {
             if (root != null)
             {
-                Window.Instance.Remove(root);
+                NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
             }
         }
