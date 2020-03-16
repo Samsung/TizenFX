@@ -25,7 +25,7 @@ namespace Tizen.NUI.Samples
 
         private void DeleteDaliDemo()
         {
-            Window.Instance.Remove(demo.mRootActor);
+            NUIApplication.GetDefaultWindow().Remove(demo.mRootActor);
             demo.mRootActor.Dispose();
             demo = null;
 
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Samples
 
             demo.Initialize();
 
-            Window.Instance.GetDefaultLayer().Add(demo.mRootActor);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(demo.mRootActor);
         }
 
         private void RunSample(string name)
@@ -94,8 +94,8 @@ namespace Tizen.NUI.Samples
             base.OnCreate();
             CreateDaliDemo();
 
-            Window.Instance.KeyEvent += Instance_KeyEvent;
-            Window.Instance.BackgroundColor = Color.White;
+            NUIApplication.GetDefaultWindow().KeyEvent += Instance_KeyEvent;
+            NUIApplication.GetDefaultWindow().BackgroundColor = Color.White;
         }
 
         private void Instance_KeyEvent(object sender, Window.KeyEventArgs e)
