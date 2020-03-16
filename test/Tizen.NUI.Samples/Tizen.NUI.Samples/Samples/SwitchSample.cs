@@ -31,7 +31,7 @@ namespace Tizen.NUI.Samples
         };
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
 
             root = new View()
             {
@@ -366,7 +366,7 @@ namespace Tizen.NUI.Samples
                 createText[1].Dispose();
                 createText[1] = null;
 
-                Window.Instance.Remove(root);
+                NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
             }
         }

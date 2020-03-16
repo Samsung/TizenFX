@@ -12,7 +12,7 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
 
             ///////////////////////////////////////////////Create by Properties//////////////////////////////////////////////////////////
             pagination1 = new Pagination();
@@ -83,7 +83,7 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
             window.KeyEvent -= Window_KeyEvent;
             window.Remove(pagination1);
             window.Remove(pagination2);
