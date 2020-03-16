@@ -16,7 +16,7 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
 
             root = new View()
             {
@@ -147,7 +147,7 @@ namespace Tizen.NUI.Samples
                     }
                 }
                    
-                Window.Instance.Remove(root);
+                NUIApplication.GetDefaultWindow().Remove(root);
                 root.Dispose();
                 root = null;
             }

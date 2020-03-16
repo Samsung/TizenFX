@@ -52,12 +52,12 @@ namespace Tizen.NUI.Samples
 
             rootView = new View()
             {
-                Size2D = new Size2D(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height),
+                Size2D = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height),
                 BackgroundColor = ROOTVIEW_COLOR,
                 PositionUsesPivotPoint = false,
             };
 
-            Window.Instance.Add(rootView);
+            NUIApplication.GetDefaultWindow().Add(rootView);
 
         }
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI.Samples
             {
                 // Set up the common layouting info shared between all contact cards when first called
                 mContactCardLayoutInfo.unfoldedPosition = mContactCardLayoutInfo.padding = new Vector2(DEFAULT_PADDING, DEFAULT_PADDING);
-                Vector2 windowSize = new Vector2(Window.Instance.Size.Width, Window.Instance.Size.Height);
+                Vector2 windowSize = new Vector2(NUIApplication.GetDefaultWindow().Size.Width, NUIApplication.GetDefaultWindow().Size.Height);
                 mContactCardLayoutInfo.unfoldedSize = windowSize - mContactCardLayoutInfo.padding * (MINIMUM_ITEMS_PER_ROW_OR_COLUMN - 1.0f);
 
                 // Calculate the size of the folded card (use the minimum of width/height as size)

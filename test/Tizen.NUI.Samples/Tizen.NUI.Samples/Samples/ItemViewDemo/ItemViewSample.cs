@@ -165,7 +165,7 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
             window.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
             window.BackgroundColor = Color.Black;
             CreateContentView();
@@ -219,7 +219,7 @@ namespace Tizen.NUI.Samples
             {
                 case Gesture.StateType.Started:
                     {
-                        Size2D windowSize = Window.Instance.Size;
+                        Size2D windowSize = NUIApplication.GetDefaultWindow().Size;
                         ItemRange range = new ItemRange(0, 0);
                         mItemView.GetItemsRange(range);
 
@@ -244,23 +244,23 @@ namespace Tizen.NUI.Samples
 
         void SetLayout(int layoutId)
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
             switch (mCurrentLayout)
             {
                 case (int)AllImagesLayouts.SPIRAL_LAYOUT:
                 case (int)AllImagesLayouts.DEPTH_LAYOUT:
                     {
-                        Window.Instance.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
+                        window.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer3D;
                         break;
                     }
                 case (int)AllImagesLayouts.GRID_LAYOUT:
                     {
-                        Window.Instance.GetDefaultLayer().Behavior = Layer.LayerBehavior.LayerUI;
+                        window.GetDefaultLayer().Behavior = Layer.LayerBehavior.LayerUI;
                         break;
                     }
             }
 
-            Size2D windowSize = Window.Instance.Size;
+            Size2D windowSize = window.Size;
 
             if (layoutId == (int)AllImagesLayouts.DEPTH_LAYOUT)
             {
@@ -411,17 +411,17 @@ namespace Tizen.NUI.Samples
 
             if (mContentView != null)
             {
-                Window.Instance.Remove(mContentView);
+                NUIApplication.GetDefaultWindow().Remove(mContentView);
                 mContentView.Dispose();
             }
 
             if (mToolBarLayer != null)
             {
-                Window.Instance.RemoveLayer(mToolBarLayer);
+                NUIApplication.GetDefaultWindow().RemoveLayer(mToolBarLayer);
                 mToolBarLayer.Dispose();
             }
 
-            Window.Instance.GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer2D;
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Behavior = Layer.LayerBehavior.Layer2D;
         }
 
         public void CreateContentView()
@@ -432,7 +432,7 @@ namespace Tizen.NUI.Samples
             mContentView.PositionUsesPivotPoint = true;
             mContentView.WidthResizePolicy = ResizePolicyType.FillToParent;
             mContentView.HeightResizePolicy = ResizePolicyType.FillToParent;
-            Window.Instance.Add(mContentView);
+            NUIApplication.GetDefaultWindow().Add(mContentView);
 
             mContentView.LowerToBottom();
         }
@@ -446,7 +446,7 @@ namespace Tizen.NUI.Samples
             mToolBarLayer.SetParentOrigin(ParentOrigin.TopCenter);
             mToolBarLayer.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.Width);
             mToolBarLayer.SetSize(0, 80);
-            Window.Instance.AddLayer(mToolBarLayer);
+            NUIApplication.GetDefaultWindow().AddLayer(mToolBarLayer);
 
             mToolBarLayer.RaiseToTop();
 
@@ -573,7 +573,7 @@ namespace Tizen.NUI.Samples
                 }
                 return true;
             };
-            Window.Instance.Add(mDeleteButton);
+            NUIApplication.GetDefaultWindow().Add(mDeleteButton);
         }
 
         private void CreateInsertButton()
@@ -612,7 +612,7 @@ namespace Tizen.NUI.Samples
                 }
                 return true;
             };
-            Window.Instance.Add(mInsertButton);
+            NUIApplication.GetDefaultWindow().Add(mInsertButton);
         }
 
         private void CreateReplaceButton()
@@ -652,7 +652,7 @@ namespace Tizen.NUI.Samples
                 }
                 return true;
             };
-            Window.Instance.Add(mReplaceButton);
+            NUIApplication.GetDefaultWindow().Add(mReplaceButton);
         }
 
         void SwitchToNextMode()

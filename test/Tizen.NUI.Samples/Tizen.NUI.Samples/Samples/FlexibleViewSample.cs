@@ -164,7 +164,7 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
 
             flexibleView1 = new FlexibleView();
             flexibleView1.Name = "RecyclerView";
@@ -321,7 +321,7 @@ namespace Tizen.NUI.Samples
             flexibleView2.DetachScrollBar();
             scrollBar2.Dispose();
 
-            Window window = Window.Instance;
+            Window window = NUIApplication.GetDefaultWindow();
             window.Remove(flexibleView1);
             flexibleView1.Dispose();
             window.Remove(flexibleView2);

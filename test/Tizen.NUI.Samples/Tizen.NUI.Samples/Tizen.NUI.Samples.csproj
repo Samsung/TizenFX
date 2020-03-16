@@ -25,8 +25,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="8.0.0.15045" />
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Log/Tizen.Log.csproj" />
+    <ProjectReference Include="../../../src/Tizen.Multimedia.MediaPlayer/Tizen.Multimedia.MediaPlayer.csproj" />
+    <ProjectReference Include="../../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
   </ItemGroup>
 
 </Project>

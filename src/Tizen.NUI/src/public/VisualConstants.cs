@@ -448,6 +448,11 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
+            /// <summary>
+            /// The fitting mode of the visual.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerRadius = NDalic.VISUAL_PROPERTY_MIX_COLOR + 3;
         }
 
         /// <summary>
