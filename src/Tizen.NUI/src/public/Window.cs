@@ -999,6 +999,17 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ObjectDump()
+        {
+            Layer rootLayer = GetRootLayer();
+            foreach (View view in rootLayer.Children)
+            {
+                view.ObjectDump();
+            }
+        }
+
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Window obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
