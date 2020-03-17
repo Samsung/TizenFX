@@ -25,5 +25,11 @@ namespace Tizen.NUI.Binding
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Extents)}");
         }
+
+        public override string ConvertToString(object value)
+        {
+            Extents extents = (Extents)value;
+            return extents.Start.ToString() + " " + extents.End.ToString() + " " + extents.Top.ToString() + " " + extents.Bottom.ToString();
+        }
     }
 }
