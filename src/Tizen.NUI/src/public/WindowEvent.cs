@@ -927,5 +927,94 @@ namespace Tizen.NUI
             DetentEventHandler?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// VisibilityChangedArgs
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class VisibilityChangedArgs : EventArgs
+        {
+            private bool visibility;
+            /// <summary>
+            /// Visibility
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool Visibility
+            {
+                get => visibility;
+                set {
+                    visibility = value;
+                }
+            }
+        }
+
+        private void OnVisibilityChanged(IntPtr window, bool visibility)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("[ERR] OnVisibilityChanged() window is null");
+                return;
+            }
+
+            VisibilityChangedArgs e = new VisibilityChangedArgs();
+            e.Visibility = visibility;
+            if (VisibilityChangedEventHandler != null)
+            {
+                VisibilityChangedEventHandler.Invoke(this, e);
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisibilityChangedEventCallbackType(IntPtr window, bool visibility);
+        private VisibilityChangedEventCallbackType VisibilityChangedEventCallback;
+        private event EventHandler<VisibilityChangedArgs> VisibilityChangedEventHandler;
+        private WindowVisibilityChangedEvent VisibilityChangedEventSignal;
+
+        /// <summary>
+        /// EffectStart
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<VisibilityChangedArgs> VisibilityChanged
+        {
+            add
+            {
+                if (VisibilityChangedEventHandler == null)
+                {
+                    VisibilityChangedEventCallback = OnVisibilityChanged;
+                    VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
+                    VisibilityChangedEventSignal.Connect(VisibilityChangedEventCallback);
+                }
+                VisibilityChangedEventHandler += value;
+            }
+            remove
+            {
+                VisibilityChangedEventHandler -= value;
+                if (VisibilityChangedEventHandler == null)
+                {
+                    if(VisibilityChangedEventSignal != null)
+                    {
+                        if(VisibilityChangedEventSignal.Empty() == false)
+                        {
+                            VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// VisibiltyChangedSignalEmit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void VisibiltyChangedSignalEmit(bool visibility)
+        {
+            if(VisibilityChangedEventSignal == null)
+            {
+                VisibilityChangedEventSignal = new WindowVisibilityChangedEvent(this);
+            }
+            VisibilityChangedEventSignal.Emit(this, visibility);
+        }
+
+
+
     }
 }
