@@ -110,6 +110,7 @@ namespace Tizen.NUI
             Root.HeightResizePolicy = ResizePolicyType.FillToParent;
 
             win.Add(Root);
+            win.AddPage(this);
         }
 
         /// <summary>
@@ -158,6 +159,7 @@ namespace Tizen.NUI
                 Root.Dispose();
                 Root = null;
             }
+            Window.Instance.RemovePage(this);
             base.Dispose(type);
         }
 

@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private Layer _rootLayer;
         private string _windowTitle;
         private List<Layer> _childLayers = new List<Layer>();
+        private Dictionary<Type, Page> pages = new Dictionary<Type, Page>();
         private LayoutController localController;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Window.Window_SWIGUpcast(cPtr), cMemoryOwn)
@@ -1115,6 +1116,64 @@ namespace Tizen.NUI
 
             Interop.Window.Window_SetAvailableOrientations(swigCPtr, PropertyArray.getCPtr(orientationArray));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Adds a page to the window.
+        /// </summary>
+        /// <param name="page">Page to add.</param>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddPage(Page page)
+        {
+            pages.Add(page.GetType(), page);
+        }
+
+        /// <summary>
+        /// Remove a page from the window.
+        /// </summary>
+        /// <param name="page">Page to remove.</param>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemovePage(Page page)
+        {
+            if (pages.ContainsValue(page))
+            {
+                pages.Remove(page.GetType());
+            }
+        }
+
+        /// <summary>
+        /// Remove a page from the window.
+        /// </summary>
+        /// <param name="type">Type of page to remove.</param>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemovePage(Type type)
+        {
+            pages.Remove(type);
+        }
+
+        /// <summary>
+        /// Remove all pages from the window.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAllPages()
+        {
+            pages.Clear();
+        }
+
+        /// <summary>
+        /// Gets a page according to specific type.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        /// <returns>The specific page.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page GetPage(Type type)
+        {
+            pages.TryGetValue(type, out Page page);
+            return page;
         }
 
         internal Any GetNativeHandle()
