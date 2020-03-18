@@ -104,9 +104,12 @@ namespace Tizen.NUI
                     }
                     else
                     {
-                        Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
-                        if (NDalicPINVOKE.SWIGPendingException.Pending)
-                            throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                        if(childLayout.Owner != null)
+                        {
+                            Interop.Actor.Actor_Remove(View.getCPtr(childLayout.Owner.Parent), View.getCPtr(childLayout.Owner));
+                            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                        }
                     }
 
                     // Reset condition for animation ready for next transition when required.
