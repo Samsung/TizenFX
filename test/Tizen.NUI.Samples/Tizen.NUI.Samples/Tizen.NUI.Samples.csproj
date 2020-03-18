@@ -15,7 +15,6 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Samples\AnimatedImageViewTest.cs" />
     <Compile Remove="Samples\AnimatedVectorImageViewTest.cs" />
     <Compile Remove="Samples\ButtonSample.cs" />
     <Compile Remove="Samples\CheckBoxSample.cs" />
